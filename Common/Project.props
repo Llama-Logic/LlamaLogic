@@ -1,0 +1,27 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <Authors>LlamaLogic</Authors>
+        <Company>LlamaLogic</Company>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <RepositoryUrl>https://github.com/Llama-Logic/LlamaLogic</RepositoryUrl>
+        <TargetFrameworks>netstandard2.1;net6.0;net7.0;net8.0</TargetFrameworks>
+        <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+        <DefineConstants Condition="'$(TargetFramework)' == 'netstandard2.1' or '$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'">$(DefineConstants);IS_NET_STANDARD_2_1_OR_GREATER</DefineConstants>
+        <DefineConstants Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'">$(DefineConstants);IS_NET_6_0_OR_GREATER</DefineConstants>
+        <DefineConstants Condition="'$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'">$(DefineConstants);IS_NET_7_0_OR_GREATER</DefineConstants>
+        <DefineConstants Condition="'$(TargetFramework)' == 'net8.0'">$(DefineConstants);IS_NET_8_0_OR_GREATER</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="..\Common\AssemblyInfo.cs" Link="AssemblyInfo.cs" />
+    </ItemGroup>
+
+</Project>
