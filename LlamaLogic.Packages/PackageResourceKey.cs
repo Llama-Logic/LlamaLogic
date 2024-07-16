@@ -59,7 +59,7 @@ struct PackageResourceKey :
         !(left == right);
 
     /// <summary>
-    /// Instantiates a new package resource key.
+    /// Instantiates a new package resource key
     /// </summary>
     public PackageResourceKey(PackageResourceType type, uint group, ulong instance)
     {

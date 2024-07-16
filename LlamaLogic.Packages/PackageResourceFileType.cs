@@ -8,6 +8,7 @@ public enum PackageResourceFileType
     /// <summary>
     /// XML
     /// </summary>
+    [PackageResourceFileTypeFormat("xml", "text/xml")]
     [PackageResourceFileTypeEncoding(typeof(UTF8Encoding))]
     Xml
 }
