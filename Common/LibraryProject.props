@@ -14,6 +14,10 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    </ItemGroup>
+
     <Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
         <ReadLinesFromFile File="ReleaseNotes.txt">
             <Output TaskParameter="Lines" ItemName="ReleaseNoteLines" />
