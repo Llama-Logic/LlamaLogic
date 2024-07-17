@@ -18,9 +18,9 @@ public class Package :
             throw new InvalidOperationException("major version is not 2");
         if (MemoryMarshal.Read<int>(header[8..12]) != 1)
             throw new InvalidOperationException("minor version is not 1");
-        var indexCount = BitConverter.ToInt32(header[36..40]);
-        var indexSize = BitConverter.ToInt32(header[44..48]);
-        var indexPosition = BitConverter.ToInt32(header[64..68]);
+        var indexCount = MemoryMarshal.Read<int>(header[36..40]);
+        var indexSize = MemoryMarshal.Read<int>(header[44..48]);
+        var indexPosition = MemoryMarshal.Read<int>(header[64..68]);
         return (indexCount, indexSize, indexPosition);
     }
 

@@ -6,9 +6,20 @@ namespace LlamaLogic.Packages;
 public enum PackageResourceFileType
 {
     /// <summary>
-    /// XML
+    /// DDS Image
     /// </summary>
-    [PackageResourceFileTypeFormat("xml", "text/xml")]
-    [PackageResourceFileTypeEncoding(typeof(UTF8Encoding))]
-    Xml
+    [PackageResourceFileTypeFormat("dds", "image/vnd.ms-dds")]
+    DirectDrawSurface,
+
+    /// <summary>
+    /// PNG Image
+    /// </summary>
+    [PackageResourceFileTypeFormat("png", "image/png")]
+    PortableNetworkGraphic,
+
+    /// <summary>
+    /// Tuning XML
+    /// </summary>
+    [PackageResourceFileTypeFormat("xml", "application/xml")]
+    TuningMarkup
 }
