@@ -17,7 +17,7 @@ struct PackageResourceKey(PackageResourceType type, uint group, ulong instance) 
 #endif
 {
 #if IS_NET_7_0_OR_GREATER
-    [GeneratedRegex(@"^(?<type>[\da-f]{8})-(?<group>[\da-f]{8})-(?<instance>[\da-f]{16})$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"^(?<type>[\da-f]{8})-(?<group>[\da-f]{8})-(?<highOrderInstance>[\da-f]{8})(?<lowOrderInstance>[\da-f]{8})$", RegexOptions.IgnoreCase)]
     public static partial Regex GetPackageResourceKeyRegex();
 #endif
 
@@ -41,11 +41,11 @@ struct PackageResourceKey(PackageResourceType type, uint group, ulong instance) 
 #if IS_NET_7_0_OR_GREATER
         var match = GetPackageResourceKeyRegex().Match(s);
 #else
-        var match = Regex.Match(s, @"^(?<type>[\da-f]{8})-(?<group>[\da-f]{8})-(?<instance>[\da-f]{16})$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        var match = Regex.Match(s, @"^(?<type>[\da-f]{8})-(?<group>[\da-f]{8})-(?<highOrderInstance>[\da-f]{8})(?<lowOrderInstance>[\da-f]{8})$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 #endif
         if (match.Success)
         {
-            result = new PackageResourceKey((PackageResourceType)uint.Parse(match.Groups["type"].Value, NumberStyles.HexNumber), uint.Parse(match.Groups["group"].Value, NumberStyles.HexNumber), ulong.Parse(match.Groups["instance"].Value, NumberStyles.HexNumber));
+            result = new PackageResourceKey((PackageResourceType)uint.Parse(match.Groups["type"].Value, NumberStyles.HexNumber), uint.Parse(match.Groups["group"].Value, NumberStyles.HexNumber), ((ulong)uint.Parse(match.Groups["highOrderInstance"].Value, NumberStyles.HexNumber)) << 32 | uint.Parse(match.Groups["lowOrderInstance"].Value, NumberStyles.HexNumber));
             return true;
         }
         result = default;
