@@ -1,5 +1,3 @@
-<h1>LlamaLogic.Packages</h1>
-
 <!-- TOC -->
 
 - [How to install](#how-to-install)
