@@ -1,13 +1,28 @@
 namespace LlamaLogic.Packages;
 
-class ReadOnlyMemoryOfByteStream :
+class ReadOnlySubStream :
     Stream
 {
-    public ReadOnlyMemoryOfByteStream(ReadOnlyMemory<byte> readOnlyMemory) =>
-        this.readOnlyMemory = readOnlyMemory;
+    public ReadOnlySubStream(Stream source, Range range)
+    {
+#if IS_NET_6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+#else
+        if (source is null)
+            throw new ArgumentNullException(nameof(source));
+#endif
+        (sourceOffset, length) = range.GetOffsetAndLength((int)source.Length);
+        if (sourceOffset < 0)
+            throw new ArgumentOutOfRangeException(nameof(range), "range lower bound cannot precede beginning of source");
+        if (sourceOffset + length > source.Length)
+            throw new ArgumentOutOfRangeException(nameof(range), "range upper bound cannot extend beyond ending of source");
+        this.source = source;
+    }
 
-    long position;
-    readonly ReadOnlyMemory<byte> readOnlyMemory;
+    readonly long length;
+    [SuppressMessage("Usage", "CA2213: Disposable fields should be disposed", Justification = "We didn't create this stream, so we're not disposing it. Sorry, code analyzer.")]
+    readonly Stream source;
+    readonly long sourceOffset;
 
     public override bool CanRead =>
         true;
@@ -19,16 +34,16 @@ class ReadOnlyMemoryOfByteStream :
         false;
 
     public override long Length =>
-        readOnlyMemory.Length;
+        length;
 
     public override long Position
     {
-        get => position;
+        get => source.Position - sourceOffset;
         set
         {
-            if (value < 0 || value > readOnlyMemory.Length)
+            if (value < 0 || value > length)
                 throw new ArgumentOutOfRangeException(nameof(value));
-            position = value;
+            source.Position = sourceOffset + value;
         }
     }
 
@@ -58,14 +73,10 @@ class ReadOnlyMemoryOfByteStream :
             throw new ArgumentOutOfRangeException(nameof(count));
 #endif
         if (buffer.Length - offset < count)
-            throw new ArgumentException("invalid offset and length");
-        if (position >= readOnlyMemory.Length)
+            throw new ArgumentException("invalid offset and count");
+        if (Position >= length)
             return 0;
-        var positionAsInt = (int)position;
-        var result = Math.Min(readOnlyMemory.Length - positionAsInt, count);
-        readOnlyMemory.Span.Slice(positionAsInt, result).CopyTo(buffer.AsSpan(offset, result));
-        position += result;
-        return result;
+        return source.Read(buffer, offset, Math.Min((int)length - (int)Position, count));
     }
 
     public override long Seek(long offset, SeekOrigin origin)
@@ -73,14 +84,14 @@ class ReadOnlyMemoryOfByteStream :
         var newPosition = origin switch
         {
             SeekOrigin.Begin => offset,
-            SeekOrigin.Current => position + offset,
-            SeekOrigin.End => readOnlyMemory.Length + offset,
+            SeekOrigin.Current => Position + offset,
+            SeekOrigin.End => length + offset,
             _ => throw new ArgumentOutOfRangeException(nameof(origin))
         };
-        if (newPosition < 0 || newPosition > readOnlyMemory.Length)
+        if (newPosition < 0 || newPosition > length)
             throw new ArgumentOutOfRangeException(nameof(offset));
-        position = newPosition;
-        return position;
+        source.Position = sourceOffset + newPosition;
+        return newPosition;
     }
 
     public override void SetLength(long value) =>

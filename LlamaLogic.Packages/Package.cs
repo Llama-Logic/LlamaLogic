@@ -164,13 +164,13 @@ public class Package :
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
-            return LoadResourceContentFromStream(key, indexEntry);
+            return LoadResourceContentFromStream(indexEntry);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
             return loadedResource;
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
-            return LoadResourceContentFromStream(key, indexEntry);
+            return LoadResourceContentFromStream(indexEntry);
         if (loadedResources.TryGetValue(key, out var alteredResource))
             return alteredResource;
 #endif
@@ -185,13 +185,13 @@ public class Package :
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
-            return LoadResourceConentFromStreamAsync(key, indexEntry);
+            return LoadResourceConentFromStreamAsync(indexEntry);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
             return ValueTask.FromResult(loadedResource);
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
-            return LoadResourceConentFromStreamAsync(key, indexEntry);
+            return LoadResourceConentFromStreamAsync(indexEntry);
         if (loadedResources.TryGetValue(key, out var alteredResource))
             return new ValueTask<ReadOnlyMemory<byte>>(alteredResource);
 #endif
@@ -223,6 +223,17 @@ public class Package :
             return (uint)alteredResource.Length;
 #endif
         return default;
+    }
+
+    Stream GetResourceContentStream(PackageIndexEntry entry)
+    {
+        if (stream is null)
+            throw new InvalidOperationException("package was not loaded from stream");
+        stream.Seek(entry.Position, SeekOrigin.Begin);
+        var contentStream = new ReadOnlySubStream(stream, new Range(Index.FromStart((int)entry.Position), Index.FromStart((int)entry.Position + (int)entry.FileSize)));
+        if (entry.IsCompressed)
+            return new InflaterInputStream(contentStream);
+        return contentStream;
     }
 
     (ArrayBufferWriter<byte> index, bool writeTypes, bool writeGroups, bool writeHighOrderInstances) InitializeIndex()
@@ -283,44 +294,20 @@ public class Package :
         return (index, writeTypes, writeGroups, writeHighOrderInstances);
     }
 
-    ReadOnlyMemory<byte> LoadResourceContentFromStream(PackageResourceKey key, PackageIndexEntry entry)
+    ReadOnlyMemory<byte> LoadResourceContentFromStream(PackageIndexEntry entry)
     {
-        if (stream is null)
-            throw new InvalidOperationException("package was not loaded from stream");
-        var fileSize = (int)entry.FileSize;
-        Memory<byte> resource = new byte[fileSize];
-        stream.Seek(entry.Position, SeekOrigin.Begin);
-        if (stream.Read(resource.Span) != entry.FileSize)
-            throw new EndOfStreamException($"encountered unexpected end of stream while reading resource {key}");
-        if (entry.IsCompressed)
-        {
-            Memory<byte> decompressedResource = new byte[entry.MemorySize];
-            using var resourceStream = new ReadOnlyMemoryOfByteStream(resource);
-            using var decompressionStream = new InflaterInputStream(resourceStream);
-            decompressionStream.Read(decompressedResource.Span);
-            resource = decompressedResource;
-        }
-        return resource;
+        Memory<byte> resourceContent = new byte[entry.MemorySize];
+        using var resourceContentStream = GetResourceContentStream(entry);
+        resourceContentStream.Read(resourceContent.Span);
+        return resourceContent;
     }
 
-    async ValueTask<ReadOnlyMemory<byte>> LoadResourceConentFromStreamAsync(PackageResourceKey key, PackageIndexEntry entry)
+    async ValueTask<ReadOnlyMemory<byte>> LoadResourceConentFromStreamAsync(PackageIndexEntry entry)
     {
-        if (stream is null)
-            throw new InvalidOperationException("package was not loaded from stream");
-        var fileSize = (int)entry.FileSize;
-        Memory<byte> resource = new byte[fileSize];
-        stream.Seek(entry.Position, SeekOrigin.Begin);
-        if (await stream.ReadAsync(resource).ConfigureAwait(false) != entry.FileSize)
-            throw new EndOfStreamException($"encountered unexpected end of stream while reading resource {key}");
-        if (entry.IsCompressed)
-        {
-            Memory<byte> decompressedResource = new byte[entry.MemorySize];
-            using var resourceStream = new ReadOnlyMemoryOfByteStream(resource);
-            using var decompressionStream = new InflaterInputStream(resourceStream);
-            await decompressionStream.ReadAsync(decompressedResource).ConfigureAwait(false);
-            resource = decompressedResource;
-        }
-        return resource;
+        Memory<byte> resourceContent = new byte[entry.MemorySize];
+        using var resourceContentStream = GetResourceContentStream(entry);
+        await resourceContentStream.ReadAsync(resourceContent).ConfigureAwait(false);
+        return resourceContent;
     }
 
     void LoadIndex(Span<byte> index, uint indexCount)
