@@ -357,7 +357,7 @@ public class Package :
     /// Saves the package to the specified <paramref name="stream"/>
     /// </summary>
     /// <exception cref="ArgumentNullException"><paramref name="stream"/> is <c>null</c></exception>
-    /// <exception cref="ArgumentException"><paramref name="stream"/> cannot seek or cannot write</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream"/> cannot seek or cannot write or is the same stream that was used to open the package</exception>
     /// <exception cref="InvalidOperationException">an internal error has occurred described by the exception message</exception>
     /// <exception cref="EndOfStreamException">encountered unexpected end of stream while reading original package</exception>
     public void SaveTo(Stream stream)
@@ -368,6 +368,8 @@ public class Package :
         if (stream is null)
             throw new ArgumentNullException(nameof(stream));
 #endif
+        if (ReferenceEquals(this.stream, stream))
+            throw new ArgumentException("cannot save to the stream from which the package was opened -- save to a temporary location, dispose this object, and then overwrite the original package file with the new one");
         if (!stream.CanSeek)
             throw new ArgumentException("stream cannot seek", nameof(stream));
         if (!stream.CanWrite)
@@ -429,7 +431,7 @@ public class Package :
     /// Saves the package to the specified <paramref name="stream"/> asynchronously
     /// </summary>
     /// <exception cref="ArgumentNullException"><paramref name="stream"/> is <c>null</c></exception>
-    /// <exception cref="ArgumentException"><paramref name="stream"/> cannot seek or cannot write</exception>
+    /// <exception cref="ArgumentException"><paramref name="stream"/> cannot seek or cannot write or is the same stream that was used to open the package</exception>
     /// <exception cref="InvalidOperationException">an internal error has occurred described by the exception message</exception>
     /// <exception cref="EndOfStreamException">encountered unexpected end of stream while reading original package</exception>
     public async ValueTask SaveToAsync(Stream stream)
@@ -440,6 +442,8 @@ public class Package :
         if (stream is null)
             throw new ArgumentNullException(nameof(stream));
 #endif
+        if (ReferenceEquals(this.stream, stream))
+            throw new ArgumentException("cannot save to the stream from which the package was opened -- save to a temporary location, dispose this object, and then overwrite the original package file with the new one");
         if (!stream.CanSeek)
             throw new ArgumentException("stream cannot seek", nameof(stream));
         if (!stream.CanWrite)
