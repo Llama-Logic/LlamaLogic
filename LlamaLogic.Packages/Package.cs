@@ -157,20 +157,20 @@ public class Package :
     }
 
     /// <summary>
-    /// Gets the resource with the specified <paramref name="key"/>
+    /// Gets the content for the resource with the specified <paramref name="key"/>
     /// </summary>
-    public ReadOnlyMemory<byte> GetResource(PackageResourceKey key)
+    public ReadOnlyMemory<byte> GetResourceContent(PackageResourceKey key)
     {
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
-            return LoadFromStream(key, indexEntry);
+            return LoadResourceContentFromStream(key, indexEntry);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
             return loadedResource;
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
-            return LoadFromStream(key, indexEntry);
+            return LoadResourceContentFromStream(key, indexEntry);
         if (loadedResources.TryGetValue(key, out var alteredResource))
             return alteredResource;
 #endif
@@ -178,20 +178,20 @@ public class Package :
     }
 
     /// <summary>
-    /// Gets the resource with the specified <paramref name="key"/> asynchronously
+    /// Gets the content for the resource with the specified <paramref name="key"/> asynchronously
     /// </summary>
-    public ValueTask<ReadOnlyMemory<byte>> GetResourceAsync(PackageResourceKey key)
+    public ValueTask<ReadOnlyMemory<byte>> GetResourceContentAsync(PackageResourceKey key)
     {
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
-            return LoadFromStreamAsync(key, indexEntry);
+            return LoadResourceConentFromStreamAsync(key, indexEntry);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
             return ValueTask.FromResult(loadedResource);
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
-            return LoadFromStreamAsync(key, indexEntry);
+            return LoadResourceConentFromStreamAsync(key, indexEntry);
         if (loadedResources.TryGetValue(key, out var alteredResource))
             return new ValueTask<ReadOnlyMemory<byte>>(alteredResource);
 #endif
@@ -205,9 +205,9 @@ public class Package :
         unloadedResources.Keys.Concat(loadedResources.Keys);
 
     /// <summary>
-    /// Gets the size (in memory) of the resource with the specified <paramref name="key"/>, or <c>null</c> if it is not in the package
+    /// Gets the size (in memory) of the content of the resource with the specified <paramref name="key"/>, or <c>null</c> if it is not in the package
     /// </summary>
-    public uint? GetResourceSize(PackageResourceKey key)
+    public uint? GetResourceContentSize(PackageResourceKey key)
     {
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
@@ -283,7 +283,7 @@ public class Package :
         return (index, writeTypes, writeGroups, writeHighOrderInstances);
     }
 
-    ReadOnlyMemory<byte> LoadFromStream(PackageResourceKey key, PackageIndexEntry entry)
+    ReadOnlyMemory<byte> LoadResourceContentFromStream(PackageResourceKey key, PackageIndexEntry entry)
     {
         if (stream is null)
             throw new InvalidOperationException("package was not loaded from stream");
@@ -303,7 +303,7 @@ public class Package :
         return resource;
     }
 
-    async ValueTask<ReadOnlyMemory<byte>> LoadFromStreamAsync(PackageResourceKey key, PackageIndexEntry entry)
+    async ValueTask<ReadOnlyMemory<byte>> LoadResourceConentFromStreamAsync(PackageResourceKey key, PackageIndexEntry entry)
     {
         if (stream is null)
             throw new InvalidOperationException("package was not loaded from stream");
@@ -498,12 +498,12 @@ public class Package :
     }
 
     /// <summary>
-    /// Adds or updates the specified <paramref name="resource"/> in the package using the specified <paramref name="key"/>
+    /// Adds or updates the specified <paramref name="content"/> in the package using the specified <paramref name="key"/>
     /// </summary>
-    public void SetResource(PackageResourceKey key, ReadOnlySpan<byte> resource)
+    public void SetResourceContent(PackageResourceKey key, ReadOnlySpan<byte> content)
     {
-        Memory<byte> safeCopy = new byte[resource.Length];
-        resource.CopyTo(safeCopy.Span);
+        Memory<byte> safeCopy = new byte[content.Length];
+        content.CopyTo(safeCopy.Span);
         ReadOnlyMemory<byte> readOnlySafeCopy = safeCopy;
         unloadedResources.Remove(key);
 #if IS_NET_6_0_OR_GREATER
