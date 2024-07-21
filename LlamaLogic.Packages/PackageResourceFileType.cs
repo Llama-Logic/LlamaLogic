@@ -12,6 +12,12 @@ public enum PackageResourceFileType
     DirectDrawSurface,
 
     /// <summary>
+    /// JavaScript Object Notation
+    /// </summary>
+    [PackageResourceFileTypeFormat("json", "application/json")]
+    JavaScriptObjectNotation,
+
+    /// <summary>
     /// PNG Image
     /// </summary>
     [PackageResourceFileTypeFormat("png", "image/png")]
