@@ -10,7 +10,7 @@
   - [Loading a package](#loading-a-package)
   - [Getting the keys of resources in a package](#getting-the-keys-of-resources-in-a-package)
   - [Getting the content of a resource in a package](#getting-the-content-of-a-resource-in-a-package)
-  - [Adding or updating a resource in a package](#adding-or-updating-a-resource-in-a-package)
+  - [Adding or updating the content of a resource in a package](#adding-or-updating-the-content-of-a-resource-in-a-package)
   - [Saving a package](#saving-a-package)
 
 <!-- /TOC -->
@@ -81,7 +81,7 @@ Console.WriteLine(actionTuningXmlString);
 
 *Note: Packages may contain content which has been compressed. The library abstracts this detail away by performing any decompression which may be needed when you request the content of a resource. You will always be given usable data that is not compacted or encrypted in any way.*
 
-## Adding or updating a resource in a package
+## Adding or updating the content of a resource in a package
 Call the `SetResourceContent` method of a `Package` object with a `PackageResourceKey` and a `ReadOnlySpan<byte>` representing the content of the resource that you wish to add or update.
 ```csharp
 using System.Linq;
