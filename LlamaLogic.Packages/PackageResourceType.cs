@@ -1341,6 +1341,7 @@ public enum PackageResourceType :
     /// <summary>
     /// String Table
     /// </summary>
+    [PackageResourceFileType(PackageResourceFileType.JavaScriptObjectNotation)]
     StringTable = 0x220557da,
 
     /// <summary>
