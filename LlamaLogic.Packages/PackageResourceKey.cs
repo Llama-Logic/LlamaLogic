@@ -3,12 +3,14 @@ namespace LlamaLogic.Packages;
 /// <summary>
 /// Represents the unique key of a resource within a package
 /// </summary>
-[CLSCompliant(false)]
+/// <remarks>
+/// Instantiates a new package resource key
+/// </remarks>
 public
 #if IS_NET_7_0_OR_GREATER
 partial
 #endif
-struct PackageResourceKey :
+struct PackageResourceKey(PackageResourceType type, uint group, ulong instance) :
     IEquatable<PackageResourceKey>
 #if IS_NET_7_0_OR_GREATER
     , IParsable<PackageResourceKey>
@@ -59,14 +61,10 @@ struct PackageResourceKey :
         !(left == right);
 
     /// <summary>
-    /// Instantiates a new package resource key
+    /// Gets the full TGI or TGI ID (type, group, and instance in hex format) of the resource key
     /// </summary>
-    public PackageResourceKey(PackageResourceType type, uint group, ulong instance)
-    {
-        Type = type;
-        Group = group;
-        Instance = instance;
-    }
+    public readonly string FullTgi =>
+        $"{(uint)Type:x8}-{GroupHex}-{InstanceHex}";
 
     /// <summary>
     /// A value used to group related resources together
@@ -76,31 +74,61 @@ struct PackageResourceKey :
     /// However, Maxis content and some specific modding scenarios might use different group values to organize resources.
     /// Group values help in categorizing resources that belong to a specific set or context.
     /// </remarks>
-    public uint Group;
+    public uint Group = group;
+
+    /// <summary>
+    /// Gets the group in hex format
+    /// </summary>
+    public readonly string GroupHex =>
+        Group.ToString("x8");
+
+    internal readonly uint HighOrderInstance =>
+        (uint)(Instance >> 32);
 
     /// <summary>
     /// A value that uniquely identifies an individual resource within a given type and group
     /// </summary>
-    public ulong Instance;
+    public readonly ulong Instance = instance;
+
+    /// <summary>
+    /// Gets the instance in hex format
+    /// </summary>
+    public readonly string InstanceHex =>
+        Instance.ToString("x16");
 
     /// <summary>
     /// The type of resource indicated by the key
     /// </summary>
-    public PackageResourceType Type;
+    public PackageResourceType Type = type;
 
     /// <inheritdoc/>
-    public override bool Equals(object? obj) =>
+    public override readonly bool Equals(object? obj) =>
         obj is PackageResourceKey key && Equals(key);
 
     /// <inheritdoc/>
-    public bool Equals(PackageResourceKey other) =>
+    public readonly bool Equals(PackageResourceKey other) =>
         Type.Equals(other.Type) && Group.Equals(other.Group) && Instance.Equals(other.Instance);
 
     /// <inheritdoc/>
-    public override int GetHashCode() =>
+    public override readonly int GetHashCode() =>
         HashCode.Combine(Type, Group, Instance);
 
     /// <inheritdoc/>
-    public override string ToString() =>
-        $"{Type:x}-{Group:x}-{Instance:x}";
+    public override readonly string ToString() =>
+        FullTgi;
+
+    internal void WriteIndexComponent(ArrayBufferWriter<byte> index, bool writeTypes, bool writeGroups, bool writeHighOrderInstances)
+    {
+        if (writeTypes)
+            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(PackageResourceType)), ref Type);
+        if (writeGroups)
+            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref Group);
+        if (writeHighOrderInstances)
+        {
+            var highOrderInstance = HighOrderInstance;
+            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref highOrderInstance);
+        }
+        var lowOrderInstance = (uint)(Instance & 0xffffffff);
+        MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref lowOrderInstance);
+    }
 }
