@@ -38,7 +38,7 @@ public class Package :
             throw new EndOfStreamException("encountered unexpected end of stream while reading header");
         var (indexCount, indexSize, indexPosition) = ParseHeader(header);
         stream.Seek(indexPosition, SeekOrigin.Begin);
-        Span<byte> index = stackalloc byte[(int)indexSize];
+        Span<byte> index = new byte[(int)indexSize];
         if (stream.Read(index) != indexSize)
             throw new EndOfStreamException("encountered unexpected end of stream while reading index");
         package.LoadIndex(index, indexCount);
