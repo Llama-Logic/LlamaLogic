@@ -3,7 +3,6 @@ namespace LlamaLogic.Packages;
 /// <summary>
 /// A type of resource within a package
 /// </summary>
-[CLSCompliant(false)]
 [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "This is by nature of how the package files work. We have no control over that.")]
 public enum PackageResourceType :
     uint
@@ -1100,6 +1099,12 @@ public enum PackageResourceType :
     RoyaltyTuning = 0x37ef2ee7,
 
     /// <summary>
+    /// Sims 4 Studio Merged Package Manifest
+    /// </summary>
+    [PackageResourceFileType(PackageResourceFileType.JavaScriptObjectNotation)]
+    S4sMergedPackageManifest = 0x7fb6ad8a,
+
+    /// <summary>
     /// ScaleForm GFX
     /// </summary>
     ScaleFormGFX = 0x62ecc59a,
@@ -1768,7 +1773,7 @@ public enum PackageResourceType :
     WorldmapLotThumbnail = 0xa1ff2fc4,
 
     /// <summary>
-    /// WorldObjectData
+    /// World Object Data
     /// </summary>
     WorldObjectData = 0xfcb1a1e4,
 
