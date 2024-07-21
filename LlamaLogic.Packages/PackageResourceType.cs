@@ -223,11 +223,6 @@ public enum PackageResourceType :
     BuyBuildThumbnail = 0x3c2a8647,
 
     /// <summary>
-    /// C71CA490
-    /// </summary>
-    C71CA490 = 0xc71ca490,
-
-    /// <summary>
     /// Call To Action Tuning
     /// </summary>
     [PackageResourceFileType(PackageResourceFileType.TuningMarkup)]
