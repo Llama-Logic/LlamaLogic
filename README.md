@@ -1,9 +1,9 @@
 <h1>Llama Logic</h1>
 Herding your Sims 4 mods like a pro, one clean file at a time!
-
 <!-- TOC -->
 
 - [NuGet packages](#nuget-packages)
+  - [LlamaLogic.Packages](#llamalogicpackages)
 - [License](#license)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
@@ -11,12 +11,15 @@ Herding your Sims 4 mods like a pro, one clean file at a time!
   - [Libraries](#libraries)
 
 <!-- /TOC -->
-  - [Libraries](#libraries)
-
 <!-- /TOC -->
 
 # NuGet packages
-* [LlamaLogic.Packages](LlamaLogic.Packages/README.md) - Create, read, and update package files for Maxis' The Sims 4.
+
+## LlamaLogic.Packages
+[![LlamaLogic.Packages Nuget](https://img.shields.io/nuget/v/LlamaLogic.Packages.svg?logo=nuget) ![Downloads](https://img.shields.io/nuget/dt/llamalogic.packages)](https://www.nuget.org/packages/LlamaLogic.Packages)
+
+Create, read, and update package files for Maxis' The Sims 4.
+The read me documentation is available [here](LLamaLogic.Packages/README.md).
 
 # License
 [MIT License](LICENSE)
