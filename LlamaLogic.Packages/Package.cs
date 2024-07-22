@@ -162,7 +162,7 @@ public class Package :
     void AddIndexedResourceName(PackageResourceKey key, string resourceName)
     {
         resourceNameByKey ??= [];
-        resourceNameByKey.Add(key, resourceName);
+        resourceNameByKey.TryAdd(key, resourceName);
         resourceKeysByName ??= [];
 #if IS_NET_6_0_OR_GREATER
         ref var keys = ref CollectionsMarshal.GetValueRefOrAddDefault(resourceKeysByName, resourceName, out var keysExisted);
