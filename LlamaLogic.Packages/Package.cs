@@ -345,6 +345,24 @@ public class Package :
     }
 
     /// <summary>
+    /// Gets the names for all the resources in the package
+    /// </summary>
+    public IReadOnlyList<string> GetResourceNames()
+    {
+        LoadResourceNames();
+        return resourceKeysByName!.Keys.ToList().AsReadOnly();
+    }
+
+    /// <summary>
+    /// Gets the names for all the resources in the package asynchronously
+    /// </summary>
+    public async ValueTask<IReadOnlyList<string>> GetResourceNamesAsync()
+    {
+        await LoadResourceNamesAsync().ConfigureAwait(false);
+        return resourceKeysByName!.Keys.ToList().AsReadOnly();
+    }
+
+    /// <summary>
     /// Gets all the keys for all the resources in the package
     /// </summary>
     public IReadOnlyList<PackageResourceKey> GetResourceKeys() =>
