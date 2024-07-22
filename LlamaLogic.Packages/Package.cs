@@ -579,6 +579,7 @@ public class Package :
             using var compressedStream = new MemoryStream();
             using var compressionStream = new DeflaterOutputStream(compressedStream) { IsStreamOwner = false };
             compressionStream.Write(decompressedResource.Span);
+            compressionStream.Flush();
             var compress = compressedStream.Length < decompressedResource.Length;
             var entry = compress
                 ? new PackageIndexEntry(0, (uint)compressedStream.Length, (uint)decompressedResource.Length, true)
@@ -653,6 +654,7 @@ public class Package :
             using var compressedStream = new MemoryStream();
             using var compressionStream = new DeflaterOutputStream(compressedStream) { IsStreamOwner = false };
             await compressionStream.WriteAsync(decompressedResource).ConfigureAwait(false);
+            await compressionStream.FlushAsync().ConfigureAwait(false);
             var compress = compressedStream.Length < decompressedResource.Length;
             var entry = compress
                 ? new PackageIndexEntry(0, (uint)compressedStream.Length, (uint)decompressedResource.Length, true)
