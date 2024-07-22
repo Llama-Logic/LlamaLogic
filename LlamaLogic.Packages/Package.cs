@@ -181,7 +181,7 @@ public class Package :
     ReadOnlyCollection<PackageResourceKey> CopyResourceKeysByName(string name)
     {
         IEnumerable<PackageResourceKey> enumerable = [];
-        if (resourceKeysByName!.TryGetValue(name, out var keys))
+        if (resourceKeysByName?.TryGetValue(name, out var keys) ?? false)
             enumerable = keys;
         return enumerable.ToList().AsReadOnly();
     }
@@ -332,7 +332,7 @@ public class Package :
     public string? GetResourceNameByKey(PackageResourceKey key)
     {
         LoadResourceNames();
-        return resourceNameByKey!.TryGetValue(key, out var resourceName) ? resourceName : null;
+        return (resourceNameByKey?.TryGetValue(key, out var resourceName) ?? false) ? resourceName : null;
     }
 
     /// <summary>
@@ -341,7 +341,7 @@ public class Package :
     public async ValueTask<string?> GetResourceNameByKeyAsync(PackageResourceKey key)
     {
         await LoadResourceNamesAsync().ConfigureAwait(false);
-        return resourceNameByKey!.TryGetValue(key, out var resourceName) ? resourceName : null;
+        return (resourceNameByKey?.TryGetValue(key, out var resourceName) ?? false) ? resourceName : null;
     }
 
     /// <summary>
@@ -350,7 +350,7 @@ public class Package :
     public IReadOnlyList<string> GetResourceNames()
     {
         LoadResourceNames();
-        return resourceKeysByName!.Keys.ToList().AsReadOnly();
+        return (resourceKeysByName?.Keys ?? Enumerable.Empty<string>()).ToList().AsReadOnly();
     }
 
     /// <summary>
@@ -359,7 +359,7 @@ public class Package :
     public async ValueTask<IReadOnlyList<string>> GetResourceNamesAsync()
     {
         await LoadResourceNamesAsync().ConfigureAwait(false);
-        return resourceKeysByName!.Keys.ToList().AsReadOnly();
+        return (resourceKeysByName?.Keys ?? Enumerable.Empty<string>()).ToList().AsReadOnly();
     }
 
     /// <summary>
