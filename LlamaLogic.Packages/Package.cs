@@ -13,6 +13,14 @@ public class Package :
     static readonly ReadOnlyMemory<byte> supportedPreamble = "DBPF"u8.ToArray();
     const int unloadedResourceStreamCopyBufferSize = 81_920; // 80KB
 
+    static readonly ImmutableHashSet<PackageResourceType> tuningMarkupTypes = Enum
+#if IS_NET_6_0_OR_GREATER
+        .GetValues<PackageResourceType>()
+#else
+        .GetValues(typeof(PackageResourceType)).Cast<PackageResourceType>()
+#endif
+        .Where(resourceType => typeof(PackageResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<PackageResourceFileTypeAttribute>()?.PackageResourceFileType is PackageResourceFileType.TuningMarkup).ToImmutableHashSet();
+
     /// <summary>
     /// Instantiates a <see cref="Package"/> by reading from the specified <paramref name="stream"/>
     /// </summary>
@@ -77,6 +85,42 @@ public class Package :
         return package;
     }
 
+    static string? GetTuningMarkupResourceName(Stream tuningMarkupStream)
+    {
+        try
+        {
+            using var tuningMarkupReader = XmlReader.Create(tuningMarkupStream);
+            var continuedReading = false;
+            while ((continuedReading = tuningMarkupReader.Read()) && tuningMarkupReader.NodeType is not XmlNodeType.Element)
+            {
+            }
+            if (continuedReading && tuningMarkupReader.GetAttribute("n") is { } resourceName)
+                return resourceName;
+        }
+        catch
+        {
+        }
+        return null;
+    }
+
+    static async ValueTask<string?> GetTuningMarkupResourceNameAsync(Stream tuningMarkupStream)
+    {
+        try
+        {
+            using var tuningMarkupReader = XmlReader.Create(tuningMarkupStream, new XmlReaderSettings { Async = true });
+            var continuedReading = false;
+            while ((continuedReading = await tuningMarkupReader.ReadAsync().ConfigureAwait(false)) && tuningMarkupReader.NodeType is not XmlNodeType.Element)
+            {
+            }
+            if (continuedReading && tuningMarkupReader.GetAttribute("n") is { } resourceName)
+                return resourceName;
+        }
+        catch
+        {
+        }
+        return null;
+    }
+
     static (uint indexCount, uint indexSize, uint indexPosition) ParseHeader(Span<byte> header)
     {
         if (!header[0..4].SequenceEqual(supportedPreamble.Span))
@@ -110,14 +154,48 @@ public class Package :
         Dispose(false);
 
     readonly Dictionary<PackageResourceKey, ReadOnlyMemory<byte>> loadedResources = [];
+    Dictionary<string, HashSet<PackageResourceKey>>? resourceKeysByName;
+    Dictionary<PackageResourceKey, string>? resourceNameByKey;
     readonly Stream? stream;
     readonly Dictionary<PackageResourceKey, PackageIndexEntry> unloadedResources = [];
+
+    void AddIndexedResourceName(PackageResourceKey key, string resourceName)
+    {
+        resourceNameByKey ??= [];
+        resourceNameByKey.Add(key, resourceName);
+        resourceKeysByName ??= [];
+#if IS_NET_6_0_OR_GREATER
+        ref var keys = ref CollectionsMarshal.GetValueRefOrAddDefault(resourceKeysByName, resourceName, out var keysExisted);
+        if (!keysExisted)
+            keys = [key];
+        else
+            keys!.Add(key);
+#else
+        if (resourceKeysByName.TryGetValue(resourceName, out var keys))
+            keys.Add(key);
+        else
+            resourceKeysByName.Add(resourceName, [key]);
+#endif
+    }
+
+    ReadOnlyCollection<PackageResourceKey> CopyResourceKeysByName(string name)
+    {
+        IEnumerable<PackageResourceKey> enumerable = [];
+        if (resourceKeysByName!.TryGetValue(name, out var keys))
+            enumerable = keys;
+        return enumerable.ToList().AsReadOnly();
+    }
 
     /// <summary>
     /// Deletes the resource with the specified <paramref name="key"/> and returns <c>true</c> if it was found; otherwise, <c>false</c>
     /// </summary>
-    public bool DeleteResource(PackageResourceKey key) =>
-        unloadedResources.Remove(key) || loadedResources.Remove(key);
+    public bool DeleteResource(PackageResourceKey key)
+    {
+        var removed = unloadedResources.Remove(key) || loadedResources.Remove(key);
+        if (removed)
+            RemoveIndexedResourceName(key);
+        return removed;
+    }
 
     /// <inheritdoc/>
     public void Dispose()
@@ -185,24 +263,18 @@ public class Package :
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
-            return LoadResourceConentFromStreamAsync(indexEntry);
+            return LoadResourceContentFromStreamAsync(indexEntry);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
             return ValueTask.FromResult(loadedResource);
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
-            return LoadResourceConentFromStreamAsync(indexEntry);
+            return LoadResourceContentFromStreamAsync(indexEntry);
         if (loadedResources.TryGetValue(key, out var alteredResource))
             return new ValueTask<ReadOnlyMemory<byte>>(alteredResource);
 #endif
         return default;
     }
-
-    /// <summary>
-    /// Gets all the keys for all the resources in the package
-    /// </summary>
-    public IEnumerable<PackageResourceKey> GetResourceKeys() =>
-        unloadedResources.Keys.Concat(loadedResources.Keys);
 
     /// <summary>
     /// Gets the size (in memory) of the content of the resource with the specified <paramref name="key"/>, or <c>null</c> if it is not in the package
@@ -235,6 +307,48 @@ public class Package :
             return new InflaterInputStream(contentStream);
         return contentStream;
     }
+
+    /// <summary>
+    /// Gets a list of keys for resources with the specified <paramref name="name"/>
+    /// </summary>
+    public IReadOnlyList<PackageResourceKey> GetResourceKeysByName(string name)
+    {
+        LoadResourceNames();
+        return CopyResourceKeysByName(name);
+    }
+
+    /// <summary>
+    /// Gets a list of keys for resources with the specified <paramref name="name"/> asynchronously
+    /// </summary>
+    public async ValueTask<IReadOnlyList<PackageResourceKey>> GetResourceKeysByNameAsync(string name)
+    {
+        await LoadResourceNamesAsync().ConfigureAwait(false);
+        return CopyResourceKeysByName(name);
+    }
+
+    /// <summary>
+    /// Gets the name for the resource with the specified <paramref name="key"/>
+    /// </summary>
+    public string? GetResourceNameByKey(PackageResourceKey key)
+    {
+        LoadResourceNames();
+        return resourceNameByKey!.TryGetValue(key, out var resourceName) ? resourceName : null;
+    }
+
+    /// <summary>
+    /// Gets the name for the resource with the specified <paramref name="key"/> asynchronously
+    /// </summary>
+    public async ValueTask<string?> GetResourceNameByKeyAsync(PackageResourceKey key)
+    {
+        await LoadResourceNamesAsync().ConfigureAwait(false);
+        return resourceNameByKey!.TryGetValue(key, out var resourceName) ? resourceName : null;
+    }
+
+    /// <summary>
+    /// Gets all the keys for all the resources in the package
+    /// </summary>
+    public IReadOnlyList<PackageResourceKey> GetResourceKeys() =>
+        unloadedResources.Keys.Concat(loadedResources.Keys).ToList().AsReadOnly();
 
     (ArrayBufferWriter<byte> index, bool writeTypes, bool writeGroups, bool writeHighOrderInstances) InitializeIndex()
     {
@@ -294,22 +408,6 @@ public class Package :
         return (index, writeTypes, writeGroups, writeHighOrderInstances);
     }
 
-    ReadOnlyMemory<byte> LoadResourceContentFromStream(PackageIndexEntry entry)
-    {
-        Memory<byte> resourceContent = new byte[entry.MemorySize];
-        using var resourceContentStream = GetResourceContentStream(entry);
-        resourceContentStream.Read(resourceContent.Span);
-        return resourceContent;
-    }
-
-    async ValueTask<ReadOnlyMemory<byte>> LoadResourceConentFromStreamAsync(PackageIndexEntry entry)
-    {
-        Memory<byte> resourceContent = new byte[entry.MemorySize];
-        using var resourceContentStream = GetResourceContentStream(entry);
-        await resourceContentStream.ReadAsync(resourceContent).ConfigureAwait(false);
-        return resourceContent;
-    }
-
     void LoadIndex(Span<byte> index, uint indexCount)
     {
         var indexType = MemoryMarshal.Read<PackageIndexType>(index[0..4]);
@@ -337,6 +435,76 @@ public class Package :
             var key = new PackageResourceKey(type, group, ((ulong)highOrderInstance) << 32 | lowOrderInstance);
             var entry = new PackageIndexEntry(position, fileSize, memorySize, compression != PackageResourceCompressionType.None);
             unloadedResources.Add(key, entry);
+        }
+    }
+
+    ReadOnlyMemory<byte> LoadResourceContentFromStream(PackageIndexEntry entry)
+    {
+        Memory<byte> resourceContent = new byte[entry.MemorySize];
+        using var resourceContentStream = GetResourceContentStream(entry);
+        resourceContentStream.Read(resourceContent.Span);
+        return resourceContent;
+    }
+
+    async ValueTask<ReadOnlyMemory<byte>> LoadResourceContentFromStreamAsync(PackageIndexEntry entry)
+    {
+        Memory<byte> resourceContent = new byte[entry.MemorySize];
+        using var resourceContentStream = GetResourceContentStream(entry);
+        await resourceContentStream.ReadAsync(resourceContent).ConfigureAwait(false);
+        return resourceContent;
+    }
+
+    void LoadResourceNames()
+    {
+        foreach (var kv in unloadedResources.Where(keyAndEntry => tuningMarkupTypes.Contains(keyAndEntry.Key.Type)))
+        {
+            var key = kv.Key;
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            using var resourceContentStream = GetResourceContentStream(kv.Value);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            if (GetTuningMarkupResourceName(resourceContentStream) is { } resourceName)
+                AddIndexedResourceName(key, resourceName);
+        }
+        foreach (var kv in loadedResources.Where(keyAndContent => tuningMarkupTypes.Contains(keyAndContent.Key.Type)))
+        {
+            var key = kv.Key;
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            using var resourceContentStream = new ReadOnlyMemoryOfBytesStream(kv.Value);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            if (GetTuningMarkupResourceName(resourceContentStream) is { } resourceName)
+                AddIndexedResourceName(key, resourceName);
+        }
+    }
+
+    async ValueTask LoadResourceNamesAsync()
+    {
+        foreach (var kv in unloadedResources.Where(keyAndEntry => tuningMarkupTypes.Contains(keyAndEntry.Key.Type)))
+        {
+            var key = kv.Key;
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            using var resourceContentStream = GetResourceContentStream(kv.Value);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            if (await GetTuningMarkupResourceNameAsync(resourceContentStream).ConfigureAwait(false) is { } resourceName)
+                AddIndexedResourceName(key, resourceName);
+        }
+        foreach (var kv in loadedResources.Where(keyAndContent => tuningMarkupTypes.Contains(keyAndContent.Key.Type)))
+        {
+            var key = kv.Key;
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            using var resourceContentStream = new ReadOnlyMemoryOfBytesStream(kv.Value);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+            if (await GetTuningMarkupResourceNameAsync(resourceContentStream).ConfigureAwait(false) is { } resourceName)
+                AddIndexedResourceName(key, resourceName);
+        }
+    }
+
+    void RemoveIndexedResourceName(PackageResourceKey key)
+    {
+        if ((resourceNameByKey?.Remove(key, out var resourceName) ?? false) && (resourceKeysByName?.TryGetValue(resourceName, out var keys) ?? false))
+        {
+            keys.Remove(key);
+            if (keys.Count == 0)
+                resourceKeysByName.Remove(resourceName);
         }
     }
 
@@ -504,6 +672,18 @@ public class Package :
         if (!loadedResources.TryAdd(key, readOnlySafeCopy))
             loadedResources[key] = readOnlySafeCopy;
 #endif
+        if (tuningMarkupTypes.Contains(key.Type) && resourceNameByKey is not null && resourceKeysByName is not null)
+        {
+            resourceNameByKey.TryGetValue(key, out var previousName);
+            using var resourceContentStream = new ReadOnlyMemoryOfBytesStream(readOnlySafeCopy);
+            var newName = GetTuningMarkupResourceName(resourceContentStream);
+            if (newName != previousName)
+            {
+                RemoveIndexedResourceName(key);
+                if (newName is not null)
+                    AddIndexedResourceName(key, newName);
+            }
+        }
     }
 
     void WriteHeader(Span<byte> header, int indexSize, Stream stream)
