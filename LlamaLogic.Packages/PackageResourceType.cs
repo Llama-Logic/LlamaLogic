@@ -13,6 +13,11 @@ public enum PackageResourceType :
     Unspecified = 0,
 
     /// <summary>
+    /// A proprietary resource used by The Sims Resource Workshop
+    /// </summary>
+    TheSimsResourceWorkshopProprietary = 0x01357924,
+
+    /// <summary>
     /// Account Reward Tuning
     /// </summary>
     [PackageResourceFileType(PackageResourceFileType.TuningMarkup)]
