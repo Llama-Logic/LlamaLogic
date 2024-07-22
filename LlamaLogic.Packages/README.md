@@ -53,7 +53,7 @@ using var package = await Package.FromStreamAsync(packageStream);
 ## Getting the keys of resources in a package
 Call the `GetResourceKeys` method of a `Package` object to be given an `IEnumerable<LlamaLogic.Packages.PackageResourceKey>`.
 ```csharp
-var keys = package.GetResourceKeys().ToList().AsReadOnly();
+var keys = package.GetResourceKeys();
 Console.WriteLine($"This package has {keys.Count:n0} resource(s) consisting of the following types: {string.Join(", ", keys.GroupBy(key => key.Type.ToString()).OrderBy(keysGroupedByType => keysGroupedByType.Key /* the type of which all keys in this group are a part */).Select(keysGroupedByType => $"{keysGroupedByType.Key} ({keysGroupedByType.Count():n0})"))}");
 ```
 
