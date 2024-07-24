@@ -45,7 +45,7 @@ public class Package :
         if (stream.Read(header) != 96)
             throw new EndOfStreamException("encountered unexpected end of stream while reading header");
         var (indexCount, indexSize, indexPosition) = ParseHeader(header);
-        stream.Seek(indexPosition, SeekOrigin.Begin);
+        stream.Seek((long)indexPosition, SeekOrigin.Begin);
         Span<byte> index = new byte[(int)indexSize];
         if (stream.Read(index) != indexSize)
             throw new EndOfStreamException("encountered unexpected end of stream while reading index");
@@ -77,7 +77,7 @@ public class Package :
         if (await stream.ReadAsync(header).ConfigureAwait(false) != 96)
             throw new EndOfStreamException("encountered unexpected end of stream while reading package header");
         var (indexCount, indexSize, indexPosition) = ParseHeader(header.Span);
-        stream.Seek(indexPosition, SeekOrigin.Begin);
+        stream.Seek((long)indexPosition, SeekOrigin.Begin);
         Memory<byte> index = new byte[indexSize];
         if (await stream.ReadAsync(index).ConfigureAwait(false) != indexSize)
             throw new EndOfStreamException("encountered unexpected end of stream while reading index");
@@ -121,7 +121,7 @@ public class Package :
         return null;
     }
 
-    static (uint indexCount, uint indexSize, uint indexPosition) ParseHeader(Span<byte> header)
+    static (uint indexCount, uint indexSize, ulong indexPosition) ParseHeader(Span<byte> header)
     {
         if (!header[0..4].SequenceEqual(supportedPreamble.Span))
             throw new InvalidOperationException($"header preamble is not {Encoding.UTF8.GetString(supportedPreamble.Span)}");
@@ -132,8 +132,11 @@ public class Package :
         if (minorVersion != supportedMinorVersion)
             throw new InvalidOperationException($"minor version {minorVersion} is not {supportedMinorVersion}");
         var indexCount = MemoryMarshal.Read<uint>(header[36..40]);
+        var indexPosition32 = MemoryMarshal.Read<uint>(header[40..44]);
         var indexSize = MemoryMarshal.Read<uint>(header[44..48]);
-        var indexPosition = MemoryMarshal.Read<uint>(header[64..68]);
+        var indexPosition = MemoryMarshal.Read<ulong>(header[64..72]);
+        if (indexPosition is 0)
+            indexPosition = indexPosition32;
         return (indexCount, indexSize, indexPosition);
     }
 
@@ -284,13 +287,13 @@ public class Package :
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
-            return indexEntry.MemorySize;
+            return indexEntry.Size;
         ref var alteredResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref alteredResource))
             return (uint)alteredResource.Length;
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
-            return indexEntry.MemorySize;
+            return indexEntry.Size;
         if (loadedResources.TryGetValue(key, out var alteredResource))
             return (uint)alteredResource.Length;
 #endif
@@ -302,7 +305,7 @@ public class Package :
         if (stream is null)
             throw new InvalidOperationException("package was not loaded from stream");
         stream.Seek(entry.Position, SeekOrigin.Begin);
-        var contentStream = new ReadOnlySubStream(stream, new Range(Index.FromStart((int)entry.Position), Index.FromStart((int)entry.Position + (int)entry.FileSize)));
+        var contentStream = new ReadOnlySubStream(stream, new Range(Index.FromStart((int)entry.Position), Index.FromStart((int)entry.Position + (int)entry.SizeCompressed)));
         if (entry.IsCompressed)
             return new InflaterInputStream(contentStream);
         return contentStream;
@@ -446,19 +449,19 @@ public class Package :
             var highOrderInstance = onlyHighOrderInstance ?? MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
             var lowOrderInstance = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
             var position = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var fileSize = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]) & 0x7fffffff;
-            var memorySize = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
+            var sizeCompressed = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]) & 0x7fffffff;
+            var size = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
             var compression = MemoryMarshal.Read<PackageResourceCompressionType>(index[readIndexPosition..(readIndexPosition += 2)]);
             readIndexPosition += 2; // skip the next ushort (we don't read it)
             var key = new PackageResourceKey(type, group, ((ulong)highOrderInstance) << 32 | lowOrderInstance);
-            var entry = new PackageIndexEntry(position, fileSize, memorySize, compression != PackageResourceCompressionType.None);
+            var entry = new PackageIndexEntry(position, sizeCompressed, size, compression != PackageResourceCompressionType.None);
             unloadedResources.Add(key, entry);
         }
     }
 
     ReadOnlyMemory<byte> LoadResourceContentFromStream(PackageIndexEntry entry)
     {
-        Memory<byte> resourceContent = new byte[entry.MemorySize];
+        Memory<byte> resourceContent = new byte[entry.Size];
         using var resourceContentStream = GetResourceContentStream(entry);
         resourceContentStream.Read(resourceContent.Span);
         return resourceContent;
@@ -466,7 +469,7 @@ public class Package :
 
     async ValueTask<ReadOnlyMemory<byte>> LoadResourceContentFromStreamAsync(PackageIndexEntry entry)
     {
-        Memory<byte> resourceContent = new byte[entry.MemorySize];
+        Memory<byte> resourceContent = new byte[entry.Size];
         using var resourceContentStream = GetResourceContentStream(entry);
         await resourceContentStream.ReadAsync(resourceContent).ConfigureAwait(false);
         return resourceContent;
@@ -563,9 +566,9 @@ public class Package :
                 entry.WriteIndexComponent(index);
                 originalStream.Seek(entry.Position, SeekOrigin.Begin);
                 var totalResourceRead = 0;
-                while (totalResourceRead < entry.FileSize)
+                while (totalResourceRead < entry.SizeCompressed)
                 {
-                    var resourceBufferConsumption = originalStream.Read(resourceBuffer[0..(Index)Math.Min(unloadedResourceStreamCopyBufferSize, entry.FileSize - totalResourceRead)]);
+                    var resourceBufferConsumption = originalStream.Read(resourceBuffer[0..(Index)Math.Min(unloadedResourceStreamCopyBufferSize, entry.SizeCompressed - totalResourceRead)]);
                     totalResourceRead += resourceBufferConsumption;
                     stream.Write(resourceBuffer[0..resourceBufferConsumption]);
                 }
@@ -638,9 +641,9 @@ public class Package :
                 entry.WriteIndexComponent(index);
                 originalStream.Seek(entry.Position, SeekOrigin.Begin);
                 var totalResourceRead = 0;
-                while (totalResourceRead < entry.FileSize)
+                while (totalResourceRead < entry.SizeCompressed)
                 {
-                    var resourceBufferConsumption = await originalStream.ReadAsync(resourceBuffer[0..(Index)Math.Min(unloadedResourceStreamCopyBufferSize, entry.FileSize - totalResourceRead)]).ConfigureAwait(false);
+                    var resourceBufferConsumption = await originalStream.ReadAsync(resourceBuffer[0..(Index)Math.Min(unloadedResourceStreamCopyBufferSize, entry.SizeCompressed - totalResourceRead)]).ConfigureAwait(false);
                     totalResourceRead += resourceBufferConsumption;
                     await stream.WriteAsync(resourceBuffer[0..resourceBufferConsumption]).ConfigureAwait(false);
                 }
@@ -715,10 +718,13 @@ public class Package :
         MemoryMarshal.Write(header[8..12], ref minorVersion);
         var indexCount = unloadedResources.Count + loadedResources.Count;
         MemoryMarshal.Write(header[36..40], ref indexCount);
+        var indexPosition = (ulong)stream.Position;
+        var indexPosition32 = (uint)(indexPosition & 0xffffffff);
+        if (indexPosition32 == indexPosition)
+            MemoryMarshal.Write(header[40..44], ref indexPosition32);
         MemoryMarshal.Write(header[44..48], ref indexSize);
         var indexMinorVersion = supportedIndexMinorVersion;
         MemoryMarshal.Write(header[60..64], ref indexMinorVersion);
-        var indexPosition = (uint)stream.Position;
-        MemoryMarshal.Write(header[64..68], ref indexPosition);
+        MemoryMarshal.Write(header[64..72], ref indexPosition);
     }
 }
