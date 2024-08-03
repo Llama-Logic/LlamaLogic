@@ -14,7 +14,11 @@ steps:
   displayName: 'Install .NET 7'
   inputs:
     version: '7.x'
-    #includePreviewVersions: true
+
+- task: UseDotNet@2
+  displayName: 'Install .NET 8'
+  inputs:
+    version: '8.x'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore referenced NuGet packages'
