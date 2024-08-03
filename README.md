@@ -1,5 +1,10 @@
 <h1>Llama Logic</h1>
 Herding your Sims 4 mods like a pro, one clean file at a time!
+
+![Azure Pipelines](https://dev.azure.com/bigbadbleucheese/Llama%20Logic/_apis/build/status/Default)
+![GitHub License](https://img.shields.io/github/license/Llama-Logic/LlamaLogic)
+
+
 <!-- TOC -->
 
 - [NuGet packages](#nuget-packages)
@@ -10,7 +15,6 @@ Herding your Sims 4 mods like a pro, one clean file at a time!
   - [The shoulders on which Llama Logic stands](#the-shoulders-on-which-llama-logic-stands)
   - [Libraries](#libraries)
 
-<!-- /TOC -->
 <!-- /TOC -->
 
 # NuGet packages
@@ -39,16 +43,26 @@ We saw to that, but couldn't have done so without all the work done by legends o
 As Llama Logic owes its existence to them just as much as it does us, the NuGet libraries maintained and published from here are also brought to you, in spirit, by:
 
 * Peter Jones
-* [Rick](https://gib.me/)
-* [ChaosMageX](https://github.com/ChaosMageX)
+* [CmarNYC](https://github.com/cmarNYC)
+* [Scumbumbo](https://scumbumbomods.com/in-memoriam)
+
+And by:
+
 * [andrewtavera](https://github.com/andrewtavera)
+* [Buzzler](https://github.com/BrutalBuzzler)
+* [ChaosMageX](https://github.com/ChaosMageX)
 * [granthes](https://github.com/granthes)
-* [snaitf](https://github.com/Snaitf)
 * [IngeJones](https://github.com/IngeJones)
 * [Kuree](https://github.com/Kuree)
-* [CmarNYC](https://github.com/cmarNYC)
 * [pbox](https://github.com/pboxx)
-* [Buzzler](https://github.com/BrutalBuzzler)
+* [Rick](https://gib.me/)
+* [snaitf](https://github.com/Snaitf)
+
+The following current pillars of the community played a significant role in consulting on the development of this project:
+
+* Andrew, creator of [Sims 4 Studio](https://sims4studio.com/)
+* Frankk, creator of [Sims 4 Toolkit](https://sims4toolkit.com/)
+* Lot 51, creator of [Tuning Builder](https://tdesc.lot51.cc/)
 
 ## Libraries
 Makes use of the following excellent libraries:
