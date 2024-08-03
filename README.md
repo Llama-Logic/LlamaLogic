@@ -1,9 +1,4 @@
 <h1>Llama Logic</h1>
-Herding your Sims 4 mods like a pro, one clean file at a time!
-
-![Azure Pipelines](https://dev.azure.com/bigbadbleucheese/Llama%20Logic/_apis/build/status/Default)
-![GitHub License](https://img.shields.io/github/license/Llama-Logic/LlamaLogic)
-
 
 <!-- TOC -->
 
@@ -16,6 +11,10 @@ Herding your Sims 4 mods like a pro, one clean file at a time!
   - [Libraries](#libraries)
 
 <!-- /TOC -->
+
+Herding your Sims 4 mods like a pro, one clean file at a time!
+
+![GitHub License](https://img.shields.io/github/license/Llama-Logic/LlamaLogic)
 
 # NuGet packages
 
