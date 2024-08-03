@@ -6,6 +6,11 @@ namespace LlamaLogic.Packages;
 public enum PackageResourceFileType
 {
     /// <summary>
+    /// Binary
+    /// </summary>
+    Binary,
+
+    /// <summary>
     /// DDS Image
     /// </summary>
     [PackageResourceFileTypeFormat("dds", "image/vnd.ms-dds")]

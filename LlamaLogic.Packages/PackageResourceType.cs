@@ -437,7 +437,6 @@ public enum PackageResourceType :
     /// <summary>
     /// Combined Binary Tuning
     /// </summary>
-    [PackageResourceFileType(PackageResourceFileType.TuningMarkup)]
     CombinedBinaryTuning = 0x62e94d38,
 
     /// <summary>
@@ -769,7 +768,6 @@ public enum PackageResourceType :
     /// <summary>
     /// Music Data
     /// </summary>
-    [PackageResourceFileType(PackageResourceFileType.TuningMarkup)]
     MusicData = 0xc202c770,
 
     /// <summary>
@@ -1135,7 +1133,7 @@ public enum PackageResourceType :
     /// <summary>
     /// Sim Data
     /// </summary>
-    [PackageResourceFileType(PackageResourceFileType.TuningMarkup)]
+    [PackageResourceFileType(PackageResourceFileType.Binary)]
     SimData = 0x545ac67a,
 
     /// <summary>

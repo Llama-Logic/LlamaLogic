@@ -7,11 +7,19 @@ public class Package :
     IAsyncDisposable,
     IDisposable
 {
-    const uint supportedIndexMinorVersion = 3;
-    const uint supportedMajorVersion = 2;
-    const uint supportedMinorVersion = 1;
-    static readonly ReadOnlyMemory<byte> supportedPreamble = "DBPF"u8.ToArray();
     const int unloadedResourceStreamCopyBufferSize = 81_920; // 80KB
+
+    static readonly JsonWriterOptions jsonWriterOptions = new()
+    {
+        Indented = true
+    };
+
+    static readonly XmlWriterSettings markupWriterSettings = new()
+    {
+        Indent = true,
+        OmitXmlDeclaration = false,
+        Encoding = Encoding.UTF8
+    };
 
     static readonly ImmutableHashSet<PackageResourceType> tuningMarkupTypes = Enum
 #if IS_NET_6_0_OR_GREATER
@@ -121,23 +129,11 @@ public class Package :
         return null;
     }
 
-    static (uint indexCount, uint indexSize, ulong indexPosition) ParseHeader(Span<byte> header)
+    static (uint indexCount, uint indexSize, ulong indexPosition) ParseHeader(ReadOnlySpan<byte> header)
     {
-        if (!header[0..4].SequenceEqual(supportedPreamble.Span))
-            throw new InvalidOperationException($"header preamble is not {Encoding.UTF8.GetString(supportedPreamble.Span)}");
-        var majorVersion = MemoryMarshal.Read<uint>(header[4..8]);
-        if (majorVersion != supportedMajorVersion)
-            throw new InvalidOperationException($"major version {majorVersion} is not {supportedMajorVersion}");
-        var minorVersion = MemoryMarshal.Read<uint>(header[8..12]);
-        if (minorVersion != supportedMinorVersion)
-            throw new InvalidOperationException($"minor version {minorVersion} is not {supportedMinorVersion}");
-        var indexCount = MemoryMarshal.Read<uint>(header[36..40]);
-        var indexPosition32 = MemoryMarshal.Read<uint>(header[40..44]);
-        var indexSize = MemoryMarshal.Read<uint>(header[44..48]);
-        var indexPosition = MemoryMarshal.Read<ulong>(header[64..72]);
-        if (indexPosition is 0)
-            indexPosition = indexPosition32;
-        return (indexCount, indexSize, indexPosition);
+        header.ReadBinaryStruct(out BinaryPackageHeader packageHeader);
+        packageHeader.Check();
+        return (packageHeader.IndexCount, packageHeader.IndexSize, packageHeader.LongIndexPosition);
     }
 
     /// <summary>
@@ -261,7 +257,7 @@ public class Package :
     /// <summary>
     /// Gets the content for the resource with the specified <paramref name="key"/> asynchronously
     /// </summary>
-    public ValueTask<ReadOnlyMemory<byte>> GetResourceContentAsync(PackageResourceKey key)
+    public Task<ReadOnlyMemory<byte>> GetResourceContentAsync(PackageResourceKey key)
     {
 #if IS_NET_6_0_OR_GREATER
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
@@ -269,15 +265,63 @@ public class Package :
             return LoadResourceContentFromStreamAsync(indexEntry);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
-            return ValueTask.FromResult(loadedResource);
+            return Task.FromResult(loadedResource);
 #else
         if (unloadedResources.TryGetValue(key, out var indexEntry))
             return LoadResourceContentFromStreamAsync(indexEntry);
         if (loadedResources.TryGetValue(key, out var alteredResource))
-            return new ValueTask<ReadOnlyMemory<byte>>(alteredResource);
+            return Task.FromResult(alteredResource);
 #endif
-        return default;
+        return Task.FromResult(default(ReadOnlyMemory<byte>));
     }
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as a <see cref="DataResource"/>
+    /// </summary>
+    public DataResource GetResourceContentAsData(PackageResourceKey key) =>
+        new(GetResourceContent(key));
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as a <see cref="DataResource"/> asynchronously
+    /// </summary>
+    public async Task<DataResource> GetResourceContentAsDataAsync(PackageResourceKey key) =>
+        new(await GetResourceContentAsync(key).ConfigureAwait(false));
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as a <see cref="JsonDocument"/>
+    /// </summary>
+    public JsonDocument GetResourceContentAsJsonDocument(PackageResourceKey key) =>
+        JsonDocument.Parse(GetResourceContentAsText(key));
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as a <see cref="JsonDocument"/> asynchronously
+    /// </summary>
+    public async Task<JsonDocument> GetResourceContentAsJsonDocumentAsync(PackageResourceKey key) =>
+        JsonDocument.Parse(await GetResourceContentAsTextAsync(key).ConfigureAwait(false));
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as a <see cref="string"/>
+    /// </summary>
+    public string GetResourceContentAsText(PackageResourceKey key) =>
+        Encoding.UTF8.GetString(GetResourceContent(key).Span);
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as a <see cref="string"/> asynchronously
+    /// </summary>
+    public async Task<string> GetResourceContentAsTextAsync(PackageResourceKey key) =>
+        Encoding.UTF8.GetString((await GetResourceContentAsync(key).ConfigureAwait(false)).Span);
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as an <see cref="XDocument"/>
+    /// </summary>
+    public XDocument GetResourceContentAsXDocument(PackageResourceKey key) =>
+        XDocument.Parse(GetResourceContentAsText(key));
+
+    /// <summary>
+    /// Gets the content for the resource with the specified <paramref name="key"/> as an <see cref="XDocument"/> asynchronously
+    /// </summary>
+    public async Task<XDocument> GetResourceContentAsXDocumentAsync(PackageResourceKey key) =>
+        XDocument.Parse(await GetResourceContentAsTextAsync(key).ConfigureAwait(false));
 
     /// <summary>
     /// Gets the size (in memory) of the content of the resource with the specified <paramref name="key"/>, or <c>null</c> if it is not in the package
@@ -323,7 +367,7 @@ public class Package :
     /// <summary>
     /// Gets a list of keys for resources with the specified <paramref name="name"/> asynchronously
     /// </summary>
-    public async ValueTask<IReadOnlyList<PackageResourceKey>> GetResourceKeysByNameAsync(string name)
+    public async Task<IReadOnlyList<PackageResourceKey>> GetResourceKeysByNameAsync(string name)
     {
         await LoadResourceNamesAsync().ConfigureAwait(false);
         return CopyResourceKeysByName(name);
@@ -341,7 +385,7 @@ public class Package :
     /// <summary>
     /// Gets the name for the resource with the specified <paramref name="key"/> asynchronously
     /// </summary>
-    public async ValueTask<string?> GetResourceNameByKeyAsync(PackageResourceKey key)
+    public async Task<string?> GetResourceNameByKeyAsync(PackageResourceKey key)
     {
         await LoadResourceNamesAsync().ConfigureAwait(false);
         return (resourceNameByKey?.TryGetValue(key, out var resourceName) ?? false) ? resourceName : null;
@@ -359,7 +403,7 @@ public class Package :
     /// <summary>
     /// Gets the names for all the resources in the package asynchronously
     /// </summary>
-    public async ValueTask<IReadOnlyList<string>> GetResourceNamesAsync()
+    public async Task<IReadOnlyList<string>> GetResourceNamesAsync()
     {
         await LoadResourceNamesAsync().ConfigureAwait(false);
         return (resourceKeysByName?.Keys ?? Enumerable.Empty<string>()).ToList().AsReadOnly();
@@ -410,51 +454,45 @@ public class Package :
             (writeTypes ? PackageIndexType.Default : PackageIndexType.NoMoreThanOneType) |
             (writeGroups ? PackageIndexType.Default : PackageIndexType.NoMoreThanOneGroup) |
             (writeHighOrderInstances ? PackageIndexType.Default : PackageIndexType.NoMoreThanOneHighOrderInstance);
-        MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(PackageIndexType)), ref indexType);
+        index.Write(ref indexType);
         if (distinctTypes.Count == 1)
         {
             var distinctType = distinctTypes.First();
-            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(PackageResourceType)), ref distinctType);
+            index.Write(ref distinctType);
         }
         if (distinctGroups.Count == 1)
         {
             var distinctGroup = distinctGroups.First();
-            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref distinctGroup);
+            index.Write(ref distinctGroup);
         }
         if (distinctHighOrderInstances.Count == 1)
         {
             var distinctHighOrderInstance = distinctHighOrderInstances.First();
-            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref distinctHighOrderInstance);
+            index.Write(ref distinctHighOrderInstance);
         }
         return (index, writeTypes, writeGroups, writeHighOrderInstances);
     }
 
-    void LoadIndex(Span<byte> index, uint indexCount)
+    void LoadIndex(ReadOnlySpan<byte> index, uint indexCount)
     {
-        var indexType = MemoryMarshal.Read<PackageIndexType>(index[0..4]);
-        var readIndexPosition = 4;
+        var readPosition = 0U;
+        var indexType = index.ReadAndAdvancePosition<PackageIndexType>(ref readPosition);
         PackageResourceType? onlyType = null;
         if ((indexType & PackageIndexType.NoMoreThanOneType) > 0)
-            onlyType = MemoryMarshal.Read<PackageResourceType>(index[readIndexPosition..(readIndexPosition += 4)]);
+            onlyType = index.ReadAndAdvancePosition<PackageResourceType>(ref readPosition);
         uint? onlyGroup = null;
         if ((indexType & PackageIndexType.NoMoreThanOneGroup) > 0)
-            onlyGroup = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
+            onlyGroup = index.ReadAndAdvancePosition<uint>(ref readPosition);
         uint? onlyHighOrderInstance = null;
         if ((indexType & PackageIndexType.NoMoreThanOneHighOrderInstance) > 0)
-            onlyHighOrderInstance = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
+            onlyHighOrderInstance = index.ReadAndAdvancePosition<uint>(ref readPosition);
         for (var i = 0; i < indexCount; ++i)
         {
-            var type = onlyType ?? MemoryMarshal.Read<PackageResourceType>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var group = onlyGroup ?? MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var highOrderInstance = onlyHighOrderInstance ?? MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var lowOrderInstance = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var position = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var sizeCompressed = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]) & 0x7fffffff;
-            var size = MemoryMarshal.Read<uint>(index[readIndexPosition..(readIndexPosition += 4)]);
-            var compression = MemoryMarshal.Read<PackageResourceCompressionType>(index[readIndexPosition..(readIndexPosition += 2)]);
-            readIndexPosition += 2; // skip the next ushort (we don't read it)
-            var key = new PackageResourceKey(type, group, ((ulong)highOrderInstance) << 32 | lowOrderInstance);
-            var entry = new PackageIndexEntry(position, sizeCompressed, size, compression != PackageResourceCompressionType.None);
+            var type = onlyType ?? index.ReadAndAdvancePosition<PackageResourceType>(ref readPosition);
+            var group = onlyGroup ?? index.ReadAndAdvancePosition<uint>(ref readPosition);
+            var highOrderInstance = onlyHighOrderInstance ?? index.ReadAndAdvancePosition<uint>(ref readPosition);
+            index.ReadBinaryStructAndAdvancePosition(out BinaryIndexEntry binaryEntry, ref readPosition);
+            binaryEntry.Read(type, group, highOrderInstance, out var key, out var entry);
             unloadedResources.Add(key, entry);
         }
     }
@@ -467,7 +505,7 @@ public class Package :
         return resourceContent;
     }
 
-    async ValueTask<ReadOnlyMemory<byte>> LoadResourceContentFromStreamAsync(PackageIndexEntry entry)
+    async Task<ReadOnlyMemory<byte>> LoadResourceContentFromStreamAsync(PackageIndexEntry entry)
     {
         Memory<byte> resourceContent = new byte[entry.Size];
         using var resourceContentStream = GetResourceContentStream(entry);
@@ -560,10 +598,12 @@ public class Package :
             Span<byte> resourceBuffer = new byte[unloadedResourceStreamCopyBufferSize];
             foreach (var key in unloadedResources.Keys)
             {
-                key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances);
-                stream.WriteIndexComponent(index);
+                var binaryIndexEntry = new BinaryIndexEntry();
+                key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances, ref binaryIndexEntry);
+                stream.WriteIndexComponent(ref binaryIndexEntry);
                 var entry = unloadedResources[key];
-                entry.WriteIndexComponent(index);
+                entry.WriteIndexComponent(ref binaryIndexEntry);
+                index.WriteBinaryStruct(ref binaryIndexEntry);
                 originalStream.Seek(entry.Position, SeekOrigin.Begin);
                 var totalResourceRead = 0;
                 while (totalResourceRead < entry.SizeCompressed)
@@ -576,8 +616,9 @@ public class Package :
         }
         foreach (var key in loadedResources.Keys)
         {
-            key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances);
-            stream.WriteIndexComponent(index);
+            var binaryIndexEntry = new BinaryIndexEntry();
+            key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances, ref binaryIndexEntry);
+            stream.WriteIndexComponent(ref binaryIndexEntry);
             var decompressedResource = loadedResources[key];
             using var compressedStream = new MemoryStream();
             using var compressionStream = new DeflaterOutputStream(compressedStream) { IsStreamOwner = false };
@@ -587,7 +628,8 @@ public class Package :
             var entry = compress
                 ? new PackageIndexEntry(0, (uint)compressedStream.Length, (uint)decompressedResource.Length, true)
                 : new PackageIndexEntry(0, (uint)decompressedResource.Length, (uint)decompressedResource.Length, false);
-            entry.WriteIndexComponent(index);
+            entry.WriteIndexComponent(ref binaryIndexEntry);
+            index.WriteBinaryStruct(ref binaryIndexEntry);
             if (compress)
             {
                 compressedStream.Seek(0, SeekOrigin.Begin);
@@ -611,7 +653,7 @@ public class Package :
     /// <exception cref="ArgumentException"><paramref name="stream"/> cannot seek or cannot write or is the same stream that was used to open the package</exception>
     /// <exception cref="InvalidOperationException">an internal error has occurred described by the exception message</exception>
     /// <exception cref="EndOfStreamException">encountered unexpected end of stream while reading original package</exception>
-    public async ValueTask SaveToAsync(Stream stream)
+    public async Task SaveToAsync(Stream stream)
     {
 #if IS_NET_6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(stream);
@@ -635,10 +677,12 @@ public class Package :
             Memory<byte> resourceBuffer = new byte[unloadedResourceStreamCopyBufferSize];
             foreach (var key in unloadedResources.Keys)
             {
-                key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances);
-                stream.WriteIndexComponent(index);
+                var binaryIndexEntry = new BinaryIndexEntry();
+                key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances, ref binaryIndexEntry);
+                stream.WriteIndexComponent(ref binaryIndexEntry);
                 var entry = unloadedResources[key];
-                entry.WriteIndexComponent(index);
+                entry.WriteIndexComponent(ref binaryIndexEntry);
+                index.WriteBinaryStruct(ref binaryIndexEntry);
                 originalStream.Seek(entry.Position, SeekOrigin.Begin);
                 var totalResourceRead = 0;
                 while (totalResourceRead < entry.SizeCompressed)
@@ -651,8 +695,9 @@ public class Package :
         }
         foreach (var key in loadedResources.Keys)
         {
-            key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances);
-            stream.WriteIndexComponent(index);
+            var binaryIndexEntry = new BinaryIndexEntry();
+            key.WriteIndexComponent(index, writeTypes, writeGroups, writeHighOrderInstances, ref binaryIndexEntry);
+            stream.WriteIndexComponent(ref binaryIndexEntry);
             var decompressedResource = loadedResources[key];
             using var compressedStream = new MemoryStream();
             using var compressionStream = new DeflaterOutputStream(compressedStream) { IsStreamOwner = false };
@@ -662,7 +707,8 @@ public class Package :
             var entry = compress
                 ? new PackageIndexEntry(0, (uint)compressedStream.Length, (uint)decompressedResource.Length, true)
                 : new PackageIndexEntry(0, (uint)decompressedResource.Length, (uint)decompressedResource.Length, false);
-            entry.WriteIndexComponent(index);
+            entry.WriteIndexComponent(ref binaryIndexEntry);
+            index.WriteBinaryStruct(ref binaryIndexEntry);
             if (compress)
             {
                 compressedStream.Seek(0, SeekOrigin.Begin);
@@ -686,19 +732,87 @@ public class Package :
     {
         Memory<byte> safeCopy = new byte[content.Length];
         content.CopyTo(safeCopy.Span);
-        ReadOnlyMemory<byte> readOnlySafeCopy = safeCopy;
+        StoreResourceContent(key, safeCopy);
+    }
+
+    /// <summary>
+    /// Adds or updates the specified <paramref name="content"/> in the package using the specified <paramref name="key"/>
+    /// </summary>
+    public void SetResourceContent(PackageResourceKey key, DataResource content)
+    {
+#if IS_NET_6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(content);
+#else
+        if (content is null)
+            throw new ArgumentNullException(nameof(content));
+#endif
+        StoreResourceContent(key, content.Encode());
+    }
+
+    /// <summary>
+    /// Adds or updates the specified <paramref name="content"/> in the package using the specified <paramref name="key"/>
+    /// </summary>
+    public void SetResourceContent(PackageResourceKey key, JsonDocument content)
+    {
+#if IS_NET_6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(content);
+#else
+        if (content is null)
+            throw new ArgumentNullException(nameof(content));
+#endif
+        using var newDocumentStream = new MemoryStream();
+        using var documentWriter = new Utf8JsonWriter(newDocumentStream, jsonWriterOptions);
+        content.WriteTo(documentWriter);
+        documentWriter.Flush();
+        StoreResourceContent(key, newDocumentStream.ToArray());
+    }
+
+    /// <summary>
+    /// Adds or updates the specified <paramref name="content"/> in the package using the specified <paramref name="key"/>
+    /// </summary>
+    public void SetResourceContent(PackageResourceKey key, string content)
+    {
+#if IS_NET_6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(content);
+#else
+        if (content is null)
+            throw new ArgumentNullException(nameof(content));
+#endif
+        StoreResourceContent(key, Encoding.UTF8.GetBytes(content));
+    }
+
+    /// <summary>
+    /// Adds or updates the specified <paramref name="content"/> in the package using the specified <paramref name="key"/>
+    /// </summary>
+    public void SetResourceContent(PackageResourceKey key, XDocument content)
+    {
+#if IS_NET_6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(content);
+#else
+        if (content is null)
+            throw new ArgumentNullException(nameof(content));
+#endif
+        using var newMarkupStream = new MemoryStream();
+        using var markupWriter = XmlWriter.Create(newMarkupStream, markupWriterSettings);
+        content.Save(markupWriter);
+        markupWriter.Flush();
+        StoreResourceContent(key, newMarkupStream.ToArray());
+    }
+
+    void StoreResourceContent(PackageResourceKey key, ReadOnlyMemory<byte> content)
+    {
         unloadedResources.Remove(key);
 #if IS_NET_6_0_OR_GREATER
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrAddDefault(loadedResources, key, out _);
-        loadedResource = readOnlySafeCopy;
+        loadedResource = content;
 #else
-        if (!loadedResources.TryAdd(key, readOnlySafeCopy))
-            loadedResources[key] = readOnlySafeCopy;
+        if (!loadedResources.TryAdd(key, content))
+            loadedResources[key] = content;
 #endif
         if (tuningMarkupTypes.Contains(key.Type) && resourceNameByKey is not null && resourceKeysByName is not null)
         {
             resourceNameByKey.TryGetValue(key, out var previousName);
-            using var resourceContentStream = new ReadOnlyMemoryOfBytesStream(readOnlySafeCopy);
+            using var resourceContentStream = new ReadOnlyMemoryOfBytesStream(content);
             var newName = GetTuningMarkupResourceName(resourceContentStream);
             if (newName != previousName)
             {
@@ -711,20 +825,9 @@ public class Package :
 
     void WriteHeader(Span<byte> header, int indexSize, Stream stream)
     {
-        supportedPreamble.Span.CopyTo(header[0..4]);
-        var majorVersion = supportedMajorVersion;
-        MemoryMarshal.Write(header[4..8], ref majorVersion);
-        var minorVersion = supportedMinorVersion;
-        MemoryMarshal.Write(header[8..12], ref minorVersion);
-        var indexCount = unloadedResources.Count + loadedResources.Count;
-        MemoryMarshal.Write(header[36..40], ref indexCount);
-        var indexPosition = (ulong)stream.Position;
-        var indexPosition32 = (uint)(indexPosition & 0xffffffff);
-        if (indexPosition32 == indexPosition)
-            MemoryMarshal.Write(header[40..44], ref indexPosition32);
-        MemoryMarshal.Write(header[44..48], ref indexSize);
-        var indexMinorVersion = supportedIndexMinorVersion;
-        MemoryMarshal.Write(header[60..64], ref indexMinorVersion);
-        MemoryMarshal.Write(header[64..72], ref indexPosition);
+        BinaryPackageHeader.CreateForSerialization(stream, out var packageHeader);
+        packageHeader.IndexCount = (uint)(unloadedResources.Count + loadedResources.Count);
+        packageHeader.IndexSize = (uint)indexSize;
+        header.WriteBinaryStruct(in packageHeader);
     }
 }

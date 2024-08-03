@@ -117,18 +117,17 @@ struct PackageResourceKey(PackageResourceType type, uint group, ulong instance) 
     public override readonly string ToString() =>
         FullTgi;
 
-    internal void WriteIndexComponent(ArrayBufferWriter<byte> index, bool writeTypes, bool writeGroups, bool writeHighOrderInstances)
+    internal void WriteIndexComponent(ArrayBufferWriter<byte> index, bool writeTypes, bool writeGroups, bool writeHighOrderInstances, ref BinaryIndexEntry binaryIndexEntry)
     {
         if (writeTypes)
-            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(PackageResourceType)), ref Type);
+            index.Write(ref Type);
         if (writeGroups)
-            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref Group);
+            index.Write(ref Group);
         if (writeHighOrderInstances)
         {
             var highOrderInstance = HighOrderInstance;
-            MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref highOrderInstance);
+            index.Write(ref highOrderInstance);
         }
-        var lowOrderInstance = (uint)(Instance & 0xffffffff);
-        MemoryMarshal.Write(index.GetSpanAndAdvance(sizeof(uint)), ref lowOrderInstance);
+        binaryIndexEntry.LowOrderInstance = (uint)(Instance & 0xffffffff);
     }
 }
