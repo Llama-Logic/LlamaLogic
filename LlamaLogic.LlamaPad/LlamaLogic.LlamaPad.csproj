@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\Common\AppProject.props" />
+
+    <PropertyGroup>
+        <Description>Execute Python scripts which can manage package files for The Sims 4.</Description>
+        <OutputType>WinExe</OutputType>
+        <Product>Llama Pad</Product>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Version>1.0.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Fonts\CascadiaCode.ttf" />
+      <None Remove="Fonts\CascadiaCodeItalic.ttf" />
+      <None Remove="Fonts\CascadiaCodeNF.ttf" />
+      <None Remove="Fonts\CascadiaCodeNFItalic.ttf" />
+      <None Remove="Fonts\CascadiaCodePL.ttf" />
+      <None Remove="Fonts\CascadiaCodePLItalic.ttf" />
+      <None Remove="Fonts\CascadiaMono.ttf" />
+      <None Remove="Fonts\CascadiaMonoItalic.ttf" />
+      <None Remove="Fonts\CascadiaMonoNF.ttf" />
+      <None Remove="Fonts\CascadiaMonoNFItalic.ttf" />
+      <None Remove="Fonts\CascadiaMonoPL.ttf" />
+      <None Remove="Fonts\CascadiaMonoPLItalic.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+        <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+        <PackageReference Include="Python.Included" Version="3.11.6" />
+        <PackageReference Include="pythonnet" Version="3.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LlamaLogic.Packages\LlamaLogic.Packages.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Fonts\CascadiaCode.ttf" />
+      <Resource Include="Fonts\CascadiaCodeItalic.ttf" />
+      <Resource Include="Fonts\CascadiaCodeNF.ttf" />
+      <Resource Include="Fonts\CascadiaCodeNFItalic.ttf" />
+      <Resource Include="Fonts\CascadiaCodePL.ttf" />
+      <Resource Include="Fonts\CascadiaCodePLItalic.ttf" />
+      <Resource Include="Fonts\CascadiaMono.ttf" />
+      <Resource Include="Fonts\CascadiaMonoItalic.ttf" />
+      <Resource Include="Fonts\CascadiaMonoNF.ttf" />
+      <Resource Include="Fonts\CascadiaMonoNFItalic.ttf" />
+      <Resource Include="Fonts\CascadiaMonoPL.ttf" />
+      <Resource Include="Fonts\CascadiaMonoPLItalic.ttf" />
+    </ItemGroup>
+
+</Project>
