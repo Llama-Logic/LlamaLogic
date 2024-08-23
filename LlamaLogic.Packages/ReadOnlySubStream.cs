@@ -1,22 +1,22 @@
 namespace LlamaLogic.Packages;
 
-class ReadOnlySubStream :
+sealed class ReadOnlySubStream :
     Stream
 {
     public ReadOnlySubStream(Stream source, Range range)
     {
-#if IS_NET_6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-#else
-        if (source is null)
-            throw new ArgumentNullException(nameof(source));
-#endif
+        if (!source.CanSeek)
+            throw new ArgumentException("Source must be seekable", nameof(source));
+        if (!source.CanRead)
+            throw new ArgumentException("Source must be readable", nameof(source));
         (sourceOffset, length) = range.GetOffsetAndLength((int)source.Length);
         if (sourceOffset < 0)
             throw new ArgumentOutOfRangeException(nameof(range), "range lower bound cannot precede beginning of source");
         if (sourceOffset + length > source.Length)
             throw new ArgumentOutOfRangeException(nameof(range), "range upper bound cannot extend beyond ending of source");
         this.source = source;
+        this.source.Seek(sourceOffset, SeekOrigin.Begin);
     }
 
     readonly long length;
@@ -41,8 +41,13 @@ class ReadOnlySubStream :
         get => source.Position - sourceOffset;
         set
         {
+#if IS_NET_8_0_OR_GREATER
+            ArgumentOutOfRangeException.ThrowIfNegative(value, nameof(value));
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(value, length, nameof(value));
+#else
             if (value < 0 || value > length)
                 throw new ArgumentOutOfRangeException(nameof(value));
+#endif
             source.Position = sourceOffset + value;
         }
     }
@@ -54,21 +59,13 @@ class ReadOnlySubStream :
 
     public override int Read(byte[] buffer, int offset, int count)
     {
-#if IS_NET_6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(buffer);
-#else
-        if (buffer is null)
-            throw new ArgumentNullException(nameof(buffer));
-#endif
 #if IS_NET_8_0_OR_GREATER
         ArgumentOutOfRangeException.ThrowIfLessThan(offset, 0);
+        ArgumentOutOfRangeException.ThrowIfLessThan(count, 0);
 #else
         if (offset < 0)
             throw new ArgumentOutOfRangeException(nameof(offset));
-#endif
-#if IS_NET_8_0_OR_GREATER
-        ArgumentOutOfRangeException.ThrowIfLessThan(count, 0);
-#else
         if (count < 0)
             throw new ArgumentOutOfRangeException(nameof(count));
 #endif
@@ -88,8 +85,13 @@ class ReadOnlySubStream :
             SeekOrigin.End => length + offset,
             _ => throw new ArgumentOutOfRangeException(nameof(origin))
         };
+#if IS_NET_8_0_OR_GREATER
+        ArgumentOutOfRangeException.ThrowIfNegative(newPosition, nameof(offset));
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(newPosition, length, nameof(offset));
+#else
         if (newPosition < 0 || newPosition > length)
             throw new ArgumentOutOfRangeException(nameof(offset));
+#endif
         source.Position = sourceOffset + newPosition;
         return newPosition;
     }

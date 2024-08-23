@@ -5,6 +5,20 @@ class MainWindowDataContext :
 {
     public MainWindowDataContext(MainWindow mainWindow)
     {
+        if (Debugger.IsAttached)
+            typeof(DataBasePackedFile).ToString(); // force the LlamaLogic.Packages assembly to load so the debugger has symbols
+        EditorFileOperationManualResetEvent = new(true);
+        editorFileSystemWatcherLock = new();
+        editorFileSystemWatcher = new()
+        {
+            Filter = "*.*",
+            IncludeSubdirectories = false,
+            NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Size
+        };
+        editorFileSystemWatcher.Changed += FileChanged;
+        editorFileSystemWatcher.Created += FileCreated;
+        editorFileSystemWatcher.Deleted += FileDeleted;
+        editorFileSystemWatcher.Renamed += FileRenamed;
         pythonProgressIsIndeterminate = true;
         pythonSynchronizationContext = new();
         this.mainWindow = mainWindow;
@@ -15,15 +29,20 @@ class MainWindowDataContext :
 
     ulong? activePythonThread;
     string? editorFileName;
+    readonly FileSystemWatcher editorFileSystemWatcher;
+    readonly AsyncLock editorFileSystemWatcherLock;
     readonly MainWindow mainWindow;
     string? pythonExceptionMessage;
     bool pythonProgressIsIndeterminate;
     double pythonProgressValue;
     string? pythonScript;
+    string? pythonScriptInFile;
     string? pythonStatus;
     readonly PythonSynchronizationContext pythonSynchronizationContext;
     string? pythonVersion;
     string? selectedPythonScript;
+
+    public readonly AsyncManualResetEvent EditorFileOperationManualResetEvent;
 
     public string? EditorFileName
     {
@@ -32,6 +51,15 @@ class MainWindowDataContext :
         {
             editorFileName = value;
             OnPropertyChanged();
+            if (value is null)
+                editorFileSystemWatcher.EnableRaisingEvents = false;
+            else if (Path.GetDirectoryName(value) is { } nonNullDirectory)
+            {
+                editorFileSystemWatcher.EnableRaisingEvents = false;
+                editorFileSystemWatcher.Path = nonNullDirectory;
+                PythonScriptInFile = pythonScript;
+                editorFileSystemWatcher.EnableRaisingEvents = true;
+            }
         }
     }
 
@@ -82,6 +110,16 @@ class MainWindowDataContext :
         }
     }
 
+    public string? PythonScriptInFile
+    {
+        get => pythonScriptInFile;
+        private set
+        {
+            pythonScriptInFile = value;
+            OnPropertyChanged();
+        }
+    }
+
     public string? PythonStatus
     {
         get => pythonStatus;
@@ -114,20 +152,19 @@ class MainWindowDataContext :
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public bool CanSaveBeExecuted()
-    {
-        try
-        {
-            return editorFileName is null && !string.IsNullOrWhiteSpace(pythonScript) || editorFileName is not null && (!File.Exists(editorFileName) || pythonScript != File.ReadAllText(editorFileName));
-        }
-        catch
-        {
-            return false;
-        }
-    }
+    public bool CanSaveBeExecuted() =>
+        editorFileName is null && !string.IsNullOrWhiteSpace(pythonScript) || editorFileName is not null && pythonScript != pythonScriptInFile;
 
     void Closed(object? sender, EventArgs e)
     {
+        editorFileSystemWatcher.Changed -= FileChanged;
+        editorFileSystemWatcher.Created -= FileCreated;
+        editorFileSystemWatcher.Deleted -= FileDeleted;
+        editorFileSystemWatcher.Renamed -= FileRenamed;
+        editorFileSystemWatcher.EnableRaisingEvents = false;
+        editorFileSystemWatcher.Dispose();
+        mainWindow.Closing -= Closing;
+        mainWindow.Closed -= Closed;
         pythonSynchronizationContext.Send(() =>
         {
             if (PythonEngine.IsInitialized)
@@ -150,6 +187,7 @@ class MainWindowDataContext :
             if (result is MessageBoxResult.Yes)
             {
                 ApplicationCommands.Save.Execute(null, mainWindow);
+                EditorFileOperationManualResetEvent.Wait();
                 e.Cancel = CanSaveBeExecuted();
                 return;
             }
@@ -160,8 +198,28 @@ class MainWindowDataContext :
     async void ContentRendered(object? sender, EventArgs e)
     {
         mainWindow.ContentRendered -= ContentRendered;
-        PythonStatus = "Summoning Serpents";
-        await Installer.SetupPython();
+        if (Debugger.IsAttached)
+            Installer.LogMessage += msg => Debug.WriteLine(msg);
+        await Task.Run(async () =>
+        {
+            PythonStatus = "Summoning Serpents";
+            Installer.Source = new Installer.DownloadInstallationSource
+            {
+                DownloadUrl = "https://www.python.org/ftp/python/3.12.4/python-3.12.4-embed-amd64.zip"
+            };
+            if (!Installer.IsPythonInstalled())
+                await Installer.SetupPython();
+            if (!Installer.IsPipInstalled())
+            {
+                PythonStatus = "Summoning Package Installer";
+                await Installer.TryInstallPip();
+            }
+            if (!Installer.IsModuleInstalled("lxml"))
+            {
+                PythonStatus = "Summoning lxml";
+                await Installer.PipInstallModule("lxml");
+            }
+        });
         await pythonSynchronizationContext.PostAsync(() =>
         {
             PythonStatus = "Getting Binary Version";
@@ -189,8 +247,7 @@ class MainWindowDataContext :
     {
         var interop = new
         {
-            open_read = new Func<string, FileStream>(path => File.OpenRead(path)),
-            open_write = new Func<string, FileStream>(path => File.OpenWrite(path)),
+            stop = new Action(() => InterruptPython()),
             update_progress = new Action<double?>(progress =>
             {
                 if (progress is not { } nonNullProgress)
@@ -207,48 +264,187 @@ class MainWindowDataContext :
                 var statusStr = (status?.ToString() ?? string.Empty).Trim();
                 PythonStatus = string.IsNullOrWhiteSpace(statusStr) ? "Executing Python" : statusStr;
             }),
-            user_select_directory = new Func<string?, string?>(title => Application.Current.Dispatcher.Invoke(() =>
+            user_select_directory = new Func<object?, string?>(title => Application.Current.Dispatcher.Invoke(() =>
             {
+                var titleStr = (title?.ToString() ?? string.Empty).Trim();
                 var dialog = new OpenFolderDialog();
-                if (!string.IsNullOrEmpty(title))
-                    dialog.Title = title;
+                if (!string.IsNullOrEmpty(titleStr))
+                    dialog.Title = titleStr;
                 if (dialog.ShowDialog(mainWindow) ?? false)
                     return dialog.FolderName;
                 return (string?)null;
             })),
         };
+
+        // update the status to indicate that Python is being executed
         PythonStatus = "Executing Python";
         string? pythonFormattedException = null;
+
+        // do this all on Python's dedicated synchronization context
         await pythonSynchronizationContext.PostAsync(() =>
         {
+            // enter the Python.NET global interpreter lock mutex
             using (Py.GIL())
             {
                 try
                 {
+                    // create a new Python scope
                     using var scope = Py.CreateScope();
+
+                    // import standard Python modules
+                    using dynamic os = scope.Import("os");
+                    using dynamic sys = scope.Import("sys");
+
+                    // if the Python script is being executed from a file, change the working directory to the file's directory
+                    if (editorFileName is not null && File.Exists(editorFileName))
+                    {
+                        var editorFileDirectory = Path.GetDirectoryName(Path.GetFullPath(editorFileName));
+                        os.chdir(editorFileDirectory);
+                        sys.path.insert(0, editorFileDirectory);
+                    }
+
+                    // import the Python.NET interop module
                     using dynamic clr = scope.Import("clr");
+
+                    // reference the LlamaLogic.Packages assembly
                     clr.AddReference("LlamaLogic.Packages");
-                    using dynamic llPackages = scope.Import("LlamaLogic.Packages");
-                    scope.Set("LlamaLogic", llPackages);
+
+                    // import the LlamaLogic.Packages namespace as a Python module
+                    using dynamic llamaLogic = scope.Import("LlamaLogic.Packages");
+
+                    // add the LlamaLogic Python module to the scope
+                    scope.Set("LlamaLogic", llamaLogic);
+
+                    // convert the Llama Pad interop object to a Python object
                     using var pythonInterop = interop.ToPython();
+
+                    // add the Llama Pad interop object to the scope
                     scope.Set("llama_pad", pythonInterop);
+
+                    // arm the emergency escape system
                     activePythonThread = PythonEngine.GetPythonThreadID();
                     OnPropertyChanged(nameof(PythonCanBeInterrupted));
+
+                    // execute the Python script
                     scope.Exec(python);
                 }
                 catch (PythonException ex)
                 {
-                    pythonFormattedException = ex.Format();
+                    // something went wrong, collect evidence from the scene of the crime
+                    pythonFormattedException = $"{ex.Message}{Environment.NewLine}{ex.Format()}";
                 }
             }
         });
+
+        // update the status to indicate that Python has finished executing
         PythonStatus = null;
+        PythonProgressValue = 0;
+        PythonProgressIsIndeterminate = true;
+
+        // only do this if an emergency escape was NOT triggered
         if (activePythonThread is not null)
         {
+            // disarm the emergency escape system
             activePythonThread = null;
             OnPropertyChanged(nameof(PythonCanBeInterrupted));
+
+            // if a Python exception was encountered, inform the UI
             PythonExceptionMessage = pythonFormattedException;
         }
+    }
+
+    async void FileChanged(object sender, FileSystemEventArgs e)
+    {
+        using (await editorFileSystemWatcherLock.LockAsync())
+            if (!string.IsNullOrEmpty(editorFileName)
+                && File.Exists(editorFileName)
+                && Path.GetFullPath(editorFileName).Equals(e.FullPath, StringComparison.OrdinalIgnoreCase))
+            {
+                var wasInSync = pythonScript == pythonScriptInFile;
+                var remainingReadAttempts = 5;
+                while (true)
+                {
+                    try
+                    {
+                        await Task.Delay(200);
+                        PythonScriptInFile = await File.ReadAllTextAsync(editorFileName);
+                        break;
+                    }
+                    catch (IOException) when (--remainingReadAttempts >= 0)
+                    {
+                        continue;
+                    }
+                }
+                if (remainingReadAttempts >= 0 && wasInSync)
+                    PythonScript = pythonScriptInFile;
+            }
+    }
+
+    async void FileCreated(object sender, FileSystemEventArgs e)
+    {
+        using (await editorFileSystemWatcherLock.LockAsync())
+            if (!string.IsNullOrEmpty(editorFileName)
+                && File.Exists(editorFileName)
+                && Path.GetFullPath(editorFileName).Equals(e.FullPath, StringComparison.OrdinalIgnoreCase))
+            {
+                var wasInSync = pythonScript == pythonScriptInFile;
+                var remainingReadAttempts = 5;
+                while (true)
+                {
+                    try
+                    {
+                        await Task.Delay(200);
+                        PythonScriptInFile = await File.ReadAllTextAsync(editorFileName);
+                        break;
+                    }
+                    catch (IOException) when (--remainingReadAttempts >= 0)
+                    {
+                        continue;
+                    }
+                }
+                if (remainingReadAttempts >= 0 && wasInSync)
+                    PythonScript = pythonScriptInFile;
+            }
+    }
+
+    async void FileDeleted(object sender, FileSystemEventArgs e)
+    {
+        using (await editorFileSystemWatcherLock.LockAsync())
+            if (!string.IsNullOrEmpty(editorFileName)
+                && Path.GetFullPath(editorFileName).Equals(e.FullPath, StringComparison.OrdinalIgnoreCase))
+                PythonScriptInFile = null;
+    }
+
+    async void FileRenamed(object sender, RenamedEventArgs e)
+    {
+        using (await editorFileSystemWatcherLock.LockAsync())
+            if (!string.IsNullOrEmpty(editorFileName))
+            {
+                var editorFileFullPath = Path.GetFullPath(editorFileName);
+                if (editorFileFullPath.Equals(e.OldFullPath, StringComparison.OrdinalIgnoreCase))
+                    PythonScriptInFile = null;
+                if (File.Exists(editorFileName)
+                    && editorFileFullPath.Equals(e.FullPath, StringComparison.OrdinalIgnoreCase))
+                {
+                    var wasInSync = pythonScript == pythonScriptInFile;
+                    var remainingReadAttempts = 5;
+                    while (true)
+                    {
+                        try
+                        {
+                            await Task.Delay(200);
+                            PythonScriptInFile = await File.ReadAllTextAsync(editorFileName);
+                            break;
+                        }
+                        catch (IOException) when (--remainingReadAttempts >= 0)
+                        {
+                            continue;
+                        }
+                    }
+                    if (remainingReadAttempts >= 0 && wasInSync)
+                        PythonScript = pythonScriptInFile;
+                }
+            }
     }
 
     public void InterruptPython()

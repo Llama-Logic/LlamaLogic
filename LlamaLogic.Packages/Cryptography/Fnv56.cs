@@ -3,7 +3,7 @@ namespace LlamaLogic.Packages.Cryptography;
 /// <summary>
 /// Represents the 56-bit implementation of the Fowler–Noll–Vo hash algorithm
 /// </summary>
-public class Fnv56 :
+public sealed class Fnv56 :
     Fnv64
 {
     static readonly ThreadLocal<Fnv56> algorithm = new(() => new());

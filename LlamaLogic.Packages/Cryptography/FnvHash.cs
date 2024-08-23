@@ -23,12 +23,7 @@ public abstract class FnvHash(ulong prime, ulong offset) :
     /// <inheritdoc/>
     protected override void HashCore(byte[] array, int ibStart, int cbSize)
     {
-#if IS_NET_6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(array);
-#else
-        if (array is null)
-            throw new ArgumentNullException(nameof(array));
-#endif
         var uBound = ibStart + cbSize;
         for (var i = ibStart; i < uBound; ++i)
         {

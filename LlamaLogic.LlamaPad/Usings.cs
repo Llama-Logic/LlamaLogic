@@ -1,3 +1,4 @@
+global using LlamaLogic.Packages;
 global using Microsoft.Win32;
 global using Nito.AsyncEx;
 global using Python.Deployment;

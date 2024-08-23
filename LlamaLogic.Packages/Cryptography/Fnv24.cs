@@ -3,7 +3,7 @@ namespace LlamaLogic.Packages.Cryptography;
 /// <summary>
 /// Represents the 24-bit implementation of the Fowler–Noll–Vo hash algorithm
 /// </summary>
-public class Fnv24 :
+public sealed class Fnv24 :
     Fnv32
 {
     static readonly ThreadLocal<Fnv24> algorithm = new(() => new());

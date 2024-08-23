@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\Common\TestProject.props" />
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LlamaLogic.Packages\LlamaLogic.Packages.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="TestPackage.package" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="TestPackage.package">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+
+</Project>

@@ -1,6 +1,7 @@
 namespace LlamaLogic.LlamaPad;
 
-public partial class MainWindow : Window
+public partial class MainWindow :
+    Window
 {
     public static readonly RoutedCommand CancelRunCommand = new();
     public static readonly RoutedCommand DismissExceptionCommand = new();
@@ -37,17 +38,30 @@ public partial class MainWindow : Window
     void NewCanExecute(object sender, CanExecuteRoutedEventArgs e) =>
         e.CanExecute = true;
 
-    void NewExecuted(object sender, ExecutedRoutedEventArgs e)
+    async void NewExecuted(object sender, ExecutedRoutedEventArgs e)
     {
+        if (TypedDataContext.CanSaveBeExecuted())
+        {
+            var result = MessageBox.Show(this, "Do you want to save your current Python script before you start a new one?", "Woah there, tiger...", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            if (result is MessageBoxResult.Yes)
+            {
+                ApplicationCommands.Save.Execute(null, this);
+                await TypedDataContext.EditorFileOperationManualResetEvent.WaitAsync();
+                if (TypedDataContext.CanSaveBeExecuted())
+                    return;
+            }
+            else if (result is MessageBoxResult.Cancel)
+                return;
+        }
         TypedDataContext.EditorFileName = null;
-        UpdateTitle(null);
         TypedDataContext.PythonScript = string.Empty;
+        UpdateTitle(null);
     }
 
     void OpenCanExecute(object sender, CanExecuteRoutedEventArgs e) =>
         e.CanExecute = true;
 
-    void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
+    async void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
     {
         var dialog = new OpenFileDialog
         {
@@ -56,9 +70,18 @@ public partial class MainWindow : Window
         };
         if (dialog.ShowDialog(this) ?? false)
         {
+            if (await FileZoneIdentifier.IsFileDownloadedFromInternetAsync(dialog.FileName) && MessageBox.Show(
+                $"""
+                According to Windows, this file was downloaded:
+
+                {dialog.FileName}
+
+                The Python engine in this application is NOT sandboxed. Only use this script if you REALLY TRUST the source.
+                """, "Woah there, tiger...", MessageBoxButton.OKCancel, MessageBoxImage.Warning) is not MessageBoxResult.OK)
+                return;
+            TypedDataContext.PythonScript = await File.ReadAllTextAsync(dialog.FileName);
             TypedDataContext.EditorFileName = dialog.FileName;
             UpdateTitle(dialog.FileName);
-            TypedDataContext.PythonScript = File.ReadAllText(dialog.FileName);
         }
     }
 
@@ -87,20 +110,24 @@ public partial class MainWindow : Window
     void SaveCanExecute(object sender, CanExecuteRoutedEventArgs e) =>
         e.CanExecute = TypedDataContext.CanSaveBeExecuted();
 
-    void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
+    async void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
     {
         if (TypedDataContext.EditorFileName is null)
         {
             SaveAsExecuted(sender, e);
             return;
         }
-        File.WriteAllText(TypedDataContext.EditorFileName, TypedDataContext.PythonScript);
+        var editorFileName = TypedDataContext.EditorFileName;
+        var pythonScript = TypedDataContext.PythonScript;
+        TypedDataContext.EditorFileOperationManualResetEvent.Reset();
+        await File.WriteAllTextAsync(editorFileName, pythonScript);
+        TypedDataContext.EditorFileOperationManualResetEvent.Set();
     }
 
     void SaveAsCanExecute(object sender, CanExecuteRoutedEventArgs e) =>
         e.CanExecute = true;
 
-    void SaveAsExecuted(object sender, ExecutedRoutedEventArgs e)
+    async void SaveAsExecuted(object sender, ExecutedRoutedEventArgs e)
     {
         var dialog = new SaveFileDialog
         {
@@ -109,9 +136,12 @@ public partial class MainWindow : Window
         };
         if (dialog.ShowDialog(this) ?? false)
         {
+            var pythonScript = TypedDataContext.PythonScript;
+            TypedDataContext.EditorFileOperationManualResetEvent.Reset();
+            await File.WriteAllTextAsync(dialog.FileName, pythonScript);
             TypedDataContext.EditorFileName = dialog.FileName;
+            TypedDataContext.EditorFileOperationManualResetEvent.Set();
             UpdateTitle(dialog.FileName);
-            File.WriteAllText(dialog.FileName, TypedDataContext.PythonScript);
         }
     }
 
