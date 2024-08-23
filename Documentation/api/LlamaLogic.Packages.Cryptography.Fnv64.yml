@@ -1,0 +1,1584 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Cryptography.Fnv64
+  commentId: T:LlamaLogic.Packages.Cryptography.Fnv64
+  id: Fnv64
+  parent: LlamaLogic.Packages.Cryptography
+  children:
+  - LlamaLogic.Packages.Cryptography.Fnv64.#ctor
+  - LlamaLogic.Packages.Cryptography.Fnv64.EmptyStringHash
+  - LlamaLogic.Packages.Cryptography.Fnv64.GetHash(System.String)
+  - LlamaLogic.Packages.Cryptography.Fnv64.Hash
+  - LlamaLogic.Packages.Cryptography.Fnv64.HashSize
+  - LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit(System.UInt64)
+  langs:
+  - csharp
+  - vb
+  name: Fnv64
+  nameWithType: Fnv64
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Fnv64
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Represents the 64-bit implementation of the Fowler–Noll–Vo hash algorithm
+  example: []
+  syntax:
+    content: 'public class Fnv64 : FnvHash, ICryptoTransform, IDisposable'
+    content.vb: Public Class Fnv64 Inherits FnvHash Implements ICryptoTransform, IDisposable
+  inheritance:
+  - System.Object
+  - System.Security.Cryptography.HashAlgorithm
+  - LlamaLogic.Packages.Cryptography.FnvHash
+  derivedClasses:
+  - LlamaLogic.Packages.Cryptography.Fnv56
+  implements:
+  - System.Security.Cryptography.ICryptoTransform
+  - System.IDisposable
+  inheritedMembers:
+  - LlamaLogic.Packages.Cryptography.FnvHash.hash
+  - LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(System.String)
+  - LlamaLogic.Packages.Cryptography.FnvHash.HashCore(System.Byte[],System.Int32,System.Int32)
+  - LlamaLogic.Packages.Cryptography.FnvHash.HashFinal
+  - LlamaLogic.Packages.Cryptography.FnvHash.Initialize
+  - System.Security.Cryptography.HashAlgorithm.HashSizeValue
+  - System.Security.Cryptography.HashAlgorithm.HashValue
+  - System.Security.Cryptography.HashAlgorithm.State
+  - System.Security.Cryptography.HashAlgorithm.Clear
+  - System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])
+  - System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)
+  - System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)
+  - System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - System.Security.Cryptography.HashAlgorithm.Create
+  - System.Security.Cryptography.HashAlgorithm.Create(System.String)
+  - System.Security.Cryptography.HashAlgorithm.Dispose
+  - System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)
+  - System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})
+  - System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)
+  - System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)
+  - System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)
+  - System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)
+  - System.Security.Cryptography.HashAlgorithm.CanReuseTransform
+  - System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks
+  - System.Security.Cryptography.HashAlgorithm.InputBlockSize
+  - System.Security.Cryptography.HashAlgorithm.OutputBlockSize
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.EmptyStringHash
+  commentId: F:LlamaLogic.Packages.Cryptography.Fnv64.EmptyStringHash
+  id: EmptyStringHash
+  parent: LlamaLogic.Packages.Cryptography.Fnv64
+  langs:
+  - csharp
+  - vb
+  name: EmptyStringHash
+  nameWithType: Fnv64.EmptyStringHash
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.EmptyStringHash
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: EmptyStringHash
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Gets the hash value for an empty string
+  example: []
+  syntax:
+    content: public static readonly ulong EmptyStringHash
+    return:
+      type: System.UInt64
+    content.vb: Public Shared ReadOnly EmptyStringHash As ULong
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.GetHash(System.String)
+  commentId: M:LlamaLogic.Packages.Cryptography.Fnv64.GetHash(System.String)
+  id: GetHash(System.String)
+  parent: LlamaLogic.Packages.Cryptography.Fnv64
+  langs:
+  - csharp
+  - vb
+  name: GetHash(string?)
+  nameWithType: Fnv64.GetHash(string?)
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.GetHash(string?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetHash
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 18
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Computes the hash value for the specified string
+  example: []
+  syntax:
+    content: public static ulong GetHash(string? text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: System.UInt64
+    content.vb: Public Shared Function GetHash(text As String) As ULong
+  overload: LlamaLogic.Packages.Cryptography.Fnv64.GetHash*
+  nameWithType.vb: Fnv64.GetHash(String)
+  fullName.vb: LlamaLogic.Packages.Cryptography.Fnv64.GetHash(String)
+  name.vb: GetHash(String)
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit(System.UInt64)
+  commentId: M:LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit(System.UInt64)
+  id: SetHighBit(System.UInt64)
+  parent: LlamaLogic.Packages.Cryptography.Fnv64
+  langs:
+  - csharp
+  - vb
+  name: SetHighBit(ulong)
+  nameWithType: Fnv64.SetHighBit(ulong)
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit(ulong)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SetHighBit
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Sets the high bit of a 64-bit Fowler–Noll–Vo hash
+  example: []
+  syntax:
+    content: public static ulong SetHighBit(ulong hash)
+    parameters:
+    - id: hash
+      type: System.UInt64
+    return:
+      type: System.UInt64
+    content.vb: Public Shared Function SetHighBit(hash As ULong) As ULong
+  overload: LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit*
+  nameWithType.vb: Fnv64.SetHighBit(ULong)
+  fullName.vb: LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit(ULong)
+  name.vb: SetHighBit(ULong)
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.#ctor
+  commentId: M:LlamaLogic.Packages.Cryptography.Fnv64.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Packages.Cryptography.Fnv64
+  langs:
+  - csharp
+  - vb
+  name: Fnv64()
+  nameWithType: Fnv64.Fnv64()
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.Fnv64()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 37
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Packages.Cryptography.Fnv64" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public Fnv64()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Packages.Cryptography.Fnv64.#ctor*
+  nameWithType.vb: Fnv64.New()
+  fullName.vb: LlamaLogic.Packages.Cryptography.Fnv64.New()
+  name.vb: New()
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.Hash
+  commentId: P:LlamaLogic.Packages.Cryptography.Fnv64.Hash
+  id: Hash
+  parent: LlamaLogic.Packages.Cryptography.Fnv64
+  langs:
+  - csharp
+  - vb
+  name: Hash
+  nameWithType: Fnv64.Hash
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.Hash
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Hash
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 43
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Gets the value of the computed hash code.
+  example: []
+  syntax:
+    content: public override byte[]? Hash { get; }
+    parameters: []
+    return:
+      type: System.Byte[]
+      description: The current value of the computed hash code.
+    content.vb: Public Overrides ReadOnly Property Hash As Byte()
+  overridden: System.Security.Cryptography.HashAlgorithm.Hash
+  overload: LlamaLogic.Packages.Cryptography.Fnv64.Hash*
+  exceptions:
+  - type: System.Security.Cryptography.CryptographicUnexpectedOperationException
+    commentId: T:System.Security.Cryptography.CryptographicUnexpectedOperationException
+    description: <xref href="System.Security.Cryptography.HashAlgorithm.HashValue" data-throw-if-not-resolved="false"></xref> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  - type: System.ObjectDisposedException
+    commentId: T:System.ObjectDisposedException
+    description: The object has already been disposed.
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.HashSize
+  commentId: P:LlamaLogic.Packages.Cryptography.Fnv64.HashSize
+  id: HashSize
+  parent: LlamaLogic.Packages.Cryptography.Fnv64
+  langs:
+  - csharp
+  - vb
+  name: HashSize
+  nameWithType: Fnv64.HashSize
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.HashSize
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Cryptography/Fnv64.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: HashSize
+    path: ../LlamaLogic.Packages/Cryptography/Fnv64.cs
+    startLine: 54
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Cryptography
+  summary: Gets the size, in bits, of the computed hash code.
+  example: []
+  syntax:
+    content: public override int HashSize { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The size, in bits, of the computed hash code.
+    content.vb: Public Overrides ReadOnly Property HashSize As Integer
+  overridden: System.Security.Cryptography.HashAlgorithm.HashSize
+  overload: LlamaLogic.Packages.Cryptography.Fnv64.HashSize*
+references:
+- uid: LlamaLogic.Packages.Cryptography
+  commentId: N:LlamaLogic.Packages.Cryptography
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages.Cryptography
+  nameWithType: LlamaLogic.Packages.Cryptography
+  fullName: LlamaLogic.Packages.Cryptography
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Cryptography
+    name: Cryptography
+    href: LlamaLogic.Packages.Cryptography.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Cryptography
+    name: Cryptography
+    href: LlamaLogic.Packages.Cryptography.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Security.Cryptography.HashAlgorithm
+  commentId: T:System.Security.Cryptography.HashAlgorithm
+  parent: System.Security.Cryptography
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm
+  name: HashAlgorithm
+  nameWithType: HashAlgorithm
+  fullName: System.Security.Cryptography.HashAlgorithm
+- uid: LlamaLogic.Packages.Cryptography.FnvHash
+  commentId: T:LlamaLogic.Packages.Cryptography.FnvHash
+  parent: LlamaLogic.Packages.Cryptography
+  href: LlamaLogic.Packages.Cryptography.FnvHash.html
+  name: FnvHash
+  nameWithType: FnvHash
+  fullName: LlamaLogic.Packages.Cryptography.FnvHash
+- uid: System.Security.Cryptography.ICryptoTransform
+  commentId: T:System.Security.Cryptography.ICryptoTransform
+  parent: System.Security.Cryptography
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.icryptotransform
+  name: ICryptoTransform
+  nameWithType: ICryptoTransform
+  fullName: System.Security.Cryptography.ICryptoTransform
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: LlamaLogic.Packages.Cryptography.FnvHash.hash
+  commentId: F:LlamaLogic.Packages.Cryptography.FnvHash.hash
+  parent: LlamaLogic.Packages.Cryptography.FnvHash
+  href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_hash
+  name: hash
+  nameWithType: FnvHash.hash
+  fullName: LlamaLogic.Packages.Cryptography.FnvHash.hash
+- uid: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(System.String)
+  commentId: M:LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(System.String)
+  parent: LlamaLogic.Packages.Cryptography.FnvHash
+  isExternal: true
+  href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_ComputeHash_System_String_
+  name: ComputeHash(string)
+  nameWithType: FnvHash.ComputeHash(string)
+  fullName: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(string)
+  nameWithType.vb: FnvHash.ComputeHash(String)
+  fullName.vb: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(String)
+  name.vb: ComputeHash(String)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(System.String)
+    name: ComputeHash
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_ComputeHash_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(System.String)
+    name: ComputeHash
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_ComputeHash_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: LlamaLogic.Packages.Cryptography.FnvHash.HashCore(System.Byte[],System.Int32,System.Int32)
+  commentId: M:LlamaLogic.Packages.Cryptography.FnvHash.HashCore(System.Byte[],System.Int32,System.Int32)
+  parent: LlamaLogic.Packages.Cryptography.FnvHash
+  isExternal: true
+  href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_HashCore_System_Byte___System_Int32_System_Int32_
+  name: HashCore(byte[], int, int)
+  nameWithType: FnvHash.HashCore(byte[], int, int)
+  fullName: LlamaLogic.Packages.Cryptography.FnvHash.HashCore(byte[], int, int)
+  nameWithType.vb: FnvHash.HashCore(Byte(), Integer, Integer)
+  fullName.vb: LlamaLogic.Packages.Cryptography.FnvHash.HashCore(Byte(), Integer, Integer)
+  name.vb: HashCore(Byte(), Integer, Integer)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.HashCore(System.Byte[],System.Int32,System.Int32)
+    name: HashCore
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_HashCore_System_Byte___System_Int32_System_Int32_
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.HashCore(System.Byte[],System.Int32,System.Int32)
+    name: HashCore
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_HashCore_System_Byte___System_Int32_System_Int32_
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: LlamaLogic.Packages.Cryptography.FnvHash.HashFinal
+  commentId: M:LlamaLogic.Packages.Cryptography.FnvHash.HashFinal
+  parent: LlamaLogic.Packages.Cryptography.FnvHash
+  href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_HashFinal
+  name: HashFinal()
+  nameWithType: FnvHash.HashFinal()
+  fullName: LlamaLogic.Packages.Cryptography.FnvHash.HashFinal()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.HashFinal
+    name: HashFinal
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_HashFinal
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.HashFinal
+    name: HashFinal
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_HashFinal
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Cryptography.FnvHash.Initialize
+  commentId: M:LlamaLogic.Packages.Cryptography.FnvHash.Initialize
+  parent: LlamaLogic.Packages.Cryptography.FnvHash
+  href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_Initialize
+  name: Initialize()
+  nameWithType: FnvHash.Initialize()
+  fullName: LlamaLogic.Packages.Cryptography.FnvHash.Initialize()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.Initialize
+    name: Initialize
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_Initialize
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Cryptography.FnvHash.Initialize
+    name: Initialize
+    href: LlamaLogic.Packages.Cryptography.FnvHash.html#LlamaLogic_Packages_Cryptography_FnvHash_Initialize
+  - name: (
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.HashSizeValue
+  commentId: F:System.Security.Cryptography.HashAlgorithm.HashSizeValue
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hashsizevalue
+  name: HashSizeValue
+  nameWithType: HashAlgorithm.HashSizeValue
+  fullName: System.Security.Cryptography.HashAlgorithm.HashSizeValue
+- uid: System.Security.Cryptography.HashAlgorithm.HashValue
+  commentId: F:System.Security.Cryptography.HashAlgorithm.HashValue
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hashvalue
+  name: HashValue
+  nameWithType: HashAlgorithm.HashValue
+  fullName: System.Security.Cryptography.HashAlgorithm.HashValue
+- uid: System.Security.Cryptography.HashAlgorithm.State
+  commentId: F:System.Security.Cryptography.HashAlgorithm.State
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.state
+  name: State
+  nameWithType: HashAlgorithm.State
+  fullName: System.Security.Cryptography.HashAlgorithm.State
+- uid: System.Security.Cryptography.HashAlgorithm.Clear
+  commentId: M:System.Security.Cryptography.HashAlgorithm.Clear
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.clear
+  name: Clear()
+  nameWithType: HashAlgorithm.Clear()
+  fullName: System.Security.Cryptography.HashAlgorithm.Clear()
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.clear
+  - name: (
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])
+  commentId: M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-byte())
+  name: ComputeHash(byte[])
+  nameWithType: HashAlgorithm.ComputeHash(byte[])
+  fullName: System.Security.Cryptography.HashAlgorithm.ComputeHash(byte[])
+  nameWithType.vb: HashAlgorithm.ComputeHash(Byte())
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.ComputeHash(Byte())
+  name.vb: ComputeHash(Byte())
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])
+    name: ComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-byte())
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])
+    name: ComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-byte())
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-byte()-system-int32-system-int32)
+  name: ComputeHash(byte[], int, int)
+  nameWithType: HashAlgorithm.ComputeHash(byte[], int, int)
+  fullName: System.Security.Cryptography.HashAlgorithm.ComputeHash(byte[], int, int)
+  nameWithType.vb: HashAlgorithm.ComputeHash(Byte(), Integer, Integer)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.ComputeHash(Byte(), Integer, Integer)
+  name.vb: ComputeHash(Byte(), Integer, Integer)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)
+    name: ComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-byte()-system-int32-system-int32)
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)
+    name: ComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-byte()-system-int32-system-int32)
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-io-stream)
+  name: ComputeHash(Stream)
+  nameWithType: HashAlgorithm.ComputeHash(Stream)
+  fullName: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)
+    name: ComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)
+    name: ComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehash#system-security-cryptography-hashalgorithm-computehash(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehashasync
+  name: ComputeHashAsync(Stream, CancellationToken)
+  nameWithType: HashAlgorithm.ComputeHashAsync(Stream, CancellationToken)
+  fullName: System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: ComputeHashAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehashasync
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: ComputeHashAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.computehashasync
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.Create
+  commentId: M:System.Security.Cryptography.HashAlgorithm.Create
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.create#system-security-cryptography-hashalgorithm-create
+  name: Create()
+  nameWithType: HashAlgorithm.Create()
+  fullName: System.Security.Cryptography.HashAlgorithm.Create()
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.Create
+    name: Create
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.create#system-security-cryptography-hashalgorithm-create
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.Create
+    name: Create
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.create#system-security-cryptography-hashalgorithm-create
+  - name: (
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.Create(System.String)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.Create(System.String)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.create#system-security-cryptography-hashalgorithm-create(system-string)
+  name: Create(string)
+  nameWithType: HashAlgorithm.Create(string)
+  fullName: System.Security.Cryptography.HashAlgorithm.Create(string)
+  nameWithType.vb: HashAlgorithm.Create(String)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.Create(String)
+  name.vb: Create(String)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.Create(System.String)
+    name: Create
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.create#system-security-cryptography-hashalgorithm-create(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.Create(System.String)
+    name: Create
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.create#system-security-cryptography-hashalgorithm-create(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.Dispose
+  commentId: M:System.Security.Cryptography.HashAlgorithm.Dispose
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.dispose#system-security-cryptography-hashalgorithm-dispose
+  name: Dispose()
+  nameWithType: HashAlgorithm.Dispose()
+  fullName: System.Security.Cryptography.HashAlgorithm.Dispose()
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.dispose#system-security-cryptography-hashalgorithm-dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.dispose#system-security-cryptography-hashalgorithm-dispose
+  - name: (
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.dispose#system-security-cryptography-hashalgorithm-dispose(system-boolean)
+  name: Dispose(bool)
+  nameWithType: HashAlgorithm.Dispose(bool)
+  fullName: System.Security.Cryptography.HashAlgorithm.Dispose(bool)
+  nameWithType.vb: HashAlgorithm.Dispose(Boolean)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.dispose#system-security-cryptography-hashalgorithm-dispose(system-boolean)
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.dispose#system-security-cryptography-hashalgorithm-dispose(system-boolean)
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})
+  commentId: M:System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hashcore#system-security-cryptography-hashalgorithm-hashcore(system-readonlyspan((system-byte)))
+  name: HashCore(ReadOnlySpan<byte>)
+  nameWithType: HashAlgorithm.HashCore(ReadOnlySpan<byte>)
+  fullName: System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan<byte>)
+  nameWithType.vb: HashAlgorithm.HashCore(ReadOnlySpan(Of Byte))
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan(Of Byte))
+  name.vb: HashCore(ReadOnlySpan(Of Byte))
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})
+    name: HashCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hashcore#system-security-cryptography-hashalgorithm-hashcore(system-readonlyspan((system-byte)))
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})
+    name: HashCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hashcore#system-security-cryptography-hashalgorithm-hashcore(system-readonlyspan((system-byte)))
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.transformblock
+  name: TransformBlock(byte[], int, int, byte[], int)
+  nameWithType: HashAlgorithm.TransformBlock(byte[], int, int, byte[], int)
+  fullName: System.Security.Cryptography.HashAlgorithm.TransformBlock(byte[], int, int, byte[], int)
+  nameWithType.vb: HashAlgorithm.TransformBlock(Byte(), Integer, Integer, Byte(), Integer)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.TransformBlock(Byte(), Integer, Integer, Byte(), Integer)
+  name.vb: TransformBlock(Byte(), Integer, Integer, Byte(), Integer)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)
+    name: TransformBlock
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.transformblock
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)
+    name: TransformBlock
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.transformblock
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.transformfinalblock
+  name: TransformFinalBlock(byte[], int, int)
+  nameWithType: HashAlgorithm.TransformFinalBlock(byte[], int, int)
+  fullName: System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(byte[], int, int)
+  nameWithType.vb: HashAlgorithm.TransformFinalBlock(Byte(), Integer, Integer)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(Byte(), Integer, Integer)
+  name.vb: TransformFinalBlock(Byte(), Integer, Integer)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)
+    name: TransformFinalBlock
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.transformfinalblock
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)
+    name: TransformFinalBlock
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.transformfinalblock
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.trycomputehash
+  name: TryComputeHash(ReadOnlySpan<byte>, Span<byte>, out int)
+  nameWithType: HashAlgorithm.TryComputeHash(ReadOnlySpan<byte>, Span<byte>, out int)
+  fullName: System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan<byte>, System.Span<byte>, out int)
+  nameWithType.vb: HashAlgorithm.TryComputeHash(ReadOnlySpan(Of Byte), Span(Of Byte), Integer)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan(Of Byte), System.Span(Of Byte), Integer)
+  name.vb: TryComputeHash(ReadOnlySpan(Of Byte), Span(Of Byte), Integer)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)
+    name: TryComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.trycomputehash
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)
+    name: TryComputeHash
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.trycomputehash
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)
+  commentId: M:System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.tryhashfinal
+  name: TryHashFinal(Span<byte>, out int)
+  nameWithType: HashAlgorithm.TryHashFinal(Span<byte>, out int)
+  fullName: System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span<byte>, out int)
+  nameWithType.vb: HashAlgorithm.TryHashFinal(Span(Of Byte), Integer)
+  fullName.vb: System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span(Of Byte), Integer)
+  name.vb: TryHashFinal(Span(Of Byte), Integer)
+  spec.csharp:
+  - uid: System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)
+    name: TryHashFinal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.tryhashfinal
+  - name: (
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)
+    name: TryHashFinal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.tryhashfinal
+  - name: (
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.CanReuseTransform
+  commentId: P:System.Security.Cryptography.HashAlgorithm.CanReuseTransform
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.canreusetransform
+  name: CanReuseTransform
+  nameWithType: HashAlgorithm.CanReuseTransform
+  fullName: System.Security.Cryptography.HashAlgorithm.CanReuseTransform
+- uid: System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks
+  commentId: P:System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.cantransformmultipleblocks
+  name: CanTransformMultipleBlocks
+  nameWithType: HashAlgorithm.CanTransformMultipleBlocks
+  fullName: System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks
+- uid: System.Security.Cryptography.HashAlgorithm.InputBlockSize
+  commentId: P:System.Security.Cryptography.HashAlgorithm.InputBlockSize
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.inputblocksize
+  name: InputBlockSize
+  nameWithType: HashAlgorithm.InputBlockSize
+  fullName: System.Security.Cryptography.HashAlgorithm.InputBlockSize
+- uid: System.Security.Cryptography.HashAlgorithm.OutputBlockSize
+  commentId: P:System.Security.Cryptography.HashAlgorithm.OutputBlockSize
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.outputblocksize
+  name: OutputBlockSize
+  nameWithType: HashAlgorithm.OutputBlockSize
+  fullName: System.Security.Cryptography.HashAlgorithm.OutputBlockSize
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Security.Cryptography
+  commentId: N:System.Security.Cryptography
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Security.Cryptography
+  nameWithType: System.Security.Cryptography
+  fullName: System.Security.Cryptography
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Security
+    name: Security
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security
+  - name: .
+  - uid: System.Security.Cryptography
+    name: Cryptography
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Security
+    name: Security
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security
+  - name: .
+  - uid: System.Security.Cryptography
+    name: Cryptography
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.cryptography
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.GetHash*
+  commentId: Overload:LlamaLogic.Packages.Cryptography.Fnv64.GetHash
+  href: LlamaLogic.Packages.Cryptography.Fnv64.html#LlamaLogic_Packages_Cryptography_Fnv64_GetHash_System_String_
+  name: GetHash
+  nameWithType: Fnv64.GetHash
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.GetHash
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit*
+  commentId: Overload:LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit
+  href: LlamaLogic.Packages.Cryptography.Fnv64.html#LlamaLogic_Packages_Cryptography_Fnv64_SetHighBit_System_UInt64_
+  name: SetHighBit
+  nameWithType: Fnv64.SetHighBit
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.SetHighBit
+- uid: LlamaLogic.Packages.Cryptography.Fnv64
+  commentId: T:LlamaLogic.Packages.Cryptography.Fnv64
+  parent: LlamaLogic.Packages.Cryptography
+  href: LlamaLogic.Packages.Cryptography.Fnv64.html
+  name: Fnv64
+  nameWithType: Fnv64
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.#ctor*
+  commentId: Overload:LlamaLogic.Packages.Cryptography.Fnv64.#ctor
+  href: LlamaLogic.Packages.Cryptography.Fnv64.html#LlamaLogic_Packages_Cryptography_Fnv64__ctor
+  name: Fnv64
+  nameWithType: Fnv64.Fnv64
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.Fnv64
+  nameWithType.vb: Fnv64.New
+  fullName.vb: LlamaLogic.Packages.Cryptography.Fnv64.New
+  name.vb: New
+- uid: System.Security.Cryptography.CryptographicUnexpectedOperationException
+  commentId: T:System.Security.Cryptography.CryptographicUnexpectedOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.cryptographicunexpectedoperationexception
+  name: CryptographicUnexpectedOperationException
+  nameWithType: CryptographicUnexpectedOperationException
+  fullName: System.Security.Cryptography.CryptographicUnexpectedOperationException
+- uid: System.ObjectDisposedException
+  commentId: T:System.ObjectDisposedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.objectdisposedexception
+  name: ObjectDisposedException
+  nameWithType: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+- uid: System.Security.Cryptography.HashAlgorithm.Hash
+  commentId: P:System.Security.Cryptography.HashAlgorithm.Hash
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hash
+  name: Hash
+  nameWithType: HashAlgorithm.Hash
+  fullName: System.Security.Cryptography.HashAlgorithm.Hash
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.Hash*
+  commentId: Overload:LlamaLogic.Packages.Cryptography.Fnv64.Hash
+  href: LlamaLogic.Packages.Cryptography.Fnv64.html#LlamaLogic_Packages_Cryptography_Fnv64_Hash
+  name: Hash
+  nameWithType: Fnv64.Hash
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.Hash
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.Security.Cryptography.HashAlgorithm.HashSize
+  commentId: P:System.Security.Cryptography.HashAlgorithm.HashSize
+  parent: System.Security.Cryptography.HashAlgorithm
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm.hashsize
+  name: HashSize
+  nameWithType: HashAlgorithm.HashSize
+  fullName: System.Security.Cryptography.HashAlgorithm.HashSize
+- uid: LlamaLogic.Packages.Cryptography.Fnv64.HashSize*
+  commentId: Overload:LlamaLogic.Packages.Cryptography.Fnv64.HashSize
+  href: LlamaLogic.Packages.Cryptography.Fnv64.html#LlamaLogic_Packages_Cryptography_Fnv64_HashSize
+  name: HashSize
+  nameWithType: Fnv64.HashSize
+  fullName: LlamaLogic.Packages.Cryptography.Fnv64.HashSize
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
