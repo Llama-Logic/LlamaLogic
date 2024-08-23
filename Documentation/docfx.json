@@ -1,0 +1,45 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../",
+          "files": [
+            "LlamaLogic.Packages/*.csproj"
+          ]
+        }
+      ],
+      "dest": "packages"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "logo.svg",
+          "images/**"
+        ]
+      }
+    ],
+    "output": "../docs",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "Llama Logic",
+      "_appTitle": "Llama Logic",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}
