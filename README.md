@@ -21,7 +21,7 @@ Herding your Sims 4 mods like a pro, one clean file at a time!
 ## LlamaLogic.Packages
 [![LlamaLogic.Packages Nuget](https://img.shields.io/nuget/v/LlamaLogic.Packages.svg?logo=nuget) ![Downloads](https://img.shields.io/nuget/dt/llamalogic.packages)](https://www.nuget.org/packages/LlamaLogic.Packages)
 
-Looking for API documentation? It's [right here](https://llama-logic.github.io/LlamaLogic/index.html).
+Looking for API documentation? It's [right here](https://llama-logic.github.io/LlamaLogic/packages/LlamaLogic.Packages.html).
 
 # License
 [MIT License](LICENSE)
