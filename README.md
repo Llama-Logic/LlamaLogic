@@ -46,7 +46,6 @@ As Llama Logic owes its existence to them just as much as it does us, the NuGet 
 
 And by:
 
-* [andrewtavera](https://github.com/andrewtavera)
 * [Buzzler](https://github.com/BrutalBuzzler)
 * [ChaosMageX](https://github.com/ChaosMageX)
 * [granthes](https://github.com/granthes)
