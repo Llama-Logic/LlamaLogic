@@ -25,19 +25,6 @@ public sealed class DataModelVariant :
         base(table, rowIndex, columnIndex, type) =>
         TypeHash = typeHash;
 
-    /// <summary>
-    /// Initializes a new <see cref="DataModelVariant"/> (🔄️🏃)
-    /// </summary>
-    /// <param name="table">The table containing the variant being referenced</param>
-    /// <param name="rowIndex">The row index within the containing table of the variant being referenced</param>
-    /// <param name="columnIndex">The column index within the containing table of the variant being referenced</param>
-    /// <param name="type">The type of the variant being referenced</param>
-    /// <param name="typeHash">The type hash of the variant</param>
-    public DataModelVariant(DataModelTable table, int rowIndex, int columnIndex, DataModelType type, uint typeHash) :
-        this(table, (Index)rowIndex, (Index)columnIndex, type, typeHash)
-    {
-    }
-
     internal DataModelVariant(int binaryTableIndex, Index rowIndex, Index columnIndex, DataModelType type, uint typeHash) :
         base(binaryTableIndex, rowIndex, columnIndex, type) =>
         TypeHash = typeHash;

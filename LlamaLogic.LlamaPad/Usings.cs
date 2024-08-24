@@ -1,9 +1,11 @@
+global using LlamaLogic.LlamaPad.Transcoding;
 global using LlamaLogic.Packages;
 global using Microsoft.Win32;
 global using Nito.AsyncEx;
 global using Python.Deployment;
 global using Python.Runtime;
 global using System;
+global using System.Collections;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Globalization;

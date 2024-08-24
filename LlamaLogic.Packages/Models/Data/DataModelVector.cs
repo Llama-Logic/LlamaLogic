@@ -32,18 +32,6 @@ public sealed class DataModelVector :
         Count = count;
     }
 
-    /// <summary>
-    /// Initializes a new <see cref="DataModelVector"/> (🔄️🏃)
-    /// </summary>
-    /// <param name="table">The table, a sub sequence of which, is the vector</param>
-    /// <param name="rowIndex">The row index within the containing table of the vector being referenced at which the vector begins</param>
-    /// <param name="type">The type of the objects being referenced</param>
-    /// <param name="count">The number of elements in the vector</param>
-    public DataModelVector(DataModelTable table, int rowIndex, DataModelType type, int count) :
-        this(table, (Index)rowIndex, type, count)
-    {
-    }
-
     internal DataModelVector(int binaryTableIndex, Index rowIndex, DataModelType type, int count) :
         base(binaryTableIndex, rowIndex, 0, type) =>
         Count = count;

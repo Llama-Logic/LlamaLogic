@@ -6,7 +6,6 @@ items:
   parent: LlamaLogic.Packages.Models.Data
   children:
   - LlamaLogic.Packages.Models.Data.DataModelVariant.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.UInt32)
-  - LlamaLogic.Packages.Models.Data.DataModelVariant.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.UInt32)
   - LlamaLogic.Packages.Models.Data.DataModelVariant.CreateNullReference(System.UInt32)
   - LlamaLogic.Packages.Models.Data.DataModelVariant.TypeHash
   langs:
@@ -136,53 +135,6 @@ items:
   nameWithType.vb: DataModelVariant.New(DataModelTable, Index, Index, DataModelType, UInteger)
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVariant.New(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index, System.Index, LlamaLogic.Packages.Models.Data.DataModelType, UInteger)
   name.vb: New(DataModelTable, Index, Index, DataModelType, UInteger)
-- uid: LlamaLogic.Packages.Models.Data.DataModelVariant.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.UInt32)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelVariant.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.UInt32)
-  id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.UInt32)'
-  parent: LlamaLogic.Packages.Models.Data.DataModelVariant
-  langs:
-  - csharp
-  - vb
-  name: DataModelVariant(DataModelTable, int, int, DataModelType, uint)
-  nameWithType: DataModelVariant.DataModelVariant(DataModelTable, int, int, DataModelType, uint)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelVariant.DataModelVariant(LlamaLogic.Packages.Models.Data.DataModelTable, int, int, LlamaLogic.Packages.Models.Data.DataModelType, uint)
-  type: Constructor
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/Data/DataModelVariant.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: .ctor
-    path: ../LlamaLogic.Packages/Models/Data/DataModelVariant.cs
-    startLine: 35
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.Data
-  summary: "Initializes a new <xref href=\"LlamaLogic.Packages.Models.Data.DataModelVariant\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F504️\U0001F3C3)"
-  example: []
-  syntax:
-    content: public DataModelVariant(DataModelTable table, int rowIndex, int columnIndex, DataModelType type, uint typeHash)
-    parameters:
-    - id: table
-      type: LlamaLogic.Packages.Models.Data.DataModelTable
-      description: The table containing the variant being referenced
-    - id: rowIndex
-      type: System.Int32
-      description: The row index within the containing table of the variant being referenced
-    - id: columnIndex
-      type: System.Int32
-      description: The column index within the containing table of the variant being referenced
-    - id: type
-      type: LlamaLogic.Packages.Models.Data.DataModelType
-      description: The type of the variant being referenced
-    - id: typeHash
-      type: System.UInt32
-      description: The type hash of the variant
-    content.vb: Public Sub New(table As DataModelTable, rowIndex As Integer, columnIndex As Integer, type As DataModelType, typeHash As UInteger)
-  overload: LlamaLogic.Packages.Models.Data.DataModelVariant.#ctor*
-  nameWithType.vb: DataModelVariant.New(DataModelTable, Integer, Integer, DataModelType, UInteger)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVariant.New(LlamaLogic.Packages.Models.Data.DataModelTable, Integer, Integer, LlamaLogic.Packages.Models.Data.DataModelType, UInteger)
-  name.vb: New(DataModelTable, Integer, Integer, DataModelType, UInteger)
 - uid: LlamaLogic.Packages.Models.Data.DataModelVariant.TypeHash
   commentId: P:LlamaLogic.Packages.Models.Data.DataModelVariant.TypeHash
   id: TypeHash
@@ -201,7 +153,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TypeHash
     path: ../LlamaLogic.Packages/Models/Data/DataModelVariant.cs
-    startLine: 47
+    startLine: 34
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -616,17 +568,6 @@ references:
   name: DataModelType
   nameWithType: DataModelType
   fullName: LlamaLogic.Packages.Models.Data.DataModelType
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
 - uid: LlamaLogic.Packages.Models.Data.DataModelVariant.TypeHash*
   commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVariant.TypeHash
   href: LlamaLogic.Packages.Models.Data.DataModelVariant.html#LlamaLogic_Packages_Models_Data_DataModelVariant_TypeHash

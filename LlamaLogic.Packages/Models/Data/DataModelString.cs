@@ -37,16 +37,6 @@ public sealed class DataModelString :
         base(table, rowIndex, 0, DataModelType.CHAR8) =>
         Length = ProjectRange(table, rowIndex).GetOffsetAndLength(table.RowCount).Length;
 
-    /// <summary>
-    /// Initializes a new <see cref="DataModelString"/> (🔄️🏃)
-    /// </summary>
-    /// <param name="table">The table, a sub sequence of which, is the null-terminated string of <see cref="DataModelType.CHAR8"/> values</param>
-    /// <param name="rowIndex">The row index within the containing table of the string being referenced at which the string begins</param>
-    public DataModelString(DataModelTable table, int rowIndex) :
-        this(table, (Index)rowIndex)
-    {
-    }
-
     internal DataModelString(int binaryTableIndex, Index rowIndex) :
         base(binaryTableIndex, rowIndex, 0, DataModelType.CHAR8)
     {

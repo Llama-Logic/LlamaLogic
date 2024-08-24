@@ -124,15 +124,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets/sets the values of the specified <paramref name="rowIndex"/>
-    /// </summary>
-    public object? this[int rowIndex]
-    {
-        get => this[(Index)rowIndex];
-        set => Set((Index)rowIndex, value);
-    }
-
-    /// <summary>
     /// Gets/sets the value at the specified <paramref name="rowIndex"/> and <paramref name="columnIndex"/>
     /// </summary>
     public object? this[Index rowIndex, Index columnIndex]
@@ -142,30 +133,12 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets/sets the value at the specified <paramref name="rowIndex"/> and <paramref name="columnIndex"/>
-    /// </summary>
-    public object? this[int rowIndex, int columnIndex]
-    {
-        get => this[(Index)rowIndex, (Index)columnIndex];
-        set => this[(Index)rowIndex, (Index)columnIndex] = value;
-    }
-
-    /// <summary>
     /// Gets/sets the value of the specified <paramref name="rowIndex"/> for column with the specified <paramref name="columnName"/>
     /// </summary>
     public object? this[Index rowIndex, string columnName]
     {
         get => Get(rowIndex, columnName);
         set => Set(rowIndex, columnName, value);
-    }
-
-    /// <summary>
-    /// Gets/sets the value of the specified <paramref name="rowIndex"/> for column with the specified <paramref name="columnName"/>
-    /// </summary>
-    public object? this[int rowIndex, string columnName]
-    {
-        get => this[(Index)rowIndex, columnName];
-        set => this[(Index)rowIndex, columnName] = value;
     }
 
     internal event EventHandler<DataModelTableRowEventArgs>? RowInserted;
@@ -213,12 +186,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets the values of the row at the specified <paramref name="rowIndex"/>
-    /// </summary>
-    public object? Get(int rowIndex) =>
-        Get((Index)rowIndex);
-
-    /// <summary>
     /// Gets the value at the specified <paramref name="rowIndex"/> and <paramref name="columnIndex"/>
     /// </summary>
     public object? Get(Index rowIndex, Index columnIndex)
@@ -227,12 +194,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         columns.Count.ThrowIfIndexOutOfRange(columnIndex);
         return columns[columnIndex].data[rowIndex];
     }
-
-    /// <summary>
-    /// Gets the value at the specified <paramref name="rowIndex"/> and <paramref name="columnIndex"/>
-    /// </summary>
-    public object? Get(int rowIndex, int columnIndex) =>
-        Get((Index)rowIndex, (Index)columnIndex);
 
     /// <summary>
     /// Gets the value at the specified <paramref name="rowIndex"/> for the column with the specified <paramref name="columnName"/>
@@ -245,12 +206,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets the value at the specified <paramref name="rowIndex"/> for the column with the specified <paramref name="columnName"/>
-    /// </summary>
-    public object? Get(int rowIndex, string columnName) =>
-        Get((Index)rowIndex, columnName);
-
-    /// <summary>
     /// Gets the flags of the column at the specified <paramref name="index"/>
     /// </summary>
     public ushort GetColumnFlags(Index index)
@@ -258,12 +213,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         columns.Count.ThrowIfIndexOutOfRange(index);
         return columns[index].descriptor.Flags;
     }
-
-    /// <summary>
-    /// Gets the flags of the column at the specified <paramref name="index"/>
-    /// </summary>
-    public ushort GetColumnFlags(int index) =>
-        GetColumnFlags((Index)index);
 
     /// <summary>
     /// Gets the flags of the column with the specified <paramref name="columnName"/>
@@ -276,6 +225,14 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
+    /// Gets the index of the column with the specified <paramref name="columnName"/>, or <see langword="null"/> if the column does not exist
+    /// </summary>
+    public int? GetColumnIndex(string columnName) =>
+        columnIndexByName.TryGetValue(columnName, out var index)
+            ? index
+            : null;
+
+    /// <summary>
     /// Gets the name of the column at the specified <paramref name="index"/>
     /// </summary>
     public string? GetColumnName(Index index)
@@ -285,12 +242,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets the name of the column at the specified <paramref name="index"/>
-    /// </summary>
-    public string? GetColumnName(int index) =>
-        GetColumnName((Index)index);
-
-    /// <summary>
     /// Gets the <see cref="DataModelType"/> of the column at the specified <paramref name="index"/>
     /// </summary>
     public DataModelType GetColumnType(Index index)
@@ -298,12 +249,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         columns.Count.ThrowIfIndexOutOfRange(index);
         return columns[index].descriptor.Type;
     }
-
-    /// <summary>
-    /// Gets the <see cref="DataModelType"/> of the column at the specified <paramref name="index"/>
-    /// </summary>
-    public DataModelType GetColumnType(int index) =>
-        GetColumnType((Index)index);
 
     /// <summary>
     /// Gets the <see cref="DataModelType"/> of the column with the specified <paramref name="columnName"/>
@@ -325,12 +270,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets all the values for the column at the specified <paramref name="index"/>
-    /// </summary>
-    public IReadOnlyList<object?> GetColumnValues(int index) =>
-        GetColumnValues((Index)index);
-
-    /// <summary>
     /// Gets all the values for the column with the specified <paramref name="columnName"/>
     /// </summary>
     public IReadOnlyList<object?> GetColumnValues(string columnName)
@@ -348,12 +287,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         columns.Count.ThrowIfIndexOutOfRange(columnIndex);
         return RowCount.GetOffsets(rows).Select(r => columns[columnIndex].data[r]).ToImmutableArray();
     }
-
-    /// <summary>
-    /// Gets the values for the column at the specified <paramref name="columnIndex"/> for the specified number of <paramref name="rows"/> beginning at the specified <paramref name="rowIndex"/>
-    /// </summary>
-    public IReadOnlyList<object?> GetColumnValues(int columnIndex, int rowIndex, int rows) =>
-        GetColumnValues((Index)columnIndex, new Range(rowIndex, rowIndex + rows));
 
     /// <summary>
     /// Gets the values for the column with the specified <paramref name="columnName"/> for the specified <paramref name="rows"/>
@@ -393,12 +326,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets the values for the specified <paramref name="columnIndex"/> starting at the specified <paramref name="startingRowIndex"/> for as long as the <paramref name="takeWhile"/> predicate returns <see langword="true"/>
-    /// </summary>
-    public IReadOnlyList<object?> GetColumnValues(int columnIndex, int startingRowIndex, Predicate<object?> takeWhile) =>
-        GetColumnValues((Index)columnIndex, (Index)startingRowIndex, takeWhile);
-
-    /// <summary>
     /// Gets the values for the column with the specified <paramref name="columnName"/> starting at the specified <paramref name="startingRowIndex"/> for as long as the <paramref name="takeWhile"/> predicate returns <see langword="true"/>
     /// </summary>
     public IReadOnlyList<object?> GetColumnValues(string columnName, Index startingRowIndex, Predicate<object?> takeWhile)
@@ -409,12 +336,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Gets the values for the column with the specified <paramref name="columnName"/> starting at the specified <paramref name="startingRowIndex"/> for as long as the <paramref name="takeWhile"/> predicate returns <see langword="true"/>
-    /// </summary>
-    public IReadOnlyList<object?> GetColumnValues(string columnName, int startingRowIndex, Predicate<object?> takeWhile) =>
-        GetColumnValues(columnName, (Index)startingRowIndex, takeWhile);
-
-    /// <summary>
     /// Gets the value of a raw table for the specified <paramref name="row"/>
     /// </summary>
     public object? GetRawValue(Index row)
@@ -423,12 +344,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
             return Get(row, 0);
         throw new InvalidOperationException("Only valid when the table has a single column");
     }
-
-    /// <summary>
-    /// Gets the value of a raw table for the specified <paramref name="row"/>
-    /// </summary>
-    public object? GetRawValue(int row) =>
-        GetRawValue((Index)row);
 
     /// <summary>
     /// Gets the values of a raw table for the specified <paramref name="rows"/>
@@ -464,12 +379,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Inserts a column with the specified <paramref name="name"/>, <paramref name="type"/>, and <paramref name="flags"/> at the specified <paramref name="index"/>
-    /// </summary>
-    public void InsertColumn(int index, string? name, DataModelType type, ushort flags = 0, IEnumerable<object?>? values = null) =>
-        InsertColumn((Index)index, name, type, flags, values);
-
-    /// <summary>
     /// Inserts the specified <paramref name="row"/> at the specified <paramref name="index"/>
     /// </summary>
     public void InsertRow(Index index, object? row)
@@ -491,12 +400,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         OnRowInserted(new DataModelTableRowEventArgs { RowIndex = index });
     }
 
-    /// <summary>
-    /// Inserts the specified <paramref name="row"/> at the specified <paramref name="index"/>
-    /// </summary>
-    public void InsertRow(int index, object? row) =>
-        InsertRow((Index)index, row);
-
     void OnRowInserted(DataModelTableRowEventArgs e) =>
         RowInserted?.Invoke(this, e);
 
@@ -513,12 +416,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         columns.RemoveAt(index.GetOffset(columnCount));
         BuildColumnNameLookup();
     }
-
-    /// <summary>
-    /// Removes the column at the specified <paramref name="index"/>
-    /// </summary>
-    public void RemoveColumn(int index) =>
-        RemoveColumn((Index)index);
 
     /// <summary>
     /// Removes the column with the specified <paramref name="columnName"/> and returns the index at which the column was removed
@@ -547,12 +444,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Removes the row at the specified <paramref name="index"/>
-    /// </summary>
-    public void RemoveRow(int index) =>
-        RemoveRow((Index)index);
-
-    /// <summary>
     /// Sets the <paramref name="row"/> at the specified <paramref name="index"/>
     /// </summary>
     public void Set(Index index, object? row)
@@ -571,12 +462,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Sets the <paramref name="row"/> at the specified <paramref name="index"/>
-    /// </summary>
-    public void Set(int index, object? row) =>
-        Set((Index)index, row);
-
-    /// <summary>
     /// Sets the value at the specified <paramref name="rowIndex"/> and <paramref name="columnIndex"/>
     /// </summary>
     public void Set(Index rowIndex, Index columnIndex, object? value)
@@ -586,12 +471,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         var (descriptor, data) = columns[columnIndex];
         data[rowIndex] = DataModel.CoerceValue(value, descriptor.Type);
     }
-
-    /// <summary>
-    /// Sets the value at the specified <paramref name="rowIndex"/> and <paramref name="columnIndex"/>
-    /// </summary>
-    public void Set(int rowIndex, int columnIndex, object? value) =>
-        Set((Index)rowIndex, (Index)columnIndex, value);
 
     /// <summary>
     /// Sets the value of the specified <paramref name="rowIndex"/> for column with the specified <paramref name="columnName"/>
@@ -604,12 +483,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Sets the value of the specified <paramref name="rowIndex"/> for column with the specified <paramref name="columnName"/>
-    /// </summary>
-    public void Set(int rowIndex, string columnName, object? value) =>
-        Set((Index)rowIndex, columnName, value);
-
-    /// <summary>
     /// Sets the flags of the column at the specified <paramref name="index"/>
     /// </summary>
     public void SetColumnFlags(Index index, ushort flags)
@@ -619,12 +492,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
         descriptor = descriptor with { Flags = flags };
         columns[index] = (descriptor, data);
     }
-
-    /// <summary>
-    /// Sets the flags of the column at the specified <paramref name="index"/>
-    /// </summary>
-    public void SetColumnFlags(int index, ushort flags) =>
-        SetColumnFlags((Index)index, flags);
 
     /// <summary>
     /// Sets the flags of the column with the specified <paramref name="columnName"/>
@@ -648,12 +515,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     }
 
     /// <summary>
-    /// Sets the name of the column at the specified <paramref name="index"/>
-    /// </summary>
-    public void SetColumnName(int index, string? name) =>
-        SetColumnName((Index)index, name);
-
-    /// <summary>
     /// Sets the <paramref name="value"/> of a raw table for the specified <paramref name="row"/>
     /// </summary>
     public void SetRawValue(Index row, object? value)
@@ -662,12 +523,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
             throw new InvalidOperationException("Only valid when the table has a single column");
         Set(row, 0, value);
     }
-
-    /// <summary>
-    /// Sets the <paramref name="value"/> of a raw table for the specified <paramref name="row"/>
-    /// </summary>
-    public void SetRawValue(int row, object? value) =>
-        SetRawValue((Index)row, value);
 
     /// <summary>
     /// Replaces the specified <paramref name="rows"/> in a raw table with the specified <paramref name="values"/>, returning the length of <paramref name="values"/>
@@ -685,10 +540,4 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
             InsertRow(offset + v, coercedValues[v]);
         return coercedValues.Length;
     }
-
-    /// <summary>
-    /// Replaces the specified number of <paramref name="rows"/> beginning as the specified <paramref name="rowIndex"/> in a raw table with the specified <paramref name="values"/>, returning the length of <paramref name="values"/>
-    /// </summary>
-    public int SetRawValues(int rowIndex, int rows, IEnumerable<object?> values) =>
-        SetRawValues(new Range(rowIndex, rowIndex + rows), values);
 }

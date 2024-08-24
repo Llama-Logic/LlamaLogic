@@ -222,6 +222,8 @@ class MainWindowDataContext :
         });
         await pythonSynchronizationContext.PostAsync(() =>
         {
+            PyObjectConversions.RegisterDecoder(new EnumerableDecoder());
+            PyObjectConversions.RegisterDecoder(new IndexDecoder());
             PythonStatus = "Getting Binary Version";
             var pythonCliVersionInfo = FileVersionInfo.GetVersionInfo(Path.Combine(Installer.EmbeddedPythonHome, "python.exe"));
             PythonStatus = "Configuring Runtime";
@@ -306,14 +308,20 @@ class MainWindowDataContext :
                     // import the Python.NET interop module
                     using dynamic clr = scope.Import("clr");
 
+                    // import the System namespace as a Python module
+                    using dynamic system = scope.Import("System");
+
+                    // add the System.Range type to the Python global scope
+                    scope.Set("Range", system.Range);
+
                     // reference the LlamaLogic.Packages assembly
                     clr.AddReference("LlamaLogic.Packages");
 
                     // import the LlamaLogic.Packages namespace as a Python module
-                    using dynamic llamaLogic = scope.Import("LlamaLogic.Packages");
+                    using dynamic packages = scope.Import("LlamaLogic.Packages");
 
                     // add the LlamaLogic Python module to the scope
-                    scope.Set("LlamaLogic", llamaLogic);
+                    scope.Set("Packages", packages);
 
                     // convert the Llama Pad interop object to a Python object
                     using var pythonInterop = interop.ToPython();

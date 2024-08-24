@@ -23,18 +23,6 @@ public class DataModelObject :
     {
     }
 
-    /// <summary>
-    /// Initializes a new <see cref="DataModelObject"/> (🔄️🏃)
-    /// </summary>
-    /// <param name="table">The table containing the object being referenced</param>
-    /// <param name="rowIndex">The row index within the containing table of the object being referenced</param>
-    /// <param name="columnIndex">The column index within the containing table of the object being referenced</param>
-    /// <param name="type">The type of the object being referenced</param>
-    public DataModelObject(DataModelTable table, int rowIndex, int columnIndex, DataModelType type) :
-        this(table, (Index)rowIndex, (Index)columnIndex, type)
-    {
-    }
-
     internal DataModelObject(int binaryTableIndex, Index rowIndex, Index columnIndex, DataModelType type) :
         base(binaryTableIndex, rowIndex, columnIndex, type)
     {
