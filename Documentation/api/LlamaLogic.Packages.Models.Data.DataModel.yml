@@ -66,11 +66,11 @@ items:
     To grant callers maximum control, the structure of references from the <xref href="LlamaLogic.Packages.ResourceType.SimData" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Packages.ResourceType.CombinedTuning" data-throw-if-not-resolved="false"></xref> resource is preserved and unabstracted.
 
 
-    While the classes which implement <xref href="LlamaLogic.Packages.Models.Data.DataModelReference" data-throw-if-not-resolved="false"></xref> have properties to produce useful compositions (e.g. the <xref href="LlamaLogic.Packages.Models.Data.DataModelString.Value" data-throw-if-not-resolved="false"></xref> property of <xref href="LlamaLogic.Packages.Models.Data.DataModelString" data-throw-if-not-resolved="false"></xref> will convert the null-terminated sequence of ASCII characters it references in a <xref href="DataModelTable" data-throw-if-not-resolved="false"></xref> of <xref href="LlamaLogic.Packages.Models.Data.DataModelType.CHAR8" data-throw-if-not-resolved="false"></xref> values to a <xref href="System.String" data-throw-if-not-resolved="false"></xref>), these conveniences are processed on-demand and only so long as the reference has remained valid.
+    While the classes which implement <xref href="LlamaLogic.Packages.Models.Data.DataModelReference" data-throw-if-not-resolved="false"></xref> have properties to produce useful compositions (e.g. the <xref href="LlamaLogic.Packages.Models.Data.DataModelString.Value" data-throw-if-not-resolved="false"></xref> property of <xref href="LlamaLogic.Packages.Models.Data.DataModelString" data-throw-if-not-resolved="false"></xref> will convert the null-terminated sequence of ASCII characters it references in a <xref href="LlamaLogic.Packages.Models.Data.DataModelTable" data-throw-if-not-resolved="false"></xref> of <xref href="LlamaLogic.Packages.Models.Data.DataModelType.CHAR8" data-throw-if-not-resolved="false"></xref> values to a <xref href="System.String" data-throw-if-not-resolved="false"></xref>), these conveniences are processed on-demand and only so long as the reference has remained valid.
 
-    The original data being referenced remains stored by instances of <xref href="DataModelTable" data-throw-if-not-resolved="false"></xref> as it appeared in the resource at the time it was decoded.
+    The original data being referenced remains stored by instances of <xref href="LlamaLogic.Packages.Models.Data.DataModelTable" data-throw-if-not-resolved="false"></xref> as it appeared in the resource at the time it was decoded.
 
-    All instances of <xref href="LlamaLogic.Packages.Models.Data.DataModelReference" data-throw-if-not-resolved="false"></xref> monitor the row (or rows) of the <xref href="DataModelTable" data-throw-if-not-resolved="false"></xref> they are referencing and will invalidate themselves if any constituent element is altered by the caller.
+    All instances of <xref href="LlamaLogic.Packages.Models.Data.DataModelReference" data-throw-if-not-resolved="false"></xref> monitor the row (or rows) of the <xref href="LlamaLogic.Packages.Models.Data.DataModelTable" data-throw-if-not-resolved="false"></xref> they are referencing and will invalidate themselves if any constituent element is altered by the caller.
 
 
     <xref href="LlamaLogic.Packages.Models.Data.DataModel.Encode" data-throw-if-not-resolved="false"></xref> reacts to invalid references by writing the `RELOFFSET_NULL` value in their place.
@@ -304,7 +304,7 @@ items:
     content: public Collection<DataModelTable> Tables { get; }
     parameters: []
     return:
-      type: System.Collections.ObjectModel.Collection{DataModelTable}
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.Data.DataModelTable}
     content.vb: Public ReadOnly Property Tables As Collection(Of DataModelTable)
   overload: LlamaLogic.Packages.Models.Data.DataModel.Tables*
 - uid: LlamaLogic.Packages.Models.Data.DataModel.Version
@@ -368,7 +368,7 @@ items:
     - id: index
       type: System.Int32
     return:
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
     content.vb: Public ReadOnly Default Property this[](index As Integer) As DataModelTable
   overload: LlamaLogic.Packages.Models.Data.DataModel.Item*
   nameWithType.vb: DataModel.this[](Integer)
@@ -404,7 +404,7 @@ items:
     - id: name
       type: System.String
     return:
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
     content.vb: Public ReadOnly Default Property this[](name As String) As DataModelTable
   overload: LlamaLogic.Packages.Models.Data.DataModel.Item*
   nameWithType.vb: DataModel.this[](String)
@@ -473,7 +473,7 @@ items:
     - id: name
       type: System.String
     return:
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
     content.vb: Public Function GetTable(name As String) As DataModelTable
   overload: LlamaLogic.Packages.Models.Data.DataModel.GetTable*
   nameWithType.vb: DataModel.GetTable(String)
@@ -633,12 +633,13 @@ references:
   name: DataModelString
   nameWithType: DataModelString
   fullName: LlamaLogic.Packages.Models.Data.DataModelString
-- uid: DataModelTable
-  commentId: T:DataModelTable
-  href: DataModelTable.html
+- uid: LlamaLogic.Packages.Models.Data.DataModelTable
+  commentId: T:LlamaLogic.Packages.Models.Data.DataModelTable
+  parent: LlamaLogic.Packages.Models.Data
+  href: LlamaLogic.Packages.Models.Data.DataModelTable.html
   name: DataModelTable
   nameWithType: DataModelTable
-  fullName: DataModelTable
+  fullName: LlamaLogic.Packages.Models.Data.DataModelTable
 - uid: LlamaLogic.Packages.Models.Data.DataModelType.CHAR8
   commentId: F:LlamaLogic.Packages.Models.Data.DataModelType.CHAR8
   href: LlamaLogic.Packages.Models.Data.DataModelType.html#LlamaLogic_Packages_Models_Data_DataModelType_CHAR8
@@ -1653,16 +1654,16 @@ references:
   name: Tables
   nameWithType: DataModel.Tables
   fullName: LlamaLogic.Packages.Models.Data.DataModel.Tables
-- uid: System.Collections.ObjectModel.Collection{DataModelTable}
-  commentId: T:System.Collections.ObjectModel.Collection{DataModelTable}
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.Data.DataModelTable}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.Data.DataModelTable}
   parent: System.Collections.ObjectModel
   definition: System.Collections.ObjectModel.Collection`1
   href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
   name: Collection<DataModelTable>
   nameWithType: Collection<DataModelTable>
-  fullName: System.Collections.ObjectModel.Collection<DataModelTable>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.Data.DataModelTable>
   nameWithType.vb: Collection(Of DataModelTable)
-  fullName.vb: System.Collections.ObjectModel.Collection(Of DataModelTable)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.Data.DataModelTable)
   name.vb: Collection(Of DataModelTable)
   spec.csharp:
   - uid: System.Collections.ObjectModel.Collection`1
@@ -1670,9 +1671,9 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
   - name: <
-  - uid: DataModelTable
+  - uid: LlamaLogic.Packages.Models.Data.DataModelTable
     name: DataModelTable
-    href: DataModelTable.html
+    href: LlamaLogic.Packages.Models.Data.DataModelTable.html
   - name: '>'
   spec.vb:
   - uid: System.Collections.ObjectModel.Collection`1
@@ -1682,9 +1683,9 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - uid: DataModelTable
+  - uid: LlamaLogic.Packages.Models.Data.DataModelTable
     name: DataModelTable
-    href: DataModelTable.html
+    href: LlamaLogic.Packages.Models.Data.DataModelTable.html
   - name: )
 - uid: System.Collections.ObjectModel.Collection`1
   commentId: T:System.Collections.ObjectModel.Collection`1

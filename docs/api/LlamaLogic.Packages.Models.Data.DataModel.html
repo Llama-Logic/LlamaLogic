@@ -172,9 +172,9 @@ For some <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_
 If a caller has need for parallelized use of a <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModel.html">DataModel</a>, they are expected to manage synchronization on their own.</p>
 <h3 id="exposed-reference-structure">Exposed Reference Structure</h3>
 <p>To grant callers maximum control, the structure of references from the <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SimData">SimData</a> or <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_CombinedTuning">CombinedTuning</a> resource is preserved and unabstracted.</p>
-<p>While the classes which implement <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelReference.html">DataModelReference</a> have properties to produce useful compositions (e.g. the <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelString.html#LlamaLogic_Packages_Models_Data_DataModelString_Value">Value</a> property of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelString.html">DataModelString</a> will convert the null-terminated sequence of ASCII characters it references in a <a class="xref" href="DataModelTable.html">DataModelTable</a> of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelType.html#LlamaLogic_Packages_Models_Data_DataModelType_CHAR8">CHAR8</a> values to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), these conveniences are processed on-demand and only so long as the reference has remained valid.
-The original data being referenced remains stored by instances of <a class="xref" href="DataModelTable.html">DataModelTable</a> as it appeared in the resource at the time it was decoded.
-All instances of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelReference.html">DataModelReference</a> monitor the row (or rows) of the <a class="xref" href="DataModelTable.html">DataModelTable</a> they are referencing and will invalidate themselves if any constituent element is altered by the caller.</p>
+<p>While the classes which implement <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelReference.html">DataModelReference</a> have properties to produce useful compositions (e.g. the <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelString.html#LlamaLogic_Packages_Models_Data_DataModelString_Value">Value</a> property of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelString.html">DataModelString</a> will convert the null-terminated sequence of ASCII characters it references in a <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a> of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelType.html#LlamaLogic_Packages_Models_Data_DataModelType_CHAR8">CHAR8</a> values to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), these conveniences are processed on-demand and only so long as the reference has remained valid.
+The original data being referenced remains stored by instances of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a> as it appeared in the resource at the time it was decoded.
+All instances of <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelReference.html">DataModelReference</a> monitor the row (or rows) of the <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a> they are referencing and will invalidate themselves if any constituent element is altered by the caller.</p>
 <p><a class="xref" href="LlamaLogic.Packages.Models.Data.DataModel.html#LlamaLogic_Packages_Models_Data_DataModel_Encode">Encode()</a> reacts to invalid references by writing the <code>RELOFFSET_NULL</code> value in their place.
 Callers can check to see if something they've done has invalidated a reference by checking its <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelReference.html#LlamaLogic_Packages_Models_Data_DataModelReference_IsValid">IsValid</a> property.</p>
 </div>
@@ -210,7 +210,7 @@ Callers can check to see if something they've done has invalidated a reference b
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="DataModelTable.html">DataModelTable</a></dt>
+    <dt><a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a></dt>
     <dd></dd>
   </dl>
 
@@ -247,7 +247,7 @@ Callers can check to see if something they've done has invalidated a reference b
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="DataModelTable.html">DataModelTable</a></dt>
+    <dt><a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a></dt>
     <dd></dd>
   </dl>
 
@@ -343,7 +343,7 @@ Callers can check to see if something they've done has invalidated a reference b
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="DataModelTable.html">DataModelTable</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -564,7 +564,7 @@ Callers can check to see if something they've done has invalidated a reference b
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="DataModelTable.html">DataModelTable</a></dt>
+    <dt><a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelTable.html">DataModelTable</a></dt>
     <dd></dd>
   </dl>
 

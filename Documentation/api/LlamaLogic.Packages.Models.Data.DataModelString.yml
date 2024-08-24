@@ -5,8 +5,8 @@ items:
   id: DataModelString
   parent: LlamaLogic.Packages.Models.Data
   children:
-  - LlamaLogic.Packages.Models.Data.DataModelString.#ctor(DataModelTable,System.Index)
-  - LlamaLogic.Packages.Models.Data.DataModelString.#ctor(DataModelTable,System.Int32)
+  - LlamaLogic.Packages.Models.Data.DataModelString.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index)
+  - LlamaLogic.Packages.Models.Data.DataModelString.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32)
   - LlamaLogic.Packages.Models.Data.DataModelString.Length
   - LlamaLogic.Packages.Models.Data.DataModelString.NullReference
   - LlamaLogic.Packages.Models.Data.DataModelString.Range
@@ -82,16 +82,16 @@ items:
       type: LlamaLogic.Packages.Models.Data.DataModelString
     content.vb: Public Shared ReadOnly Property NullReference As DataModelString
   overload: LlamaLogic.Packages.Models.Data.DataModelString.NullReference*
-- uid: LlamaLogic.Packages.Models.Data.DataModelString.#ctor(DataModelTable,System.Index)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelString.#ctor(DataModelTable,System.Index)
-  id: '#ctor(DataModelTable,System.Index)'
+- uid: LlamaLogic.Packages.Models.Data.DataModelString.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index)
+  commentId: M:LlamaLogic.Packages.Models.Data.DataModelString.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index)
+  id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index)'
   parent: LlamaLogic.Packages.Models.Data.DataModelString
   langs:
   - csharp
   - vb
   name: DataModelString(DataModelTable, Index)
   nameWithType: DataModelString.DataModelString(DataModelTable, Index)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelString.DataModelString(DataModelTable, System.Index)
+  fullName: LlamaLogic.Packages.Models.Data.DataModelString.DataModelString(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index)
   type: Constructor
   source:
     remote:
@@ -110,7 +110,7 @@ items:
     content: public DataModelString(DataModelTable table, Index rowIndex)
     parameters:
     - id: table
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
       description: The table, a sub sequence of which, is the null-terminated string of <xref href="LlamaLogic.Packages.Models.Data.DataModelType.CHAR8" data-throw-if-not-resolved="false"></xref> values
     - id: rowIndex
       type: System.Index
@@ -118,18 +118,18 @@ items:
     content.vb: Public Sub New(table As DataModelTable, rowIndex As Index)
   overload: LlamaLogic.Packages.Models.Data.DataModelString.#ctor*
   nameWithType.vb: DataModelString.New(DataModelTable, Index)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelString.New(DataModelTable, System.Index)
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelString.New(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index)
   name.vb: New(DataModelTable, Index)
-- uid: LlamaLogic.Packages.Models.Data.DataModelString.#ctor(DataModelTable,System.Int32)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelString.#ctor(DataModelTable,System.Int32)
-  id: '#ctor(DataModelTable,System.Int32)'
+- uid: LlamaLogic.Packages.Models.Data.DataModelString.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32)
+  commentId: M:LlamaLogic.Packages.Models.Data.DataModelString.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32)
+  id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32)'
   parent: LlamaLogic.Packages.Models.Data.DataModelString
   langs:
   - csharp
   - vb
   name: DataModelString(DataModelTable, int)
   nameWithType: DataModelString.DataModelString(DataModelTable, int)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelString.DataModelString(DataModelTable, int)
+  fullName: LlamaLogic.Packages.Models.Data.DataModelString.DataModelString(LlamaLogic.Packages.Models.Data.DataModelTable, int)
   type: Constructor
   source:
     remote:
@@ -148,7 +148,7 @@ items:
     content: public DataModelString(DataModelTable table, int rowIndex)
     parameters:
     - id: table
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
       description: The table, a sub sequence of which, is the null-terminated string of <xref href="LlamaLogic.Packages.Models.Data.DataModelType.CHAR8" data-throw-if-not-resolved="false"></xref> values
     - id: rowIndex
       type: System.Int32
@@ -156,7 +156,7 @@ items:
     content.vb: Public Sub New(table As DataModelTable, rowIndex As Integer)
   overload: LlamaLogic.Packages.Models.Data.DataModelString.#ctor*
   nameWithType.vb: DataModelString.New(DataModelTable, Integer)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelString.New(DataModelTable, Integer)
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelString.New(LlamaLogic.Packages.Models.Data.DataModelTable, Integer)
   name.vb: New(DataModelTable, Integer)
 - uid: LlamaLogic.Packages.Models.Data.DataModelString.Length
   commentId: P:LlamaLogic.Packages.Models.Data.DataModelString.Length
@@ -211,7 +211,7 @@ items:
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
-  summary: Gets the range rows of the vector
+  summary: Gets the range rows of the string
   example: []
   syntax:
     content: public Range Range { get; }
@@ -604,19 +604,20 @@ references:
   fullName: LlamaLogic.Packages.Models.Data.DataModelType.CHAR8
 - uid: LlamaLogic.Packages.Models.Data.DataModelString.#ctor*
   commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelString.#ctor
-  href: LlamaLogic.Packages.Models.Data.DataModelString.html#LlamaLogic_Packages_Models_Data_DataModelString__ctor_DataModelTable_System_Index_
+  href: LlamaLogic.Packages.Models.Data.DataModelString.html#LlamaLogic_Packages_Models_Data_DataModelString__ctor_LlamaLogic_Packages_Models_Data_DataModelTable_System_Index_
   name: DataModelString
   nameWithType: DataModelString.DataModelString
   fullName: LlamaLogic.Packages.Models.Data.DataModelString.DataModelString
   nameWithType.vb: DataModelString.New
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelString.New
   name.vb: New
-- uid: DataModelTable
-  commentId: T:DataModelTable
-  href: DataModelTable.html
+- uid: LlamaLogic.Packages.Models.Data.DataModelTable
+  commentId: T:LlamaLogic.Packages.Models.Data.DataModelTable
+  parent: LlamaLogic.Packages.Models.Data
+  href: LlamaLogic.Packages.Models.Data.DataModelTable.html
   name: DataModelTable
   nameWithType: DataModelTable
-  fullName: DataModelTable
+  fullName: LlamaLogic.Packages.Models.Data.DataModelTable
 - uid: System.Index
   commentId: T:System.Index
   parent: System

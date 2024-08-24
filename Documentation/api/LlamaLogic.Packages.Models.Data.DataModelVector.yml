@@ -5,8 +5,8 @@ items:
   id: DataModelVector
   parent: LlamaLogic.Packages.Models.Data
   children:
-  - LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
-  - LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
+  - LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
+  - LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
   - LlamaLogic.Packages.Models.Data.DataModelVector.Count
   - LlamaLogic.Packages.Models.Data.DataModelVector.CreateNullReference(System.Int32)
   - LlamaLogic.Packages.Models.Data.DataModelVector.Indicies
@@ -89,16 +89,16 @@ items:
   nameWithType.vb: DataModelVector.CreateNullReference(Integer)
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.CreateNullReference(Integer)
   name.vb: CreateNullReference(Integer)
-- uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
-  id: '#ctor(DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)'
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
+  commentId: M:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
+  id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)'
   parent: LlamaLogic.Packages.Models.Data.DataModelVector
   langs:
   - csharp
   - vb
   name: DataModelVector(DataModelTable, Index, DataModelType, int)
   nameWithType: DataModelVector.DataModelVector(DataModelTable, Index, DataModelType, int)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector(DataModelTable, System.Index, LlamaLogic.Packages.Models.Data.DataModelType, int)
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index, LlamaLogic.Packages.Models.Data.DataModelType, int)
   type: Constructor
   source:
     remote:
@@ -117,7 +117,7 @@ items:
     content: public DataModelVector(DataModelTable table, Index rowIndex, DataModelType type, int count)
     parameters:
     - id: table
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
       description: The table, a sub sequence of which, is the vector
     - id: rowIndex
       type: System.Index
@@ -131,18 +131,18 @@ items:
     content.vb: Public Sub New(table As DataModelTable, rowIndex As Index, type As DataModelType, count As Integer)
   overload: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor*
   nameWithType.vb: DataModelVector.New(DataModelTable, Index, DataModelType, Integer)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New(DataModelTable, System.Index, LlamaLogic.Packages.Models.Data.DataModelType, Integer)
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index, LlamaLogic.Packages.Models.Data.DataModelType, Integer)
   name.vb: New(DataModelTable, Index, DataModelType, Integer)
-- uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
-  id: '#ctor(DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)'
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
+  commentId: M:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
+  id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Int32,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)'
   parent: LlamaLogic.Packages.Models.Data.DataModelVector
   langs:
   - csharp
   - vb
   name: DataModelVector(DataModelTable, int, DataModelType, int)
   nameWithType: DataModelVector.DataModelVector(DataModelTable, int, DataModelType, int)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector(DataModelTable, int, LlamaLogic.Packages.Models.Data.DataModelType, int)
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector(LlamaLogic.Packages.Models.Data.DataModelTable, int, LlamaLogic.Packages.Models.Data.DataModelType, int)
   type: Constructor
   source:
     remote:
@@ -161,7 +161,7 @@ items:
     content: public DataModelVector(DataModelTable table, int rowIndex, DataModelType type, int count)
     parameters:
     - id: table
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
       description: The table, a sub sequence of which, is the vector
     - id: rowIndex
       type: System.Int32
@@ -175,7 +175,7 @@ items:
     content.vb: Public Sub New(table As DataModelTable, rowIndex As Integer, type As DataModelType, count As Integer)
   overload: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor*
   nameWithType.vb: DataModelVector.New(DataModelTable, Integer, DataModelType, Integer)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New(DataModelTable, Integer, LlamaLogic.Packages.Models.Data.DataModelType, Integer)
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New(LlamaLogic.Packages.Models.Data.DataModelTable, Integer, LlamaLogic.Packages.Models.Data.DataModelType, Integer)
   name.vb: New(DataModelTable, Integer, DataModelType, Integer)
 - uid: LlamaLogic.Packages.Models.Data.DataModelVector.Count
   commentId: P:LlamaLogic.Packages.Models.Data.DataModelVector.Count
@@ -678,19 +678,20 @@ references:
   name.vb: Integer
 - uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor*
   commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor
-  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector__ctor_DataModelTable_System_Index_LlamaLogic_Packages_Models_Data_DataModelType_System_Int32_
+  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector__ctor_LlamaLogic_Packages_Models_Data_DataModelTable_System_Index_LlamaLogic_Packages_Models_Data_DataModelType_System_Int32_
   name: DataModelVector
   nameWithType: DataModelVector.DataModelVector
   fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector
   nameWithType.vb: DataModelVector.New
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New
   name.vb: New
-- uid: DataModelTable
-  commentId: T:DataModelTable
-  href: DataModelTable.html
+- uid: LlamaLogic.Packages.Models.Data.DataModelTable
+  commentId: T:LlamaLogic.Packages.Models.Data.DataModelTable
+  parent: LlamaLogic.Packages.Models.Data
+  href: LlamaLogic.Packages.Models.Data.DataModelTable.html
   name: DataModelTable
   nameWithType: DataModelTable
-  fullName: DataModelTable
+  fullName: LlamaLogic.Packages.Models.Data.DataModelTable
 - uid: System.Index
   commentId: T:System.Index
   parent: System

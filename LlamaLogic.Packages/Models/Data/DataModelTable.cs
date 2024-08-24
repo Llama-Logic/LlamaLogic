@@ -1,3 +1,5 @@
+namespace LlamaLogic.Packages.Models.Data;
+
 /// <summary>
 /// Represents a table in a <see cref="ResourceType.SimData"/> or <see cref="ResourceType.CombinedTuning"/> resource (🔓)
 /// </summary>

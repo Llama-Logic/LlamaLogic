@@ -58,7 +58,7 @@ public sealed class DataModelString :
     public int Length { get; private set; }
 
     /// <summary>
-    /// Gets the range rows of the vector
+    /// Gets the range rows of the string
     /// </summary>
     public Range Range =>
         DataModelVector.ProjectRange(RowIndex, Length);

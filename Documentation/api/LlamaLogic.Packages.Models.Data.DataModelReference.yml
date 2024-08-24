@@ -5,7 +5,7 @@ items:
   id: DataModelReference
   parent: LlamaLogic.Packages.Models.Data
   children:
-  - LlamaLogic.Packages.Models.Data.DataModelReference.#ctor(DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)
+  - LlamaLogic.Packages.Models.Data.DataModelReference.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)
   - LlamaLogic.Packages.Models.Data.DataModelReference.Column
   - LlamaLogic.Packages.Models.Data.DataModelReference.ColumnIndex
   - LlamaLogic.Packages.Models.Data.DataModelReference.IsValid
@@ -50,16 +50,16 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: LlamaLogic.Packages.Models.Data.DataModelReference.#ctor(DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelReference.#ctor(DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)
-  id: '#ctor(DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)'
+- uid: LlamaLogic.Packages.Models.Data.DataModelReference.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)
+  commentId: M:LlamaLogic.Packages.Models.Data.DataModelReference.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)
+  id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,System.Index,LlamaLogic.Packages.Models.Data.DataModelType)'
   parent: LlamaLogic.Packages.Models.Data.DataModelReference
   langs:
   - csharp
   - vb
   name: DataModelReference(DataModelTable, Index, Index, DataModelType)
   nameWithType: DataModelReference.DataModelReference(DataModelTable, Index, Index, DataModelType)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelReference.DataModelReference(DataModelTable, System.Index, System.Index, LlamaLogic.Packages.Models.Data.DataModelType)
+  fullName: LlamaLogic.Packages.Models.Data.DataModelReference.DataModelReference(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index, System.Index, LlamaLogic.Packages.Models.Data.DataModelType)
   type: Constructor
   source:
     remote:
@@ -78,7 +78,7 @@ items:
     content: protected DataModelReference(DataModelTable table, Index rowIndex, Index columnIndex, DataModelType type)
     parameters:
     - id: table
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
       description: The table containing the structure being referenced
     - id: rowIndex
       type: System.Index
@@ -92,7 +92,7 @@ items:
     content.vb: Protected Sub New(table As DataModelTable, rowIndex As Index, columnIndex As Index, type As DataModelType)
   overload: LlamaLogic.Packages.Models.Data.DataModelReference.#ctor*
   nameWithType.vb: DataModelReference.New(DataModelTable, Index, Index, DataModelType)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelReference.New(DataModelTable, System.Index, System.Index, LlamaLogic.Packages.Models.Data.DataModelType)
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelReference.New(LlamaLogic.Packages.Models.Data.DataModelTable, System.Index, System.Index, LlamaLogic.Packages.Models.Data.DataModelType)
   name.vb: New(DataModelTable, Index, Index, DataModelType)
 - uid: LlamaLogic.Packages.Models.Data.DataModelReference.Column
   commentId: P:LlamaLogic.Packages.Models.Data.DataModelReference.Column
@@ -277,7 +277,7 @@ items:
     content: public DataModelTable Table { get; }
     parameters: []
     return:
-      type: DataModelTable
+      type: LlamaLogic.Packages.Models.Data.DataModelTable
     content.vb: Public Property Table As DataModelTable
   overload: LlamaLogic.Packages.Models.Data.DataModelReference.Table*
 - uid: LlamaLogic.Packages.Models.Data.DataModelReference.Type
@@ -608,19 +608,20 @@ references:
   fullName: LlamaLogic.Packages.Models.Data.DataModelReference
 - uid: LlamaLogic.Packages.Models.Data.DataModelReference.#ctor*
   commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelReference.#ctor
-  href: LlamaLogic.Packages.Models.Data.DataModelReference.html#LlamaLogic_Packages_Models_Data_DataModelReference__ctor_DataModelTable_System_Index_System_Index_LlamaLogic_Packages_Models_Data_DataModelType_
+  href: LlamaLogic.Packages.Models.Data.DataModelReference.html#LlamaLogic_Packages_Models_Data_DataModelReference__ctor_LlamaLogic_Packages_Models_Data_DataModelTable_System_Index_System_Index_LlamaLogic_Packages_Models_Data_DataModelType_
   name: DataModelReference
   nameWithType: DataModelReference.DataModelReference
   fullName: LlamaLogic.Packages.Models.Data.DataModelReference.DataModelReference
   nameWithType.vb: DataModelReference.New
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelReference.New
   name.vb: New
-- uid: DataModelTable
-  commentId: T:DataModelTable
-  href: DataModelTable.html
+- uid: LlamaLogic.Packages.Models.Data.DataModelTable
+  commentId: T:LlamaLogic.Packages.Models.Data.DataModelTable
+  parent: LlamaLogic.Packages.Models.Data
+  href: LlamaLogic.Packages.Models.Data.DataModelTable.html
   name: DataModelTable
   nameWithType: DataModelTable
-  fullName: DataModelTable
+  fullName: LlamaLogic.Packages.Models.Data.DataModelTable
 - uid: System.Index
   commentId: T:System.Index
   parent: System

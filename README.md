@@ -21,8 +21,7 @@ Herding your Sims 4 mods like a pro, one clean file at a time!
 ## LlamaLogic.Packages
 [![LlamaLogic.Packages Nuget](https://img.shields.io/nuget/v/LlamaLogic.Packages.svg?logo=nuget) ![Downloads](https://img.shields.io/nuget/dt/llamalogic.packages)](https://www.nuget.org/packages/LlamaLogic.Packages)
 
-Create, read, and update package files for Maxis' The Sims 4.
-The read me documentation is available [here](LLamaLogic.Packages/README.md).
+Looking for API documentation? It's [right here](https://llama-logic.github.io/LlamaLogic/index.html).
 
 # License
 [MIT License](LICENSE)
