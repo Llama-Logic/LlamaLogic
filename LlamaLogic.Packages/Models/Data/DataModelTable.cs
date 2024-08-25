@@ -266,7 +266,7 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
     public IReadOnlyList<object?> GetColumnValues(Index index)
     {
         columns.Count.ThrowIfIndexOutOfRange(index);
-        return [.. columns[index].data];
+        return [..columns[index].data];
     }
 
     /// <summary>
@@ -297,12 +297,6 @@ public sealed class DataModelTable(string? name, string? schemaName, uint? schem
             return GetColumnValues(index, rows);
         throw new ArgumentException($"Column {columnName} does not exist in table {Name}", nameof(columnName));
     }
-
-    /// <summary>
-    /// Gets the values for the column with the specified <paramref name="columnName"/> for the specified number of <paramref name="rows"/> beginning at the specified <paramref name="rowIndex"/>
-    /// </summary>
-    public IReadOnlyList<object?> GetColumnValues(string columnName, int rowIndex, int rows) =>
-        GetColumnValues(columnName, new Range(rowIndex, rowIndex + rows));
 
     /// <summary>
     /// Gets the values for the specified <paramref name="columnIndex"/> starting at the specified <paramref name="startingRowIndex"/> for as long as the <paramref name="takeWhile"/> predicate returns <see langword="true"/>
