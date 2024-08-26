@@ -123,7 +123,8 @@ public class StringTableModel :
     /// <inheritdoc/>
     public override ReadOnlyMemory<byte> Encode()
     {
-        var writer = new ArrayBufferWriter<byte>(21 + entries.Sum(entry => 7 + Encoding.UTF8.GetByteCount(entry.Value)));
+        var allEntriesByteLength = entries.Values.Sum(Encoding.UTF8.GetByteCount);
+        var writer = new ArrayBufferWriter<byte>(21 + 7 * entries.Count + allEntriesByteLength);
         writer.Write(expectedFileIdentifier.Span);
         var mnVersion = expectedVersion;
         writer.Write(ref mnVersion);
@@ -132,17 +133,18 @@ public class StringTableModel :
         var mnNumEntries = (ulong)entries.Count;
         writer.Write(ref mnNumEntries);
         writer.Advance(2); // mReserved[2]
-        var mnStringLength = (uint)entries.Values.Sum(entry => entry.Length + 1);
+        var mnStringLength = (uint)(allEntriesByteLength + entries.Count);
         writer.Write(ref mnStringLength);
         foreach (var (key, @string) in entries)
         {
             var mnKeyHash = key;
             writer.Write(ref mnKeyHash);
             writer.Advance(1); // mnFlags
-            var mnLength = (ushort)@string.Length;
+            var stringBytes = Encoding.UTF8.GetBytes(@string);
+            var mnLength = (ushort)stringBytes.Length;
             writer.Write(ref mnLength);
             if (mnLength > 0)
-                writer.Write(Encoding.UTF8.GetBytes(@string));
+                writer.Write(stringBytes);
         }
         return writer.WrittenMemory;
     }

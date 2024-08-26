@@ -1,3 +1,4 @@
+global using LlamaLogic.Packages.Models;
 global using LlamaLogic.Packages.Models.Data;
 global using Microsoft.Win32.SafeHandles;
 global using System;
