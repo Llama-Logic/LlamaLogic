@@ -23,7 +23,6 @@ items:
   - LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.Index,System.Range)
   - LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.String)
   - LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.String,System.Index,System.Predicate{System.Object})
-  - LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.String,System.Int32,System.Int32)
   - LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.String,System.Range)
   - LlamaLogic.Packages.Models.Data.DataModelTable.GetRawValue(System.Index)
   - LlamaLogic.Packages.Models.Data.DataModelTable.GetRawValues(System.Int32,System.Int32)
@@ -950,46 +949,6 @@ items:
   nameWithType.vb: DataModelTable.GetColumnValues(String, Range)
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(String, System.Range)
   name.vb: GetColumnValues(String, Range)
-- uid: LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.String,System.Int32,System.Int32)
-  commentId: M:LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.String,System.Int32,System.Int32)
-  id: GetColumnValues(System.String,System.Int32,System.Int32)
-  parent: LlamaLogic.Packages.Models.Data.DataModelTable
-  langs:
-  - csharp
-  - vb
-  name: GetColumnValues(string, int, int)
-  nameWithType: DataModelTable.GetColumnValues(string, int, int)
-  fullName: LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(string, int, int)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/Data/DataModelTable.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: GetColumnValues
-    path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 303
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.Data
-  summary: Gets the values for the column with the specified <code class="paramref">columnName</code> for the specified number of <code class="paramref">rows</code> beginning at the specified <code class="paramref">rowIndex</code>
-  example: []
-  syntax:
-    content: public IReadOnlyList<object?> GetColumnValues(string columnName, int rowIndex, int rows)
-    parameters:
-    - id: columnName
-      type: System.String
-    - id: rowIndex
-      type: System.Int32
-    - id: rows
-      type: System.Int32
-    return:
-      type: System.Collections.Generic.IReadOnlyList{System.Object}
-    content.vb: Public Function GetColumnValues(columnName As String, rowIndex As Integer, rows As Integer) As IReadOnlyList(Of Object)
-  overload: LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues*
-  nameWithType.vb: DataModelTable.GetColumnValues(String, Integer, Integer)
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(String, Integer, Integer)
-  name.vb: GetColumnValues(String, Integer, Integer)
 - uid: LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.Index,System.Index,System.Predicate{System.Object})
   commentId: M:LlamaLogic.Packages.Models.Data.DataModelTable.GetColumnValues(System.Index,System.Index,System.Predicate{System.Object})
   id: GetColumnValues(System.Index,System.Index,System.Predicate{System.Object})
@@ -1008,7 +967,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetColumnValues
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 309
+    startLine: 303
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1048,7 +1007,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetColumnValues
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 330
+    startLine: 324
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1088,7 +1047,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRawValue
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 340
+    startLine: 334
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1121,7 +1080,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRawValues
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 350
+    startLine: 344
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1154,7 +1113,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRawValues
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 360
+    startLine: 354
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1192,7 +1151,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: InsertColumn
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 366
+    startLine: 360
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1234,7 +1193,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: InsertRow
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 383
+    startLine: 377
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1270,7 +1229,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveColumn
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 411
+    startLine: 405
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1301,7 +1260,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveColumn
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 422
+    startLine: 416
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1337,7 +1296,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveRow
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 435
+    startLine: 429
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1368,7 +1327,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 448
+    startLine: 442
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1404,7 +1363,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 466
+    startLine: 460
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1442,7 +1401,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 477
+    startLine: 471
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1480,7 +1439,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetColumnFlags
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 487
+    startLine: 481
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1516,7 +1475,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetColumnFlags
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 498
+    startLine: 492
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1552,7 +1511,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetColumnName
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 508
+    startLine: 502
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1588,7 +1547,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetRawValue
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 519
+    startLine: 513
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -1624,7 +1583,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetRawValues
     path: ../LlamaLogic.Packages/Models/Data/DataModelTable.cs
-    startLine: 529
+    startLine: 523
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
