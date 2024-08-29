@@ -20,31 +20,25 @@ steps:
   inputs:
     version: '8.x'
 
-- script: dotnet workload restore
-  displayName: 'Restore .NET Workloads'
-
-- script: dotnet workload restore --runtime win-x64 --project LlamaLogic.sln
-  displayName: 'Restore .NET Workloads (win-x64)'
-
 - task: DotNetCoreCLI@2
   displayName: 'Restore referenced NuGet packages'
   inputs:
     command: 'restore'
+    projects: 'LlamaLogic.Libraries.sln'
     arguments: '--configuration $(buildConfiguration)'
-
-- script: dotnet restore --runtime win-x64
-  displayName: 'Restore referenced NuGet packages (win-x64)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build'
   inputs:
     command: 'build'
+    projects: 'LlamaLogic.Libraries.sln'
     arguments: '--configuration $(buildConfiguration) --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: 'Test'
   inputs:
     command: test
+    projects: 'LlamaLogic.Libraries.sln'
     arguments: '--configuration $(buildConfiguration) --no-build --collect "Code coverage" --settings .runsettings'
     publishTestResults: true
 
