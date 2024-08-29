@@ -3,7 +3,7 @@ namespace LlamaLogic.Packages.Models.ModFileManifest;
 /// <summary>
 /// Represents a resource the mod in a mod file manifest <see cref="ResourceType.SnippetTuning"/> resource is overriding intentionally (🔓)
 /// </summary>
-public sealed class ModFileManifestModelIntensionalOverride :
+public sealed class ModFileManifestModelIntentionalOverride :
     IXmlSerializable
 {
     /// <summary>

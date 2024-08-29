@@ -151,7 +151,7 @@ public sealed class ModFileManifestModel :
     /// Gets the list of resources the mod intends to override
     /// </summary>
     [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-    public Collection<ModFileManifestModelIntensionalOverride> IntentionalOverrides { get; private set; } = [];
+    public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the name of the mod
@@ -263,7 +263,7 @@ public sealed class ModFileManifestModel :
                 if (tunableName == "creators")
                     Creators.AddRange(reader.ReadTunableList());
                 else if (tunableName == "intentional_overrides")
-                    IntentionalOverrides.AddRange(reader.ReadTunableTupleList<ModFileManifestModelIntensionalOverride>());
+                    IntentionalOverrides.AddRange(reader.ReadTunableTupleList<ModFileManifestModelIntentionalOverride>());
                 else if (tunableName == "required_mods")
                     RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
                 else if (tunableName == "subsumed_files")

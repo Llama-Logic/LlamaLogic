@@ -593,7 +593,7 @@ public sealed class DataBasePackedFile :
             contentStream = new InflaterInputStream(contentStream);
         else if (indexEntry.mnCompressionType is mnCompressionType.Internal_compression or mnCompressionType.Streamable_compression)
             contentStream = new LegacyDecompressionStream(contentStream);
-        else
+        else if (indexEntry.mnCompressionType is not mnCompressionType.Uncompressed)
             throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} not supported");
         return contentStream;
     }
