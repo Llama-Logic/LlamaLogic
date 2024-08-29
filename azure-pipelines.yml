@@ -23,11 +23,17 @@ steps:
 - script: dotnet workload restore
   displayName: 'Restore .NET Workloads'
 
+- script: dotnet workload restore --runtime win-x64
+  displayName: 'Restore .NET Workloads (win-x64)'
+
 - task: DotNetCoreCLI@2
   displayName: 'Restore referenced NuGet packages'
   inputs:
     command: 'restore'
     arguments: '--configuration $(buildConfiguration)'
+
+- script: dotnet restore --runtime win-x64
+  displayName: 'Restore referenced NuGet packages (win-x64)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build'
