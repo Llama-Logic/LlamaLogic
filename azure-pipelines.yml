@@ -20,6 +20,9 @@ steps:
   inputs:
     version: '8.x'
 
+- script: dotnet workload restore
+  displayName: 'Restore .NET Workloads'
+
 - task: DotNetCoreCLI@2
   displayName: 'Restore referenced NuGet packages'
   inputs:
