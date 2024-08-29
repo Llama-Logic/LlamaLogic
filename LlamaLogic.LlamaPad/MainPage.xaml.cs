@@ -1,9 +1,8 @@
-﻿namespace LlamaLogic.LlamaPad;
+namespace LlamaLogic.LlamaPad;
 
-public partial class MainPage : ContentPage
+public partial class MainPage :
+    ContentPage
 {
-    public MainPage()
-    {
+    public MainPage() =>
         InitializeComponent();
-    }
 }

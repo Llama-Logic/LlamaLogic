@@ -1,23 +1,18 @@
 @inherits LayoutComponentBase
+@using LlamaLogic.LlamaPad.Components.Dialogs
+@using MudBlazor
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<MudThemeProvider IsDarkMode="true" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+<div class="fun-friends">
+    <div class="marcy fun-friend"></div>
+    <div class="mumbo fun-friend"></div>
 </div>
 
-<FluentToastProvider />
-<FluentDialogProvider />
-<FluentTooltipProvider />
-<FluentMessageBarProvider />
-<FluentMenuProvider />
+@Body
+
+@code {
+}

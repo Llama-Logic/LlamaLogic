@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
-using Microsoft.FluentUI.AspNetCore.Components;
+using Microsoft.Maui.LifecycleEvents;
+using MudBlazor.Services;
 
 namespace LlamaLogic.LlamaPad;
 public static class MauiProgram
@@ -12,10 +13,22 @@ public static class MauiProgram
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            })
+            .ConfigureLifecycleEvents(lifecycle =>
+            {
+#if WINDOWS
+                lifecycle.AddWindows(windows =>
+                {
+                });
+#elif MACCATALYST
+                lifecycle.AddMacCatalyst(mac =>
+                {
+                });
+#endif
             });
 
         builder.Services.AddMauiBlazorWebView();
-        builder.Services.AddFluentUIComponents();
+        builder.Services.AddMudServices();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();

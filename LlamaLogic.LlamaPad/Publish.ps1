@@ -1,0 +1,3 @@
+dotnet clean --configuration Release --verbosity normal
+dotnet publish -p:WindowsPackageType=MSIX --configuration Release --verbosity normal
+& "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe" sign /fd SHA256 /a /sha1 42c9c862153cca1fbca9833001935d52a79003e8 /tr http://ts.ssl.com /td SHA256 /v "bin\Release\net8.0-windows10.0.19041.0\win-x64\AppPackages\LlamaLogic.LlamaPad_1.0.0.1_Test\LlamaLogic.LlamaPad_1.0.0.1_x64.msix"

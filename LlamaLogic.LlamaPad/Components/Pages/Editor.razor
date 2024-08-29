@@ -1,0 +1,249 @@
+@page "/"
+@using MudBlazor
+@inject IDialogService DialogService
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .monaco-editor-container {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+</style>
+
+<MudDrawerContainer>
+    <MudDrawer Elevation="0" Variant="@DrawerVariant.Persistent" Color="Color.Dark" @bind-Open="@referenceDrawerOpen">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">Reference</MudText>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            <MudNavGroup Title="Snippets" Icon="@Icons.Custom.FileFormats.FileCode">
+                <MudNavGroup Title="llama_pad" Icon="@Icons.Material.Filled.Edit">
+                    <MudNavLink Icon="@Icons.Material.Filled.Folder">Ask for a Directory</MudNavLink>
+                    <MudNavLink Icon="@Icons.Material.Filled.Stop">Stop the Script</MudNavLink>
+                    <MudNavLink Icon="@Icons.Material.Filled.Refresh">Update Progress</MudNavLink>
+                    <MudNavLink Icon="@Icons.Material.Filled.Refresh">Update Status</MudNavLink>
+                </MudNavGroup>
+                <MudNavGroup Title="Packages" Icon="@Icons.Material.Filled.DataArray">
+                    <MudNavLink Icon="@Icons.Material.Filled.FileOpen">Open a Package</MudNavLink>
+                    <MudNavLink Icon="@Icons.Material.Filled.Key">Get all the Keys in a Package</MudNavLink>
+                    <MudNavLink Icon="@Icons.Material.Filled.Save">Save a Package in Place</MudNavLink>
+                    <MudNavLink Icon="@Icons.Material.Filled.SaveAs">Save a Package to a Different Path</MudNavLink>
+                    <MudNavGroup Title="Tuning" Icon="@Icons.Material.Filled.Tune">
+                        <MudNavLink Icon="@Icons.Material.Filled.Folder">Ask for a Directory</MudNavLink>
+                    </MudNavGroup>
+                    <MudNavGroup Title="Sim Data" Icon="@Icons.Material.Filled.Dataset">
+                        <MudNavLink Icon="@Icons.Material.Filled.Folder">Ask for a Directory</MudNavLink>
+                    </MudNavGroup>
+                    <MudNavGroup Title="String Tables" Icon="@Icons.Material.Filled.Language">
+                        <MudNavLink Icon="@Icons.Material.Filled.Folder">Ask for a Directory</MudNavLink>
+                    </MudNavGroup>
+                </MudNavGroup>
+            </MudNavGroup>
+        </MudNavMenu>
+    </MudDrawer>
+    <div class="container">
+        <div class="tool-bar">
+            <MudToolBar WrapContent="true">
+                <MudToggleIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" @bind-Toggled="@navMenuDrawerOpen" />
+                <MudToggleIconButton Icon="@Icons.Material.Outlined.Help" Color="Color.Inherit" ToggledColor="Color.Info" @bind-Toggled="@referenceDrawerOpen" />
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.Add" Color="Color.Secondary" />
+                <MudIconButton Icon="@Icons.Material.Outlined.FileOpen" Color="Color.Secondary" />
+                <MudIconButton Icon="@Icons.Material.Outlined.Save" Color="Color.Primary" />
+                <MudIconButton Icon="@Icons.Material.Outlined.SaveAs" Color="Color.Primary" />
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.Undo" Color="Color.Inherit" OnClick="UndoAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.Redo" Color="Color.Inherit" OnClick="RedoAsync" />
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.ContentCut" Color="Color.Inherit" OnClick="CutAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.ContentCopy" Color="Color.Inherit" OnClick="CopyAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.ContentPaste" Color="Color.Inherit" OnClick="PasteAsync" />
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.UnfoldLess" title="Fold All" Color="Color.Inherit" OnClick="FoldAllAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.UnfoldMore" title="Unfold All" Color="Color.Inherit" OnClick="UnfoldAllAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.InsertComment" title="Comment Line" Color="Color.Success" OnClick="CommentLineAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.CommentsDisabled" title="Remove Comment Line" Color="Color.Success" OnClick="RemoveCommentLineAsync" />
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.PlayArrow" Color="Color.Warning" />
+                <MudChip T="String" Label="true" Icon="@Icons.Material.TwoTone.Code">CPython @pythonVersion</MudChip>
+                <MudToggleIconButton Icon="@Icons.Material.Outlined.Build" Color="Color.Inherit" ToggledColor="Color.Info" @bind-Toggled="@pythonDetailsVisible" />
+                <MudPopover AnchorOrigin="Origin.BottomRight" Open="@pythonDetailsVisible">
+                    <div class="flyout" style="min-width: 400px;">
+                        <MudStack>
+                            <MudTextField @bind-Value="pythonBuild" Label="Release Version" Variant="Variant.Filled" ReadOnly="true" />
+                            <MudTextField @bind-Value="pythonCompiler" Label="Compiler Used" Variant="Variant.Filled" ReadOnly="true" />
+                        </MudStack>
+                    </div>
+                </MudPopover>
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.ZoomIn" title="Zoom In" Color="Color.Inherit" OnClick="ZoomInAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.ZoomOut" title="Zoom Out" Color="Color.Inherit" OnClick="ZoomOutAsync" />
+                <MudIconButton Icon="@Icons.Material.Outlined.WidthFull" title="Zoom Reset" Color="Color.Inherit" OnClick="ZoomResetAsync" />
+            </MudToolBar>
+        </div>
+        <StandaloneCodeEditor @ref="editor" ConstructionOptions="GetConstructionOptions" />
+    </div>
+</MudDrawerContainer>
+
+<MudDrawer Anchor="Anchor.Start" Elevation="1" Variant="@DrawerVariant.Temporary" OverlayAutoClose="true" @bind-Open="@navMenuDrawerOpen">
+    <MudNavMenu>
+        <MudText Typo="Typo.h6" Class="px-4">Llama Pad</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Manage Mod Packages for The Sims 4 with Python</MudText>
+        <MudDivider Class="my-2" />
+    </MudNavMenu>
+</MudDrawer>
+
+@code
+{
+    StandaloneCodeEditor? editor;
+    bool navMenuDrawerOpen = false;
+    string pythonBuild = "Unknown";
+    string pythonCompiler = "Unknown";
+    bool pythonDetailsVisible = false;
+    string pythonVersion = "Unknown";
+    bool referenceDrawerOpen = false;
+
+    Task CommentLineAsync() =>
+        EditorTriggerAsync("keyboard", "editor.action.commentLine");
+
+    async Task CopyAsync()
+    {
+        if (editor is not null)
+        {
+            var (_, text) = await editor.GetEditorSelectionAsync();
+            if (text is not null)
+                await Clipboard.Default.SetTextAsync(text);
+            await editor.Focus();
+        }
+    }
+
+    async Task CutAsync()
+    {
+        if (editor is not null)
+        {
+            var (range, text) = await editor.GetEditorSelectionAsync();
+            if (range is not null && text is not null)
+            {
+                await editor.ExecuteEditAsync("keyboard", range, string.Empty);
+                await Clipboard.Default.SetTextAsync(text);
+            }
+            await editor.Focus();
+        }
+    }
+
+    StandaloneEditorConstructionOptions GetConstructionOptions(StandaloneCodeEditor editor)
+    {
+        return new StandaloneEditorConstructionOptions
+        {
+            AutomaticLayout = true,
+            Language = "python",
+            Theme = "vs-dark"
+        };
+    }
+
+    async Task EditorTriggerAsync(string source, string handlerId, object? payload = null)
+    {
+        if (editor is not null)
+            await editor.Trigger(source, handlerId, payload);
+    }
+
+    Task FoldAllAsync() =>
+        EditorTriggerAsync("keyboard", "editor.foldAll");
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender && !PythonInterop.IsInitialized)
+        {
+            await Task.Delay(25);
+            var parameters = new DialogParameters();
+            var options = new DialogOptions
+            {
+                BackdropClick = false,
+                BackgroundClass = "blur-backdrop",
+                CloseButton = false,
+                CloseOnEscapeKey = false,
+                FullWidth = true
+            };
+            var dialogReference = await DialogService.ShowAsync<InitializationDialog>("Initializing IDE, please wait...", parameters, options);
+            var dialog = (InitializationDialog)dialogReference.Dialog!;
+            await PythonInterop.InitializeAsync(dialog);
+            dialog.Close();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SetWindowTitle("Llama Pad");
+        if (PythonInterop.IsInitialized)
+        {
+            pythonVersion = PythonInterop.Version?.ToString() ?? "Unknown";
+            pythonBuild = PythonInterop.Build ?? "Unknown";
+            pythonCompiler = PythonInterop.Compiler ?? "Unknown";
+        }
+        else
+            PythonInterop.Initialized += PythonInterop_Initialized;
+    }
+
+    async Task PasteAsync()
+    {
+        if (editor is not null)
+        {
+            var (range, _) = await editor.GetEditorSelectionAsync();
+            var text = await Clipboard.Default.GetTextAsync();
+            if (range is not null && text is not null)
+                await editor.ExecuteEditAsync("keyboard", range, text);
+            await editor.Focus();
+        }
+    }
+
+    void PythonInterop_Initialized(object? sender, EventArgs e)
+    {
+        PythonInterop.Initialized -= PythonInterop_Initialized;
+        pythonVersion = PythonInterop.Version?.ToString() ?? "Unknown";
+        pythonBuild = PythonInterop.Build ?? "Unknown";
+        pythonCompiler = PythonInterop.Compiler ?? "Unknown";
+        StateHasChanged();
+    }
+
+    async Task RedoAsync()
+    {
+        await EditorTriggerAsync("keyboard", "redo");
+        if (editor is not null)
+            await editor.Focus();
+    }
+
+    Task RemoveCommentLineAsync() =>
+        EditorTriggerAsync("keyboard", "editor.action.removeCommentLine");
+
+    void SetWindowTitle(string title)
+    {
+        if (Application.Current is { } app)
+            app.Windows[0].Title = title;
+    }
+
+    async Task UndoAsync()
+    {
+        await EditorTriggerAsync("keyboard", "undo");
+        if (editor is not null)
+            await editor.Focus();
+    }
+
+    Task UnfoldAllAsync() =>
+        EditorTriggerAsync("keyboard", "editor.unfoldAll");
+
+    Task ZoomInAsync() =>
+        EditorTriggerAsync("keyboard", "editor.action.fontZoomIn");
+
+    Task ZoomOutAsync() =>
+        EditorTriggerAsync("keyboard", "editor.action.fontZoomOut");
+
+    Task ZoomResetAsync() =>
+        EditorTriggerAsync("keyboard", "editor.action.fontZoomReset");
+}

@@ -1,0 +1,31 @@
+@using MudBlazor
+
+<MudDialog>
+    <DialogContent>
+        <MudStack>
+            <p>@status</p>
+            <MudProgressLinear Color="Color.Primary" Buffer="true" Max="@max" Value="@value" BufferValue="@bufferValue" />
+        </MudStack>
+    </DialogContent>
+</MudDialog>
+
+@code {
+    int bufferValue = 0;
+    int max = 100;
+    string status = "Examining environment";
+    int value = 0;
+
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+
+    public void Close() =>
+        MudDialog?.Close(DialogResult.Cancel());
+
+    public void SetState(string status, int value, int bufferValue, int max)
+    {
+        this.status = status;
+        this.value = value;
+        this.bufferValue = bufferValue;
+        this.max = max;
+        StateHasChanged();
+    }
+}

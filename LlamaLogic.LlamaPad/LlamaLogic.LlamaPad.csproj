@@ -2,6 +2,7 @@
 
     <PropertyGroup>
 
+        <AssemblyName>LlamaLogic.LlamaPad</AssemblyName>
         <OutputType>Exe</OutputType>
         <RootNamespace>LlamaLogic.LlamaPad</RootNamespace>
         <UseMaui>true</UseMaui>
@@ -11,7 +12,7 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>LlamaLogic.LlamaPad</ApplicationTitle>
+        <ApplicationTitle>Llama Pad</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.llamalogic.llamapad</ApplicationId>
@@ -19,10 +20,13 @@
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
+        <PackageCertificateThumbprint>42C9C862153CCA1FBCA9833001935D52A79003E8</PackageCertificateThumbprint>
+        <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 
     </PropertyGroup>
 
     <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
         <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
         <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
@@ -41,12 +45,20 @@
         <!-- Offering frankk a gift is presumptuous, boyo. Don't fuck this up. -->
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>embedded</DebugType>
+        <SelfContained>true</SelfContained>
+    </PropertyGroup>
+
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <!--<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />-->
+        <MauiIcon Include="Resources\AppIcon\marcy.png" ForegroundFile="Resources\AppIcon\marcy.png" Color="#512BD4" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <!--<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
+        <MauiSplashScreen Include="Resources\Splash\marcy.png" Color="#512BD4" BaseSize="128,128" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -60,13 +72,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.9.3" />
-        <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Emoji" Version="4.6.0" />
-        <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.9.3" />
+        <PackageReference Include="BlazorMonaco" Version="3.2.0" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.80" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.80" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+        <PackageReference Include="MudBlazor" Version="7.6.0" />
+        <PackageReference Include="MudBlazor.Markdown" Version="1.0.2" />
+        <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+        <PackageReference Include="Python.Included" Version="3.11.6" />
+        <PackageReference Include="pythonnet" Version="3.0.3" />
     </ItemGroup>
 
 </Project>
