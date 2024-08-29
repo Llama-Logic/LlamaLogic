@@ -23,7 +23,7 @@ steps:
 - script: dotnet workload restore
   displayName: 'Restore .NET Workloads'
 
-- script: dotnet workload restore --runtime win-x64
+- script: dotnet workload restore --runtime win-x64 --project LlamaLogic.sln
   displayName: 'Restore .NET Workloads (win-x64)'
 
 - task: DotNetCoreCLI@2
