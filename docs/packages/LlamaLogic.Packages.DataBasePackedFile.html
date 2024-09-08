@@ -156,9 +156,9 @@ Class DataBasePackedFile  <a class="header-action link-secondary" title="View so
 <p>When a package is opened by this class from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>, the class assumes ownership of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>.
 Manipulating the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> afterward may result in undefined behavior.
 The class will dispose of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> when it is, itself, disposed.</p>
-<p>To use the <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_">Save(bool)</a> or <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_System_Threading_CancellationToken_">SaveAsync(bool, CancellationToken)</a> methods, the package must have been opened from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> which is writeable.
+<p>To use the <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_">Save(bool, ResourceKeyOrder)</a> or <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_">SaveAsync(bool, ResourceKeyOrder, CancellationToken)</a> methods, the package must have been opened from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> which is writeable.
 This can also be determined by the caller in advance of attempting to use them by checking the value of the <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CanSaveInPlace">CanSaveInPlace</a> property.
-However, for ease of use in web frameworks like ASP.NET Core, the <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_">CopyTo(Stream)</a> and <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_System_Threading_CancellationToken_">CopyToAsync(Stream, CancellationToken)</a> methods do <em>not</em> require that the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> which they are passed is seekable.</p>
+However, for ease of use in web frameworks like ASP.NET Core, the <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_">CopyTo(Stream, ResourceKeyOrder)</a> and <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_">CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)</a> methods do <em>not</em> require that the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> which they are passed is seekable.</p>
 <h3 id="lazy-loading">Lazy Loading</h3>
 <p>When a package is first opened using this class, the package index is read but the content of the package resources is not.
 All of the retrieval methods of this class have async counterparts for callers who prefer not to be blocked by I/O operations which may be required when retrieving resource content.</p>
@@ -215,7 +215,7 @@ All retrieval methods have an optional <code>force</code> <a class="xref" href="
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile__ctor_System_IO_Stream_" data-uid="LlamaLogic.Packages.DataBasePackedFile.#ctor(System.IO.Stream)">
   DataBasePackedFile(Stream)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L308"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L309"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html">DataBasePackedFile</a> from the specified <code class="paramref">stream</code> (🗑️💤)</p>
@@ -247,7 +247,7 @@ All retrieval methods have an optional <code>force</code> <a class="xref" href="
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile__ctor_System_String_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.#ctor(System.String,System.Boolean)">
   DataBasePackedFile(string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L289"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L290"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html">DataBasePackedFile</a> from the specified <code class="paramref">path</code> (🗑️💤)</p>
@@ -285,7 +285,7 @@ All retrieval methods have an optional <code>force</code> <a class="xref" href="
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_CanSaveInPlace" data-uid="LlamaLogic.Packages.DataBasePackedFile.CanSaveInPlace">
   CanSaveInPlace
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L348"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L351"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets whether the package can be saved in place</p>
@@ -317,7 +317,7 @@ All retrieval methods have an optional <code>force</code> <a class="xref" href="
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Count" data-uid="LlamaLogic.Packages.DataBasePackedFile.Count">
   Count
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L354"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L357"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of resources</p>
@@ -349,7 +349,7 @@ All retrieval methods have an optional <code>force</code> <a class="xref" href="
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_CreationTime" data-uid="LlamaLogic.Packages.DataBasePackedFile.CreationTime">
   CreationTime
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L360"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L363"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets when the package was created</p>
@@ -381,7 +381,7 @@ All retrieval methods have an optional <code>force</code> <a class="xref" href="
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_FileVersion" data-uid="LlamaLogic.Packages.DataBasePackedFile.FileVersion">
   FileVersion
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L370"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L373"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets the version of the format of the file</p>
@@ -418,7 +418,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Item_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Item(LlamaLogic.Packages.ResourceKey)">
   this[ResourceKey]
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L391"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L394"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets the content of a resource with the specified <code class="paramref">key</code></p>
@@ -455,7 +455,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Keys" data-uid="LlamaLogic.Packages.DataBasePackedFile.Keys">
   Keys
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L375"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L378"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets a list of keys for all the resources in the package</p>
@@ -487,7 +487,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_UpdatedTime" data-uid="LlamaLogic.Packages.DataBasePackedFile.UpdatedTime">
   UpdatedTime
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L386"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L389"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets when the package was last updated</p>
@@ -519,7 +519,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_UserVersion" data-uid="LlamaLogic.Packages.DataBasePackedFile.UserVersion">
   UserVersion
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L381"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L384"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets the version of the user (presumably the user agent, actually? -- is Maxis versioning human beings?)</p>
@@ -555,7 +555,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_ContainsKey_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.Packages.DataBasePackedFile.ContainsKey(LlamaLogic.Packages.ResourceKey)">
   ContainsKey(ResourceKey)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L479"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L482"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets whether the package contains a resource with the specified <code class="paramref">key</code></p>
@@ -592,7 +592,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_ContainsKeyAsync_LlamaLogic_Packages_ResourceKey_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.ContainsKeyAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)">
   ContainsKeyAsync(ResourceKey, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L489"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L492"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets whether the package contains a resource with the specified <code class="paramref">key</code> asynchronously</p>
@@ -629,9 +629,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_CopyTo_" data-uid="LlamaLogic.Packages.DataBasePackedFile.CopyTo*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_" data-uid="LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)">
-  CopyTo(Stream)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L501"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_" data-uid="LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)">
+  CopyTo(Stream, ResourceKeyOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L504"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Copies the package in binary format to the specified <code class="paramref">destination</code> (🔄️🏃)</p>
@@ -639,12 +639,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CopyTo(Stream destination)</code></pre>
+    <pre><code class="lang-csharp hljs">public void CopyTo(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
     <dd></dd>
   </dl>
 
@@ -670,9 +672,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_" data-uid="LlamaLogic.Packages.DataBasePackedFile.CopyToAsync*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)">
-  CopyToAsync(Stream, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L513"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)">
+  CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L516"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Copies the package in binary format to the specified <code class="paramref">destination</code> asynchronously (🔄️🏃)</p>
@@ -680,12 +682,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task CopyToAsync(Stream destination, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task CopyToAsync(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
@@ -720,7 +724,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Delete_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Delete(LlamaLogic.Packages.ResourceKey)">
   Delete(ResourceKey)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L523"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L526"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Deletes the resource with the specified <code class="paramref">key</code> and returns <code>true</code> if it was found; otherwise, <code>false</code></p>
@@ -757,7 +761,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Dispose" data-uid="LlamaLogic.Packages.DataBasePackedFile.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L541"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -784,7 +788,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_DisposeAsync" data-uid="LlamaLogic.Packages.DataBasePackedFile.DisposeAsync">
   DisposeAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L550"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L563"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources asynchronously.</p>
@@ -817,7 +821,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Finalize" data-uid="LlamaLogic.Packages.DataBasePackedFile.Finalize">
   ~DataBasePackedFile()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L334"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L336"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Called by the finalizer</p>
@@ -922,7 +926,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Get_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Get(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   Get(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L606"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L622"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code></p>
@@ -963,7 +967,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetAllSizes_System_Predicate_LlamaLogic_Packages_ResourceKey__" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetAllSizes(System.Predicate{LlamaLogic.Packages.ResourceKey})">
   GetAllSizes(Predicate&lt;ResourceKey&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L623"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L639"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the size of the content of each resource in the package indexed by key</p>
@@ -1001,7 +1005,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetAllSizesAsync_System_Predicate_LlamaLogic_Packages_ResourceKey__System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetAllSizesAsync(System.Predicate{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)">
   GetAllSizesAsync(Predicate&lt;ResourceKey&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L641"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L657"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the size of the content of each resource in the package indexed by key, asynchronously</p>
@@ -1042,7 +1046,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetAsync(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L660"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L676"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> asynchronously</p>
@@ -1086,7 +1090,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetCount" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetCount">
   GetCount()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L670"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L686"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of resources</p>
@@ -1118,7 +1122,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetCountAsync_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetCountAsync(System.Threading.CancellationToken)">
   GetCountAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L680"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L696"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of resources asychronously</p>
@@ -1155,7 +1159,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetData_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetData(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   GetData(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L690"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L706"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModel.html">DataModel</a></p>
@@ -1194,7 +1198,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetDataAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetDataAsync(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L696"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L712"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModel.html">DataModel</a> asynchronously</p>
@@ -1233,9 +1237,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_GetKeys_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeys*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetKeys" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeys">
-  GetKeys()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L702"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetKeys_LlamaLogic_Packages_ResourceKeyOrder_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeys(LlamaLogic.Packages.ResourceKeyOrder)">
+  GetKeys(ResourceKeyOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L718"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets a list of keys for all the resources in the package</p>
@@ -1243,9 +1247,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;ResourceKey&gt; GetKeys()</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;ResourceKey&gt; GetKeys(ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
+    <dd></dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
@@ -1265,9 +1274,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_GetKeysAsync_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetKeysAsync_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(System.Threading.CancellationToken)">
-  GetKeysAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L712"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetKeysAsync_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)">
+  GetKeysAsync(ResourceKeyOrder, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L728"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets a list of keys for all the resources in the package asynchronously</p>
@@ -1275,11 +1284,13 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IReadOnlyList&lt;ResourceKey&gt;&gt; GetKeysAsync(CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IReadOnlyList&lt;ResourceKey&gt;&gt; GetKeysAsync(ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
+    <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
@@ -1304,7 +1315,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetKeysByName_System_String_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeysByName(System.String)">
   GetKeysByName(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L722"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L738"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets a list of keys for resources with the specified <code class="paramref">name</code></p>
@@ -1341,7 +1352,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetKeysByNameAsync_System_String_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetKeysByNameAsync(System.String,System.Threading.CancellationToken)">
   GetKeysByNameAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L733"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L749"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets a list of keys for resources with the specified <code class="paramref">name</code> asynchronously</p>
@@ -1380,7 +1391,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetModFileManifest_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetModFileManifest(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   GetModFileManifest(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L770"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L786"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html">ModFileManifestModel</a></p>
@@ -1419,7 +1430,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetModFileManifestAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetModFileManifestAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetModFileManifestAsync(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L776"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L792"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html">ModFileManifestModel</a> asynchronously</p>
@@ -1460,7 +1471,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetModelAsync__1_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetModelAsync``1(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetModelAsync&lt;TModel&gt;(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L759"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L775"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <code class="typeparamref">TModel</code> asynchronously</p>
@@ -1513,7 +1524,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetModel__1_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetModel``1(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   GetModel&lt;TModel&gt;(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L746"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L762"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <code class="typeparamref">TModel</code></p>
@@ -1564,7 +1575,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetNameByKey_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetNameByKey(LlamaLogic.Packages.ResourceKey)">
   GetNameByKey(ResourceKey)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L782"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L798"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the name for the resource with the specified <code class="paramref">key</code></p>
@@ -1601,7 +1612,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetNameByKeyAsync_LlamaLogic_Packages_ResourceKey_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetNameByKeyAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)">
   GetNameByKeyAsync(ResourceKey, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L793"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L809"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the name for the resource with the specified <code class="paramref">key</code> asynchronously</p>
@@ -1640,7 +1651,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetNames" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetNames">
   GetNames()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L804"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L820"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the names for all the resources in the package</p>
@@ -1672,7 +1683,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetNamesAsync_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetNamesAsync(System.Threading.CancellationToken)">
   GetNamesAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L815"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L831"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the names for all the resources in the package asynchronously</p>
@@ -1709,7 +1720,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetSize_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetSize(LlamaLogic.Packages.ResourceKey)">
   GetSize(ResourceKey)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L826"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L842"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the size of the content of the resource with the specified <code class="paramref">key</code></p>
@@ -1746,7 +1757,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetSizeAsync_LlamaLogic_Packages_ResourceKey_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetSizeAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)">
   GetSizeAsync(ResourceKey, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L840"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L856"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the size of the content of the resource with the specified <code class="paramref">key</code> asynchronously</p>
@@ -1785,7 +1796,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetStringTable_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetStringTable(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   GetStringTable(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L854"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L870"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="LlamaLogic.Packages.Models.StringTableModel.html">StringTableModel</a></p>
@@ -1824,7 +1835,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetStringTableAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetStringTableAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetStringTableAsync(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L860"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L876"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="LlamaLogic.Packages.Models.StringTableModel.html">StringTableModel</a> asynchronously</p>
@@ -1865,7 +1876,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetText_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetText(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   GetText(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L868"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L884"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
@@ -1906,7 +1917,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetTextAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetTextAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetTextAsync(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L880"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L896"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> asynchronously</p>
@@ -1950,7 +1961,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetXml_LlamaLogic_Packages_ResourceKey_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetXml(LlamaLogic.Packages.ResourceKey,System.Boolean)">
   GetXml(ResourceKey, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L896"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L912"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument">XDocument</a></p>
@@ -1991,7 +2002,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_GetXmlAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.GetXmlAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)">
   GetXmlAsync(ResourceKey, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L908"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L924"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the content of a resource with the specified <code class="paramref">key</code> as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument">XDocument</a> asynchronously</p>
@@ -2035,7 +2046,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_LoadAll_System_Boolean_LlamaLogic_Packages_CompressionMode_" data-uid="LlamaLogic.Packages.DataBasePackedFile.LoadAll(System.Boolean,LlamaLogic.Packages.CompressionMode)">
   LoadAll(bool, CompressionMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1394"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1417"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads all resources in the package into memory</p>
@@ -2071,7 +2082,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_LoadAllAsync_System_Boolean_LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.LoadAllAsync(System.Boolean,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)">
   LoadAllAsync(bool, CompressionMode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1427"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1450"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads all resources in the package into memory</p>
@@ -2115,7 +2126,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_LoadNames" data-uid="LlamaLogic.Packages.DataBasePackedFile.LoadNames">
   LoadNames()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1404"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1427"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads the names of all the resources in the package (a no-op if the names are already loaded)</p>
@@ -2142,7 +2153,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_LoadNamesAsync_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.LoadNamesAsync(System.Threading.CancellationToken)">
   LoadNamesAsync(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1414"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1437"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Loads the names of all the resources in the package asynchronously (a no-op if the names are already loaded)</p>
@@ -2177,9 +2188,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_Save_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Save*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)">
-  Save(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1536"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)">
+  Save(bool, ResourceKeyOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1560"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Saves the package to the stream from which it was loaded</p>
@@ -2187,12 +2198,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Save(bool unloadFromMemory = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Save(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>unloadFromMemory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
     <dd></dd>
   </dl>
 
@@ -2215,9 +2228,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_SaveAs_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAs*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_SaveAs_System_String_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String)">
-  SaveAs(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1557"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_SaveAs_System_String_LlamaLogic_Packages_ResourceKeyOrder_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String,LlamaLogic.Packages.ResourceKeyOrder)">
+  SaveAs(string, ResourceKeyOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1581"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Saves the package to the specified <code class="paramref">path</code> (🔄️🏃)</p>
@@ -2225,12 +2238,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SaveAs(string path)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SaveAs(string path, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
     <dd></dd>
   </dl>
 
@@ -2247,9 +2262,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_SaveAsAsync_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_SaveAsAsync_System_String_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,System.Threading.CancellationToken)">
-  SaveAsAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1598"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_SaveAsAsync_System_String_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)">
+  SaveAsAsync(string, ResourceKeyOrder, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1623"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Saves the package to the specified <code class="paramref">path</code> asynchronously (🔄️🏃)</p>
@@ -2257,12 +2272,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task SaveAsAsync(string path, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task SaveAsAsync(string path, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
@@ -2286,9 +2303,9 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <a id="LlamaLogic_Packages_DataBasePackedFile_SaveAsync_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAsync*"></a>
 
-  <h3 id="LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)">
-  SaveAsync(bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1577"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)">
+  SaveAsync(bool, ResourceKeyOrder, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1602"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Saves the package to the stream from which it was loaded asynchronously</p>
@@ -2296,12 +2313,14 @@ The default version for newly created packages is currently <code>2.1</code>.</p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task SaveAsync(bool unloadFromMemory = false, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task SaveAsync(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>unloadFromMemory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resourceKeyOrder</code> <a class="xref" href="LlamaLogic.Packages.ResourceKeyOrder.html">ResourceKeyOrder</a></dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
@@ -2333,7 +2352,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Set_LlamaLogic_Packages_ResourceKey_LlamaLogic_Packages_Models_IModel_LlamaLogic_Packages_CompressionMode_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.IModel,LlamaLogic.Packages.CompressionMode)">
   Set(ResourceKey, IModel, CompressionMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1634"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1660"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2377,7 +2396,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Set_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_CompressionMode_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode)">
   Set(ResourceKey, ReadOnlyMemory&lt;byte&gt;, CompressionMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1620"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1646"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2421,7 +2440,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Set_LlamaLogic_Packages_ResourceKey_System_String_LlamaLogic_Packages_CompressionMode_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode)">
   Set(ResourceKey, string, CompressionMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1646"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1672"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2465,7 +2484,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_Set_LlamaLogic_Packages_ResourceKey_System_Xml_Linq_XDocument_LlamaLogic_Packages_CompressionMode_" data-uid="LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.Xml.Linq.XDocument,LlamaLogic.Packages.CompressionMode)">
   Set(ResourceKey, XDocument, CompressionMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1661"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1687"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2509,7 +2528,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_SetAsync_LlamaLogic_Packages_ResourceKey_LlamaLogic_Packages_Models_IModel_LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.IModel,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)">
   SetAsync(ResourceKey, IModel, CompressionMode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1696"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1722"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2556,7 +2575,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_SetAsync_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)">
   SetAsync(ResourceKey, ReadOnlyMemory&lt;byte&gt;, CompressionMode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1680"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1706"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2603,7 +2622,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_SetAsync_LlamaLogic_Packages_ResourceKey_System_String_LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)">
   SetAsync(ResourceKey, string, CompressionMode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1709"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1735"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2650,7 +2669,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_SetAsync_LlamaLogic_Packages_ResourceKey_System_Xml_Linq_XDocument_LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,System.Xml.Linq.XDocument,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)">
   SetAsync(ResourceKey, XDocument, CompressionMode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1725"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1751"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2697,7 +2716,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_SetXml_LlamaLogic_Packages_ResourceKey_System_String_LlamaLogic_Packages_CompressionMode_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SetXml(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode)">
   SetXml(ResourceKey, string, CompressionMode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1743"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1769"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">xmlContent</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>
@@ -2741,7 +2760,7 @@ The default version for newly created packages is currently <code>2.1</code>.</p
 
   <h3 id="LlamaLogic_Packages_DataBasePackedFile_SetXmlAsync_LlamaLogic_Packages_ResourceKey_System_String_LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.DataBasePackedFile.SetXmlAsync(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)">
   SetXmlAsync(ResourceKey, string, CompressionMode, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1753"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/DataBasePackedFile.cs/#L1779"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">xmlContent</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code></p>

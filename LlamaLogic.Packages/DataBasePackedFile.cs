@@ -9,9 +9,9 @@ namespace LlamaLogic.Packages;
 /// Manipulating the <see cref="Stream"/> afterward may result in undefined behavior.
 /// The class will dispose of the <see cref="Stream"/> when it is, itself, disposed.
 ///
-/// To use the <see cref="Save(bool)"/> or <see cref="SaveAsync(bool, CancellationToken)"/> methods, the package must have been opened from a <see cref="Stream"/> which is writeable.
+/// To use the <see cref="Save(bool, ResourceKeyOrder)"/> or <see cref="SaveAsync(bool, ResourceKeyOrder, CancellationToken)"/> methods, the package must have been opened from a <see cref="Stream"/> which is writeable.
 /// This can also be determined by the caller in advance of attempting to use them by checking the value of the <see cref="CanSaveInPlace"/> property.
-/// However, for ease of use in web frameworks like ASP.NET Core, the <see cref="CopyTo(Stream)"/> and <see cref="CopyToAsync(Stream, CancellationToken)"/> methods do *not* require that the <see cref="Stream"/> which they are passed is seekable.
+/// However, for ease of use in web frameworks like ASP.NET Core, the <see cref="CopyTo(Stream, ResourceKeyOrder)"/> and <see cref="CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)"/> methods do *not* require that the <see cref="Stream"/> which they are passed is seekable.
 /// 
 /// ### Lazy Loading
 /// When a package is first opened using this class, the package index is read but the content of the package resources is not.
@@ -274,6 +274,7 @@ public sealed class DataBasePackedFile :
     /// </summary>
     public DataBasePackedFile()
     {
+        keysInIndexOrder = [];
         loadedResources = [];
         resourceLock = new();
         unloadedResources = [];
@@ -319,6 +320,7 @@ public sealed class DataBasePackedFile :
             throw new ArgumentException("Stream must be seekable", nameof(stream));
         if (!stream.CanRead)
             throw new ArgumentException("Stream must be readable", nameof(stream));
+        keysInIndexOrder = [];
         loadedResources = [];
         resourceLock = new();
         this.stream = stream;
@@ -335,6 +337,7 @@ public sealed class DataBasePackedFile :
         Dispose(false);
 
     bool isDisposed;
+    readonly OrderedHashSet<ResourceKey> keysInIndexOrder;
     readonly Dictionary<ResourceKey, LoadedResource> loadedResources;
     Dictionary<string, HashSet<ResourceKey>>? resourceKeysByName;
     readonly AsyncLock resourceLock;
@@ -423,7 +426,7 @@ public sealed class DataBasePackedFile :
     bool AreNamesIndexed() =>
         resourceKeysByName is not null && resourceNameByKey is not null;
 
-    bool BeginIndex([NotNullWhen(true)] out ArrayBufferWriter<byte>? index, out ImmutableArray<ResourceKey> keys, out IndexFlags indexFlags, out int indexSize)
+    bool BeginIndex(ResourceKeyOrder resourceKeyOrder, [NotNullWhen(true)] out ArrayBufferWriter<byte>? index, out ImmutableArray<ResourceKey> keys, out IndexFlags indexFlags, out int indexSize)
     {
         if (unloadedResources.Count == 0 && loadedResources.Count == 0)
         {
@@ -433,7 +436,7 @@ public sealed class DataBasePackedFile :
             indexSize = 0;
             return false;
         }
-        keys = [..unloadedResources.Keys.Concat(loadedResources.Keys).OrderBy(key => key.FullInstance).ThenBy(key => key.Group).ThenBy(key => key.Type)];
+        keys = InternalGetKeys(resourceKeyOrder);
         var distinctTypes = keys.Select(key => key.Type).Distinct().ToImmutableArray();
         var constantType = distinctTypes.Length == 1 ? (ResourceType?)distinctTypes[0] : null;
         var distinctGroups = keys.Select(key => key.Group).Distinct().ToImmutableArray();
@@ -498,11 +501,11 @@ public sealed class DataBasePackedFile :
     /// </summary>
     /// <exception cref="ArgumentNullException"><paramref name="destination"/> is <c>null</c></exception>
     /// <exception cref="ArgumentException"><paramref name="destination"/> is not writeable</exception>
-    public void CopyTo(Stream destination)
+    public void CopyTo(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     {
         RequireNotDisposed();
         using var heldResourceLock = resourceLock.Lock();
-        InternalCopyTo(destination);
+        InternalCopyTo(destination, resourceKeyOrder);
     }
 
     /// <summary>
@@ -510,11 +513,11 @@ public sealed class DataBasePackedFile :
     /// </summary>
     /// <exception cref="ArgumentNullException"><paramref name="destination"/> is <c>null</c></exception>
     /// <exception cref="ArgumentException"><paramref name="destination"/> is not writeable</exception>
-    public async Task CopyToAsync(Stream destination, CancellationToken cancellationToken = default)
+    public async Task CopyToAsync(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     {
         RequireNotDisposed();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
-        await InternalCopyToAsync(destination, cancellationToken).ConfigureAwait(false);
+        await InternalCopyToAsync(destination, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -522,9 +525,15 @@ public sealed class DataBasePackedFile :
     /// </summary>
     public bool Delete(ResourceKey key)
     {
+        RequireNotDisposed();
+        using var heldResourceLock = resourceLock.Lock();
         var removed = unloadedResources.Remove(key) || loadedResources.Remove(key);
-        if (removed && AreNamesIndexed())
-            RemoveIndexedResourceName(resourceKeysByName, resourceNameByKey, key);
+        if (removed)
+        {
+            keysInIndexOrder.Remove(key);
+            if (AreNamesIndexed())
+                RemoveIndexedResourceName(resourceKeysByName, resourceNameByKey, key);
+        }
         return removed;
     }
 
@@ -542,7 +551,11 @@ public sealed class DataBasePackedFile :
         if (disposing)
         {
             isDisposed = true;
-            stream?.Dispose();
+            if (stream is not null)
+            {
+                stream.Close();
+                stream.Dispose();
+            }
         }
     }
 
@@ -561,7 +574,10 @@ public sealed class DataBasePackedFile :
         {
             isDisposed = true;
             if (stream is not null)
+            {
+                stream.Close();
                 await stream.DisposeAsync().ConfigureAwait(false);
+            }
         }
     }
 
@@ -699,21 +715,21 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Gets a list of keys for all the resources in the package
     /// </summary>
-    public IReadOnlyList<ResourceKey> GetKeys()
+    public IReadOnlyList<ResourceKey> GetKeys(ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     {
         RequireNotDisposed();
         using var heldResourceLock = resourceLock.Lock();
-        return [.. unloadedResources.Keys.Concat(loadedResources.Keys)];
+        return InternalGetKeys(resourceKeyOrder);
     }
 
     /// <summary>
     /// Gets a list of keys for all the resources in the package asynchronously
     /// </summary>
-    public async Task<IReadOnlyList<ResourceKey>> GetKeysAsync(CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<ResourceKey>> GetKeysAsync(ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     {
         RequireNotDisposed();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
-        return [.. unloadedResources.Keys.Concat(loadedResources.Keys)];
+        return InternalGetKeys(resourceKeyOrder);
     }
 
     /// <summary>
@@ -1135,12 +1151,12 @@ public sealed class DataBasePackedFile :
         }
     }
 
-    void InternalCopyTo(Stream destination)
+    void InternalCopyTo(Stream destination, ResourceKeyOrder resourceKeyOrder)
     {
         ArgumentNullException.ThrowIfNull(destination);
         if (!destination.CanWrite)
             throw new ArgumentException("Stream must be writable", nameof(destination));
-        var hasIndex = BeginIndex(out var index, out var keys, out var indexFlags, out var indexSize);
+        var hasIndex = BeginIndex(resourceKeyOrder, out var index, out var keys, out var indexFlags, out var indexSize);
         Span<byte> header = stackalloc byte[96];
         WriteHeader(header, hasIndex, indexSize);
         destination.Write(header);
@@ -1185,12 +1201,12 @@ public sealed class DataBasePackedFile :
         }
     }
 
-    async Task InternalCopyToAsync(Stream destination, CancellationToken cancellationToken)
+    async Task InternalCopyToAsync(Stream destination, ResourceKeyOrder resourceKeyOrder, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(destination);
         if (!destination.CanWrite)
             throw new ArgumentException("Stream must be writable", nameof(destination));
-        var hasIndex = BeginIndex(out var index, out var keys, out var indexFlags, out var indexSize);
+        var hasIndex = BeginIndex(resourceKeyOrder, out var index, out var keys, out var indexFlags, out var indexSize);
         var headerPoolArray = ArrayPool<byte>.Shared.Rent(96);
         try
         {
@@ -1253,6 +1269,13 @@ public sealed class DataBasePackedFile :
             return FetchMemoryAsync(loadedResource, force, cancellationToken);
         throw new KeyNotFoundException($"Key {key} not found");
     }
+
+    ImmutableArray<ResourceKey> InternalGetKeys(ResourceKeyOrder resourceKeyOrder) =>
+        [..(resourceKeyOrder switch
+        {
+            ResourceKeyOrder.InstanceTypeGroup => keysInIndexOrder.OrderBy(key => key.FullInstance).ThenBy(key => key.Group).ThenBy(key => key.Type),
+            _ => (IEnumerable<ResourceKey>)keysInIndexOrder
+        })];
 
     void InternalLoadAll(bool force, CompressionMode compressionMode)
     {
@@ -1494,6 +1517,7 @@ public sealed class DataBasePackedFile :
                         mnCompressionType = index.ReadAndAdvancePosition<mnCompressionType>(ref readPosition),
                         mnCommitted = index.ReadAndAdvancePosition<ushort>(ref readPosition)
                     };
+                keysInIndexOrder.Add(key);
                 unloadedResources.Add(key, entry);
             }
         }
@@ -1533,13 +1557,13 @@ public sealed class DataBasePackedFile :
     /// Saves the package to the stream from which it was loaded
     /// </summary>
     /// <exception cref="InvalidOperationException">The package was not loaded from stream or the stream is not writeable</exception>
-    public void Save(bool unloadFromMemory = false)
+    public void Save(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     {
         RequireWritableStream();
         using var heldResourceLock = resourceLock.Lock();
         InternalLoadAll(false, CompressionMode.Auto);
         stream.Seek(0, SeekOrigin.Begin);
-        CopyTo(stream);
+        CopyTo(stream, resourceKeyOrder);
         stream.SetLength(stream.Position);
         if (unloadFromMemory)
         {
@@ -1554,7 +1578,7 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Saves the package to the specified <paramref name="path"/> (🔄️🏃)
     /// </summary>
-    public void SaveAs(string path)
+    public void SaveAs(string path, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     {
         using var destination =
             new FileStream
@@ -1566,21 +1590,22 @@ public sealed class DataBasePackedFile :
                 createdFileStreamBufferSize,
                 createDestinationFileStreamOptions
             );
-        CopyTo(destination);
+        CopyTo(destination, resourceKeyOrder);
         destination.SetLength(destination.Position);
+        destination.Close();
     }
 
     /// <summary>
     /// Saves the package to the stream from which it was loaded asynchronously
     /// </summary>
     /// <exception cref="InvalidOperationException">The package was not loaded from stream or the stream is not writeable</exception>
-    public async Task SaveAsync(bool unloadFromMemory = false, CancellationToken cancellationToken = default)
+    public async Task SaveAsync(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     {
         RequireWritableStream();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
         await InternalLoadAllAsync(false, CompressionMode.Auto, cancellationToken).ConfigureAwait(false);
         stream.Seek(0, SeekOrigin.Begin);
-        await CopyToAsync(stream, cancellationToken).ConfigureAwait(false);
+        await CopyToAsync(stream, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
         stream.SetLength(stream.Position);
         if (unloadFromMemory)
         {
@@ -1595,7 +1620,7 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Saves the package to the specified <paramref name="path"/> asynchronously (🔄️🏃)
     /// </summary>
-    public async Task SaveAsAsync(string path, CancellationToken cancellationToken = default)
+    public async Task SaveAsAsync(string path, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     {
         using var destination =
             new FileStream
@@ -1607,8 +1632,9 @@ public sealed class DataBasePackedFile :
                 createdFileStreamBufferSize,
                 createDestinationFileStreamOptions | FileOptions.Asynchronous
             );
-        await CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
+        await CopyToAsync(destination, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
         destination.SetLength(destination.Position);
+        destination.Close();
     }
 
     /// <summary>
@@ -1755,6 +1781,7 @@ public sealed class DataBasePackedFile :
 
     void Store(ResourceKey key, ReadOnlyMemory<byte> content, mnCompressionType compressionType, int sizeDecompressed)
     {
+        keysInIndexOrder.Add(key);
         var newLoadedResource = new LoadedResource(content, compressionType, sizeDecompressed);
         unloadedResources.Remove(key);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrAddDefault(loadedResources, key, out _);

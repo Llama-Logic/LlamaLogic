@@ -11,8 +11,8 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.CanSaveInPlace
   - LlamaLogic.Packages.DataBasePackedFile.ContainsKey(LlamaLogic.Packages.ResourceKey)
   - LlamaLogic.Packages.DataBasePackedFile.ContainsKeyAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)
-  - LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
-  - LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
+  - LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.Count
   - LlamaLogic.Packages.DataBasePackedFile.CreationTime
   - LlamaLogic.Packages.DataBasePackedFile.Delete(LlamaLogic.Packages.ResourceKey)
@@ -30,8 +30,8 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.GetCountAsync(System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetData(LlamaLogic.Packages.ResourceKey,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.GetDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
-  - LlamaLogic.Packages.DataBasePackedFile.GetKeys
-  - LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetKeys(LlamaLogic.Packages.ResourceKeyOrder)
+  - LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetKeysByName(System.String)
   - LlamaLogic.Packages.DataBasePackedFile.GetKeysByNameAsync(System.String,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetModFileManifest(LlamaLogic.Packages.ResourceKey,System.Boolean)
@@ -56,10 +56,10 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.LoadAllAsync(System.Boolean,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.LoadNames
   - LlamaLogic.Packages.DataBasePackedFile.LoadNamesAsync(System.Threading.CancellationToken)
-  - LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
-  - LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String)
-  - LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,System.Threading.CancellationToken)
-  - LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
+  - LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String,LlamaLogic.Packages.ResourceKeyOrder)
+  - LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.IModel,LlamaLogic.Packages.CompressionMode)
   - LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode)
   - LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode)
@@ -103,11 +103,11 @@ items:
     The class will dispose of the <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> when it is, itself, disposed.
 
 
-    To use the <xref href="LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> methods, the package must have been opened from a <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> which is writeable.
+    To use the <xref href="LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean%2cLlamaLogic.Packages.ResourceKeyOrder)" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean%2cLlamaLogic.Packages.ResourceKeyOrder%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> methods, the package must have been opened from a <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> which is writeable.
 
     This can also be determined by the caller in advance of attempting to use them by checking the value of the <xref href="LlamaLogic.Packages.DataBasePackedFile.CanSaveInPlace" data-throw-if-not-resolved="false"></xref> property.
 
-    However, for ease of use in web frameworks like ASP.NET Core, the <xref href="LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> methods do *not* require that the <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> which they are passed is seekable.
+    However, for ease of use in web frameworks like ASP.NET Core, the <xref href="LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream%2cLlamaLogic.Packages.ResourceKeyOrder)" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream%2cLlamaLogic.Packages.ResourceKeyOrder%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> methods do *not* require that the <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> which they are passed is seekable.
 
 
     ### Lazy Loading
@@ -363,7 +363,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 288
+    startLine: 289
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -399,7 +399,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 307
+    startLine: 308
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -433,7 +433,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Finalize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 333
+    startLine: 335
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -464,7 +464,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CanSaveInPlace
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 347
+    startLine: 350
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -495,7 +495,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Count
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 353
+    startLine: 356
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -526,7 +526,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CreationTime
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 359
+    startLine: 362
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -557,7 +557,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FileVersion
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 369
+    startLine: 372
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -594,7 +594,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Keys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 374
+    startLine: 377
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -625,7 +625,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UserVersion
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 380
+    startLine: 383
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -656,7 +656,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UpdatedTime
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 385
+    startLine: 388
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -687,7 +687,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: this[]
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 390
+    startLine: 393
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -723,7 +723,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ContainsKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 478
+    startLine: 481
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -756,7 +756,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ContainsKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 488
+    startLine: 491
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -773,16 +773,16 @@ items:
       type: System.Threading.Tasks.Task{System.Boolean}
     content.vb: Public Function ContainsKeyAsync(key As ResourceKey, cancellationToken As CancellationToken = Nothing) As Task(Of Boolean)
   overload: LlamaLogic.Packages.DataBasePackedFile.ContainsKeyAsync*
-- uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
-  id: CopyTo(System.IO.Stream)
+- uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
+  id: CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: CopyTo(Stream)
-  nameWithType: DataBasePackedFile.CopyTo(Stream)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
+  name: CopyTo(Stream, ResourceKeyOrder)
+  nameWithType: DataBasePackedFile.CopyTo(Stream, ResourceKeyOrder)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream, LlamaLogic.Packages.ResourceKeyOrder)
   type: Method
   source:
     remote:
@@ -791,18 +791,20 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CopyTo
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 500
+    startLine: 503
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: "Copies the package in binary format to the specified <code class=\"paramref\">destination</code> (\U0001F504️\U0001F3C3)"
   example: []
   syntax:
-    content: public void CopyTo(Stream destination)
+    content: public void CopyTo(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     parameters:
     - id: destination
       type: System.IO.Stream
-    content.vb: Public Sub CopyTo(destination As Stream)
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    content.vb: Public Sub CopyTo(destination As Stream, resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve)
   overload: LlamaLogic.Packages.DataBasePackedFile.CopyTo*
   exceptions:
   - type: System.ArgumentNullException
@@ -811,16 +813,16 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: <code class="paramref">destination</code> is not writeable
-- uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
-  id: CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  id: CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: CopyToAsync(Stream, CancellationToken)
-  nameWithType: DataBasePackedFile.CopyToAsync(Stream, CancellationToken)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream, System.Threading.CancellationToken)
+  name: CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)
+  nameWithType: DataBasePackedFile.CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -829,22 +831,24 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CopyToAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 512
+    startLine: 515
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: "Copies the package in binary format to the specified <code class=\"paramref\">destination</code> asynchronously (\U0001F504️\U0001F3C3)"
   example: []
   syntax:
-    content: public Task CopyToAsync(Stream destination, CancellationToken cancellationToken = default)
+    content: public Task CopyToAsync(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     parameters:
     - id: destination
       type: System.IO.Stream
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
     - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Function CopyToAsync(destination As Stream, cancellationToken As CancellationToken = Nothing) As Task
+    content.vb: Public Function CopyToAsync(destination As Stream, resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve, cancellationToken As CancellationToken = Nothing) As Task
   overload: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync*
   exceptions:
   - type: System.ArgumentNullException
@@ -871,7 +875,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Delete
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 522
+    startLine: 525
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -904,7 +908,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Dispose
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 531
+    startLine: 540
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -934,7 +938,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DisposeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 549
+    startLine: 562
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -967,7 +971,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Get
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 605
+    startLine: 621
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1007,7 +1011,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAllSizes
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 622
+    startLine: 638
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1044,7 +1048,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAllSizesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 640
+    startLine: 656
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1084,7 +1088,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 659
+    startLine: 675
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1127,7 +1131,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCount
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 669
+    startLine: 685
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1157,7 +1161,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCountAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 679
+    startLine: 695
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1190,7 +1194,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetData
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 689
+    startLine: 705
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1228,7 +1232,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDataAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 695
+    startLine: 711
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1250,16 +1254,16 @@ items:
   nameWithType.vb: DataBasePackedFile.GetDataAsync(ResourceKey, Boolean, CancellationToken)
   fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetDataAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
   name.vb: GetDataAsync(ResourceKey, Boolean, CancellationToken)
-- uid: LlamaLogic.Packages.DataBasePackedFile.GetKeys
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetKeys
-  id: GetKeys
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetKeys(LlamaLogic.Packages.ResourceKeyOrder)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetKeys(LlamaLogic.Packages.ResourceKeyOrder)
+  id: GetKeys(LlamaLogic.Packages.ResourceKeyOrder)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: GetKeys()
-  nameWithType: DataBasePackedFile.GetKeys()
-  fullName: LlamaLogic.Packages.DataBasePackedFile.GetKeys()
+  name: GetKeys(ResourceKeyOrder)
+  nameWithType: DataBasePackedFile.GetKeys(ResourceKeyOrder)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetKeys(LlamaLogic.Packages.ResourceKeyOrder)
   type: Method
   source:
     remote:
@@ -1268,28 +1272,31 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 701
+    startLine: 717
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: Gets a list of keys for all the resources in the package
   example: []
   syntax:
-    content: public IReadOnlyList<ResourceKey> GetKeys()
+    content: public IReadOnlyList<ResourceKey> GetKeys(ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
+    parameters:
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
     return:
       type: System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.ResourceKey}
-    content.vb: Public Function GetKeys() As IReadOnlyList(Of ResourceKey)
+    content.vb: Public Function GetKeys(resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve) As IReadOnlyList(Of ResourceKey)
   overload: LlamaLogic.Packages.DataBasePackedFile.GetKeys*
-- uid: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(System.Threading.CancellationToken)
-  id: GetKeysAsync(System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  id: GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: GetKeysAsync(CancellationToken)
-  nameWithType: DataBasePackedFile.GetKeysAsync(CancellationToken)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(System.Threading.CancellationToken)
+  name: GetKeysAsync(ResourceKeyOrder, CancellationToken)
+  nameWithType: DataBasePackedFile.GetKeysAsync(ResourceKeyOrder, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -1298,20 +1305,22 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 711
+    startLine: 727
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: Gets a list of keys for all the resources in the package asynchronously
   example: []
   syntax:
-    content: public Task<IReadOnlyList<ResourceKey>> GetKeysAsync(CancellationToken cancellationToken = default)
+    content: public Task<IReadOnlyList<ResourceKey>> GetKeysAsync(ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     parameters:
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
     - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.ResourceKey}}
-    content.vb: Public Function GetKeysAsync(cancellationToken As CancellationToken = Nothing) As Task(Of IReadOnlyList(Of ResourceKey))
+    content.vb: Public Function GetKeysAsync(resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve, cancellationToken As CancellationToken = Nothing) As Task(Of IReadOnlyList(Of ResourceKey))
   overload: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync*
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetKeysByName(System.String)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetKeysByName(System.String)
@@ -1331,7 +1340,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByName
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 721
+    startLine: 737
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1367,7 +1376,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByNameAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 732
+    startLine: 748
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1405,7 +1414,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModel
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 745
+    startLine: 761
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1450,7 +1459,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModelAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 758
+    startLine: 774
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1497,7 +1506,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 769
+    startLine: 785
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1535,7 +1544,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 775
+    startLine: 791
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1575,7 +1584,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 781
+    startLine: 797
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1608,7 +1617,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 792
+    startLine: 808
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1643,7 +1652,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 803
+    startLine: 819
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1673,7 +1682,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 814
+    startLine: 830
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1706,7 +1715,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 825
+    startLine: 841
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1739,7 +1748,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSizeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 839
+    startLine: 855
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1774,7 +1783,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTable
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 853
+    startLine: 869
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1812,7 +1821,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTableAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 859
+    startLine: 875
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1852,7 +1861,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetText
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 867
+    startLine: 883
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1892,7 +1901,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTextAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 879
+    startLine: 895
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1935,7 +1944,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 895
+    startLine: 911
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1975,7 +1984,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 907
+    startLine: 923
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2018,7 +2027,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAll
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1393
+    startLine: 1416
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2056,7 +2065,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1403
+    startLine: 1426
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2084,7 +2093,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1413
+    startLine: 1436
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2117,7 +2126,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAllAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1426
+    startLine: 1449
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2142,16 +2151,16 @@ items:
   nameWithType.vb: DataBasePackedFile.LoadAllAsync(Boolean, CompressionMode, CancellationToken)
   fullName.vb: LlamaLogic.Packages.DataBasePackedFile.LoadAllAsync(Boolean, LlamaLogic.Packages.CompressionMode, System.Threading.CancellationToken)
   name.vb: LoadAllAsync(Boolean, CompressionMode, CancellationToken)
-- uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
-  id: Save(System.Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
+  id: Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: Save(bool)
-  nameWithType: DataBasePackedFile.Save(bool)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.Save(bool)
+  name: Save(bool, ResourceKeyOrder)
+  nameWithType: DataBasePackedFile.Save(bool, ResourceKeyOrder)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.Save(bool, LlamaLogic.Packages.ResourceKeyOrder)
   type: Method
   source:
     remote:
@@ -2160,36 +2169,38 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Save
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1535
+    startLine: 1559
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: Saves the package to the stream from which it was loaded
   example: []
   syntax:
-    content: public void Save(bool unloadFromMemory = false)
+    content: public void Save(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     parameters:
     - id: unloadFromMemory
       type: System.Boolean
-    content.vb: Public Sub Save(unloadFromMemory As Boolean = False)
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    content.vb: Public Sub Save(unloadFromMemory As Boolean = False, resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve)
   overload: LlamaLogic.Packages.DataBasePackedFile.Save*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: The package was not loaded from stream or the stream is not writeable
-  nameWithType.vb: DataBasePackedFile.Save(Boolean)
-  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.Save(Boolean)
-  name.vb: Save(Boolean)
-- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String)
-  id: SaveAs(System.String)
+  nameWithType.vb: DataBasePackedFile.Save(Boolean, ResourceKeyOrder)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.Save(Boolean, LlamaLogic.Packages.ResourceKeyOrder)
+  name.vb: Save(Boolean, ResourceKeyOrder)
+- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String,LlamaLogic.Packages.ResourceKeyOrder)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAs(System.String,LlamaLogic.Packages.ResourceKeyOrder)
+  id: SaveAs(System.String,LlamaLogic.Packages.ResourceKeyOrder)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: SaveAs(string)
-  nameWithType: DataBasePackedFile.SaveAs(string)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAs(string)
+  name: SaveAs(string, ResourceKeyOrder)
+  nameWithType: DataBasePackedFile.SaveAs(string, ResourceKeyOrder)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAs(string, LlamaLogic.Packages.ResourceKeyOrder)
   type: Method
   source:
     remote:
@@ -2198,32 +2209,34 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAs
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1556
+    startLine: 1580
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: "Saves the package to the specified <code class=\"paramref\">path</code> (\U0001F504️\U0001F3C3)"
   example: []
   syntax:
-    content: public void SaveAs(string path)
+    content: public void SaveAs(string path, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     parameters:
     - id: path
       type: System.String
-    content.vb: Public Sub SaveAs(path As String)
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    content.vb: Public Sub SaveAs(path As String, resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve)
   overload: LlamaLogic.Packages.DataBasePackedFile.SaveAs*
-  nameWithType.vb: DataBasePackedFile.SaveAs(String)
-  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAs(String)
-  name.vb: SaveAs(String)
-- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
-  id: SaveAsync(System.Boolean,System.Threading.CancellationToken)
+  nameWithType.vb: DataBasePackedFile.SaveAs(String, ResourceKeyOrder)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAs(String, LlamaLogic.Packages.ResourceKeyOrder)
+  name.vb: SaveAs(String, ResourceKeyOrder)
+- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  id: SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: SaveAsync(bool, CancellationToken)
-  nameWithType: DataBasePackedFile.SaveAsync(bool, CancellationToken)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(bool, System.Threading.CancellationToken)
+  name: SaveAsync(bool, ResourceKeyOrder, CancellationToken)
+  nameWithType: DataBasePackedFile.SaveAsync(bool, ResourceKeyOrder, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(bool, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2232,40 +2245,42 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1576
+    startLine: 1601
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: Saves the package to the stream from which it was loaded asynchronously
   example: []
   syntax:
-    content: public Task SaveAsync(bool unloadFromMemory = false, CancellationToken cancellationToken = default)
+    content: public Task SaveAsync(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     parameters:
     - id: unloadFromMemory
       type: System.Boolean
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
     - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Function SaveAsync(unloadFromMemory As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task
+    content.vb: Public Function SaveAsync(unloadFromMemory As Boolean = False, resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve, cancellationToken As CancellationToken = Nothing) As Task
   overload: LlamaLogic.Packages.DataBasePackedFile.SaveAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: The package was not loaded from stream or the stream is not writeable
-  nameWithType.vb: DataBasePackedFile.SaveAsync(Boolean, CancellationToken)
-  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(Boolean, System.Threading.CancellationToken)
-  name.vb: SaveAsync(Boolean, CancellationToken)
-- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,System.Threading.CancellationToken)
-  id: SaveAsAsync(System.String,System.Threading.CancellationToken)
+  nameWithType.vb: DataBasePackedFile.SaveAsync(Boolean, ResourceKeyOrder, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(Boolean, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
+  name.vb: SaveAsync(Boolean, ResourceKeyOrder, CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(System.String,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  id: SaveAsAsync(System.String,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   parent: LlamaLogic.Packages.DataBasePackedFile
   langs:
   - csharp
   - vb
-  name: SaveAsAsync(string, CancellationToken)
-  nameWithType: DataBasePackedFile.SaveAsAsync(string, CancellationToken)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(string, System.Threading.CancellationToken)
+  name: SaveAsAsync(string, ResourceKeyOrder, CancellationToken)
+  nameWithType: DataBasePackedFile.SaveAsAsync(string, ResourceKeyOrder, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(string, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -2274,26 +2289,28 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1597
+    startLine: 1622
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: "Saves the package to the specified <code class=\"paramref\">path</code> asynchronously (\U0001F504️\U0001F3C3)"
   example: []
   syntax:
-    content: public Task SaveAsAsync(string path, CancellationToken cancellationToken = default)
+    content: public Task SaveAsAsync(string path, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     parameters:
     - id: path
       type: System.String
+    - id: resourceKeyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
     - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task
-    content.vb: Public Function SaveAsAsync(path As String, cancellationToken As CancellationToken = Nothing) As Task
+    content.vb: Public Function SaveAsAsync(path As String, resourceKeyOrder As ResourceKeyOrder = ResourceKeyOrder.Preserve, cancellationToken As CancellationToken = Nothing) As Task
   overload: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync*
-  nameWithType.vb: DataBasePackedFile.SaveAsAsync(String, CancellationToken)
-  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(String, System.Threading.CancellationToken)
-  name.vb: SaveAsAsync(String, CancellationToken)
+  nameWithType.vb: DataBasePackedFile.SaveAsAsync(String, ResourceKeyOrder, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync(String, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
+  name.vb: SaveAsAsync(String, ResourceKeyOrder, CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode)
   id: Set(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode)
@@ -2312,7 +2329,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1619
+    startLine: 1645
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2355,7 +2372,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1633
+    startLine: 1659
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2395,7 +2412,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1645
+    startLine: 1671
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2438,7 +2455,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1660
+    startLine: 1686
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2478,7 +2495,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1679
+    startLine: 1705
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2524,7 +2541,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1695
+    startLine: 1721
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2567,7 +2584,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1708
+    startLine: 1734
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2613,7 +2630,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1724
+    startLine: 1750
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2656,7 +2673,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1742
+    startLine: 1768
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2699,7 +2716,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1752
+    startLine: 1778
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2736,55 +2753,70 @@ references:
   name: Stream
   nameWithType: Stream
   fullName: System.IO.Stream
-- uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
   isExternal: true
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_
-  name: Save(bool)
-  nameWithType: DataBasePackedFile.Save(bool)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.Save(bool)
-  nameWithType.vb: DataBasePackedFile.Save(Boolean)
-  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.Save(Boolean)
-  name.vb: Save(Boolean)
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_
+  name: Save(bool, ResourceKeyOrder)
+  nameWithType: DataBasePackedFile.Save(bool, ResourceKeyOrder)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.Save(bool, LlamaLogic.Packages.ResourceKeyOrder)
+  nameWithType.vb: DataBasePackedFile.Save(Boolean, ResourceKeyOrder)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.Save(Boolean, LlamaLogic.Packages.ResourceKeyOrder)
+  name.vb: Save(Boolean, ResourceKeyOrder)
   spec.csharp:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
     name: Save
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_
   - name: (
   - uid: System.Boolean
     name: bool
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: )
   spec.vb:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.Save(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder)
     name: Save
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_
   - name: (
   - uid: System.Boolean
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: )
-- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   isExternal: true
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_System_Threading_CancellationToken_
-  name: SaveAsync(bool, CancellationToken)
-  nameWithType: DataBasePackedFile.SaveAsync(bool, CancellationToken)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(bool, System.Threading.CancellationToken)
-  nameWithType.vb: DataBasePackedFile.SaveAsync(Boolean, CancellationToken)
-  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(Boolean, System.Threading.CancellationToken)
-  name.vb: SaveAsync(Boolean, CancellationToken)
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
+  name: SaveAsync(bool, ResourceKeyOrder, CancellationToken)
+  nameWithType: DataBasePackedFile.SaveAsync(bool, ResourceKeyOrder, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(bool, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
+  nameWithType.vb: DataBasePackedFile.SaveAsync(Boolean, ResourceKeyOrder, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(Boolean, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
+  name.vb: SaveAsync(Boolean, ResourceKeyOrder, CancellationToken)
   spec.csharp:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
     name: SaveAsync
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_System_Threading_CancellationToken_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   - name: (
   - uid: System.Boolean
     name: bool
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: ','
   - name: " "
   - uid: System.Threading.CancellationToken
@@ -2793,14 +2825,19 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
   spec.vb:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,System.Threading.CancellationToken)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync(System.Boolean,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
     name: SaveAsync
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_System_Threading_CancellationToken_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   - name: (
   - uid: System.Boolean
     name: Boolean
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: ','
   - name: " "
   - uid: System.Threading.CancellationToken
@@ -2814,49 +2851,64 @@ references:
   name: CanSaveInPlace
   nameWithType: DataBasePackedFile.CanSaveInPlace
   fullName: LlamaLogic.Packages.DataBasePackedFile.CanSaveInPlace
-- uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
+- uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
   isExternal: true
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_
-  name: CopyTo(Stream)
-  nameWithType: DataBasePackedFile.CopyTo(Stream)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_
+  name: CopyTo(Stream, ResourceKeyOrder)
+  nameWithType: DataBasePackedFile.CopyTo(Stream, ResourceKeyOrder)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream, LlamaLogic.Packages.ResourceKeyOrder)
   spec.csharp:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
     name: CopyTo
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_
   - name: (
   - uid: System.IO.Stream
     name: Stream
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: )
   spec.vb:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
     name: CopyTo
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_
   - name: (
   - uid: System.IO.Stream
     name: Stream
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: )
-- uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   isExternal: true
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_System_Threading_CancellationToken_
-  name: CopyToAsync(Stream, CancellationToken)
-  nameWithType: DataBasePackedFile.CopyToAsync(Stream, CancellationToken)
-  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream, System.Threading.CancellationToken)
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
+  name: CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)
+  nameWithType: DataBasePackedFile.CopyToAsync(Stream, ResourceKeyOrder, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream, LlamaLogic.Packages.ResourceKeyOrder, System.Threading.CancellationToken)
   spec.csharp:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
     name: CopyToAsync
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_System_Threading_CancellationToken_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   - name: (
   - uid: System.IO.Stream
     name: Stream
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: ','
   - name: " "
   - uid: System.Threading.CancellationToken
@@ -2865,14 +2917,19 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
   - name: )
   spec.vb:
-  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
     name: CopyToAsync
-    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_System_Threading_CancellationToken_
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   - name: (
   - uid: System.IO.Stream
     name: Stream
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKeyOrder
+    name: ResourceKeyOrder
+    href: LlamaLogic.Packages.ResourceKeyOrder.html
   - name: ','
   - name: " "
   - uid: System.Threading.CancellationToken
@@ -3780,13 +3837,20 @@ references:
   fullName: System.ArgumentException
 - uid: LlamaLogic.Packages.DataBasePackedFile.CopyTo*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.CopyTo
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyTo_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_
   name: CopyTo
   nameWithType: DataBasePackedFile.CopyTo
   fullName: LlamaLogic.Packages.DataBasePackedFile.CopyTo
+- uid: LlamaLogic.Packages.ResourceKeyOrder
+  commentId: T:LlamaLogic.Packages.ResourceKeyOrder
+  parent: LlamaLogic.Packages
+  href: LlamaLogic.Packages.ResourceKeyOrder.html
+  name: ResourceKeyOrder
+  nameWithType: ResourceKeyOrder
+  fullName: LlamaLogic.Packages.ResourceKeyOrder
 - uid: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.CopyToAsync
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_System_Threading_CancellationToken_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_CopyToAsync_System_IO_Stream_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   name: CopyToAsync
   nameWithType: DataBasePackedFile.CopyToAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.CopyToAsync
@@ -4230,13 +4294,13 @@ references:
   - name: )
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetKeys*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetKeys
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetKeys
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetKeys_LlamaLogic_Packages_ResourceKeyOrder_
   name: GetKeys
   nameWithType: DataBasePackedFile.GetKeys
   fullName: LlamaLogic.Packages.DataBasePackedFile.GetKeys
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetKeysAsync_System_Threading_CancellationToken_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetKeysAsync_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   name: GetKeysAsync
   nameWithType: DataBasePackedFile.GetKeysAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync
@@ -4815,25 +4879,25 @@ references:
   fullName: System.InvalidOperationException
 - uid: LlamaLogic.Packages.DataBasePackedFile.Save*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.Save
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Save_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_
   name: Save
   nameWithType: DataBasePackedFile.Save
   fullName: LlamaLogic.Packages.DataBasePackedFile.Save
 - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAs*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.SaveAs
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAs_System_String_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAs_System_String_LlamaLogic_Packages_ResourceKeyOrder_
   name: SaveAs
   nameWithType: DataBasePackedFile.SaveAs
   fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAs
 - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsync*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.SaveAsync
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_System_Threading_CancellationToken_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsync_System_Boolean_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   name: SaveAsync
   nameWithType: DataBasePackedFile.SaveAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsync
 - uid: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsAsync_System_String_System_Threading_CancellationToken_
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SaveAsAsync_System_String_LlamaLogic_Packages_ResourceKeyOrder_System_Threading_CancellationToken_
   name: SaveAsAsync
   nameWithType: DataBasePackedFile.SaveAsAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.SaveAsAsync
