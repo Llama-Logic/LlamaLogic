@@ -65,8 +65,10 @@ public sealed class ModFileManifestModel :
     public static byte[] GetFileSha256Hash(string filePath)
     {
         using var sha256 = SHA256.Create();
-        using var fileStream = File.OpenRead(filePath);
-        return sha256.ComputeHash(fileStream);
+        using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+        var hash = sha256.ComputeHash(fileStream);
+        fileStream.Close();
+        return hash;
     }
 
     /// <summary>
@@ -75,8 +77,10 @@ public sealed class ModFileManifestModel :
     public static async Task<byte[]> GetFileSha256HashAsync(string filePath, CancellationToken cancellationToken = default)
     {
         using var sha256 = SHA256.Create();
-        using var fileStream = File.OpenRead(filePath);
-        return await sha256.ComputeHashAsync(fileStream, cancellationToken).ConfigureAwait(false);
+        using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, true);
+        var hash = await sha256.ComputeHashAsync(fileStream, cancellationToken).ConfigureAwait(false);
+        fileStream.Close();
+        return hash;
     }
 
     /// <inheritdoc/>
