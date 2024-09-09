@@ -254,6 +254,12 @@ public sealed class ModFileManifestModel :
         reader.MoveToContent();
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "I")
             throw new XmlException("Expected a tuning instance element");
+        if (reader.GetAttribute("i") != "snippet")
+            throw new XmlException("Expected the \"snippet\" instance");
+        if (reader.GetAttribute("m") != "llamalogic.snippets.modfilemanifest")
+            throw new XmlException("Expected the \"llamalogic.snippets.modfilemanifest\" module");
+        if (reader.GetAttribute("c") != "ModFileManifest")
+            throw new XmlException("Expected the \"ModFileManifest\" class");
         TuningName = reader.GetAttribute("n");
         if (ulong.TryParse(reader.GetAttribute("s"), out var parsedTuningFullInstance))
             TuningFullInstance = parsedTuningFullInstance;
