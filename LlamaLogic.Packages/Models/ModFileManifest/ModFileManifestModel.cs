@@ -29,7 +29,10 @@ public sealed class ModFileManifestModel :
     , IParsable<ModFileManifestModel>
 #endif
 {
-    static readonly ImmutableHashSet<ResourceType> supportedTypes = [];
+    static readonly ImmutableHashSet<ResourceType> supportedTypes =
+    [
+        ResourceType.SnippetTuning
+    ];
 
     /// <inheritdoc/>
     public static new ISet<ResourceType> SupportedTypes =>

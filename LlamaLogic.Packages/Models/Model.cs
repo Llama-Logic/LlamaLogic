@@ -25,7 +25,6 @@ public abstract class Model :
         type switch
         {
             ResourceType dataResourceType when DataModel.SupportedTypes.Contains(dataResourceType) => DataModel.GetName(stream),
-            ResourceType modFileManifestResourceType when ModFileManifestModel.SupportedTypes.Contains(modFileManifestResourceType) => ModFileManifestModel.GetName(stream),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.GetName(stream),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")
         };
@@ -37,7 +36,6 @@ public abstract class Model :
         type switch
         {
             ResourceType dataResourceType when DataModel.SupportedTypes.Contains(dataResourceType) => DataModel.GetNameAsync(stream, cancellationToken),
-            ResourceType modFileManifestResourceType when ModFileManifestModel.SupportedTypes.Contains(modFileManifestResourceType) => ModFileManifestModel.GetNameAsync(stream, cancellationToken),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.GetNameAsync(stream),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")
         };
