@@ -1518,7 +1518,9 @@ public sealed class DataBasePackedFile :
                         mnCommitted = index.ReadAndAdvancePosition<ushort>(ref readPosition)
                     };
                 keysInIndexOrder.Add(key);
-                unloadedResources.Add(key, entry);
+                ref var entryRef = ref CollectionsMarshal.GetValueRefOrAddDefault(unloadedResources, key, out var exists);
+                if (!exists)
+                    entryRef = entry;
             }
         }
         catch (Exception ex)
