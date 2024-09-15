@@ -13,6 +13,11 @@ struct ResourceKey(ResourceType type, uint group, ulong fullInstance) :
     , IParsable<ResourceKey>
 #endif
 {
+    /// <summary>
+    /// Represents the empty <see cref="ResourceKey"/>
+    /// </summary>
+    public static readonly ResourceKey Empty = new(0, 0, 0);
+
 #if IS_NET_7_0_OR_GREATER
     [GeneratedRegex(@"^(?<type>[\da-f]{8}):(?<group>[\da-f]{8}):(?<instanceEx>[\da-f]{8})(?<instance>[\da-f]{8})$|^(?<type>[\da-f]{8})-(?<group>[\da-f]{8})-(?<instanceEx>[\da-f]{8})(?<instance>[\da-f]{8})$", RegexOptions.IgnoreCase)]
     public static partial Regex GetPackageResourceKeyRegex();
