@@ -502,7 +502,7 @@ public sealed class DataModel :
     /// <summary>
     /// Gets/sets the <see cref="DataModelVersion"/> of this resource
     /// </summary>
-    public DataModelVersion Version { get; set; }
+    public DataModelVersion Version { get; set; } = DataModelVersion.VariantSupport;
 
     /// <summary>
     /// Gets the table at the specified <paramref name="index"/>
@@ -555,7 +555,7 @@ public sealed class DataModel :
                 * Tables.Count
             ).AlignForNextBlock()
             +
-            Tables.Sum(table => ((int)(table.RowSize * table.RowCount)).AlignForNextBlock())
+            Tables.Sum(table => ((int)(table.RowSize * (table.RowCount + 1))).AlignForNextBlock())
             +
             Tables.Sum
             (
@@ -670,6 +670,7 @@ public sealed class DataModel :
         foreach (var (table, tableIndex) in tablesAndOriginalIndexesInEncodingOrder)
         {
             writer.AlignForNextBlock();
+            writer.AlignForTable(table);
             pendingRowOffsets.Dequeue().WriteOffset(writer);
             var columnRanges = table.ColumnRanges;
             var columnTypes = table.ColumnTypes;

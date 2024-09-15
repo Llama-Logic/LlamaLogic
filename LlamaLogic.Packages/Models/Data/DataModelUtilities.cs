@@ -36,6 +36,9 @@ static class DataModelUtilities
     public static void AlignForNextBlock(this ArrayBufferWriter<byte> writer) =>
         Align(writer, sixteenByteAlignmentMask);
 
+    public static void AlignForTable(this ArrayBufferWriter<byte> writer, DataModelTable table) =>
+        Align(writer, table.RowSize - 1);
+
     public static DataModelAlignment GetAlignment(this DataModelType type) =>
         alignmentByResourceType.TryGetValue(type, out var alignment) ? alignment : DataModelAlignment.None;
 
