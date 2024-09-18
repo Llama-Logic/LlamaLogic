@@ -21,6 +21,7 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SupportedTypes
@@ -557,14 +558,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride}
     content.vb: >-
-      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IntentionalOverrides As Collection(Of ModFileManifestModelIntentionalOverride)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides*
@@ -575,7 +576,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 7
+      value: 8
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -650,17 +651,65 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod}
     content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredMods As Collection(Of ModFileManifestModelRequiredMod)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 7
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 4
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+  id: RequiredPacks
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: RequiredPacks
+  nameWithType: ModFileManifestModel.RequiredPacks
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RequiredPacks
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 177
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+
+      public Collection<string> RequiredPacks { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.String}
+    content.vb: >-
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+
+      Public Property RequiredPacks As Collection(Of String)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -690,7 +739,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 175
+    startLine: 181
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -734,7 +783,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SubsumedFiles
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 182
+    startLine: 188
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -785,7 +834,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 188
+    startLine: 194
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -826,7 +875,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningFullInstance
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 194
+    startLine: 200
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -867,7 +916,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 200
+    startLine: 206
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -918,7 +967,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 206
+    startLine: 212
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -969,7 +1018,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: AddSubsumedFile
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 212
+    startLine: 218
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1005,7 +1054,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: AddSubsumedFileAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 218
+    startLine: 224
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1041,7 +1090,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 222
+    startLine: 228
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1074,7 +1123,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveSubsumedFile
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 234
+    startLine: 240
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1110,7 +1159,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveSubsumedFileAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 240
+    startLine: 246
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1146,7 +1195,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ToString
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 246
+    startLine: 252
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -2524,6 +2573,12 @@ references:
     name: ModFileManifestModelRequiredMod
     href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html
   - name: )
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RequiredPacks
+  name: RequiredPacks
+  nameWithType: ModFileManifestModel.RequiredPacks
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
 - uid: LlamaLogic.Packages.Models.Model.ResourceName
   commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
   parent: LlamaLogic.Packages.Models.Model

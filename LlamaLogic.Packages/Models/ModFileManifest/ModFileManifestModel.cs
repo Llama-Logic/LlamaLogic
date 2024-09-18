@@ -157,7 +157,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of resources the mod intends to override
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; private set; } = [];
 
     /// <summary>
@@ -169,8 +169,14 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
+
+    /// <summary>
+    /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
+    /// </summary>
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public Collection<string> RequiredPacks { get; private set; } = [];
 
     /// <inheritdoc/>
     [YamlIgnore]
@@ -279,6 +285,8 @@ public sealed class ModFileManifestModel :
                     IntentionalOverrides.AddRange(reader.ReadTunableTupleList<ModFileManifestModelIntentionalOverride>());
                 else if (tunableName == "required_mods")
                     RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
+                else if (tunableName == "required_packs")
+                    RequiredPacks.AddRange(reader.ReadTunableList());
                 else if (tunableName == "subsumed_files")
                     SubsumedFiles.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteArray()));
             }
@@ -309,6 +317,7 @@ public sealed class ModFileManifestModel :
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
         writer.WriteTunableList("subsumed_files", SubsumedFiles);
+        writer.WriteTunableList("required_packs", RequiredPacks);
         writer.WriteTunableList("required_mods", RequiredMods);
         writer.WriteTunableList("intentional_overrides", IntentionalOverrides);
         writer.WriteEndElement();
