@@ -13,6 +13,7 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(System.String)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Version
   langs:
@@ -238,6 +239,54 @@ items:
     - name: Order
       type: System.Int32
       value: 1
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
+  id: RequiredFeatures
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
+  langs:
+  - csharp
+  - vb
+  name: RequiredFeatures
+  nameWithType: ModFileManifestModelRequiredMod.RequiredFeatures
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RequiredFeatures
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+    startLine: 35
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the names of the features the dependency mod which the dependent mod requires
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+
+      public Collection<string> RequiredFeatures { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.String}
+    content.vb: >-
+      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+
+      Public Property RequiredFeatures As Collection(Of String)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 7
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 4
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url
   id: Url
@@ -256,7 +305,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 35
+    startLine: 41
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -307,7 +356,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 41
+    startLine: 47
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -358,7 +407,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: AddFile
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 47
+    startLine: 53
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -394,7 +443,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: AddFileAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 53
+    startLine: 59
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -430,7 +479,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveFile
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 59
+    startLine: 65
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -466,7 +515,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveFileAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 65
+    startLine: 71
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1101,6 +1150,12 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RequiredFeatures
+  name: RequiredFeatures
+  nameWithType: ModFileManifestModelRequiredMod.RequiredFeatures
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Url

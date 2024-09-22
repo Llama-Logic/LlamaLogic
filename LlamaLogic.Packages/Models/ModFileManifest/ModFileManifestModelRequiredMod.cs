@@ -31,6 +31,12 @@ public sealed class ModFileManifestModelRequiredMod :
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets the names of the features the dependency mod which the dependent mod requires
+    /// </summary>
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public Collection<string> RequiredFeatures { get; private set; } = [];
+
+    /// <summary>
     /// Gets/sets the URL to which players can go to find more information about this dependency mod
     /// </summary>
     [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = YamlDotNet.Core.ScalarStyle.SingleQuoted)]
@@ -87,6 +93,8 @@ public sealed class ModFileManifestModelRequiredMod :
                     Creators.AddRange(reader.ReadTunableList());
                 else if (tunableName == "files")
                     Files.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteArray()));
+                else if (tunableName == "required_features")
+                    RequiredFeatures.AddRange(reader.ReadTunableList());
             }
             else
             {
@@ -113,6 +121,7 @@ public sealed class ModFileManifestModelRequiredMod :
         writer.WriteTunable("url", Url);
         writer.WriteTunable("mod_manifest_key", ModManifestKey);
         writer.WriteTunableList("files", Files);
+        writer.WriteTunableList("required_features", RequiredFeatures);
         writer.WriteEndElement();
     }
 
