@@ -31,7 +31,7 @@ public sealed class ModFileManifestModelRequiredMod :
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets the names of the features the dependency mod which the dependent mod requires
+    /// Gets the names of the features of the dependency mod which the dependent mod requires
     /// </summary>
     [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredFeatures { get; private set; } = [];
