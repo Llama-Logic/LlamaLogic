@@ -155,7 +155,13 @@ public sealed class ModFileManifestModel :
     public Collection<string> Creators { get; private set; } = [];
 
     /// <summary>
-    /// Gets the names of the features this mod offers to other mods as a dependency
+    /// Gets the globally unique names of the exclusivities of this mod, causing it to be incompatible with other mods which share one or more of them
+    /// </summary>
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public Collection<string> Exclusivities { get; private set; } = [];
+
+    /// <summary>
+    /// Gets the names of the features unique to this mod which it offers to other mods as a dependency
     /// </summary>
     [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Features { get; private set; } = [];
@@ -163,7 +169,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of resources the mod intends to override
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; private set; } = [];
 
     /// <summary>
@@ -175,13 +181,13 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
 
     /// <inheritdoc/>
@@ -192,7 +198,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the hashes of files in for which I stand even though my hash is different
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files in for which I stand even though my hash is different")]
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files in for which I stand even though my hash is different")]
     public HashSet<byte[]> SubsumedFiles { get; private set; } = [];
 
     /// <summary>
@@ -287,6 +293,8 @@ public sealed class ModFileManifestModel :
             {
                 if (tunableName == "creators")
                     Creators.AddRange(reader.ReadTunableList());
+                else if (tunableName == "exclusivities")
+                    Exclusivities.AddRange(reader.ReadTunableList());
                 else if (tunableName == "features")
                     Features.AddRange(reader.ReadTunableList());
                 else if (tunableName == "intentional_overrides")
@@ -325,6 +333,7 @@ public sealed class ModFileManifestModel :
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
         writer.WriteTunableList("features", Features);
+        writer.WriteTunableList("exclusivities", Exclusivities);
         writer.WriteTunableList("subsumed_files", SubsumedFiles);
         writer.WriteTunableList("required_packs", RequiredPacks);
         writer.WriteTunableList("required_mods", RequiredMods);
