@@ -37,7 +37,7 @@ public sealed class ModFileManifestModelRequiredMod :
     public Collection<string> RequiredFeatures { get; private set; } = [];
 
     /// <summary>
-    /// Gets/sets an identifier that, when shared with a group of other dependency mods for a single dependent, indicates that only one member of group need be present for the dependent to be satisfied
+    /// Gets/sets an identifier that, when shared with a group of other dependency mods for a single dependent, indicates that only one member of the group need be present for the dependent to be satisfied
     /// </summary>
     [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? RequirementIdentifier { get; set; }
