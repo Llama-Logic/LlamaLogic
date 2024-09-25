@@ -37,6 +37,12 @@ public sealed class ModFileManifestModelRequiredMod :
     public Collection<string> RequiredFeatures { get; private set; } = [];
 
     /// <summary>
+    /// Gets/sets an identifier that, when shared with a group of other dependency mods for a single dependent, indicates that only one member of group need be present for the dependent to be satisfied
+    /// </summary>
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public string? RequirementIdentifier { get; set; }
+
+    /// <summary>
     /// Gets/sets the URL to which players can go to find more information about this dependency mod
     /// </summary>
     [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = YamlDotNet.Core.ScalarStyle.SingleQuoted)]
@@ -103,6 +109,8 @@ public sealed class ModFileManifestModelRequiredMod :
                     ModManifestKey = ResourceKey.Parse(tunableValue);
                 else if (tunableName == "name")
                     Name = tunableValue;
+                else if (tunableName == "requirement_identifier")
+                    RequirementIdentifier = tunableValue;
                 else if (tunableName == "version")
                     Version = Version.Parse(tunableValue);
                 else if (tunableName == "url")
@@ -122,6 +130,7 @@ public sealed class ModFileManifestModelRequiredMod :
         writer.WriteTunable("mod_manifest_key", ModManifestKey);
         writer.WriteTunableList("files", Files);
         writer.WriteTunableList("required_features", RequiredFeatures);
+        writer.WriteTunable("requirement_identifier", RequirementIdentifier);
         writer.WriteEndElement();
     }
 
