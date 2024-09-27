@@ -13,5 +13,10 @@ public enum ResourceKeyOrder
     /// <summary>
     /// The operation will process the <see cref="ResourceKey"/> sequence in the order <see cref="ResourceKey.FullInstance"/>, then <see cref="ResourceKey.Type"/>, then <see cref="ResourceKey.Group"/>
     /// </summary>
-    InstanceTypeGroup
+    InstanceTypeGroup,
+
+    /// <summary>
+    /// The operation will process the <see cref="ResourceKey"/> sequence in the order <see cref="ResourceKey.Type"/>, then <see cref="ResourceKey.Group"/>, then <see cref="ResourceKey.FullInstance"/>
+    /// </summary>
+    TypeGroupInstance
 }

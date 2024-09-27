@@ -13,11 +13,6 @@ public enum ResourceType :
     Unspecified = 0,
 
     /// <summary>
-    /// A proprietary resource used by The Sims Resource Workshop
-    /// </summary>
-    TheSimsResourceWorkshopProprietary = 0x01357924,
-
-    /// <summary>
     /// Account Reward Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -152,6 +147,12 @@ public enum ResourceType :
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
     BalloonTuning = 0xec6a8fc6,
+
+    /// <summary>
+    /// Batch Fix History
+    /// </summary>
+    [ResourceToolingMetadata]
+    BatchFixHistory = 0x6bf15bbe,
 
     /// <summary>
     /// Blend Geometry
@@ -1119,6 +1120,7 @@ public enum ResourceType :
     /// <summary>
     /// Sims 4 Studio Merged Package Manifest
     /// </summary>
+    [ResourceToolingMetadata]
     S4sMergedPackageManifest = 0x7fb6ad8a,
 
     /// <summary>
@@ -1489,6 +1491,12 @@ public enum ResourceType :
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
     TestBasedScoreTuning = 0x4f739cee,
+
+    /// <summary>
+    /// A proprietary resource used by The Sims Resource Workshop
+    /// </summary>
+    [ResourceToolingMetadata]
+    TheSimsResourceWorkshopProprietary = 0x01357924,
 
     /// <summary>
     /// Thrift Store Tuning

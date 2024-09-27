@@ -29,10 +29,13 @@ public sealed class ModFileManifestModel :
     , IParsable<ModFileManifestModel>
 #endif
 {
+    static readonly ImmutableHashSet<ResourceType> imageResourceTypes = Enum.GetValues<ResourceType>().Where(resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceFileTypeAttribute>()?.ResourceFileType is ResourceFileType.DirectDrawSurface or ResourceFileType.PortableNetworkGraphic).ToImmutableHashSet();
     static readonly ImmutableHashSet<ResourceType> supportedTypes =
     [
         ResourceType.SnippetTuning
     ];
+    static readonly ImmutableHashSet<ResourceType> toolingMetadataTypes = Enum.GetValues<ResourceType>().Where(resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceToolingMetadataAttribute>() is not null).ToImmutableHashSet();
+    static readonly ImmutableHashSet<ResourceType> tuningOrSimDataTypes = Enum.GetValues<ResourceType>().Where(resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceFileTypeAttribute>()?.ResourceFileType is ResourceFileType.TuningMarkup).Concat([ResourceType.SimData]).ToImmutableHashSet();
 
     /// <inheritdoc/>
     public static new ISet<ResourceType> SupportedTypes =>
@@ -65,25 +68,264 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the SHA 256 hash of the content of the file located at <paramref name="filePath"/>
     /// </summary>
-    public static byte[] GetFileSha256Hash(string filePath)
+    public static ImmutableArray<byte> GetFileSha256Hash(string filePath)
     {
         using var sha256 = SHA256.Create();
         using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         var hash = sha256.ComputeHash(fileStream);
         fileStream.Close();
-        return hash;
+        return [..hash];
     }
 
     /// <summary>
     /// Gets the SHA 256 hash of the content of the file located at <paramref name="filePath"/> asynchronously
     /// </summary>
-    public static async Task<byte[]> GetFileSha256HashAsync(string filePath, CancellationToken cancellationToken = default)
+    public static async Task<ImmutableArray<byte>> GetFileSha256HashAsync(string filePath, CancellationToken cancellationToken = default)
     {
         using var sha256 = SHA256.Create();
         using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, true);
         var hash = await sha256.ComputeHashAsync(fileStream, cancellationToken).ConfigureAwait(false);
         fileStream.Close();
-        return hash;
+        return [..hash];
+    }
+
+    /// <summary>
+    /// Gets the hash for the specified <paramref name="package"/> using the specified <paramref name="strategy"/> and <paramref name="hashResourceKeys"/>
+    /// </summary>
+    public static ImmutableArray<byte> GetModFileHash(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        ArgumentNullException.ThrowIfNull(hashResourceKeys);
+        using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
+        package.ForEachRaw
+        (
+            ResourceKeyOrder.TypeGroupInstance,
+            key =>
+            {
+                if (strategy is ModFileManifestResourceHashStrategy.None)
+                    return hashResourceKeys.Contains(key); // special direct control mode, hashResourceKeys is the list of keys
+                if (hashResourceKeys.Contains(key))
+                    return false; // appearance in hashResourceKeys is automatic disqualification
+                var type = key.Type;
+                if (toolingMetadataTypes.Contains(type))
+                    return false; // okay Andrew, don't care about your love notes to yourself
+                if (tuningOrSimDataTypes.Contains(type))
+                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseTuningAndSimData);
+                if (type is ResourceType.StringTable)
+                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseStringTables);
+                if (imageResourceTypes.Contains(type))
+                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseImages);
+                return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseNonTuningSimDataStringTablesAndImages);
+            },
+            (key, content) =>
+            {
+                Span<byte> keySpan = new byte[16];
+                var fullInstance = key.FullInstance;
+                MemoryMarshal.Write(keySpan[0..8], ref fullInstance);
+                var type = key.Type;
+                MemoryMarshal.Write(keySpan[8..12], ref type);
+                var group = key.Group;
+                MemoryMarshal.Write(keySpan[12..16], ref group);
+                sha256.AppendData(keySpan);
+                sha256.AppendData(content.Span);
+            }
+        );
+        return [..sha256.GetCurrentHash()];
+    }
+
+    /// <summary>
+    /// Gets the hash for the specified <paramref name="scriptMod"/>
+    /// </summary>
+    public static ImmutableArray<byte> GetModFileHash(ZipArchive scriptMod)
+    {
+        ArgumentNullException.ThrowIfNull(scriptMod);
+        Span<byte> crc32Span = stackalloc byte[4];
+        using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
+        foreach (var entry in scriptMod.Entries
+            .Where(entry => entry.Name.EndsWith(".py", StringComparison.OrdinalIgnoreCase) || entry.Name.EndsWith(".pyc", StringComparison.OrdinalIgnoreCase))
+            .OrderBy(entry => entry.FullName, StringComparer.Ordinal))
+        {
+            var crc32 = entry.Crc32;
+            MemoryMarshal.Write(crc32Span, ref crc32);
+            sha256.AppendData(crc32Span);
+        }
+        return [..sha256.GetCurrentHash()];
+    }
+
+    /// <summary>
+    /// Gets the hash for the specified <paramref name="package"/> using the specified <paramref name="strategy"/> and <paramref name="hashResourceKeys"/>, asynchronously
+    /// </summary>
+    public static async Task<ImmutableArray<byte>> GetModFileHashAsync(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        ArgumentNullException.ThrowIfNull(hashResourceKeys);
+        using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
+        await package.ForEachRawAsync
+        (
+            ResourceKeyOrder.TypeGroupInstance,
+            key =>
+            {
+                if (strategy is ModFileManifestResourceHashStrategy.None)
+                    return hashResourceKeys.Contains(key); // special direct control mode, hashResourceKeys is the list of keys
+                if (hashResourceKeys.Contains(key))
+                    return false; // appearance in hashResourceKeys is automatic disqualification
+                var type = key.Type;
+                if (toolingMetadataTypes.Contains(type))
+                    return false; // okay Andrew, don't care about your love notes to yourself
+                if (tuningOrSimDataTypes.Contains(type))
+                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseTuningAndSimData);
+                if (type is ResourceType.StringTable)
+                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseStringTables);
+                if (imageResourceTypes.Contains(type))
+                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseImages);
+                return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseNonTuningSimDataStringTablesAndImages);
+            },
+            (key, content) =>
+            {
+                Span<byte> keySpan = new byte[16];
+                var fullInstance = key.FullInstance;
+                MemoryMarshal.Write(keySpan[0..8], ref fullInstance);
+                var type = key.Type;
+                MemoryMarshal.Write(keySpan[8..12], ref type);
+                var group = key.Group;
+                MemoryMarshal.Write(keySpan[12..16], ref group);
+                sha256.AppendData(keySpan);
+                sha256.AppendData(content.Span);
+                return Task.CompletedTask;
+            },
+            cancellationToken
+        ).ConfigureAwait(false);
+        return [..sha256.GetCurrentHash()];
+    }
+
+    /// <summary>
+    /// Gets the mod file manifest for the specified <paramref name="package"/>, if it has one
+    /// </summary>
+    public static ModFileManifestModel? GetModFileManifest(DataBasePackedFile package)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        ModFileManifestModel? modFileManifest = null;
+        try
+        {
+            using var cts = new CancellationTokenSource();
+            package.ForEach(ResourceKeyOrder.TypeGroupInstance, key => key.Type is ResourceType.SnippetTuning, (key, content) =>
+            {
+                try
+                {
+                    modFileManifest = Decode(content);
+                    cts.Cancel();
+                }
+                catch (XmlException)
+                {
+                }
+            }, cts.Token);
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        return modFileManifest;
+    }
+
+    /// <summary>
+    /// Gets the mod file manifest for the specified <paramref name="scriptMod"/>, if it has one
+    /// </summary>
+    public static ModFileManifestModel? GetModFileManifest(ZipArchive scriptMod)
+    {
+        ArgumentNullException.ThrowIfNull(scriptMod);
+        if (scriptMod.Entries.FirstOrDefault(entry => entry.FullName.Equals("manifest.yml", StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
+        {
+            using var manifestStream = manifestEntry.Open();
+            using var manifestReader = new StreamReader(manifestStream);
+            if (TryParse(manifestReader.ReadToEnd(), out var modFileManifest))
+                return modFileManifest;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Gets the mod file manifest for the specified <paramref name="package"/>, asynchronously, if it has one
+    /// </summary>
+    public static async Task<ModFileManifestModel?> GetModFileManifestAsync(DataBasePackedFile package)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        ModFileManifestModel? modFileManifest = null;
+        try
+        {
+            using var cts = new CancellationTokenSource();
+            await package.ForEachAsync(ResourceKeyOrder.TypeGroupInstance, key => key.Type is ResourceType.SnippetTuning, (key, content) =>
+            {
+                try
+                {
+                    modFileManifest = Decode(content);
+                    cts.Cancel();
+                }
+                catch (XmlException)
+                {
+                }
+                return Task.CompletedTask;
+            }, cts.Token).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        return modFileManifest;
+    }
+
+    /// <summary>
+    /// Gets the mod file manifest for the specified <paramref name="scriptMod"/>, asynchronously, if it has one
+    /// </summary>
+    public static async Task<ModFileManifestModel?> GetModFileManifestAsync(ZipArchive scriptMod)
+    {
+        ArgumentNullException.ThrowIfNull(scriptMod);
+        if (scriptMod.Entries.FirstOrDefault(entry => entry.FullName.Equals("manifest.yml", StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
+        {
+            using var manifestStream = manifestEntry.Open();
+            using var manifestReader = new StreamReader(manifestStream);
+            if (TryParse(await manifestReader.ReadToEndAsync().ConfigureAwait(false), out var modFileManifest))
+                return modFileManifest;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Gets the mod file manifests for the specified <paramref name="package"/> (for use by editors checking for packages which may have been merged by manifest unaware tooling)
+    /// </summary>
+    public static IReadOnlyDictionary<ResourceKey, ModFileManifestModel> GetModFileManifests(DataBasePackedFile package)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        var result = new Dictionary<ResourceKey, ModFileManifestModel>();
+        package.ForEach(ResourceKeyOrder.TypeGroupInstance, key => key.Type is ResourceType.SnippetTuning, (key, content) =>
+        {
+            try
+            {
+                result.Add(key, Decode(content));
+            }
+            catch (XmlException)
+            {
+            }
+        });
+        return result;
+    }
+
+    /// <summary>
+    /// Gets the mod file manifests for the specified <paramref name="package"/>, asynchronously (for use by editors checking for packages which may have been merged by manifest unaware tooling)
+    /// </summary>
+    public static async Task<IReadOnlyDictionary<ResourceKey, ModFileManifestModel>> GetModFileManifestsAsync(DataBasePackedFile package)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        var result = new Dictionary<ResourceKey, ModFileManifestModel>();
+        await package.ForEachAsync(ResourceKeyOrder.TypeGroupInstance, key => key.Type is ResourceType.SnippetTuning, (key, content) =>
+        {
+            try
+            {
+                result.Add(key, Decode(content));
+            }
+            catch (XmlException)
+            {
+            }
+            return Task.CompletedTask;
+        }).ConfigureAwait(false);
+        return result;
     }
 
     /// <inheritdoc/>
@@ -157,38 +399,56 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the globally unique names of the exclusivities of this mod, causing it to be incompatible with other mods which share one or more of them
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Exclusivities { get; private set; } = [];
 
     /// <summary>
     /// Gets the names of the features unique to this mod which it offers to other mods as a dependency
     /// </summary>
-    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Features { get; private set; } = [];
+
+    /// <summary>
+    /// Gets/sets the hash of the mod file
+    /// </summary>
+    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+    public ImmutableArray<byte> Hash { get; set; }
+
+    /// <summary>
+    /// Gets the resource keys omitted from the <see cref="ResourceHashStrategy"/> (this is typically not used)
+    /// </summary>
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public HashSet<ResourceKey> HashResourceKeys { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of resources the mod intends to override
     /// </summary>
-    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the name of the mod
     /// </summary>
-    [YamlMember(Order = 1)]
+    [YamlMember(Order = 1, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
     public required string Name { get; set; }
 
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
+
+    /// <summary>
+    /// Gets/sets the <see cref="ModFileManifestResourceHashStrategy"/> to use when producing this mod file's <see cref="Hash"/> if it is a package
+    /// </summary>
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+    public ModFileManifestResourceHashStrategy ResourceHashStrategy { get; set; }
 
     /// <inheritdoc/>
     [YamlIgnore]
@@ -196,46 +456,34 @@ public sealed class ModFileManifestModel :
         TuningName;
 
     /// <summary>
-    /// Gets the hashes of files in for which I stand even though my hash is different
+    /// Gets the hashes of previous versions of this mod in for which I stand even though my hash is different
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files in for which I stand even though my hash is different")]
-    public HashSet<byte[]> SubsumedFiles { get; private set; } = [];
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public HashSet<ImmutableArray<byte>> SubsumedHashes { get; private set; } = [];
 
     /// <summary>
     /// Gets the <see cref="ResourceType.SnippetTuning"/> name for the mod file manifest
     /// </summary>
-    [YamlIgnore]
+    [YamlMember(Order = -1, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? TuningName { get; set; }
 
     /// <summary>
     /// Gets the <see cref="ResourceType.SnippetTuning"/> decimal conversion of the <see cref="ResourceKey.FullInstance"/> for the mod file manifest
     /// </summary>
-    [YamlIgnore]
+    [YamlMember(Order = -2, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
     public ulong TuningFullInstance { get; set; }
 
     /// <summary>
     /// Gets/sets the URL to which players can go to find more information about this mod
     /// </summary>
-    [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = YamlDotNet.Core.ScalarStyle.SingleQuoted)]
+    [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public Uri? Url { get; set; }
 
     /// <summary>
     /// Gets/sets the version of this mod
     /// </summary>
-    [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = YamlDotNet.Core.ScalarStyle.SingleQuoted)]
+    [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public Version? Version { get; set; }
-
-    /// <summary>
-    /// Adds a subsumed file based on its <paramref name="path"/>, returning whether the file was added because it was not already present in the list
-    /// </summary>
-    public bool AddSubsumedFile(string path) =>
-        SubsumedFiles.Add(GetFileSha256Hash(path));
-
-    /// <summary>
-    /// Adds a file based on its <paramref name="path"/> asynchronously, returning whether the file was added because it was not already present in the list
-    /// </summary>
-    public async Task<bool> AddSubsumedFileAsync(string path) =>
-        SubsumedFiles.Add(await GetFileSha256HashAsync(path).ConfigureAwait(false));
 
     /// <inheritdoc/>
     public override ReadOnlyMemory<byte> Encode()
@@ -246,18 +494,6 @@ public sealed class ModFileManifestModel :
         xmlWriter.Flush();
         return arrayBufferWriterOfByteStream.WrittenMemory;
     }
-
-    /// <summary>
-    /// Removes a subsumed file based on its <paramref name="path"/>, returning whether the file was removed because it was present in the list
-    /// </summary>
-    public bool RemoveSubsumedFile(string path) =>
-        SubsumedFiles.Remove(GetFileSha256Hash(path));
-
-    /// <summary>
-    /// Removes a subsumed file based on its <paramref name="path"/> asynchronously, returning whether the file was removed because it was present in the list
-    /// </summary>
-    public async Task<bool> RemoveSubsumedFileAsync(string path) =>
-        SubsumedFiles.Remove(await GetFileSha256HashAsync(path).ConfigureAwait(false));
 
     /// <summary>
     /// Generates the YAML representation of the <see cref="ModFileManifestModel"/>
@@ -297,20 +533,26 @@ public sealed class ModFileManifestModel :
                     Exclusivities.AddRange(reader.ReadTunableList());
                 else if (tunableName == "features")
                     Features.AddRange(reader.ReadTunableList());
+                else if (tunableName == "hash_resource_keys")
+                    HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
                 else if (tunableName == "intentional_overrides")
                     IntentionalOverrides.AddRange(reader.ReadTunableTupleList<ModFileManifestModelIntentionalOverride>());
                 else if (tunableName == "required_mods")
                     RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
                 else if (tunableName == "required_packs")
                     RequiredPacks.AddRange(reader.ReadTunableList());
-                else if (tunableName == "subsumed_files")
-                    SubsumedFiles.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteArray()));
+                else if (tunableName == "subsumed_hashes")
+                    SubsumedHashes.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
             }
             else
             {
                 var tunableValue = reader.ReadElementContentAsString();
                 if (tunableName == "name")
                     Name = tunableValue;
+                else if (tunableName == "hash")
+                    Hash = tunableValue.ToByteSequence().ToImmutableArray();
+                else if (tunableName == "resource_hash_strategy")
+                    ResourceHashStrategy = Enum.Parse<ModFileManifestResourceHashStrategy>(tunableValue);
                 else if (tunableName == "version")
                     Version = Version.Parse(tunableValue);
                 else if (tunableName == "url")
@@ -332,9 +574,12 @@ public sealed class ModFileManifestModel :
         writer.WriteTunableList("creators", Creators);
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
+        writer.WriteTunable("hash", Hash);
+        writer.WriteTunable("resource_hash_strategy", ResourceHashStrategy);
+        writer.WriteTunableList("hash_resource_keys", HashResourceKeys);
+        writer.WriteTunableList("subsumed_hashes", SubsumedHashes);
         writer.WriteTunableList("features", Features);
         writer.WriteTunableList("exclusivities", Exclusivities);
-        writer.WriteTunableList("subsumed_files", SubsumedFiles);
         writer.WriteTunableList("required_packs", RequiredPacks);
         writer.WriteTunableList("required_mods", RequiredMods);
         writer.WriteTunableList("intentional_overrides", IntentionalOverrides);

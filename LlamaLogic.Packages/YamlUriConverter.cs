@@ -13,10 +13,17 @@ sealed class YamlUriConverter :
     {
         try
         {
-            return parser.Current is Scalar scalar
-                && scalar.Value is string uriString
-                && !uriString.Equals("null", StringComparison.OrdinalIgnoreCase)
-                && Uri.TryCreate(uriString, UriKind.Absolute, out var uri)
+            if (parser.Current is not Scalar scalar)
+                return null;
+            if (scalar.Value is not string uriString)
+                return null;
+            if (uriString.Equals("null", StringComparison.OrdinalIgnoreCase))
+                return null;
+            if ((uriString.StartsWith("'", StringComparison.OrdinalIgnoreCase) && uriString.EndsWith("'", StringComparison.OrdinalIgnoreCase)
+                || uriString.StartsWith("\"", StringComparison.OrdinalIgnoreCase) && uriString.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
+                && Uri.TryCreate(uriString[1..^1], UriKind.Absolute, out var quotedUri))
+                return quotedUri;
+            return Uri.TryCreate(uriString, UriKind.Absolute, out var uri)
                 ? uri
                 : null;
         }

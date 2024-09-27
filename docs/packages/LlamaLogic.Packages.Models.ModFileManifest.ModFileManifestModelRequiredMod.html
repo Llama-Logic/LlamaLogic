@@ -189,20 +189,20 @@ public Collection&lt;string&gt; Creators { get; }</code></pre>
 
 
 
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Files_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files*"></a>
+  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Hashes_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes*"></a>
 
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Files" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files">
-  Files
+  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Hashes" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes">
+  Hashes
   <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the hashes of files that must be present in order for this dependency to be fulfilled</p>
+  <div class="markdown level1 summary"><p>Gets the hashes of the mod files that must be present in order for this dependency to be fulfilled</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = &quot;hashes of files that must be present in order for this dependency to be fulfilled&quot;)]
-public HashSet&lt;byte[]&gt; Files { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 8)]
+public HashSet&lt;ImmutableArray&lt;byte&gt;&gt; Hashes { get; }</code></pre>
   </div>
 
 
@@ -211,7 +211,7 @@ public HashSet&lt;byte[]&gt; Files { get; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -234,7 +234,7 @@ public HashSet&lt;byte[]&gt; Files { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 5)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public ResourceKey? ModManifestKey { get; set; }</code></pre>
   </div>
 
@@ -300,7 +300,7 @@ public string Name { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 public Collection&lt;string&gt; RequiredFeatures { get; }</code></pre>
   </div>
 
@@ -333,7 +333,7 @@ public Collection&lt;string&gt; RequiredFeatures { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public string? RequirementIdentifier { get; set; }</code></pre>
   </div>
 
@@ -366,7 +366,7 @@ public string? RequirementIdentifier { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = ScalarStyle.SingleQuoted)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public Uri? Url { get; set; }</code></pre>
   </div>
 
@@ -399,7 +399,7 @@ public Uri? Url { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = ScalarStyle.SingleQuoted)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public Version? Version { get; set; }</code></pre>
   </div>
 
@@ -412,158 +412,6 @@ public Version? Version { get; set; }</code></pre>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.version">Version</a></dt>
     <dd></dd>
   </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_AddFile_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_AddFile_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile(System.String)">
-  AddFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs/#L60"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Adds a file based on its <code class="paramref">path</code>, returning whether the file was added because it was not already present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool AddFile(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_AddFileAsync_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_AddFileAsync_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync(System.String)">
-  AddFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs/#L66"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Adds a file based on its <code class="paramref">path</code> asynchronously, returning whether the file was added because it was not already present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; AddFileAsync(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RemoveFile_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RemoveFile_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(System.String)">
-  RemoveFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs/#L72"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Removes a file based on its <code class="paramref">path</code>, returning whether the file was removed because it was present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool RemoveFile(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RemoveFileAsync_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RemoveFileAsync_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(System.String)">
-  RemoveFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs/#L78"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Removes a file based on its <code class="paramref">path</code> asynchronously, returning whether the file was removed because it was present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; RemoveFileAsync(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
 
 
 

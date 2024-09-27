@@ -156,6 +156,39 @@ Class ModFileManifestModelIntentionalOverride  <a class="header-action link-seco
 </h2>
 
 
+  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_Hash_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash*"></a>
+
+  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_Hash" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash">
+  Hash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the hash of the mod file in which the resource is being overridden (optional)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+public ImmutableArray&lt;byte&gt; Hash { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_Key_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Key*"></a>
 
   <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_Key" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Key">
@@ -189,39 +222,6 @@ public ResourceKey Key { get; set; }</code></pre>
 
 
 
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_ModFiles_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_ModFiles" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles">
-  ModFiles
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs/#L18"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets the hashes of the files for the mod in which the resource is being overridden (optional)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = &quot;hashes of files of which this mod intends to override this resource&quot;)]
-public HashSet&lt;byte[]&gt; ModFiles { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_ModManifestKey_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModManifestKey*"></a>
 
   <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_ModManifestKey" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModManifestKey">
@@ -234,7 +234,7 @@ public HashSet&lt;byte[]&gt; ModFiles { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 5)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public ResourceKey? ModManifestKey { get; set; }</code></pre>
   </div>
 
@@ -267,7 +267,7 @@ public ResourceKey? ModManifestKey { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 3)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public string? ModName { get; set; }</code></pre>
   </div>
 
@@ -300,7 +300,7 @@ public string? ModName { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 4)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public Version? ModVersion { get; set; }</code></pre>
   </div>
 
@@ -333,7 +333,7 @@ public Version? ModVersion { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 2)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 2, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 public string? Name { get; set; }</code></pre>
   </div>
 
@@ -346,158 +346,6 @@ public string? Name { get; set; }</code></pre>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_AddModFile_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_AddModFile_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile(System.String)">
-  AddModFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs/#L48"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Adds a mod file based on its <code class="paramref">path</code>, returning whether the file was added because it was not already present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool AddModFile(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_AddModFileAsync_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_AddModFileAsync_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync(System.String)">
-  AddModFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs/#L54"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Adds a mod file based on its <code class="paramref">path</code> asynchronously, returning whether the file was added because it was not already present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; AddModFileAsync(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_RemoveModFile_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_RemoveModFile_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile(System.String)">
-  RemoveModFile(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs/#L60"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Removes a mod file based on its <code class="paramref">path</code>, returning whether the file was removed because it was present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool RemoveModFile(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_RemoveModFileAsync_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync*"></a>
-
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_RemoveModFileAsync_System_String_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync(System.String)">
-  RemoveModFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs/#L66"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Removes a mod file based on its <code class="paramref">path</code> asynchronously, returning whether the file was removed because it was present in the list</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; RemoveModFileAsync(string path)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
 
 
 

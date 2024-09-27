@@ -12,6 +12,7 @@ static class TuningUtilities
 
     public static (string? name, bool isList) ReadTunableDetails(this XmlReader reader)
     {
+        ArgumentNullException.ThrowIfNull(reader);
         if (reader.NodeType is not XmlNodeType.Element)
             throw new XmlException("Expected a tunable element");
         return(reader.GetAttribute("n"), reader.Name == "L");
@@ -19,6 +20,7 @@ static class TuningUtilities
 
     public static IEnumerable<string> ReadTunableList(this XmlReader reader)
     {
+        ArgumentNullException.ThrowIfNull(reader);
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "L")
             throw new XmlException("Expected a tunable list element");
         while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
@@ -32,6 +34,7 @@ static class TuningUtilities
     public static IEnumerable<TTuple> ReadTunableTupleList<TTuple>(this XmlReader reader)
         where TTuple : IXmlSerializable, new()
     {
+        ArgumentNullException.ThrowIfNull(reader);
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "L")
             throw new XmlException("Expected a tunable list element");
         while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
@@ -44,23 +47,24 @@ static class TuningUtilities
         reader.ReadEndElement();
     }
 
-    public static byte[] ToByteArray(this string hex)
+    public static IEnumerable<byte> ToByteSequence(this string hex)
     {
+        ArgumentNullException.ThrowIfNull(hex);
         if (hex.Length % 2 != 0)
             throw new ArgumentException("Hex string must have an even number of characters");
         return Enumerable
             .Range(0, hex.Length / 2)
             .Select(byteIndex => hex.Substring(byteIndex * 2, 2))
-            .Select(byteHex => byte.Parse(byteHex, NumberStyles.HexNumber))
-            .ToArray();
+            .Select(byteHex => byte.Parse(byteHex, NumberStyles.HexNumber));
     }
 
-    public static string ToHexString(this byte[] bytes) =>
+    public static string ToHexString(this IEnumerable<byte> bytes) =>
         string.Join(string.Empty, bytes.Select(b => b.ToString("x2")));
 
-    public static void WriteTunable(this XmlWriter writer, string? name, object? value)
+    public static void WriteTunable<T>(this XmlWriter writer, string? name, T value)
     {
-        var valueStr = value is byte[] hash
+        ArgumentNullException.ThrowIfNull(writer);
+        var valueStr = value is IEnumerable<byte> hash
             ? string.Join(string.Empty, hash.Select(b => b.ToString("x2")))
             : value?.ToString();
         if (!string.IsNullOrWhiteSpace(valueStr))
@@ -73,8 +77,10 @@ static class TuningUtilities
         }
     }
 
-    public static void WriteTunableList(this XmlWriter writer, string name, IEnumerable<object?> enumerable)
+    public static void WriteTunableList<T>(this XmlWriter writer, string name, IEnumerable<T> enumerable)
     {
+        ArgumentNullException.ThrowIfNull(writer);
+        ArgumentNullException.ThrowIfNull(enumerable);
         if (enumerable.Any())
         {
             writer.WriteStartElement("L");

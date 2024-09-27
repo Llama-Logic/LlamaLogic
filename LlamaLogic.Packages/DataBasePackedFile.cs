@@ -159,6 +159,14 @@ public sealed class DataBasePackedFile :
         throw new NotSupportedException($"Compression type {compressionType} not supported");
     }
 
+    static ReadOnlyMemory<byte> FetchRawMemory(LoadedResource loadedResource, bool force)
+    {
+        var (memory, compressionType, _) = loadedResource;
+        if (compressionType is mnCompressionType.Deleted_record && !force)
+            throw new FileNotFoundException($"Resource is marked as deleted (you can provide a value of {true} for the {nameof(force)} parameter of the retrieval method you used to try to recover the content anyway, but this is not guaranteed to work)");
+        return memory;
+    }
+
     /// <summary>
     /// Initializes a <see cref="DataBasePackedFile"/> asynchronously from the specified <paramref name="path"/> (🗑️💤)
     /// </summary>
@@ -499,7 +507,7 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Copies the package in binary format to the specified <paramref name="destination"/> (🔄️🏃)
     /// </summary>
-    /// <exception cref="ArgumentNullException"><paramref name="destination"/> is <c>null</c></exception>
+    /// <exception cref="ArgumentNullException"><paramref name="destination"/> is <see langword="null"/></exception>
     /// <exception cref="ArgumentException"><paramref name="destination"/> is not writeable</exception>
     public void CopyTo(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     {
@@ -511,7 +519,7 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Copies the package in binary format to the specified <paramref name="destination"/> asynchronously (🔄️🏃)
     /// </summary>
-    /// <exception cref="ArgumentNullException"><paramref name="destination"/> is <c>null</c></exception>
+    /// <exception cref="ArgumentNullException"><paramref name="destination"/> is <see langword="null"/></exception>
     /// <exception cref="ArgumentException"><paramref name="destination"/> is not writeable</exception>
     public async Task CopyToAsync(Stream destination, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     {
@@ -521,7 +529,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Deletes the resource with the specified <paramref name="key"/> and returns <c>true</c> if it was found; otherwise, <c>false</c>
+    /// Deletes the resource with the specified <paramref name="key"/> and returns <see langword="true"/> if it was found; otherwise, <see langword="false"/>
     /// </summary>
     public bool Delete(ResourceKey key)
     {
@@ -597,32 +605,170 @@ public sealed class DataBasePackedFile :
         return content;
     }
 
-    Stream FetchStream(IndexEntry indexEntry, bool force)
+    ReadOnlyMemory<byte> FetchRawMemory(IndexEntry indexEntry, bool force)
+    {
+        using var contentStream = FetchRawStream(indexEntry, force);
+        Memory<byte> content = new byte[contentStream.Length];
+        contentStream.Read(content.Span);
+        return content;
+    }
+
+    async Task<ReadOnlyMemory<byte>> FetchRawMemoryAsync(IndexEntry indexEntry, bool force, CancellationToken cancellationToken)
+    {
+        using var contentStream = FetchRawStream(indexEntry, force);
+        Memory<byte> content = new byte[contentStream.Length];
+        await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
+        return content;
+    }
+
+    ReadOnlySubStream FetchRawStream(IndexEntry indexEntry, bool force)
     {
         if (indexEntry.mnCompressionType is mnCompressionType.Deleted_record && !force)
             throw new FileNotFoundException($"Resource is marked as deleted (you can provide a value of {true} for the {nameof(force)} parameter of the retrieval method you used to try to recover the content anyway, but this is not guaranteed to work)");
         RequireStream();
         var position = (int)indexEntry.mnPosition;
         var compressedSize = (int)(indexEntry.mnSize & mbCompressionType.mnSizeMask);
-        Stream contentStream = new ReadOnlySubStream(stream, new Range(Index.FromStart(position), Index.FromStart(position + compressedSize)));
+        return new ReadOnlySubStream(stream, new Range(Index.FromStart(position), Index.FromStart(position + compressedSize)));
+    }
+
+    Stream FetchStream(IndexEntry indexEntry, bool force)
+    {
+        Stream rawStream = FetchRawStream(indexEntry, force);
         if (indexEntry.mnCompressionType is mnCompressionType.ZLIB)
-            contentStream = new InflaterInputStream(contentStream);
+            rawStream = new InflaterInputStream(rawStream);
         else if (indexEntry.mnCompressionType is mnCompressionType.Internal_compression or mnCompressionType.Streamable_compression)
-            contentStream = new LegacyDecompressionStream(contentStream);
+            rawStream = new LegacyDecompressionStream(rawStream);
         else if (indexEntry.mnCompressionType is not mnCompressionType.Uncompressed)
             throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} not supported");
-        return contentStream;
+        return rawStream;
+    }
+
+    /// <summary>
+    /// Processes undeleted resources in the specified <paramref name="keyOrder"/> if they satisfy the specified <paramref name="keyPredicate"/> using the specified <paramref name="processResourceAction"/>
+    /// </summary>
+    public void ForEach(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Action<ResourceKey, ReadOnlyMemory<byte>> processResourceAction, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(keyPredicate);
+        ArgumentNullException.ThrowIfNull(processResourceAction);
+        RequireNotDisposed();
+        using var heldResourceLock = resourceLock.Lock(cancellationToken);
+        foreach (var key in InternalGetKeys(keyOrder))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (keyPredicate(key))
+            {
+                ReadOnlyMemory<byte> content;
+                try
+                {
+                    content = InternalGet(key, false);
+                }
+                catch (FileNotFoundException)
+                {
+                    continue;
+                }
+                processResourceAction(key, content);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Processes undeleted resources in the specified <paramref name="keyOrder"/> if they satisfy the specified <paramref name="keyPredicate"/> using the specified <paramref name="processResourceAsyncAction"/>
+    /// </summary>
+    public async Task ForEachAsync(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Func<ResourceKey, ReadOnlyMemory<byte>, Task> processResourceAsyncAction, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(keyPredicate);
+        ArgumentNullException.ThrowIfNull(processResourceAsyncAction);
+        RequireNotDisposed();
+        using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
+        foreach (var key in InternalGetKeys(keyOrder))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (keyPredicate(key))
+            {
+                ReadOnlyMemory<byte> content;
+                try
+                {
+                    content = await InternalGetAsync(key, false, cancellationToken).ConfigureAwait(false);
+                }
+                catch (FileNotFoundException)
+                {
+                    continue;
+                }
+                await processResourceAsyncAction(key, content).ConfigureAwait(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Processes undeleted raw resources (meaning that the library will not decompress a resource for you if it is compressed) in the specified <paramref name="keyOrder"/> if they satisfy the specified <paramref name="keyPredicate"/> using the specified <paramref name="processResourceAction"/>
+    /// </summary>
+    public void ForEachRaw(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Action<ResourceKey, ReadOnlyMemory<byte>> processResourceAction, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(keyPredicate);
+        ArgumentNullException.ThrowIfNull(processResourceAction);
+        RequireNotDisposed();
+        using var heldResourceLock = resourceLock.Lock(cancellationToken);
+        foreach (var key in InternalGetKeys(keyOrder))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (keyPredicate(key))
+            {
+                ReadOnlyMemory<byte> content;
+                try
+                {
+                    content = InternalGetRaw(key, false);
+                }
+                catch (FileNotFoundException)
+                {
+                    continue;
+                }
+                processResourceAction(key, content);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Processes undeleted raw resources (meaning that the library will not decompress a resource for you if it is compressed) in the specified <paramref name="keyOrder"/> if they satisfy the specified <paramref name="keyPredicate"/> using the specified <paramref name="processResourceAsyncAction"/>
+    /// </summary>
+    public async Task ForEachRawAsync(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Func<ResourceKey, ReadOnlyMemory<byte>, Task> processResourceAsyncAction, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(keyPredicate);
+        ArgumentNullException.ThrowIfNull(processResourceAsyncAction);
+        RequireNotDisposed();
+        using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
+        foreach (var key in InternalGetKeys(keyOrder))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (keyPredicate(key))
+            {
+                ReadOnlyMemory<byte> content;
+                try
+                {
+                    content = await InternalGetRawAsync(key, false, cancellationToken).ConfigureAwait(false);
+                }
+                catch (FileNotFoundException)
+                {
+                    continue;
+                }
+                await processResourceAsyncAction(key, content).ConfigureAwait(false);
+            }
+        }
     }
 
     /// <summary>
     /// Gets the content of a resource with the specified <paramref name="key"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
-    /// <param name="force"><c>true</c> to get the content of the resource even if it has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     public ReadOnlyMemory<byte> Get(ResourceKey key, bool force = false)
     {
         RequireNotDisposed();
         using var heldResourceLock = resourceLock.Lock();
+        return InternalGet(key, force);
+    }
+
+    ReadOnlyMemory<byte> InternalGet(ResourceKey key, bool force)
+    {
         ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
         if (!Unsafe.IsNullRef(ref indexEntry))
             return FetchMemory(indexEntry, force);
@@ -671,7 +817,7 @@ public sealed class DataBasePackedFile :
     /// Gets the content of a resource with the specified <paramref name="key"/> asynchronously
     /// </summary>
     /// <param name="key">The key of the resource</param>
-    /// <param name="force"><c>true</c> to get the content of the resource even if it has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
     public async Task<ReadOnlyMemory<byte>> GetAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
     {
@@ -837,6 +983,31 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
+    /// Gets the raw content of a resource with the specified <paramref name="key"/>, meaning that the library will not decompress it for you if it is compressed
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
+    public ReadOnlyMemory<byte> GetRaw(ResourceKey key, bool force = false)
+    {
+        RequireNotDisposed();
+        using var heldResourceLock = resourceLock.Lock();
+        return InternalGetRaw(key, force);
+    }
+
+    /// <summary>
+    /// Gets the raw content of a resource with the specified <paramref name="key"/> asynchronously, meaning that the library will not decompress it for you if it is compressed
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    public async Task<ReadOnlyMemory<byte>> GetRawAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    {
+        RequireNotDisposed();
+        using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
+        return await InternalGetRawAsync(key, force, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>
     /// Gets the size of the content of the resource with the specified <paramref name="key"/>
     /// </summary>
     public int GetSize(ResourceKey key)
@@ -880,7 +1051,7 @@ public sealed class DataBasePackedFile :
     /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="string"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
-    /// <param name="force"><c>true</c> to get the content of the resource even if it has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     public string GetText(ResourceKey key, bool force = false)
     {
         using var contentStreamReader = new StreamReader(new ReadOnlyMemoryOfByteStream(Get(key, force)));
@@ -891,7 +1062,7 @@ public sealed class DataBasePackedFile :
     /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="string"/> asynchronously
     /// </summary>
     /// <param name="key">The key of the resource</param>
-    /// <param name="force"><c>true</c> to get the content of the resource even if it has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
     public async Task<string> GetTextAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
     {
@@ -908,7 +1079,7 @@ public sealed class DataBasePackedFile :
     /// Gets the content of a resource with the specified <paramref name="key"/> as an <see cref="XDocument"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
-    /// <param name="force"><c>true</c> to get the content of the resource even if it has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     public XDocument GetXml(ResourceKey key, bool force = false)
     {
         using var contentStream = new ReadOnlyMemoryOfByteStream(Get(key, force));
@@ -919,7 +1090,7 @@ public sealed class DataBasePackedFile :
     /// Gets the content of a resource with the specified <paramref name="key"/> as an <see cref="XDocument"/> asynchronously
     /// </summary>
     /// <param name="key">The key of the resource</param>
-    /// <param name="force"><c>true</c> to get the content of the resource even if it has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resource even if it has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
     public async Task<XDocument> GetXmlAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
     {
@@ -1273,9 +1444,41 @@ public sealed class DataBasePackedFile :
     ImmutableArray<ResourceKey> InternalGetKeys(ResourceKeyOrder resourceKeyOrder) =>
         [..(resourceKeyOrder switch
         {
-            ResourceKeyOrder.InstanceTypeGroup => keysInIndexOrder.OrderBy(key => key.FullInstance).ThenBy(key => key.Group).ThenBy(key => key.Type),
+            ResourceKeyOrder.InstanceTypeGroup => keysInIndexOrder.OrderBy(key => key.FullInstance).ThenBy(key => key.Type).ThenBy(key => key.Group),
+            ResourceKeyOrder.TypeGroupInstance => keysInIndexOrder.OrderBy(key => key.Type).ThenBy(key => key.Group).ThenBy(key => key.FullInstance),
             _ => (IEnumerable<ResourceKey>)keysInIndexOrder
         })];
+
+    ReadOnlyMemory<byte> InternalGetRaw(ResourceKey key, bool force)
+    {
+        ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
+        if (!Unsafe.IsNullRef(ref indexEntry))
+            return FetchRawMemory(indexEntry, force);
+        ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
+        if (!Unsafe.IsNullRef(ref loadedResource))
+            return FetchRawMemory(loadedResource, force);
+        throw new KeyNotFoundException($"Key {key} not found");
+    }
+
+    Task<ReadOnlyMemory<byte>> InternalGetRawAsync(ResourceKey key, bool force, CancellationToken cancellationToken)
+    {
+        ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
+        if (!Unsafe.IsNullRef(ref indexEntry))
+            return FetchRawMemoryAsync(indexEntry, force, cancellationToken);
+        ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
+        if (!Unsafe.IsNullRef(ref loadedResource))
+        {
+            try
+            {
+                return Task.FromResult(FetchRawMemory(loadedResource, force));
+            }
+            catch (Exception ex)
+            {
+                return Task.FromException<ReadOnlyMemory<byte>>(ex);
+            }
+        }
+        return Task.FromException<ReadOnlyMemory<byte>>(new KeyNotFoundException($"Key {key} not found"));
+    }
 
     void InternalLoadAll(bool force, CompressionMode compressionMode)
     {
@@ -1412,7 +1615,7 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Loads all resources in the package into memory
     /// </summary>
-    /// <param name="force"><c>true</c> to get the content of the resources even if they has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resources even if they has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     /// <param name="compressionMode">The compression mode to use for resources in memory</param>
     public void LoadAll(bool force = false, CompressionMode compressionMode = CompressionMode.Auto)
     {
@@ -1444,7 +1647,7 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Loads all resources in the package into memory
     /// </summary>
-    /// <param name="force"><c>true</c> to get the content of the resources even if they has been marked as deleted; otheriwse, <c>false</c> (default)</param>
+    /// <param name="force"><see langword="true"/> to get the content of the resources even if they has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
     /// <param name="compressionMode">The compression mode to use for resources in memory</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
     public async Task LoadAllAsync(bool force = false, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
@@ -1640,7 +1843,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1654,7 +1857,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1666,7 +1869,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1681,7 +1884,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1699,7 +1902,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1715,7 +1918,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1728,7 +1931,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1744,7 +1947,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="content"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
@@ -1763,7 +1966,7 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the <paramref name="xmlContent"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="xmlContent"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="xmlContent">The XML content of the resource</param>
@@ -1772,7 +1975,7 @@ public sealed class DataBasePackedFile :
         Set(key, XDocument.Parse(xmlContent, TuningUtilities.XDocumentLoadOptions), compressionMode);
 
     /// <summary>
-    /// Sets the <paramref name="xmlContent"/> of a resource with the specified <paramref name="key"/>, returning <c>true</c> if the resource was compressed; otherwise, <c>false</c>
+    /// Sets the <paramref name="xmlContent"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="xmlContent">The XML content of the resource</param>

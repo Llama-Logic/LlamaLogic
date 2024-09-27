@@ -12,10 +12,17 @@ sealed class YamlResourceKeyConverter :
     {
         try
         {
-            return parser.Current is Scalar scalar
-                && scalar.Value is string versionString
-                && !versionString.Equals("null", StringComparison.OrdinalIgnoreCase)
-                && ResourceKey.TryParse(versionString, out var resourceKey)
+            if (parser.Current is not Scalar scalar)
+                return null;
+            if (scalar.Value is not string resourceKeyString)
+                return null;
+            if (resourceKeyString.Equals("null", StringComparison.OrdinalIgnoreCase))
+                return null;
+            if ((resourceKeyString.StartsWith("'", StringComparison.OrdinalIgnoreCase) && resourceKeyString.EndsWith("'", StringComparison.OrdinalIgnoreCase)
+                || resourceKeyString.StartsWith("\"", StringComparison.OrdinalIgnoreCase) && resourceKeyString.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
+                && ResourceKey.TryParse(resourceKeyString[1..^1], out var quotedResourceKey))
+                return quotedResourceKey;
+            return ResourceKey.TryParse(resourceKeyString, out var resourceKey)
                 ? resourceKey
                 : (object?)null;
         }

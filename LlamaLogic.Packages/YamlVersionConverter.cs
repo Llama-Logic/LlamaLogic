@@ -12,10 +12,17 @@ sealed class YamlVersionConverter :
     {
         try
         {
-            return parser.Current is Scalar scalar
-                && scalar.Value is string versionString
-                && !versionString.Equals("null", StringComparison.OrdinalIgnoreCase)
-                && Version.TryParse(versionString, out var version)
+            if (parser.Current is not Scalar scalar)
+                return null;
+            if (scalar.Value is not string versionString)
+                return null;
+            if (versionString.Equals("null", StringComparison.OrdinalIgnoreCase))
+                return null;
+            if ((versionString.StartsWith("'", StringComparison.OrdinalIgnoreCase) && versionString.EndsWith("'", StringComparison.OrdinalIgnoreCase)
+                || versionString.StartsWith("\"", StringComparison.OrdinalIgnoreCase) && versionString.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
+                && Version.TryParse(versionString[1..^1], out var quotedVersion))
+                return quotedVersion;
+            return Version.TryParse(versionString, out var version)
                 ? version
                 : null;
         }

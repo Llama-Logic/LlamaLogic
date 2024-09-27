@@ -13,58 +13,34 @@ public sealed class ModFileManifestModelIntentionalOverride :
     public ResourceKey Key { get; set; }
 
     /// <summary>
-    /// Gets the hashes of the files for the mod in which the resource is being overridden (optional)
+    /// Gets the hash of the mod file in which the resource is being overridden (optional)
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files of which this mod intends to override this resource")]
-    public HashSet<byte[]> ModFiles { get; private set; } = [];
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+    public ImmutableArray<byte> Hash { get; set; }
 
     /// <summary>
     /// Gets/sets the name of the mod in which the resource is being overridden (optional)
     /// </summary>
-    [YamlMember(Order = 3)]
+    [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ModName { get; set; }
 
     /// <summary>
     /// Gets/sets the <see cref="ResourceKey"/> of the mod manifest <see cref="ResourceType.SnippetTuning"/> of the mod in which the resource is being overridden (optional)
     /// </summary>
-    [YamlMember(Order = 5)]
+    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public ResourceKey? ModManifestKey { get; set; }
 
     /// <summary>
     /// Gets/sets the name of the resource in the mod that is being overridden (optional)
     /// </summary>
-    [YamlMember(Order = 2)]
+    [YamlMember(Order = 2, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? Name { get; set; }
 
     /// <summary>
     /// Gets/sets the version of the mod in which the resource is being overridden (optional)
     /// </summary>
-    [YamlMember(Order = 4)]
+    [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public Version? ModVersion { get; set; }
-
-    /// <summary>
-    /// Adds a mod file based on its <paramref name="path"/>, returning whether the file was added because it was not already present in the list
-    /// </summary>
-    public bool AddModFile(string path) =>
-        ModFiles.Add(ModFileManifestModel.GetFileSha256Hash(path));
-
-    /// <summary>
-    /// Adds a mod file based on its <paramref name="path"/> asynchronously, returning whether the file was added because it was not already present in the list
-    /// </summary>
-    public async Task<bool> AddModFileAsync(string path) =>
-        ModFiles.Add(await ModFileManifestModel.GetFileSha256HashAsync(path).ConfigureAwait(false));
-
-    /// <summary>
-    /// Removes a mod file based on its <paramref name="path"/>, returning whether the file was removed because it was present in the list
-    /// </summary>
-    public bool RemoveModFile(string path) =>
-        ModFiles.Remove(ModFileManifestModel.GetFileSha256Hash(path));
-
-    /// <summary>
-    /// Removes a mod file based on its <paramref name="path"/> asynchronously, returning whether the file was removed because it was present in the list
-    /// </summary>
-    public async Task<bool> RemoveModFileAsync(string path) =>
-        ModFiles.Remove(await ModFileManifestModel.GetFileSha256HashAsync(path).ConfigureAwait(false));
 
     #region IXmlSerializable
 
@@ -81,15 +57,12 @@ public sealed class ModFileManifestModelIntentionalOverride :
             if (reader.NodeType is not XmlNodeType.Element)
                 continue;
             var (tunableName, isList) = reader.ReadTunableDetails();
-            if (isList)
-            {
-                if (tunableName == "files")
-                    ModFiles.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteArray()));
-            }
-            else
+            if (!isList)
             {
                 var tunableValue = reader.ReadElementContentAsString();
-                if (tunableName == "key")
+                if (tunableName == "hash")
+                    Hash = tunableValue.ToByteSequence().ToImmutableArray();
+                else if (tunableName == "key")
                     Key = ResourceKey.Parse(tunableValue);
                 else if (tunableName == "mod_manifest_key")
                     ModManifestKey = ResourceKey.Parse(tunableValue);
@@ -112,7 +85,7 @@ public sealed class ModFileManifestModelIntentionalOverride :
         writer.WriteTunable("mod_name", ModName);
         writer.WriteTunable("mod_version", ModVersion);
         writer.WriteTunable("mod_manifest_key", ModManifestKey);
-        writer.WriteTunableList("mod_files", ModFiles);
+        writer.WriteTunable("hash", Hash);
         writer.WriteEndElement();
     }
 

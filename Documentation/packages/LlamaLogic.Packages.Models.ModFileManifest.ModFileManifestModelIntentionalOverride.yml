@@ -5,16 +5,12 @@ items:
   id: ModFileManifestModelIntentionalOverride
   parent: LlamaLogic.Packages.Models.ModFileManifest
   children:
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile(System.String)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync(System.String)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Key
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModManifestKey
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModName
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModVersion
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Name
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile(System.String)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync(System.String)
   langs:
   - csharp
   - vb
@@ -94,43 +90,43 @@ items:
     - name: Order
       type: System.Int32
       value: 1
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles
-  id: ModFiles
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash
+  id: Hash
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
   langs:
   - csharp
   - vb
-  name: ModFiles
-  nameWithType: ModFileManifestModelIntentionalOverride.ModFiles
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles
+  name: Hash
+  nameWithType: ModFileManifestModelIntentionalOverride.Hash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: ModFiles
+    id: Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
     startLine: 17
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the hashes of the files for the mod in which the resource is being overridden (optional)
+  summary: Gets the hash of the mod file in which the resource is being overridden (optional)
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files of which this mod intends to override this resource")]
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
 
-      public HashSet<byte[]> ModFiles { get; }
+      public ImmutableArray<byte> Hash { get; set; }
     parameters: []
     return:
-      type: System.Collections.Generic.HashSet{System.Byte[]}
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections, Description:="hashes of files of which this mod intends to override this resource")>
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
 
-      Public Property ModFiles As HashSet(Of Byte())
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles*
+      Public Property Hash As ImmutableArray(Of Byte)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -141,10 +137,7 @@ items:
       value: 6
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 4
-    - name: Description
-      type: System.String
-      value: hashes of files of which this mod intends to override this resource
+      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModName
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModName
   id: ModName
@@ -171,14 +164,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 3)]
+      [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? ModName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=3)>
+      <YamlMember(Order:=3, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property ModName As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModName*
@@ -190,6 +183,9 @@ items:
     - name: Order
       type: System.Int32
       value: 3
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModManifestKey
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModManifestKey
   id: ModManifestKey
@@ -216,14 +212,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 5)]
+      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public ResourceKey? ModManifestKey { get; set; }
     parameters: []
     return:
       type: System.Nullable{LlamaLogic.Packages.ResourceKey}
     content.vb: >-
-      <YamlMember(Order:=5)>
+      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property ModManifestKey As ResourceKey?
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModManifestKey*
@@ -235,6 +231,9 @@ items:
     - name: Order
       type: System.Int32
       value: 5
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Name
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Name
   id: Name
@@ -261,14 +260,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 2)]
+      [YamlMember(Order = 2, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? Name { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=2)>
+      <YamlMember(Order:=2, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property Name As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Name*
@@ -280,6 +279,9 @@ items:
     - name: Order
       type: System.Int32
       value: 2
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModVersion
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModVersion
   id: ModVersion
@@ -306,14 +308,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 4)]
+      [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public Version? ModVersion { get; set; }
     parameters: []
     return:
       type: System.Version
     content.vb: >-
-      <YamlMember(Order:=4)>
+      <YamlMember(Order:=4, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property ModVersion As Version
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModVersion*
@@ -325,150 +327,9 @@ items:
     - name: Order
       type: System.Int32
       value: 4
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile(System.String)
-  id: AddModFile(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
-  langs:
-  - csharp
-  - vb
-  name: AddModFile(string)
-  nameWithType: ModFileManifestModelIntentionalOverride.AddModFile(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: AddModFile
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-    startLine: 47
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Adds a mod file based on its <code class="paramref">path</code>, returning whether the file was added because it was not already present in the list
-  example: []
-  syntax:
-    content: public bool AddModFile(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Boolean
-    content.vb: Public Function AddModFile(path As String) As Boolean
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile*
-  nameWithType.vb: ModFileManifestModelIntentionalOverride.AddModFile(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile(String)
-  name.vb: AddModFile(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync(System.String)
-  id: AddModFileAsync(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
-  langs:
-  - csharp
-  - vb
-  name: AddModFileAsync(string)
-  nameWithType: ModFileManifestModelIntentionalOverride.AddModFileAsync(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: AddModFileAsync
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-    startLine: 53
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Adds a mod file based on its <code class="paramref">path</code> asynchronously, returning whether the file was added because it was not already present in the list
-  example: []
-  syntax:
-    content: public Task<bool> AddModFileAsync(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function AddModFileAsync(path As String) As Task(Of Boolean)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync*
-  nameWithType.vb: ModFileManifestModelIntentionalOverride.AddModFileAsync(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync(String)
-  name.vb: AddModFileAsync(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile(System.String)
-  id: RemoveModFile(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
-  langs:
-  - csharp
-  - vb
-  name: RemoveModFile(string)
-  nameWithType: ModFileManifestModelIntentionalOverride.RemoveModFile(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: RemoveModFile
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-    startLine: 59
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Removes a mod file based on its <code class="paramref">path</code>, returning whether the file was removed because it was present in the list
-  example: []
-  syntax:
-    content: public bool RemoveModFile(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Boolean
-    content.vb: Public Function RemoveModFile(path As String) As Boolean
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile*
-  nameWithType.vb: ModFileManifestModelIntentionalOverride.RemoveModFile(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile(String)
-  name.vb: RemoveModFile(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync(System.String)
-  id: RemoveModFileAsync(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
-  langs:
-  - csharp
-  - vb
-  name: RemoveModFileAsync(string)
-  nameWithType: ModFileManifestModelIntentionalOverride.RemoveModFileAsync(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: RemoveModFileAsync
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelIntentionalOverride.cs
-    startLine: 65
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Removes a mod file based on its <code class="paramref">path</code> asynchronously, returning whether the file was removed because it was present in the list
-  example: []
-  syntax:
-    content: public Task<bool> RemoveModFileAsync(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function RemoveModFileAsync(path As String) As Task(Of Boolean)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync*
-  nameWithType.vb: ModFileManifestModelIntentionalOverride.RemoveModFileAsync(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync(String)
-  name.vb: RemoveModFileAsync(String)
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 references:
 - uid: LlamaLogic.Packages.ResourceType.SnippetTuning
   commentId: F:LlamaLogic.Packages.ResourceType.SnippetTuning
@@ -807,41 +668,39 @@ references:
   - uid: LlamaLogic.Packages
     name: Packages
     href: LlamaLogic.Packages.html
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_ModFiles
-  name: ModFiles
-  nameWithType: ModFileManifestModelIntentionalOverride.ModFiles
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModFiles
-- uid: System.Collections.Generic.HashSet{System.Byte[]}
-  commentId: T:System.Collections.Generic.HashSet{System.Byte[]}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.HashSet`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<byte[]>
-  nameWithType: HashSet<byte[]>
-  fullName: System.Collections.Generic.HashSet<byte[]>
-  nameWithType.vb: HashSet(Of Byte())
-  fullName.vb: System.Collections.Generic.HashSet(Of Byte())
-  name.vb: HashSet(Of Byte())
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_Hash
+  name: Hash
+  nameWithType: ModFileManifestModelIntentionalOverride.Hash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.Hash
+- uid: System.Collections.Immutable.ImmutableArray{System.Byte}
+  commentId: T:System.Collections.Immutable.ImmutableArray{System.Byte}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.ImmutableArray`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<byte>
+  nameWithType: ImmutableArray<byte>
+  fullName: System.Collections.Immutable.ImmutableArray<byte>
+  nameWithType.vb: ImmutableArray(Of Byte)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of Byte)
+  name.vb: ImmutableArray(Of Byte)
   spec.csharp:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
   - name: <
   - uid: System.Byte
     name: byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '['
-  - name: ']'
   - name: '>'
   spec.vb:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
   - name: (
   - name: Of
   - name: " "
@@ -849,44 +708,42 @@ references:
     name: Byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: (
   - name: )
-  - name: )
-- uid: System.Collections.Generic.HashSet`1
-  commentId: T:System.Collections.Generic.HashSet`1
+- uid: System.Collections.Immutable.ImmutableArray`1
+  commentId: T:System.Collections.Immutable.ImmutableArray`1
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<T>
-  nameWithType: HashSet<T>
-  fullName: System.Collections.Generic.HashSet<T>
-  nameWithType.vb: HashSet(Of T)
-  fullName.vb: System.Collections.Generic.HashSet(Of T)
-  name.vb: HashSet(Of T)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<T>
+  nameWithType: ImmutableArray<T>
+  fullName: System.Collections.Immutable.ImmutableArray<T>
+  nameWithType.vb: ImmutableArray(Of T)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of T)
+  name.vb: ImmutableArray(Of T)
   spec.csharp:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
   - name: <
   - name: T
   - name: '>'
   spec.vb:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
   - name: (
   - name: Of
   - name: " "
   - name: T
   - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
   isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
   spec.csharp:
   - uid: System
     name: System
@@ -898,10 +755,10 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections
   - name: .
-  - uid: System.Collections.Generic
-    name: Generic
+  - uid: System.Collections.Immutable
+    name: Immutable
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
   spec.vb:
   - uid: System
     name: System
@@ -913,10 +770,10 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections
   - name: .
-  - uid: System.Collections.Generic
-    name: Generic
+  - uid: System.Collections.Immutable
+    name: Immutable
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModName*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.ModName
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_ModName
@@ -1006,138 +863,3 @@ references:
   name: Version
   nameWithType: Version
   fullName: System.Version
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_AddModFile_System_String_
-  name: AddModFile
-  nameWithType: ModFileManifestModelIntentionalOverride.AddModFile
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFile
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_AddModFileAsync_System_String_
-  name: AddModFileAsync
-  nameWithType: ModFileManifestModelIntentionalOverride.AddModFileAsync
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.AddModFileAsync
-- uid: System.Threading.Tasks.Task{System.Boolean}
-  commentId: T:System.Threading.Tasks.Task{System.Boolean}
-  parent: System.Threading.Tasks
-  definition: System.Threading.Tasks.Task`1
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<bool>
-  nameWithType: Task<bool>
-  fullName: System.Threading.Tasks.Task<bool>
-  nameWithType.vb: Task(Of Boolean)
-  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
-  name.vb: Task(Of Boolean)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
-- uid: System.Threading.Tasks.Task`1
-  commentId: T:System.Threading.Tasks.Task`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<TResult>
-  nameWithType: Task<TResult>
-  fullName: System.Threading.Tasks.Task<TResult>
-  nameWithType.vb: Task(Of TResult)
-  fullName.vb: System.Threading.Tasks.Task(Of TResult)
-  name.vb: Task(Of TResult)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: System.Threading.Tasks
-  commentId: N:System.Threading.Tasks
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
-  fullName: System.Threading.Tasks
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_RemoveModFile_System_String_
-  name: RemoveModFile
-  nameWithType: ModFileManifestModelIntentionalOverride.RemoveModFile
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFile
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelIntentionalOverride_RemoveModFileAsync_System_String_
-  name: RemoveModFileAsync
-  nameWithType: ModFileManifestModelIntentionalOverride.RemoveModFileAsync
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.RemoveModFileAsync

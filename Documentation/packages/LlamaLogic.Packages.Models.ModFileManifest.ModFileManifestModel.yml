@@ -5,8 +5,6 @@ items:
   id: ModFileManifestModel
   parent: LlamaLogic.Packages.Models.ModFileManifest
   children:
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile(System.String)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Encode
@@ -14,18 +12,28 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Features
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync(System.String,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(System.IO.Compression.ZipArchive)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(LlamaLogic.Packages.DataBasePackedFile)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(System.IO.Compression.ZipArchive)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetName(System.IO.Stream)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String,System.IFormatProvider)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile(System.String)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SupportedTypes
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ToString
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TryParse(System.String,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel@)
@@ -119,7 +127,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SupportedTypes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 37
+    startLine: 40
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -152,7 +160,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Decode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 55
+    startLine: 58
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -190,20 +198,20 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFileSha256Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 67
+    startLine: 70
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
   summary: Gets the SHA 256 hash of the content of the file located at <code class="paramref">filePath</code>
   example: []
   syntax:
-    content: public static byte[] GetFileSha256Hash(string filePath)
+    content: public static ImmutableArray<byte> GetFileSha256Hash(string filePath)
     parameters:
     - id: filePath
       type: System.String
     return:
-      type: System.Byte[]
-    content.vb: Public Shared Function GetFileSha256Hash(filePath As String) As Byte()
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
+    content.vb: Public Shared Function GetFileSha256Hash(filePath As String) As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash*
   nameWithType.vb: ModFileManifestModel.GetFileSha256Hash(String)
   fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash(String)
@@ -226,26 +234,339 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFileSha256HashAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 79
+    startLine: 82
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
   summary: Gets the SHA 256 hash of the content of the file located at <code class="paramref">filePath</code> asynchronously
   example: []
   syntax:
-    content: public static Task<byte[]> GetFileSha256HashAsync(string filePath, CancellationToken cancellationToken = default)
+    content: public static Task<ImmutableArray<byte>> GetFileSha256HashAsync(string filePath, CancellationToken cancellationToken = default)
     parameters:
     - id: filePath
       type: System.String
     - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
-      type: System.Threading.Tasks.Task{System.Byte[]}
-    content.vb: Public Shared Function GetFileSha256HashAsync(filePath As String, cancellationToken As CancellationToken = Nothing) As Task(Of Byte())
+      type: System.Threading.Tasks.Task{System.Collections.Immutable.ImmutableArray{System.Byte}}
+    content.vb: Public Shared Function GetFileSha256HashAsync(filePath As String, cancellationToken As CancellationToken = Nothing) As Task(Of ImmutableArray(Of Byte))
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync*
   nameWithType.vb: ModFileManifestModel.GetFileSha256HashAsync(String, CancellationToken)
   fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync(String, System.Threading.CancellationToken)
   name.vb: GetFileSha256HashAsync(String, CancellationToken)
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  id: GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>)
+  nameWithType: ModFileManifestModel.GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileHash
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 94
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the hash for the specified <code class="paramref">package</code> using the specified <code class="paramref">strategy</code> and <code class="paramref">hashResourceKeys</code>
+  example: []
+  syntax:
+    content: public static ImmutableArray<byte> GetModFileHash(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys)
+    parameters:
+    - id: package
+      type: LlamaLogic.Packages.DataBasePackedFile
+    - id: strategy
+      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
+    - id: hashResourceKeys
+      type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
+    return:
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
+    content.vb: Public Shared Function GetModFileHash(package As DataBasePackedFile, strategy As ModFileManifestResourceHashStrategy, hashResourceKeys As HashSet(Of ResourceKey)) As ImmutableArray(Of Byte)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash*
+  nameWithType.vb: ModFileManifestModel.GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey))
+  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey))
+  name.vb: GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey))
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
+  id: GetModFileHash(System.IO.Compression.ZipArchive)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileHash(ZipArchive)
+  nameWithType: ModFileManifestModel.GetModFileHash(ZipArchive)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileHash
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 138
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the hash for the specified <code class="paramref">scriptMod</code>
+  example: []
+  syntax:
+    content: public static ImmutableArray<byte> GetModFileHash(ZipArchive scriptMod)
+    parameters:
+    - id: scriptMod
+      type: System.IO.Compression.ZipArchive
+    return:
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
+    content.vb: Public Shared Function GetModFileHash(scriptMod As ZipArchive) As ImmutableArray(Of Byte)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  id: GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>, CancellationToken)
+  nameWithType: ModFileManifestModel.GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileHashAsync
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 157
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the hash for the specified <code class="paramref">package</code> using the specified <code class="paramref">strategy</code> and <code class="paramref">hashResourceKeys</code>, asynchronously
+  example: []
+  syntax:
+    content: public static Task<ImmutableArray<byte>> GetModFileHashAsync(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys, CancellationToken cancellationToken = default)
+    parameters:
+    - id: package
+      type: LlamaLogic.Packages.DataBasePackedFile
+    - id: strategy
+      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
+    - id: hashResourceKeys
+      type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Immutable.ImmutableArray{System.Byte}}
+    content.vb: Public Shared Function GetModFileHashAsync(package As DataBasePackedFile, strategy As ModFileManifestResourceHashStrategy, hashResourceKeys As HashSet(Of ResourceKey), cancellationToken As CancellationToken = Nothing) As Task(Of ImmutableArray(Of Byte))
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync*
+  nameWithType.vb: ModFileManifestModel.GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey), System.Threading.CancellationToken)
+  name.vb: GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey), CancellationToken)
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
+  id: GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileManifest(DataBasePackedFile)
+  nameWithType: ModFileManifestModel.GetModFileManifest(DataBasePackedFile)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileManifest
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 203
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the mod file manifest for the specified <code class="paramref">package</code>, if it has one
+  example: []
+  syntax:
+    content: public static ModFileManifestModel? GetModFileManifest(DataBasePackedFile package)
+    parameters:
+    - id: package
+      type: LlamaLogic.Packages.DataBasePackedFile
+    return:
+      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    content.vb: Public Shared Function GetModFileManifest(package As DataBasePackedFile) As ModFileManifestModel
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(System.IO.Compression.ZipArchive)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(System.IO.Compression.ZipArchive)
+  id: GetModFileManifest(System.IO.Compression.ZipArchive)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileManifest(ZipArchive)
+  nameWithType: ModFileManifestModel.GetModFileManifest(ZipArchive)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(System.IO.Compression.ZipArchive)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileManifest
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 231
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the mod file manifest for the specified <code class="paramref">scriptMod</code>, if it has one
+  example: []
+  syntax:
+    content: public static ModFileManifestModel? GetModFileManifest(ZipArchive scriptMod)
+    parameters:
+    - id: scriptMod
+      type: System.IO.Compression.ZipArchive
+    return:
+      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    content.vb: Public Shared Function GetModFileManifest(scriptMod As ZipArchive) As ModFileManifestModel
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(LlamaLogic.Packages.DataBasePackedFile)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(LlamaLogic.Packages.DataBasePackedFile)
+  id: GetModFileManifestAsync(LlamaLogic.Packages.DataBasePackedFile)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileManifestAsync(DataBasePackedFile)
+  nameWithType: ModFileManifestModel.GetModFileManifestAsync(DataBasePackedFile)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(LlamaLogic.Packages.DataBasePackedFile)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileManifestAsync
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 247
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the mod file manifest for the specified <code class="paramref">package</code>, asynchronously, if it has one
+  example: []
+  syntax:
+    content: public static Task<ModFileManifestModel?> GetModFileManifestAsync(DataBasePackedFile package)
+    parameters:
+    - id: package
+      type: LlamaLogic.Packages.DataBasePackedFile
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+    content.vb: Public Shared Function GetModFileManifestAsync(package As DataBasePackedFile) As Task(Of ModFileManifestModel)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(System.IO.Compression.ZipArchive)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(System.IO.Compression.ZipArchive)
+  id: GetModFileManifestAsync(System.IO.Compression.ZipArchive)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileManifestAsync(ZipArchive)
+  nameWithType: ModFileManifestModel.GetModFileManifestAsync(ZipArchive)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync(System.IO.Compression.ZipArchive)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileManifestAsync
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 276
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the mod file manifest for the specified <code class="paramref">scriptMod</code>, asynchronously, if it has one
+  example: []
+  syntax:
+    content: public static Task<ModFileManifestModel?> GetModFileManifestAsync(ZipArchive scriptMod)
+    parameters:
+    - id: scriptMod
+      type: System.IO.Compression.ZipArchive
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+    content.vb: Public Shared Function GetModFileManifestAsync(scriptMod As ZipArchive) As Task(Of ModFileManifestModel)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
+  id: GetModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileManifests(DataBasePackedFile)
+  nameWithType: ModFileManifestModel.GetModFileManifests(DataBasePackedFile)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileManifests
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 292
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the mod file manifests for the specified <code class="paramref">package</code> (for use by editors checking for packages which may have been merged by manifest unaware tooling)
+  example: []
+  syntax:
+    content: public static IReadOnlyDictionary<ResourceKey, ModFileManifestModel> GetModFileManifests(DataBasePackedFile package)
+    parameters:
+    - id: package
+      type: LlamaLogic.Packages.DataBasePackedFile
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+    content.vb: Public Shared Function GetModFileManifests(package As DataBasePackedFile) As IReadOnlyDictionary(Of ResourceKey, ModFileManifestModel)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
+  id: GetModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: GetModFileManifestsAsync(DataBasePackedFile)
+  nameWithType: ModFileManifestModel.GetModFileManifestsAsync(DataBasePackedFile)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModFileManifestsAsync
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 312
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the mod file manifests for the specified <code class="paramref">package</code>, asynchronously (for use by editors checking for packages which may have been merged by manifest unaware tooling)
+  example: []
+  syntax:
+    content: public static Task<IReadOnlyDictionary<ResourceKey, ModFileManifestModel>> GetModFileManifestsAsync(DataBasePackedFile package)
+    parameters:
+    - id: package
+      type: LlamaLogic.Packages.DataBasePackedFile
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}}
+    content.vb: Public Shared Function GetModFileManifestsAsync(package As DataBasePackedFile) As Task(Of IReadOnlyDictionary(Of ResourceKey, ModFileManifestModel))
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync*
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetName(System.IO.Stream)
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetName(System.IO.Stream)
   id: GetName(System.IO.Stream)
@@ -264,7 +585,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 89
+    startLine: 331
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -299,7 +620,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 97
+    startLine: 339
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -336,7 +657,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Parse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 109
+    startLine: 351
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -377,7 +698,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Parse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 118
+    startLine: 360
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -421,7 +742,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TryParse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 130
+    startLine: 372
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -461,7 +782,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TryParse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 139
+    startLine: 381
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -504,7 +825,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Creators
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 153
+    startLine: 395
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -552,7 +873,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Exclusivities
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 159
+    startLine: 401
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -560,14 +881,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> Exclusivities { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Exclusivities As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Exclusivities*
@@ -578,7 +899,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 6
+      value: 10
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -600,7 +921,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Features
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 165
+    startLine: 407
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -608,14 +929,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> Features { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Features As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Features*
@@ -626,7 +947,103 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
+      value: 9
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 4
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  id: Hash
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: Hash
+  nameWithType: ModFileManifestModel.Hash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Hash
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 413
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets/sets the hash of the mod file
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+
+      public ImmutableArray<byte> Hash { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
+    content.vb: >-
+      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+
+      Public Property Hash As ImmutableArray(Of Byte)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
       value: 5
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 2
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
+  id: HashResourceKeys
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: HashResourceKeys
+  nameWithType: ModFileManifestModel.HashResourceKeys
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: HashResourceKeys
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 419
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the resource keys omitted from the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy" data-throw-if-not-resolved="false"></xref> (this is typically not used)
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+
+      public HashSet<ResourceKey> HashResourceKeys { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
+    content.vb: >-
+      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+
+      Public Property HashResourceKeys As HashSet(Of ResourceKey)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 7
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -648,7 +1065,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: IntentionalOverrides
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 171
+    startLine: 425
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -656,14 +1073,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride}
     content.vb: >-
-      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IntentionalOverrides As Collection(Of ModFileManifestModelIntentionalOverride)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides*
@@ -674,7 +1091,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 10
+      value: 13
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -696,7 +1113,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 177
+    startLine: 431
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -704,14 +1121,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 1)]
+      [YamlMember(Order = 1, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
 
       public required string Name { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=1)>
+      <YamlMember(Order:=1, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
 
       Public Property Name As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name*
@@ -723,6 +1140,9 @@ items:
     - name: Order
       type: System.Int32
       value: 1
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   id: RequiredMods
@@ -741,7 +1161,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredMods
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 183
+    startLine: 437
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -749,14 +1169,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod}
     content.vb: >-
-      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredMods As Collection(Of ModFileManifestModelRequiredMod)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods*
@@ -767,7 +1187,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 9
+      value: 12
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -789,7 +1209,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredPacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 189
+    startLine: 443
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -797,14 +1217,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> RequiredPacks { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredPacks As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks*
@@ -815,10 +1235,58 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 8
+      value: 11
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+  id: ResourceHashStrategy
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceHashStrategy
+  nameWithType: ModFileManifestModel.ResourceHashStrategy
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceHashStrategy
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 449
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets/sets the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy" data-throw-if-not-resolved="false"></xref> to use when producing this mod file's <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash" data-throw-if-not-resolved="false"></xref> if it is a package
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+
+      public ModFileManifestResourceHashStrategy ResourceHashStrategy { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
+    content.vb: >-
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+
+      Public Property ResourceHashStrategy As ModFileManifestResourceHashStrategy
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 6
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
   id: ResourceName
@@ -837,7 +1305,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 193
+    startLine: 453
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -863,43 +1331,43 @@ items:
   - type: YamlDotNet.Serialization.YamlIgnoreAttribute
     ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
     arguments: []
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
-  id: SubsumedFiles
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+  id: SubsumedHashes
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
   langs:
   - csharp
   - vb
-  name: SubsumedFiles
-  nameWithType: ModFileManifestModel.SubsumedFiles
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
+  name: SubsumedHashes
+  nameWithType: ModFileManifestModel.SubsumedHashes
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: SubsumedFiles
+    id: SubsumedHashes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 200
+    startLine: 460
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the hashes of files in for which I stand even though my hash is different
+  summary: Gets the hashes of previous versions of this mod in for which I stand even though my hash is different
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files in for which I stand even though my hash is different")]
+      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
-      public HashSet<byte[]> SubsumedFiles { get; }
+      public HashSet<ImmutableArray<byte>> SubsumedHashes { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.HashSet{System.Byte[]}
+      type: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
     content.vb: >-
-      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections, Description:="hashes of files in for which I stand even though my hash is different")>
+      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
-      Public Property SubsumedFiles As HashSet(Of Byte())
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles*
+      Public Property SubsumedHashes As HashSet(Of ImmutableArray(Of Byte))
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -907,13 +1375,10 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 7
+      value: 8
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
-    - name: Description
-      type: System.String
-      value: hashes of files in for which I stand even though my hash is different
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
   id: TuningName
@@ -932,7 +1397,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 206
+    startLine: 466
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -940,21 +1405,28 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlIgnore]
+      [YamlMember(Order = -1, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? TuningName { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlIgnore>
+      <YamlMember(Order:=-1, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property TuningName As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName*
   attributes:
-  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
-    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
     arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: -1
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningFullInstance
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningFullInstance
   id: TuningFullInstance
@@ -973,7 +1445,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningFullInstance
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 212
+    startLine: 472
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -981,21 +1453,28 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlIgnore]
+      [YamlMember(Order = -2, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
 
       public ulong TuningFullInstance { get; set; }
     parameters: []
     return:
       type: System.UInt64
     content.vb: >-
-      <YamlIgnore>
+      <YamlMember(Order:=-2, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
 
       Public Property TuningFullInstance As ULong
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningFullInstance*
   attributes:
-  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
-    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
     arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: -2
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Url
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Url
   id: Url
@@ -1014,7 +1493,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 218
+    startLine: 478
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1022,14 +1501,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = ScalarStyle.SingleQuoted)]
+      [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public Uri? Url { get; set; }
     parameters: []
     return:
       type: System.Uri
     content.vb: >-
-      <YamlMember(Order:=4, DefaultValuesHandling:=DefaultValuesHandling.OmitNull, ScalarStyle:=ScalarStyle.SingleQuoted)>
+      <YamlMember(Order:=4, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property Url As Uri
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Url*
@@ -1044,9 +1523,6 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
-    - name: ScalarStyle
-      type: YamlDotNet.Core.ScalarStyle
-      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Version
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Version
   id: Version
@@ -1065,7 +1541,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 224
+    startLine: 484
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1073,14 +1549,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = ScalarStyle.SingleQuoted)]
+      [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public Version? Version { get; set; }
     parameters: []
     return:
       type: System.Version
     content.vb: >-
-      <YamlMember(Order:=3, DefaultValuesHandling:=DefaultValuesHandling.OmitNull, ScalarStyle:=ScalarStyle.SingleQuoted)>
+      <YamlMember(Order:=3, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property Version As Version
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Version*
@@ -1095,81 +1571,6 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
-    - name: ScalarStyle
-      type: YamlDotNet.Core.ScalarStyle
-      value: 2
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile(System.String)
-  id: AddSubsumedFile(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: AddSubsumedFile(string)
-  nameWithType: ModFileManifestModel.AddSubsumedFile(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: AddSubsumedFile
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 230
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Adds a subsumed file based on its <code class="paramref">path</code>, returning whether the file was added because it was not already present in the list
-  example: []
-  syntax:
-    content: public bool AddSubsumedFile(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Boolean
-    content.vb: Public Function AddSubsumedFile(path As String) As Boolean
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile*
-  nameWithType.vb: ModFileManifestModel.AddSubsumedFile(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile(String)
-  name.vb: AddSubsumedFile(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync(System.String)
-  id: AddSubsumedFileAsync(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: AddSubsumedFileAsync(string)
-  nameWithType: ModFileManifestModel.AddSubsumedFileAsync(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: AddSubsumedFileAsync
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 236
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Adds a file based on its <code class="paramref">path</code> asynchronously, returning whether the file was added because it was not already present in the list
-  example: []
-  syntax:
-    content: public Task<bool> AddSubsumedFileAsync(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function AddSubsumedFileAsync(path As String) As Task(Of Boolean)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync*
-  nameWithType.vb: ModFileManifestModel.AddSubsumedFileAsync(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync(String)
-  name.vb: AddSubsumedFileAsync(String)
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Encode
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Encode
   id: Encode
@@ -1188,7 +1589,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 240
+    startLine: 488
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1203,78 +1604,6 @@ items:
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Encode*
   implements:
   - LlamaLogic.Packages.Models.IModel.Encode
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile(System.String)
-  id: RemoveSubsumedFile(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: RemoveSubsumedFile(string)
-  nameWithType: ModFileManifestModel.RemoveSubsumedFile(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: RemoveSubsumedFile
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 252
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Removes a subsumed file based on its <code class="paramref">path</code>, returning whether the file was removed because it was present in the list
-  example: []
-  syntax:
-    content: public bool RemoveSubsumedFile(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Boolean
-    content.vb: Public Function RemoveSubsumedFile(path As String) As Boolean
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile*
-  nameWithType.vb: ModFileManifestModel.RemoveSubsumedFile(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile(String)
-  name.vb: RemoveSubsumedFile(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync(System.String)
-  id: RemoveSubsumedFileAsync(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: RemoveSubsumedFileAsync(string)
-  nameWithType: ModFileManifestModel.RemoveSubsumedFileAsync(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: RemoveSubsumedFileAsync
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 258
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Removes a subsumed file based on its <code class="paramref">path</code> asynchronously, returning whether the file was removed because it was present in the list
-  example: []
-  syntax:
-    content: public Task<bool> RemoveSubsumedFileAsync(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function RemoveSubsumedFileAsync(path As String) As Task(Of Boolean)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync*
-  nameWithType.vb: ModFileManifestModel.RemoveSubsumedFileAsync(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync(String)
-  name.vb: RemoveSubsumedFileAsync(String)
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ToString
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ToString
   id: ToString
@@ -1293,7 +1622,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ToString
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 264
+    startLine: 500
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -2096,29 +2425,106 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: System.Byte[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.byte
-  name: byte[]
-  nameWithType: byte[]
-  fullName: byte[]
-  nameWithType.vb: Byte()
-  fullName.vb: Byte()
-  name.vb: Byte()
+- uid: System.Collections.Immutable.ImmutableArray{System.Byte}
+  commentId: T:System.Collections.Immutable.ImmutableArray{System.Byte}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.ImmutableArray`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<byte>
+  nameWithType: ImmutableArray<byte>
+  fullName: System.Collections.Immutable.ImmutableArray<byte>
+  nameWithType.vb: ImmutableArray(Of Byte)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of Byte)
+  name.vb: ImmutableArray(Of Byte)
   spec.csharp:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
   - uid: System.Byte
     name: byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '['
-  - name: ']'
+  - name: '>'
   spec.vb:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Byte
     name: Byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: (
   - name: )
+- uid: System.Collections.Immutable.ImmutableArray`1
+  commentId: T:System.Collections.Immutable.ImmutableArray`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<T>
+  nameWithType: ImmutableArray<T>
+  fullName: System.Collections.Immutable.ImmutableArray<T>
+  nameWithType.vb: ImmutableArray(Of T)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of T)
+  name.vb: ImmutableArray(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Immutable
+    name: Immutable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Immutable
+    name: Immutable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetFileSha256HashAsync_System_String_System_Threading_CancellationToken_
@@ -2133,29 +2539,33 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
-- uid: System.Threading.Tasks.Task{System.Byte[]}
-  commentId: T:System.Threading.Tasks.Task{System.Byte[]}
+- uid: System.Threading.Tasks.Task{System.Collections.Immutable.ImmutableArray{System.Byte}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Immutable.ImmutableArray{System.Byte}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<byte[]>
-  nameWithType: Task<byte[]>
-  fullName: System.Threading.Tasks.Task<byte[]>
-  nameWithType.vb: Task(Of Byte())
-  fullName.vb: System.Threading.Tasks.Task(Of Byte())
-  name.vb: Task(Of Byte())
+  name: Task<ImmutableArray<byte>>
+  nameWithType: Task<ImmutableArray<byte>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Immutable.ImmutableArray<byte>>
+  nameWithType.vb: Task(Of ImmutableArray(Of Byte))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Immutable.ImmutableArray(Of Byte))
+  name.vb: Task(Of ImmutableArray(Of Byte))
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
   - name: <
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
   - uid: System.Byte
     name: byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '['
-  - name: ']'
+  - name: '>'
   - name: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
@@ -2165,11 +2575,17 @@ references:
   - name: (
   - name: Of
   - name: " "
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Byte
     name: Byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: (
   - name: )
   - name: )
 - uid: System.Threading
@@ -2264,6 +2680,351 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileHash_LlamaLogic_Packages_DataBasePackedFile_LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestResourceHashStrategy_System_Collections_Generic_HashSet_LlamaLogic_Packages_ResourceKey__
+  name: GetModFileHash
+  nameWithType: ModFileManifestModel.GetModFileHash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash
+- uid: LlamaLogic.Packages.DataBasePackedFile
+  commentId: T:LlamaLogic.Packages.DataBasePackedFile
+  parent: LlamaLogic.Packages
+  href: LlamaLogic.Packages.DataBasePackedFile.html
+  name: DataBasePackedFile
+  nameWithType: DataBasePackedFile
+  fullName: LlamaLogic.Packages.DataBasePackedFile
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
+  commentId: T:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
+  parent: LlamaLogic.Packages.Models.ModFileManifest
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy.html
+  name: ModFileManifestResourceHashStrategy
+  nameWithType: ModFileManifestResourceHashStrategy
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
+- uid: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
+  commentId: T:System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<ResourceKey>
+  nameWithType: HashSet<ResourceKey>
+  fullName: System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>
+  nameWithType.vb: HashSet(Of ResourceKey)
+  fullName.vb: System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey)
+  name.vb: HashSet(Of ResourceKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: )
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.IO.Compression.ZipArchive
+  commentId: T:System.IO.Compression.ZipArchive
+  parent: System.IO.Compression
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.compression.ziparchive
+  name: ZipArchive
+  nameWithType: ZipArchive
+  fullName: System.IO.Compression.ZipArchive
+- uid: System.IO.Compression
+  commentId: N:System.IO.Compression
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO.Compression
+  nameWithType: System.IO.Compression
+  fullName: System.IO.Compression
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  - name: .
+  - uid: System.IO.Compression
+    name: Compression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.compression
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  - name: .
+  - uid: System.IO.Compression
+    name: Compression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.compression
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileHashAsync_LlamaLogic_Packages_DataBasePackedFile_LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestResourceHashStrategy_System_Collections_Generic_HashSet_LlamaLogic_Packages_ResourceKey__System_Threading_CancellationToken_
+  name: GetModFileHashAsync
+  nameWithType: ModFileManifestModel.GetModFileHashAsync
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileManifest_LlamaLogic_Packages_DataBasePackedFile_
+  name: GetModFileManifest
+  nameWithType: ModFileManifestModel.GetModFileManifest
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileManifestAsync_LlamaLogic_Packages_DataBasePackedFile_
+  name: GetModFileManifestAsync
+  nameWithType: ModFileManifestModel.GetModFileManifestAsync
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAsync
+- uid: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ModFileManifestModel>
+  nameWithType: Task<ModFileManifestModel>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel>
+  nameWithType.vb: Task(Of ModFileManifestModel)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel)
+  name.vb: Task(Of ModFileManifestModel)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    name: ModFileManifestModel
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    name: ModFileManifestModel
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileManifests_LlamaLogic_Packages_DataBasePackedFile_
+  name: GetModFileManifests
+  nameWithType: ModFileManifestModel.GetModFileManifests
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifests
+- uid: System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<ResourceKey, ModFileManifestModel>
+  nameWithType: IReadOnlyDictionary<ResourceKey, ModFileManifestModel>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<LlamaLogic.Packages.ResourceKey, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel>
+  nameWithType.vb: IReadOnlyDictionary(Of ResourceKey, ModFileManifestModel)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of LlamaLogic.Packages.ResourceKey, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel)
+  name.vb: IReadOnlyDictionary(Of ResourceKey, ModFileManifestModel)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    name: ModFileManifestModel
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    name: ModFileManifestModel
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileManifestsAsync_LlamaLogic_Packages_DataBasePackedFile_
+  name: GetModFileManifestsAsync
+  nameWithType: ModFileManifestModel.GetModFileManifestsAsync
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestsAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IReadOnlyDictionary<ResourceKey, ModFileManifestModel>>
+  nameWithType: Task<IReadOnlyDictionary<ResourceKey, ModFileManifestModel>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyDictionary<LlamaLogic.Packages.ResourceKey, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel>>
+  nameWithType.vb: Task(Of IReadOnlyDictionary(Of ResourceKey, ModFileManifestModel))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IReadOnlyDictionary(Of LlamaLogic.Packages.ResourceKey, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel))
+  name.vb: Task(Of IReadOnlyDictionary(Of ResourceKey, ModFileManifestModel))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    name: ModFileManifestModel
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+    name: ModFileManifestModel
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  - name: )
+  - name: )
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetName*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetName
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetName_System_IO_Stream_
@@ -2459,28 +3220,6 @@ references:
   name: ResourceKey
   nameWithType: ResourceKey
   fullName: LlamaLogic.Packages.ResourceKey
-- uid: LlamaLogic.Packages
-  commentId: N:LlamaLogic.Packages
-  href: LlamaLogic.html
-  name: LlamaLogic.Packages
-  nameWithType: LlamaLogic.Packages
-  fullName: LlamaLogic.Packages
-  spec.csharp:
-  - uid: LlamaLogic
-    name: LlamaLogic
-    href: LlamaLogic.html
-  - name: .
-  - uid: LlamaLogic.Packages
-    name: Packages
-    href: LlamaLogic.Packages.html
-  spec.vb:
-  - uid: LlamaLogic
-    name: LlamaLogic
-    href: LlamaLogic.html
-  - name: .
-  - uid: LlamaLogic.Packages
-    name: Packages
-    href: LlamaLogic.Packages.html
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Creators
@@ -2599,6 +3338,24 @@ references:
   name: Features
   nameWithType: ModFileManifestModel.Features
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Features
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Hash
+  name: Hash
+  nameWithType: ModFileManifestModel.Hash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ResourceHashStrategy
+  name: ResourceHashStrategy
+  nameWithType: ModFileManifestModel.ResourceHashStrategy
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_HashResourceKeys
+  name: HashResourceKeys
+  nameWithType: ModFileManifestModel.HashResourceKeys
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IntentionalOverrides
@@ -2689,6 +3446,18 @@ references:
   name: RequiredPacks
   nameWithType: ModFileManifestModel.RequiredPacks
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Hash
+  name: Hash
+  nameWithType: ModFileManifestModel.Hash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ResourceHashStrategy
+  name: ResourceHashStrategy
+  nameWithType: ModFileManifestModel.ResourceHashStrategy
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
 - uid: LlamaLogic.Packages.Models.Model.ResourceName
   commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
   parent: LlamaLogic.Packages.Models.Model
@@ -2709,41 +3478,52 @@ references:
   name: ResourceName
   nameWithType: IModel.ResourceName
   fullName: LlamaLogic.Packages.Models.IModel.ResourceName
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_SubsumedFiles
-  name: SubsumedFiles
-  nameWithType: ModFileManifestModel.SubsumedFiles
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedFiles
-- uid: System.Collections.Generic.HashSet{System.Byte[]}
-  commentId: T:System.Collections.Generic.HashSet{System.Byte[]}
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_SubsumedHashes
+  name: SubsumedHashes
+  nameWithType: ModFileManifestModel.SubsumedHashes
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+- uid: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
+  commentId: T:System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.HashSet`1
   href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<byte[]>
-  nameWithType: HashSet<byte[]>
-  fullName: System.Collections.Generic.HashSet<byte[]>
-  nameWithType.vb: HashSet(Of Byte())
-  fullName.vb: System.Collections.Generic.HashSet(Of Byte())
-  name.vb: HashSet(Of Byte())
+  name: HashSet<ImmutableArray<byte>>
+  nameWithType: HashSet<ImmutableArray<byte>>
+  fullName: System.Collections.Generic.HashSet<System.Collections.Immutable.ImmutableArray<byte>>
+  nameWithType.vb: HashSet(Of ImmutableArray(Of Byte))
+  fullName.vb: System.Collections.Generic.HashSet(Of System.Collections.Immutable.ImmutableArray(Of Byte))
+  name.vb: HashSet(Of ImmutableArray(Of Byte))
   spec.csharp:
   - uid: System.Collections.Generic.HashSet`1
     name: HashSet
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
   - name: <
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
   - uid: System.Byte
     name: byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '['
-  - name: ']'
+  - name: '>'
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.HashSet`1
     name: HashSet
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
   - name: (
   - name: Of
   - name: " "
@@ -2751,36 +3531,7 @@ references:
     name: Byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: (
   - name: )
-  - name: )
-- uid: System.Collections.Generic.HashSet`1
-  commentId: T:System.Collections.Generic.HashSet`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<T>
-  nameWithType: HashSet<T>
-  fullName: System.Collections.Generic.HashSet<T>
-  nameWithType.vb: HashSet(Of T)
-  fullName.vb: System.Collections.Generic.HashSet(Of T)
-  name.vb: HashSet(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
@@ -2833,53 +3584,6 @@ references:
   name: Version
   nameWithType: Version
   fullName: System.Version
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_AddSubsumedFile_System_String_
-  name: AddSubsumedFile
-  nameWithType: ModFileManifestModel.AddSubsumedFile
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFile
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_AddSubsumedFileAsync_System_String_
-  name: AddSubsumedFileAsync
-  nameWithType: ModFileManifestModel.AddSubsumedFileAsync
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.AddSubsumedFileAsync
-- uid: System.Threading.Tasks.Task{System.Boolean}
-  commentId: T:System.Threading.Tasks.Task{System.Boolean}
-  parent: System.Threading.Tasks
-  definition: System.Threading.Tasks.Task`1
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<bool>
-  nameWithType: Task<bool>
-  fullName: System.Threading.Tasks.Task<bool>
-  nameWithType.vb: Task(Of Boolean)
-  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
-  name.vb: Task(Of Boolean)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
 - uid: LlamaLogic.Packages.Models.Model.Encode
   commentId: M:LlamaLogic.Packages.Models.Model.Encode
   parent: LlamaLogic.Packages.Models.Model
@@ -2924,18 +3628,6 @@ references:
     href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
   - name: (
   - name: )
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RemoveSubsumedFile_System_String_
-  name: RemoveSubsumedFile
-  nameWithType: ModFileManifestModel.RemoveSubsumedFile
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFile
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RemoveSubsumedFileAsync_System_String_
-  name: RemoveSubsumedFileAsync
-  nameWithType: ModFileManifestModel.RemoveSubsumedFileAsync
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RemoveSubsumedFileAsync
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object

@@ -5,14 +5,10 @@ items:
   id: ModFileManifestModelRequiredMod
   parent: LlamaLogic.Packages.Models.ModFileManifest
   children:
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile(System.String)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Creators
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(System.String)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequirementIdentifier
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url
@@ -99,43 +95,43 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files
-  id: Files
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
+  id: Hashes
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
   langs:
   - csharp
   - vb
-  name: Files
-  nameWithType: ModFileManifestModelRequiredMod.Files
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files
+  name: Hashes
+  nameWithType: ModFileManifestModelRequiredMod.Hashes
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: Files
+    id: Hashes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
     startLine: 17
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the hashes of files that must be present in order for this dependency to be fulfilled
+  summary: Gets the hashes of the mod files that must be present in order for this dependency to be fulfilled
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections, Description = "hashes of files that must be present in order for this dependency to be fulfilled")]
+      [YamlMember(Order = 8)]
 
-      public HashSet<byte[]> Files { get; }
+      public HashSet<ImmutableArray<byte>> Hashes { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.HashSet{System.Byte[]}
+      type: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
     content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections, Description:="hashes of files that must be present in order for this dependency to be fulfilled")>
+      <YamlMember(Order:=8)>
 
-      Public Property Files As HashSet(Of Byte())
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files*
+      Public Property Hashes As HashSet(Of ImmutableArray(Of Byte))
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -143,13 +139,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 6
-    - name: DefaultValuesHandling
-      type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 4
-    - name: Description
-      type: System.String
-      value: hashes of files that must be present in order for this dependency to be fulfilled
+      value: 8
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   id: ModManifestKey
@@ -176,14 +166,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 5)]
+      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public ResourceKey? ModManifestKey { get; set; }
     parameters: []
     return:
       type: System.Nullable{LlamaLogic.Packages.ResourceKey}
     content.vb: >-
-      <YamlMember(Order:=5)>
+      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property ModManifestKey As ResourceKey?
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey*
@@ -195,6 +185,9 @@ items:
     - name: Order
       type: System.Int32
       value: 5
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
   id: Name
@@ -266,14 +259,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> RequiredFeatures { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredFeatures As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures*
@@ -284,7 +277,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 7
+      value: 6
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -314,14 +307,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? RequirementIdentifier { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property RequirementIdentifier As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequirementIdentifier*
@@ -332,7 +325,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 8
+      value: 7
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
@@ -362,14 +355,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = ScalarStyle.SingleQuoted)]
+      [YamlMember(Order = 4, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public Uri? Url { get; set; }
     parameters: []
     return:
       type: System.Uri
     content.vb: >-
-      <YamlMember(Order:=4, DefaultValuesHandling:=DefaultValuesHandling.OmitNull, ScalarStyle:=ScalarStyle.SingleQuoted)>
+      <YamlMember(Order:=4, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property Url As Uri
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Url*
@@ -384,9 +377,6 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
-    - name: ScalarStyle
-      type: YamlDotNet.Core.ScalarStyle
-      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Version
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Version
   id: Version
@@ -413,14 +403,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull, ScalarStyle = ScalarStyle.SingleQuoted)]
+      [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public Version? Version { get; set; }
     parameters: []
     return:
       type: System.Version
     content.vb: >-
-      <YamlMember(Order:=3, DefaultValuesHandling:=DefaultValuesHandling.OmitNull, ScalarStyle:=ScalarStyle.SingleQuoted)>
+      <YamlMember(Order:=3, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property Version As Version
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Version*
@@ -435,153 +425,6 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
-    - name: ScalarStyle
-      type: YamlDotNet.Core.ScalarStyle
-      value: 2
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile(System.String)
-  id: AddFile(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
-  langs:
-  - csharp
-  - vb
-  name: AddFile(string)
-  nameWithType: ModFileManifestModelRequiredMod.AddFile(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: AddFile
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 59
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Adds a file based on its <code class="paramref">path</code>, returning whether the file was added because it was not already present in the list
-  example: []
-  syntax:
-    content: public bool AddFile(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Boolean
-    content.vb: Public Function AddFile(path As String) As Boolean
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile*
-  nameWithType.vb: ModFileManifestModelRequiredMod.AddFile(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile(String)
-  name.vb: AddFile(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync(System.String)
-  id: AddFileAsync(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
-  langs:
-  - csharp
-  - vb
-  name: AddFileAsync(string)
-  nameWithType: ModFileManifestModelRequiredMod.AddFileAsync(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: AddFileAsync
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 65
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Adds a file based on its <code class="paramref">path</code> asynchronously, returning whether the file was added because it was not already present in the list
-  example: []
-  syntax:
-    content: public Task<bool> AddFileAsync(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function AddFileAsync(path As String) As Task(Of Boolean)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync*
-  nameWithType.vb: ModFileManifestModelRequiredMod.AddFileAsync(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync(String)
-  name.vb: AddFileAsync(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(System.String)
-  id: RemoveFile(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
-  langs:
-  - csharp
-  - vb
-  name: RemoveFile(string)
-  nameWithType: ModFileManifestModelRequiredMod.RemoveFile(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: RemoveFile
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 71
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Removes a file based on its <code class="paramref">path</code>, returning whether the file was removed because it was present in the list
-  example: []
-  syntax:
-    content: public bool RemoveFile(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Boolean
-    content.vb: Public Function RemoveFile(path As String) As Boolean
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile*
-  nameWithType.vb: ModFileManifestModelRequiredMod.RemoveFile(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile(String)
-  name.vb: RemoveFile(String)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(System.String)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(System.String)
-  id: RemoveFileAsync(System.String)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
-  langs:
-  - csharp
-  - vb
-  name: RemoveFileAsync(string)
-  nameWithType: ModFileManifestModelRequiredMod.RemoveFileAsync(string)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(string)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: RemoveFileAsync
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 77
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Removes a file based on its <code class="paramref">path</code> asynchronously, returning whether the file was removed because it was present in the list
-  example: []
-  syntax:
-    content: public Task<bool> RemoveFileAsync(string path)
-    parameters:
-    - id: path
-      type: System.String
-    return:
-      type: System.Threading.Tasks.Task{System.Boolean}
-    content.vb: Public Function RemoveFileAsync(path As String) As Task(Of Boolean)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync*
-  nameWithType.vb: ModFileManifestModelRequiredMod.RemoveFileAsync(String)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync(String)
-  name.vb: RemoveFileAsync(String)
 references:
 - uid: LlamaLogic.Packages.ResourceType.SnippetTuning
   commentId: F:LlamaLogic.Packages.ResourceType.SnippetTuning
@@ -991,35 +834,39 @@ references:
     name: ObjectModel
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Files
-  name: Files
-  nameWithType: ModFileManifestModelRequiredMod.Files
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Files
-- uid: System.Collections.Generic.HashSet{System.Byte[]}
-  commentId: T:System.Collections.Generic.HashSet{System.Byte[]}
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Hashes
+  name: Hashes
+  nameWithType: ModFileManifestModelRequiredMod.Hashes
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
+- uid: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
+  commentId: T:System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.HashSet`1
   href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<byte[]>
-  nameWithType: HashSet<byte[]>
-  fullName: System.Collections.Generic.HashSet<byte[]>
-  nameWithType.vb: HashSet(Of Byte())
-  fullName.vb: System.Collections.Generic.HashSet(Of Byte())
-  name.vb: HashSet(Of Byte())
+  name: HashSet<ImmutableArray<byte>>
+  nameWithType: HashSet<ImmutableArray<byte>>
+  fullName: System.Collections.Generic.HashSet<System.Collections.Immutable.ImmutableArray<byte>>
+  nameWithType.vb: HashSet(Of ImmutableArray(Of Byte))
+  fullName.vb: System.Collections.Generic.HashSet(Of System.Collections.Immutable.ImmutableArray(Of Byte))
+  name.vb: HashSet(Of ImmutableArray(Of Byte))
   spec.csharp:
   - uid: System.Collections.Generic.HashSet`1
     name: HashSet
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
   - name: <
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
   - uid: System.Byte
     name: byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '['
-  - name: ']'
+  - name: '>'
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.HashSet`1
@@ -1029,11 +876,17 @@ references:
   - name: (
   - name: Of
   - name: " "
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Byte
     name: Byte
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: (
   - name: )
   - name: )
 - uid: System.Collections.Generic.HashSet`1
@@ -1239,138 +1092,3 @@ references:
   name: Version
   nameWithType: Version
   fullName: System.Version
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_AddFile_System_String_
-  name: AddFile
-  nameWithType: ModFileManifestModelRequiredMod.AddFile
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFile
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_AddFileAsync_System_String_
-  name: AddFileAsync
-  nameWithType: ModFileManifestModelRequiredMod.AddFileAsync
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.AddFileAsync
-- uid: System.Threading.Tasks.Task{System.Boolean}
-  commentId: T:System.Threading.Tasks.Task{System.Boolean}
-  parent: System.Threading.Tasks
-  definition: System.Threading.Tasks.Task`1
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<bool>
-  nameWithType: Task<bool>
-  fullName: System.Threading.Tasks.Task<bool>
-  nameWithType.vb: Task(Of Boolean)
-  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
-  name.vb: Task(Of Boolean)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - uid: System.Boolean
-    name: bool
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Boolean
-    name: Boolean
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.boolean
-  - name: )
-- uid: System.Threading.Tasks.Task`1
-  commentId: T:System.Threading.Tasks.Task`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  name: Task<TResult>
-  nameWithType: Task<TResult>
-  fullName: System.Threading.Tasks.Task<TResult>
-  nameWithType.vb: Task(Of TResult)
-  fullName.vb: System.Threading.Tasks.Task(Of TResult)
-  name.vb: Task(Of TResult)
-  spec.csharp:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: <
-  - name: TResult
-  - name: '>'
-  spec.vb:
-  - uid: System.Threading.Tasks.Task`1
-    name: Task
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TResult
-  - name: )
-- uid: System.Threading.Tasks
-  commentId: N:System.Threading.Tasks
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
-  fullName: System.Threading.Tasks
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RemoveFile_System_String_
-  name: RemoveFile
-  nameWithType: ModFileManifestModelRequiredMod.RemoveFile
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFile
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RemoveFileAsync_System_String_
-  name: RemoveFileAsync
-  nameWithType: ModFileManifestModelRequiredMod.RemoveFileAsync
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RemoveFileAsync

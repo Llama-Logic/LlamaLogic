@@ -20,6 +20,10 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.DisposeAsync
   - LlamaLogic.Packages.DataBasePackedFile.FileVersion
   - LlamaLogic.Packages.DataBasePackedFile.Finalize
+  - LlamaLogic.Packages.DataBasePackedFile.ForEach(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.ForEachAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.ForEachRaw(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.FromPathAsync(System.String,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.FromStreamAsync(System.IO.Stream,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.Get(LlamaLogic.Packages.ResourceKey,System.Boolean)
@@ -42,6 +46,8 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.GetNameByKeyAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetNames
   - LlamaLogic.Packages.DataBasePackedFile.GetNamesAsync(System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetRaw(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  - LlamaLogic.Packages.DataBasePackedFile.GetRawAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetSize(LlamaLogic.Packages.ResourceKey)
   - LlamaLogic.Packages.DataBasePackedFile.GetSizeAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetStringTable(LlamaLogic.Packages.ResourceKey,System.Boolean)
@@ -185,7 +191,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FromPathAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 164
+    startLine: 172
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -223,7 +229,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FromStreamAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 181
+    startLine: 189
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -258,7 +264,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZLibCompress
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 250
+    startLine: 258
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -294,7 +300,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZLibCompressAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 262
+    startLine: 270
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -332,7 +338,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 274
+    startLine: 282
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -363,7 +369,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 289
+    startLine: 297
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -399,7 +405,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 308
+    startLine: 316
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -433,7 +439,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Finalize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 335
+    startLine: 343
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -464,7 +470,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CanSaveInPlace
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 350
+    startLine: 358
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -495,7 +501,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Count
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 356
+    startLine: 364
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -526,7 +532,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CreationTime
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 362
+    startLine: 370
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -557,7 +563,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FileVersion
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 372
+    startLine: 380
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -594,7 +600,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Keys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 377
+    startLine: 385
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -625,7 +631,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UserVersion
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 383
+    startLine: 391
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -656,7 +662,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UpdatedTime
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 388
+    startLine: 396
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -687,7 +693,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: this[]
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 393
+    startLine: 401
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -723,7 +729,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ContainsKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 481
+    startLine: 489
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -756,7 +762,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ContainsKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 491
+    startLine: 499
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -791,7 +797,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CopyTo
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 503
+    startLine: 511
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -809,7 +815,7 @@ items:
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: <code class="paramref">destination</code> is <code>null</code>
+    description: <code class="paramref">destination</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: <code class="paramref">destination</code> is not writeable
@@ -831,7 +837,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CopyToAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 515
+    startLine: 523
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -853,7 +859,7 @@ items:
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: <code class="paramref">destination</code> is <code>null</code>
+    description: <code class="paramref">destination</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: <code class="paramref">destination</code> is not writeable
@@ -875,11 +881,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Delete
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 525
+    startLine: 533
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Deletes the resource with the specified <code class="paramref">key</code> and returns <code>true</code> if it was found; otherwise, <code>false</code>
+  summary: Deletes the resource with the specified <code class="paramref">key</code> and returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if it was found; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public bool Delete(ResourceKey key)
@@ -908,7 +914,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Dispose
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 540
+    startLine: 548
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -938,7 +944,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DisposeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 562
+    startLine: 570
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -953,6 +959,170 @@ items:
   overload: LlamaLogic.Packages.DataBasePackedFile.DisposeAsync*
   implements:
   - System.IAsyncDisposable.DisposeAsync
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEach(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ForEach(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  id: ForEach(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ForEach(ResourceKeyOrder, Predicate<ResourceKey>, Action<ResourceKey, ReadOnlyMemory<byte>>, CancellationToken)
+  nameWithType: DataBasePackedFile.ForEach(ResourceKeyOrder, Predicate<ResourceKey>, Action<ResourceKey, ReadOnlyMemory<byte>>, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEach(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate<LlamaLogic.Packages.ResourceKey>, System.Action<LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ForEach
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 648
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Processes undeleted resources in the specified <code class="paramref">keyOrder</code> if they satisfy the specified <code class="paramref">keyPredicate</code> using the specified <code class="paramref">processResourceAction</code>
+  example: []
+  syntax:
+    content: public void ForEach(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Action<ResourceKey, ReadOnlyMemory<byte>> processResourceAction, CancellationToken cancellationToken = default)
+    parameters:
+    - id: keyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    - id: keyPredicate
+      type: System.Predicate{LlamaLogic.Packages.ResourceKey}
+    - id: processResourceAction
+      type: System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}}
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    content.vb: Public Sub ForEach(keyOrder As ResourceKeyOrder, keyPredicate As Predicate(Of ResourceKey), processResourceAction As Action(Of ResourceKey, ReadOnlyMemory(Of Byte)), cancellationToken As CancellationToken = Nothing)
+  overload: LlamaLogic.Packages.DataBasePackedFile.ForEach*
+  nameWithType.vb: DataBasePackedFile.ForEach(ResourceKeyOrder, Predicate(Of ResourceKey), Action(Of ResourceKey, ReadOnlyMemory(Of Byte)), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ForEach(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate(Of LlamaLogic.Packages.ResourceKey), System.Action(Of LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte)), System.Threading.CancellationToken)
+  name.vb: ForEach(ResourceKeyOrder, Predicate(Of ResourceKey), Action(Of ResourceKey, ReadOnlyMemory(Of Byte)), CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEachAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ForEachAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  id: ForEachAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ForEachAsync(ResourceKeyOrder, Predicate<ResourceKey>, Func<ResourceKey, ReadOnlyMemory<byte>, Task>, CancellationToken)
+  nameWithType: DataBasePackedFile.ForEachAsync(ResourceKeyOrder, Predicate<ResourceKey>, Func<ResourceKey, ReadOnlyMemory<byte>, Task>, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEachAsync(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate<LlamaLogic.Packages.ResourceKey>, System.Func<LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>, System.Threading.Tasks.Task>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ForEachAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 676
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Processes undeleted resources in the specified <code class="paramref">keyOrder</code> if they satisfy the specified <code class="paramref">keyPredicate</code> using the specified <code class="paramref">processResourceAsyncAction</code>
+  example: []
+  syntax:
+    content: public Task ForEachAsync(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Func<ResourceKey, ReadOnlyMemory<byte>, Task> processResourceAsyncAction, CancellationToken cancellationToken = default)
+    parameters:
+    - id: keyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    - id: keyPredicate
+      type: System.Predicate{LlamaLogic.Packages.ResourceKey}
+    - id: processResourceAsyncAction
+      type: System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task}
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function ForEachAsync(keyOrder As ResourceKeyOrder, keyPredicate As Predicate(Of ResourceKey), processResourceAsyncAction As Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task), cancellationToken As CancellationToken = Nothing) As Task
+  overload: LlamaLogic.Packages.DataBasePackedFile.ForEachAsync*
+  nameWithType.vb: DataBasePackedFile.ForEachAsync(ResourceKeyOrder, Predicate(Of ResourceKey), Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ForEachAsync(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate(Of LlamaLogic.Packages.ResourceKey), System.Func(Of LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte), System.Threading.Tasks.Task), System.Threading.CancellationToken)
+  name.vb: ForEachAsync(ResourceKeyOrder, Predicate(Of ResourceKey), Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task), CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEachRaw(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ForEachRaw(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  id: ForEachRaw(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ForEachRaw(ResourceKeyOrder, Predicate<ResourceKey>, Action<ResourceKey, ReadOnlyMemory<byte>>, CancellationToken)
+  nameWithType: DataBasePackedFile.ForEachRaw(ResourceKeyOrder, Predicate<ResourceKey>, Action<ResourceKey, ReadOnlyMemory<byte>>, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEachRaw(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate<LlamaLogic.Packages.ResourceKey>, System.Action<LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ForEachRaw
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 704
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Processes undeleted raw resources (meaning that the library will not decompress a resource for you if it is compressed) in the specified <code class="paramref">keyOrder</code> if they satisfy the specified <code class="paramref">keyPredicate</code> using the specified <code class="paramref">processResourceAction</code>
+  example: []
+  syntax:
+    content: public void ForEachRaw(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Action<ResourceKey, ReadOnlyMemory<byte>> processResourceAction, CancellationToken cancellationToken = default)
+    parameters:
+    - id: keyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    - id: keyPredicate
+      type: System.Predicate{LlamaLogic.Packages.ResourceKey}
+    - id: processResourceAction
+      type: System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}}
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    content.vb: Public Sub ForEachRaw(keyOrder As ResourceKeyOrder, keyPredicate As Predicate(Of ResourceKey), processResourceAction As Action(Of ResourceKey, ReadOnlyMemory(Of Byte)), cancellationToken As CancellationToken = Nothing)
+  overload: LlamaLogic.Packages.DataBasePackedFile.ForEachRaw*
+  nameWithType.vb: DataBasePackedFile.ForEachRaw(ResourceKeyOrder, Predicate(Of ResourceKey), Action(Of ResourceKey, ReadOnlyMemory(Of Byte)), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ForEachRaw(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate(Of LlamaLogic.Packages.ResourceKey), System.Action(Of LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte)), System.Threading.CancellationToken)
+  name.vb: ForEachRaw(ResourceKeyOrder, Predicate(Of ResourceKey), Action(Of ResourceKey, ReadOnlyMemory(Of Byte)), CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  id: ForEachRawAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Predicate{LlamaLogic.Packages.ResourceKey},System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ForEachRawAsync(ResourceKeyOrder, Predicate<ResourceKey>, Func<ResourceKey, ReadOnlyMemory<byte>, Task>, CancellationToken)
+  nameWithType: DataBasePackedFile.ForEachRawAsync(ResourceKeyOrder, Predicate<ResourceKey>, Func<ResourceKey, ReadOnlyMemory<byte>, Task>, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate<LlamaLogic.Packages.ResourceKey>, System.Func<LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>, System.Threading.Tasks.Task>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ForEachRawAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 732
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Processes undeleted raw resources (meaning that the library will not decompress a resource for you if it is compressed) in the specified <code class="paramref">keyOrder</code> if they satisfy the specified <code class="paramref">keyPredicate</code> using the specified <code class="paramref">processResourceAsyncAction</code>
+  example: []
+  syntax:
+    content: public Task ForEachRawAsync(ResourceKeyOrder keyOrder, Predicate<ResourceKey> keyPredicate, Func<ResourceKey, ReadOnlyMemory<byte>, Task> processResourceAsyncAction, CancellationToken cancellationToken = default)
+    parameters:
+    - id: keyOrder
+      type: LlamaLogic.Packages.ResourceKeyOrder
+    - id: keyPredicate
+      type: System.Predicate{LlamaLogic.Packages.ResourceKey}
+    - id: processResourceAsyncAction
+      type: System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task}
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function ForEachRawAsync(keyOrder As ResourceKeyOrder, keyPredicate As Predicate(Of ResourceKey), processResourceAsyncAction As Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task), cancellationToken As CancellationToken = Nothing) As Task
+  overload: LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync*
+  nameWithType.vb: DataBasePackedFile.ForEachRawAsync(ResourceKeyOrder, Predicate(Of ResourceKey), Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync(LlamaLogic.Packages.ResourceKeyOrder, System.Predicate(Of LlamaLogic.Packages.ResourceKey), System.Func(Of LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte), System.Threading.Tasks.Task), System.Threading.CancellationToken)
+  name.vb: ForEachRawAsync(ResourceKeyOrder, Predicate(Of ResourceKey), Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task), CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.Get(LlamaLogic.Packages.ResourceKey,System.Boolean)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.Get(LlamaLogic.Packages.ResourceKey,System.Boolean)
   id: Get(LlamaLogic.Packages.ResourceKey,System.Boolean)
@@ -971,7 +1141,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Get
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 621
+    startLine: 762
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -985,7 +1155,7 @@ items:
       description: The key of the resource
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resource even if it has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     return:
       type: System.ReadOnlyMemory{System.Byte}
     content.vb: Public Function [Get](key As ResourceKey, force As Boolean = False) As ReadOnlyMemory(Of Byte)
@@ -1011,7 +1181,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAllSizes
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 638
+    startLine: 784
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1048,7 +1218,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAllSizesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 656
+    startLine: 802
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1088,7 +1258,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 675
+    startLine: 821
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1102,7 +1272,7 @@ items:
       description: The key of the resource
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resource even if it has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     - id: cancellationToken
       type: System.Threading.CancellationToken
       description: The token to monitor for cancellation requests
@@ -1131,7 +1301,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCount
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 685
+    startLine: 831
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1161,7 +1331,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCountAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 695
+    startLine: 841
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1194,7 +1364,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetData
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 705
+    startLine: 851
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1232,7 +1402,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDataAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 711
+    startLine: 857
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1272,7 +1442,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 717
+    startLine: 863
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1305,7 +1475,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 727
+    startLine: 873
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1340,7 +1510,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByName
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 737
+    startLine: 883
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1376,7 +1546,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByNameAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 748
+    startLine: 894
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1414,7 +1584,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModel
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 761
+    startLine: 907
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1459,7 +1629,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModelAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 774
+    startLine: 920
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1506,7 +1676,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 785
+    startLine: 931
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1544,7 +1714,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 791
+    startLine: 937
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1584,7 +1754,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 797
+    startLine: 943
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1617,7 +1787,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 808
+    startLine: 954
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1652,7 +1822,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 819
+    startLine: 965
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1682,7 +1852,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 830
+    startLine: 976
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1697,6 +1867,89 @@ items:
       type: System.Threading.Tasks.Task{System.Collections.Generic.IReadOnlyList{System.String}}
     content.vb: Public Function GetNamesAsync(cancellationToken As CancellationToken = Nothing) As Task(Of IReadOnlyList(Of String))
   overload: LlamaLogic.Packages.DataBasePackedFile.GetNamesAsync*
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetRaw(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetRaw(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  id: GetRaw(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetRaw(ResourceKey, bool)
+  nameWithType: DataBasePackedFile.GetRaw(ResourceKey, bool)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetRaw(LlamaLogic.Packages.ResourceKey, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetRaw
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 989
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the raw content of a resource with the specified <code class="paramref">key</code>, meaning that the library will not decompress it for you if it is compressed
+  example: []
+  syntax:
+    content: public ReadOnlyMemory<byte> GetRaw(ResourceKey key, bool force = false)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+      description: The key of the resource
+    - id: force
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Function GetRaw(key As ResourceKey, force As Boolean = False) As ReadOnlyMemory(Of Byte)
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetRaw*
+  nameWithType.vb: DataBasePackedFile.GetRaw(ResourceKey, Boolean)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetRaw(LlamaLogic.Packages.ResourceKey, Boolean)
+  name.vb: GetRaw(ResourceKey, Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetRawAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetRawAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  id: GetRawAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetRawAsync(ResourceKey, bool, CancellationToken)
+  nameWithType: DataBasePackedFile.GetRawAsync(ResourceKey, bool, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetRawAsync(LlamaLogic.Packages.ResourceKey, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetRawAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1002
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the raw content of a resource with the specified <code class="paramref">key</code> asynchronously, meaning that the library will not decompress it for you if it is compressed
+  example: []
+  syntax:
+    content: public Task<ReadOnlyMemory<byte>> GetRawAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+      description: The key of the resource
+    - id: force
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: The token to monitor for cancellation requests
+    return:
+      type: System.Threading.Tasks.Task{System.ReadOnlyMemory{System.Byte}}
+    content.vb: Public Function GetRawAsync(key As ResourceKey, force As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of ReadOnlyMemory(Of Byte))
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetRawAsync*
+  nameWithType.vb: DataBasePackedFile.GetRawAsync(ResourceKey, Boolean, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetRawAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
+  name.vb: GetRawAsync(ResourceKey, Boolean, CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetSize(LlamaLogic.Packages.ResourceKey)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetSize(LlamaLogic.Packages.ResourceKey)
   id: GetSize(LlamaLogic.Packages.ResourceKey)
@@ -1715,7 +1968,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 841
+    startLine: 1012
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1748,7 +2001,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSizeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 855
+    startLine: 1026
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1783,7 +2036,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTable
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 869
+    startLine: 1040
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1821,7 +2074,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTableAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 875
+    startLine: 1046
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1861,7 +2114,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetText
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 883
+    startLine: 1054
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1875,7 +2128,7 @@ items:
       description: The key of the resource
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resource even if it has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     return:
       type: System.String
     content.vb: Public Function GetText(key As ResourceKey, force As Boolean = False) As String
@@ -1901,7 +2154,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTextAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 895
+    startLine: 1066
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1915,7 +2168,7 @@ items:
       description: The key of the resource
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resource even if it has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     - id: cancellationToken
       type: System.Threading.CancellationToken
       description: The token to monitor for cancellation requests
@@ -1944,7 +2197,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 911
+    startLine: 1082
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1958,7 +2211,7 @@ items:
       description: The key of the resource
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resource even if it has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     return:
       type: System.Xml.Linq.XDocument
     content.vb: Public Function GetXml(key As ResourceKey, force As Boolean = False) As XDocument
@@ -1984,7 +2237,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 923
+    startLine: 1094
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1998,7 +2251,7 @@ items:
       description: The key of the resource
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resource even if it has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resource even if it has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     - id: cancellationToken
       type: System.Threading.CancellationToken
       description: The token to monitor for cancellation requests
@@ -2027,7 +2280,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAll
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1416
+    startLine: 1619
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2038,7 +2291,7 @@ items:
     parameters:
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resources even if they has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resources even if they has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     - id: compressionMode
       type: LlamaLogic.Packages.CompressionMode
       description: The compression mode to use for resources in memory
@@ -2065,7 +2318,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1426
+    startLine: 1629
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2093,7 +2346,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1436
+    startLine: 1639
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2126,7 +2379,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAllAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1449
+    startLine: 1652
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2137,7 +2390,7 @@ items:
     parameters:
     - id: force
       type: System.Boolean
-      description: <code>true</code> to get the content of the resources even if they has been marked as deleted; otheriwse, <code>false</code> (default)
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to get the content of the resources even if they has been marked as deleted; otheriwse, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (default)
     - id: compressionMode
       type: LlamaLogic.Packages.CompressionMode
       description: The compression mode to use for resources in memory
@@ -2169,7 +2422,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Save
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1561
+    startLine: 1764
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2209,7 +2462,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAs
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1582
+    startLine: 1785
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2245,7 +2498,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1603
+    startLine: 1806
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2289,7 +2542,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1624
+    startLine: 1827
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2329,11 +2582,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1647
+    startLine: 1850
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public bool Set(ResourceKey key, ReadOnlyMemory<byte> content, CompressionMode compressionMode = CompressionMode.Auto)
@@ -2372,11 +2625,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1661
+    startLine: 1864
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public bool Set(ResourceKey key, IModel content, CompressionMode compressionMode = CompressionMode.Auto)
@@ -2412,11 +2665,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1673
+    startLine: 1876
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public bool Set(ResourceKey key, string content, CompressionMode compressionMode = CompressionMode.Auto)
@@ -2455,11 +2708,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1688
+    startLine: 1891
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public bool Set(ResourceKey key, XDocument content, CompressionMode compressionMode = CompressionMode.Auto)
@@ -2495,11 +2748,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1707
+    startLine: 1910
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public Task<bool> SetAsync(ResourceKey key, ReadOnlyMemory<byte> content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
@@ -2541,11 +2794,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1723
+    startLine: 1926
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public Task<bool> SetAsync(ResourceKey key, IModel content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
@@ -2584,11 +2837,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1736
+    startLine: 1939
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public Task<bool> SetAsync(ResourceKey key, string content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
@@ -2630,11 +2883,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1752
+    startLine: 1955
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">content</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public Task<bool> SetAsync(ResourceKey key, XDocument content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
@@ -2673,11 +2926,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1770
+    startLine: 1973
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">xmlContent</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">xmlContent</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public bool SetXml(ResourceKey key, string xmlContent, CompressionMode compressionMode = CompressionMode.Auto)
@@ -2716,11 +2969,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1780
+    startLine: 1983
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the <code class="paramref">xmlContent</code> of a resource with the specified <code class="paramref">key</code>, returning <code>true</code> if the resource was compressed; otherwise, <code>false</code>
+  summary: Sets the <code class="paramref">xmlContent</code> of a resource with the specified <code class="paramref">key</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the resource was compressed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
   example: []
   syntax:
     content: public Task<bool> SetXmlAsync(ResourceKey key, string xmlContent, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
@@ -3287,6 +3540,7 @@ references:
   fullName: System
 - uid: LlamaLogic.Packages.DataBasePackedFile
   commentId: T:LlamaLogic.Packages.DataBasePackedFile
+  parent: LlamaLogic.Packages
   href: LlamaLogic.Packages.DataBasePackedFile.html
   name: DataBasePackedFile
   nameWithType: DataBasePackedFile
@@ -3932,18 +4186,12 @@ references:
   name: ValueTask
   nameWithType: ValueTask
   fullName: System.Threading.Tasks.ValueTask
-- uid: LlamaLogic.Packages.DataBasePackedFile.Get*
-  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.Get
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Get_LlamaLogic_Packages_ResourceKey_System_Boolean_
-  name: Get
-  nameWithType: DataBasePackedFile.Get
-  fullName: LlamaLogic.Packages.DataBasePackedFile.Get
-- uid: LlamaLogic.Packages.DataBasePackedFile.GetAllSizes*
-  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetAllSizes
-  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetAllSizes_System_Predicate_LlamaLogic_Packages_ResourceKey__
-  name: GetAllSizes
-  nameWithType: DataBasePackedFile.GetAllSizes
-  fullName: LlamaLogic.Packages.DataBasePackedFile.GetAllSizes
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEach*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ForEach
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ForEach_LlamaLogic_Packages_ResourceKeyOrder_System_Predicate_LlamaLogic_Packages_ResourceKey__System_Action_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte___System_Threading_CancellationToken_
+  name: ForEach
+  nameWithType: DataBasePackedFile.ForEach
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEach
 - uid: System.Predicate{LlamaLogic.Packages.ResourceKey}
   commentId: T:System.Predicate{LlamaLogic.Packages.ResourceKey}
   parent: System
@@ -3977,6 +4225,268 @@ references:
     name: ResourceKey
     href: LlamaLogic.Packages.ResourceKey.html
   - name: )
+- uid: System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}}
+  commentId: T:System.Action{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte}}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<ResourceKey, ReadOnlyMemory<byte>>
+  nameWithType: Action<ResourceKey, ReadOnlyMemory<byte>>
+  fullName: System.Action<LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>>
+  nameWithType.vb: Action(Of ResourceKey, ReadOnlyMemory(Of Byte))
+  fullName.vb: System.Action(Of LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte))
+  name.vb: Action(Of ResourceKey, ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.Predicate`1
+  commentId: T:System.Predicate`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  name: Predicate<T>
+  nameWithType: Predicate<T>
+  fullName: System.Predicate<T>
+  nameWithType.vb: Predicate(Of T)
+  fullName.vb: System.Predicate(Of T)
+  name.vb: Predicate(Of T)
+  spec.csharp:
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEachAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ForEachAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ForEachAsync_LlamaLogic_Packages_ResourceKeyOrder_System_Predicate_LlamaLogic_Packages_ResourceKey__System_Func_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__System_Threading_Tasks_Task__System_Threading_CancellationToken_
+  name: ForEachAsync
+  nameWithType: DataBasePackedFile.ForEachAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEachAsync
+- uid: System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task}
+  commentId: T:System.Func{LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.Tasks.Task}
+  parent: System
+  definition: System.Func`3
+  href: https://learn.microsoft.com/dotnet/api/system.func-3
+  name: Func<ResourceKey, ReadOnlyMemory<byte>, Task>
+  nameWithType: Func<ResourceKey, ReadOnlyMemory<byte>, Task>
+  fullName: System.Func<LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>, System.Threading.Tasks.Task>
+  nameWithType.vb: Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task)
+  fullName.vb: System.Func(Of LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte), System.Threading.Tasks.Task)
+  name.vb: Func(Of ResourceKey, ReadOnlyMemory(Of Byte), Task)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  - name: )
+- uid: System.Func`3
+  commentId: T:System.Func`3
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-3
+  name: Func<T1, T2, TResult>
+  nameWithType: Func<T1, T2, TResult>
+  fullName: System.Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
+  fullName.vb: System.Func(Of T1, T2, TResult)
+  name.vb: Func(Of T1, T2, TResult)
+  spec.csharp:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`3
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-3
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEachRaw*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ForEachRaw
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ForEachRaw_LlamaLogic_Packages_ResourceKeyOrder_System_Predicate_LlamaLogic_Packages_ResourceKey__System_Action_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte___System_Threading_CancellationToken_
+  name: ForEachRaw
+  nameWithType: DataBasePackedFile.ForEachRaw
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEachRaw
+- uid: LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ForEachRawAsync_LlamaLogic_Packages_ResourceKeyOrder_System_Predicate_LlamaLogic_Packages_ResourceKey__System_Func_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__System_Threading_Tasks_Task__System_Threading_CancellationToken_
+  name: ForEachRawAsync
+  nameWithType: DataBasePackedFile.ForEachRawAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ForEachRawAsync
+- uid: LlamaLogic.Packages.DataBasePackedFile.Get*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.Get
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Get_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: Get
+  nameWithType: DataBasePackedFile.Get
+  fullName: LlamaLogic.Packages.DataBasePackedFile.Get
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetAllSizes*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetAllSizes
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetAllSizes_System_Predicate_LlamaLogic_Packages_ResourceKey__
+  name: GetAllSizes
+  nameWithType: DataBasePackedFile.GetAllSizes
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetAllSizes
 - uid: System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,System.Int32}
   commentId: T:System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,System.Int32}
   parent: System.Collections.Generic
@@ -4021,34 +4531,6 @@ references:
     name: Integer
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-- uid: System.Predicate`1
-  commentId: T:System.Predicate`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.predicate-1
-  name: Predicate<T>
-  nameWithType: Predicate<T>
-  fullName: System.Predicate<T>
-  nameWithType.vb: Predicate(Of T)
-  fullName.vb: System.Predicate(Of T)
-  name.vb: Predicate(Of T)
-  spec.csharp:
-  - uid: System.Predicate`1
-    name: Predicate
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Predicate`1
-    name: Predicate
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: System.Collections.Generic.IReadOnlyDictionary`2
   commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
@@ -4648,6 +5130,18 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
   - name: )
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetRaw*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetRaw
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetRaw_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: GetRaw
+  nameWithType: DataBasePackedFile.GetRaw
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetRaw
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetRawAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetRawAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetRawAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_
+  name: GetRawAsync
+  nameWithType: DataBasePackedFile.GetRawAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetRawAsync
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetSize*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetSize
   href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetSize_LlamaLogic_Packages_ResourceKey_

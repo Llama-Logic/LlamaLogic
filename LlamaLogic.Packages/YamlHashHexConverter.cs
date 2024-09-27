@@ -7,17 +7,26 @@ sealed class YamlHashHexConverter :
     IYamlTypeConverter
 {
     public bool Accepts(Type type) =>
-        type == typeof(byte[]);
+        type == typeof(ImmutableArray<byte>);
 
     public object? ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
     {
         try
         {
-            return parser.Current is Scalar scalar
-                && scalar.Value is string hexString
-                && !hexString.Equals("null", StringComparison.OrdinalIgnoreCase)
-                ? hexString.ToByteArray()
-                : null;
+            if (parser.Current is not Scalar scalar)
+                return null;
+            if (scalar.Value is not string hashHexString)
+                return null;
+            if (hashHexString.Equals("null", StringComparison.OrdinalIgnoreCase))
+                return null;
+            if (hashHexString.StartsWith("'", StringComparison.OrdinalIgnoreCase)
+                && hashHexString.EndsWith("'", StringComparison.OrdinalIgnoreCase)
+                || hashHexString.StartsWith("\"", StringComparison.OrdinalIgnoreCase)
+                && hashHexString.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
+                hashHexString = hashHexString[1..^1];
+            return hashHexString.Length > 0
+                ? hashHexString.ToByteSequence().ToImmutableArray()
+                : [];
         }
         finally
         {
@@ -32,9 +41,9 @@ sealed class YamlHashHexConverter :
             emitter.Emit(new Scalar("null"));
             return;
         }
-        if (value is byte[] byteArray)
+        if (value is IEnumerable<byte> byteSequence)
         {
-            emitter.Emit(new Scalar(byteArray.ToHexString()));
+            emitter.Emit(new Scalar(byteSequence.ToHexString()));
             return;
         }
         throw new NotSupportedException($"{value} ({value.GetType().FullName}) is not supported");
