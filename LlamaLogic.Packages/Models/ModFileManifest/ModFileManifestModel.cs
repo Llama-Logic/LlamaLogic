@@ -243,6 +243,67 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
+    /// Gets the mod file manifest for the specified <paramref name="package"/> and its <see cref="ResourceKey"/>, if the <paramref name="package"/> has one
+    /// </summary>
+    public static (ResourceKey, ModFileManifestModel?) GetModFileManifestAndKey(DataBasePackedFile package)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        ResourceKey foundKey = default;
+        ModFileManifestModel? modFileManifest = null;
+        try
+        {
+            using var cts = new CancellationTokenSource();
+            package.ForEach(ResourceKeyOrder.TypeGroupInstance, key => key.Type is ResourceType.SnippetTuning, (key, content) =>
+            {
+                try
+                {
+                    modFileManifest = Decode(content);
+                    foundKey = key;
+                    cts.Cancel();
+                }
+                catch (XmlException)
+                {
+                }
+            }, cts.Token);
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        return (foundKey, modFileManifest);
+    }
+
+    /// <summary>
+    /// Gets the mod file manifest for the specified <paramref name="package"/>, asynchronously, if the <paramref name="package"/> has one
+    /// </summary>
+    public static async Task<(ResourceKey, ModFileManifestModel?)> GetModFileManifestAndKeyAsync(DataBasePackedFile package)
+    {
+        ArgumentNullException.ThrowIfNull(package);
+        ResourceKey foundKey = default;
+        ModFileManifestModel? modFileManifest = null;
+        try
+        {
+            using var cts = new CancellationTokenSource();
+            await package.ForEachAsync(ResourceKeyOrder.TypeGroupInstance, key => key.Type is ResourceType.SnippetTuning, (key, content) =>
+            {
+                try
+                {
+                    modFileManifest = Decode(content);
+                    foundKey = key;
+                    cts.Cancel();
+                }
+                catch (XmlException)
+                {
+                }
+                return Task.CompletedTask;
+            }, cts.Token).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        return (foundKey, modFileManifest);
+    }
+
+    /// <summary>
     /// Gets the mod file manifest for the specified <paramref name="package"/>, asynchronously, if it has one
     /// </summary>
     public static async Task<ModFileManifestModel?> GetModFileManifestAsync(DataBasePackedFile package)
