@@ -7,6 +7,10 @@ items:
   children:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Creators
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
@@ -140,6 +144,198 @@ items:
     - name: Order
       type: System.Int32
       value: 8
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  id: IgnoreIfHashAvailable
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
+  langs:
+  - csharp
+  - vb
+  name: IgnoreIfHashAvailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IgnoreIfHashAvailable
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Instructs agents to ignore fulfilling this dependency if this hash is present in the player's catalog of mods
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+
+      public ImmutableArray<byte> IgnoreIfHashAvailable { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
+    content.vb: >-
+      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+
+      Public Property IgnoreIfHashAvailable As ImmutableArray(Of Byte)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 9
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 2
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  id: IgnoreIfHashUnavailable
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
+  langs:
+  - csharp
+  - vb
+  name: IgnoreIfHashUnavailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IgnoreIfHashUnavailable
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Instructs agents to ignore fulfilling this dependency if this hash is not present in the player's catalog of mods
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+
+      public ImmutableArray<byte> IgnoreIfHashUnavailable { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Immutable.ImmutableArray{System.Byte}
+    content.vb: >-
+      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+
+      Public Property IgnoreIfHashUnavailable As ImmutableArray(Of Byte)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 10
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 2
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  id: IgnoreIfPackAvailable
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
+  langs:
+  - csharp
+  - vb
+  name: IgnoreIfPackAvailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IgnoreIfPackAvailable
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+    startLine: 35
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Instructs agents to ignore fulfilling this dependency if the pack identified by this pack code is present (e.g. "EP01" for Get to Work)
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+
+      public string? IgnoreIfPackAvailable { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+
+      Public Property IgnoreIfPackAvailable As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 11
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
+  id: IgnoreIfPackUnavailable
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
+  langs:
+  - csharp
+  - vb
+  name: IgnoreIfPackUnavailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IgnoreIfPackUnavailable
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
+    startLine: 41
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Instructs agents to ignore fulfilling this dependency if the pack identified by this pack code is not present (e.g. "EP01" for Get to Work)
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+
+      public string? IgnoreIfPackUnavailable { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+
+      Public Property IgnoreIfPackUnavailable As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 12
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   id: ModManifestKey
@@ -158,7 +354,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ModManifestKey
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 23
+    startLine: 47
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -206,7 +402,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 29
+    startLine: 53
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -251,7 +447,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredFeatures
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 35
+    startLine: 59
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -299,7 +495,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequirementIdentifier
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 41
+    startLine: 65
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -347,7 +543,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 47
+    startLine: 71
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -395,7 +591,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 53
+    startLine: 77
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -954,6 +1150,141 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_IgnoreIfHashAvailable
+  name: IgnoreIfHashAvailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
+- uid: System.Collections.Immutable.ImmutableArray{System.Byte}
+  commentId: T:System.Collections.Immutable.ImmutableArray{System.Byte}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.ImmutableArray`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<byte>
+  nameWithType: ImmutableArray<byte>
+  fullName: System.Collections.Immutable.ImmutableArray<byte>
+  nameWithType.vb: ImmutableArray(Of Byte)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of Byte)
+  name.vb: ImmutableArray(Of Byte)
+  spec.csharp:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.Collections.Immutable.ImmutableArray`1
+  commentId: T:System.Collections.Immutable.ImmutableArray`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  name: ImmutableArray<T>
+  nameWithType: ImmutableArray<T>
+  fullName: System.Collections.Immutable.ImmutableArray<T>
+  nameWithType.vb: ImmutableArray(Of T)
+  fullName.vb: System.Collections.Immutable.ImmutableArray(Of T)
+  name.vb: ImmutableArray(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Immutable
+    name: Immutable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Immutable
+    name: Immutable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_IgnoreIfHashUnavailable
+  name: IgnoreIfHashUnavailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_IgnoreIfPackAvailable
+  name: IgnoreIfPackAvailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_IgnoreIfPackUnavailable
+  name: IgnoreIfPackUnavailable
+  nameWithType: ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
 - uid: LlamaLogic.Packages.ResourceKey
   commentId: T:LlamaLogic.Packages.ResourceKey
   parent: LlamaLogic.Packages
@@ -1041,17 +1372,6 @@ references:
   name: Name
   nameWithType: ModFileManifestModelRequiredMod.Name
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_RequiredFeatures
