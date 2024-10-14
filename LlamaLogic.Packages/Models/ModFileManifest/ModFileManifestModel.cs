@@ -490,7 +490,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
@@ -502,8 +502,14 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> IncompatiblePacks { get; private set; } = [];
+
+    /// <summary>
+    /// Gets/sets the promo code it is suggested the player use during check out in the EA Store if purchasing a pack for use with this mod
+    /// </summary>
+    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public string? ElectronicArtsPromoCode { get; set; }
 
     /// <summary>
     /// Gets/sets the <see cref="ModFileManifestResourceHashStrategy"/> to use when producing this mod file's <see cref="Hash"/> if it is a package
@@ -606,7 +612,9 @@ public sealed class ModFileManifestModel :
             else
             {
                 var tunableValue = reader.ReadElementContentAsString();
-                if (tunableName == "name")
+                if (tunableName == "ea_promo_code")
+                    ElectronicArtsPromoCode = tunableValue;
+                else if (tunableName == "name")
                     Name = tunableValue;
                 else if (tunableName == "hash")
                     Hash = tunableValue.ToByteSequence().ToImmutableArray();
@@ -640,6 +648,7 @@ public sealed class ModFileManifestModel :
         writer.WriteTunableList("features", Features);
         writer.WriteTunableList("exclusivities", Exclusivities);
         writer.WriteTunableList("required_packs", RequiredPacks);
+        writer.WriteTunable("ea_promo_code", ElectronicArtsPromoCode);
         writer.WriteTunableList("incompatible_packs", IncompatiblePacks);
         writer.WriteTunableList("required_mods", RequiredMods);
         writer.WriteEndElement();

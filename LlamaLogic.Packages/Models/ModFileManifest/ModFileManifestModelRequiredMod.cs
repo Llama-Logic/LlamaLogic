@@ -49,10 +49,10 @@ public sealed class ModFileManifestModelRequiredMod :
     public ResourceKey? ModManifestKey { get; set; }
 
     /// <summary>
-    /// Gets/sets the title of the dependency mod
+    /// Gets/sets the name of the dependency mod
     /// </summary>
     [YamlMember(Order = 1)]
-    public string Title { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the names of the features of the dependency mod which the dependent mod requires
@@ -115,8 +115,8 @@ public sealed class ModFileManifestModelRequiredMod :
                     IgnoreIfPackUnavailable = tunableValue;
                 else if (tunableName == "mod_manifest_key")
                     ModManifestKey = ResourceKey.Parse(tunableValue);
-                else if (tunableName == "title")
-                    Title = tunableValue;
+                else if (tunableName == "name")
+                    Name = tunableValue;
                 else if (tunableName == "requirement_identifier")
                     RequirementIdentifier = tunableValue;
                 else if (tunableName == "version")
@@ -131,7 +131,7 @@ public sealed class ModFileManifestModelRequiredMod :
     void IXmlSerializable.WriteXml(XmlWriter writer)
     {
         writer.WriteStartElement("U");
-        writer.WriteTunable("title", Title);
+        writer.WriteTunable("name", Name);
         writer.WriteTunableList("creators", Creators);
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
