@@ -27,7 +27,7 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String,System.IFormatProvider)
@@ -1115,54 +1115,6 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
-  id: IntentionalOverrides
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: IntentionalOverrides
-  nameWithType: ModFileManifestModel.IntentionalOverrides
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
-  type: Property
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: IntentionalOverrides
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 486
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the list of resources the mod intends to override
-  example: []
-  syntax:
-    content: >-
-      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-
-      public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; }
-    parameters: []
-    return:
-      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride}
-    content.vb: >-
-      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
-
-      Public Property IntentionalOverrides As Collection(Of ModFileManifestModelIntentionalOverride)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides*
-  attributes:
-  - type: YamlDotNet.Serialization.YamlMemberAttribute
-    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
-    arguments: []
-    namedArguments:
-    - name: Order
-      type: System.Int32
-      value: 13
-    - name: DefaultValuesHandling
-      type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 4
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   id: Name
@@ -1181,7 +1133,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 492
+    startLine: 486
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1229,7 +1181,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredMods
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 498
+    startLine: 492
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1237,14 +1189,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod}
     content.vb: >-
-      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredMods As Collection(Of ModFileManifestModelRequiredMod)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods*
@@ -1255,7 +1207,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 12
+      value: 13
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1277,7 +1229,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredPacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 504
+    startLine: 498
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1304,6 +1256,54 @@ items:
     - name: Order
       type: System.Int32
       value: 11
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 4
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
+  id: IncompatiblePacks
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: IncompatiblePacks
+  nameWithType: ModFileManifestModel.IncompatiblePacks
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IncompatiblePacks
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 504
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+
+      public Collection<string> IncompatiblePacks { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.String}
+    content.vb: >-
+      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+
+      Public Property IncompatiblePacks As Collection(Of String)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 12
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -3532,45 +3532,6 @@ references:
   name: HashResourceKeys
   nameWithType: ModFileManifestModel.HashResourceKeys
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IntentionalOverrides
-  name: IntentionalOverrides
-  nameWithType: ModFileManifestModel.IntentionalOverrides
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides
-- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride}
-  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride}
-  parent: System.Collections.ObjectModel
-  definition: System.Collections.ObjectModel.Collection`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
-  name: Collection<ModFileManifestModelIntentionalOverride>
-  nameWithType: Collection<ModFileManifestModelIntentionalOverride>
-  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride>
-  nameWithType.vb: Collection(Of ModFileManifestModelIntentionalOverride)
-  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride)
-  name.vb: Collection(Of ModFileManifestModelIntentionalOverride)
-  spec.csharp:
-  - uid: System.Collections.ObjectModel.Collection`1
-    name: Collection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
-  - name: <
-  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
-    name: ModFileManifestModelIntentionalOverride
-    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.ObjectModel.Collection`1
-    name: Collection
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride
-    name: ModFileManifestModelIntentionalOverride
-    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html
-  - name: )
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Name
@@ -3622,6 +3583,12 @@ references:
   name: RequiredPacks
   nameWithType: ModFileManifestModel.RequiredPacks
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IncompatiblePacks
+  name: IncompatiblePacks
+  nameWithType: ModFileManifestModel.IncompatiblePacks
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Hash

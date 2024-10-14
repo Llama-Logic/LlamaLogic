@@ -342,20 +342,20 @@ public HashSet&lt;ResourceKey&gt; HashResourceKeys { get; }</code></pre>
 
 
 
-  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IntentionalOverrides_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides*"></a>
+  <a id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IncompatiblePacks_" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks*"></a>
 
-  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IntentionalOverrides" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IntentionalOverrides">
-  IntentionalOverrides
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L487"><i class="bi bi-code-slash"></i></a>
+  <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_IncompatiblePacks" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks">
+  IncompatiblePacks
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L505"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the list of resources the mod intends to override</p>
+  <div class="markdown level1 summary"><p>Gets the list of pack codes identifying the packs incompatible with this mod (e.g. &quot;EP01&quot; for Get to Work)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-public Collection&lt;ModFileManifestModelIntentionalOverride&gt; IntentionalOverrides { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+public Collection&lt;string&gt; IncompatiblePacks { get; }</code></pre>
   </div>
 
 
@@ -364,7 +364,7 @@ public Collection&lt;ModFileManifestModelIntentionalOverride&gt; IntentionalOver
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelIntentionalOverride.html">ModFileManifestModelIntentionalOverride</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -379,7 +379,7 @@ public Collection&lt;ModFileManifestModelIntentionalOverride&gt; IntentionalOver
 
   <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Name" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L493"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L487"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets the name of the mod</p>
@@ -412,7 +412,7 @@ public required string Name { get; set; }</code></pre>
 
   <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RequiredMods" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods">
   RequiredMods
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L499"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L493"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the list of mods required by this mod</p>
@@ -420,7 +420,7 @@ public required string Name { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    <pre><code class="lang-csharp hljs">[YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 public Collection&lt;ModFileManifestModelRequiredMod&gt; RequiredMods { get; }</code></pre>
   </div>
 
@@ -445,7 +445,7 @@ public Collection&lt;ModFileManifestModelRequiredMod&gt; RequiredMods { get; }</
 
   <h3 id="LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RequiredPacks" data-uid="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks">
   RequiredPacks
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L505"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs/#L499"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the list of pack codes identifying the packs required by this mod (e.g. &quot;EP01&quot; for Get to Work)</p>

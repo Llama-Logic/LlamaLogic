@@ -482,12 +482,6 @@ public sealed class ModFileManifestModel :
     public HashSet<ResourceKey> HashResourceKeys { get; private set; } = [];
 
     /// <summary>
-    /// Gets the list of resources the mod intends to override
-    /// </summary>
-    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-    public Collection<ModFileManifestModelIntentionalOverride> IntentionalOverrides { get; private set; } = [];
-
-    /// <summary>
     /// Gets/sets the name of the mod
     /// </summary>
     [YamlMember(Order = 1, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
@@ -496,7 +490,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
@@ -504,6 +498,12 @@ public sealed class ModFileManifestModel :
     /// </summary>
     [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
+
+    /// <summary>
+    /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
+    /// </summary>
+    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public Collection<string> IncompatiblePacks { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the <see cref="ModFileManifestResourceHashStrategy"/> to use when producing this mod file's <see cref="Hash"/> if it is a package
@@ -596,8 +596,6 @@ public sealed class ModFileManifestModel :
                     Features.AddRange(reader.ReadTunableList());
                 else if (tunableName == "hash_resource_keys")
                     HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
-                else if (tunableName == "intentional_overrides")
-                    IntentionalOverrides.AddRange(reader.ReadTunableTupleList<ModFileManifestModelIntentionalOverride>());
                 else if (tunableName == "required_mods")
                     RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
                 else if (tunableName == "required_packs")
@@ -642,8 +640,8 @@ public sealed class ModFileManifestModel :
         writer.WriteTunableList("features", Features);
         writer.WriteTunableList("exclusivities", Exclusivities);
         writer.WriteTunableList("required_packs", RequiredPacks);
+        writer.WriteTunableList("incompatible_packs", IncompatiblePacks);
         writer.WriteTunableList("required_mods", RequiredMods);
-        writer.WriteTunableList("intentional_overrides", IntentionalOverrides);
         writer.WriteEndElement();
     }
 
