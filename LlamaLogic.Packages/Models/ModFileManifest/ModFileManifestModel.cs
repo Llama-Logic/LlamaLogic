@@ -544,7 +544,7 @@ public sealed class ModFileManifestModel :
     /// Gets/sets the version of this mod
     /// </summary>
     [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
-    public Version? Version { get; set; }
+    public string? Version { get; set; }
 
     /// <inheritdoc/>
     public override ReadOnlyMemory<byte> Encode()
@@ -613,7 +613,7 @@ public sealed class ModFileManifestModel :
                 else if (tunableName == "resource_hash_strategy")
                     ResourceHashStrategy = Enum.Parse<ModFileManifestResourceHashStrategy>(tunableValue);
                 else if (tunableName == "version")
-                    Version = Version.Parse(tunableValue);
+                    Version = tunableValue;
                 else if (tunableName == "url")
                     Url = new Uri(tunableValue, UriKind.Absolute);
             }

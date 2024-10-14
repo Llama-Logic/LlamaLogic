@@ -601,14 +601,14 @@ items:
     content: >-
       [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
-      public Version? Version { get; set; }
+      public string? Version { get; set; }
     parameters: []
     return:
-      type: System.Version
+      type: System.String
     content.vb: >-
       <YamlMember(Order:=3, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
-      Public Property Version As Version
+      Public Property Version As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Version*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
@@ -1404,11 +1404,3 @@ references:
   name: Version
   nameWithType: ModFileManifestModelRequiredMod.Version
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Version
-- uid: System.Version
-  commentId: T:System.Version
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.version
-  name: Version
-  nameWithType: Version
-  fullName: System.Version

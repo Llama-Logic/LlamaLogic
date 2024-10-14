@@ -76,7 +76,7 @@ public sealed class ModFileManifestModelRequiredMod :
     /// Gets/sets the version of this dependency mod
     /// </summary>
     [YamlMember(Order = 3, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
-    public Version? Version { get; set; }
+    public string? Version { get; set; }
 
     #region IXmlSerializable
 
@@ -120,7 +120,7 @@ public sealed class ModFileManifestModelRequiredMod :
                 else if (tunableName == "requirement_identifier")
                     RequirementIdentifier = tunableValue;
                 else if (tunableName == "version")
-                    Version = Version.Parse(tunableValue);
+                    Version = tunableValue;
                 else if (tunableName == "url")
                     Url = new Uri(tunableValue, UriKind.Absolute);
             }
