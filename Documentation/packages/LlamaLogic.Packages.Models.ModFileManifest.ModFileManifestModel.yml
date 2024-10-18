@@ -13,9 +13,9 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Features
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync(System.String,System.Threading.CancellationToken)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(System.IO.Compression.ZipArchive)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifestAndKey(LlamaLogic.Packages.DataBasePackedFile)
@@ -34,7 +34,6 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String,System.IFormatProvider)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SupportedTypes
@@ -72,9 +71,9 @@ items:
 
     ### Use in Mod Package (`.package`) files
 
-    Place one and only one mod file manifest <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> resource in the package.
+    When originally creating packages, place one and only one mod file manifest <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> resource in the package and use sufficiently unique values for its <xref href="LlamaLogic.Packages.ResourceKey.FullInstance" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName" data-throw-if-not-resolved="false"></xref>.
 
-    If an external application encounters multiple <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> resources in a package, it should use the first one (ordered by <xref href="LlamaLogic.Packages.ResourceKey.Group" data-throw-if-not-resolved="false"></xref>, then by <xref href="LlamaLogic.Packages.ResourceKey.FullInstance" data-throw-if-not-resolved="false"></xref>) and ignore the rest.
+    If an external application encounters multiple <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> manifest resources in a package, it must assume that a manifest un-aware tool has merged multiple manifested packages and process each manifest accordingly.
 
 
     Avoid using <xref href="LlamaLogic.Packages.ResourceKey.Group" data-throw-if-not-resolved="false"></xref> `0x00000000` as this is informally reserved for Maxis.
@@ -130,7 +129,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SupportedTypes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 40
+    startLine: 37
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -163,7 +162,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Decode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 58
+    startLine: 55
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -201,7 +200,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFileSha256Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 70
+    startLine: 67
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -237,7 +236,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFileSha256HashAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 82
+    startLine: 79
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -257,16 +256,16 @@ items:
   nameWithType.vb: ModFileManifestModel.GetFileSha256HashAsync(String, CancellationToken)
   fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256HashAsync(String, System.Threading.CancellationToken)
   name.vb: GetFileSha256HashAsync(String, CancellationToken)
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
-  id: GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
+  id: GetModFileHash(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey})
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
   langs:
   - csharp
   - vb
-  name: GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>)
-  nameWithType: ModFileManifestModel.GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>)
+  name: GetModFileHash(DataBasePackedFile, HashSet<ResourceKey>)
+  nameWithType: ModFileManifestModel.GetModFileHash(DataBasePackedFile, HashSet<ResourceKey>)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile, System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>)
   type: Method
   source:
     remote:
@@ -275,28 +274,26 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileHash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 94
+    startLine: 91
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the hash for the specified <code class="paramref">package</code> using the specified <code class="paramref">strategy</code> and <code class="paramref">hashResourceKeys</code>
+  summary: Gets the hash for the specified <code class="paramref">package</code> using the specified <code class="paramref">hashResourceKeys</code>
   example: []
   syntax:
-    content: public static ImmutableArray<byte> GetModFileHash(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys)
+    content: public static ImmutableArray<byte> GetModFileHash(DataBasePackedFile package, HashSet<ResourceKey> hashResourceKeys)
     parameters:
     - id: package
       type: LlamaLogic.Packages.DataBasePackedFile
-    - id: strategy
-      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
     - id: hashResourceKeys
       type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
-    content.vb: Public Shared Function GetModFileHash(package As DataBasePackedFile, strategy As ModFileManifestResourceHashStrategy, hashResourceKeys As HashSet(Of ResourceKey)) As ImmutableArray(Of Byte)
+    content.vb: Public Shared Function GetModFileHash(package As DataBasePackedFile, hashResourceKeys As HashSet(Of ResourceKey)) As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash*
-  nameWithType.vb: ModFileManifestModel.GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey))
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey))
-  name.vb: GetModFileHash(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey))
+  nameWithType.vb: ModFileManifestModel.GetModFileHash(DataBasePackedFile, HashSet(Of ResourceKey))
+  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(LlamaLogic.Packages.DataBasePackedFile, System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey))
+  name.vb: GetModFileHash(DataBasePackedFile, HashSet(Of ResourceKey))
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash(System.IO.Compression.ZipArchive)
   id: GetModFileHash(System.IO.Compression.ZipArchive)
@@ -315,7 +312,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileHash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 138
+    startLine: 119
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -330,16 +327,16 @@ items:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: Public Shared Function GetModFileHash(scriptMod As ZipArchive) As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash*
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
-  id: GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  id: GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile,System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
   langs:
   - csharp
   - vb
-  name: GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>, CancellationToken)
-  nameWithType: ModFileManifestModel.GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet<ResourceKey>, CancellationToken)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>, System.Threading.CancellationToken)
+  name: GetModFileHashAsync(DataBasePackedFile, HashSet<ResourceKey>, CancellationToken)
+  nameWithType: ModFileManifestModel.GetModFileHashAsync(DataBasePackedFile, HashSet<ResourceKey>, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile, System.Collections.Generic.HashSet<LlamaLogic.Packages.ResourceKey>, System.Threading.CancellationToken)
   type: Method
   source:
     remote:
@@ -348,30 +345,28 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileHashAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 157
+    startLine: 138
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the hash for the specified <code class="paramref">package</code> using the specified <code class="paramref">strategy</code> and <code class="paramref">hashResourceKeys</code>, asynchronously
+  summary: Gets the hash for the specified <code class="paramref">package</code> using the specified <code class="paramref">hashResourceKeys</code>, asynchronously
   example: []
   syntax:
-    content: public static Task<ImmutableArray<byte>> GetModFileHashAsync(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys, CancellationToken cancellationToken = default)
+    content: public static Task<ImmutableArray<byte>> GetModFileHashAsync(DataBasePackedFile package, HashSet<ResourceKey> hashResourceKeys, CancellationToken cancellationToken = default)
     parameters:
     - id: package
       type: LlamaLogic.Packages.DataBasePackedFile
-    - id: strategy
-      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
     - id: hashResourceKeys
       type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
     - id: cancellationToken
       type: System.Threading.CancellationToken
     return:
       type: System.Threading.Tasks.Task{System.Collections.Immutable.ImmutableArray{System.Byte}}
-    content.vb: Public Shared Function GetModFileHashAsync(package As DataBasePackedFile, strategy As ModFileManifestResourceHashStrategy, hashResourceKeys As HashSet(Of ResourceKey), cancellationToken As CancellationToken = Nothing) As Task(Of ImmutableArray(Of Byte))
+    content.vb: Public Shared Function GetModFileHashAsync(package As DataBasePackedFile, hashResourceKeys As HashSet(Of ResourceKey), cancellationToken As CancellationToken = Nothing) As Task(Of ImmutableArray(Of Byte))
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync*
-  nameWithType.vb: ModFileManifestModel.GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey), CancellationToken)
-  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy, System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey), System.Threading.CancellationToken)
-  name.vb: GetModFileHashAsync(DataBasePackedFile, ModFileManifestResourceHashStrategy, HashSet(Of ResourceKey), CancellationToken)
+  nameWithType.vb: ModFileManifestModel.GetModFileHashAsync(DataBasePackedFile, HashSet(Of ResourceKey), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync(LlamaLogic.Packages.DataBasePackedFile, System.Collections.Generic.HashSet(Of LlamaLogic.Packages.ResourceKey), System.Threading.CancellationToken)
+  name.vb: GetModFileHashAsync(DataBasePackedFile, HashSet(Of ResourceKey), CancellationToken)
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
   id: GetModFileManifest(LlamaLogic.Packages.DataBasePackedFile)
@@ -390,7 +385,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 203
+    startLine: 168
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -423,7 +418,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 231
+    startLine: 196
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -456,7 +451,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAndKey
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 247
+    startLine: 212
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -489,7 +484,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAndKeyAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 277
+    startLine: 242
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -522,7 +517,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 308
+    startLine: 273
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -555,7 +550,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 337
+    startLine: 302
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -588,7 +583,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifests
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 353
+    startLine: 318
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -621,7 +616,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestsAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 373
+    startLine: 338
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -654,7 +649,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 392
+    startLine: 357
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -689,7 +684,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 400
+    startLine: 365
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -726,7 +721,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Parse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 412
+    startLine: 377
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -767,7 +762,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Parse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 421
+    startLine: 386
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -811,7 +806,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TryParse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 433
+    startLine: 398
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -851,7 +846,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TryParse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 442
+    startLine: 407
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -894,7 +889,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Creators
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 456
+    startLine: 421
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -942,7 +937,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Exclusivities
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 462
+    startLine: 427
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -950,14 +945,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> Exclusivities { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Exclusivities As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Exclusivities*
@@ -968,7 +963,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 10
+      value: 9
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -990,7 +985,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Features
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 468
+    startLine: 433
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -998,14 +993,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> Features { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Features As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Features*
@@ -1016,7 +1011,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 9
+      value: 8
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1038,7 +1033,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 474
+    startLine: 439
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1086,22 +1081,22 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: HashResourceKeys
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 480
+    startLine: 445
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets the resource keys omitted from the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy" data-throw-if-not-resolved="false"></xref> (this is typically not used)
+  summary: Gets the resource keys for the resources included in the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public HashSet<ResourceKey> HashResourceKeys { get; }
     parameters: []
     return:
       type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
     content.vb: >-
-      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property HashResourceKeys As HashSet(Of ResourceKey)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys*
@@ -1112,7 +1107,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 7
+      value: 6
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1134,7 +1129,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 486
+    startLine: 451
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1182,7 +1177,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredMods
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 492
+    startLine: 457
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1190,14 +1185,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod}
     content.vb: >-
-      <YamlMember(Order:=14, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredMods As Collection(Of ModFileManifestModelRequiredMod)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods*
@@ -1208,7 +1203,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 14
+      value: 13
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1230,7 +1225,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredPacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 498
+    startLine: 463
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1238,14 +1233,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> RequiredPacks { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredPacks As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks*
@@ -1256,7 +1251,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 11
+      value: 10
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1278,7 +1273,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: IncompatiblePacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 504
+    startLine: 469
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1286,14 +1281,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> IncompatiblePacks { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IncompatiblePacks As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks*
@@ -1304,7 +1299,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 13
+      value: 12
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1326,7 +1321,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ElectronicArtsPromoCode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 510
+    startLine: 475
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1334,14 +1329,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? ElectronicArtsPromoCode { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property ElectronicArtsPromoCode As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ElectronicArtsPromoCode*
@@ -1352,58 +1347,10 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 12
+      value: 11
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
-  id: ResourceHashStrategy
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: ResourceHashStrategy
-  nameWithType: ModFileManifestModel.ResourceHashStrategy
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
-  type: Property
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: ResourceHashStrategy
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 516
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets/sets the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy" data-throw-if-not-resolved="false"></xref> to use when producing this mod file's <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash" data-throw-if-not-resolved="false"></xref> if it is a package
-  example: []
-  syntax:
-    content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
-
-      public ModFileManifestResourceHashStrategy ResourceHashStrategy { get; set; }
-    parameters: []
-    return:
-      type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
-    content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
-
-      Public Property ResourceHashStrategy As ModFileManifestResourceHashStrategy
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy*
-  attributes:
-  - type: YamlDotNet.Serialization.YamlMemberAttribute
-    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
-    arguments: []
-    namedArguments:
-    - name: Order
-      type: System.Int32
-      value: 6
-    - name: DefaultValuesHandling
-      type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 2
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
   id: ResourceName
@@ -1422,7 +1369,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 520
+    startLine: 479
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1466,7 +1413,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SubsumedHashes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 527
+    startLine: 486
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1474,14 +1421,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public HashSet<ImmutableArray<byte>> SubsumedHashes { get; }
     parameters: []
     return:
       type: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
     content.vb: >-
-      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property SubsumedHashes As HashSet(Of ImmutableArray(Of Byte))
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes*
@@ -1492,7 +1439,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 8
+      value: 7
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1514,7 +1461,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 533
+    startLine: 492
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1562,7 +1509,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningFullInstance
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 539
+    startLine: 498
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1610,7 +1557,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 545
+    startLine: 504
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1658,7 +1605,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 551
+    startLine: 510
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1706,7 +1653,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 555
+    startLine: 514
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1739,7 +1686,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ToString
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 567
+    startLine: 526
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1759,18 +1706,24 @@ references:
   name: SnippetTuning
   nameWithType: ResourceType.SnippetTuning
   fullName: LlamaLogic.Packages.ResourceType.SnippetTuning
-- uid: LlamaLogic.Packages.ResourceKey.Group
-  commentId: F:LlamaLogic.Packages.ResourceKey.Group
-  href: LlamaLogic.Packages.ResourceKey.html#LlamaLogic_Packages_ResourceKey_Group
-  name: Group
-  nameWithType: ResourceKey.Group
-  fullName: LlamaLogic.Packages.ResourceKey.Group
 - uid: LlamaLogic.Packages.ResourceKey.FullInstance
   commentId: F:LlamaLogic.Packages.ResourceKey.FullInstance
   href: LlamaLogic.Packages.ResourceKey.html#LlamaLogic_Packages_ResourceKey_FullInstance
   name: FullInstance
   nameWithType: ResourceKey.FullInstance
   fullName: LlamaLogic.Packages.ResourceKey.FullInstance
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_TuningName
+  name: TuningName
+  nameWithType: ModFileManifestModel.TuningName
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
+- uid: LlamaLogic.Packages.ResourceKey.Group
+  commentId: F:LlamaLogic.Packages.ResourceKey.Group
+  href: LlamaLogic.Packages.ResourceKey.html#LlamaLogic_Packages_ResourceKey_Group
+  name: Group
+  nameWithType: ResourceKey.Group
+  fullName: LlamaLogic.Packages.ResourceKey.Group
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ToString
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ToString
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ToString
@@ -2799,7 +2752,7 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileHash_LlamaLogic_Packages_DataBasePackedFile_LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestResourceHashStrategy_System_Collections_Generic_HashSet_LlamaLogic_Packages_ResourceKey__
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileHash_LlamaLogic_Packages_DataBasePackedFile_System_Collections_Generic_HashSet_LlamaLogic_Packages_ResourceKey__
   name: GetModFileHash
   nameWithType: ModFileManifestModel.GetModFileHash
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHash
@@ -2810,13 +2763,6 @@ references:
   name: DataBasePackedFile
   nameWithType: DataBasePackedFile
   fullName: LlamaLogic.Packages.DataBasePackedFile
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
-  commentId: T:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
-  parent: LlamaLogic.Packages.Models.ModFileManifest
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy.html
-  name: ModFileManifestResourceHashStrategy
-  nameWithType: ModFileManifestResourceHashStrategy
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestResourceHashStrategy
 - uid: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
   commentId: T:System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
   parent: System.Collections.Generic
@@ -2947,7 +2893,7 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.io.compression
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileHashAsync_LlamaLogic_Packages_DataBasePackedFile_LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestResourceHashStrategy_System_Collections_Generic_HashSet_LlamaLogic_Packages_ResourceKey__System_Threading_CancellationToken_
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetModFileHashAsync_LlamaLogic_Packages_DataBasePackedFile_System_Collections_Generic_HashSet_LlamaLogic_Packages_ResourceKey__System_Threading_CancellationToken_
   name: GetModFileHashAsync
   nameWithType: ModFileManifestModel.GetModFileHashAsync
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetModFileHashAsync
@@ -3569,12 +3515,12 @@ references:
   name: Hash
   nameWithType: ModFileManifestModel.Hash
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ResourceHashStrategy
-  name: ResourceHashStrategy
-  nameWithType: ModFileManifestModel.ResourceHashStrategy
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Hash
+  name: Hash
+  nameWithType: ModFileManifestModel.Hash
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_HashResourceKeys
@@ -3644,18 +3590,6 @@ references:
   name: ElectronicArtsPromoCode
   nameWithType: ModFileManifestModel.ElectronicArtsPromoCode
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ElectronicArtsPromoCode
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Hash
-  name: Hash
-  nameWithType: ModFileManifestModel.Hash
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ResourceHashStrategy
-  name: ResourceHashStrategy
-  nameWithType: ModFileManifestModel.ResourceHashStrategy
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceHashStrategy
 - uid: LlamaLogic.Packages.Models.Model.ResourceName
   commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
   parent: LlamaLogic.Packages.Models.Model

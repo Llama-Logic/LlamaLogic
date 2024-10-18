@@ -8,8 +8,8 @@ namespace LlamaLogic.Packages.Models.ModFileManifest;
 /// These manifests are a format sponsored by the Llama Logic team to permit creators to specify the dependency requirements of their mods.
 /// 
 /// ### Use in Mod Package (`.package`) files
-/// Place one and only one mod file manifest <see cref="ResourceType.SnippetTuning"/> resource in the package.
-/// If an external application encounters multiple <see cref="ResourceType.SnippetTuning"/> resources in a package, it should use the first one (ordered by <see cref="ResourceKey.Group"/>, then by <see cref="ResourceKey.FullInstance"/>) and ignore the rest.
+/// When originally creating packages, place one and only one mod file manifest <see cref="ResourceType.SnippetTuning"/> resource in the package and use sufficiently unique values for its <see cref="ResourceKey.FullInstance"/> and <see cref="TuningName"/>.
+/// If an external application encounters multiple <see cref="ResourceType.SnippetTuning"/> manifest resources in a package, it must assume that a manifest un-aware tool has merged multiple manifested packages and process each manifest accordingly.
 ///
 /// Avoid using <see cref="ResourceKey.Group"/> `0x00000000` as this is informally reserved for Maxis.
 /// It would be a bizarre miracle if they started incorporating dependency information using a community format.
@@ -29,13 +29,10 @@ public sealed class ModFileManifestModel :
     , IParsable<ModFileManifestModel>
 #endif
 {
-    static readonly ImmutableHashSet<ResourceType> imageResourceTypes = Enum.GetValues<ResourceType>().Where(resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceFileTypeAttribute>()?.ResourceFileType is ResourceFileType.DirectDrawSurface or ResourceFileType.PortableNetworkGraphic).ToImmutableHashSet();
     static readonly ImmutableHashSet<ResourceType> supportedTypes =
     [
         ResourceType.SnippetTuning
     ];
-    static readonly ImmutableHashSet<ResourceType> toolingMetadataTypes = Enum.GetValues<ResourceType>().Where(resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceToolingMetadataAttribute>() is not null).ToImmutableHashSet();
-    static readonly ImmutableHashSet<ResourceType> tuningOrSimDataTypes = Enum.GetValues<ResourceType>().Where(resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceFileTypeAttribute>()?.ResourceFileType is ResourceFileType.TuningMarkup).Concat([ResourceType.SimData]).ToImmutableHashSet();
 
     /// <inheritdoc/>
     public static new ISet<ResourceType> SupportedTypes =>
@@ -90,33 +87,17 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
-    /// Gets the hash for the specified <paramref name="package"/> using the specified <paramref name="strategy"/> and <paramref name="hashResourceKeys"/>
+    /// Gets the hash for the specified <paramref name="package"/> using the specified <paramref name="hashResourceKeys"/>
     /// </summary>
-    public static ImmutableArray<byte> GetModFileHash(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys)
+    public static ImmutableArray<byte> GetModFileHash(DataBasePackedFile package, HashSet<ResourceKey> hashResourceKeys)
     {
         ArgumentNullException.ThrowIfNull(package);
         ArgumentNullException.ThrowIfNull(hashResourceKeys);
         using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-        package.ForEachRaw
+        package.ForEach
         (
             ResourceKeyOrder.TypeGroupInstance,
-            key =>
-            {
-                if (strategy is ModFileManifestResourceHashStrategy.None)
-                    return hashResourceKeys.Contains(key); // special direct control mode, hashResourceKeys is the list of keys
-                if (hashResourceKeys.Contains(key))
-                    return false; // appearance in hashResourceKeys is automatic disqualification
-                var type = key.Type;
-                if (toolingMetadataTypes.Contains(type))
-                    return false; // okay Andrew, don't care about your love notes to yourself
-                if (tuningOrSimDataTypes.Contains(type))
-                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseTuningAndSimData);
-                if (type is ResourceType.StringTable)
-                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseStringTables);
-                if (imageResourceTypes.Contains(type))
-                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseImages);
-                return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseNonTuningSimDataStringTablesAndImages);
-            },
+            hashResourceKeys.Contains,
             (key, content) =>
             {
                 Span<byte> keySpan = new byte[16];
@@ -153,33 +134,17 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
-    /// Gets the hash for the specified <paramref name="package"/> using the specified <paramref name="strategy"/> and <paramref name="hashResourceKeys"/>, asynchronously
+    /// Gets the hash for the specified <paramref name="package"/> using the specified <paramref name="hashResourceKeys"/>, asynchronously
     /// </summary>
-    public static async Task<ImmutableArray<byte>> GetModFileHashAsync(DataBasePackedFile package, ModFileManifestResourceHashStrategy strategy, HashSet<ResourceKey> hashResourceKeys, CancellationToken cancellationToken = default)
+    public static async Task<ImmutableArray<byte>> GetModFileHashAsync(DataBasePackedFile package, HashSet<ResourceKey> hashResourceKeys, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(package);
         ArgumentNullException.ThrowIfNull(hashResourceKeys);
         using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-        await package.ForEachRawAsync
+        await package.ForEachAsync
         (
             ResourceKeyOrder.TypeGroupInstance,
-            key =>
-            {
-                if (strategy is ModFileManifestResourceHashStrategy.None)
-                    return hashResourceKeys.Contains(key); // special direct control mode, hashResourceKeys is the list of keys
-                if (hashResourceKeys.Contains(key))
-                    return false; // appearance in hashResourceKeys is automatic disqualification
-                var type = key.Type;
-                if (toolingMetadataTypes.Contains(type))
-                    return false; // okay Andrew, don't care about your love notes to yourself
-                if (tuningOrSimDataTypes.Contains(type))
-                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseTuningAndSimData);
-                if (type is ResourceType.StringTable)
-                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseStringTables);
-                if (imageResourceTypes.Contains(type))
-                    return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseImages);
-                return strategy.HasFlag(ModFileManifestResourceHashStrategy.UseNonTuningSimDataStringTablesAndImages);
-            },
+            hashResourceKeys.Contains,
             (key, content) =>
             {
                 Span<byte> keySpan = new byte[16];
@@ -460,13 +425,13 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the globally unique names of the exclusivities of this mod, causing it to be incompatible with other mods which share one or more of them
     /// </summary>
-    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Exclusivities { get; private set; } = [];
 
     /// <summary>
     /// Gets the names of the features unique to this mod which it offers to other mods as a dependency
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Features { get; private set; } = [];
 
     /// <summary>
@@ -476,9 +441,9 @@ public sealed class ModFileManifestModel :
     public ImmutableArray<byte> Hash { get; set; }
 
     /// <summary>
-    /// Gets the resource keys omitted from the <see cref="ResourceHashStrategy"/> (this is typically not used)
+    /// Gets the resource keys for the resources included in the <see cref="Hash"/>
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ResourceKey> HashResourceKeys { get; private set; } = [];
 
     /// <summary>
@@ -490,32 +455,26 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> IncompatiblePacks { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the promo code it is suggested the player use during check out in the EA Store if purchasing a pack for use with this mod
     /// </summary>
-    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ElectronicArtsPromoCode { get; set; }
-
-    /// <summary>
-    /// Gets/sets the <see cref="ModFileManifestResourceHashStrategy"/> to use when producing this mod file's <see cref="Hash"/> if it is a package
-    /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
-    public ModFileManifestResourceHashStrategy ResourceHashStrategy { get; set; }
 
     /// <inheritdoc/>
     [YamlIgnore]
@@ -525,7 +484,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the hashes of previous versions of this mod in for which I stand even though my hash is different
     /// </summary>
-    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ImmutableArray<byte>> SubsumedHashes { get; private set; } = [];
 
     /// <summary>
@@ -618,8 +577,6 @@ public sealed class ModFileManifestModel :
                     Name = tunableValue;
                 else if (tunableName == "hash")
                     Hash = tunableValue.ToByteSequence().ToImmutableArray();
-                else if (tunableName == "resource_hash_strategy")
-                    ResourceHashStrategy = Enum.Parse<ModFileManifestResourceHashStrategy>(tunableValue);
                 else if (tunableName == "version")
                     Version = tunableValue;
                 else if (tunableName == "url")
@@ -642,7 +599,6 @@ public sealed class ModFileManifestModel :
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
         writer.WriteTunable("hash", Hash);
-        writer.WriteTunable("resource_hash_strategy", ResourceHashStrategy);
         writer.WriteTunableList("hash_resource_keys", HashResourceKeys);
         writer.WriteTunableList("subsumed_hashes", SubsumedHashes);
         writer.WriteTunableList("features", Features);
