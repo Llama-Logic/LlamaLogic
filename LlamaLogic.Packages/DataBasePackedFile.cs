@@ -170,19 +170,30 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Initializes a <see cref="DataBasePackedFile"/> asynchronously from the specified <paramref name="path"/> (🗑️💤)
     /// </summary>
-    public static Task<DataBasePackedFile> FromPathAsync(string path, bool forReadOnly = true) =>
-        FromStreamAsync
+    public static async Task<DataBasePackedFile> FromPathAsync(string path, bool forReadOnly = true)
+    {
+#pragma warning disable CA2000 // Dispose objects before losing scope
+        var fileStream = new FileStream
         (
-            new FileStream
-            (
-                path,
-                FileMode.Open,
-                GetFileAccess(path, forReadOnly, out var fileShare),
-                fileShare,
-                createdFileStreamBufferSize,
-                createPackageFileStreamOptions | FileOptions.Asynchronous
-            )
+            path,
+            FileMode.Open,
+            GetFileAccess(path, forReadOnly, out var fileShare),
+            fileShare,
+            createdFileStreamBufferSize,
+            createPackageFileStreamOptions | FileOptions.Asynchronous
         );
+#pragma warning restore CA2000 // Dispose objects before losing scope
+        try
+        {
+            return await FromStreamAsync(fileStream).ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            fileStream.Close();
+            await fileStream.DisposeAsync().ConfigureAwait(false);
+            throw new Exception($"{nameof(FromStreamAsync)} threw an exception", ex);
+        }
+    }
 
     /// <summary>
     /// Initializes a <see cref="DataBasePackedFile"/> asynchronously from the specified <paramref name="stream"/> (🗑️💤)
@@ -306,7 +317,9 @@ public sealed class DataBasePackedFile :
                 fileShare,
                 createdFileStreamBufferSize,
                 createPackageFileStreamOptions
-            )
+            ),
+            false,
+            true
         )
     {
     }
@@ -315,12 +328,12 @@ public sealed class DataBasePackedFile :
     /// Initializes a <see cref="DataBasePackedFile"/> from the specified <paramref name="stream"/> (🗑️💤)
     /// </summary>
     public DataBasePackedFile(Stream stream) :
-        this(stream, false)
+        this(stream, false, false)
     {
     }
 
 #pragma warning disable CS8618 // Don't worry, sweet compiler, these fields will have non-null values by the time the caller has the instance
-    DataBasePackedFile(Stream stream, bool returnAfterSettingFields)
+    DataBasePackedFile(Stream stream, bool returnAfterSettingFields, bool disposeStreamOnInitThrow)
 #pragma warning restore CS8618 // Don't worry, sweet compiler, these fields will have non-null values by the time the caller has the instance
     {
         ArgumentNullException.ThrowIfNull(stream);
@@ -335,7 +348,19 @@ public sealed class DataBasePackedFile :
         unloadedResources = [];
         if (returnAfterSettingFields)
             return;
-        InitializeFromStream();
+        try
+        {
+            InitializeFromStream();
+        }
+        catch (Exception ex)
+        {
+            if (disposeStreamOnInitThrow)
+            {
+                this.stream.Close();
+                this.stream.Dispose();
+            }
+            throw new Exception($"{nameof(InitializeFromStream)} threw an exception", ex);
+        }
     }
 
     /// <summary>
