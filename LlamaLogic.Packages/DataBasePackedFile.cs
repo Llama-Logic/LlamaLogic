@@ -200,7 +200,7 @@ public sealed class DataBasePackedFile :
     /// </summary>
     public static async Task<DataBasePackedFile> FromStreamAsync(Stream stream, CancellationToken cancellationToken = default)
     {
-        var instance = new DataBasePackedFile(stream, true);
+        var instance = new DataBasePackedFile(stream, true, false);
         await instance.InitializeFromStreamAsync(cancellationToken).ConfigureAwait(false);
         return instance;
     }
