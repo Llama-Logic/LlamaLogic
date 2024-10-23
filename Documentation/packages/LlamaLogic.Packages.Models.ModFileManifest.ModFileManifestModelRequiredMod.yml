@@ -170,14 +170,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public ImmutableArray<byte> IgnoreIfHashAvailable { get; set; }
     parameters: []
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IgnoreIfHashAvailable As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable*
@@ -191,7 +191,7 @@ items:
       value: 9
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 2
+      value: 4
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
   id: IgnoreIfHashUnavailable
@@ -218,14 +218,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public ImmutableArray<byte> IgnoreIfHashUnavailable { get; set; }
     parameters: []
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IgnoreIfHashUnavailable As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable*
@@ -239,7 +239,7 @@ items:
       value: 10
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 2
+      value: 4
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
   id: IgnoreIfPackAvailable

@@ -1793,7 +1793,7 @@ public sealed class DataBasePackedFile :
         using var heldResourceLock = resourceLock.Lock();
         InternalLoadAll(false, CompressionMode.Auto);
         stream.Seek(0, SeekOrigin.Begin);
-        CopyTo(stream, resourceKeyOrder);
+        InternalCopyTo(stream, resourceKeyOrder);
         stream.SetLength(stream.Position);
         if (unloadFromMemory)
         {
@@ -1835,7 +1835,7 @@ public sealed class DataBasePackedFile :
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
         await InternalLoadAllAsync(false, CompressionMode.Auto, cancellationToken).ConfigureAwait(false);
         stream.Seek(0, SeekOrigin.Begin);
-        await CopyToAsync(stream, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
+        await InternalCopyToAsync(stream, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
         stream.SetLength(stream.Position);
         if (unloadFromMemory)
         {

@@ -437,7 +437,7 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets/sets the hash of the mod file
     /// </summary>
-    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> Hash { get; set; }
 
     /// <summary>

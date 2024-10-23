@@ -1041,14 +1041,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public ImmutableArray<byte> Hash { get; set; }
     parameters: []
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitDefaults)>
+      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Hash As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash*
@@ -1062,7 +1062,7 @@ items:
       value: 5
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 2
+      value: 4
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
   id: HashResourceKeys

@@ -21,13 +21,13 @@ public sealed class ModFileManifestModelRequiredMod :
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if this hash is present in the player's catalog of mods
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> IgnoreIfHashAvailable { get; set; }
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if this hash is not present in the player's catalog of mods
     /// </summary>
-    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> IgnoreIfHashUnavailable { get; set; }
 
     /// <summary>
