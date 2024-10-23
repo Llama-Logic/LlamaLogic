@@ -1876,7 +1876,8 @@ public sealed class DataBasePackedFile :
     public bool Set(ResourceKey key, ReadOnlyMemory<byte> content, CompressionMode compressionMode = CompressionMode.Auto)
     {
         RequireNotDisposed();
-        var memory = content.ToArray().AsMemory();
+        Memory<byte> memory = new byte[content.Length];
+        content.CopyTo(memory);
         using var heldResourceLock = resourceLock.Lock();
         return InternalSet(key, memory, compressionMode);
     }
@@ -1936,7 +1937,7 @@ public sealed class DataBasePackedFile :
     public async Task<bool> SetAsync(ResourceKey key, ReadOnlyMemory<byte> content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
     {
         RequireNotDisposed();
-        var memory = new Memory<byte>();
+        Memory<byte> memory = new byte[content.Length];
         content.CopyTo(memory);
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
         return await InternalSetAsync(key, memory, compressionMode, cancellationToken).ConfigureAwait(false);
