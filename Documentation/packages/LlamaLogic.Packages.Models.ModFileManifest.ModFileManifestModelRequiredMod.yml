@@ -11,7 +11,6 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequirementIdentifier
@@ -125,14 +124,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 8)]
+      [YamlMember(Order = 7)]
 
       public HashSet<ImmutableArray<byte>> Hashes { get; }
     parameters: []
     return:
       type: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
     content.vb: >-
-      <YamlMember(Order:=8)>
+      <YamlMember(Order:=7)>
 
       Public Property Hashes As HashSet(Of ImmutableArray(Of Byte))
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Hashes*
@@ -143,7 +142,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 8
+      value: 7
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable
   id: IgnoreIfHashAvailable
@@ -170,14 +169,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public ImmutableArray<byte> IgnoreIfHashAvailable { get; set; }
     parameters: []
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IgnoreIfHashAvailable As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashAvailable*
@@ -188,7 +187,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 9
+      value: 8
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -218,14 +217,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public ImmutableArray<byte> IgnoreIfHashUnavailable { get; set; }
     parameters: []
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IgnoreIfHashUnavailable As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfHashUnavailable*
@@ -236,7 +235,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 10
+      value: 9
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -266,14 +265,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? IgnoreIfPackAvailable { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property IgnoreIfPackAvailable As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackAvailable*
@@ -284,7 +283,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 11
+      value: 10
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
@@ -314,14 +313,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? IgnoreIfPackUnavailable { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property IgnoreIfPackUnavailable As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable*
@@ -332,55 +331,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 12
-    - name: DefaultValuesHandling
-      type: YamlDotNet.Serialization.DefaultValuesHandling
-      value: 1
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
-  id: ModManifestKey
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod
-  langs:
-  - csharp
-  - vb
-  name: ModManifestKey
-  nameWithType: ModFileManifestModelRequiredMod.ModManifestKey
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
-  type: Property
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: ModManifestKey
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 47
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets/sets the <xref href="LlamaLogic.Packages.ResourceKey" data-throw-if-not-resolved="false"></xref> of the mod manifest <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> of the dependency mod (optional)
-  example: []
-  syntax:
-    content: >-
-      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
-
-      public ResourceKey? ModManifestKey { get; set; }
-    parameters: []
-    return:
-      type: System.Nullable{LlamaLogic.Packages.ResourceKey}
-    content.vb: >-
-      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
-
-      Public Property ModManifestKey As ResourceKey?
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey*
-  attributes:
-  - type: YamlDotNet.Serialization.YamlMemberAttribute
-    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
-    arguments: []
-    namedArguments:
-    - name: Order
-      type: System.Int32
-      value: 5
+      value: 11
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
@@ -402,7 +353,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 53
+    startLine: 47
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -447,7 +398,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredFeatures
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 59
+    startLine: 53
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -455,14 +406,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> RequiredFeatures { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredFeatures As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequiredFeatures*
@@ -473,7 +424,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 6
+      value: 5
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -495,7 +446,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequirementIdentifier
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 65
+    startLine: 59
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -503,14 +454,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? RequirementIdentifier { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property RequirementIdentifier As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.RequirementIdentifier*
@@ -521,7 +472,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 7
+      value: 6
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
@@ -543,7 +494,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 71
+    startLine: 65
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -591,7 +542,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRequiredMod.cs
-    startLine: 77
+    startLine: 71
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1285,87 +1236,6 @@ references:
   name: IgnoreIfPackUnavailable
   nameWithType: ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.IgnoreIfPackUnavailable
-- uid: LlamaLogic.Packages.ResourceKey
-  commentId: T:LlamaLogic.Packages.ResourceKey
-  parent: LlamaLogic.Packages
-  href: LlamaLogic.Packages.ResourceKey.html
-  name: ResourceKey
-  nameWithType: ResourceKey
-  fullName: LlamaLogic.Packages.ResourceKey
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_ModManifestKey
-  name: ModManifestKey
-  nameWithType: ModFileManifestModelRequiredMod.ModManifestKey
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.ModManifestKey
-- uid: System.Nullable{LlamaLogic.Packages.ResourceKey}
-  commentId: T:System.Nullable{LlamaLogic.Packages.ResourceKey}
-  parent: System
-  definition: System.Nullable`1
-  href: LlamaLogic.Packages.ResourceKey.html
-  name: ResourceKey?
-  nameWithType: ResourceKey?
-  fullName: LlamaLogic.Packages.ResourceKey?
-  spec.csharp:
-  - uid: LlamaLogic.Packages.ResourceKey
-    name: ResourceKey
-    href: LlamaLogic.Packages.ResourceKey.html
-  - name: '?'
-  spec.vb:
-  - uid: LlamaLogic.Packages.ResourceKey
-    name: ResourceKey
-    href: LlamaLogic.Packages.ResourceKey.html
-  - name: '?'
-- uid: LlamaLogic.Packages
-  commentId: N:LlamaLogic.Packages
-  href: LlamaLogic.html
-  name: LlamaLogic.Packages
-  nameWithType: LlamaLogic.Packages
-  fullName: LlamaLogic.Packages
-  spec.csharp:
-  - uid: LlamaLogic
-    name: LlamaLogic
-    href: LlamaLogic.html
-  - name: .
-  - uid: LlamaLogic.Packages
-    name: Packages
-    href: LlamaLogic.Packages.html
-  spec.vb:
-  - uid: LlamaLogic
-    name: LlamaLogic
-    href: LlamaLogic.html
-  - name: .
-  - uid: LlamaLogic.Packages
-    name: Packages
-    href: LlamaLogic.Packages.html
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.Name
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRequiredMod_Name

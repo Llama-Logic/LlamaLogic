@@ -1,0 +1,702 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  commentId: T:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  id: GlobalModsManifestModelManifestedModFile
+  parent: LlamaLogic.Packages.Models.GlobalManifest
+  children:
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  langs:
+  - csharp
+  - vb
+  name: GlobalModsManifestModelManifestedModFile
+  nameWithType: GlobalModsManifestModelManifestedModFile
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GlobalModsManifestModelManifestedModFile
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: "Represents a manifested mod in a global mods manifest <xref href=\"LlamaLogic.Packages.ResourceType.SnippetTuning\" data-throw-if-not-resolved=\"false\"></xref> resource (\U0001F513)"
+  example: []
+  syntax:
+    content: 'public sealed class GlobalModsManifestModelManifestedModFile : IXmlSerializable'
+    content.vb: Public NotInheritable Class GlobalModsManifestModelManifestedModFile Implements IXmlSerializable
+  inheritance:
+  - System.Object
+  implements:
+  - System.Xml.Serialization.IXmlSerializable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes
+  id: Hashes
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  langs:
+  - csharp
+  - vb
+  name: Hashes
+  nameWithType: GlobalModsManifestModelManifestedModFile.Hashes
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Hashes
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the union of <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes" data-throw-if-not-resolved="false"></xref> and the agent's calculated manifest hash for the mod file
+  example: []
+  syntax:
+    content: public HashSet<ImmutableArray<byte>> Hashes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
+    content.vb: Public Property Hashes As HashSet(Of ImmutableArray(Of Byte))
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes*
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey
+  id: ManifestKey
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  langs:
+  - csharp
+  - vb
+  name: ManifestKey
+  nameWithType: GlobalModsManifestModelManifestedModFile.ManifestKey
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ManifestKey
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+    startLine: 16
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets/sets the <xref href="LlamaLogic.Packages.ResourceKey" data-throw-if-not-resolved="false"></xref> of the mod manifest <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> of the mod file if it's a package
+  example: []
+  syntax:
+    content: public ResourceKey? ManifestKey { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{LlamaLogic.Packages.ResourceKey}
+    content.vb: Public Property ManifestKey As ResourceKey?
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey*
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  id: ManifestTuningName
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  langs:
+  - csharp
+  - vb
+  name: ManifestTuningName
+  nameWithType: GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ManifestTuningName
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the tuning name of the mod manifest <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref> of the mod file if it's a package
+  example: []
+  syntax:
+    content: public string? ManifestTuningName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ManifestTuningName As String
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName*
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  id: ModsFolderPath
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+  langs:
+  - csharp
+  - vb
+  name: ModsFolderPath
+  nameWithType: GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModsFolderPath
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModelManifestedModFile.cs
+    startLine: 26
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets/sets the relative path from the root of the Mods folder to the mod file
+  example: []
+  syntax:
+    content: public string ModsFolderPath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ModsFolderPath As String
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath*
+references:
+- uid: LlamaLogic.Packages.ResourceType.SnippetTuning
+  commentId: F:LlamaLogic.Packages.ResourceType.SnippetTuning
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SnippetTuning
+  name: SnippetTuning
+  nameWithType: ResourceType.SnippetTuning
+  fullName: LlamaLogic.Packages.ResourceType.SnippetTuning
+- uid: LlamaLogic.Packages.Models.GlobalManifest
+  commentId: N:LlamaLogic.Packages.Models.GlobalManifest
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages.Models.GlobalManifest
+  nameWithType: LlamaLogic.Packages.Models.GlobalManifest
+  fullName: LlamaLogic.Packages.Models.GlobalManifest
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+    href: LlamaLogic.Packages.Models.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models.GlobalManifest
+    name: GlobalManifest
+    href: LlamaLogic.Packages.Models.GlobalManifest.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+    href: LlamaLogic.Packages.Models.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models.GlobalManifest
+    name: GlobalManifest
+    href: LlamaLogic.Packages.Models.GlobalManifest.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_SubsumedHashes
+  name: SubsumedHashes
+  nameWithType: ModFileManifestModel.SubsumedHashes
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModelManifestedModFile_Hashes
+  name: Hashes
+  nameWithType: GlobalModsManifestModelManifestedModFile.Hashes
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.Hashes
+- uid: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
+  commentId: T:System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<ImmutableArray<byte>>
+  nameWithType: HashSet<ImmutableArray<byte>>
+  fullName: System.Collections.Generic.HashSet<System.Collections.Immutable.ImmutableArray<byte>>
+  nameWithType.vb: HashSet(Of ImmutableArray(Of Byte))
+  fullName.vb: System.Collections.Generic.HashSet(Of System.Collections.Immutable.ImmutableArray(Of Byte))
+  name.vb: HashSet(Of ImmutableArray(Of Byte))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Immutable.ImmutableArray`1
+    name: ImmutableArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  href: LlamaLogic.Packages.ResourceKey.html
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModelManifestedModFile_ManifestKey
+  name: ManifestKey
+  nameWithType: GlobalModsManifestModelManifestedModFile.ManifestKey
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestKey
+- uid: System.Nullable{LlamaLogic.Packages.ResourceKey}
+  commentId: T:System.Nullable{LlamaLogic.Packages.ResourceKey}
+  parent: System
+  definition: System.Nullable`1
+  href: LlamaLogic.Packages.ResourceKey.html
+  name: ResourceKey?
+  nameWithType: ResourceKey?
+  fullName: LlamaLogic.Packages.ResourceKey?
+  spec.csharp:
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: '?'
+  spec.vb:
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: '?'
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModelManifestedModFile_ManifestTuningName
+  name: ManifestTuningName
+  nameWithType: GlobalModsManifestModelManifestedModFile.ManifestTuningName
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ManifestTuningName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModelManifestedModFile_ModsFolderPath
+  name: ModsFolderPath
+  nameWithType: GlobalModsManifestModelManifestedModFile.ModsFolderPath
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.ModsFolderPath

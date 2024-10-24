@@ -33,6 +33,10 @@ public sealed class ModFileManifestModel :
     [
         ResourceType.SnippetTuning
     ];
+    const string tuningClass = "ModFileManifest";
+    const string tuningInstance = "snippet";
+    const string tuningModule = "llamalogic.snippets.modfilemanifest";
+    const string zipArchiveManifestFullName = "llamalogic.modfilemanifest.yml";
 
     /// <inheritdoc/>
     public static new ISet<ResourceType> SupportedTypes =>
@@ -123,9 +127,10 @@ public sealed class ModFileManifestModel :
         Span<byte> crc32Span = stackalloc byte[4];
         using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         foreach (var entry in scriptMod.Entries
-            .Where(entry => entry.Name.EndsWith(".py", StringComparison.OrdinalIgnoreCase) || entry.Name.EndsWith(".pyc", StringComparison.OrdinalIgnoreCase))
+            .Where(entry => !entry.FullName.Equals(zipArchiveManifestFullName, StringComparison.OrdinalIgnoreCase))
             .OrderBy(entry => entry.FullName, StringComparer.Ordinal))
         {
+            sha256.AppendData(Encoding.UTF8.GetBytes(entry.FullName));
             var crc32 = entry.Crc32;
             MemoryMarshal.Write(crc32Span, ref crc32);
             sha256.AppendData(crc32Span);
@@ -197,7 +202,7 @@ public sealed class ModFileManifestModel :
     public static ModFileManifestModel? GetModFileManifest(ZipArchive scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
-        if (scriptMod.Entries.FirstOrDefault(entry => entry.FullName.Equals("manifest.yml", StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
+        if (scriptMod.Entries.FirstOrDefault(entry => entry.FullName.Equals(zipArchiveManifestFullName, StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
         {
             using var manifestStream = manifestEntry.Open();
             using var manifestReader = new StreamReader(manifestStream);
@@ -303,7 +308,7 @@ public sealed class ModFileManifestModel :
     public static async Task<ModFileManifestModel?> GetModFileManifestAsync(ZipArchive scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
-        if (scriptMod.Entries.FirstOrDefault(entry => entry.FullName.Equals("manifest.yml", StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
+        if (scriptMod.Entries.FirstOrDefault(entry => entry.FullName.Equals(zipArchiveManifestFullName, StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
         {
             using var manifestStream = manifestEntry.Open();
             using var manifestReader = new StreamReader(manifestStream);
@@ -537,12 +542,12 @@ public sealed class ModFileManifestModel :
         reader.MoveToContent();
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "I")
             throw new XmlException("Expected a tuning instance element");
-        if (reader.GetAttribute("i") != "snippet")
-            throw new XmlException("Expected the \"snippet\" instance");
-        if (reader.GetAttribute("m") != "llamalogic.snippets.modfilemanifest")
-            throw new XmlException("Expected the \"llamalogic.snippets.modfilemanifest\" module");
-        if (reader.GetAttribute("c") != "ModFileManifest")
-            throw new XmlException("Expected the \"ModFileManifest\" class");
+        if (reader.GetAttribute("i") != tuningInstance)
+            throw new XmlException($"Expected the \"{tuningInstance}\" instance");
+        if (reader.GetAttribute("m") != tuningModule)
+            throw new XmlException($"Expected the \"{tuningModule}\" module");
+        if (reader.GetAttribute("c") != tuningClass)
+            throw new XmlException($"Expected the \"{tuningClass}\" class");
         TuningName = reader.GetAttribute("n");
         if (ulong.TryParse(reader.GetAttribute("s"), out var parsedTuningFullInstance))
             TuningFullInstance = parsedTuningFullInstance;
@@ -589,9 +594,9 @@ public sealed class ModFileManifestModel :
     void IXmlSerializable.WriteXml(XmlWriter writer)
     {
         writer.WriteStartElement("I");
-        writer.WriteAttributeString("c", "ModFileManifest");
-        writer.WriteAttributeString("i", "snippet");
-        writer.WriteAttributeString("m", "llamalogic.snippets.modfilemanifest");
+        writer.WriteAttributeString("c", tuningClass);
+        writer.WriteAttributeString("i", tuningInstance);
+        writer.WriteAttributeString("m", tuningModule);
         writer.WriteAttributeString("n", TuningName);
         writer.WriteAttributeString("s", TuningFullInstance.ToString());
         writer.WriteTunable("name", Name);

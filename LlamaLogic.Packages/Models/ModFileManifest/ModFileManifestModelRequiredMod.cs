@@ -15,38 +15,32 @@ public sealed class ModFileManifestModelRequiredMod :
     /// <summary>
     /// Gets the hashes of the mod files that must be present in order for this dependency to be fulfilled
     /// </summary>
-    [YamlMember(Order = 8)]
+    [YamlMember(Order = 7)]
     public HashSet<ImmutableArray<byte>> Hashes { get; private set; } = [];
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if this hash is present in the player's catalog of mods
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> IgnoreIfHashAvailable { get; set; }
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if this hash is not present in the player's catalog of mods
     /// </summary>
-    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> IgnoreIfHashUnavailable { get; set; }
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if the pack identified by this pack code is present (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? IgnoreIfPackAvailable { get; set; }
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if the pack identified by this pack code is not present (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? IgnoreIfPackUnavailable { get; set; }
-
-    /// <summary>
-    /// Gets/sets the <see cref="ResourceKey"/> of the mod manifest <see cref="ResourceType.SnippetTuning"/> of the dependency mod (optional)
-    /// </summary>
-    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
-    public ResourceKey? ModManifestKey { get; set; }
 
     /// <summary>
     /// Gets/sets the name of the dependency mod
@@ -57,13 +51,13 @@ public sealed class ModFileManifestModelRequiredMod :
     /// <summary>
     /// Gets the names of the features of the dependency mod which the dependent mod requires
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredFeatures { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets an identifier that, when shared with a group of other dependency mods for a single dependent, indicates that only one member of the group need be present for the dependent to be satisfied
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? RequirementIdentifier { get; set; }
 
     /// <summary>
@@ -113,8 +107,6 @@ public sealed class ModFileManifestModelRequiredMod :
                     IgnoreIfPackAvailable = tunableValue;
                 else if (tunableName == "ignore_if_pash_unavailable")
                     IgnoreIfPackUnavailable = tunableValue;
-                else if (tunableName == "mod_manifest_key")
-                    ModManifestKey = ResourceKey.Parse(tunableValue);
                 else if (tunableName == "name")
                     Name = tunableValue;
                 else if (tunableName == "requirement_identifier")
@@ -135,7 +127,6 @@ public sealed class ModFileManifestModelRequiredMod :
         writer.WriteTunableList("creators", Creators);
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
-        writer.WriteTunable("mod_manifest_key", ModManifestKey);
         writer.WriteTunableList("required_features", RequiredFeatures);
         writer.WriteTunable("requirement_identifier", RequirementIdentifier);
         writer.WriteTunableList("hashes", Hashes);

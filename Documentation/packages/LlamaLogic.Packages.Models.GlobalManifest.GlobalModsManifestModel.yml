@@ -1,0 +1,1377 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  commentId: T:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  id: GlobalModsManifestModel
+  parent: LlamaLogic.Packages.Models.GlobalManifest
+  children:
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes
+  langs:
+  - csharp
+  - vb
+  name: GlobalModsManifestModel
+  nameWithType: GlobalModsManifestModel
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GlobalModsManifestModel
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: "Represents the global mods manifest <xref href=\"LlamaLogic.Packages.ResourceType.SnippetTuning\" data-throw-if-not-resolved=\"false\"></xref> resource (\U0001F513)"
+  remarks: This model allows agents to easily create, read, and update the global mods manifest, which itself is an index of the player's installed packs and manifested mod files easily acessible to script mods.
+  example: []
+  syntax:
+    content: 'public sealed class GlobalModsManifestModel : Model, IModel<GlobalModsManifestModel>, IModel, IXmlSerializable'
+    content.vb: Public NotInheritable Class GlobalModsManifestModel Inherits Model Implements IModel(Of GlobalModsManifestModel), IModel, IXmlSerializable
+  inheritance:
+  - System.Object
+  - LlamaLogic.Packages.Models.Model
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}
+  - LlamaLogic.Packages.Models.IModel
+  - System.Xml.Serialization.IXmlSerializable
+  inheritedMembers:
+  - LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
+  - LlamaLogic.Packages.Models.Model.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey
+  id: ResourceKey
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceKey
+  nameWithType: GlobalModsManifestModel.ResourceKey
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceKey
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the <xref href="LlamaLogic.Packages.ResourceKey" data-throw-if-not-resolved="false"></xref> always by the global mods manifest
+  example: []
+  syntax:
+    content: public static ResourceKey ResourceKey { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Shared ReadOnly Property ResourceKey As ResourceKey
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey*
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes
+  id: SupportedTypes
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: SupportedTypes
+  nameWithType: GlobalModsManifestModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SupportedTypes
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets a list of resource types that this model supports
+  example: []
+  syntax:
+    content: public static ISet<ResourceType> SupportedTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+    content.vb: Public Shared ReadOnly Property SupportedTypes As ISet(Of ResourceType)
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
+  id: Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: GlobalModsManifestModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 33
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: "Decodes the resource in raw format to produce an operable model (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public static GlobalModsManifestModel Decode(ReadOnlyMemory<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+    content.vb: Public Shared Function Decode(data As ReadOnlyMemory(Of Byte)) As GlobalModsManifestModel
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode*
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  nameWithType.vb: GlobalModsManifestModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+  id: InstalledPacks
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: InstalledPacks
+  nameWithType: GlobalModsManifestModel.InstalledPacks
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: InstalledPacks
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the collection of pack codes for this game installation's installed packs
+  example: []
+  syntax:
+    content: public Collection<string> InstalledPacks { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.String}
+    content.vb: Public Property InstalledPacks As Collection(Of String)
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks*
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
+  id: ManifestedModFiles
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: ManifestedModFiles
+  nameWithType: GlobalModsManifestModel.ManifestedModFiles
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ManifestedModFiles
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 50
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the collection of manifested mod files in the player's Mods folder
+  example: []
+  syntax:
+    content: public Collection<GlobalModsManifestModelManifestedModFile> ManifestedModFiles { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile}
+    content.vb: Public Property ManifestedModFiles As Collection(Of GlobalModsManifestModelManifestedModFile)
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles*
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName
+  id: ResourceName
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceName
+  nameWithType: GlobalModsManifestModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceName
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 53
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the name of this resource if it has one
+  example: []
+  syntax:
+    content: public override string? ResourceName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overrides ReadOnly Property ResourceName As String
+  overridden: LlamaLogic.Packages.Models.Model.ResourceName
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode
+  id: Encode
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: Encode()
+  nameWithType: GlobalModsManifestModel.Encode()
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Encode
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 57
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: "Encodes the resource model into raw format (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public override ReadOnlyMemory<byte> Encode()
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Overrides Function Encode() As ReadOnlyMemory(Of Byte)
+  overridden: LlamaLogic.Packages.Models.Model.Encode
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.Encode
+references:
+- uid: LlamaLogic.Packages.ResourceType.SnippetTuning
+  commentId: F:LlamaLogic.Packages.ResourceType.SnippetTuning
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SnippetTuning
+  name: SnippetTuning
+  nameWithType: ResourceType.SnippetTuning
+  fullName: LlamaLogic.Packages.ResourceType.SnippetTuning
+- uid: LlamaLogic.Packages.Models.GlobalManifest
+  commentId: N:LlamaLogic.Packages.Models.GlobalManifest
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages.Models.GlobalManifest
+  nameWithType: LlamaLogic.Packages.Models.GlobalManifest
+  fullName: LlamaLogic.Packages.Models.GlobalManifest
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+    href: LlamaLogic.Packages.Models.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models.GlobalManifest
+    name: GlobalManifest
+    href: LlamaLogic.Packages.Models.GlobalManifest.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+    href: LlamaLogic.Packages.Models.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models.GlobalManifest
+    name: GlobalManifest
+    href: LlamaLogic.Packages.Models.GlobalManifest.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Packages.Models.Model
+  commentId: T:LlamaLogic.Packages.Models.Model
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.Model.html
+  name: Model
+  nameWithType: Model
+  fullName: LlamaLogic.Packages.Models.Model
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}
+  commentId: T:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}
+  parent: LlamaLogic.Packages.Models
+  definition: LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<GlobalModsManifestModel>
+  nameWithType: IModel<GlobalModsManifestModel>
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel>
+  nameWithType.vb: IModel(Of GlobalModsManifestModel)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel)
+  name.vb: IModel(Of GlobalModsManifestModel)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+    name: GlobalModsManifestModel
+    href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+    name: GlobalModsManifestModel
+    href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.IModel
+  commentId: T:LlamaLogic.Packages.Models.IModel
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.IModel.html
+  name: IModel
+  nameWithType: IModel
+  fullName: LlamaLogic.Packages.Models.IModel
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.serialization.ixmlserializable
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_System_IO_Stream_
+  name: GetName(Stream)
+  nameWithType: Model.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: Model.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.Model.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  name: GetName(ResourceType, Stream)
+  nameWithType: Model.GetName(ResourceType, Stream)
+  fullName: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType, System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(ResourceType, Stream, CancellationToken)
+  nameWithType: Model.GetNameAsync(ResourceType, Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType, System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models
+  commentId: N:LlamaLogic.Packages.Models
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages.Models
+  nameWithType: LlamaLogic.Packages.Models
+  fullName: LlamaLogic.Packages.Models
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+    href: LlamaLogic.Packages.Models.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+    href: LlamaLogic.Packages.Models.html
+- uid: LlamaLogic.Packages.Models.IModel`1
+  commentId: T:LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<TSelf>
+  nameWithType: IModel<TSelf>
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>
+  nameWithType.vb: IModel(Of TSelf)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf)
+  name.vb: IModel(Of TSelf)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  href: LlamaLogic.Packages.ResourceKey.html
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_ResourceKey
+  name: ResourceKey
+  nameWithType: GlobalModsManifestModel.ResourceKey
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceKey
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  href: LlamaLogic.html
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+    href: LlamaLogic.Packages.html
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: GlobalModsManifestModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.IModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.IModel.SupportedTypes
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: IModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  commentId: T:System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<ResourceType>
+  nameWithType: ISet<ResourceType>
+  fullName: System.Collections.Generic.ISet<LlamaLogic.Packages.ResourceType>
+  nameWithType.vb: ISet(Of ResourceType)
+  fullName.vb: System.Collections.Generic.ISet(Of LlamaLogic.Packages.ResourceType)
+  name.vb: ISet(Of ResourceType)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: GlobalModsManifestModel.Decode
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}
+  definition: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<GlobalModsManifestModel>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of GlobalModsManifestModel).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  commentId: T:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  parent: LlamaLogic.Packages.Models.GlobalManifest
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html
+  name: GlobalModsManifestModel
+  nameWithType: GlobalModsManifestModel
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+- uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<TSelf>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of TSelf).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_InstalledPacks
+  name: InstalledPacks
+  nameWithType: GlobalModsManifestModel.InstalledPacks
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+- uid: System.Collections.ObjectModel.Collection{System.String}
+  commentId: T:System.Collections.ObjectModel.Collection{System.String}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<string>
+  nameWithType: Collection<string>
+  fullName: System.Collections.ObjectModel.Collection<string>
+  nameWithType.vb: Collection(Of String)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of String)
+  name.vb: Collection(Of String)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_ManifestedModFiles
+  name: ManifestedModFiles
+  nameWithType: GlobalModsManifestModel.ManifestedModFiles
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<GlobalModsManifestModelManifestedModFile>
+  nameWithType: Collection<GlobalModsManifestModelManifestedModFile>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile>
+  nameWithType.vb: Collection(Of GlobalModsManifestModelManifestedModFile)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile)
+  name.vb: Collection(Of GlobalModsManifestModelManifestedModFile)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+    name: GlobalModsManifestModelManifestedModFile
+    href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile
+    name: GlobalModsManifestModelManifestedModFile
+    href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModelManifestedModFile.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_ResourceName
+  name: ResourceName
+  nameWithType: Model.ResourceName
+  fullName: LlamaLogic.Packages.Models.Model.ResourceName
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_ResourceName
+  name: ResourceName
+  nameWithType: GlobalModsManifestModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ResourceName
+- uid: LlamaLogic.Packages.Models.IModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.IModel.ResourceName
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_ResourceName
+  name: ResourceName
+  nameWithType: IModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages.Models.Model.Encode
+  commentId: M:LlamaLogic.Packages.Models.Model.Encode
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  name: Encode()
+  nameWithType: Model.Encode()
+  fullName: LlamaLogic.Packages.Models.Model.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_Encode
+  name: Encode
+  nameWithType: GlobalModsManifestModel.Encode
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode
+- uid: LlamaLogic.Packages.Models.IModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.IModel.Encode
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  name: Encode()
+  nameWithType: IModel.Encode()
+  fullName: LlamaLogic.Packages.Models.IModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
