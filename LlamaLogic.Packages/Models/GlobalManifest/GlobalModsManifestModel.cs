@@ -21,7 +21,7 @@ public sealed class GlobalModsManifestModel :
     const string tuningName = "llamalogic:GlobalModsManifest";
 
     /// <summary>
-    /// Gets the <see cref="Packages.ResourceKey"/> always by the global mods manifest
+    /// Gets the <see cref="Packages.ResourceKey"/> always used by the global mods manifest
     /// </summary>
     public static ResourceKey ResourceKey { get; } =
         new(ResourceType.SnippetTuning, 0x80000000, Fnv64.SetHighBit(Fnv64.GetHash(tuningName)));
