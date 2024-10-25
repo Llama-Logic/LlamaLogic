@@ -1407,6 +1407,7 @@ public sealed class DataBasePackedFile :
         try
         {
             var header = headerPoolArray.AsMemory()[..96];
+            header.Span.Clear();
             WriteHeader(header.Span, hasIndex, indexSize);
             await destination.WriteAsync(header, cancellationToken).ConfigureAwait(false);
             var position = 96;
