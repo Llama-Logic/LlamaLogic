@@ -19,7 +19,7 @@ namespace LlamaLogic.Packages.Models.ModFileManifest;
 /// Because these files are just ZIP archives with a different extension and their contents are not flatly merged by the game as the contents of package files are, there is no risk of collision.
 /// Also, since they need not contend with game resource management, they need not be in an arcane format like XML, so they are in YAML instead.
 /// The static parsing methods of this type expect YAML representations of manifests and the <see cref="ToString"/> method produces them.
-/// Name your mod file manifest resource `manifest.yml` and put it in the root of your `.ts4script` archive.
+/// Name your mod file manifest resource `llamalogic.modfilemanifest.yml` and put it in the root of your `.ts4script` archive.
 /// </remarks>
 public sealed class ModFileManifestModel :
     Model,
