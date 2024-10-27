@@ -566,6 +566,8 @@ public sealed class ModFileManifestModel :
                     Features.AddRange(reader.ReadTunableList());
                 else if (tunableName == "hash_resource_keys")
                     HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
+                else if (tunableName == "incompatible_packs")
+                    IncompatiblePacks.AddRange(reader.ReadTunableList());
                 else if (tunableName == "required_mods")
                     RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
                 else if (tunableName == "required_packs")
