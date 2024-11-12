@@ -45,6 +45,7 @@ sealed class LegacyDecompressionStream :
     }
 
     [MemberNotNull(nameof(decompressedStream))]
+    [SuppressMessage("Reliability", "CA2022: Avoid inexact read with 'Stream.Read'", Justification = "TODO: CR")]
     void Decompress()
     {
         if (decompressedStream is not null)

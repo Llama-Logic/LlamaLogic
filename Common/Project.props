@@ -15,8 +15,9 @@
         <RepositoryType>GitHub</RepositoryType>
         <RepositoryUrl>https://github.com/Llama-Logic/LlamaLogic</RepositoryUrl>
         <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
-        <DefineConstants Condition="'$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'">$(DefineConstants);IS_NET_7_0_OR_GREATER</DefineConstants>
-        <DefineConstants Condition="'$(TargetFramework)' == 'net8.0'">$(DefineConstants);IS_NET_8_0_OR_GREATER</DefineConstants>
+        <DefineConstants Condition="'$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0' or '$(TargetFramework)' == 'net9.0'">$(DefineConstants);IS_NET_7_0_OR_GREATER</DefineConstants>
+        <DefineConstants Condition="'$(TargetFramework)' == 'net8.0' or '$(TargetFramework)' == 'net9.0'">$(DefineConstants);IS_NET_8_0_OR_GREATER</DefineConstants>
+        <DefineConstants Condition="'$(TargetFramework)' == 'net9.0'">$(DefineConstants);IS_NET_9_0_OR_GREATER</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
