@@ -36,5 +36,8 @@ You can link players who use your custom content to this page so they can learn 
 
 Here's some example HTML for ya:
 ```html
-<a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/MANIFESTED.md" title="This mod has a manifest inside. Click here to learn more."><img src="Manifested.png" width="180" height="60" /></a>
+<a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/MANIFESTED.md"
+   title="This mod has a manifest inside. Click here to learn more.">
+   <img src="Manifested.png" width="180" height="60" />
+</a>
 ```
