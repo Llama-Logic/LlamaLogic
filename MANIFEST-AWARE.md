@@ -1,5 +1,4 @@
 # You've Found a Manifest-Aware Tool or Mod
-<iframe src="https://giphy.com/embed/lQ7geLKnnf7pIu7uAN" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sticktosports-jemele-hill-cari-champion-stick-to-sports-lQ7geLKnnf7pIu7uAN">via GIPHY</a></p>
 
 ## What is a Manifested Mod?
 It's a mod that contains a manifest!

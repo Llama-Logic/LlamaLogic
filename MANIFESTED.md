@@ -1,5 +1,4 @@
 # You've Found a Manifested Mod
-<iframe src="https://giphy.com/embed/f4nI3k88tF6tk7HKij" width="480" height="269" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/snl-saturday-night-live-season-47-f4nI3k88tF6tk7HKij">via GIPHY</a></p>
 
 ## What is a Manifested Mod?
 It's a mod that contains a manifest!
