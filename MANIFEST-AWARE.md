@@ -41,7 +41,7 @@ We're fine with that!
 How about that!
 Well, to understand manifests themselves, it might help to review [this documentation](https://llama-logic.github.io/LlamaLogic/packages/LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html).
 If you're using .NET to make your tool, you can use [our open source NuGet package](https://www.nuget.org/packages/LlamaLogic.Packages) to easily read and modify manifests.
-In addition to that, if you're making a manifest-aware mod, studying [this documentation](https://llama-logic.github.io/LlamaLogic/packages/LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html) for the global manifest snippet tuning which can be *very helpful* in wrangling manifests from the context of a script mod at runtime.
+In addition to that, if you're making a manifest-aware mod, studying [this documentation](https://llama-logic.github.io/LlamaLogic/packages/LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html) may be beneficial, as the global manifest snippet tuning can be *very helpful* in wrangling manifests from the context of a script mod at runtime.
 
 Also, feel free to plop this fun sticker on your mod or tool's download pages as you add manifest awareness.
 You can link others who use your mod or tool to this page so they can learn about all the benefits its manifest awareness can bring them.
