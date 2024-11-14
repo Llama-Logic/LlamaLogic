@@ -29,7 +29,8 @@ Here's some example HTML for ya:
 ```html
 <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/MANIFESTED.md"
    title="This mod has a manifest inside. Click here to learn more.">
-   <img src="https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/refs/heads/main/Manifested.png" width="180" height="60" />
+   <img src="https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/refs/heads/main/Manifested.png"
+        width="180" height="60" />
 </a>
 ```
 
@@ -51,7 +52,8 @@ Here's some example HTML for ya:
 ```html
 <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/MANIFEST-AWARE.md"
    title="This mod or tool is manifest-aware. Click here to learn more.">
-   <img src="https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/refs/heads/main/Manifest-Aware.png" width="180" height="60" />
+   <img src="https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/refs/heads/main/Manifest-Aware.png"
+        width="180" height="60" />
 </a>
 ```
 
