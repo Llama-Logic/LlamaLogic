@@ -15,7 +15,7 @@ So, if you've found a manifest-aware mod, then it can learn these kinds of detai
 If you've found a manifest-aware tool, that means it understands manifests and can possibly modify them so suit the needs of mod creators.
 
 ## How do I manifest my own mods?
-Right now, here's the list of manifest-aware tools of which we know that can help you add and maintaining manifests in your mods:
+Right now, here's the list of manifest-aware tools of which we know that can help you add and maintain manifests in your mods:
 * [PlumbBuddy](https://plumbbuddy.app) - A friendly helper for Sims 4 mods
 
 We'll add more as we become aware of them, so check back later if you're interested.
