@@ -1,9 +1,9 @@
 # You've Found a Manifest-Aware Tool or Mod
 
-## What is a Manifested Mod?
-It's a mod that contains a manifest!
-But... *what is a manifest?*
-A manifest tells apps and other mods about the manifested mod, including:
+## What does it mean to be Manifest-Aware?
+Awarness of what?
+*What is a manifest?*
+A manifest tells apps and other mods about a manifested mod, including:
 * Its name
 * Who made it
 * What version it is
@@ -11,7 +11,7 @@ A manifest tells apps and other mods about the manifested mod, including:
 * What packs or other mods it requires
 * The guidelines for properly installing it
 
-So, if you've found a manifest-aware mod, then it can learn these kinds of details about other mods.
+So, if you've found a manifest-aware mod, then it can learn these kinds of details about other mods which contain manifests.
 If you've found a manifest-aware tool, that means it understands manifests and can possibly modify them so suit the needs of mod creators.
 
 ## How do I manifest my own mods?
