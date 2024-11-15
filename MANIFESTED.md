@@ -43,5 +43,4 @@ Here's some example HTML for ya:
 </a>
 ```
 
-If you're worried about ad blockers, you can just download the image and put it on your own site.
-We're fine with that!
+If you're worried about ad blockers or can't write raw HTML on the platform hosting your mod's download page, you can just download the image above for yourself, put it on your own site in a way that works for you, and link to this page if you want to help folks out learning about manifests.
