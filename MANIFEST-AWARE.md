@@ -21,7 +21,7 @@ Right now, here's the list of manifest-aware tools of which we know that can hel
 We'll add more as we become aware of them, so check back later if you're interested.
 
 Also, feel free to plop this fun sticker on your mods' download pages as you manifest them.
-You can link players who use your custom content to this page so they can learn about all the benefits the manifest in your mod can bring them.
+You can link players who use your custom content to [this page](MANIFESTED.md) so they can learn about all the benefits the manifest in your mod can bring them.
 
 <img src="Manifested.png" width="180" height="60" />
 
