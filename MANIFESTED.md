@@ -24,7 +24,7 @@ Right now, the list of which we are aware is:
 We'll add more as we become aware of them, so check back later if you're interested.
 
 ## Actually, I'm a mod creator myself. How do I manifest my mods?
-Right now, here's the list of manifest-aware tools of which we know that can help you add and maintaining manifests in your mods:
+Right now, here's the list of manifest-aware tools of which we know that can help you add and maintain manifests in your mods:
 * [PlumbBuddy](https://plumbbuddy.app) - A friendly helper for Sims 4 mods
 
 Once again, we'll add more as we become aware of them, so check back later if you're interested.
