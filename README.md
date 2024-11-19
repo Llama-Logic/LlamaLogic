@@ -64,3 +64,4 @@ The following current pillars of the community played a significant role in cons
 ## Libraries
 Makes use of the following excellent libraries:
 * [PolySharp](https://github.com/Sergio0694/PolySharp) by Sergio Pedri
+* [SharpZLib](https://github.com/icsharpcode/SharpZipLib)

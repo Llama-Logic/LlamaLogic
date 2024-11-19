@@ -551,44 +551,51 @@ public sealed class ModFileManifestModel :
         TuningName = reader.GetAttribute("n");
         if (ulong.TryParse(reader.GetAttribute("s"), out var parsedTuningFullInstance))
             TuningFullInstance = parsedTuningFullInstance;
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        try
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
-            if (isList)
+            while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
             {
-                if (tunableName == "creators")
-                    Creators.AddRange(reader.ReadTunableList());
-                else if (tunableName == "exclusivities")
-                    Exclusivities.AddRange(reader.ReadTunableList());
-                else if (tunableName == "features")
-                    Features.AddRange(reader.ReadTunableList());
-                else if (tunableName == "hash_resource_keys")
-                    HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
-                else if (tunableName == "incompatible_packs")
-                    IncompatiblePacks.AddRange(reader.ReadTunableList());
-                else if (tunableName == "required_mods")
-                    RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
-                else if (tunableName == "required_packs")
-                    RequiredPacks.AddRange(reader.ReadTunableList());
-                else if (tunableName == "subsumed_hashes")
-                    SubsumedHashes.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                if (reader.NodeType is not XmlNodeType.Element)
+                    continue;
+                var (tunableName, isList) = reader.ReadTunableDetails();
+                if (isList)
+                {
+                    if (tunableName == "creators")
+                        Creators.AddRange(reader.ReadTunableList());
+                    else if (tunableName == "exclusivities")
+                        Exclusivities.AddRange(reader.ReadTunableList());
+                    else if (tunableName == "features")
+                        Features.AddRange(reader.ReadTunableList());
+                    else if (tunableName == "hash_resource_keys")
+                        HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
+                    else if (tunableName == "incompatible_packs")
+                        IncompatiblePacks.AddRange(reader.ReadTunableList());
+                    else if (tunableName == "required_mods")
+                        RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
+                    else if (tunableName == "required_packs")
+                        RequiredPacks.AddRange(reader.ReadTunableList());
+                    else if (tunableName == "subsumed_hashes")
+                        SubsumedHashes.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                }
+                else
+                {
+                    var tunableValue = reader.ReadElementContentAsString();
+                    if (tunableName == "ea_promo_code")
+                        ElectronicArtsPromoCode = tunableValue;
+                    else if (tunableName == "name")
+                        Name = tunableValue;
+                    else if (tunableName == "hash")
+                        Hash = tunableValue.ToByteSequence().ToImmutableArray();
+                    else if (tunableName == "version")
+                        Version = tunableValue;
+                    else if (tunableName == "url")
+                        Url = new Uri(tunableValue, UriKind.Absolute);
+                }
             }
-            else
-            {
-                var tunableValue = reader.ReadElementContentAsString();
-                if (tunableName == "ea_promo_code")
-                    ElectronicArtsPromoCode = tunableValue;
-                else if (tunableName == "name")
-                    Name = tunableValue;
-                else if (tunableName == "hash")
-                    Hash = tunableValue.ToByteSequence().ToImmutableArray();
-                else if (tunableName == "version")
-                    Version = tunableValue;
-                else if (tunableName == "url")
-                    Url = new Uri(tunableValue, UriKind.Absolute);
-            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
         reader.ReadEndElement();
     }

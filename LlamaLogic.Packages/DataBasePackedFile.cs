@@ -1,3 +1,5 @@
+using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+
 namespace LlamaLogic.Packages;
 
 /// <summary>
@@ -125,7 +127,7 @@ public sealed class DataBasePackedFile :
         if (compressionType is mnCompressionType.ZLIB)
         {
             using var compressedStream = new ReadOnlyMemoryOfByteStream(memory);
-            using var decompressionStream = new ZLibStream(compressedStream, System.IO.Compression.CompressionMode.Decompress);
+            using var decompressionStream = new InflaterInputStream(compressedStream);
             var decompressed = new byte[sizeDecompressed];
 #if IS_NET_7_0_OR_GREATER
             decompressionStream.ReadExactly(decompressed);
@@ -163,7 +165,7 @@ public sealed class DataBasePackedFile :
         if (compressionType is mnCompressionType.ZLIB)
         {
             using var compressedStream = new ReadOnlyMemoryOfByteStream(memory);
-            using var decompressionStream = new ZLibStream(compressedStream, System.IO.Compression.CompressionMode.Decompress);
+            using var decompressionStream = new InflaterInputStream(compressedStream);
             Memory<byte> decompressed = new byte[sizeDecompressed];
             await decompressionStream.ReadAsync(decompressed, cancellationToken).ConfigureAwait(false);
             return decompressed;
@@ -282,7 +284,7 @@ public sealed class DataBasePackedFile :
     public static ReadOnlyMemory<byte> ZLibCompress(ReadOnlyMemory<byte> memory)
     {
         using var compressedStream = new ArrayBufferWriterOfByteStream();
-        using var compressionStream = new ZLibStream(compressedStream, System.IO.Compression.CompressionMode.Compress);
+        using var compressionStream = new DeflaterOutputStream(compressedStream);
         compressionStream.Write(memory.Span);
         compressionStream.Flush();
         return compressedStream.WrittenMemory;
@@ -294,7 +296,7 @@ public sealed class DataBasePackedFile :
     public static async Task<ReadOnlyMemory<byte>> ZLibCompressAsync(ReadOnlyMemory<byte> memory, CancellationToken cancellationToken = default)
     {
         using var compressedStream = new ArrayBufferWriterOfByteStream();
-        using var compressionStream = new ZLibStream(compressedStream, System.IO.Compression.CompressionMode.Compress);
+        using var compressionStream = new DeflaterOutputStream(compressedStream);
         await compressionStream.WriteAsync(memory, cancellationToken).ConfigureAwait(false);
         await compressionStream.FlushAsync(cancellationToken).ConfigureAwait(false);
         return compressedStream.WrittenMemory;
@@ -630,11 +632,9 @@ public sealed class DataBasePackedFile :
     {
         using var contentStream = FetchStream(indexEntry, force);
         var content = new byte[indexEntry.mnSizeDecompressed];
-#if IS_NET_7_0_OR_GREATER
-        contentStream.ReadExactly(content);
-#else
-        contentStream.Read(content);
-#endif
+        var bytesToRead = (int)indexEntry.mnSizeDecompressed;
+        while (bytesToRead > 0)
+            bytesToRead -= contentStream.Read(content);
         return content;
     }
 
@@ -642,7 +642,9 @@ public sealed class DataBasePackedFile :
     {
         using var contentStream = FetchStream(indexEntry, force);
         Memory<byte> content = new byte[indexEntry.mnSizeDecompressed];
-        await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
+        var bytesToRead = (int)indexEntry.mnSizeDecompressed;
+        while (bytesToRead > 0)
+            bytesToRead -= await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
         return content;
     }
 
@@ -680,7 +682,7 @@ public sealed class DataBasePackedFile :
     {
         Stream rawStream = FetchRawStream(indexEntry, force);
         if (indexEntry.mnCompressionType is mnCompressionType.ZLIB)
-            rawStream = new ZLibStream(rawStream, System.IO.Compression.CompressionMode.Decompress);
+            rawStream = new InflaterInputStream(rawStream);
         else if (indexEntry.mnCompressionType is mnCompressionType.Internal_compression or mnCompressionType.Streamable_compression)
             rawStream = new LegacyDecompressionStream(rawStream);
         else if (indexEntry.mnCompressionType is not mnCompressionType.Uncompressed)
