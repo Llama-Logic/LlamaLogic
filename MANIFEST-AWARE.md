@@ -12,7 +12,7 @@ A manifest tells apps and other mods about a manifested mod, including:
 * The guidelines for properly installing it
 
 So, if you've found a manifest-aware mod, then it can learn these kinds of details about other mods which contain manifests.
-If you've found a manifest-aware tool, that means it understands manifests and can possibly modify them so suit the needs of mod creators.
+If you've found a manifest-aware tool, that means it understands manifests and can possibly modify them to suit the needs of mod creators.
 
 ## How do I manifest my own mods?
 Right now, here's the list of manifest-aware tools of which we know that can help you add and maintain manifests in your mods:
@@ -21,7 +21,7 @@ Right now, here's the list of manifest-aware tools of which we know that can hel
 We'll add more as we become aware of them, so check back later if you're interested.
 
 Also, feel free to plop this fun sticker on your mods' download pages as you manifest them.
-You can link players who use your custom content to this page so they can learn about all the benefits the manifest in your mod can bring them.
+You can link players who use your custom content to [this page](MANIFESTED.md) so they can learn about all the benefits the manifest in your mod can bring them.
 
 <img src="Manifested.png" width="180" height="60" />
 
