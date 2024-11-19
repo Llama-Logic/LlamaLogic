@@ -1,5 +1,3 @@
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-
 namespace LlamaLogic.Packages;
 
 /// <summary>

@@ -1,3 +1,4 @@
+global using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 global using LlamaLogic.Packages;
 global using LlamaLogic.Packages.Cryptography;
 global using LlamaLogic.Packages.Models;
