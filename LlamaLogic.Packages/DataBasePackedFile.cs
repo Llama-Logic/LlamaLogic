@@ -1529,13 +1529,13 @@ public sealed class DataBasePackedFile :
     void InternalLoadAll(bool force)
     {
         foreach (var (key, indexEntry) in unloadedResources)
-            Store(key, FetchMemory(indexEntry, force), indexEntry.mnCompressionType, (int)indexEntry.mnSizeDecompressed);
+            Store(key, FetchRawMemory(indexEntry, force), indexEntry.mnCompressionType, (int)indexEntry.mnSizeDecompressed);
     }
 
     async Task InternalLoadAllAsync(bool force, CancellationToken cancellationToken)
     {
         foreach (var (key, indexEntry) in unloadedResources)
-            Store(key, await FetchMemoryAsync(indexEntry, force, cancellationToken).ConfigureAwait(false), indexEntry.mnCompressionType, (int)indexEntry.mnSizeDecompressed);
+            Store(key, await FetchRawMemoryAsync(indexEntry, force, cancellationToken).ConfigureAwait(false), indexEntry.mnCompressionType, (int)indexEntry.mnSizeDecompressed);
     }
 
     bool InternalSet(ResourceKey key, ReadOnlyMemory<byte> memory, CompressionMode compressionMode)
