@@ -1526,18 +1526,16 @@ public sealed class DataBasePackedFile :
         return Task.FromException<ReadOnlyMemory<byte>>(new KeyNotFoundException($"Key {key} not found"));
     }
 
-    void InternalLoadAll(bool force, CompressionMode compressionMode)
+    void InternalLoadAll(bool force)
     {
-        var unloadedKeys = unloadedResources.Keys.ToImmutableArray();
-        foreach (var unloadedKey in unloadedKeys)
-            InternalSet(unloadedKey, FetchMemory(unloadedResources[unloadedKey], force), compressionMode);
+        foreach (var (key, indexEntry) in unloadedResources)
+            Store(key, FetchMemory(indexEntry, force), indexEntry.mnCompressionType, (int)indexEntry.mnSizeDecompressed);
     }
 
-    async Task InternalLoadAllAsync(bool force, CompressionMode compressionMode, CancellationToken cancellationToken)
+    async Task InternalLoadAllAsync(bool force, CancellationToken cancellationToken)
     {
-        var unloadedKeys = unloadedResources.Keys.ToImmutableArray();
-        foreach (var unloadedKey in unloadedKeys)
-            await InternalSetAsync(unloadedKey, await FetchMemoryAsync(unloadedResources[unloadedKey], force, cancellationToken).ConfigureAwait(false), compressionMode, cancellationToken).ConfigureAwait(false);
+        foreach (var (key, indexEntry) in unloadedResources)
+            Store(key, await FetchMemoryAsync(indexEntry, force, cancellationToken).ConfigureAwait(false), indexEntry.mnCompressionType, (int)indexEntry.mnSizeDecompressed);
     }
 
     bool InternalSet(ResourceKey key, ReadOnlyMemory<byte> memory, CompressionMode compressionMode)
@@ -1662,12 +1660,12 @@ public sealed class DataBasePackedFile :
     /// Loads all resources in the package into memory
     /// </summary>
     /// <param name="force"><see langword="true"/> to get the content of the resources even if they has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
-    /// <param name="compressionMode">The compression mode to use for resources in memory</param>
+    /// <param name="compressionMode">This parameter is now ignored</param>
     public void LoadAll(bool force = false, CompressionMode compressionMode = CompressionMode.Auto)
     {
         RequireNotDisposed();
         using var heldResourceLock = resourceLock.Lock();
-        InternalLoadAll(force, compressionMode);
+        InternalLoadAll(force);
     }
 
     /// <summary>
@@ -1694,13 +1692,13 @@ public sealed class DataBasePackedFile :
     /// Loads all resources in the package into memory
     /// </summary>
     /// <param name="force"><see langword="true"/> to get the content of the resources even if they has been marked as deleted; otheriwse, <see langword="false"/> (default)</param>
-    /// <param name="compressionMode">The compression mode to use for resources in memory</param>
+    /// <param name="compressionMode">This parameter is now ignored</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
     public async Task LoadAllAsync(bool force = false, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
     {
         RequireNotDisposed();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
-        await InternalLoadAllAsync(force, compressionMode, cancellationToken).ConfigureAwait(false);
+        await InternalLoadAllAsync(force, cancellationToken).ConfigureAwait(false);
     }
 
     void ParseHeader(ReadOnlySpan<byte> header, out int indexEntryCount, out int indexSize, out long indexPosition)
@@ -1812,7 +1810,7 @@ public sealed class DataBasePackedFile :
     {
         RequireWritableStream();
         using var heldResourceLock = resourceLock.Lock();
-        InternalLoadAll(false, CompressionMode.Auto);
+        InternalLoadAll(false);
         stream.Seek(0, SeekOrigin.Begin);
         InternalCopyTo(stream, resourceKeyOrder);
         stream.SetLength(stream.Position);
@@ -1854,7 +1852,7 @@ public sealed class DataBasePackedFile :
     {
         RequireWritableStream();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
-        await InternalLoadAllAsync(false, CompressionMode.Auto, cancellationToken).ConfigureAwait(false);
+        await InternalLoadAllAsync(false, cancellationToken).ConfigureAwait(false);
         stream.Seek(0, SeekOrigin.Begin);
         await InternalCopyToAsync(stream, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
         stream.SetLength(stream.Position);
