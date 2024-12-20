@@ -33,9 +33,9 @@ items:
   namespace: LlamaLogic.Packages
   summary: Represents the compression mode to use when setting the content of a resource in a <xref href="LlamaLogic.Packages.DataBasePackedFile" data-throw-if-not-resolved="false"></xref>
   remarks: >-
-    *Important*: While this library does support the older compression methods, it does so for decompression only.
+    *Important*: While this library does support the older compression methods, it does not have a complete catalog of how to do so properly for every resource type automatically (<xref href="LlamaLogic.Packages.CompressionMode.Auto" data-throw-if-not-resolved="false"></xref>).
 
-    When it does compress resources, it always uses the newer ZLib compression method.
+    If you want to be sure that you're compressing a resource correctly, utilize <xref href="LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)" data-throw-if-not-resolved="false"></xref> with a package the game is currently accepting.
 
 
     **Warning**: The Sims 4 does not always expect or tolerate ZLib compression for certain types of resources, such as for world package files which ship with the game
@@ -307,6 +307,36 @@ references:
   name: DataBasePackedFile
   nameWithType: DataBasePackedFile
   fullName: LlamaLogic.Packages.DataBasePackedFile
+- uid: LlamaLogic.Packages.CompressionMode.Auto
+  commentId: F:LlamaLogic.Packages.CompressionMode.Auto
+  href: LlamaLogic.Packages.CompressionMode.html#LlamaLogic_Packages_CompressionMode_Auto
+  name: Auto
+  nameWithType: CompressionMode.Auto
+  fullName: LlamaLogic.Packages.CompressionMode.Auto
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetExplicitCompressionMode_LlamaLogic_Packages_ResourceKey_
+  name: GetExplicitCompressionMode(ResourceKey)
+  nameWithType: DataBasePackedFile.GetExplicitCompressionMode(ResourceKey)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
+    name: GetExplicitCompressionMode
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetExplicitCompressionMode_LlamaLogic_Packages_ResourceKey_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
+    name: GetExplicitCompressionMode
+    href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetExplicitCompressionMode_LlamaLogic_Packages_ResourceKey_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+    href: LlamaLogic.Packages.ResourceKey.html
+  - name: )
 - uid: LlamaLogic.Packages
   commentId: N:LlamaLogic.Packages
   href: LlamaLogic.html

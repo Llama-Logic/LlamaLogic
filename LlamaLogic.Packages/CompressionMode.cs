@@ -4,8 +4,8 @@ namespace LlamaLogic.Packages;
 /// Represents the compression mode to use when setting the content of a resource in a <see cref="DataBasePackedFile"/>
 /// </summary>
 /// <remarks>
-/// *Important*: While this library does support the older compression methods, it does so for decompression only.
-/// When it does compress resources, it always uses the newer ZLib compression method.
+/// *Important*: While this library does support the older compression methods, it does not have a complete catalog of how to do so properly for every resource type automatically (<see cref="Auto"/>).
+/// If you want to be sure that you're compressing a resource correctly, utilize <see cref="DataBasePackedFile.GetExplicitCompressionMode(ResourceKey)"/> with a package the game is currently accepting.
 ///
 /// **Warning**: The Sims 4 does not always expect or tolerate ZLib compression for certain types of resources, such as for world package files which ship with the game
 /// (see [thepancake1's comment about this on the Creator Musings Discord](https://discord.com/channels/605863047654801428/621760667581677568/1274623417391517717) for more information).

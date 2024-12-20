@@ -147,8 +147,8 @@ ForceOn = 2</code></dt>
 
 
   <h2 id="LlamaLogic_Packages_CompressionMode_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p><em>Important</em>: While this library does support the older compression methods, it does so for decompression only.
-When it does compress resources, it always uses the newer ZLib compression method.</p>
+  <div class="markdown level0 remarks"><p><em>Important</em>: While this library does support the older compression methods, it does not have a complete catalog of how to do so properly for every resource type automatically (<a class="xref" href="LlamaLogic.Packages.CompressionMode.html#LlamaLogic_Packages_CompressionMode_Auto">Auto</a>).
+If you want to be sure that you're compressing a resource correctly, utilize <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetExplicitCompressionMode_LlamaLogic_Packages_ResourceKey_">GetExplicitCompressionMode(ResourceKey)</a> with a package the game is currently accepting.</p>
 <p><strong>Warning</strong>: The Sims 4 does not always expect or tolerate ZLib compression for certain types of resources, such as for world package files which ship with the game
 (see <a href="https://discord.com/channels/605863047654801428/621760667581677568/1274623417391517717">thepancake1's comment about this on the Creator Musings Discord</a> for more information).</p>
 </div>
