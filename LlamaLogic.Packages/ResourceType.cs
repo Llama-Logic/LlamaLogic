@@ -913,6 +913,12 @@ public enum ResourceType :
     PieMenuCategoryTuning = 0x03e9d964,
 
     /// <summary>
+    /// Phone Photo Thumbnail
+    /// </summary>
+    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    PhonePhotoThumbnail = 0xe88db35f,
+
+    /// <summary>
     /// Platform
     /// </summary>
     Platform = 0x99c07284,
@@ -1122,6 +1128,37 @@ public enum ResourceType :
     /// </summary>
     [ResourceToolingMetadata]
     S4sMergedPackageManifest = 0x7fb6ad8a,
+
+    /// <summary>
+    /// Sims 4 Save Game Data
+    /// </summary>
+    [ResourceFileType(ResourceFileType.Binary)]
+    [StandardCompression(CompressionTypeMethodNumber.Internal_compression)]
+    SaveGameData = 0x0000000d,
+
+    /// <summary>
+    /// Save File Thumbnail 1
+    /// </summary>
+    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    SaveThumbnail1 = 0x0000000f,
+
+    /// <summary>
+    /// Save File Thumbnail 2
+    /// </summary>
+    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    SaveThumbnail2 = 0x00000010,
+
+    /// <summary>
+    /// Save File Thumbnail 4
+    /// </summary>
+    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    SaveThumbnail4 = 0x00000014,
+
+    /// <summary>
+    /// Save File Thumbnail 5
+    /// </summary>
+    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    SaveThumbnail5 = 0xf8e1457a,
 
     /// <summary>
     /// ScaleForm GFX
@@ -1859,5 +1896,10 @@ public enum ResourceType :
     /// Zone Modifier Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    ZoneModifierTuning = 0x3c1d8799
+    ZoneModifierTuning = 0x3c1d8799,
+
+    /// <summary>
+    /// Zone Object Data
+    /// </summary>
+    ZoneObjectData = 0x00000006
 }

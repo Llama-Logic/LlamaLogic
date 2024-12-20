@@ -165,6 +165,7 @@ items:
   - LlamaLogic.Packages.ResourceType.PetCoatPattern
   - LlamaLogic.Packages.ResourceType.PetFacePresetThumbnail
   - LlamaLogic.Packages.ResourceType.PetPeltLayer
+  - LlamaLogic.Packages.ResourceType.PhonePhotoThumbnail
   - LlamaLogic.Packages.ResourceType.PieMenuCategoryTuning
   - LlamaLogic.Packages.ResourceType.Platform
   - LlamaLogic.Packages.ResourceType.Pond
@@ -201,6 +202,11 @@ items:
   - LlamaLogic.Packages.ResourceType.RoofTrim
   - LlamaLogic.Packages.ResourceType.RoyaltyTuning
   - LlamaLogic.Packages.ResourceType.S4sMergedPackageManifest
+  - LlamaLogic.Packages.ResourceType.SaveGameData
+  - LlamaLogic.Packages.ResourceType.SaveThumbnail1
+  - LlamaLogic.Packages.ResourceType.SaveThumbnail2
+  - LlamaLogic.Packages.ResourceType.SaveThumbnail4
+  - LlamaLogic.Packages.ResourceType.SaveThumbnail5
   - LlamaLogic.Packages.ResourceType.ScaleFormGFX
   - LlamaLogic.Packages.ResourceType.Sculpt
   - LlamaLogic.Packages.ResourceType.SeasonTuning
@@ -333,6 +339,7 @@ items:
   - LlamaLogic.Packages.ResourceType.WorldmapLotThumbnail
   - LlamaLogic.Packages.ResourceType.ZoneDirectorTuning
   - LlamaLogic.Packages.ResourceType.ZoneModifierTuning
+  - LlamaLogic.Packages.ResourceType.ZoneObjectData
   langs:
   - csharp
   - vb
@@ -6188,6 +6195,47 @@ items:
     arguments:
     - type: LlamaLogic.Packages.ResourceFileType
       value: 4
+- uid: LlamaLogic.Packages.ResourceType.PhonePhotoThumbnail
+  commentId: F:LlamaLogic.Packages.ResourceType.PhonePhotoThumbnail
+  id: PhonePhotoThumbnail
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: PhonePhotoThumbnail
+  nameWithType: ResourceType.PhonePhotoThumbnail
+  fullName: LlamaLogic.Packages.ResourceType.PhonePhotoThumbnail
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PhonePhotoThumbnail
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 917
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Phone Photo Thumbnail
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+
+      PhonePhotoThumbnail = 3901600607
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: >-
+      <ResourceFileType(ResourceFileType.PortableNetworkGraphic)>
+
+      PhonePhotoThumbnail = 3901600607
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeAttribute.#ctor(LlamaLogic.Packages.ResourceFileType)
+    arguments:
+    - type: LlamaLogic.Packages.ResourceFileType
+      value: 3
 - uid: LlamaLogic.Packages.ResourceType.Platform
   commentId: F:LlamaLogic.Packages.ResourceType.Platform
   id: Platform
@@ -6206,7 +6254,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Platform
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 917
+    startLine: 923
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6234,7 +6282,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: PNG
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 922
+    startLine: 928
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6275,7 +6323,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: PNGImage
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 928
+    startLine: 934
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6316,7 +6364,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Pond
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 934
+    startLine: 940
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6344,7 +6392,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: PoolTrim
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 939
+    startLine: 945
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6372,7 +6420,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: PostureTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 944
+    startLine: 950
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6413,7 +6461,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: PubertyTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 950
+    startLine: 956
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6454,7 +6502,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: QueryableWorldMaskManifest
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 956
+    startLine: 962
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6482,7 +6530,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RabbitHoleTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 961
+    startLine: 967
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6523,7 +6571,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Railing
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 967
+    startLine: 973
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6551,7 +6599,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RecipeTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 972
+    startLine: 978
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6592,7 +6640,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RecordBundle
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 978
+    startLine: 984
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6620,7 +6668,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RegionDescription
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 983
+    startLine: 989
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6661,7 +6709,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RegionMap
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 989
+    startLine: 995
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6702,7 +6750,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RegionSortTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 995
+    startLine: 1001
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6743,7 +6791,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RegionTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1001
+    startLine: 1007
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6784,7 +6832,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RelationshipBitTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1007
+    startLine: 1013
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6825,7 +6873,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RelationshipLockTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1013
+    startLine: 1019
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6866,7 +6914,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererCensorTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1019
+    startLine: 1025
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6907,7 +6955,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererFadeTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1025
+    startLine: 1031
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6948,7 +6996,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererGlobalDOFSettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1031
+    startLine: 1037
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6989,7 +7037,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererGlobalHighlightSettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1037
+    startLine: 1043
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7030,7 +7078,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererGlobalLightSettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1043
+    startLine: 1049
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7071,7 +7119,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererGlobalShadowSettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1049
+    startLine: 1055
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7112,7 +7160,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererGlobalSSAOSettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1055
+    startLine: 1061
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7153,7 +7201,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RendererGlobalVolLightScatteringSettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1061
+    startLine: 1067
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7194,7 +7242,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RewardTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1067
+    startLine: 1073
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7235,7 +7283,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Rig
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1073
+    startLine: 1079
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7263,7 +7311,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RLE2Image
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1078
+    startLine: 1084
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7304,7 +7352,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RLESImage
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1084
+    startLine: 1090
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7345,7 +7393,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RoadDefinition
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1090
+    startLine: 1096
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7373,7 +7421,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RoleStateTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1095
+    startLine: 1101
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7414,7 +7462,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Roof
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1101
+    startLine: 1107
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7442,7 +7490,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RoofPattern
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1106
+    startLine: 1112
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7470,7 +7518,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RoofTrim
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1111
+    startLine: 1117
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7498,7 +7546,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RoyaltyTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1116
+    startLine: 1122
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7539,7 +7587,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: S4sMergedPackageManifest
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1122
+    startLine: 1128
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7549,6 +7597,211 @@ items:
     content: S4sMergedPackageManifest = 2142678410
     return:
       type: LlamaLogic.Packages.ResourceType
+- uid: LlamaLogic.Packages.ResourceType.SaveGameData
+  commentId: F:LlamaLogic.Packages.ResourceType.SaveGameData
+  id: SaveGameData
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: SaveGameData
+  nameWithType: ResourceType.SaveGameData
+  fullName: LlamaLogic.Packages.ResourceType.SaveGameData
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SaveGameData
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 1134
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Sims 4 Save Game Data
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileType(ResourceFileType.Binary)]
+
+      SaveGameData = 13
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: >-
+      <ResourceFileType(ResourceFileType.Binary)>
+
+      SaveGameData = 13
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeAttribute.#ctor(LlamaLogic.Packages.ResourceFileType)
+    arguments:
+    - type: LlamaLogic.Packages.ResourceFileType
+      value: 0
+- uid: LlamaLogic.Packages.ResourceType.SaveThumbnail1
+  commentId: F:LlamaLogic.Packages.ResourceType.SaveThumbnail1
+  id: SaveThumbnail1
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: SaveThumbnail1
+  nameWithType: ResourceType.SaveThumbnail1
+  fullName: LlamaLogic.Packages.ResourceType.SaveThumbnail1
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SaveThumbnail1
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 1141
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Save File Thumbnail 1
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+
+      SaveThumbnail1 = 15
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: >-
+      <ResourceFileType(ResourceFileType.PortableNetworkGraphic)>
+
+      SaveThumbnail1 = 15
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeAttribute.#ctor(LlamaLogic.Packages.ResourceFileType)
+    arguments:
+    - type: LlamaLogic.Packages.ResourceFileType
+      value: 3
+- uid: LlamaLogic.Packages.ResourceType.SaveThumbnail2
+  commentId: F:LlamaLogic.Packages.ResourceType.SaveThumbnail2
+  id: SaveThumbnail2
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: SaveThumbnail2
+  nameWithType: ResourceType.SaveThumbnail2
+  fullName: LlamaLogic.Packages.ResourceType.SaveThumbnail2
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SaveThumbnail2
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 1147
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Save File Thumbnail 2
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+
+      SaveThumbnail2 = 16
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: >-
+      <ResourceFileType(ResourceFileType.PortableNetworkGraphic)>
+
+      SaveThumbnail2 = 16
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeAttribute.#ctor(LlamaLogic.Packages.ResourceFileType)
+    arguments:
+    - type: LlamaLogic.Packages.ResourceFileType
+      value: 3
+- uid: LlamaLogic.Packages.ResourceType.SaveThumbnail4
+  commentId: F:LlamaLogic.Packages.ResourceType.SaveThumbnail4
+  id: SaveThumbnail4
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: SaveThumbnail4
+  nameWithType: ResourceType.SaveThumbnail4
+  fullName: LlamaLogic.Packages.ResourceType.SaveThumbnail4
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SaveThumbnail4
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 1153
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Save File Thumbnail 4
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+
+      SaveThumbnail4 = 20
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: >-
+      <ResourceFileType(ResourceFileType.PortableNetworkGraphic)>
+
+      SaveThumbnail4 = 20
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeAttribute.#ctor(LlamaLogic.Packages.ResourceFileType)
+    arguments:
+    - type: LlamaLogic.Packages.ResourceFileType
+      value: 3
+- uid: LlamaLogic.Packages.ResourceType.SaveThumbnail5
+  commentId: F:LlamaLogic.Packages.ResourceType.SaveThumbnail5
+  id: SaveThumbnail5
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: SaveThumbnail5
+  nameWithType: ResourceType.SaveThumbnail5
+  fullName: LlamaLogic.Packages.ResourceType.SaveThumbnail5
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SaveThumbnail5
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 1159
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Save File Thumbnail 5
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+
+      SaveThumbnail5 = 4175512954
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: >-
+      <ResourceFileType(ResourceFileType.PortableNetworkGraphic)>
+
+      SaveThumbnail5 = 4175512954
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeAttribute.#ctor(LlamaLogic.Packages.ResourceFileType)
+    arguments:
+    - type: LlamaLogic.Packages.ResourceFileType
+      value: 3
 - uid: LlamaLogic.Packages.ResourceType.ScaleFormGFX
   commentId: F:LlamaLogic.Packages.ResourceType.ScaleFormGFX
   id: ScaleFormGFX
@@ -7567,7 +7820,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ScaleFormGFX
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1128
+    startLine: 1165
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7595,7 +7848,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Sculpt
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1133
+    startLine: 1170
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7623,7 +7876,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SeasonTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1138
+    startLine: 1175
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7664,7 +7917,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ServiceNPCTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1144
+    startLine: 1181
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7705,7 +7958,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ShaderPrecomp
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1150
+    startLine: 1187
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7746,7 +7999,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SicknessTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1156
+    startLine: 1193
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7787,7 +8040,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimData
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1162
+    startLine: 1199
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7828,7 +8081,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimFeaturedOutfitThumbnail
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1168
+    startLine: 1205
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7869,7 +8122,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimFilterTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1174
+    startLine: 1211
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7910,7 +8163,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimHotspotControl
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1180
+    startLine: 1217
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7938,7 +8191,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimHouseholdThumbnail
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1185
+    startLine: 1222
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -7979,7 +8232,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimInfo
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1191
+    startLine: 1228
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8007,7 +8260,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimInfoFixupTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1196
+    startLine: 1233
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8048,7 +8301,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimLightingTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1202
+    startLine: 1239
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8089,7 +8342,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimModifier
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1208
+    startLine: 1245
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8117,7 +8370,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimPreset
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1213
+    startLine: 1250
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8145,7 +8398,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimPresetThumbnail
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1218
+    startLine: 1255
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8186,7 +8439,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimTemplateTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1224
+    startLine: 1261
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8227,7 +8480,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SituationGoalSetTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1230
+    startLine: 1267
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8268,7 +8521,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SituationGoalTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1236
+    startLine: 1273
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8309,7 +8562,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SituationJobTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1242
+    startLine: 1279
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8350,7 +8603,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SituationTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1248
+    startLine: 1285
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8391,7 +8644,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Skintone
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1254
+    startLine: 1291
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8432,7 +8685,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SkyBoxTextureData
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1260
+    startLine: 1297
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8473,7 +8726,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Slot
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1266
+    startLine: 1303
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8514,7 +8767,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SlotTypeSetTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1272
+    startLine: 1309
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8555,7 +8808,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SlotTypeTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1278
+    startLine: 1315
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8596,7 +8849,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SnippetTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1284
+    startLine: 1321
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8637,7 +8890,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SocialGroupTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1290
+    startLine: 1327
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8678,7 +8931,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SoundMixProperties
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1296
+    startLine: 1333
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8719,7 +8972,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SoundModifierMapping
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1302
+    startLine: 1339
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8760,7 +9013,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SoundProperties
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1308
+    startLine: 1345
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8801,7 +9054,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Spandrel
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1314
+    startLine: 1351
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8829,7 +9082,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Spawner
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1319
+    startLine: 1356
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8857,7 +9110,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SpellTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1324
+    startLine: 1361
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8898,7 +9151,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Stairs
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1330
+    startLine: 1367
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8926,7 +9179,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StaticCommodityTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1335
+    startLine: 1372
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -8967,7 +9220,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StatisticTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1341
+    startLine: 1378
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9008,7 +9261,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StoryArcTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1347
+    startLine: 1384
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9049,7 +9302,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StoryChapterTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1353
+    startLine: 1390
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9090,7 +9343,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StrategySetTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1359
+    startLine: 1396
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9131,7 +9384,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StreetTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1365
+    startLine: 1402
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9172,7 +9425,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StringTable
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1371
+    startLine: 1408
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9213,7 +9466,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Style
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1377
+    startLine: 1414
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9241,7 +9494,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: StyledLook
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1382
+    startLine: 1419
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9269,7 +9522,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SubrootTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1387
+    startLine: 1424
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9310,7 +9563,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SyncPointSchema
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1393
+    startLine: 1430
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9338,7 +9591,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TagCategoriesMetadataTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1398
+    startLine: 1435
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9379,7 +9632,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TagSetTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1404
+    startLine: 1441
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9420,7 +9673,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TagsMetadataTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1410
+    startLine: 1447
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9461,7 +9714,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TagTraitGroupMetadataTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1416
+    startLine: 1453
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9502,7 +9755,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TagTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1422
+    startLine: 1459
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9543,7 +9796,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TelemetryMemoryUsageTelemetrySettingsTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1428
+    startLine: 1465
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9584,7 +9837,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TelemetryTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1434
+    startLine: 1471
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9625,7 +9878,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TemplateChooserTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1440
+    startLine: 1477
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9666,7 +9919,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainBlendMap
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1446
+    startLine: 1483
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9707,7 +9960,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainData
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1452
+    startLine: 1489
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9748,7 +10001,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainHeightMap
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1458
+    startLine: 1495
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9789,7 +10042,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainKDTree
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1464
+    startLine: 1501
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9830,7 +10083,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainMesh
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1470
+    startLine: 1507
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9871,7 +10124,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainPaint
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1476
+    startLine: 1513
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9899,7 +10152,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainSizeInfo
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1481
+    startLine: 1518
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9927,7 +10180,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TerrainTool
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1486
+    startLine: 1523
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9955,7 +10208,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TestBasedScoreTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1491
+    startLine: 1528
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -9996,7 +10249,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TheSimsResourceWorkshopProprietary
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1497
+    startLine: 1534
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10024,7 +10277,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ThriftStoreTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1503
+    startLine: 1540
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10065,7 +10318,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ThumbnailCache
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1509
+    startLine: 1546
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10106,7 +10359,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ThumbnailExtra1
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1515
+    startLine: 1552
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10134,7 +10387,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ThumbnailExtra2
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1520
+    startLine: 1557
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10162,7 +10415,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ThumbnailTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1525
+    startLine: 1562
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10203,7 +10456,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TimelineEvents
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1531
+    startLine: 1568
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10231,7 +10484,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TopicTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1536
+    startLine: 1573
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10272,7 +10525,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TrackMask
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1542
+    startLine: 1579
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10300,7 +10553,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TraitTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1547
+    startLine: 1584
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10341,7 +10594,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TrayItem
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1553
+    startLine: 1590
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10369,7 +10622,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Trim
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1558
+    startLine: 1595
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10410,7 +10663,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TrueTypeFont
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1564
+    startLine: 1601
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10438,7 +10691,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Tuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1569
+    startLine: 1606
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10479,7 +10732,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TutorialTipTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1575
+    startLine: 1612
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10520,7 +10773,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TutorialTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1581
+    startLine: 1618
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10561,7 +10814,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UIControlEventMap
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1587
+    startLine: 1624
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10589,7 +10842,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UIEventModeMapping
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1592
+    startLine: 1629
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10630,7 +10883,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UniversityCourseDataTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1598
+    startLine: 1635
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10671,7 +10924,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UniversityCourseMajorTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1604
+    startLine: 1641
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10712,7 +10965,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UniversityTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1610
+    startLine: 1647
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10753,7 +11006,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UnknownWorld2
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1616
+    startLine: 1653
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10781,7 +11034,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UnknownWorld3
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1621
+    startLine: 1658
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10809,7 +11062,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UnknownWorld5
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1626
+    startLine: 1663
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10837,7 +11090,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UserInterfaceInfoTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1631
+    startLine: 1668
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10878,7 +11131,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VenueTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1637
+    startLine: 1674
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10919,7 +11172,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VideoGlobalTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1643
+    startLine: 1680
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -10960,7 +11213,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VideoPlaylistTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1649
+    startLine: 1686
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11001,7 +11254,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VisualEffects
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1655
+    startLine: 1692
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11029,7 +11282,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VisualEffectsInstanceMap
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1660
+    startLine: 1697
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11057,7 +11310,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VisualEffectsMerged
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1665
+    startLine: 1702
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11085,7 +11338,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VoiceEffect
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1670
+    startLine: 1707
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11126,7 +11379,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: VoicePlugin
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1676
+    startLine: 1713
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11167,7 +11420,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WalkByTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1682
+    startLine: 1719
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11208,7 +11461,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Walkstyle
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1688
+    startLine: 1725
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11249,7 +11502,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Wall
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1694
+    startLine: 1731
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11277,7 +11530,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WallTrim
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1699
+    startLine: 1736
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11305,7 +11558,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WaterManifest
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1704
+    startLine: 1741
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11333,7 +11586,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WaterMask
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1709
+    startLine: 1746
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11361,7 +11614,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WaterMaskList
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1714
+    startLine: 1751
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11389,7 +11642,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WeatherEventTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1719
+    startLine: 1756
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11430,7 +11683,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WeatherForecastTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1725
+    startLine: 1762
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11471,7 +11724,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WhimTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1731
+    startLine: 1768
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11512,7 +11765,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WindowSet
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1737
+    startLine: 1774
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11540,7 +11793,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WMRFReference
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1742
+    startLine: 1779
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11568,7 +11821,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldCameraInfo
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1747
+    startLine: 1784
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11596,7 +11849,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldCameraMesh
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1752
+    startLine: 1789
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11624,7 +11877,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldConditionalData
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1757
+    startLine: 1794
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11665,7 +11918,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldData
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1763
+    startLine: 1800
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11706,7 +11959,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldDescription
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1769
+    startLine: 1806
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11747,7 +12000,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldFileHeader
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1775
+    startLine: 1812
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11775,7 +12028,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldLandingStrip
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1780
+    startLine: 1817
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11803,7 +12056,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldLightsInfo
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1785
+    startLine: 1822
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11831,7 +12084,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldLotArchitecture
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1790
+    startLine: 1827
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11859,7 +12112,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldLotObjects
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1795
+    startLine: 1832
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11887,7 +12140,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldLotParameterInfo
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1800
+    startLine: 1837
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11915,7 +12168,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldManifest
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1805
+    startLine: 1842
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11943,7 +12196,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldMap
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1810
+    startLine: 1847
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -11984,7 +12237,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldmapLotThumbnail
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1816
+    startLine: 1853
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12025,7 +12278,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldObjectData
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1822
+    startLine: 1859
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12066,7 +12319,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldOffLotMesh
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1828
+    startLine: 1865
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12094,7 +12347,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldRoadPolys
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1833
+    startLine: 1870
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12122,7 +12375,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldTimelineColor
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1838
+    startLine: 1875
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12163,7 +12416,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldVisualEffectsInfo
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1844
+    startLine: 1881
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12191,7 +12444,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: WorldWaterManifest
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1849
+    startLine: 1886
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12219,7 +12472,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZoneDirectorTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1854
+    startLine: 1891
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12260,7 +12513,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZoneModifierTuning
     path: ../LlamaLogic.Packages/ResourceType.cs
-    startLine: 1860
+    startLine: 1897
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -12283,6 +12536,34 @@ items:
     arguments:
     - type: LlamaLogic.Packages.ResourceFileType
       value: 4
+- uid: LlamaLogic.Packages.ResourceType.ZoneObjectData
+  commentId: F:LlamaLogic.Packages.ResourceType.ZoneObjectData
+  id: ZoneObjectData
+  parent: LlamaLogic.Packages.ResourceType
+  langs:
+  - csharp
+  - vb
+  name: ZoneObjectData
+  nameWithType: ResourceType.ZoneObjectData
+  fullName: LlamaLogic.Packages.ResourceType.ZoneObjectData
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ZoneObjectData
+    path: ../LlamaLogic.Packages/ResourceType.cs
+    startLine: 1903
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Zone Object Data
+  example: []
+  syntax:
+    content: ZoneObjectData = 6
+    return:
+      type: LlamaLogic.Packages.ResourceType
 references:
 - uid: LlamaLogic.Packages.DataBasePackedFile
   commentId: T:LlamaLogic.Packages.DataBasePackedFile

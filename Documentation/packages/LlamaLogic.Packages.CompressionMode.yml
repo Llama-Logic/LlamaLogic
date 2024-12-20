@@ -8,8 +8,10 @@ items:
   - LlamaLogic.Packages.CompressionMode.Auto
   - LlamaLogic.Packages.CompressionMode.CallerSuppliedInternal
   - LlamaLogic.Packages.CompressionMode.CallerSuppliedStreamable
+  - LlamaLogic.Packages.CompressionMode.ForceInternal
   - LlamaLogic.Packages.CompressionMode.ForceOff
   - LlamaLogic.Packages.CompressionMode.ForceOn
+  - LlamaLogic.Packages.CompressionMode.ForceZLib
   - LlamaLogic.Packages.CompressionMode.SetDeletedFlag
   langs:
   - csharp
@@ -65,7 +67,7 @@ items:
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: The library will choose whether to compress the data or not
+  summary: The library will choose whether and how to compress the data or not
   example: []
   syntax:
     content: Auto = 0
@@ -121,10 +123,81 @@ items:
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: The data will be compressed
+  summary: 'Deprecated: do not use'
   example: []
   syntax:
-    content: ForceOn = 2
+    content: >-
+      [Obsolete("This setting can no longer be used and will be removed in a future version. If you need to force a compression, use a different force member of this enum.", true)]
+
+      ForceOn = 2
+    return:
+      type: LlamaLogic.Packages.CompressionMode
+    content.vb: >-
+      <Obsolete("This setting can no longer be used and will be removed in a future version. If you need to force a compression, use a different force member of this enum.", True)>
+
+      ForceOn = 2
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String,System.Boolean)
+    arguments:
+    - type: System.String
+      value: This setting can no longer be used and will be removed in a future version. If you need to force a compression, use a different force member of this enum.
+    - type: System.Boolean
+      value: true
+- uid: LlamaLogic.Packages.CompressionMode.ForceZLib
+  commentId: F:LlamaLogic.Packages.CompressionMode.ForceZLib
+  id: ForceZLib
+  parent: LlamaLogic.Packages.CompressionMode
+  langs:
+  - csharp
+  - vb
+  name: ForceZLib
+  nameWithType: CompressionMode.ForceZLib
+  fullName: LlamaLogic.Packages.CompressionMode.ForceZLib
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/CompressionMode.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ForceZLib
+    path: ../LlamaLogic.Packages/CompressionMode.cs
+    startLine: 33
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: The data will be compressed using ZLib
+  example: []
+  syntax:
+    content: ForceZLib = 3
+    return:
+      type: LlamaLogic.Packages.CompressionMode
+- uid: LlamaLogic.Packages.CompressionMode.ForceInternal
+  commentId: F:LlamaLogic.Packages.CompressionMode.ForceInternal
+  id: ForceInternal
+  parent: LlamaLogic.Packages.CompressionMode
+  langs:
+  - csharp
+  - vb
+  name: ForceInternal
+  nameWithType: CompressionMode.ForceInternal
+  fullName: LlamaLogic.Packages.CompressionMode.ForceInternal
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/CompressionMode.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ForceInternal
+    path: ../LlamaLogic.Packages/CompressionMode.cs
+    startLine: 38
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: The data will be compressed using Maxis' internal method
+  example: []
+  syntax:
+    content: ForceInternal = 4
     return:
       type: LlamaLogic.Packages.CompressionMode
 - uid: LlamaLogic.Packages.CompressionMode.SetDeletedFlag
@@ -145,14 +218,14 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetDeletedFlag
     path: ../LlamaLogic.Packages/CompressionMode.cs
-    startLine: 32
+    startLine: 43
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: ⚠️ The data will not be processed for compression by the library—thus callers will need to invoke <xref href="LlamaLogic.Packages.DataBasePackedFile.ZLibCompress(System.ReadOnlyMemory%7bSystem.Byte%7d)" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Packages.DataBasePackedFile.ZLibCompressAsync(System.ReadOnlyMemory%7bSystem.Byte%7d%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> themselves and pass the result to <xref href="LlamaLogic.Packages.DataBasePackedFile.Set(LlamaLogic.Packages.ResourceKey%2cSystem.ReadOnlyMemory%7bSystem.Byte%7d%2cLlamaLogic.Packages.CompressionMode)" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey%2cSystem.ReadOnlyMemory%7bSystem.Byte%7d%2cLlamaLogic.Packages.CompressionMode%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref>, respectively, if they intend for the content to be compressed with ZLib despite being flagged—and the deleted flag will be set (use with caution)
   example: []
   syntax:
-    content: SetDeletedFlag = 3
+    content: SetDeletedFlag = 5
     return:
       type: LlamaLogic.Packages.CompressionMode
 - uid: LlamaLogic.Packages.CompressionMode.CallerSuppliedInternal
@@ -173,16 +246,31 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CallerSuppliedInternal
     path: ../LlamaLogic.Packages/CompressionMode.cs
-    startLine: 37
+    startLine: 48
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' internal method (use with caution)
+  summary: 'Deprecated: do not use'
   example: []
   syntax:
-    content: CallerSuppliedInternal = 4
+    content: >-
+      [Obsolete("This setting can no longer be used and will be removed in a future version. Supply the uncompressed data and Auto or ForceInternal.", true)]
+
+      CallerSuppliedInternal = 6
     return:
       type: LlamaLogic.Packages.CompressionMode
+    content.vb: >-
+      <Obsolete("This setting can no longer be used and will be removed in a future version. Supply the uncompressed data and Auto or ForceInternal.", True)>
+
+      CallerSuppliedInternal = 6
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String,System.Boolean)
+    arguments:
+    - type: System.String
+      value: This setting can no longer be used and will be removed in a future version. Supply the uncompressed data and Auto or ForceInternal.
+    - type: System.Boolean
+      value: true
 - uid: LlamaLogic.Packages.CompressionMode.CallerSuppliedStreamable
   commentId: F:LlamaLogic.Packages.CompressionMode.CallerSuppliedStreamable
   id: CallerSuppliedStreamable
@@ -201,14 +289,14 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CallerSuppliedStreamable
     path: ../LlamaLogic.Packages/CompressionMode.cs
-    startLine: 42
+    startLine: 54
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
   summary: ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' streamable method (use with caution)
   example: []
   syntax:
-    content: CallerSuppliedStreamable = 5
+    content: CallerSuppliedStreamable = 7
     return:
       type: LlamaLogic.Packages.CompressionMode
 references:

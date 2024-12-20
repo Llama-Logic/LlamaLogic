@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -54,7 +54,7 @@
             <div id="navbar">
               <form class="search" role="search" id="search">
                 <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
               </form>
             </div>
           </div>
@@ -118,21 +118,29 @@ Enum CompressionMode  <a class="header-action link-secondary" title="View source
 </h2>
   <dl class="parameters">
     <dt id="LlamaLogic_Packages_CompressionMode_Auto"><code>Auto = 0</code></dt>
-    <dd><p>The library will choose whether to compress the data or not</p>
+    <dd><p>The library will choose whether and how to compress the data or not</p>
 </dd>
-    <dt id="LlamaLogic_Packages_CompressionMode_CallerSuppliedInternal"><code>CallerSuppliedInternal = 4</code></dt>
-    <dd><p>⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' internal method (use with caution)</p>
+    <dt id="LlamaLogic_Packages_CompressionMode_CallerSuppliedInternal"><code>[Obsolete(&quot;This setting can no longer be used and will be removed in a future version. Supply the uncompressed data and Auto or ForceInternal.&quot;, true)]
+CallerSuppliedInternal = 6</code></dt>
+    <dd><p>Deprecated: do not use</p>
 </dd>
-    <dt id="LlamaLogic_Packages_CompressionMode_CallerSuppliedStreamable"><code>CallerSuppliedStreamable = 5</code></dt>
+    <dt id="LlamaLogic_Packages_CompressionMode_CallerSuppliedStreamable"><code>CallerSuppliedStreamable = 7</code></dt>
     <dd><p>⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' streamable method (use with caution)</p>
+</dd>
+    <dt id="LlamaLogic_Packages_CompressionMode_ForceInternal"><code>ForceInternal = 4</code></dt>
+    <dd><p>The data will be compressed using Maxis' internal method</p>
 </dd>
     <dt id="LlamaLogic_Packages_CompressionMode_ForceOff"><code>ForceOff = 1</code></dt>
     <dd><p>The data will not be compressed</p>
 </dd>
-    <dt id="LlamaLogic_Packages_CompressionMode_ForceOn"><code>ForceOn = 2</code></dt>
-    <dd><p>The data will be compressed</p>
+    <dt id="LlamaLogic_Packages_CompressionMode_ForceOn"><code>[Obsolete(&quot;This setting can no longer be used and will be removed in a future version. If you need to force a compression, use a different force member of this enum.&quot;, true)]
+ForceOn = 2</code></dt>
+    <dd><p>Deprecated: do not use</p>
 </dd>
-    <dt id="LlamaLogic_Packages_CompressionMode_SetDeletedFlag"><code>SetDeletedFlag = 3</code></dt>
+    <dt id="LlamaLogic_Packages_CompressionMode_ForceZLib"><code>ForceZLib = 3</code></dt>
+    <dd><p>The data will be compressed using ZLib</p>
+</dd>
+    <dt id="LlamaLogic_Packages_CompressionMode_SetDeletedFlag"><code>SetDeletedFlag = 5</code></dt>
     <dd><p>⚠️ The data will not be processed for compression by the library—thus callers will need to invoke <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ZLibCompress_System_ReadOnlyMemory_System_Byte__">ZLibCompress(ReadOnlyMemory&lt;byte&gt;)</a> or <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ZLibCompressAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">ZLibCompressAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a> themselves and pass the result to <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_Set_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_CompressionMode_">Set(ResourceKey, ReadOnlyMemory&lt;byte&gt;, CompressionMode)</a> or <a class="xref" href="LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SetAsync_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_CompressionMode_System_Threading_CancellationToken_">SetAsync(ResourceKey, ReadOnlyMemory&lt;byte&gt;, CompressionMode, CancellationToken)</a>, respectively, if they intend for the content to be compressed with ZLib despite being flagged—and the deleted flag will be set (use with caution)</p>
 </dd>
   </dl>

@@ -13,7 +13,7 @@ namespace LlamaLogic.Packages;
 public enum CompressionMode
 {
     /// <summary>
-    /// The library will choose whether to compress the data or not
+    /// The library will choose whether and how to compress the data or not
     /// </summary>
     Auto,
 
@@ -23,9 +23,20 @@ public enum CompressionMode
     ForceOff,
 
     /// <summary>
-    /// The data will be compressed
+    /// Deprecated: do not use
     /// </summary>
+    [Obsolete("This setting can no longer be used and will be removed in a future version. If you need to force a compression, use a different force member of this enum.", true)]
     ForceOn,
+
+    /// <summary>
+    /// The data will be compressed using ZLib
+    /// </summary>
+    ForceZLib,
+
+    /// <summary>
+    /// The data will be compressed using Maxis' internal method
+    /// </summary>
+    ForceInternal,
 
     /// <summary>
     /// ⚠️ The data will not be processed for compression by the library—thus callers will need to invoke <see cref="DataBasePackedFile.ZLibCompress(ReadOnlyMemory{byte})"/> or <see cref="DataBasePackedFile.ZLibCompressAsync(ReadOnlyMemory{byte}, CancellationToken)"/> themselves and pass the result to <see cref="DataBasePackedFile.Set(ResourceKey, ReadOnlyMemory{byte}, CompressionMode)"/> or <see cref="DataBasePackedFile.SetAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, CancellationToken)"/>, respectively, if they intend for the content to be compressed with ZLib despite being flagged—and the deleted flag will be set (use with caution)
@@ -33,8 +44,9 @@ public enum CompressionMode
     SetDeletedFlag,
 
     /// <summary>
-    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' internal method (use with caution)
+    /// Deprecated: do not use
     /// </summary>
+    [Obsolete($"This setting can no longer be used and will be removed in a future version. Supply the uncompressed data and {nameof(Auto)} or {nameof(ForceInternal)}.", true)]
     CallerSuppliedInternal,
 
     /// <summary>

@@ -1,6 +1,7 @@
 global using LlamaLogic.Packages.Models.Data;
 global using Microsoft.Win32.SafeHandles;
 global using System;
+global using System.Collections.Immutable;
 global using System.Globalization;
 global using System.IO;
 global using System.Linq;
