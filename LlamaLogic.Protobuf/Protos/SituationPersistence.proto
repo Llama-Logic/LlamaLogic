@@ -1,0 +1,129 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "UI.proto";
+import "Localization.proto";
+
+
+message SituationGoalData {
+	required fixed64 goal_type_id = 1;
+	optional fixed64 actor_id = 2;
+	optional uint32 count = 3;
+	optional bool completed = 4;
+	optional fixed64 chain_id = 5;
+	optional bytes custom_data = 6;
+	optional bool locked = 7;
+	optional uint64 completed_time = 8;
+	optional fixed64 target_id = 9;
+	optional fixed64 secondary_target_id = 10;
+	repeated .EA.Sims4.Persistence.SituationGoalData sub_goals = 11;
+}
+
+message CompletedSituationGoalData {
+	optional .EA.Sims4.Persistence.SituationGoalData situation_goal = 1;
+	optional fixed64 chosen_goal_set_type_id = 2;
+}
+
+message SituationGoalChainData {
+	optional fixed64 starting_goal_set_type_id = 1;
+	optional fixed64 chosen_goal_set_type_id = 2;
+	optional fixed64 chain_id = 3;
+	optional int32 display_position = 4 [default = -1];
+}
+
+message SituationGoalTrackerData {
+	enum GoalTrackerType {
+		STANDARD_GOAL_TRACKER = 0;
+		DYNAMIC_GOAL_TRACKER = 1;
+		SIMPLE_GOAL_TRACKER = 2;
+		ACTIVITY_GOAL_TRACKER = 3;
+	}
+	optional bool has_offered_goals = 1;
+	optional fixed64 inherited_target_id = 2;
+	repeated .EA.Sims4.Persistence.SituationGoalChainData chains = 3;
+	repeated .EA.Sims4.Persistence.SituationGoalData minor_goals = 4;
+	optional .EA.Sims4.Persistence.SituationGoalData main_goal = 5;
+	repeated .EA.Sims4.Persistence.CompletedSituationGoalData completed_goals = 6;
+	optional .EA.Sims4.Persistence.SituationGoalTrackerData.GoalTrackerType goal_tracker_type = 7 [default = STANDARD_GOAL_TRACKER];
+}
+
+message SituationAssignmentData {
+	required fixed64 sim_id = 1;
+	required fixed64 job_type_id = 2;
+	optional uint32 purpose = 3;
+	optional fixed64 role_state_type_id = 4;
+	optional uint32 spawning_option = 5;
+	optional uint32 request_priority = 6;
+	optional bool expectation_preference = 7;
+	optional bool accept_alternate_sim = 8;
+	optional uint32 common_blacklist_categories = 9;
+	optional bool elevated_importance_override = 10;
+	optional bool reservation = 11;
+}
+
+message SituationSimpleSeedlingData {
+	optional uint32 phase_index = 1;
+	optional float remaining_phase_time = 2;
+}
+
+message SituationComplexSeedlingData {
+	optional bytes situation_custom_data = 1;
+	optional bytes state_custom_data = 2;
+}
+
+message SituationJobAndRoleState {
+	required fixed64 job_type_id = 1;
+	required fixed64 role_state_type_id = 2;
+	optional fixed64 emotional_loot_actions_type_id = 3;
+}
+
+message SituationSpecialObject {
+	required uint64 definition_id = 1;
+	optional .EA.Sims4.Network.LocalizedString name = 2;
+}
+
+message SituationSeedData {
+	required fixed64 situation_type_id = 1;
+	required fixed64 situation_id = 2;
+	optional uint32 seed_purpose = 3;
+	optional bool invite_only = 4;
+	optional fixed64 host_sim_id = 5;
+	repeated .EA.Sims4.Persistence.SituationAssignmentData assignments = 6;
+	optional bool user_facing = 7;
+	optional float duration = 8;
+	optional fixed64 zone_id = 9;
+	repeated .EA.Sims4.Persistence.SituationJobAndRoleState jobs_and_role_states = 10;
+	optional uint64 create_time = 11;
+	optional float score = 12;
+	optional .EA.Sims4.Persistence.SituationSimpleSeedlingData simple_data = 13;
+	optional .EA.Sims4.Persistence.SituationComplexSeedlingData complex_data = 14;
+	optional fixed64 filter_requesting_sim_id = 15;
+	optional .EA.Sims4.Persistence.SituationGoalTrackerData goal_tracker_data = 16;
+	optional uint64 start_time = 17;
+	optional fixed64 active_household_id = 18;
+	optional bool scoring_enabled = 19;
+	optional bool main_goal_visibility = 20 [default = true];
+	optional fixed64 linked_sim_id = 21;
+	optional .EA.Sims4.Network.IconInfo special_object_icon = 22;
+	repeated fixed64 situation_activity_ids = 23;
+	optional .EA.Sims4.Persistence.SituationSpecialObject special_object = 24;
+	optional uint64 guest_attire_color = 25;
+	optional uint64 guest_attire_style = 26;
+	optional bool spawn_sims_during_zone_spin_up = 27 [default = false];
+}
+
+message SituationBlacklistTagData {
+	required uint64 tag = 1;
+	required uint64 time = 2;
+}
+
+message SituationBlacklistData {
+	required fixed64 sim_id = 1;
+	repeated .EA.Sims4.Persistence.SituationBlacklistTagData tag_data = 2;
+}
+
+message AllSituationData {
+	repeated .EA.Sims4.Persistence.SituationSeedData seeds = 1;
+	optional fixed64 leave_situation_id = 2;
+	optional fixed64 leave_now_situation_id = 3;
+	repeated .EA.Sims4.Persistence.SituationBlacklistData blacklist_data = 4;
+}

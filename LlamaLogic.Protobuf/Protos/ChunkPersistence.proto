@@ -1,0 +1,12 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+
+
+message ChunkPersistenceEntry {
+	optional uint32 dataCRC = 1;
+	optional string fileName = 2;
+}
+
+message ChunkPersistenceFile {
+	repeated .EA.Sims4.Network.ChunkPersistenceEntry entries = 1;
+}

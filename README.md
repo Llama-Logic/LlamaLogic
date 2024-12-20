@@ -1,14 +1,13 @@
-<h1>Llama Logic</h1>
-
 <!-- TOC -->
 
 - [NuGet packages](#nuget-packages)
-  - [LlamaLogic.Packages](#llamalogicpackages)
+    - [LlamaLogic.Packages](#llamalogicpackages)
+    - [LlamaLogic.Protobuf](#llamalogicprotobuf)
 - [License](#license)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
-  - [The shoulders on which Llama Logic stands](#the-shoulders-on-which-llama-logic-stands)
-  - [Libraries](#libraries)
+    - [The shoulders on which Llama Logic stands](#the-shoulders-on-which-llama-logic-stands)
+    - [Libraries](#libraries)
 
 <!-- /TOC -->
 
@@ -22,6 +21,9 @@ Herding your Sims 4 mods like a pro, one clean file at a time!
 [![LlamaLogic.Packages Nuget](https://img.shields.io/nuget/v/LlamaLogic.Packages.svg?logo=nuget) ![Downloads](https://img.shields.io/nuget/dt/llamalogic.packages)](https://www.nuget.org/packages/LlamaLogic.Packages)
 
 Looking for API documentation? It's [right here](https://llama-logic.github.io/LlamaLogic/packages/LlamaLogic.Packages.html).
+
+## LlamaLogic.Protobuf
+[![LlamaLogic.Protobuf Nuget](https://img.shields.io/nuget/v/LlamaLogic.Protobuf.svg?logo=nuget) ![Downloads](https://img.shields.io/nuget/dt/llamalogic.protobuf)](https://www.nuget.org/packages/LlamaLogic.Protobuf)
 
 # License
 [MIT License](LICENSE)
@@ -63,5 +65,7 @@ The following current pillars of the community played a significant role in cons
 
 ## Libraries
 Makes use of the following excellent libraries:
+* [AuroraLib.Compression](https://github.com/Venomalia/AuroraLib.Compression) by Venomalia
 * [PolySharp](https://github.com/Sergio0694/PolySharp) by Sergio Pedri
 * [SharpZLib](https://github.com/icsharpcode/SharpZipLib)
+* [YamlDotNet](https://github.com/aaubry/YamlDotNet)

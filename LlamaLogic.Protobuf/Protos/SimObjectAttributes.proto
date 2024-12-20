@@ -1,0 +1,1448 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "Localization.proto";
+import "SituationPersistence.proto";
+import "SimsCustomOptions.proto";
+import "Outfits.proto";
+import "Animation.proto";
+import "Audio.proto";
+import "ResourceKey.proto";
+
+enum RelationshipIndex {
+	RELATIONSHIP_MOTHER = 0;
+	RELATIONSHIP_FATHER = 1;
+	RELATIONSHIP_MOTHERS_MOM = 2;
+	RELATIONSHIP_MOTHERS_FATHER = 3;
+	RELATIONSHIP_FATHERS_MOM = 4;
+	RELATIONSHIP_FATHERS_FATHER = 5;
+	RELATIONSHIP_NONE = 6;
+	RELATIONSHIP_PARENT = 7;
+	RELATIONSHIP_SIBLING = 8;
+	RELATIONSHIP_SPOUSE = 9;
+	RELATIONSHIP_FIANCE = 10;
+	RELATIONSHIP_STEADY = 11;
+	RELATIONSHIP_DESCENDANT = 12;
+	RELATIONSHIP_GRANDPARENT = 13;
+	RELATIONSHIP_GRANDCHILD = 14;
+	RELATIONSHIP_SIBLINGS_CHILDREN = 15;
+	RELATIONSHIP_PARENTS_SIBLING = 16;
+	RELATIONSHIP_COUSIN = 17;
+}
+
+message PersistenceMaster {
+	message PersistableData {
+		enum DATA_TYPE {
+			SimInfoAttribute = 1;
+			StateComponent = 2;
+			RelationshipTracker = 3;
+			Relationship = 4;
+			CommodityTracker = 5;
+			StatisticsTracker = 6;
+			ObjectPreferences = 7;
+			CraftingComponent = 8;
+			ObjectOwnership = 9;
+			Stereo = 10;
+			InventoryItemComponent = 11;
+			LightingComponent = 12;
+			EventDataTracker = 13;
+			NameComponent = 14;
+			StoredSimInfoComponent = 15;
+			PregnancyTracker = 16;
+			SimPermissions = 17;
+			TraitTracker = 18;
+			CanvasComponent = 19;
+			DeathTracker = 20;
+			OwnableComponent = 21;
+			FlowingPuddleComponent = 22;
+			AdventureTracker = 23;
+			StatisticComponent = 24;
+			GenealogyTracker = 25;
+			ObjectRelationshipComponent = 26;
+			SimKnowledge = 27;
+			ObjectAgeComponent = 28;
+			GardeningComponent = 29;
+			SpawnerComponent = 30;
+			OccultTracker = 31;
+			MannequinComponent = 32;
+			AppearanceTracker = 33;
+			RetailComponent = 34;
+			PortalLockingComponent = 35;
+			StoryProgressionTracker = 36;
+			ParentToSimHeadComponent = 37;
+			StolenComponent = 38;
+			RankedStatistic = 42;
+			GameComponent = 43;
+			SicknessTracker = 44;
+			RelicTracker = 45;
+			StoredObjectInfoComponent = 46;
+			StoredAudioComponent = 47;
+			SituationSchedulerComponent = 48;
+			LifestyleBrandTracker = 49;
+			SuntanTracker = 50;
+			ObjectClaimComponent = 51;
+			DegreeTracker = 52;
+			OrganizationTracker = 53;
+			ScholarshipLetterComponent = 54;
+			ObjectLockingComponent = 55;
+			FixupTracker = 56;
+			UtilitiesComponent = 57;
+			StoredInfoComponent = 58;
+			ObjectMarketplaceComponent = 59;
+			ModularObjectComponent = 60;
+			StoredActorLocationComponent = 61;
+			FishingLocationComponent = 62;
+			AnimalPreferenceComponent = 63;
+			AnimalObjectComponent = 64;
+			ObjectFashionMarketplaceComponent = 65;
+			LunarEffectTracker = 66;
+			BrandingIconComponent = 67;
+			PersistableJewelryTracker = 68;
+			PersistableJewelryComponent = 69;
+			PersistableChargeableComponent = 70;
+			HeirloomComponent = 74;
+		}
+		required .EA.Sims4.Persistence.PersistenceMaster.PersistableData.DATA_TYPE type = 1;
+		extensions 21000 to max;
+	}
+	repeated .EA.Sims4.Persistence.PersistenceMaster.PersistableData data = 1;
+}
+
+message PersistableSimInfoAttributes {
+	optional .EA.Sims4.Persistence.PersistableRelationshipTracker relationship_tracker = 1;
+	optional .EA.Sims4.Persistence.PersistableCommodityTracker commodity_tracker = 2;
+	optional .EA.Sims4.Persistence.PersistableStatisticsTracker statistics_tracker = 3;
+	optional .EA.Sims4.Persistence.PersistableObjectPreferences object_preferences = 4;
+	optional .EA.Sims4.Persistence.PersistableObjectOwnership object_ownership = 5;
+	optional .EA.Sims4.Persistence.PersistableEventDataTracker event_data_tracker = 6;
+	optional .EA.Sims4.Persistence.PersistableDeathTracker death_tracker = 7;
+	optional .EA.Sims4.Persistence.PersistablePregnancyTracker pregnancy_tracker = 8;
+	optional .EA.Sims4.Persistence.PersistableSimPermissions sim_permissions = 9;
+	optional .EA.Sims4.Persistence.PersistableTraitTracker trait_tracker = 10;
+	optional .EA.Sims4.Persistence.PersistableAdventureTracker adventure_tracker = 11;
+	optional .EA.Sims4.Persistence.PersistableSimCareers sim_careers = 12;
+	optional .EA.Sims4.Persistence.PersistableSkillTracker skill_tracker = 13;
+	optional .EA.Sims4.Persistence.PersistableGenealogyTracker genealogy_tracker = 14;
+	optional .EA.Sims4.Persistence.PersistableUnlockTracker unlock_tracker = 15;
+	optional .EA.Sims4.Persistence.PersistableRoyaltyTracker royalty_tracker = 16;
+	optional .EA.Sims4.Persistence.PersistableOccultTracker occult_tracker = 17;
+	optional .EA.Sims4.Persistence.PersistableNotebookTracker notebook_tracker = 18;
+	optional .EA.Sims4.Persistence.PersistableAppearanceTracker appearance_tracker = 19;
+	optional .EA.Sims4.Persistence.PersistableStoryProgressionTracker story_progression_tracker = 20;
+	optional .EA.Sims4.Persistence.PersistableRankedStatisticTracker ranked_statistic_tracker = 21;
+	optional .EA.Sims4.Persistence.PersistableSicknessTracker sickness_tracker = 22;
+	optional .EA.Sims4.Persistence.PersistableRelicTracker relic_tracker = 23;
+	optional .EA.Sims4.Persistence.PersistableStoredObjectInfoComponent stored_object_info_component = 24;
+	optional .EA.Sims4.Persistence.PersistableStoredAudioComponent stored_audio_component = 25;
+	optional .EA.Sims4.Persistence.PersistableLifestyleBrandTracker lifestyle_brand_tracker = 26;
+	optional .EA.Sims4.Persistence.PersistableSuntanTracker suntan_tracker = 27;
+	optional .EA.Sims4.Persistence.PersistableFamiliarTracker familiar_tracker = 28;
+	optional .EA.Sims4.Persistence.PersistableFavoritesTracker favorites_tracker = 29;
+	optional .EA.Sims4.Persistence.PersistableDegreeTracker degree_tracker = 30;
+	optional .EA.Sims4.Persistence.PersistableOrganizationTracker organization_tracker = 31;
+	optional .EA.Sims4.Persistence.PersistableFixupTracker fixup_tracker = 32;
+	optional .EA.Sims4.Persistence.PersistableTraitStatisticTracker trait_statistic_tracker = 33;
+	optional .EA.Sims4.Persistence.PersistableLunarEffectTracker lunar_effect_tracker = 34;
+	optional .EA.Sims4.Persistence.PersistableJewelryTracker jewelry_tracker = 35;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSimInfoAttributes persistable_data = 21001;
+	}
+}
+
+message LockData {
+	optional fixed64 lock_type = 1;
+	optional fixed64 priority = 2;
+	optional fixed64 sides = 3;
+	optional bool except_actor = 4;
+	optional bool except_household = 5;
+	repeated fixed64 exception_sim_ids = 6;
+	optional fixed64 participant_enum = 7;
+	repeated fixed64 situation_jobs = 8;
+	repeated fixed64 role_tags = 9;
+	optional bool negate = 10;
+	optional bool except_retail_employee = 11;
+	repeated fixed64 locked_sim_ids = 12;
+	optional fixed64 gender = 13;
+	repeated fixed64 ages = 14;
+	repeated fixed64 species = 15;
+	optional uint32 match_type = 16;
+	optional fixed64 ranked_stat_id = 17;
+	optional uint64 threshold_value = 18;
+	optional uint32 threshold_comparison = 19;
+	repeated fixed64 buff_ids = 20;
+	repeated uint32 creature_types = 21;
+}
+
+message PersistableStateComponent {
+	repeated .EA.Sims4.Persistence.StateComponentState states = 1;
+	repeated .EA.Sims4.Persistence.StateComponentState states_before_delinquency = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStateComponent persistable_data = 21002;
+	}
+}
+
+message PersistableRelationshipTracker {
+	repeated .EA.Sims4.Persistence.PersistableRelationship relationships = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableRelationshipTracker persistable_data = 21003;
+	}
+}
+
+message PersistableRelationship {
+	optional uint64 target_id = 1;
+	optional float value = 2;
+	repeated uint64 bits = 3;
+	repeated .EA.Sims4.Persistence.Timeout timeouts = 4;
+	repeated .EA.Sims4.Persistence.PersistableRelationshipTrack tracks = 5;
+	optional .EA.Sims4.Persistence.SimKnowledge knowledge = 6;
+	repeated .EA.Sims4.Persistence.BitAddedBuffList bit_added_buffs = 7;
+	optional uint64 last_update_time = 8;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableRelationship persistable_data = 21004;
+	}
+}
+
+message ConfrontedSimSecret {
+	optional uint64 secret_id = 1;
+	optional bool blackmailed = 2 [default = false];
+}
+
+message SimKnowledge {
+	repeated uint64 trait_ids = 1;
+	optional uint32 num_traits = 2;
+	optional bool knows_career = 3;
+	repeated uint64 stats = 4;
+	optional bool knows_major = 5;
+	optional bool knows_romantic_preference = 6;
+	optional bool knows_woohoo_preference = 7;
+	repeated uint32 known_romantic_genders = 8;
+	repeated uint32 known_woohoo_genders = 9;
+	optional bool known_exploring_sexuality = 10;
+	optional uint64 unconfronted_secret_id = 11;
+	repeated .EA.Sims4.Persistence.ConfrontedSimSecret confronted_secrets = 12;
+	repeated uint32 known_relationship_expectations_ids = 13;
+	repeated uint64 known_rel_tracks = 14;
+	optional uint64 known_net_worth = 15;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.SimKnowledge persistable_data = 21026;
+	}
+}
+
+message Timeout {
+	optional uint64 timeout_bit_id_hash = 1;
+	optional float elapsed_time = 2;
+}
+
+message PersistableRelationshipTrack {
+	optional uint64 track_id = 1;
+	optional float value = 2;
+	optional bool visible = 3;
+	optional float ticks_until_decay_begins = 4 [default = -1];
+}
+
+message BitAddedBuffList {
+	optional uint64 bit_id = 1;
+	repeated uint64 buff_ids = 2;
+}
+
+message PersistableCommodityTracker {
+	repeated .EA.Sims4.Persistence.Commodity commodities = 1;
+	optional uint64 time_of_last_save = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableCommodityTracker persistable_data = 21005;
+	}
+}
+
+message Commodity {
+	optional uint64 name_hash = 1;
+	optional float value = 2;
+	optional bool apply_buff_on_start_up = 3;
+	optional .EA.Sims4.Network.LocalizedString buff_reason = 4;
+	optional uint64 time_of_last_value_change = 5;
+}
+
+message PersistableStatisticsTracker {
+	repeated .EA.Sims4.Persistence.Statistic statistics = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStatisticsTracker persistable_data = 21006;
+	}
+}
+
+message Statistic {
+	optional uint64 name_hash = 1;
+	optional float value = 2;
+}
+
+message PersistableSkillTracker {
+	repeated .EA.Sims4.Persistence.Skill skills = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSkillTracker persistable_data = 21025;
+	}
+}
+
+message Skill {
+	optional uint64 name_hash = 1;
+	optional float value = 2;
+	optional bool level_0_buffer_full = 3;
+	optional uint64 time_of_last_value_change = 4;
+}
+
+message StateComponentState {
+	optional uint64 state_name_hash = 1;
+	optional uint64 value_name_hash = 2;
+}
+
+message PersistableObjectPreferences {
+	repeated .EA.Sims4.Persistence.ObjectPreference preferences = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectPreferences persistable_data = 21007;
+	}
+}
+
+message PersistableCraftingComponent {
+	optional .EA.Sims4.Persistence.CraftingProcess process = 1;
+	optional bool use_base_recipe = 2;
+	optional bool is_final_product = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableCraftingComponent persistable_data = 21008;
+	}
+}
+
+message IngredientData {
+	optional .EA.Sims4.Persistence.PersistenceMaster ingredient_data = 1;
+	optional bool in_sim_inventory = 2;
+}
+
+message GenericIngredientData {
+	optional uint64 ingredient_id = 1;
+	optional uint32 count = 2;
+}
+
+message SimInfoNameData {
+	optional string first_name = 1;
+	optional string last_name = 2;
+	optional uint32 gender = 3;
+	optional uint32 full_name_key = 4;
+	optional uint32 age_flags = 5;
+}
+
+message BucksRefundData {
+	optional uint64 sim_id = 1;
+	optional uint32 bucks_type = 2;
+	optional uint32 amount = 3;
+}
+
+message CraftingProcess {
+	optional uint64 recipe_id = 1;
+	optional uint32 phase_id = 2;
+	optional uint32 previous_phase_id = 3;
+	optional fixed64 current_ico = 4;
+	optional uint64 crafter_sim_id = 6;
+	optional .EA.Sims4.Persistence.PersistableStatisticsTracker statistic_tracker = 7;
+	repeated .EA.Sims4.Persistence.IngredientData used_ingredients = 8;
+	optional string inscription = 9;
+	optional uint32 crafted_value = 10;
+	optional .EA.Sims4.Persistence.SimInfoNameData crafter_info = 11;
+	repeated .EA.Sims4.Persistence.BucksRefundData bucks_refund_on_cancel = 12;
+	repeated .EA.Sims4.Persistence.GenericIngredientData generic_recipe_ingredients = 13;
+	optional uint64 situation_id = 14;
+	repeated uint64 executed_phases = 15;
+	repeated .EA.Sims4.Persistence.GenericIngredientData defined_ingredients = 16;
+	optional float single_serving_value = 17;
+}
+
+message PersistableObjectOwnership {
+	repeated .EA.Sims4.Persistence.ObjectPreference owned_object = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectOwnership persistable_data = 21009;
+	}
+}
+
+message PersistableStereo {
+	optional uint64 channel = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStereo persistable_data = 21010;
+	}
+}
+
+message PersistableInventoryItemComponent {
+	optional uint32 inventory_type = 1;
+	optional uint64 owner_id = 2;
+	optional uint32 stack_count = 3 [default = 1];
+	optional bool requires_claiming = 4;
+	optional bool is_hidden = 5;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableInventoryItemComponent persistable_data = 21011;
+	}
+}
+
+message ObjectPreference {
+	optional uint32 tag = 1;
+	optional uint64 object_id = 2;
+}
+
+message PersistableLightingComponent {
+	optional float dimmer_setting = 1;
+	optional uint32 color = 3;
+	optional float pending_dimmer_setting = 4;
+	optional float user_intensity = 5;
+	optional float previous_dimmer_setting = 6;
+	optional uint32 previous_color = 7;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableLightingComponent persistable_data = 21012;
+	}
+}
+
+message TimedAspiration {
+	required fixed64 aspiration = 5;
+	required uint64 end_time = 6;
+	optional bool completed = 7;
+}
+
+message MilestoneCompletionCount {
+	optional uint64 milestone_guid = 1;
+	optional uint32 completion_count = 2;
+}
+
+message AdditionalObjectives {
+	optional uint64 milestone_guid = 1;
+	repeated uint64 objective_guids = 2;
+}
+
+message PersistableEventDataTracker {
+	repeated uint64 milestones_completed = 1;
+	repeated uint64 objectives_completed = 2;
+	optional .EA.Sims4.Persistence.EventDataObject data = 3;
+	repeated uint64 unlocked_hidden_aspiration_tracks = 4;
+	repeated .EA.Sims4.Persistence.TimedAspiration timed_aspirations = 5;
+	repeated .EA.Sims4.Persistence.MilestoneCompletionCount milestone_completion_counts = 6;
+	repeated .EA.Sims4.Persistence.AdditionalObjectives additional_objectives = 7;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableEventDataTracker persistable_data = 21013;
+	}
+}
+
+message EventDataObject {
+	repeated .EA.Sims4.Persistence.EventData_SituationData situation_data = 1;
+	repeated .EA.Sims4.Persistence.EventData_Objective_Data objective_data = 2;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount simoleon_data = 3;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount time_data = 4;
+	repeated .EA.Sims4.Persistence.EventData_NamedData interaction_data = 5;
+	repeated .EA.Sims4.Persistence.EventData_RelationshipData relationship_data = 6;
+	repeated uint64 travel_data = 8;
+	repeated .EA.Sims4.Persistence.EventData_TagData tag_data = 9;
+	repeated .EA.Sims4.Persistence.EventData_CareerData career_data = 10;
+	repeated .EA.Sims4.Persistence.EventData_RelativeStartingData relative_start_data = 11;
+	optional .EA.Sims4.Persistence.EventData_ClubBucksEarned club_bucks_data = 12;
+	optional .EA.Sims4.Persistence.EventData_TimeInClubGathering time_in_gatherings = 13;
+	optional .EA.Sims4.Persistence.EventData_EncouragedInteractions encouraged_interactions_started = 14;
+	optional .EA.Sims4.Persistence.EventData_Moods mood_data = 15;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount bucks_data = 16;
+}
+
+message EventData_RelativeStartingData {
+	optional uint64 objective_guid64 = 1;
+	repeated uint64 starting_values = 2;
+}
+
+message EventData_SituationData {
+	optional string name = 1;
+	repeated .EA.Sims4.Persistence.EventData_SituationEnums results = 2;
+}
+
+message EventData_SituationEnums {
+	optional uint32 result_enum = 1;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount enum_quality = 2;
+}
+
+message EventData_TagData {
+	optional uint32 tag_enum = 1;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount enums = 2;
+}
+
+message EventData_RelationshipData {
+	optional uint32 relationship_id = 1;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount enums = 2;
+}
+
+message EventData_CareerData {
+	optional string name = 1;
+	optional uint64 time = 2;
+	optional uint64 money = 3;
+}
+
+message EventData_Objective_Data {
+	optional uint64 enum = 1;
+	optional uint32 amount = 2;
+	repeated fixed64 ids = 3;
+}
+
+message EventData_NamedData {
+	optional string name = 1;
+	repeated .EA.Sims4.Persistence.EventData_EnumToAmount enums = 2;
+}
+
+message EventData_EnumToAmount {
+	optional uint32 enum = 1;
+	optional int64 amount = 2;
+}
+
+message EventData_ClubBucksEarned {
+	optional uint32 amount = 1;
+}
+
+message EventData_TimeInClubGathering {
+	optional uint32 sim_minutes = 1;
+}
+
+message EventData_EncouragedInteractions {
+	optional uint32 interactions_started = 1;
+}
+
+message MoodData {
+	required uint64 mood = 1;
+	required uint64 last_time_in_mood = 2;
+}
+
+message EventData_Moods {
+	repeated .EA.Sims4.Persistence.MoodData mood_data = 1;
+}
+
+message PersistableNameComponent {
+	optional string name = 1;
+	optional string description = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableNameComponent persistable_data = 21014;
+	}
+}
+
+message PersistableStoredSimInfoComponent {
+	optional fixed64 sim_id = 1;
+	optional .EA.Sims4.Persistence.SimInfoNameData sim_info_name_data = 2;
+	repeated fixed64 sim_id_set = 3;
+	repeated .EA.Sims4.Persistence.SimInfoNameData sim_info_name_data_set = 4;
+	repeated fixed64 sim_id_list = 5;
+	repeated .EA.Sims4.Persistence.SimInfoNameData sim_info_name_data_list = 6;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStoredSimInfoComponent persistable_data = 21015;
+	}
+}
+
+message PersistablePregnancyTracker {
+	optional float deprecated_seed = 1;
+	repeated fixed64 parent_ids = 2;
+	optional uint64 last_modified = 3;
+	optional uint32 seed = 4;
+	optional uint32 origin = 5;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistablePregnancyTracker persistable_data = 21016;
+	}
+}
+
+message PersistableSimPermissions {
+	repeated uint64 enabled_permissions = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSimPermissions persistable_data = 21017;
+	}
+}
+
+message GameplayObjectPreference {
+	optional uint64 gameplay_object_preference_id = 1;
+	optional uint64 gameplay_object_preference_type = 2;
+}
+
+message PersistableTraitTracker {
+	repeated uint64 trait_ids = 1;
+	repeated .EA.Sims4.Persistence.GameplayObjectPreference gameplay_object_preference_map = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableTraitTracker persistable_data = 21018;
+	}
+}
+
+message PersistableCanvasComponent {
+	optional uint64 texture_id = 1;
+	optional uint32 reveal_level = 2;
+	optional uint32 effect = 3 [default = 4294967295];
+	optional string time_stamp = 4;
+	optional uint64 stage_texture_id = 5;
+	optional uint64 overlay_texture_id = 6;
+	optional uint64 reveal_texture_id = 7;
+	optional uint32 outfit_category = 8;
+	optional bool locked = 9;
+	optional uint32 no_op_version = 10;
+	optional uint64 reveal_texture_id_B = 11;
+	optional bool is_linked_canvas = 12;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableCanvasComponent persistable_data = 21019;
+	}
+}
+
+message PersistableDeathTracker {
+	optional uint32 death_type = 1;
+	optional uint64 death_time = 2;
+	optional uint64 death_object_id = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableDeathTracker persistable_data = 21020;
+	}
+}
+
+message PersistableOwnableComponent {
+	optional uint64 sim_owner_id = 1;
+	optional uint64 household_owner_id = 2;
+	optional string custom_name = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableOwnableComponent persistable_data = 21021;
+	}
+}
+
+message PersistableFlowingPuddleComponent {
+	repeated uint64 puddle_ids = 1;
+	optional bool is_active = 2 [default = false];
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableFlowingPuddleComponent persistable_data = 21022;
+	}
+}
+
+message PersistableAdventureTracker {
+	message AdventureMomentPair {
+		required uint64 adventure_id = 1;
+		required uint64 adventure_moment_id = 2;
+	}
+	message AdventureMomentCooldowns {
+		optional uint64 adventure_id = 1;
+		optional uint64 adventure_moment_id = 2;
+		optional uint64 adventure_cooldown = 3;
+	}
+	repeated .EA.Sims4.Persistence.PersistableAdventureTracker.AdventureMomentPair adventures = 1;
+	repeated .EA.Sims4.Persistence.PersistableAdventureTracker.AdventureMomentCooldowns adventure_cooldowns = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableAdventureTracker persistable_data = 21023;
+	}
+}
+
+message PersistableAppearanceTracker {
+	message AppearanceTrackerModifier {
+		optional uint64 guid = 1;
+		optional uint32 seed = 2;
+	}
+	repeated .EA.Sims4.Persistence.PersistableAppearanceTracker.AppearanceTrackerModifier appearance_modifiers = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableAppearanceTracker persistable_data = 21036;
+	}
+}
+
+message CareerHistoryEntry {
+	optional uint64 career_uid = 1;
+	optional uint64 track_uid = 2;
+	optional uint32 track_level = 3;
+	optional uint32 user_display_level = 4;
+	optional uint64 time_left = 5;
+	optional uint32 highest_level = 6;
+	optional uint32 overmax_level = 7;
+	optional uint32 daily_pay = 8;
+	optional uint32 days_worked = 9;
+	optional uint32 active_days_worked = 10;
+	optional bool player_rewards_deferred = 11;
+	optional uint32 schedule_shift_type = 12;
+}
+
+message PhotoPair {
+	optional .EA.Sims4.Network.ResourceKey before_photo = 1;
+	optional .EA.Sims4.Network.ResourceKey after_photo = 2;
+}
+
+message HiLowResPhotoPair {
+	optional uint64 hi_res_photo_instance = 1;
+	optional .EA.Sims4.Network.ResourceKey low_res_photo = 2;
+}
+
+message GigHistoryEntry {
+	optional fixed64 customer_sim_id = 1;
+	optional uint64 client_lot_id = 2;
+	optional uint64 gig_id = 3;
+	optional uint64 career_id = 4;
+	optional uint32 gig_result = 5;
+	optional string client_hh_name = 6;
+	repeated .EA.Sims4.Network.ResourceKey after_photos = 7;
+	repeated .EA.Sims4.Network.ResourceKey before_photos = 8;
+	optional uint32 gig_lot_type = 9;
+	optional .EA.Sims4.Network.LocalizedString project_title = 10;
+	repeated .EA.Sims4.Persistence.PhotoPair selected_pairs = 11;
+	optional float gig_score = 12;
+	repeated .EA.Sims4.Persistence.HiLowResPhotoPair hi_low_res_pairs = 13;
+}
+
+message GigHistoryKey {
+	optional fixed64 customer_sim_id = 1;
+	optional uint64 client_lot_id = 2;
+}
+
+message CareerEventData {
+	optional uint64 career_event_id = 1;
+	optional fixed64 required_zone_id = 2;
+	optional uint64 event_situation_id = 3;
+	optional uint32 state = 4;
+	repeated fixed64 temp_household_ids = 5;
+}
+
+message CareerEventManagerData {
+	repeated .EA.Sims4.Persistence.CareerEventData career_events = 1;
+	optional .EA.Sims4.Persistence.SituationSeedData scorable_situation_seed = 2;
+}
+
+message DetectiveCareerData {
+	optional fixed64 active_criminal_sim_id = 1;
+	optional fixed64 crime_scene_event_id = 2;
+	repeated fixed64 unused_clue_ids = 3;
+	repeated fixed64 used_clue_ids = 4;
+	optional fixed64 case_start_time_in_minutes = 5;
+}
+
+message CareerEventCooldown {
+	optional fixed64 career_event_id = 1;
+	optional int32 day = 2;
+}
+
+message CareerClaimedObjectData {
+	optional uint64 guid = 1;
+	repeated uint64 claimed_object_ids = 2;
+}
+
+message PersistableSimCareer {
+	optional uint64 career_uid = 1;
+	optional uint64 track_uid = 2;
+	optional uint32 track_level = 3;
+	optional uint32 user_display_level = 4;
+	optional bool attended_work = 5;
+	optional float base_work_performance = 6;
+	optional float positive_work_performance = 7;
+	optional float negative_work_performance = 8;
+	optional uint64 company_name_hash = 9;
+	optional uint64 current_work_start = 10;
+	optional uint64 current_work_end = 11;
+	optional uint64 current_work_duration = 12;
+	optional fixed64 active_situation_id = 13;
+	optional fixed64 career_situation_guid = 14;
+	optional bool called_in_sick = 15;
+	optional bool pending_promotion = 16;
+	optional int64 join_time = 17;
+	optional uint32 taking_day_off_reason = 18;
+	optional uint32 requested_day_off_reason = 19;
+	optional .EA.Sims4.Persistence.CareerEventManagerData career_event_manager_data = 20;
+	optional uint32 overmax_level = 21;
+	optional .EA.Sims4.Persistence.DetectiveCareerData detective_data = 22;
+	optional bool career_session_extended = 23;
+	optional fixed64 zone_id = 24;
+	optional bool has_attended_first_day = 25;
+	repeated .EA.Sims4.Persistence.CareerEventCooldown career_event_cooldowns = 26;
+	optional bool should_restore_career_state = 27 [default = false];
+	repeated uint64 offered_assignments = 28;
+	repeated uint64 active_assignments = 29;
+	optional float pto_taken = 30;
+	optional bool fame_moment_completed = 31;
+	optional .EA.Sims4.Persistence.CareerGigData upcoming_gig = 32;
+	optional uint32 schedule_shift_type = 33;
+	optional bool first_gig_completed = 34;
+	optional bool seen_scholarship_info = 35;
+	optional uint64 familiar_rabbit_hole_id = 36;
+	optional uint64 rabbit_hole_id = 37;
+	repeated .EA.Sims4.Persistence.CareerClaimedObjectData claimed_object_datas = 38;
+	repeated .EA.Sims4.Persistence.CareerGigData current_gigs = 39;
+	optional bool follow_enabled = 40;
+	optional .EA.Sims4.Network.ResourceKey icon_override = 41;
+	optional uint64 workplace_rival_id = 42;
+	optional uint32 outfit_index = 43;
+}
+
+message PersistableSimCareers {
+	repeated .EA.Sims4.Persistence.PersistableSimCareer careers = 1;
+	repeated .EA.Sims4.Persistence.CareerHistoryEntry career_history = 2;
+	optional uint64 retirement_career_uid = 3;
+	optional string custom_career_name = 4;
+	optional string custom_career_description = 5;
+	repeated .EA.Sims4.Persistence.GigHistoryEntry gig_history = 6;
+	optional .EA.Sims4.Persistence.GigHistoryKey last_gig_history = 7;
+	optional uint64 retirement_career_track_uid = 8;
+}
+
+message FamilyRelation {
+	required .EA.Sims4.Persistence.RelationshipIndex relation_type = 1;
+	required uint64 sim_id = 2;
+}
+
+message RelationshipTrope {
+	required uint64 sim_id = 1;
+	required uint64 trope_id = 2;
+}
+
+message PersistableGenealogyTracker {
+	repeated .EA.Sims4.Persistence.FamilyRelation family_relations = 1;
+	repeated .EA.Sims4.Persistence.RelationshipTrope relationship_tropes = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableGenealogyTracker persistable_data = 21024;
+	}
+}
+
+message ObjectRelationship {
+	required uint64 sim_id = 1;
+	required float value = 2;
+	optional .EA.Sims4.Persistence.PersistableCommodityTracker commodity_tracker = 3;
+	optional .EA.Sims4.Persistence.PersistableStatisticsTracker statistics_tracker = 4;
+}
+
+message PersistableObjectRelationshipComponent {
+	repeated .EA.Sims4.Persistence.ObjectRelationship relationships = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectRelationshipComponent persistable_data = 21027;
+	}
+}
+
+message PersistableObjectAgeComponent {
+	optional uint64 age = 1;
+	optional uint64 saved_tick = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectAgeComponent persistable_data = 21028;
+	}
+}
+
+message FruitSpawner {
+	optional uint64 definition_id = 1;
+	optional .EA.Sims4.Persistence.PersistenceMaster fruit_save_data = 2;
+}
+
+message PersistableGardeningComponent {
+	repeated .EA.Sims4.Persistence.FruitSpawner fruit_spawners = 1;
+	repeated float crop_weights = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableGardeningComponent persistable_data = 21029;
+	}
+}
+
+message UnlockData {
+	optional uint64 unlock_instance_id = 1;
+	optional uint64 unlock_instance_type = 2;
+	optional string custom_name = 3;
+	optional bool marked_as_new = 4;
+}
+
+message PersistableUnlockTracker {
+	repeated .EA.Sims4.Persistence.UnlockData unlock_data_list = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableUnlockTracker persistable_data = 21030;
+	}
+}
+
+message PersistableSpawnerComponent {
+	repeated uint64 spawned_obj_ids = 1;
+	optional bool spawner_initialized = 2;
+	optional int32 spawner_data_spawn_index = 3;
+	optional uint32 times_commodity_reset = 4;
+	optional bool spawner_disabled = 5;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSpawnerComponent persistable_data = 21031;
+	}
+}
+
+message PersistableRoyaltyTracker {
+	message Royalty {
+		optional uint32 royalty_type = 1;
+		optional uint64 royalty_guid64 = 2;
+		optional .EA.Sims4.Network.LocalizedString entry_name = 3;
+		optional float multiplier = 4;
+		optional uint32 current_payment = 5;
+	}
+	repeated .EA.Sims4.Persistence.PersistableRoyaltyTracker.Royalty royalties = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableRoyaltyTracker persistable_data = 21032;
+	}
+}
+
+message PersistableOccultTracker {
+	message OccultSimData {
+		optional uint32 occult_type = 1;
+		optional string physique = 11;
+		optional bytes facial_attributes = 12;
+		optional float voice_pitch = 13;
+		optional uint32 voice_actor = 14;
+		optional uint64 voice_effect = 15;
+		optional uint64 skin_tone = 16;
+		optional .EA.Sims4.Persistence.GeneticData genetic_data = 17;
+		optional uint32 flags = 18;
+		optional .EA.Sims4.Persistence.OutfitList outfits = 21;
+		optional float skin_tone_val_shift = 22 [default = 0];
+	}
+	optional uint32 occult_types = 1;
+	optional uint32 current_occult_types = 2;
+	repeated .EA.Sims4.Persistence.PersistableOccultTracker.OccultSimData occult_sim_infos = 3;
+	optional uint32 pending_occult_type = 4;
+	optional bool occult_form_available = 5 [default = true];
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableOccultTracker persistable_data = 21033;
+	}
+}
+
+message MannequinSimData {
+	optional fixed64 mannequin_id = 1;
+	optional uint32 gender = 2;
+	optional uint32 age = 3;
+	optional uint32 extended_species = 4;
+	optional string physique = 11;
+	optional bytes facial_attributes = 12;
+	optional uint64 skin_tone = 13;
+	optional .EA.Sims4.Persistence.OutfitList outfits = 21;
+	optional uint32 current_outfit_type = 22;
+	optional uint32 current_outfit_index = 23;
+	optional uint32 previous_outfit_type = 24;
+	optional uint32 previous_outfit_index = 25;
+	optional fixed64 zone_id = 31;
+	optional uint32 world_id = 32;
+	optional .EA.Sims4.Network.AnimationStateRequest animation_pose = 51;
+	optional float skin_tone_val_shift = 52 [default = 0];
+}
+
+message PersistableMannequinComponent {
+	optional .EA.Sims4.Persistence.MannequinSimData sim_info_data = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableMannequinComponent persistable_data = 21034;
+	}
+}
+
+message PersistableNotebookTracker {
+	message NotebookSubEntryData {
+		optional fixed64 sub_entry_id = 1;
+		optional bool new_sub_entry = 2;
+	}
+	message NotebookEntryData {
+		optional fixed64 object_recipe_id = 1;
+		repeated fixed64 object_entry_ids = 2;
+		optional fixed64 tuning_reference_id = 3;
+		optional bool new_entry = 4 [default = true];
+		repeated .EA.Sims4.Persistence.PersistableNotebookTracker.NotebookSubEntryData object_sub_entries = 5;
+	}
+	repeated .EA.Sims4.Persistence.PersistableNotebookTracker.NotebookEntryData notebook_entries = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableNotebookTracker persistable_data = 21035;
+	}
+}
+
+message PersistableRetailComponent {
+	optional int32 cached_value = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableRetailComponent persistable_data = 21037;
+	}
+}
+
+message PersistablePortalLockingComponent {
+	repeated .EA.Sims4.Persistence.LockData lock_data = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistablePortalLockingComponent persistable_data = 21038;
+	}
+}
+
+message PersistableParentToSimHeadComponent {
+	optional fixed64 parent_sim_info_id = 1;
+	optional fixed64 bone_hash = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableParentToSimHeadComponent persistable_data = 21040;
+	}
+}
+
+message PersistableFutureStoryProgressionChapter {
+	optional uint32 index = 1;
+	optional .EA.Sims4.Persistence.PersistableStoryProgressionChapter future_chapter = 2;
+}
+
+message PersistableStoryProgressionChapter {
+	optional uint64 type = 1;
+	repeated .EA.Sims4.Persistence.PersistableFutureStoryProgressionChapter future_chapters = 2;
+	optional bytes action_data = 3;
+	optional uint64 completion_time = 4;
+}
+
+message PersistableStoryProgressionSavedParticipant {
+	optional uint32 participant_type = 1;
+	optional uint64 participant_id = 2;
+	optional string participant_str = 3;
+	optional .EA.Sims4.Network.LocalizedString participant_loc_str = 4;
+}
+
+message PersistableStoryProgressionArc {
+	optional uint64 type = 1;
+	optional .EA.Sims4.Persistence.PersistableStoryProgressionChapter current_chapter = 2;
+	repeated .EA.Sims4.Persistence.PersistableStoryProgressionChapter historical_chapters = 3;
+	repeated .EA.Sims4.Persistence.PersistableStoryProgressionSavedParticipant saved_participants = 4;
+}
+
+message PersistableStoryProgressionTracker {
+	repeated .EA.Sims4.Persistence.PersistableStoryProgressionArc current_arcs = 2;
+	repeated .EA.Sims4.Persistence.PersistableStoryProgressionArc historical_arcs = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStoryProgressionTracker persistable_data = 21039;
+	}
+}
+
+message PersistableStolenComponent {
+	optional string stolen_from_text = 1;
+	optional uint64 stolen_from_household_id = 2;
+	optional fixed64 stolen_from_career_guid = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStolenComponent persistable_data = 21041;
+	}
+}
+
+message PersistableRankedStatisticTracker {
+	repeated .EA.Sims4.Persistence.RankedStatistic ranked_statistics = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableRankedStatisticTracker persistable_data = 21042;
+	}
+}
+
+message RankedStatistic {
+	optional uint64 name_hash = 1;
+	optional float value = 2;
+	optional uint64 rank_level = 3;
+	optional uint64 highest_level = 4;
+	optional uint64 time_of_last_value_change = 5;
+	optional bool initial_loots_awarded = 6;
+	optional bool inclusive_rank_threshold = 7;
+}
+
+message PersistableGameComponent {
+	repeated uint64 high_score_sim_ids = 1;
+	optional float high_score = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableGameComponent persistable_data = 21043;
+	}
+}
+
+message PersistableSicknessTracker {
+	message SicknessData {
+		required uint64 sickness = 1;
+		repeated uint64 symptoms_discovered = 2;
+		repeated uint64 exams_performed = 3;
+		repeated uint64 treatments_performed = 4;
+		repeated uint64 treatments_ruled_out = 5;
+		required bool is_discovered = 6;
+	}
+	repeated uint64 previous_sicknesses = 1;
+	optional .EA.Sims4.Persistence.PersistableSicknessTracker.SicknessData current_sickness = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSicknessTracker persistable_data = 21044;
+	}
+}
+
+message PersistableRelicTracker {
+	repeated uint64 known_relics = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableRelicTracker persistable_data = 21045;
+	}
+}
+
+message PersistableLifestyleBrandTracker {
+	optional uint32 product = 1;
+	optional uint32 target_market = 2;
+	optional .EA.Sims4.Network.ResourceKey logo = 3;
+	optional string brand_name = 4;
+	optional uint64 days_active = 5;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableLifestyleBrandTracker persistable_data = 21049;
+	}
+}
+
+message PersistableStoredObjectInfoComponent {
+	message StoredObjectData {
+		required uint32 stored_object_type = 1;
+		optional uint64 object_definition_id = 2;
+		optional string custom_name = 3;
+		repeated .EA.Sims4.Persistence.StateComponentState states = 4;
+		required fixed64 object_id = 5;
+	}
+	optional uint64 object_definition_id = 1;
+	optional string custom_name = 2;
+	repeated .EA.Sims4.Persistence.StateComponentState states = 3;
+	optional uint64 object_id = 4;
+	repeated .EA.Sims4.Persistence.PersistableStoredObjectInfoComponent.StoredObjectData stored_object_data = 5;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStoredObjectInfoComponent persistable_data = 21046;
+	}
+}
+
+message PersistableStoredAudioComponent {
+	optional .EA.Sims4.Network.SoundResource sound_resource = 1;
+	optional uint32 channel_values_int = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStoredAudioComponent persistable_data = 21047;
+	}
+}
+
+message PersistableSituationSchedulerComponent {
+	repeated uint64 situation_ids = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSituationSchedulerComponent persistable_data = 21048;
+	}
+}
+
+message MissionCreatedSituations {
+	optional uint64 zone_id = 1;
+	repeated uint64 situation_ids = 2;
+}
+
+message MissionObjectiveData {
+	optional uint64 objective_id = 1;
+	optional uint32 state = 2;
+	repeated .EA.Sims4.Persistence.MissionCreatedSituations created_situations = 3;
+}
+
+message CareerGigData {
+	optional uint64 gig_type = 1;
+	optional uint64 gig_time = 2;
+	repeated uint64 cast_list = 3;
+	optional fixed64 customer_sim_id = 4;
+	optional bool gig_attended = 5;
+	repeated .EA.Sims4.Persistence.MissionObjectiveData mission_objective_data = 6;
+	repeated uint64 client_preferences = 7;
+	repeated uint64 known_client_preferences = 8;
+	optional uint64 client_lot_id = 9;
+	optional uint32 budget_spent = 10;
+	optional uint32 gig_budget = 11;
+	optional string client_hh_name = 12;
+}
+
+message PersistableSuntanTracker {
+	optional uint32 tan_level = 1;
+	repeated .EA.Sims4.Persistence.PartData outfit_part_data_list = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableSuntanTracker persistable_data = 21050;
+	}
+}
+
+message PersistableObjectClaimComponent {
+	optional bool requires_claiming = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectClaimComponent persistable_data = 21051;
+	}
+}
+
+message CollegeCourseInfo {
+	optional uint64 course_slot = 1;
+	optional uint64 course_data = 2;
+	optional int64 final_grade = 3;
+	optional int64 known_grade = 4;
+	optional int64 lectures = 5;
+	optional bool final_requirement_completed = 6;
+	optional int64 homework_cheated = 7;
+	optional float initial_skill = 8;
+}
+
+message AcceptedDegrees {
+	optional uint64 university_id = 1;
+	repeated uint64 degree_ids = 2;
+}
+
+message ScholarshipInfo {
+	optional uint64 scholarship_id = 1;
+	optional uint64 remaining_evaluation_time = 2;
+}
+
+message ElectiveCoursesInfo {
+	optional uint64 university_id = 1;
+	repeated uint64 elective_ids = 2;
+}
+
+message PersistableDegreeTracker {
+	optional uint64 current_major = 1;
+	optional uint64 current_university = 2;
+	optional int64 current_credits = 3;
+	optional float total_gradepoints = 4;
+	optional int64 total_courses = 5;
+	repeated uint64 previous_majors = 6;
+	repeated uint64 previous_courses = 7;
+	repeated .EA.Sims4.Persistence.CollegeCourseInfo current_courses = 8;
+	repeated .EA.Sims4.Persistence.AcceptedDegrees accepted_degrees = 9;
+	optional int64 enrollment_status = 10;
+	optional uint64 end_of_term_time = 11;
+	optional uint64 reenrollment_time = 12;
+	optional uint64 start_term_alarm_time = 13;
+	optional uint64 term_started_time = 14;
+	optional uint64 kickout_reason = 15;
+	optional uint64 kickout_destination_zone = 16;
+	optional uint64 diploma_mail_time = 17;
+	repeated uint64 active_scholarships = 18;
+	repeated uint64 accepted_scholarships = 19;
+	repeated uint64 rejected_scholarships = 20;
+	repeated .EA.Sims4.Persistence.ScholarshipInfo pending_scholarships = 21;
+	optional uint64 elective_timestamp = 22;
+	repeated .EA.Sims4.Persistence.ElectiveCoursesInfo elective_courses = 23;
+	optional bool show_reenrollment_dialog_on_spin_up = 24;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableDegreeTracker persistable_data = 21054;
+	}
+}
+
+message OrganizationStatusInfo {
+	optional uint64 org_id = 1;
+	optional uint64 membership_status = 2;
+}
+
+message OrganizationActiveTasks {
+	optional uint64 org_id = 1;
+	repeated .EA.Sims4.Persistence.TimedAspiration active_tasks = 2;
+}
+
+message PersistableOrganizationTracker {
+	repeated .EA.Sims4.Persistence.OrganizationStatusInfo org_status_map = 1;
+	repeated .EA.Sims4.Persistence.OrganizationActiveTasks tasks_map = 2;
+	repeated uint64 unenrolled_org_ids = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableOrganizationTracker persistable_data = 21055;
+	}
+}
+
+message FamiliarData {
+	optional uint64 familiar_uid = 1;
+	optional uint32 familiar_type = 2;
+	optional string familiar_name = 3;
+	optional uint64 pet_familiar_id = 4;
+}
+
+message PersistableFamiliarTracker {
+	optional uint64 active_familiar_uid = 1;
+	repeated .EA.Sims4.Persistence.FamiliarData familiars = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableFamiliarTracker persistable_data = 21052;
+	}
+}
+
+message FavoritesData {
+	optional uint32 favorite_type = 1;
+	optional uint64 favorite_id = 2;
+	optional uint64 favorite_def_id = 3;
+}
+
+message ItemStackFavoritesData {
+	optional uint64 key = 1;
+	optional uint64 custom_key = 2;
+	optional uint32 stack_scheme = 3;
+}
+
+message PersistableFavoritesTracker {
+	repeated .EA.Sims4.Persistence.FavoritesData favorites = 1;
+	repeated .EA.Sims4.Persistence.ItemStackFavoritesData stack_favorites = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableFavoritesTracker persistable_data = 21053;
+	}
+}
+
+message PersistableScholarshipLetterComponent {
+	optional uint64 applicant_sim_id = 1;
+	optional uint64 scholarship_id = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableScholarshipLetterComponent persistable_data = 21056;
+	}
+}
+
+message PersistableObjectLockingComponent {
+	repeated .EA.Sims4.Persistence.LockData lock_data = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectLockingComponent persistable_data = 21057;
+	}
+}
+
+message PersistableFixupTracker {
+	repeated uint64 pending_fixups = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableFixupTracker persistable_data = 21058;
+	}
+}
+
+message AllowUtilityUsageData {
+	optional uint32 utility_enum = 1;
+	optional bool allow_usage = 2;
+}
+
+message PersistableUtilitiesComponent {
+	repeated .EA.Sims4.Persistence.AllowUtilityUsageData allow_utility_usage_list = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableUtilitiesComponent persistable_data = 21059;
+	}
+}
+
+message PersistableStoredInfoComponent {
+	optional bytes custom_data = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStoredInfoComponent persistable_data = 21060;
+	}
+}
+
+message PersistableObjectMarketplaceComponent {
+	optional uint32 sale_price = 1;
+	optional uint64 seller_sim_id = 2;
+	optional string buyer_name = 3;
+	optional uint64 expiration_timer_time = 4;
+	optional uint64 sale_timer_time = 5;
+	optional uint64 delivery_timer_time = 6;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectMarketplaceComponent persistable_data = 21061;
+	}
+}
+
+message PersistableTraitStatisticTracker {
+	repeated .EA.Sims4.Persistence.TraitStatistic trait_statistics = 1;
+	optional uint64 time_to_next_periodic_test = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableTraitStatisticTracker persistable_data = 21062;
+	}
+}
+
+message TraitStatistic {
+	optional uint64 trait_statistic_id = 1;
+	optional float value = 2;
+	optional uint32 state = 3;
+	optional uint32 neglect_buff_index = 4;
+	optional bool value_added = 5;
+	optional float max_daily_cap = 6;
+	optional float min_daily_cap = 7;
+}
+
+message PersistableModularObjectComponent {
+	repeated fixed64 piece_ids = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableModularObjectComponent persistable_data = 21063;
+	}
+}
+
+message PersistableStoredActorLocationComponent {
+	optional .EA.Sims4.Persistence.StoredLocation stored_location = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableStoredActorLocationComponent persistable_data = 21064;
+	}
+}
+
+message StoredLocation {
+	optional float x = 1;
+	optional float y = 2;
+	optional float z = 3;
+	optional float rot_x = 4;
+	optional float rot_y = 5;
+	optional float rot_z = 6;
+	optional float rot_w = 7;
+	optional int32 level = 8;
+	optional uint32 surface_type = 9 [default = 1];
+	optional uint64 zone = 10;
+}
+
+message FishingData {
+	repeated fixed64 possible_fish_ids = 1;
+}
+
+message PersistableFishingLocationComponent {
+	required .EA.Sims4.Persistence.FishingData fishing_data = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableFishingLocationComponent persistable_data = 21065;
+	}
+}
+
+message PersistableAnimalPreferenceComponent {
+	required .EA.Sims4.Persistence.AnimalPreferenceData preferences_data = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableAnimalPreferenceComponent persistable_data = 21066;
+	}
+}
+
+message AnimalPreferenceData {
+	repeated uint32 like_preferences = 1;
+	repeated uint32 dislike_preferences = 2;
+	required uint32 favorite_preference = 3;
+	repeated .EA.Sims4.Persistence.PreferenceKnowledge preference_knowledge = 4;
+}
+
+message PreferenceKnowledge {
+	required uint64 household_id = 1;
+	repeated uint32 unknown_tags = 2;
+	repeated uint32 known_tags = 3;
+	optional uint64 general_timestamp = 4;
+	repeated .EA.Sims4.Persistence.CategoryKnowledge category_timestamp = 5;
+}
+
+message CategoryKnowledge {
+	required uint32 category_tag = 1;
+	required uint64 timestamp = 2;
+}
+
+message PersistableAnimalObjectComponent {
+	optional uint64 assigned_home_id = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableAnimalObjectComponent persistable_data = 21067;
+	}
+}
+
+message PersistableObjectFashionMarketplaceComponent {
+	optional uint32 sale_price = 1;
+	optional uint64 seller_sim_id = 2;
+	optional string buyer_name = 3;
+	optional uint64 expiration_timer_time = 4;
+	optional uint64 sale_timer_time = 5;
+	optional uint64 delivery_timer_time = 6;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableObjectFashionMarketplaceComponent persistable_data = 21068;
+	}
+}
+
+message PersistableBrandingIconComponent {
+	optional .EA.Sims4.Network.ResourceKey icon = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableBrandingIconComponent persistable_data = 21070;
+	}
+}
+
+message PersistableLunarEffectTracker {
+	repeated .EA.Sims4.Persistence.AppliedLunarEffect applied_effects = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableLunarEffectTracker persistable_data = 21069;
+	}
+}
+
+message AppliedLunarEffect {
+	optional fixed64 lunar_effect_id = 1;
+	optional uint64 effect_start_time = 2;
+}
+
+message BodyPartCasPartObjectId {
+	required uint32 body_part = 1;
+	required uint32 cas_part = 2;
+	required uint64 object_id = 3;
+	required uint32 outfit_category = 4;
+	required uint64 outfit_id = 5;
+}
+
+message PersistableJewelryTracker {
+	repeated .EA.Sims4.Persistence.BodyPartCasPartObjectId cas_part_object_id_map = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableJewelryTracker persistable_data = 21071;
+	}
+}
+
+message PersistableJewelryComponent {
+	optional uint32 current_body_part = 1;
+	optional uint32 current_cas_part = 2;
+	optional uint64 buff_handle = 3;
+	optional fixed64 sim_id = 4;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableJewelryComponent persistable_data = 21072;
+	}
+}
+
+message PersistableChargeableComponent {
+	required bool has_been_charged = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableChargeableComponent persistable_data = 21073;
+	}
+}
+
+message PersistableHeirloomComponent {
+	optional fixed64 creator_sim_id = 1;
+	optional .EA.Sims4.Persistence.SimInfoNameData creator_sim_info_name_data = 2;
+	optional string engraved_message = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.PersistableHeirloomComponent persistable_data = 21074;
+	}
+}

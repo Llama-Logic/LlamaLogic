@@ -1,0 +1,11 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "ResourceKey.proto";
+
+
+message Rewards {
+	message Reward {
+		required uint64 instance = 1;
+	}
+	repeated .EA.Sims4.Persistence.Rewards.Reward rewards = 1;
+}

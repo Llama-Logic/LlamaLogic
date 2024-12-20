@@ -1,0 +1,112 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "ResourceKey.proto";
+import "Localization.proto";
+import "Lot.proto";
+
+
+message SeasonWeatherInterpolationMessage {
+	enum SeasonWeatherInterpolatedType {
+		SEASON = 0;
+		LEAF_ACCUMULATION = 1;
+		FLOWER_GROWTH = 2;
+		FOLIAGE_REDUCTION = 3;
+		FOLIAGE_COLORSHIFT = 4;
+		RAINFALL = 1000;
+		SNOWFALL = 1001;
+		RAIN_ACCUMULATION = 1002;
+		SNOW_ACCUMULATION = 1003;
+		WINDOW_FROST = 1004;
+		WATER_FROZEN = 1005;
+		WIND = 1006;
+		TEMPERATURE = 1007;
+		THUNDER = 1008;
+		LIGHTNING = 1009;
+		SNOW_FRESHNESS = 1010;
+		STORY_ACT = 1011;
+		ECO_FOOTPRINT = 1012;
+		ACID_RAIN = 1013;
+		STARWARS_RESISTANCE = 1014;
+		STARWARS_FIRST_ORDER = 1015;
+		SNOW_ICINESS = 1016;
+		SKYBOX_PARTLY_CLOUDY = 2000;
+		SKYBOX_CLEAR = 2001;
+		SKYBOX_LIGHTRAINCLOUDS = 2002;
+		SKYBOX_DARKRAINCLOUDS = 2003;
+		SKYBOX_LIGHTSNOWCLOUDS = 2004;
+		SKYBOX_DARKSNOWCLOUDS = 2005;
+		SKYBOX_CLOUDY = 2006;
+		SKYBOX_HEATWAVE = 2007;
+		SKYBOX_STRANGE = 2008;
+		SKYBOX_VERYSTRANGE = 2009;
+		SKYBOX_INDUSTRIAL = 2010;
+	}
+	required .EA.Sims4.Network.SeasonWeatherInterpolationMessage.SeasonWeatherInterpolatedType message_type = 1;
+	required float start_value = 2;
+	required uint64 start_time = 3;
+	required float end_value = 4;
+	required uint64 end_time = 5;
+}
+
+message SeasonWeatherInterpolations {
+	repeated .EA.Sims4.Network.SeasonWeatherInterpolationMessage season_weather_interlops = 1;
+}
+
+message RegionWeather {
+	required fixed64 region = 1;
+	required .EA.Sims4.Network.SeasonWeatherInterpolations weather = 2;
+	required fixed64 weather_event = 3;
+	required uint64 forecast_time_stamp = 4;
+	required uint64 next_weather_event_time = 5;
+	repeated uint64 forecasts = 6;
+	optional uint64 override_forecast = 7;
+	optional uint64 override_forecast_season_stamp = 8;
+}
+
+message PersistableWeatherService {
+	repeated .EA.Sims4.Network.RegionWeather region_weathers = 1;
+}
+
+message UiWeatherUpdate {
+	repeated int64 weather_type_enums = 1;
+}
+
+message UiWeatherForecastUpdate {
+	repeated uint64 forecast_instance_ids = 1;
+}
+
+message MoonPhaseUpdate {
+	enum MoonPhase {
+		DEFAULT_NO_MOON = -1;
+		NEW_MOON = 0;
+		WAXING_CRESCENT = 1;
+		FIRST_QUARTER = 2;
+		WAXING_GIBBOUS = 3;
+		FULL_MOON = 4;
+		WANING_GIBBOUS = 5;
+		THIRD_QUARTER = 6;
+		WANING_CRESCENT = 7;
+	}
+	required .EA.Sims4.Network.MoonPhaseUpdate.MoonPhase current_moon_phase = 1;
+	optional bool skip_environment_changes = 2 [default = true];
+}
+
+message UiLunarEffectTooltipUpdate {
+	required uint32 current_moon_phase = 1;
+	optional .EA.Sims4.Network.LocalizedString tooltip_text = 2;
+}
+
+message MoonForecastUpdate {
+	enum MoonPhase {
+		DEFAULT_NO_MOON = -1;
+		NEW_MOON = 0;
+		WAXING_CRESCENT = 1;
+		FIRST_QUARTER = 2;
+		WAXING_GIBBOUS = 3;
+		FULL_MOON = 4;
+		WANING_GIBBOUS = 5;
+		THIRD_QUARTER = 6;
+		WANING_CRESCENT = 7;
+	}
+	repeated .EA.Sims4.Network.MoonForecastUpdate.MoonPhase forecast_moon_phases = 1;
+}

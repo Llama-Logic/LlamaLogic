@@ -1,0 +1,41 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "ResourceKey.proto";
+import "Localization.proto";
+import "Events.proto";
+
+
+message LiveEventProgress {
+	message LiveEventBase {
+		required uint64 id = 1;
+		required .EA.Sims4.Persistence.LiveEventProgress.LiveEventType type = 2;
+		required .EA.Sims4.Network.LocalizedDateAndTimeData startDate = 3;
+		required .EA.Sims4.Network.LocalizedDateAndTimeData endDate = 4;
+		optional bool isEnabled = 5;
+	}
+	message LiveEventReward {
+		required .EA.Sims4.Network.ResourceKey instance = 1;
+	}
+	message LiveEventLogin {
+		required .EA.Sims4.Persistence.LiveEventProgress.LiveEventBase eventData = 1;
+		required uint32 sessionCount = 2;
+		required .EA.Sims4.Network.LocalizedDateAndTimeData lastSessionDate = 3;
+		repeated .EA.Sims4.Persistence.LiveEventProgress.LiveEventReward claimedRewards = 4;
+		repeated .EA.Sims4.Persistence.LiveEventProgress.LiveEventReward unclaimedRewards = 5;
+	}
+	message LiveEventQuest {
+		required .EA.Sims4.Persistence.LiveEventProgress.LiveEventBase eventData = 1;
+		required .EA.Sims4.Network.EventDefinition dataFromServer = 2;
+		optional .EA.Sims4.Network.EventProgressResponse.EventProgress progressVerifed = 3;
+		optional .EA.Sims4.Network.EventProgressUpdate progressOffline = 4;
+		repeated .EA.Sims4.Persistence.LiveEventProgress.LiveEventReward claimedRewards = 5;
+		repeated .EA.Sims4.Persistence.LiveEventProgress.LiveEventReward unclaimedRewards = 6;
+	}
+	enum LiveEventType {
+		UNKNOWN = 0;
+		LOGIN = 1;
+		QUEST = 2;
+	}
+	repeated .EA.Sims4.Persistence.LiveEventProgress.LiveEventLogin loginEvents = 1;
+	repeated .EA.Sims4.Persistence.LiveEventProgress.LiveEventQuest questEvents = 2;
+}

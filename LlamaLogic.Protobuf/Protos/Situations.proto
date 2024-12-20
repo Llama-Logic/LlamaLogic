@@ -1,0 +1,352 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "ResourceKey.proto";
+import "Localization.proto";
+import "DistributorOps.proto";
+import "UI.proto";
+import "Lot.proto";
+import "Math.proto";
+
+
+message SimPickerItem {
+	required fixed64 sim_id = 1;
+	optional bool enabled = 2 [default = true];
+}
+
+message SituationEditJobData {
+	optional uint64 job_id = 1;
+	repeated uint64 sim_ids = 2;
+	optional uint32 hire_count = 3;
+}
+
+message SituationEditData {
+	optional uint64 drama_node_id = 1;
+	optional uint64 zone_id = 2;
+	repeated uint64 selected_activity_ids = 3;
+	optional uint64 guest_attire_style = 4;
+	optional uint64 guest_attire_color = 5;
+	repeated .EA.Sims4.Network.SituationEditJobData job_data = 6;
+	optional .EA.Sims4.Network.IconInfo special_object_icon_info = 7;
+}
+
+message SituationPrepare {
+	required uint32 situation_session_id = 1;
+	optional bool is_targeted = 2 [default = false];
+	repeated .EA.Sims4.Network.SimPickerItem sims = 3;
+	optional fixed64 target_id = 4;
+	optional fixed64 sim_id = 5;
+	repeated uint64 situation_resource_id = 6;
+	optional uint64 creation_time = 7;
+	optional .EA.Sims4.Network.SituationEditData edit_data = 8;
+	optional uint32 situation_category = 9;
+}
+
+message SituationIDBatch {
+	required uint32 situation_session_id = 1;
+	repeated uint64 situation_resource_id = 2;
+	repeated .EA.Sims4.Network.LocalizedString situation_name = 3;
+	repeated uint32 category_id = 4;
+	repeated fixed64 mtx_id = 5;
+	repeated int32 highest_medal_earned = 6;
+	optional bool scoring_enabled = 7;
+	repeated .EA.Sims4.Network.LocalizedString tooltip = 8;
+	repeated bool allow_user_facing_goals = 9;
+	repeated .EA.Sims4.Network.ResourceKey medal_icon_override = 10;
+	repeated .EA.Sims4.Network.LocalizedString scoring_lock_reason = 11;
+	repeated bool new_entry = 12;
+}
+
+message SituationDataBatch {
+	required uint32 situation_session_id = 1;
+	repeated .EA.Sims4.Network.SituationData situations = 2;
+}
+
+message SituationGuestAttireColor {
+	optional uint64 color_tag = 1;
+	optional .EA.Sims4.Network.LocalizedString color_name = 2;
+	optional string color_value = 3;
+}
+
+message SituationGuestAttireStyle {
+	optional uint64 style_tag = 1;
+	optional .EA.Sims4.Network.LocalizedString style_name = 2;
+}
+
+message SituationStyleData {
+	repeated .EA.Sims4.Network.SituationGuestAttireColor guest_attire_colors = 1;
+	repeated .EA.Sims4.Network.SituationGuestAttireStyle guest_attire_styles = 2;
+	optional .EA.Sims4.Network.LocalizedString special_object_help_tooltip = 3;
+	optional .EA.Sims4.Network.ResourceKey no_special_object_icon = 4;
+	optional .EA.Sims4.Network.LocalizedString no_special_object_label = 5;
+	optional uint64 cas_edit_job_id = 6;
+	optional uint32 cas_edit_outfit_category = 7;
+	optional .EA.Sims4.Network.ResourceKey cas_edit_no_sim_icon = 8;
+	optional bool visible_on_role_page = 9;
+}
+
+message SituationData {
+	required .EA.Sims4.Network.IconInfo icon_info = 1;
+	required uint32 cost = 2;
+	required uint32 max_participants = 3;
+	repeated .EA.Sims4.Network.SituationLevelReward rewards = 4;
+	repeated .EA.Sims4.Network.SituationJobData jobs = 5;
+	repeated uint64 available_activity_ids = 6;
+	repeated uint64 required_activity_ids = 7;
+	optional .EA.Sims4.Network.SituationStyleData style_data = 8;
+	optional uint32 minimum_activities = 9;
+	optional .EA.Sims4.Network.LocalizedString activities_disabled_tooltip = 10;
+	repeated .EA.Sims4.Network.LocalizedString challenge_reward_override = 11;
+	optional bool activity_goal_situation = 12;
+	repeated uint64 randomizable_activity_ids = 13;
+	optional uint32 num_randomized = 14;
+	repeated uint64 unavailable_activity_ids = 15;
+	optional uint32 jobs_per_row = 16;
+	repeated uint32 job_cell_padding = 17;
+	repeated uint64 role_updates_activity_preferences = 18;
+	optional uint64 sim_filter_requesting_sim_override = 19;
+}
+
+message SituationJobData {
+	required uint64 job_resource_id = 1;
+	required .EA.Sims4.Network.IconInfo icon_info = 2;
+	required bool is_hireable = 3;
+	required uint32 min_required = 4;
+	required uint32 max_allowed = 5;
+	optional uint32 hire_cost = 6;
+	optional .EA.Sims4.Network.LocalizedString help_tooltip = 7;
+	optional bool is_guest = 8;
+	optional .EA.Sims4.Network.ResourceKey border_image = 9;
+}
+
+message SituationLevelReward {
+	required uint32 level = 1;
+	repeated .EA.Sims4.Network.LocalizedString display_name = 2;
+}
+
+message SituationAssignJob {
+	required uint32 situation_session_id = 1;
+	repeated fixed64 sim_ids = 2;
+	repeated uint64 job_resource_ids = 3;
+}
+
+message SituationPreferredActivities {
+	repeated uint64 activities = 1;
+	optional .EA.Sims4.Network.ResourceKey icon = 2;
+	optional .EA.Sims4.Network.LocalizedString footer = 3;
+}
+
+message SituationJobSim {
+	required fixed64 sim_id = 1;
+	optional fixed64 account_id = 2;
+	optional fixed64 career_id = 3;
+	optional fixed64 career_track_id = 4;
+	optional bool cell_disabled = 5;
+	optional .EA.Sims4.Network.LocalizedString cell_disabled_tooltip = 6;
+}
+
+message SituationJobSims {
+	required uint32 situation_session_id = 1;
+	required uint64 job_resource_id = 2;
+	repeated fixed64 sim_ids = 3;
+	optional bool lock_selection = 4;
+	repeated .EA.Sims4.Network.SituationJobSim sims = 5;
+	optional .EA.Sims4.Network.LocalizedString requirements = 6;
+}
+
+message SituationLocations {
+	repeated .EA.Sims4.Network.LotInfoItem situation_locations = 1;
+}
+
+message SituationSimScore {
+	required fixed64 sim_id = 1;
+	required uint32 score = 2;
+	optional .EA.Sims4.Network.IconInfo job_icon_info = 3;
+	optional uint32 version_id = 4;
+}
+
+message SituationLevelData {
+	required .EA.Sims4.Network.LocalizedString description = 1;
+	required uint32 max_threshold = 2;
+}
+
+message SituationLevelUpdate {
+	optional uint32 score_lower_bound = 1;
+	required uint32 score_upper_bound = 2;
+	required uint32 current_level = 3;
+	optional .EA.Sims4.Network.IconInfo level_icon = 4;
+}
+
+message SituationJobAssignment {
+	required fixed64 sim_id = 1;
+	required .EA.Sims4.Network.LocalizedString name = 2;
+	required .EA.Sims4.Network.LocalizedString desc = 3;
+	optional .EA.Sims4.Network.LocalizedString tooltip = 4;
+}
+
+message SituationStart {
+	required uint32 score = 1;
+	repeated .EA.Sims4.Network.SituationSimScore participants = 2;
+	required .EA.Sims4.Network.IconInfo icon_info = 3;
+	repeated .EA.Sims4.Network.SituationLevelData level_data = 4;
+	optional .EA.Sims4.Network.OperationList operation_list = 5;
+	optional uint64 end_time = 6;
+	optional uint64 situation_id = 7;
+	optional .EA.Sims4.Network.SituationLevelUpdate current_level = 8;
+	repeated fixed64 sim_ids = 9;
+	repeated .EA.Sims4.Network.SituationJobAssignment sim_jobs = 10;
+	optional uint64 start_time = 11;
+	optional .EA.Sims4.Network.ResourceKey start_audio_sting = 12;
+	optional bool scoring_enabled = 13;
+	optional bool is_active_career = 14;
+	optional bool has_stayed_late = 15;
+	repeated .EA.Sims4.Network.SituationMeterData meter_data = 16;
+	optional uint32 display_type = 17;
+	optional fixed64 linked_sim_id = 18;
+	optional bool force_goals_enabled = 19;
+	optional uint32 user_facing_type = 20;
+	optional bool allow_non_prestige_events = 21;
+	optional uint32 display_priority = 22;
+	optional uint64 display_delay = 23;
+	optional bool from_load = 24;
+	optional uint64 situation_guid = 25;
+	optional .EA.Sims4.Network.ResourceKey background_audio = 26;
+	optional uint32 situation_display_flags = 27;
+	optional uint32 situation_display_style = 28;
+	optional .EA.Sims4.Network.LocalizedString situation_end_time_string = 29;
+	optional .EA.Sims4.Network.LocalizedString cancel_tooltip_override = 30;
+	optional uint64 live_event_id = 31;
+	optional uint32 pivotal_moment_background_style = 32;
+}
+
+message SituationSimJoined {
+	optional fixed64 sim_id = 1;
+	optional .EA.Sims4.Network.SituationJobAssignment job_assignment = 2;
+}
+
+message SituationSimLeft {
+	required fixed64 sim_id = 1;
+}
+
+message SituationScoreUpdate {
+	optional uint64 situation_id = 1;
+	required uint32 score = 2;
+	optional fixed64 sim_id = 4;
+	optional .EA.Sims4.Network.SituationLevelUpdate current_level = 5;
+}
+
+message SituationGoal {
+	required uint32 goal_id = 1;
+	optional .EA.Sims4.Network.IconInfo icon_info = 2;
+	optional .EA.Sims4.Network.LocalizedString goal_name = 3;
+	optional uint32 max_iterations = 4;
+	optional uint32 current_iterations = 5;
+	optional .EA.Sims4.Network.LocalizedString goal_tooltip = 6;
+	optional .EA.Sims4.Network.ResourceKey audio_sting = 7;
+	optional uint32 display_type = 8;
+	optional bool highlight_goal = 9;
+	optional uint32 goal_preference = 10;
+	optional .EA.Sims4.Network.LocalizedString goal_preference_tooltip = 11;
+	optional .EA.Sims4.Network.IconInfo secondary_icon_info = 12;
+	optional uint64 tutorial_tip_group_guid = 13;
+	optional bool is_complete = 14;
+	optional bool is_mandatory = 15;
+	optional uint64 expiration_time = 16;
+	optional uint64 ui_element = 17;
+}
+
+message SituationGoalsUpdate {
+	optional uint64 situation_id = 2;
+	repeated .EA.Sims4.Network.SituationGoal goals = 3;
+	optional uint32 completed_goal_id = 4;
+	optional .EA.Sims4.Network.SituationGoal major_goal = 5;
+	optional uint32 goal_status = 6;
+	optional .EA.Sims4.Network.LocalizedString goal_sub_text = 7;
+	optional .EA.Sims4.Network.SituationGoalButtonData goal_button_data = 8;
+}
+
+message SituationGoalButtonData {
+	optional .EA.Sims4.Network.LocalizedString button_text = 1;
+	optional bool is_enabled = 2;
+}
+
+message SituationTimeUpdate {
+	optional uint64 situation_id = 1;
+	optional uint64 end_time = 2;
+	optional bool has_stayed_late = 3;
+}
+
+message SituationCallbackResponse {
+	optional uint64 situation_id = 1;
+	optional string situation_callback = 2;
+}
+
+message SituationIconUpdate {
+	optional uint64 situation_id = 1;
+	optional .EA.Sims4.Network.IconInfo icon_info = 2;
+}
+
+message SituationMeterData {
+	required uint32 meter_id = 1;
+	optional fixed32 minimum_value = 2;
+	optional fixed32 maximum_value = 3;
+	optional .EA.Sims4.Network.LocalizedString meter_text = 4;
+	optional .EA.Sims4.Network.LocalizedString meter_tooltip = 5;
+	repeated .EA.Sims4.Network.SituationMeterThreshold thresholds = 6;
+}
+
+message SituationMeterThreshold {
+	required fixed32 threshold = 1;
+	optional uint32 color = 2;
+}
+
+message SituationMeterUpdate {
+	optional uint64 situation_id = 1;
+	required uint32 meter_id = 2;
+	optional fixed32 update_value = 3;
+}
+
+message SituationOutcomeData {
+	optional .EA.Sims4.Network.LocalizedString situation_name = 1;
+	optional .EA.Sims4.Network.LocalizedString outcome_title = 2;
+	optional .EA.Sims4.Network.LocalizedString outcome_description = 3;
+	optional .EA.Sims4.Network.LocalizedString next_steps_description = 4;
+	optional .EA.Sims4.Network.ResourceKey reward_1_icon = 5;
+	optional .EA.Sims4.Network.LocalizedString reward_1_name = 6;
+	optional .EA.Sims4.Network.LocalizedString reward_1_tooltip = 7;
+}
+
+message ScenarioGoalGroup {
+	optional .EA.Sims4.Network.IconInfo header_icon = 1;
+	optional .EA.Sims4.Network.LocalizedString header_name = 2;
+	repeated .EA.Sims4.Network.SituationGoal goals = 3;
+}
+
+message ScenarioGoalsUpdate {
+	optional uint64 scenario_id = 1;
+	repeated .EA.Sims4.Network.ScenarioGoalGroup goal_groups = 2;
+	optional uint32 completed_goal_id = 3;
+	optional uint64 instance_id = 4;
+}
+
+message ScenarioEnded {
+	required uint64 scenario_id = 1;
+}
+
+message ScenarioOutcomeData {
+	optional .EA.Sims4.Network.LocalizedString scenario_name = 1;
+	optional .EA.Sims4.Network.LocalizedString outcome_title = 2;
+	optional .EA.Sims4.Network.LocalizedString outcome_description = 3;
+	optional .EA.Sims4.Network.LocalizedString next_steps_description = 4;
+	optional .EA.Sims4.Network.ResourceKey outcome_icon = 5;
+	optional .EA.Sims4.Network.ResourceKey reward_icon = 6;
+	optional .EA.Sims4.Network.ResourceKey bonus_icon = 7;
+	optional uint64 household_id = 8;
+	optional .EA.Sims4.Network.LocalizedString reward_tooltip = 9;
+	optional .EA.Sims4.Network.LocalizedString bonus_tooltip = 10;
+}
+
+message QuestGoalUpdate {
+	optional uint64 live_event_id = 1;
+	optional uint64 quest_id = 2;
+	optional uint64 situation_goal_id = 3;
+}

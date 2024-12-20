@@ -1,0 +1,63 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "S4Common.proto";
+
+
+message BodyTypesList {
+	repeated uint32 body_types = 1;
+}
+
+message ColorShiftList {
+	repeated uint64 color_shift = 1;
+}
+
+message ObjectIdsList {
+	repeated uint64 object_id = 1;
+}
+
+message OutfitData {
+	required uint64 outfit_id = 1;
+	optional uint32 category = 2;
+	optional .EA.Sims4.IdList parts = 5;
+	optional uint64 created = 6;
+	optional .EA.Sims4.Persistence.BodyTypesList body_types_list = 7;
+	optional bool match_hair_style = 9 [default = false];
+	optional uint64 outfit_flags = 10;
+	optional uint64 outfit_flags_high = 11 [default = 0];
+	optional .EA.Sims4.Persistence.ColorShiftList part_shifts = 12;
+	optional string title = 13;
+	optional .EA.Sims4.Persistence.ObjectIdsList object_ids = 14;
+}
+
+message OutfitList {
+	repeated .EA.Sims4.Persistence.OutfitData outfits = 1;
+}
+
+message PartData {
+	required uint64 id = 1;
+	required uint32 body_type = 2;
+	optional uint64 color_shift = 3 [default = 4611686018427387904];
+	optional uint64 object_id = 4 [default = 0];
+}
+
+message PartDataList {
+	repeated .EA.Sims4.Persistence.PartData parts = 1;
+}
+
+message GeneticData {
+	optional bytes sculpts_and_mods_attr = 1;
+	optional string physique = 2;
+	optional float voice_pitch = 3;
+	optional uint32 voice_actor = 4;
+	optional .EA.Sims4.Persistence.PartDataList parts_list = 5;
+	optional .EA.Sims4.Persistence.PartDataList growth_parts_list = 6;
+}
+
+message PeltLayerData {
+	optional uint64 layer_id = 1;
+	optional uint32 color = 2;
+}
+
+message PeltLayerDataList {
+	repeated .EA.Sims4.Persistence.PeltLayerData layers = 1;
+}

@@ -1,0 +1,152 @@
+syntax = "proto2";
+package EA.Sims4;
+
+enum UserState {
+	userstate_pending = 1;
+	userstate_logged_in = 2;
+	userstate_logged_out = 3;
+	userstate_timedout_out = 4;
+	userstate_bad_login = 5;
+	connected_to_mtx_server = 100;
+	connected_to_exchange_server = 200;
+	connected_to_social_server = 300;
+}
+
+message IdList {
+	repeated fixed64 ids = 1;
+}
+
+message GameInstanceInfoPB {
+	required uint64 zone_id = 1;
+	optional uint32 world_id = 2;
+	optional string neighborhood_name = 3;
+	optional string zone_name = 4;
+	optional uint64 zone_session_id = 5;
+}
+
+message UserEntitlement {
+	enum TrialStateMask {
+		MASK_TRIAL_ENTITLEMENT = 16;
+	}
+	enum TrialState {
+		TRIAL_STATE_NONE = 0;
+		TRIAL_STATE_CONVERTED = 1;
+		TRIAL_STATE_TRIAL_ACTIVE = 16;
+		TRIAL_STATE_TRIAL_EXPIRED = 17;
+	}
+	optional uint64 entitlement_id = 1;
+	optional uint32 version = 2;
+	optional uint64 product_id = 3;
+	optional uint64 last_modified_date = 4;
+	optional uint64 product_sku = 5;
+	optional uint32 view_state = 6 [default = 0];
+	optional uint32 install_state = 7 [default = 100];
+	optional uint64 terminate_date = 9;
+	optional uint32 trial_state = 10;
+	optional uint64 grant_date = 11;
+	optional uint32 trial_view_state = 12;
+}
+
+message UserEntitlementMap {
+	repeated .EA.Sims4.UserEntitlement entitlements = 1;
+	optional uint64 last_modified_date = 2;
+}
+
+message AchievementItem {
+	optional uint32 id = 1;
+	optional uint32 progress = 2;
+	optional uint32 totalpoints = 3;
+	optional uint32 repeatcount = 4;
+	optional string name = 5;
+	optional string desc = 6;
+	optional string howto = 7;
+	optional string imageid = 8;
+	optional uint64 grantdate = 9;
+	optional uint64 expiredate = 10;
+}
+
+message AchievementList {
+	optional string name = 1;
+	optional string gamename = 2;
+	repeated .EA.Sims4.AchievementItem achievements = 3;
+}
+
+message AchievementMsg {
+	optional int32 resultcode = 1;
+	optional uint32 mode = 2;
+	repeated .EA.Sims4.AchievementList lists = 3;
+}
+
+message UserShoppingCartItem {
+	optional string entitlement_tag = 1;
+	optional string offer_id = 2;
+	optional uint32 quantity = 3;
+	optional double override_price = 4;
+	optional double unit_price = 5;
+	optional uint64 ientitlement_tag = 6;
+	optional uint64 entry_id = 7;
+}
+
+message UserShoppingCart {
+	repeated .EA.Sims4.UserShoppingCartItem items = 1;
+	optional string last_modified_date = 2;
+}
+
+message Uint64Value {
+	required uint64 value = 1;
+}
+
+message Uint64List {
+	repeated .EA.Sims4.Uint64Value values = 1;
+}
+
+message BoolValue {
+	required bool value = 1;
+}
+
+message HouseholdSimIds {
+	optional fixed64 household_id = 1;
+	repeated fixed64 sim_ids = 2;
+}
+
+message Schedule {
+	message ScheduleEntry {
+		enum ScheduleDay {
+			SUNDAY = 0;
+			MONDAY = 1;
+			TUESDAY = 2;
+			WEDNESDAY = 3;
+			THURSDAY = 4;
+			FRIDAY = 5;
+			SATURDAY = 6;
+		}
+		enum ScheduleShiftType {
+			ALL_DAY = 0;
+			MORNING = 1;
+			EVENING = 2;
+		}
+		repeated .EA.Sims4.Schedule.ScheduleEntry.ScheduleDay days = 1;
+		optional uint32 start_hour = 2;
+		optional uint32 start_minute = 3;
+		optional float duration = 4;
+		optional .EA.Sims4.Schedule.ScheduleEntry.ScheduleShiftType schedule_shift_type = 5;
+	}
+	repeated .EA.Sims4.Schedule.ScheduleEntry schedule_entries = 1;
+}
+
+message SimPronoun {
+	enum GrammaticalCase {
+		UNKNOWN = 0;
+		SUBJECTIVE = 1;
+		OBJECTIVE = 2;
+		POSSESSIVE_DEPENDENT = 3;
+		POSSESSIVE_INDEPENDENT = 4;
+		REFLEXIVE = 5;
+	}
+	optional .EA.Sims4.SimPronoun.GrammaticalCase case = 1;
+	optional string pronoun = 2;
+}
+
+message SimPronounList {
+	repeated .EA.Sims4.SimPronoun pronouns = 1;
+}

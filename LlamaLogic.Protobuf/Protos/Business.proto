@@ -1,0 +1,348 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "UI.proto";
+import "ResourceKey.proto";
+import "Localization.proto";
+import "SimObjectAttributes.proto";
+
+
+message ReviewIconData {
+	optional .EA.Sims4.Network.LocalizedString title = 1;
+	optional .EA.Sims4.Network.LocalizedString desc = 2;
+	optional .EA.Sims4.Network.ResourceKey icon = 3;
+}
+
+message ReviewDataUpdate {
+	optional fixed64 zone_id = 1;
+	optional float score = 2;
+	optional int32 review_count = 3;
+	repeated .EA.Sims4.Network.ReviewIconData icons = 4;
+}
+
+message BusinessSummaryEntry {
+	enum EntryType {
+		NORMAL = 0;
+		TOTAL = 1;
+		SUB_TOTAL = 2;
+	}
+	optional .EA.Sims4.Network.LocalizedString entry_name = 1;
+	optional .EA.Sims4.Network.LocalizedString entry_value = 2;
+	optional .EA.Sims4.Network.BusinessSummaryEntry.EntryType entry_type = 3 [default = NORMAL];
+}
+
+message BusinessRule {
+	enum BusinessRuleState {
+		DISABLED = 0;
+		ENABLED = 1;
+		BROKEN = 2;
+	}
+	optional fixed64 rule_id = 1;
+	optional .EA.Sims4.Network.BusinessRule.BusinessRuleState state = 2 [default = ENABLED];
+	optional uint32 state_change_cooldown_time = 3;
+}
+
+message RestaurantBusinessDataUpdate {
+	optional fixed64 zone_id = 1;
+	optional uint32 ingredient_chosen = 2;
+	optional bool is_ingredient_unlocked = 3;
+	optional uint32 advertising_chosen = 4;
+}
+
+message RetailBusinessDataUpdate {
+	optional fixed64 zone_id = 1;
+}
+
+message VetClinicBusinessDataUpdate {
+	optional fixed64 zone_id = 1;
+	optional uint32 advertising_chosen = 2;
+	optional bool is_quality_unlocked = 3;
+	optional uint32 quality_chosen = 4;
+}
+
+message RentalUnitBusinessDataUpdate {
+	optional fixed64 zone_id = 1;
+	optional uint32 overdue_rent = 2;
+	optional uint32 max_rent = 3;
+	optional bool tenant_alert_visible = 4;
+	optional bool is_grace_period = 5;
+	optional int32 unit_rating_alert_state = 6 [default = 0];
+	optional fixed64 house_description_id = 7;
+}
+
+message TemplateHouseholdSelectedStatus {
+	optional uint32 template_guid = 1;
+	optional bool household_selected = 2;
+}
+
+message TenantApplicationServicePersistence {
+	repeated .EA.Sims4.Network.TemplateHouseholdSelectedStatus template_selected_map = 1;
+}
+
+message TenantApplicationDesiredRent {
+	optional int32 star_rating = 1;
+	optional float rent_multiplier = 2;
+}
+
+message TenantApplicationNumHouseholds {
+	optional int32 star_rating = 1;
+	optional int32 num_households = 2;
+}
+
+message TenantApplicationHouseholdOccupant {
+	optional uint32 occupant_age = 1;
+	optional uint32 occupant_species = 2;
+}
+
+message TenantApplicationHousehold {
+	optional string household_name = 1;
+	repeated .EA.Sims4.Network.TenantApplicationHouseholdOccupant household_occupants = 2;
+	optional int32 desired_beds = 3;
+	repeated .EA.Sims4.Network.TenantApplicationDesiredRent desired_rent = 4;
+	optional fixed64 household_id = 5;
+	optional fixed64 zone_id = 6;
+	optional uint32 household_name_key = 7;
+}
+
+message PotentialTenantApplicationHouseholds {
+	repeated .EA.Sims4.Network.TenantApplicationHousehold potential_households = 1;
+	repeated .EA.Sims4.Network.TenantApplicationNumHouseholds num_households = 2;
+}
+
+message CustomerBusinessData {
+	optional fixed64 customer_id = 1;
+	repeated fixed64 customer_buffs = 2;
+	repeated .EA.Sims4.Network.BusinessBuffBucketTotal buff_bucket_totals = 3;
+	optional fixed64 last_buff_id = 4;
+}
+
+message EmployeeBusinessData {
+	message EmployeeData {
+		optional fixed64 employee_type = 1;
+		optional fixed64 employee_id = 2;
+	}
+	message BusinessUniformData {
+		optional fixed64 employee_type = 1;
+		optional .EA.Sims4.Persistence.MannequinSimData employee_uniform_data = 2;
+	}
+	message BusinessDataPayroll {
+		message BusinessDataPayrollEntry {
+			optional fixed64 career_level_guid = 1;
+			optional float hours_worked = 2;
+		}
+		optional fixed64 sim_id = 1;
+		optional uint64 clock_in_time = 2;
+		repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessDataPayroll.BusinessDataPayrollEntry payroll_data = 3;
+	}
+	repeated .EA.Sims4.Network.EmployeeBusinessData.EmployeeData employee_data = 1;
+	optional int32 daily_employee_wages = 2;
+	repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessUniformData employee_uniforms_male = 3;
+	repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessUniformData employee_uniforms_female = 4;
+	repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessDataPayroll employee_payroll = 5;
+}
+
+message SetBusinessData {
+	optional fixed64 zone_id = 1;
+	optional string name = 2;
+	optional bool is_open = 3;
+	optional int32 funds = 4;
+	optional .EA.Sims4.Network.ReviewDataUpdate review_data = 5;
+	optional int32 net_profit = 6;
+	optional .EA.Sims4.Network.ResourceKey icon = 7;
+	optional float markup_chosen = 9;
+	optional uint64 time_opened = 10;
+	optional int32 daily_revenue = 11;
+	optional int32 daily_items_sold = 12;
+	optional int32 daily_outgoing_costs = 13;
+	optional uint64 open_time = 14;
+	optional uint32 daily_customers_served = 17;
+	optional bool minimum_employee_requirements_met = 18;
+	optional .EA.Sims4.Network.RestaurantBusinessDataUpdate restaurant_data = 15;
+	optional .EA.Sims4.Network.RetailBusinessDataUpdate retail_data = 16;
+	optional .EA.Sims4.Network.VetClinicBusinessDataUpdate vet_clinic_data = 19;
+	optional .EA.Sims4.Network.RentalUnitBusinessDataUpdate rental_unit_data = 20;
+}
+
+message BusinessMarkupUpdate {
+	optional fixed64 zone_id = 1;
+	optional float markup_chosen = 2;
+}
+
+message BusinessAdvertisementUpdate {
+	optional fixed64 zone_id = 1;
+	optional uint32 advertisement_chosen = 2;
+}
+
+message BusinessDailyCustomersServedUpdate {
+	optional fixed64 zone_id = 1;
+	optional uint32 daily_customers_served = 2;
+}
+
+message BusinessIsOpenUpdate {
+	optional fixed64 zone_id = 1;
+	optional bool is_open = 2;
+	optional uint64 time_opened = 3;
+}
+
+message BusinessFundsUpdate {
+	optional fixed64 zone_id = 1;
+	optional int32 available_funds = 2;
+	optional int32 vfx_amount = 3;
+}
+
+message BusinessProfitUpdate {
+	optional fixed64 zone_id = 1;
+	optional int32 net_profit = 2;
+}
+
+message BusinessDailyItemsSoldUpdate {
+	optional fixed64 zone_id = 1;
+	required uint32 daily_items_sold = 2;
+}
+
+message BusinessDailyCostsUpdate {
+	optional fixed64 zone_id = 1;
+	required uint32 daily_outgoing_costs = 2;
+}
+
+message BusinessSummaryDialog {
+	optional .EA.Sims4.Network.SetBusinessData business_data = 1;
+	repeated .EA.Sims4.Network.BusinessSummaryEntry lines_entries = 2;
+	repeated .EA.Sims4.Network.ManageEmployeeRowData employees = 3;
+}
+
+message BusinessCustomerUpdate {
+	optional fixed64 sim_id = 1;
+}
+
+message BusinessCustomerReviewEvent {
+	optional fixed64 sim_id = 1;
+	optional .EA.Sims4.Network.LocalizedString event_name = 2;
+	optional .EA.Sims4.Network.ResourceKey event_icon = 3;
+	optional bool is_event_positive = 4;
+}
+
+message ManageEmployeesDialog {
+	required fixed64 hiring_sim_id = 1;
+	repeated .EA.Sims4.Network.ManageEmployeeJobData jobs = 2;
+}
+
+message ManageEmployeeJobData {
+	repeated .EA.Sims4.Network.ManageEmployeeRowData employees = 1;
+	repeated .EA.Sims4.Network.ManageEmployeeRowData available_sims = 2;
+	optional uint32 open_slots = 3;
+	optional uint32 locked_slots = 4;
+	optional uint32 job_type = 5;
+	optional .EA.Sims4.Network.LocalizedString job_name = 6;
+	optional .EA.Sims4.Network.IconInfo job_icon = 7;
+}
+
+message ManageEmployeeRowData {
+	required fixed64 sim_id = 1;
+	optional .EA.Sims4.Network.LocalizedString satisfaction_string = 2;
+	optional uint32 pay = 3;
+	repeated .EA.Sims4.Network.ManageEmployeeSkillData skill_data = 4;
+	optional uint32 current_career_level = 5;
+	optional uint32 max_career_level = 6;
+}
+
+message BusinessBuffBucketTotal {
+	optional uint32 buff_bucket = 1;
+	optional float buff_bucket_total = 2;
+}
+
+message RestaurantSaveData {
+	optional uint32 ingredient_quality_enum = 1;
+	repeated uint32 profit_per_meal_queue = 2;
+	optional uint32 dining_spot_count = 3;
+	optional uint32 advertising_type = 4;
+}
+
+message VetClinicSaveData {
+	optional uint32 advertising_type = 1;
+	optional uint32 quality_type = 2;
+	repeated uint32 profit_per_treatment_queue = 3;
+	optional uint32 exam_table_count = 4;
+}
+
+message RentalUnitSaveData {
+	optional uint32 overdue_rent = 1;
+	optional uint32 max_rent = 2;
+	optional bool tenant_alert_visible = 3;
+	optional uint64 rent_overdue_time = 4;
+	optional uint32 due_rent = 5;
+	optional uint32 paid_rent_awaiting_transfer = 6;
+	optional bool has_tenant_ever_paid_rent = 7;
+	optional bool has_tenant_ever_received_rent_bill = 8;
+}
+
+message BusinessSaveData {
+	message BusinessFundsCategoryEntry {
+		optional uint32 funds_category = 1;
+		optional int32 amount = 2;
+	}
+	optional bool is_open = 1;
+	optional int32 funds = 2;
+	optional float markup = 3;
+	optional .EA.Sims4.Network.EmployeeBusinessData employee_payroll = 4;
+	optional uint64 open_time = 5;
+	optional bool grand_opening = 6;
+	repeated .EA.Sims4.Network.BusinessSaveData.BusinessFundsCategoryEntry funds_category_tracker_data = 7;
+	optional int32 daily_revenue = 8;
+	optional uint32 daily_items_sold = 9;
+	optional uint32 lifetime_customers_served = 10;
+	optional .EA.Sims4.Network.RestaurantSaveData restaurant_save_data = 11;
+	optional float star_rating_value = 12;
+	repeated .EA.Sims4.Network.BusinessBuffBucketTotal buff_bucket_totals = 13;
+	repeated .EA.Sims4.Network.CustomerBusinessData customer_data = 14;
+	optional uint32 session_customers_served = 15;
+	optional uint64 last_off_lot_update = 17;
+	optional uint32 buff_bucket_size = 18;
+	optional .EA.Sims4.Network.VetClinicSaveData vet_clinic_save_data = 19;
+	optional .EA.Sims4.Network.RentalUnitSaveData rental_unit_save_data = 20;
+}
+
+message BusinessServiceData {
+	repeated .EA.Sims4.Network.BusinessTrackerData business_tracker_data = 1;
+	repeated .EA.Sims4.Network.BusinessTrackerData unowned_business_tracker_data = 2;
+	repeated .EA.Sims4.Network.FirstTimeMessages first_time_messages = 3;
+	optional uint64 rental_unit_payout_timer = 4;
+}
+
+message FirstTimeMessages {
+	optional fixed64 business_type = 1;
+	repeated uint32 messages = 2;
+}
+
+message AdditionalEmployeeSlotData {
+	optional fixed64 employee_type = 1;
+	optional uint32 additional_slot_count = 2;
+}
+
+message BusinessTrackerData {
+	optional fixed64 household_id = 1;
+	optional fixed64 business_type = 2;
+	repeated .EA.Sims4.Network.BusinessManagerData business_manager_data = 3;
+	optional float additional_markup_multiplier = 4;
+	optional float additional_customer_count = 5;
+	repeated .EA.Sims4.Network.AdditionalEmployeeSlotData additional_employee_slot_data = 6;
+	optional uint32 rental_unit_payout_cache = 7;
+}
+
+message BusinessManagerData {
+	optional fixed64 zone_id = 1;
+	optional .EA.Sims4.Network.BusinessSaveData business_data = 2;
+	optional bool make_unowned_on_load = 3 [default = false];
+}
+
+message ManageEmployeeSkillData {
+	required fixed64 skill_id = 1;
+	optional uint32 curr_points = 2;
+	optional .EA.Sims4.Network.LocalizedString skill_tooltip = 3;
+	optional bool is_training = 4;
+	optional bool has_skilled_up = 5;
+}
+
+message MinEmployeeReqMetUpdate {
+	optional fixed64 zone_id = 1;
+	optional bool minimum_employee_requirements_met = 2;
+}

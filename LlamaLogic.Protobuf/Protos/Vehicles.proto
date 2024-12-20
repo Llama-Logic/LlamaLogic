@@ -1,0 +1,20 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+
+
+message VehicleControl {
+	enum VehicleControlType {
+		UNKNOWN = 0;
+		WHEEL = 1;
+	}
+	optional uint32 control_id = 1;
+	optional .EA.Sims4.Network.VehicleControl.VehicleControlType control_type = 2;
+	optional uint32 joint_name_hash = 3;
+	optional uint32 reference_joint_name_hash = 4;
+	optional bool enable_terrain_alignment = 5;
+	optional string bump_sound_name = 6;
+}
+
+message VehicleData {
+	repeated .EA.Sims4.Network.VehicleControl controls = 1;
+}

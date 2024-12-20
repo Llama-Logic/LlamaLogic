@@ -1,0 +1,685 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "GameplaySaveData.proto";
+import "SituationPersistence.proto";
+import "SimObjectAttributes.proto";
+import "UI.proto";
+import "Dialog.proto";
+import "Math.proto";
+import "ResourceKey.proto";
+import "SimsCustomOptions.proto";
+import "Outfits.proto";
+import "S4Common.proto";
+import "Venue.proto";
+
+enum PersistenceActions {
+	BASE_ACTION = 0;
+	LOG_ACTION = 1;
+	COMPOSITE_ACTION = 2;
+	GENERIC_ACTION_BINARY_STORE = 3;
+	GENERIC_ACTION_BINARY_LOAD = 4;
+	GENERIC_ACTION_LOCAL_BINARY_LOAD = 5;
+	GENERIC_ACTION_LOCAL_TEXT_LOAD = 6;
+	GENERIC_ACTION_FILE_RENAME = 7;
+	GENERIC_ACTION_FILE_DELETE = 8;
+	GENERIC_ACTION_FILE_EDIT = 9;
+	GENERIC_ACTION_SLOT_NEW = 10;
+	GENERIC_ACTION_SLOT_COPY = 11;
+	GENERIC_ACTION_SLOT_DELETE = 12;
+	GENERIC_ACTION_SLOT_RENAME = 13;
+	GENERIC_ACTION_LIST_SLOTS = 14;
+	GENERIC_ACTION_OP_BEGIN = 15;
+	GENERIC_ACTION_OP_END = 16;
+	MOCKACTIONUINT = 17;
+	MOCKACTIONFLOAT = 18;
+}
+enum ActionOperationType {
+	ACTION_READ = 0;
+	ACTION_WRITE = 1;
+	ACTION_FLUSH = 2;
+}
+enum ActionErrorType {
+	FILE_ERROR_TYPE_NONE = 0;
+	FILE_ERROR_TYPE_SLOT_COPY = 1652429822;
+	FILE_ERROR_TYPE_SLOT_LOAD = 650303489;
+}
+enum ActionResponseCodes {
+	ACTION_NOT_INITIALIZED = 0;
+	ACTION_SUCCESS = 1;
+	ACTION_FAILED = 2;
+}
+enum ActionFailureCodes {
+	AFC_NONE = 0;
+	AFC_FILESYSTEM_MISSING = 1;
+	AFC_SYSTEM_SHUTDOWN = 2;
+	AFC_SYSTEM_FAILURE = 3;
+	AFC_SYSTEM_DISK_FULL = 4;
+	AFC_FILE_NOT_FOUND = 10;
+	AFC_FILE_DENIED = 11;
+	AFC_FILE_OPEN_FAILED = 12;
+	AFC_FILE_READ_FAILED = 13;
+	AFC_FILE_WRITE_FAILED = 14;
+	AFC_FILE_NOT_FULLY_READ = 15;
+	AFC_FILE_SIZE_ZERO = 16;
+	AFC_FILE_SIZE_MAX = 17;
+	AFC_FILE_REMOVE_FAILED = 20;
+	AFC_FILE_MOVE_FAILED = 21;
+	AFC_FILE_COPY_FAILED = 22;
+	AFC_FILE_CREATE_VERSION_NAME_FAILED = 23;
+	AFC_SLOT_GET_NAME_FAILED = 30;
+	AFC_SLOT_SET_NAME_FAILED = 31;
+	AFC_SLOT_GET_GUID_FAILED = 32;
+	AFC_SLOT_SET_GUID_FAILED = 33;
+	AFC_SLOT_GET_KEY_FAILED = 34;
+	AFC_NO_ACCOUNT = 40;
+	AFC_SYSTEM_OS_HANDLED_ERROR = 50;
+}
+
+message EntitlementData {
+	required uint64 transaction_id = 1;
+	optional bytes payload = 2;
+	optional uint64 initiation_time = 3;
+	optional uint64 completion_time = 4;
+}
+
+message GameContentData {
+	repeated uint32 required_pack_ids = 1;
+	repeated uint32 cds_patch_base_changelists = 2;
+	optional bool cds_content_patch_mounted = 3;
+}
+
+message UiOptionsData {
+	optional bool is_new_game = 1 [default = true];
+	optional bool was_notification_alert_shown = 2 [default = false];
+}
+
+message AccountData {
+	required fixed64 nucleus_id = 1;
+	required string persona_name = 2;
+	optional string email = 3;
+	optional uint64 created = 4;
+	optional uint64 last_login = 5;
+	repeated .EA.Sims4.Persistence.EntitlementData entitlements = 8;
+	optional .EA.Sims4.Persistence.UiOptionsData ui_options = 9;
+	optional string client_version = 10;
+	optional fixed64 save_slot_id = 12;
+	optional .EA.Sims4.Persistence.GameplayAccountData gameplay_account_data = 14;
+	repeated .EA.Sims4.Network.UiDialogMessage game_notification = 16;
+	optional string client_version_at_creation = 17;
+	optional uint64 number_of_saves = 18;
+	optional uint64 number_of_saves_mods = 19;
+	optional uint64 number_of_saves_script_mods = 20;
+	optional bool is_pack_usage_telemetry_version = 21;
+}
+
+message NotificationSaveData {
+	repeated .EA.Sims4.Network.UiDialogMessage game_notification = 1;
+}
+
+message SaveSlotData {
+	optional fixed64 slot_id = 1;
+	repeated fixed64 neighboorhoods = 2;
+	optional fixed64 last_neighborhood = 3;
+	repeated fixed64 zones = 4;
+	optional fixed64 last_zone = 5;
+	optional .EA.Sims4.IdList households = 6;
+	optional bool is_migrated = 7;
+	optional .EA.Sims4.Persistence.GameplaySaveSlotData gameplay_data = 8;
+	optional string slot_name = 9;
+	optional uint64 timestamp = 10;
+	optional uint64 active_household_id = 11;
+	optional fixed64 nucleus_id = 12;
+	optional fixed64 s4_guid_seed = 13;
+	optional uint32 compatibility_version = 14;
+	optional bool trigger_tutorial_drama_node = 15;
+	optional int32 tutorial_mode = 16 [default = 1];
+	optional .EA.Sims4.Persistence.GameContentData game_content_data = 17;
+	optional bool applied_aging_fixup = 18 [default = false];
+}
+
+message SaveSlotDataDescOnly {
+	optional fixed64 slot_id = 1;
+	optional string slot_name = 9;
+	optional uint64 timestamp = 10;
+	optional uint64 active_household_id = 11;
+	optional uint32 compatibility_version = 14;
+	optional .EA.Sims4.Persistence.GameContentData game_content_data = 17;
+}
+
+message SaveListData {
+	optional fixed64 nucleus_id = 1;
+	repeated fixed64 slot_ids = 2;
+}
+
+message LotCoord {
+	optional float x = 1;
+	optional float y = 2;
+	optional float z = 3;
+	optional float rot_x = 4;
+	optional float rot_y = 5;
+	optional float rot_z = 6;
+	optional float rot_w = 7;
+}
+
+message ObjectData {
+	optional fixed64 object_id = 1;
+	optional fixed64 owner_id = 2;
+	optional fixed64 parent_id = 3;
+	optional uint32 slot_id = 4;
+	optional .EA.Sims4.Persistence.LotCoord position = 5;
+	optional uint32 loc_type = 6;
+	optional fixed64 container_id = 7;
+	optional uint32 type = 8;
+	optional int32 level = 9;
+	optional float scale = 10;
+	optional uint32 state_index = 11;
+	optional bytes attributes = 12;
+	optional uint32 cost = 13;
+	optional fixed64 baby_sim_id = 14;
+	optional .EA.Sims4.Network.UiObjectMetadata ui_metadata = 15;
+	optional bool has_been_depreciated = 16 [default = false];
+	optional bool needs_depreciation = 17 [default = false];
+	optional bool created_from_lot_template = 18 [default = false];
+	optional bool is_new = 19 [default = false];
+	optional fixed64 texture_id = 20;
+	optional uint32 material_variant = 21;
+	optional uint32 stack_sort_order = 22;
+	optional .EA.Sims4.Network.Vector3 light_color = 23;
+	optional uint32 material_state = 24;
+	optional uint32 geometry_state = 25;
+	optional uint32 object_parent_type = 26;
+	optional uint64 encoded_parent_location = 27;
+	optional float light_dimmer_value = 28;
+	optional .EA.Sims4.Network.ResourceKey model_override_resource_key = 29;
+	optional uint64 guid = 30;
+	optional .EA.Sims4.Persistence.ObjectList unique_inventory = 31;
+	optional bool needs_post_bb_fixup = 32;
+	optional uint32 buildbuy_use_flags = 33;
+	optional uint32 texture_effect = 34 [default = 4294967295];
+	repeated .EA.Sims4.Network.Vector3 multicolor = 35;
+	optional int32 inventory_plex_id = 36;
+	optional bool is_new_object = 37;
+	repeated uint32 persisted_tags = 38;
+	optional .EA.Sims4.Network.IconInfo.CanvasStateType canvas_state_type = 39;
+}
+
+message ObjectList {
+	repeated .EA.Sims4.Persistence.ObjectData objects = 1;
+}
+
+message ObjectFallbackData {
+	optional uint64 guid = 1;
+	optional uint64 fallback_guid = 2;
+}
+
+message ObjectFallbackDataList {
+	repeated .EA.Sims4.Persistence.ObjectFallbackData fallbacks = 1;
+}
+
+message ZoneData {
+	optional fixed64 zone_id = 1;
+	optional string name = 2;
+	optional uint32 world_id = 3;
+	optional uint32 lot_id = 4;
+	optional uint32 lot_template_id = 5;
+	optional fixed64 household_id = 6;
+	optional fixed64 nucleus_id = 7;
+	optional uint32 permissions = 8;
+	optional fixed64 neighborhood_id = 10;
+	optional .EA.Sims4.Persistence.GameplayZoneData gameplay_zone_data = 11;
+	optional fixed64 lot_description_id = 12;
+	optional fixed64 front_door_id = 13;
+	optional string description = 14;
+	repeated fixed64 spawn_point_ids = 15;
+	optional uint32 bedroom_count = 16;
+	optional uint32 bathroom_count = 17;
+	optional uint32 active_plex = 18;
+	optional fixed64 master_zone_object_data_id = 19;
+	repeated fixed64 lot_traits = 20;
+	optional uint32 pending_house_desc_id = 21;
+	optional .EA.Sims4.Network.UniversityHousingConfiguration university_housing_configuration = 22;
+	optional uint32 pending_plex_exterior_house_desc_id = 23;
+}
+
+message ZoneObjectData {
+	optional fixed64 zone_id = 1;
+	repeated bytes architecture_data = 2;
+	repeated .EA.Sims4.Persistence.ObjectList objects = 3;
+	repeated fixed64 sub_venue_keys = 5;
+	optional int32 active_data_index = 4;
+	optional bool is_modified_from_lot_template = 6;
+}
+
+message ZoneObjectDataScratchPair {
+	optional fixed64 zone_id = 1;
+	optional string zone_object_data_scratch_path = 2;
+}
+
+message SituationConditionalLayerData {
+	required fixed64 layer_guid = 1;
+	repeated fixed64 situation_ids = 2;
+}
+
+message OpenStreetsData {
+	optional uint64 world_id = 1;
+	optional uint64 nbh_id = 2;
+	optional .EA.Sims4.Persistence.ObjectList objects = 4;
+	repeated .EA.Sims4.Persistence.SituationSeedData situation_seeds = 5;
+	optional fixed64 active_household_id_on_save = 6;
+	optional fixed64 active_zone_id_on_save = 7;
+	optional uint64 sim_time_on_save = 8;
+	optional .EA.Sims4.Persistence.OpenStreetDirectorData open_street_director = 9;
+	optional .EA.Sims4.Persistence.ConditionalLayerServiceData conditional_layer_service = 10;
+	optional .EA.Sims4.Persistence.AmbientServiceData ambient_service = 11;
+	repeated .EA.Sims4.Persistence.SituationConditionalLayerData situation_conditional_layers = 12;
+}
+
+message SteadySimIdList {
+	repeated fixed64 sim_id = 1;
+}
+
+message SimData {
+	enum SimCreationPath {
+		SIMCREATION_NONE = 0;
+		SIMCREATION_INIT = 1;
+		SIMCREATION_REENTRY_ADDSIM = 2;
+		SIMCREATION_GALLERY = 3;
+		SIMCREATION_PRE_MADE = 4;
+		SIMCREATION_CLONED = 5;
+	}
+	required fixed64 sim_id = 1;
+	optional fixed64 zone_id = 2;
+	optional uint32 world_id = 3;
+	optional string zone_name = 25;
+	optional fixed64 household_id = 4;
+	optional string first_name = 5;
+	optional string last_name = 6;
+	optional uint32 gender = 7;
+	optional uint32 age = 8;
+	optional float voice_pitch = 9;
+	optional uint64 skin_tone = 10;
+	optional uint32 voice_actor = 11;
+	optional string physique = 12;
+	optional float age_progress = 13;
+	optional fixed64 significant_other = 15;
+	optional bytes deprecated_attributes = 17;
+	optional bytes facial_attr = 18;
+	optional uint64 created = 19;
+	optional .EA.Sims4.Persistence.ObjectList inventory = 20;
+	optional .EA.Sims4.Persistence.OutfitList outfits = 21;
+	optional string household_name = 22;
+	optional fixed64 nucleus_id = 23;
+	optional uint32 deprecated_money = 14;
+	optional uint64 money = 27;
+	optional .EA.Sims4.Persistence.GeneticData genetic_data = 28;
+	optional uint32 flags = 29;
+	optional .EA.Sims4.Persistence.PersistableSimInfoAttributes attributes = 30;
+	optional uint32 revision = 31;
+	optional .EA.Sims4.Persistence.LotCoord location = 32;
+	optional uint32 deprecated_change_number = 33;
+	optional uint64 primary_aspiration = 34;
+	optional uint64 last_instantiated_time = 35;
+	optional uint64 additional_bonus_days = 36;
+	optional .EA.Sims4.Persistence.SuperInteractionSaveState interaction_state = 37;
+	optional uint32 current_outfit_type = 38;
+	optional uint32 current_outfit_index = 39;
+	optional bool fix_relationship = 40;
+	optional fixed64 current_mood = 41;
+	optional uint32 current_mood_intensity = 42;
+	optional .EA.Sims4.Persistence.ZoneTimeStamp zone_time_stamp = 43;
+	optional uint32 whim_bucks = 44;
+	optional uint32 level = 45;
+	optional uint64 inventory_value = 46;
+	optional .EA.Sims4.Persistence.GameplaySimData gameplay_data = 47;
+	optional float pregnancy_progress = 48;
+	optional uint32 full_name_key = 49;
+	optional uint32 last_inzone_outfit_type = 50;
+	optional uint32 last_inzone_outfit_index = 51;
+	optional .EA.Sims4.Persistence.SimData.SimCreationPath sim_creation_path = 52 [default = SIMCREATION_NONE];
+	optional float initial_fitness_value = 53;
+	optional uint64 voice_effect = 54;
+	optional uint32 first_name_key = 55;
+	optional uint32 last_name_key = 56;
+	optional uint32 generation = 57;
+	optional uint32 previous_outfit_type = 58;
+	optional uint32 previous_outfit_index = 59;
+	optional uint32 extended_species = 60;
+	optional uint32 sim_lod = 61;
+	optional uint64 custom_texture = 62;
+	optional .EA.Sims4.Persistence.PeltLayerDataList pelt_layers = 63;
+	optional string breed_name = 64;
+	optional uint32 breed_name_key = 65;
+	optional bool age_progress_randomized = 66;
+	optional float skin_tone_val_shift = 67 [default = 0];
+	optional fixed64 fiance = 68;
+	optional .EA.Sims4.SimPronounList pronouns = 69;
+	optional bool fix_traits_knowledge = 70;
+	optional bool needs_age_progress_randomized = 71;
+	optional .EA.Sims4.Persistence.SteadySimIdList steadies = 72;
+	optional uint32 ghost_base_color = 73;
+	optional uint32 ghost_edge_color = 74;
+}
+
+message SimList {
+	repeated .EA.Sims4.Persistence.SimData sims = 1;
+}
+
+message RewardPartData {
+	optional uint64 part_id = 1;
+	optional bool is_new_reward = 2;
+}
+
+message RewardPartList {
+	repeated .EA.Sims4.Persistence.RewardPartData reward_parts = 1;
+}
+
+message HouseholdDataDescOnly {
+	required fixed64 household_id = 2;
+	optional string name = 3;
+	optional .EA.Sims4.Persistence.ScenarioDataDescOnly scenario_data = 33;
+}
+
+message SimRolePair {
+	optional uint64 sim_id = 1;
+	optional uint64 role_id = 2;
+}
+
+message ScenarioDataDescOnly {
+	optional uint64 scenario_id = 1;
+}
+
+message ScenarioData {
+	optional uint64 scenario_id = 1;
+	repeated .EA.Sims4.Persistence.SimRolePair sim_role_pairs = 2;
+	optional uint64 instance_id = 3;
+	optional uint32 scenario_entry_method = 4;
+}
+
+message HouseholdData {
+	optional fixed64 account_id = 1;
+	required fixed64 household_id = 2;
+	optional string name = 3;
+	optional fixed64 home_zone = 4;
+	optional uint64 money = 5;
+	optional .EA.Sims4.Persistence.ObjectList inventory = 6;
+	optional fixed64 last_played_sim_id = 9;
+	optional uint64 creation_time = 10;
+	optional .EA.Sims4.IdList sims = 11;
+	optional .EA.Sims4.IdList owned_lots = 12;
+	optional uint32 instanced_object_count = 13;
+	optional uint32 revision = 15;
+	optional .EA.Sims4.Persistence.GameplayHouseholdData gameplay_data = 16;
+	repeated uint64 cas_inventory = 17;
+	optional string description = 18;
+	optional uint64 last_modified_time = 19;
+	optional fixed64 creator_id = 20;
+	optional string creator_name = 21;
+	optional bytes creator_uuid = 22;
+	optional fixed64 modifier_id = 23;
+	optional string modifier_name = 24;
+	optional .EA.Sims4.Persistence.RewardPartList reward_inventory = 25;
+	optional bool hidden = 26;
+	optional bool cheats_enabled = 27;
+	optional bool needs_welcome_wagon = 28;
+	optional uint64 premade_household_id = 29;
+	optional .EA.Sims4.IdList pending_urnstones = 30;
+	optional bool is_unplayed = 14;
+	optional bool is_player = 31;
+	optional fixed64 premade_household_template_id = 32;
+	optional .EA.Sims4.Persistence.ScenarioData scenario_data = 33;
+	optional .EA.Sims4.Persistence.StoryProgressionRuleSet story_progression_rule_set = 34;
+	optional bool dependent = 35;
+}
+
+message HouseholdAccountPair {
+	required fixed64 nucleus_id = 1;
+	required string persona_name = 2;
+	required uint64 household_id = 3;
+	optional string household_name = 4;
+	optional bool is_npc = 5;
+}
+
+message LotTraitUpdateInfo {
+	repeated fixed64 lot_traits = 1;
+	optional .EA.Sims4.Persistence.LotOwnerInfo lot_owner_info = 2;
+}
+
+message SubVenueInfo {
+	optional fixed64 sub_venue_key = 1;
+	optional bool sub_venue_eligible = 2;
+	repeated fixed64 sub_venue_lot_traits = 3;
+}
+
+message LotOwnerInfo {
+	required uint64 lot_description_id = 1;
+	optional fixed64 zone_instance_id = 2;
+	optional string lot_name = 3;
+	repeated .EA.Sims4.Persistence.HouseholdAccountPair lot_owner = 4;
+	optional uint32 lot_template_id = 5;
+	optional fixed64 venue_key = 7;
+	optional bool venue_eligible = 8;
+	optional string lot_description = 9;
+	optional int32 venue_tier = 10 [default = -1];
+	optional .EA.Sims4.Persistence.EcoFootprintStateType eco_footprint_state = 11 [default = NEUTRAL];
+	repeated .EA.Sims4.Persistence.SubVenueInfo sub_venue_infos = 12;
+}
+
+message TravelGroupData {
+	enum GroupType {
+		GROUPTYPE_VACATION = 0;
+		GROUPTYPE_STAYOVER = 1;
+	}
+	optional fixed64 travel_group_id = 1;
+	repeated .EA.Sims4.HouseholdSimIds household_sim_ids = 2;
+	optional fixed64 zone_id = 3;
+	optional bool played = 4;
+	optional uint64 create_time = 5;
+	optional uint64 end_time = 6;
+	optional .EA.Sims4.Persistence.ObjectPreferenceTracker object_preference_tracker = 7;
+	optional .EA.Sims4.Persistence.TravelGroupData.GroupType group_type = 8;
+	optional uint64 situation_id = 9;
+	repeated fixed64 claimed_object_ids = 10;
+}
+
+message TravelGroupList {
+	repeated .EA.Sims4.Persistence.TravelGroupData travel_groups = 1;
+}
+
+message ObjectCleanUpData {
+	optional fixed64 zone_id = 1;
+	optional fixed64 world_id = 2;
+	optional .EA.Sims4.Persistence.ObjectData object_data = 3;
+}
+
+message GameplayDestinationCleanUpData {
+	optional fixed64 household_id = 1;
+	optional fixed64 travel_group_id = 2;
+	repeated .EA.Sims4.Persistence.ObjectCleanUpData object_clean_up_data_list = 3;
+}
+
+message StreetInfoData {
+	optional fixed64 world_id = 1;
+	repeated uint32 map_overlays = 2;
+	optional .EA.Sims4.Persistence.EcoFootprintStateType eco_footprint_state = 3 [default = NEUTRAL];
+	optional float normalized_eco_footprint_state_progress = 4;
+	optional float eco_footprint_delta = 5;
+}
+
+message NeighborhoodData {
+	optional fixed64 neighborhood_id = 1;
+	optional fixed64 owner_id = 2;
+	optional string name = 3;
+	optional uint64 region_id = 4;
+	repeated .EA.Sims4.Persistence.LotOwnerInfo lots = 5;
+	optional uint32 permissions = 6;
+	repeated .EA.Sims4.Persistence.HouseholdAccountPair households = 7;
+	repeated .EA.Sims4.Persistence.HouseholdAccountPair npc_households = 8;
+	optional .EA.Sims4.Persistence.GameplayNeighborhoodData gameplay_data = 9;
+	optional string description = 10;
+	optional uint32 bedroom_count = 11;
+	optional uint32 bathroom_count = 12;
+	repeated .EA.Sims4.Persistence.StreetInfoData street_data = 13;
+}
+
+message NeighborhoodDataMessage {
+	repeated .EA.Sims4.Persistence.NeighborhoodData neighborhoods = 1;
+	repeated .EA.Sims4.Persistence.TravelGroupData travel_groups = 2;
+	repeated uint64 uninstalled_region_ids = 3;
+}
+
+message AccountSettingsData {
+	required string data = 1;
+}
+
+message GameplayData {
+	repeated .EA.Sims4.Persistence.PremadeLotStatus premade_lot_status = 1;
+	optional uint32 daily_sim_info_creation_count = 2;
+}
+
+message ErrorFeedback {
+	required .EA.Sims4.Persistence.ActionFailureCodes failure_code = 1 [default = AFC_NONE];
+	optional string element_name = 2;
+	optional string function = 3;
+	optional string filename = 4;
+	optional uint32 linenumber = 5;
+	optional uint32 last_error = 6;
+	optional uint32 system_error_code = 7;
+}
+
+message SourceFunctionFileLine {
+	optional string function = 1;
+	optional string filename = 2;
+	optional uint32 linenumber = 3;
+}
+
+message FeedbackContext {
+	required uint32 action_response_code = 1;
+	repeated .EA.Sims4.Persistence.ErrorFeedback error_list = 2;
+	optional .EA.Sims4.Persistence.PersistenceActions source_action = 3;
+	repeated .EA.Sims4.Persistence.SourceFunctionFileLine source_lines = 4;
+}
+
+message SaveGameSlotMetaData {
+	optional uint32 slot_id = 1;
+	optional string slot_name = 2;
+	optional bool force_override = 3;
+	optional bool include_backups = 4;
+	optional uint64 timestamp = 5;
+	optional string last_household_name = 6;
+	optional bool isValid = 7;
+	optional int32 scratch_id = 8;
+	optional int32 slot_version = 9;
+	optional bool incompatible = 10;
+	repeated uint32 required_pack_ids = 11;
+	repeated uint32 cds_patch_base_changelists = 12;
+	optional bool cds_content_patch_mounted = 13;
+	repeated uint64 scenario_ids = 14;
+}
+
+message SaveGameSlotList {
+	repeated .EA.Sims4.Persistence.SaveGameSlotMetaData slots = 1;
+	optional bool allow_incompatible = 2;
+}
+
+message PlayerCustomColorList {
+	required .EA.Sims4.Network.ResourceKey part_id = 1;
+	repeated uint64 color_shifts = 2;
+}
+
+message PlayerCustomColors {
+	repeated .EA.Sims4.Persistence.PlayerCustomColorList color_mapping = 1;
+}
+
+message GigObjectInfo {
+	required uint64 obj_id = 1;
+	required uint64 obj_def = 2;
+}
+
+message GigTagCount {
+	required uint64 tag_id = 1;
+	required int32 tag_count = 2;
+}
+
+message GigObjectsTrackingData {
+	required uint64 zone_id = 1;
+	repeated .EA.Sims4.Persistence.GigTagCount tag_counts = 3;
+	optional int32 tile_count = 4;
+	repeated uint32 block_ids = 5;
+	repeated .EA.Sims4.Persistence.GigObjectInfo objects = 6;
+	required int32 max_level = 7;
+	required int32 min_level = 8;
+}
+
+message GigRestrictionsData {
+	required uint64 zone_id = 1;
+	required bool level_restricted = 2;
+	optional int32 level_limit = 3;
+	optional int32 tile_limit = 4 [default = -1];
+}
+
+message SaveGameData {
+	optional uint32 guid = 1;
+	optional .EA.Sims4.Persistence.SaveSlotData save_slot = 2;
+	optional .EA.Sims4.Persistence.AccountData account = 3;
+	repeated .EA.Sims4.Persistence.NeighborhoodData neighborhoods = 4;
+	repeated .EA.Sims4.Persistence.HouseholdData households = 5;
+	repeated .EA.Sims4.Persistence.SimData sims = 6;
+	repeated .EA.Sims4.Persistence.ZoneData zones = 7;
+	repeated .EA.Sims4.Persistence.OpenStreetsData streets = 8;
+	repeated .EA.Sims4.Persistence.TravelGroupData travel_groups = 9;
+	repeated uint64 uninstalled_region_ids = 10;
+	optional .EA.Sims4.Persistence.ObjectFallbackDataList object_fallbacks = 11;
+	repeated .EA.Sims4.Persistence.GameplayDestinationCleanUpData destination_clean_up_data = 12;
+	optional .EA.Sims4.Persistence.GameplayData gameplay_data = 14;
+	repeated .EA.Sims4.Persistence.MannequinSimData mannequins = 15;
+	optional .EA.Sims4.Persistence.SimRelationshipGraphData relgraph = 16;
+	repeated fixed64 tutorial_tips = 17;
+	repeated uint64 sims_removed_from_travel_groups = 18;
+	optional .EA.Sims4.Persistence.PlayerCustomColors custom_colors = 19;
+	repeated .EA.Sims4.Persistence.GigObjectsTrackingData gig_start_objects_tracking_data = 20;
+	repeated .EA.Sims4.Persistence.GigObjectsTrackingData gig_end_objects_tracking_data = 21;
+	repeated .EA.Sims4.Persistence.GigRestrictionsData gig_restrictions_data = 22;
+	optional .EA.Sims4.Persistence.StoryProgressionRuleSet protected_households_story_progression_rule_set = 23;
+	optional .EA.Sims4.Persistence.StoryProgressionRuleSet unprotected_households_story_progression_rule_set = 24;
+}
+
+message SaveGameDataDescOnly {
+	optional uint32 guid = 1;
+	optional .EA.Sims4.Persistence.SaveSlotDataDescOnly save_slot = 2;
+	repeated .EA.Sims4.Persistence.HouseholdDataDescOnly households = 5;
+}
+
+message GenusData {
+	optional uint32 gender = 1;
+	optional uint32 age = 2;
+	optional uint32 extended_species = 3;
+	optional uint32 occult_type = 4;
+}
+
+message SimRelationshipEdge {
+	required uint64 target_node_id = 1;
+	optional uint64 edge_data = 2;
+}
+
+message SimRelationshipNode {
+	required uint64 node_id = 1;
+	optional uint64 sim_id = 2;
+	optional .EA.Sims4.Persistence.GenusData genus = 3;
+	optional string first_name = 4;
+	optional string last_name = 5;
+	repeated .EA.Sims4.Persistence.SimRelationshipEdge outgoing_edges = 6;
+}
+
+message SimRelationshipGraphData {
+	repeated .EA.Sims4.Persistence.SimRelationshipNode nodes = 1;
+}
+
+message StoryProgressionRule {
+	optional uint64 rule_id = 1;
+	optional bool enabled = 2;
+}
+
+message StoryProgressionRuleSet {
+	repeated .EA.Sims4.Persistence.StoryProgressionRule rules = 1;
+	optional bool enabled = 2;
+}

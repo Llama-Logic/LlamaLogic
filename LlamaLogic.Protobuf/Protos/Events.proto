@@ -1,0 +1,135 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Consts.proto";
+import "Localization.proto";
+
+
+message EventDefinition {
+	optional string event_id = 1;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData start_date = 2;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData end_date = 3;
+	optional string event_type = 4;
+	optional string name = 5;
+	optional string description = 6;
+	repeated .EA.Sims4.Network.RewardPeriod reward_periods = 7;
+	repeated .EA.Sims4.Network.EventProgressReward progress_rewards = 8;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData grace_period_end_date = 9;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData last_revision_time = 10;
+}
+
+message RewardPeriod {
+	optional uint32 reward_period_id = 1;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData start_date = 2;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData end_date = 3;
+	optional string name = 4;
+	repeated .EA.Sims4.Network.Quest quests = 5;
+	repeated .EA.Sims4.Network.CatchUpPeriod catch_up_periods = 6;
+	optional int64 max_xp = 7;
+}
+
+message Reward {
+	optional int64 reward_id = 1;
+	optional .EA.Sims4.Network.RewardType reward_type = 2;
+	optional int64 amount = 3;
+}
+
+message EventProgressReward {
+	optional uint32 progress_id = 1;
+	optional .EA.Sims4.Network.ProgressType type = 2;
+	optional int64 target_xp = 3;
+	repeated .EA.Sims4.Network.Reward rewards = 4;
+}
+
+message ProgressReward {
+	optional uint32 progress_id = 1;
+	optional bool reward_unlocked = 2;
+	optional bool reward_claimed = 3;
+}
+
+message EventProgressResponse {
+	message EventProgress {
+		optional string event_id = 1;
+		optional int64 event_xp = 2;
+		repeated .EA.Sims4.Network.RewardPeriodProgress progress = 3;
+		repeated .EA.Sims4.Network.ProgressReward progress_rewards = 4;
+	}
+	repeated .EA.Sims4.Network.EventProgressResponse.EventProgress event_progress = 1;
+}
+
+message Quest {
+	optional uint32 quest_id = 1;
+	optional uint32 tuning_instance_id = 2;
+	optional string quest_name = 3;
+	optional int64 xp = 4;
+	repeated .EA.Sims4.Network.QuestObjective objectives = 5;
+	optional bool is_canceled = 6;
+}
+
+message QuestObjective {
+	optional uint32 objective_id = 1;
+	optional int64 xp = 2;
+	optional string name = 3;
+	optional bool is_canceled = 4;
+}
+
+message CatchUpPeriod {
+	optional uint32 catch_up_id = 1;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData start_date = 2;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData end_date = 3;
+	optional float xp_multiplier = 4;
+	optional bool is_enabled = 5;
+}
+
+message ClaimedRewardUpdate {
+	optional string event_id = 1;
+	repeated uint32 claimed_progress_id = 2;
+}
+
+message ServerResponse {
+	optional .EA.Sims4.Network.EventOpResponse response_code = 1;
+	optional string description = 2;
+}
+
+message QuestObjectiveProgress {
+	optional uint32 objective_id = 1;
+	optional int64 xp = 2;
+	optional uint32 catch_up_id = 3;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData completion_time = 4;
+	optional bool completed = 5;
+}
+
+message QuestProgress {
+	optional uint32 quest_id = 1;
+	repeated .EA.Sims4.Network.QuestObjectiveProgress quest_objective_progress = 2;
+	optional int64 xp = 3;
+	optional uint32 catch_up_id = 4;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData completion_time = 5;
+	optional bool completed = 6;
+	optional bool canceled = 7;
+}
+
+message EventProgressUpdate {
+	optional string event_id = 1;
+	repeated .EA.Sims4.Network.RewardPeriodProgress progress = 2;
+	optional int64 event_xp = 3;
+}
+
+message RewardPeriodProgress {
+	optional uint32 reward_period_id = 1;
+	repeated .EA.Sims4.Network.QuestProgress quest_progress = 2;
+}
+
+message PlayerInventoryResponse {
+	repeated .EA.Sims4.Network.Reward rewards = 1;
+}
+
+message EventsControlMessage {
+	required .EA.Sims4.Network.EventsOpTypes opCode = 1;
+	optional uint64 transactionId = 2;
+	optional .EA.Sims4.Network.ServerResponse response = 3;
+	repeated .EA.Sims4.Network.EventDefinition event_definition = 4;
+	optional .EA.Sims4.Network.EventProgressUpdate event_progress_update = 5;
+	optional .EA.Sims4.Network.ClaimedRewardUpdate claimed_reward_update = 6;
+	optional .EA.Sims4.Network.EventProgressResponse event_progress_response = 7;
+	optional .EA.Sims4.Network.PlayerInventoryResponse player_inventory_response = 8;
+}

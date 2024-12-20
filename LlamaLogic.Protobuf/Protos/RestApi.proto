@@ -1,0 +1,16 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Consts.proto";
+import "Social.proto";
+import "Exchange.proto";
+
+
+message RestControlMessage {
+	optional uint64 nucleus_id = 1;
+	optional uint64 ref = 2;
+	optional string persona = 3;
+	optional .EA.Sims4.Network.SocialControlMessage social = 4;
+	optional .EA.Sims4.Network.ExchangeControlMessage exchange = 5;
+	optional .EA.Sims4.Network.RestApiErrorMessages error_message = 6;
+	optional string access_token = 7;
+}

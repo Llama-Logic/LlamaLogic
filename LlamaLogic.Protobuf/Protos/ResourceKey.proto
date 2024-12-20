@@ -1,0 +1,13 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+
+
+message ResourceKey {
+	optional uint32 type = 1;
+	optional uint32 group = 2;
+	optional uint64 instance = 3;
+}
+
+message ResourceKeyList {
+	repeated .EA.Sims4.Network.ResourceKey resource_keys = 1;
+}

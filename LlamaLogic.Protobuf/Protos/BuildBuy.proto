@@ -1,0 +1,103 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Math.proto";
+import "Venue.proto";
+
+
+message LotId {
+	required uint32 id = 1;
+	optional uint64 household = 2;
+}
+
+message LotOwnershipList {
+	required uint64 account_id = 1;
+	repeated uint32 lot_id = 2;
+}
+
+message LotDescription {
+	required uint32 id = 1;
+	required .EA.Sims4.Network.Vector3 position = 2;
+	required float rotation = 3;
+	required int32 tilesize_x = 4;
+	required int32 tilesize_z = 5;
+	required uint64 owner_family_id = 6;
+	required int32 min_level = 7;
+	required int32 max_level = 8;
+	required bool playableLot = 9;
+	optional int32 lot_price = 10;
+	optional uint64 blueprint_id = 11;
+	optional uint32 active_plex = 12;
+	optional uint32 building_type = 13;
+}
+
+message BBOpFailed {
+	required uint32 error_code = 1;
+	required uint32 op_id = 2;
+}
+
+message BBUndoRedoState {
+	required bool canUndo = 1;
+	required bool canRedo = 2;
+}
+
+message ApplyBlueprintData {
+	optional bytes blueprint_data = 1;
+	optional bool furnished = 2;
+	optional bool sell_old_furniture = 3;
+	optional uint64 zone_id = 4;
+	optional uint64 blueprint_id = 5;
+	optional int64 delta_funds = 6;
+	optional int32 size_x = 7;
+	optional int32 size_z = 8;
+	optional int32 bedroom_count = 9;
+	optional int32 bathroom_count = 10;
+	optional int32 front_side = 11 [default = 0];
+	optional uint64 region_id = 12;
+	optional bool allow_custom_textures = 13;
+	optional bytes creator_uuid = 14;
+	optional uint64 creator_id = 15;
+	optional string creator_name = 16;
+	optional uint64 modifier_id = 17;
+	optional string modifier_name = 18;
+	optional string zone_name = 19;
+	repeated uint64 lot_traits = 20;
+	optional .EA.Sims4.Network.UniversityHousingConfiguration university_housing_configuration = 21;
+	optional bool keep_venue_type = 22 [default = false];
+}
+
+message PlexRatingMessage {
+	required uint32 plex_id = 1;
+	required int32 size_rating = 2;
+	required int32 amenity_rating = 3;
+	required int32 environment_rating = 4;
+	required uint32 real_bed_count = 5;
+	required uint32 real_toilet_count = 6;
+}
+
+message PlexRatingUpdate {
+	repeated .EA.Sims4.Network.PlexRatingMessage ratings = 1;
+}
+
+message LotValueMessage {
+	required uint32 plex_id = 1;
+	required int32 unfurnished_value = 2;
+	required int32 furnished_value = 3;
+	required int32 architecture_value = 4;
+}
+
+message LotValueUpdate {
+	required uint64 zone_id = 1;
+	repeated .EA.Sims4.Network.LotValueMessage lot_values = 2;
+	optional .EA.Sims4.Network.PlexRatingUpdate plex_rating_update = 3;
+	optional bool update_cache = 4 [default = false];
+}
+
+message SetRentPriceData {
+	optional uint64 zone_id = 1;
+	optional uint64 house_description_id = 2;
+	optional uint32 rent_price = 3;
+}
+
+message InitialRentPriceUpdate {
+	repeated .EA.Sims4.Network.SetRentPriceData rent_prices = 1;
+}

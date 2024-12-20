@@ -1,0 +1,13 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+
+
+message ListOfEntitlements {
+	message Entitlement {
+		required uint64 Id = 1;
+		required uint32 UseCount = 2;
+		required uint64 entitlementId = 3;
+		required uint32 entitlementVersion = 4;
+	}
+	repeated .EA.Sims4.Network.ListOfEntitlements.Entitlement Entitlements = 1;
+}

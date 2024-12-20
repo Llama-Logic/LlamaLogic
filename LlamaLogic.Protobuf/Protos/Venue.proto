@@ -1,0 +1,41 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "SimObjectAttributes.proto";
+
+
+message CareerOutfit {
+	required uint32 outfit_index = 1 [default = 0];
+	optional .EA.Sims4.Persistence.MannequinSimData mannequin = 2;
+}
+
+message VetClinicConfiguration {
+	enum VetClinicOutfitType {
+		MALE_EMPLOYEE = 0;
+		FEMALE_EMPLOYEE = 1;
+	}
+	repeated .EA.Sims4.Network.CareerOutfit outfits = 1;
+}
+
+message UniversityHousingConfiguration {
+	optional uint64 university_id = 1;
+	optional uint32 gender = 2;
+	optional uint64 organization_id = 3;
+	optional uint32 roommate_bed_count = 4;
+	optional uint64 club_id = 6;
+}
+
+message VenueUpdateRequest {
+	optional fixed64 venue_key = 1;
+	optional uint32 lot_id = 2;
+	optional uint32 world_id = 3;
+}
+
+message VenueOwnerUpdateCompleted {
+	optional uint32 lot_id = 1;
+	optional uint64 previous_owner_id = 2;
+}
+
+message VenueUpdateOwnerRequest {
+	optional uint64 zone_id = 1;
+	optional uint64 new_owner_id = 2;
+}

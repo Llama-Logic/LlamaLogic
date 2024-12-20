@@ -1,0 +1,44 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Math.proto";
+
+enum VFXTransitionType {
+	SOFT_TRANSITION = 0;
+	HARD_TRANSITION = 1;
+}
+
+message VFXStart {
+	enum VFXStartTransitionType {
+		SOFT_TRANSITION = 0;
+		HARD_TRANSITION = 1;
+	}
+	optional uint64 object_id = 1;
+	required string effect_name = 2;
+	required uint64 actor_id = 3;
+	required uint32 joint_name_hash = 4;
+	optional uint64 target_actor_id = 5;
+	optional uint32 target_joint_name_hash = 6;
+	optional bool mirror_effect = 7 [default = false];
+	optional bool auto_on_effect = 8 [default = false];
+	optional .EA.Sims4.Network.VFXStart.VFXStartTransitionType transition_type = 9;
+	optional .EA.Sims4.Network.Transform transform = 10;
+	optional .EA.Sims4.Network.Vector3 target_joint_offset = 11;
+	optional uint32 callback_event_id = 12;
+}
+
+message VFXStop {
+	enum VFXStopTransitionType {
+		SOFT_TRANSITION = 0;
+		HARD_TRANSITION = 1;
+	}
+	required uint64 object_id = 1;
+	required uint64 actor_id = 2;
+	optional .EA.Sims4.Network.VFXStop.VFXStopTransitionType transition_type = 3;
+}
+
+message VFXSetState {
+	required uint64 object_id = 1;
+	required uint64 actor_id = 2;
+	required int32 state_index = 3;
+	optional .EA.Sims4.Network.VFXTransitionType transition_type = 4 [default = HARD_TRANSITION];
+}

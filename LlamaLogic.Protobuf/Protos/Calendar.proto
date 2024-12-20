@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+message CalendarFavoriteData {
+	optional fixed64 household_id = 1;
+	repeated fixed64 favorited_event_ids = 2;
+}
+
+message PersistableCalendarService {
+	repeated .CalendarFavoriteData favorite_data = 1;
+}

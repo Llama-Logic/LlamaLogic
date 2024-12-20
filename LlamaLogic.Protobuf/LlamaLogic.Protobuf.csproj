@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\Common\LibraryProject.props" />
+
+    <PropertyGroup>
+        <Product>LlamaLogic.Protobuf</Product>
+        <Version>1.111.102</Version>
+        <Description>Provides Protobuf definitions and generated C# classes for Sims 4 resource serialization and deserialization.</Description>
+        <PackageIcon>NuGet.png</PackageIcon>
+        <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.29.2" />
+        <PackageReference Include="Grpc.Tools" Version="2.68.1" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="Protos\**\*.proto" AdditionalImportDirs="Protos" GrpcServices="None" CompileOutputs="true" />
+    </ItemGroup>
+
+</Project>

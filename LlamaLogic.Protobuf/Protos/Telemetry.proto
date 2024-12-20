@@ -1,0 +1,31 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+
+
+message TelemetryAttribute {
+	enum Type {
+		NONE = 0;
+		BOOL = 1;
+		INT32 = 2;
+		UINT32 = 3;
+		FLOAT = 4;
+		STRING = 5;
+		UINT64 = 6;
+	}
+	required uint32 name = 1;
+	required .EA.Sims4.Network.TelemetryAttribute.Type type = 2;
+	optional bool boolval = 3;
+	optional int32 int32val = 4;
+	optional uint32 uint32val = 5;
+	optional float floatval = 6;
+	optional string stringval = 7;
+	optional uint64 uint64val = 8;
+}
+
+message TelemetryMessage {
+	required uint32 module = 1;
+	required uint32 group = 2;
+	required uint32 name = 3;
+	required fixed32 timestamp = 4;
+	repeated .EA.Sims4.Network.TelemetryAttribute attrs = 5;
+}

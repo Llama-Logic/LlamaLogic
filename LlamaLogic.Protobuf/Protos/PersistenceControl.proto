@@ -1,0 +1,20 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Consts.proto";
+import "FileSerialization.proto";
+
+
+message PersistenceControlMessageData {
+	repeated .EA.Sims4.Persistence.SaveGameSlotMetaData slot_meta_data = 1;
+	optional .EA.Sims4.Persistence.SaveGameData save_data = 2;
+	repeated .EA.Sims4.Persistence.ZoneObjectData zone_object_data = 3;
+	optional .EA.Sims4.Persistence.FeedbackContext errors = 4;
+	repeated .EA.Sims4.Persistence.ZoneObjectDataScratchPair scratch_path = 5;
+}
+
+message PersistenceControlMessage {
+	optional uint64 callback = 1;
+	optional uint64 userdata = 2;
+	optional .EA.Sims4.Network.PersistenceOpTypes opcode = 4;
+	optional .EA.Sims4.Network.PersistenceControlMessageData data = 5;
+}

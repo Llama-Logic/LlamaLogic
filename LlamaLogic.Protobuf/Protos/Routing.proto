@@ -1,0 +1,211 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Math.proto";
+
+
+message SurfaceId {
+	optional uint64 primary_id = 1 [default = 0];
+	optional int32 secondary_id = 2 [default = 0];
+	optional uint32 type = 3 [default = 1];
+}
+
+message RouteNodeData {
+	enum DataType {
+		DATA_STAIRS = 1;
+		DATA_ANIMATE = 2;
+		DATA_LADDER = 3;
+	}
+	required .EA.Sims4.Network.RouteNodeData.DataType type = 1;
+	optional bytes data = 2;
+	optional bool do_stop_transition = 3 [default = false];
+	optional bool do_start_transition = 4 [default = false];
+}
+
+message RouteStairsData {
+	required bool traversing_up = 1;
+	required uint32 stair_count = 2;
+	optional uint32 walkstyle = 3 [default = 0];
+	optional uint32 stairs_per_cycle = 4 [default = 1];
+}
+
+message RouteLadderData {
+	enum LadderType {
+		LADDER_OCEAN = 0;
+		LADDER_BUILD = 1;
+	}
+	enum PortalAlignment {
+		PA_FRONT = 0;
+		PA_LEFT = 1;
+		PA_RIGHT = 2;
+	}
+	required bool traversing_up = 1;
+	required uint32 step_count = 2;
+	optional .EA.Sims4.Network.RouteLadderData.LadderType ladder_type = 3 [default = LADDER_OCEAN];
+	optional .EA.Sims4.Network.RouteLadderData.PortalAlignment portal_alignment = 4 [default = PA_FRONT];
+}
+
+message RouteAnimateData {
+	required bytes arb_data = 1;
+}
+
+message RouteNode {
+	required .EA.Sims4.Network.Transform location = 1;
+	required float time = 2;
+	optional uint32 action = 3 [default = 0];
+	optional uint32 walkstyle = 4 [default = 0];
+	optional .EA.Sims4.Network.SurfaceId routing_surface_id = 5;
+	optional uint64 portal_object_id = 6 [default = 0];
+	optional .EA.Sims4.Network.RouteNodeData node_data = 7;
+	optional uint64 surface_object_id = 8 [default = 0];
+	optional bool is_procedural = 9 [default = false];
+}
+
+message Location {
+	optional .EA.Sims4.Network.Transform transform = 1;
+	optional int32 level = 2;
+	optional uint64 parent_id = 3;
+	optional uint32 joint_name_hash = 4;
+	optional uint32 slot_hash = 5;
+	optional .EA.Sims4.Network.SurfaceId surface_id = 6;
+}
+
+message GoalPoint {
+	required .EA.Sims4.Network.Transform location = 1;
+	optional float weight = 2 [default = 1];
+	optional float radius = 3 [default = 0.123];
+}
+
+message RoutePoint {
+	required .EA.Sims4.Network.Vector2 pos = 1;
+}
+
+message RoutePolygon {
+	repeated .EA.Sims4.Network.RoutePoint points = 1;
+	optional .EA.Sims4.Network.SurfaceId routing_surface_id = 2;
+}
+
+message RoutePolygons {
+	repeated .EA.Sims4.Network.RoutePolygon polygons = 1;
+}
+
+message RouteEvent {
+	enum Type {
+		PORTAL_ENTER = 0;
+		PORTAL_EXIT = 1;
+		PORTAL_CHANGE_OPACITY = 2;
+		CONTROLLER_EVENT = 3;
+		BARRIER_EVENT = 4;
+	}
+	optional uint64 id = 1 [default = 0];
+	required .EA.Sims4.Network.RouteEvent.Type type = 2;
+	required float time = 3;
+	optional float duration = 4 [default = 0];
+	optional uint64 tag = 5 [default = 0];
+	optional bool skippable = 6 [default = true];
+	optional bytes data = 7;
+}
+
+message PortalEnterEvent {
+	required uint64 portal_object_id = 1;
+	optional bool entering_front = 2 [default = true];
+}
+
+message PortalExitEvent {
+	required uint64 portal_object_id = 1;
+}
+
+message PortalChangeOpacityEvent {
+	optional fixed64 object_id = 1;
+	optional float opacity = 2;
+	optional float duration = 3;
+}
+
+message ControllerEvent {
+	enum DataType {
+		UINT32 = 0;
+		FLOAT = 1;
+		ARB = 2;
+	}
+	required uint64 object_id = 1;
+	required uint32 event_id = 2;
+	required uint32 data_type = 3;
+	optional bytes data = 4;
+}
+
+message ControllerEventUInt32 {
+	optional uint32 data = 1 [default = 0];
+}
+
+message ControllerEventFloat {
+	optional float data = 1 [default = 0];
+}
+
+message ControllerEventARB {
+	required bytes data = 1;
+}
+
+message NoiseParameters {
+	optional uint32 octave_count = 1;
+	optional float frequency = 2;
+	optional float max_x_distance = 3;
+	optional float max_z_distance = 4;
+}
+
+message SpringParameters {
+	optional float tension = 1;
+	optional float damping = 2;
+	optional float velocity_scale = 3;
+}
+
+message FishtailParameters {
+	optional .EA.Sims4.Network.NoiseParameters noise_behavior = 1;
+	optional .EA.Sims4.Network.SpringParameters spring_behavior = 2;
+}
+
+message AttachmentInfo {
+	enum RoutingFormationFollowType {
+		NODE_TYPE_FOLLOW_LEADER = 0;
+		NODE_TYPE_CHAIN = 1;
+		NODE_TYPE_FISHTAIL = 2;
+	}
+	optional .EA.Sims4.Network.Vector2 parent_offset = 1;
+	optional .EA.Sims4.Network.Vector2 offset = 2;
+	optional float angle_constraint = 3 [default = 3.1415];
+	optional float radius = 4 [default = 0.25];
+	optional uint32 flags = 5 [default = 0];
+	optional .EA.Sims4.Network.AttachmentInfo.RoutingFormationFollowType type = 6 [default = NODE_TYPE_FOLLOW_LEADER];
+	optional .EA.Sims4.Network.FishtailParameters fishtail_behavior = 7;
+}
+
+message WalkstyleOverride {
+	optional uint32 from_walkstyle = 1 [default = 0];
+	optional uint32 to_walkstyle = 2 [default = 0];
+}
+
+message SlaveData {
+	enum Type {
+		SLAVE_NONE = 0;
+		SLAVE_FOLLOW_ATTACHMENT = 1;
+		SLAVE_PAIRED_CHILD = 2;
+	}
+	required uint64 id = 1;
+	optional .EA.Sims4.Network.SlaveData.Type type = 2 [default = SLAVE_NONE];
+	repeated .EA.Sims4.Network.AttachmentInfo offset = 3;
+	repeated .EA.Sims4.Network.WalkstyleOverride walkstyle_overrides = 4;
+	repeated .EA.Sims4.Network.SlaveData slaves = 10;
+	optional .EA.Sims4.Network.Transform final_location_override = 11;
+}
+
+message Route {
+	required uint64 id = 1;
+	repeated .EA.Sims4.Network.RouteNode nodes = 2;
+	optional float time = 3;
+	optional uint64 absolute_time_ms = 4;
+	repeated .EA.Sims4.Network.GoalPoint goals = 5;
+	repeated .EA.Sims4.Network.RouteEvent events = 6;
+	repeated .EA.Sims4.Network.RoutePolygon bounds_polygons = 7;
+	optional uint32 track = 8 [default = 10000];
+	repeated .EA.Sims4.Network.RoutePolygons obstacle_polygons = 9;
+	repeated .EA.Sims4.Network.SlaveData slaves = 10;
+	optional uint32 mask = 11 [default = 4294967295];
+}

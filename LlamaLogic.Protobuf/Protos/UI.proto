@@ -1,0 +1,947 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Consts.proto";
+import "Sparse.proto";
+import "ResourceKey.proto";
+import "Localization.proto";
+import "Math.proto";
+
+enum BookCategoryDisplayType {
+	DEFAULT = 0;
+	WITCH_PRACTICAL_SPELL = 1;
+	WITCH_MISCHIEF_SPELL = 2;
+	WITCH_UNTAMED_SPELL = 3;
+	WITCH_POTION = 4;
+}
+
+message UiValue {
+	optional int32 raw_int = 1;
+	optional float raw_float = 2;
+	optional string raw_string = 3;
+	optional bool raw_bool = 4;
+	optional .EA.Sims4.Network.ResourceKey resource_key = 5;
+}
+
+message ObjectTimer {
+	required uint64 time = 1;
+	required .EA.Sims4.Network.LocalizedString text = 2;
+	optional .EA.Sims4.Network.LocalizedString object_name = 3;
+	required .EA.Sims4.Network.LocalizedString finished_text = 4;
+	required bool must_update_timer = 5;
+	required uint64 last_updated_time = 6;
+	optional .EA.Sims4.Network.LocalizedString timer_header = 7;
+}
+
+message UiObjectMetadata {
+	enum HoverTipStyle {
+		HOVER_TIP_DISABLED = 0;
+		HOVER_TIP_DEFAULT = 1;
+		HOVER_TIP_CONSUMABLE_CRAFTABLE = 2;
+		HOVER_TIP_GARDENING = 3;
+		HOVER_TIP_COLLECTION = 4;
+		HOVER_TIP_CUSTOM_OBJECT = 5;
+		HOVER_TIP_ICON_TITLE_DESCRIPTION = 6;
+		HOVER_TIP_OBJECT_RELATIONSHIP = 7;
+		HOVER_TIP_HEIRLOOM_OBJECT = 8;
+	}
+	optional .EA.Sims4.Network.SparseMessageData sparse_data = 1;
+	optional .EA.Sims4.Network.UiObjectMetadata.HoverTipStyle hover_tip = 2 [default = HOVER_TIP_DISABLED];
+	optional .EA.Sims4.Network.UiObjectMetadata.HoverTipStyle debug_hover_tip = 3 [default = HOVER_TIP_DISABLED];
+	optional string custom_name = 4;
+	optional .EA.Sims4.Network.LocalizedString recipe_name = 5;
+	optional fixed64 crafter_sim_id = 6;
+	repeated .EA.Sims4.Network.LocalizedString buff_effects = 7;
+	optional .EA.Sims4.Network.LocalizedString recipe_description = 8;
+	optional uint32 quality = 9;
+	optional uint32 servings = 10;
+	optional uint64 spoiled_time = 11;
+	optional .EA.Sims4.Network.LocalizedString percentage_left = 12;
+	optional .EA.Sims4.Network.LocalizedString style_name = 13;
+	optional uint32 simoleon_value = 14;
+	optional .EA.Sims4.Network.ResourceKey main_icon = 15;
+	repeated .EA.Sims4.Network.ResourceKey sub_icons = 16;
+	optional .EA.Sims4.Network.LocalizedString quality_description = 17;
+	optional fixed32 quality_color = 18;
+	repeated .EA.Sims4.Network.LocalizedString object_info_names = 19;
+	repeated .EA.Sims4.Network.LocalizedString object_info_descriptions = 20;
+	optional string inscription = 21;
+	optional string custom_description = 22;
+	optional .EA.Sims4.Network.LocalizedString header = 23;
+	optional .EA.Sims4.Network.LocalizedString subtext = 24;
+	optional .EA.Sims4.Network.LocalizedString crafted_by_text = 25;
+	optional .EA.Sims4.Network.LocalizedString stolen_from_text = 26;
+	optional .EA.Sims4.Network.LocalizedString rarity_text = 27;
+	optional .EA.Sims4.Network.LocalizedString simoleon_text = 28;
+	optional .EA.Sims4.Network.LocalizedString relic_description = 29;
+	optional float evolution_progress = 30;
+	optional .EA.Sims4.Network.LocalizedString season_text = 31;
+	optional .EA.Sims4.Network.LocalizedString spoiled_time_text = 32;
+	optional uint64 rel_override_id = 33;
+	repeated .EA.Sims4.Network.IconInfo icon_infos = 34;
+	optional .EA.Sims4.Network.LocalizedString simoleon_custom_text = 35;
+	optional uint32 creature_type = 36;
+	optional .EA.Sims4.Network.LocalizedString header_subtext = 37;
+	optional .EA.Sims4.Network.LocalizedString header_status = 38;
+	optional uint32 mark_up_value = 39;
+	repeated .EA.Sims4.Network.ObjectTimer object_timers = 40;
+	optional .EA.Sims4.Network.LocalizedString footer_text = 41;
+	optional fixed64 heirloom_sim_id = 42;
+	optional .EA.Sims4.Network.LocalizedString heirloom_title = 43;
+	optional .EA.Sims4.Network.LocalizedString heirloom_owner = 44;
+	optional .EA.Sims4.Network.LocalizedString engraved_message = 45;
+}
+
+message HovertipCreated {
+	optional bool is_from_ui = 1;
+	optional bool is_success = 2;
+}
+
+message BoundObjectUpdate {
+	required uint64 object_id = 1;
+	optional string bone_name = 2;
+	optional float world_offset_x = 3;
+	optional float world_offset_y = 4;
+	optional float world_offset_z = 5;
+}
+
+message IconInfo {
+	enum CanvasStateType {
+		PAINTING_CROSSSTITCH = 0;
+		PUZZLE = 1;
+	}
+	optional .EA.Sims4.Network.LocalizedString name = 1;
+	required .EA.Sims4.Network.ResourceKey icon = 2;
+	optional .EA.Sims4.Network.LocalizedString desc = 3;
+	optional .EA.Sims4.Network.ManagerObjectId icon_object = 4;
+	optional .EA.Sims4.Network.DefinitionGeoPair icon_object_def = 5;
+	optional fixed64 texture_id = 6;
+	optional fixed64 object_instance_id = 7;
+	optional fixed64 texture_effect = 8;
+	optional uint32 control_id = 9;
+	optional .EA.Sims4.Network.LocalizedString tooltip = 10;
+	optional .EA.Sims4.Network.IconInfo.CanvasStateType canvas_state_type = 11;
+	optional .EA.Sims4.Network.LocalizedString location_desc = 12;
+	repeated .EA.Sims4.Network.Vector3 multicolor = 13;
+	optional .EA.Sims4.Network.LocalizedString main_objective = 14;
+}
+
+message InventoryUpdate {
+	required uint64 sim_id = 1;
+	required uint32 size = 2;
+}
+
+message InventoryItemSortData {
+	optional float value = 1;
+	optional uint32 type = 2;
+}
+
+message DynamicInventoryItemData {
+	optional uint32 value = 1;
+	optional bool locked = 2;
+	optional bool in_use = 3;
+	optional int32 crafting_quality = 4;
+	optional uint32 count = 5;
+	optional uint64 new_object_id = 6;
+	optional bool is_new = 7;
+	optional uint32 sort_order = 8;
+	optional .EA.Sims4.Network.IconInfo icon_info = 9;
+	optional string custom_name = 10;
+	optional .EA.Sims4.Network.LocalizedString recipe_name = 11;
+	repeated .EA.Sims4.Network.InventoryItemSortData sort_data = 12;
+	optional bool is_favorite = 13;
+	repeated uint32 dynamic_tags = 14;
+	optional string visual_state = 15;
+	optional string visual_icon_state = 16;
+	optional bool is_sell_disabled_from_component = 17;
+}
+
+message InventoryItemData {
+	required uint64 definition_id = 1;
+	required .EA.Sims4.Network.DynamicInventoryItemData dynamic_data = 2;
+}
+
+message SimInventoryItemUpdate {
+	enum UpdateType {
+		TYPE_ADD = 0;
+		TYPE_UPDATE = 1;
+		TYPE_REMOVE = 2;
+	}
+	required .EA.Sims4.Network.SimInventoryItemUpdate.UpdateType type = 1;
+	required uint64 sim_id = 2;
+	required uint64 object_id = 3;
+	optional .EA.Sims4.Network.InventoryItemData add_data = 4;
+	optional .EA.Sims4.Network.DynamicInventoryItemData update_data = 5;
+	optional uint64 object_inventory_type = 6;
+	optional uint64 stack_id = 7;
+}
+
+message InventoryItemUpdate {
+	enum UpdateType {
+		TYPE_ADD = 0;
+		TYPE_UPDATE = 1;
+		TYPE_REMOVE = 2;
+		TYPE_SET_STACK_OPTION = 3;
+	}
+	enum InventoryType {
+		TYPE_OBJECT = 0;
+		TYPE_SHARED = 1;
+	}
+	required .EA.Sims4.Network.InventoryItemUpdate.UpdateType type = 1;
+	required uint64 inventory_id = 2;
+	required uint64 object_id = 3;
+	optional .EA.Sims4.Network.InventoryItemData add_data = 4;
+	optional .EA.Sims4.Network.DynamicInventoryItemData update_data = 5;
+	required .EA.Sims4.Network.InventoryItemUpdate.InventoryType inventory_type = 6;
+	required uint64 stack_id = 7;
+}
+
+message OpenInventory {
+	optional uint64 object_id = 1;
+	optional .EA.Sims4.Network.InventoryItemUpdate.InventoryType inventory_type = 2;
+	optional uint64 inventory_id = 3;
+	optional bool sim_only = 4;
+}
+
+message OpenInventoryWithPreselectedFilters {
+	optional uint64 object_id = 1;
+	optional .EA.Sims4.Network.InventoryItemUpdate.InventoryType inventory_type = 2;
+	optional uint64 inventory_id = 3;
+	optional uint32 filter_tag = 4;
+}
+
+message CollectibleItemUpdate {
+	enum UpdateType {
+		TYPE_ADD = 0;
+		TYPE_REMOVE = 1;
+		TYPE_DISCOVERY = 2;
+	}
+	required .EA.Sims4.Network.CollectibleItemUpdate.UpdateType type = 1;
+	required uint64 collection_id = 2;
+	optional uint64 household_id = 3;
+	optional uint64 object_id = 4;
+	optional uint64 object_def_id = 5;
+	optional uint64 sim_id = 6;
+	optional uint32 quality = 7;
+	optional .EA.Sims4.Network.IconInfo icon_info = 8;
+}
+
+message IncrementCommunityCollectableCount {
+	optional uint32 count = 1;
+}
+
+message ShowObjectInventory {
+	required .EA.Sims4.Network.LocalizedString name = 1;
+	repeated .EA.Sims4.Network.InventoryItemData items = 2;
+}
+
+message InventoryCountUpdate {
+	message InventoryCount {
+		required uint32 inventory_type = 1;
+		required uint32 count = 2;
+	}
+	repeated .EA.Sims4.Network.InventoryCountUpdate.InventoryCount inventory_counts = 1;
+}
+
+message GameSaveCheatLock {
+	optional uint32 slot_id = 1;
+}
+
+message GameSaveComplete {
+	required uint32 return_status = 1;
+	optional float save_cooldown = 2;
+	optional .EA.Sims4.Network.LocalizedString failure_reason = 3;
+	optional uint32 slot_id = 4;
+}
+
+message GameSaveLockUnlock {
+	required bool is_locked = 1;
+	optional .EA.Sims4.Network.LocalizedString lock_reason = 3;
+}
+
+message UiScreenSlam {
+	enum UiScreenSlamTypes {
+		LEGACY = 0;
+		CUSTOM = 1;
+	}
+	enum UiScreenSlamSize {
+		SMALL = 0;
+		MEDIUM = 1;
+		LARGE = 2;
+		EXTRA_LARGE = 3;
+	}
+	optional UiScreenSlamTypes type = 1;
+	optional .EA.Sims4.Network.LocalizedString name = 2;
+	optional .EA.Sims4.Network.ResourceKey icon = 3;
+	optional UiScreenSlamSize size = 4;
+	optional .EA.Sims4.Network.LocalizedString title = 5;
+	optional uint64 sim_id = 6;
+	optional string ui_key = 7;
+	optional .EA.Sims4.Network.ResourceKey audio_sting = 8;
+}
+
+message LotDisplayInfo {
+	optional string lot_name = 1;
+	optional string household_name = 2;
+	repeated .EA.Sims4.Network.IconInfo icon_infos = 3;
+	repeated .EA.Sims4.Network.LocalizedString lot_challenges = 4;
+}
+
+message HouseholdDisplayInfo {
+	required fixed64 household_id = 1;
+	optional fixed64 lot_id = 2;
+	repeated fixed64 at_home_sim_ids = 3;
+}
+
+message SimRelativeLotLocation {
+	optional fixed64 sim_id = 1;
+	optional bool on_active_lot = 2;
+	optional bool home_zone_active = 3;
+	optional bool is_on_vacation = 4;
+}
+
+message LightColorAndIntensity {
+	optional uint32 red = 1;
+	optional uint32 green = 2;
+	optional uint32 blue = 3;
+	optional float intensity = 4;
+	optional fixed64 target_id = 5;
+	optional uint32 response_id = 6;
+	optional bool checkbox_state = 9;
+	optional uint32 palette = 7;
+	optional uint32 style = 8;
+	optional .EA.Sims4.Network.LocalizedString grid_label = 10;
+	optional .EA.Sims4.Network.LocalizedString slider_label = 11;
+}
+
+message SatisfyTutorialTip {
+	required fixed64 tutorial_tip_id = 1;
+}
+
+message ActiveTutorialTipGroup {
+	enum ActionType {
+		ACTIVATE = 0;
+		DEACTIVATE = 1;
+	}
+	enum ContextType {
+		NONE = 0;
+		GENERAL = 1;
+		GUIDANCE_TIP = 2;
+	}
+	required fixed64 group_id = 1;
+	required .EA.Sims4.Network.ActiveTutorialTipGroup.ActionType action_type = 2 [default = ACTIVATE];
+	required .EA.Sims4.Network.ActiveTutorialTipGroup.ContextType context_type = 3 [default = NONE];
+	optional fixed64 context_id = 4;
+	optional bool result = 5;
+}
+
+message GuidanceTipResult {
+	enum ResponseType {
+		SUCCESS = 0;
+		CANCEL = 1;
+	}
+	required fixed64 item_id = 1;
+	required .EA.Sims4.Network.GuidanceTipResult.ResponseType response = 2;
+}
+
+message ShowMapView {
+	enum MapViewMode {
+		TRAVEL = 0;
+		VACATION = 1;
+		PURCHASE = 2;
+		CHANGE_VENUE = 3;
+	}
+	optional fixed64 actor_sim_id = 1;
+	repeated fixed64 lot_ids_for_travel = 2;
+	optional uint32 dialog_id = 3;
+	repeated fixed64 traveling_sim_ids = 4;
+	optional bool is_vacation = 5;
+	optional .EA.Sims4.Network.ShowMapView.MapViewMode mode = 6 [default = TRAVEL];
+	optional fixed64 purchase_venue_type = 7;
+	repeated fixed64 venue_types_allowed = 8;
+	optional fixed64 target_sim_id = 9;
+}
+
+message ShowPlexView {
+	optional fixed64 actor_sim_id = 1;
+	repeated fixed64 lot_ids_for_travel = 2;
+	optional uint32 dialog_id = 3;
+	repeated fixed64 traveling_sim_ids = 4;
+}
+
+message SimTravelAvailability {
+	optional fixed64 sim_id = 1;
+	optional bool is_active_household = 2;
+	optional fixed64 household_id = 3;
+	optional bool is_at_work = 4;
+	optional fixed64 zone_id = 5;
+	optional uint32 age = 6;
+	optional bool selected_by_default = 7;
+}
+
+message AvailableSimsForTravel {
+	optional fixed64 actor_sim_id = 1;
+	repeated fixed64 sim_ids_for_travel = 2;
+	repeated .EA.Sims4.Network.SimTravelAvailability available_sims = 3;
+}
+
+message ExtendVacation {
+	optional fixed64 travel_group_id = 1;
+	optional fixed64 zone_id = 2;
+	repeated fixed64 sim_ids = 3;
+	optional float days_remaining = 4;
+	optional fixed64 household_description_id = 5;
+	optional string lot_name = 6;
+	optional uint32 lot_daily_cost = 7;
+}
+
+message SimInfoLocationStatus {
+	optional fixed64 sim_id = 1;
+	optional uint32 age = 2;
+	optional bool is_at_home = 3;
+	optional fixed64 zone_id = 4;
+}
+
+message HouseholdLocationStatus {
+	optional fixed64 household_id = 1;
+	optional string household_name = 2;
+	optional fixed64 home_zone_id = 3;
+	repeated .EA.Sims4.Network.SimInfoLocationStatus sim_info_status = 4;
+	optional bool is_played = 5;
+}
+
+message TravelViewHouseholdsInfo {
+	repeated .EA.Sims4.Network.HouseholdLocationStatus household_locations = 1;
+}
+
+message NotebookEntryListMessage {
+	optional .EA.Sims4.Network.LocalizedString item_message = 1;
+	optional uint32 item_count = 2;
+	optional uint32 item_total = 3;
+	optional .EA.Sims4.Network.IconInfo item_icon = 4;
+	optional .EA.Sims4.Network.LocalizedString item_tooltip = 5;
+	optional bool new_item = 6;
+}
+
+message NotebookEntryMessage {
+	optional .EA.Sims4.Network.LocalizedString entry_message = 1;
+	optional .EA.Sims4.Network.IconInfo entry_icon = 2;
+	optional .EA.Sims4.Network.LocalizedString entry_tooltip = 3;
+	repeated .EA.Sims4.Network.NotebookEntryListMessage entry_list = 4;
+	optional bool new_entry = 5 [default = true];
+	optional .EA.Sims4.Network.LocalizedString entry_list_description = 6;
+	optional .EA.Sims4.Network.UiObjectMetadata entry_metadata_hovertip = 7;
+	optional uint32 entry_id = 8;
+	optional bool is_sortable = 9;
+	optional bool is_new_item_sortable = 10;
+}
+
+message NotebookSubCategoryMessage {
+	enum NotebookEntryStyle {
+		NOTEBOOK_EXPANDABLE = 0;
+		NOTEBOOK_NUMBERED = 1;
+		NOTEBOOK_ICON_DESCRIPTION = 2;
+		NOTEBOOK_EXPANDABLE_SINGLE = 3;
+	}
+	optional .EA.Sims4.Network.LocalizedString subcategory_name = 1;
+	optional .EA.Sims4.Network.IconInfo subcategory_icon = 2;
+	optional .EA.Sims4.Network.LocalizedString subcategory_tooltip = 3;
+	optional .EA.Sims4.Network.NotebookSubCategoryMessage.NotebookEntryStyle entry_type = 4 [default = NOTEBOOK_EXPANDABLE];
+	optional uint32 max_num_entries = 5;
+	repeated .EA.Sims4.Network.NotebookEntryMessage entries = 6;
+	optional uint32 subcategory_id = 7;
+	optional bool is_sortable = 8;
+	optional bool is_new_entry_sortable = 9;
+}
+
+message NotebookCategoryMessage {
+	optional .EA.Sims4.Network.LocalizedString category_name = 1;
+	optional .EA.Sims4.Network.IconInfo category_icon = 2;
+	repeated .EA.Sims4.Network.NotebookSubCategoryMessage subcategories = 3;
+	optional .EA.Sims4.Network.LocalizedString category_description = 4;
+	optional string enum_name = 5;
+}
+
+message NotebookView {
+	repeated .EA.Sims4.Network.NotebookCategoryMessage categories = 1;
+	optional uint32 selected_category_index = 2;
+	optional uint32 selected_subcategory_index = 3;
+}
+
+message InterrogationProgressUpdate {
+	enum UpdateType {
+		TYPE_START = 0;
+		TYPE_UPDATE = 1;
+		TYPE_STOP = 2;
+	}
+	required .EA.Sims4.Network.InterrogationProgressUpdate.UpdateType type = 1 [default = TYPE_UPDATE];
+	required uint64 target_id = 2;
+	optional float value = 3;
+	optional float decay_rate = 4;
+}
+
+message ObjectRelationshipUpdate {
+	enum UpdateType {
+		TYPE_START = 0;
+		TYPE_UPDATE = 1;
+		TYPE_STOP = 2;
+	}
+	optional .EA.Sims4.Network.ObjectRelationshipUpdate.UpdateType type = 1 [default = TYPE_UPDATE];
+	optional uint64 target_id = 2;
+	optional float value = 3;
+}
+
+message BreakThroughMessage {
+	required uint64 sim_id = 1;
+	required uint32 progress = 2;
+	required float display_time = 3;
+}
+
+message PurchaseIntentUpdate {
+	required uint64 sim_id = 1;
+	required uint32 curr_value = 2;
+	required uint32 target_value = 3;
+	optional bool show_continuously = 4;
+}
+
+message RetailMarkupMultiplierEntry {
+	required .EA.Sims4.Network.LocalizedString name = 1;
+	optional float multiplier = 2;
+	optional bool is_selected = 3;
+}
+
+message RetailMarkupMultiplierMessage {
+	repeated .EA.Sims4.Network.RetailMarkupMultiplierEntry markup_multipliers = 1;
+}
+
+message OwnedRetailLotCountMessage {
+	required uint32 owned_lot_count = 1;
+}
+
+message BuildBuyLockUnlock {
+	optional bool build_buy_locked = 1 [default = false];
+	optional .EA.Sims4.Network.LocalizedString reason = 2;
+}
+
+message DynamicSignActivityInfo {
+	optional .EA.Sims4.Network.LocalizedString name = 1;
+	optional .EA.Sims4.Network.LocalizedString description = 2;
+	optional .EA.Sims4.Network.IconInfo icon = 3;
+}
+
+message DynamicSignView {
+	enum DynamicSignType {
+		DEFAULT = 0;
+		SCENARIO = 1;
+	}
+	optional .EA.Sims4.Network.LocalizedString name = 1;
+	optional .EA.Sims4.Network.LocalizedString venue = 2;
+	optional .EA.Sims4.Network.LocalizedString time = 3;
+	optional .EA.Sims4.Network.ResourceKey image = 4;
+	repeated .EA.Sims4.Network.DynamicSignActivityInfo activities = 5;
+	optional .EA.Sims4.Network.LocalizedString action_label = 6;
+	optional .EA.Sims4.Network.LocalizedString disabled_tooltip = 7;
+	optional .EA.Sims4.Network.ResourceKey background_image = 8;
+	optional uint64 drama_node_guid = 9;
+	optional uint64 household_id = 10;
+	optional float time_spent = 11;
+	optional .EA.Sims4.Network.DynamicSignView.DynamicSignType sign_type = 12 [default = DEFAULT];
+}
+
+message SimAlertUpdate {
+	enum AlertType {
+		NONE = 0;
+		PET_DISTRESS = 1;
+	}
+	required fixed64 sim_id = 1;
+	optional .EA.Sims4.Network.SimAlertUpdate.AlertType alert_type = 2 [default = NONE];
+}
+
+message FestivalActivityData {
+	optional .EA.Sims4.Network.LocalizedString name = 1;
+	optional .EA.Sims4.Network.IconInfo icon = 2;
+	optional .EA.Sims4.Network.LocalizedString description = 3;
+}
+
+message CalendarEntry {
+	optional uint32 entry_type = 1;
+	optional uint64 entry_id = 2;
+	optional .EA.Sims4.Network.IconInfo icon_info = 3;
+	optional uint64 start_time = 4;
+	optional uint64 end_time = 5;
+	optional bool scoring_enabled = 6;
+	optional uint64 lot_id = 7;
+	repeated uint64 household_sim_ids = 8;
+	repeated uint64 tradition_ids = 9;
+	optional uint64 holiday_id = 10;
+	optional uint64 zone_id = 11;
+	optional bool deletable = 12;
+	repeated .EA.Sims4.Network.FestivalActivityData festival_activities = 13;
+	optional bool favorited = 14;
+	optional uint64 entry_guid = 15;
+	optional bool show_go_to_event_button = 16;
+	optional bool in_progress = 17;
+}
+
+message CalendarUpdate {
+	enum CalendarUpdateType {
+		ADD = 0;
+		REMOVE = 1;
+		UPDATE = 2;
+	}
+	optional .EA.Sims4.Network.CalendarUpdate.CalendarUpdateType update_type = 1;
+	optional .EA.Sims4.Network.CalendarEntry updated_entry = 2;
+}
+
+message Calendar {
+	repeated .EA.Sims4.Network.CalendarEntry calendar_entries = 1;
+}
+
+message SeasonUpdate {
+	enum SeasonType {
+		SUMMER = 0;
+		FALL = 1;
+		WINTER = 2;
+		SPRING = 3;
+	}
+	required .EA.Sims4.Network.SeasonUpdate.SeasonType season_type = 1;
+	required uint64 season_guid = 2;
+	required uint64 season_start_time = 3;
+}
+
+message PrepTaskData {
+	optional .EA.Sims4.Network.LocalizedString task_name = 1;
+	optional .EA.Sims4.Network.ResourceKey task_icon = 2;
+	optional bool is_completed = 3;
+	optional .EA.Sims4.Network.LocalizedString task_tooltip = 4;
+}
+
+message PrepTaskUpdate {
+	optional fixed64 sim_id = 1;
+	required uint64 gig_uid = 2;
+	repeated .EA.Sims4.Network.PrepTaskData prep_tasks = 3;
+}
+
+message UniversityMajorData {
+	enum UniversityMajorStatus {
+		NOT_ACCEPTED = 0;
+		ACCEPTED = 1;
+		GRADUATED = 2;
+	}
+	optional uint64 major_id = 1;
+	repeated uint64 core_class_ids = 2;
+	optional uint32 class_remaining = 3;
+	optional .EA.Sims4.Network.UniversityMajorData.UniversityMajorStatus status = 4;
+}
+
+message UniversityData {
+	optional uint64 university_id = 1;
+	repeated .EA.Sims4.Network.UniversityMajorData degrees = 2;
+	repeated uint64 elective_class_ids = 3;
+}
+
+message UniversityEnrollmentSimData {
+	optional uint64 university_id = 1;
+	optional uint64 major_id = 2;
+}
+
+message UniversityEnrollmentData {
+	repeated .EA.Sims4.Network.UniversityData universities = 1;
+	repeated fixed64 housing_zone_ids = 2;
+	optional .EA.Sims4.Network.UniversityEnrollmentSimData current_enrollment = 3;
+	optional fixed64 household_id = 4;
+	repeated .EA.Sims4.Network.UniversityScholarship scholarships = 5;
+	optional bool is_pregnant = 6;
+}
+
+message UniversityScholarship {
+	optional uint64 scholarship_id = 1;
+	optional uint32 value = 2;
+}
+
+message BookView {
+	enum BookDisplayStyle {
+		DEFAULT = 0;
+		WITCH = 1;
+	}
+	repeated .EA.Sims4.Network.BookPageMessage pages = 1;
+	optional .EA.Sims4.Network.BookView.BookDisplayStyle style = 2;
+	repeated .EA.Sims4.Network.BookTabMessage tabs = 4;
+	optional string context = 5;
+}
+
+message BookCategoryMessage {
+	optional uint32 first_page_index = 1;
+	optional .EA.Sims4.Network.LocalizedString name = 2;
+	optional .EA.Sims4.Network.ResourceKey icon = 3;
+	optional .EA.Sims4.Network.LocalizedString tooltip_text = 4;
+	optional uint32 progress = 5;
+	optional .EA.Sims4.Network.LocalizedString progress_title = 6;
+	optional .EA.Sims4.Network.LocalizedString progress_text = 7;
+	repeated uint64 new_entries = 8;
+}
+
+message BookEntryMessage {
+	optional uint64 id = 1;
+	optional .EA.Sims4.Network.LocalizedString name = 2;
+	optional .EA.Sims4.Network.LocalizedString description = 3;
+	optional .EA.Sims4.Network.ResourceKey icon = 4;
+	optional .EA.Sims4.Network.LocalizedString subtext_title = 5;
+	optional .EA.Sims4.Network.LocalizedString subtext = 6;
+	optional .EA.Sims4.Network.LocalizedString tooltip_text = 7;
+	optional .EA.Sims4.Network.BookCategoryDisplayType category_type = 8;
+	optional uint32 status_flags = 9;
+}
+
+message BookPageMessage {
+	enum BookPageType {
+		BLANK = 0;
+		FRONT = 1;
+		CATEGORY_LIST = 2;
+		CATEGORY_FRONT = 3;
+		CATEGORY = 4;
+	}
+	optional .EA.Sims4.Network.BookPageMessage.BookPageType type = 1;
+	optional .EA.Sims4.Network.LocalizedString title = 2;
+	optional .EA.Sims4.Network.LocalizedString description = 3;
+	optional .EA.Sims4.Network.ResourceKey icon = 4;
+	optional .EA.Sims4.Network.BookCategoryDisplayType category_type = 5;
+	repeated .EA.Sims4.Network.BookCategoryMessage categories = 6;
+	repeated .EA.Sims4.Network.BookEntryMessage entries = 7;
+}
+
+message BookTabMessage {
+	optional uint32 first_page_index = 1;
+	optional .EA.Sims4.Network.IconInfo icon_info = 2;
+}
+
+message SplitHousehold {
+	optional uint64 source_household_id = 1;
+	optional uint64 target_household_id = 2;
+	repeated uint64 to_source_sims = 3;
+	repeated uint64 to_target_sims = 4;
+	optional int64 source_funds_difference = 5;
+	optional int64 target_funds_difference = 6;
+	optional uint64 destination_zone_id = 7;
+	optional int64 funds = 8;
+	optional bool bSellFurniture = 9;
+}
+
+message CivicPolicy {
+	optional uint64 policy_id = 1;
+	optional uint32 count = 2;
+	optional uint32 max_count = 3;
+}
+
+message CommunityBoardShow {
+	optional uint64 sim_id = 1;
+	optional uint32 influence_points = 2;
+	optional .EA.Sims4.Network.LocalizedString title = 3;
+	repeated .EA.Sims4.Network.CivicPolicy enacted_policies = 4;
+	repeated .EA.Sims4.Network.CivicPolicy balloted_policies = 5;
+	optional bool new_policy_allowed = 6;
+	optional .EA.Sims4.Network.LocalizedString disabled_tooltip = 7;
+	optional uint32 provider_type = 8;
+	optional .EA.Sims4.Network.LocalizedString policy_disabled_tooltip = 9;
+	optional .EA.Sims4.Network.LocalizedString new_policy_disabled_tooltip = 10;
+	optional uint64 target_id = 11;
+	optional .EA.Sims4.Network.LocalizedString schedule_text = 12;
+}
+
+message CommunityBoardResponse {
+	optional uint64 sim_id = 1;
+	optional uint32 influence_points = 2;
+	repeated .EA.Sims4.Network.CivicPolicy balloted_policies = 3;
+	optional uint32 provider_type = 4;
+	optional uint64 target_id = 5;
+}
+
+message CommunityBoardAddPolicy {
+	optional uint64 sim_id = 1;
+	repeated uint64 policy_ids = 2;
+	optional bool new_policy_allowed = 3;
+	repeated .EA.Sims4.Network.CivicPolicy policies = 4;
+}
+
+message BillUtilityInfo {
+	optional uint64 utility = 1;
+	optional int64 cost = 2;
+	optional int64 max_value = 3;
+	optional int64 current_value = 4;
+	optional .EA.Sims4.Network.LocalizedString utility_name = 5;
+	optional float rate_of_change = 6;
+	optional bool selling = 7;
+	optional int32 utility_symbol = 8;
+}
+
+message BillLineItem {
+	optional int32 amount = 1;
+	optional .EA.Sims4.Network.LocalizedString label = 2;
+	optional .EA.Sims4.Network.LocalizedString tooltip = 3;
+}
+
+message ShowBillsDialog {
+	repeated .EA.Sims4.Network.BillUtilityInfo utility_info = 3;
+	repeated .EA.Sims4.Network.BillLineItem line_items = 7;
+	repeated .EA.Sims4.Network.BillLineItem due_bills_line_items = 8;
+}
+
+message ShowSocialMediaDialog {
+	optional uint64 sim_id = 1;
+	optional uint32 followers_count = 2;
+	repeated .EA.Sims4.Network.SocialMediaFeedItem feed_items = 3;
+	repeated .EA.Sims4.Network.SocialMediaMessagesItem messages_items = 4;
+	optional bool is_update = 5 [default = false];
+	optional bool has_new_posts = 6 [default = false];
+	optional bool has_new_messages = 7 [default = false];
+	optional bool can_make_context_post = 8 [default = false];
+	optional bool can_add_contacts = 9 [default = true];
+}
+
+message SocialMediaFeedItem {
+	optional uint64 post_id = 1;
+	optional fixed64 author_sim_id = 2;
+	optional fixed64 target_sim_id = 3;
+	optional uint32 post_type = 4;
+	optional uint64 post_time = 5;
+	optional .EA.Sims4.Network.LocalizedString post_text = 6;
+	repeated .EA.Sims4.Network.SocialMediaReaction reactions = 7;
+	optional bool has_author_reacted = 8 [default = false];
+}
+
+message SocialMediaMessagesItem {
+	required uint64 message_id = 1;
+	optional .EA.Sims4.Network.SocialMediaFeedItem message_post = 2;
+	optional .EA.Sims4.Network.SocialMediaFeedItem reply_post = 3;
+}
+
+message SocialMediaReaction {
+	optional uint32 narrative_type = 1;
+	optional uint32 polarity_type = 2;
+	optional uint32 count = 3;
+	repeated fixed64 reacted_sims = 4;
+}
+
+message ShowHorseCompetitionSelector {
+	optional bool is_update = 1 [default = false];
+	optional .EA.Sims4.Network.HorseCompetitionAssigneeData selected_sim = 2;
+	optional .EA.Sims4.Network.HorseCompetitionAssigneeData selected_horse = 3;
+	repeated .EA.Sims4.Network.HorseCompetitionMetadata competition_metadatas = 4;
+}
+
+message ShowMatchmakingDialog {
+	required fixed64 sim_id = 1;
+	repeated fixed64 trait_ids = 2;
+	repeated uint32 selected_ages = 3;
+	repeated fixed64 selected_traits = 4;
+	required uint64 cooldown_mins_left = 5;
+	required int32 num_contact_actions = 6;
+	repeated .EA.Sims4.Network.MatchmakingProfile profiles = 7;
+	optional bool is_update = 8 [default = false];
+	repeated .EA.Sims4.Network.MatchmakingProfile saved_profiles = 9;
+	required int32 max_save = 10;
+	repeated uint32 attracted_options = 11;
+	repeated uint32 woohoo_options = 12;
+	optional bool is_exploring = 13 [default = false];
+	optional .EA.Sims4.Network.ResourceKey res_key = 14;
+	required fixed64 min_download_count = 15;
+	required fixed64 upload_time_range_start = 16;
+	required fixed64 update_time_range_end = 17;
+	optional .EA.Sims4.Network.ResourceKey bg_res_key = 18;
+	optional bool gallery_sims_enabled = 19;
+	required int32 max_contact = 20;
+	optional bool gallery_sims_favorites_only_enabled = 21;
+	optional bool is_traits_display_update = 22 [default = false];
+	repeated string remote_ids_on_cooldown = 23;
+}
+
+message MatchmakingProfile {
+	required fixed64 sim_id = 1;
+	required uint32 profile_type = 2;
+	optional string name = 3;
+	required fixed64 real_sim_id = 4;
+	repeated .EA.Sims4.Network.TraitAttractionScore display_traits = 5;
+	required bool contacted = 6;
+	optional .EA.Sims4.Network.ResourceKey profile_bg_res_key = 7;
+	optional string exchange_data_creator_name = 8;
+	optional string exchange_data_remote_id = 9;
+	optional uint32 exchange_data_type = 10;
+	optional fixed64 exchange_data_household_id = 11;
+	optional bool reported = 12;
+	optional string region_name = 13;
+	optional int32 pose_index = 14;
+	optional string thumbnail_url = 15;
+	optional bool rel_is_hidden = 16 [default = false];
+}
+
+message TraitAttractionScore {
+	required fixed64 trait_id = 1;
+	required int32 score = 2;
+}
+
+message HorseCompetitionMetadata {
+	required fixed64 competition_id = 1;
+	required bool eligible_to_compete = 2;
+	optional .EA.Sims4.Network.LocalizedString not_eligible_reason = 3;
+	required bool has_placed_previously = 4;
+	optional int32 highest_placement = 5;
+}
+
+message HorseCompetitionAssigneeSkillData {
+	required fixed64 skill_id = 1;
+	required uint32 level = 2;
+}
+
+message HorseCompetitionAssigneeData {
+	required fixed64 sim_id = 1;
+	required fixed64 mood_id = 2;
+	required uint32 mood_intensity = 3;
+	optional .EA.Sims4.Network.LocalizedString mood_tooltip = 4;
+	repeated .EA.Sims4.Network.HorseCompetitionAssigneeSkillData skills = 5;
+}
+
+message ShowHorseCompetitionResults {
+	required fixed64 sim_id = 1;
+	required fixed64 horse_id = 2;
+	required fixed64 competition_id = 3;
+	required int32 placement = 4;
+	required bool unlocked_new_competition = 5;
+	optional fixed64 unlocked_competition_id = 6;
+}
+
+message InventoryItemSellRequest {
+	optional uint64 id = 1;
+	optional uint32 count = 2;
+}
+
+message InventorySellRequest {
+	optional uint64 sim_id = 1;
+	repeated uint64 stacks = 2;
+	repeated .EA.Sims4.Network.InventoryItemSellRequest items = 3;
+	optional uint32 currency_type = 4;
+}
+
+message ShowSimProfile {
+	optional uint64 sim_id = 1;
+	optional uint64 actor_sim_id = 2;
+	optional uint64 target_sim_id = 3;
+}
+
+message ToggleSimInfoPanel {
+	enum SimInfoPanelType {
+		SIM_INFO_MOTIVE_PANEL = 0;
+		SIM_INFO_SKILL_PANEL = 1;
+		SIM_INFO_RELATIONSHIP_PANEL = 2;
+		SIM_INFO_CAREER_PANEL = 3;
+		SIM_INFO_INVENTORY_PANEL = 4;
+		SIM_INFO_ASPIRATION_PANEL = 5;
+		SIM_INFO_SUMMARY_PANEL = 6;
+		SIM_INFO_CLUB_PANEL = 7;
+	}
+	optional .EA.Sims4.Network.ToggleSimInfoPanel.SimInfoPanelType panel_type = 1;
+	optional bool stay_open = 2 [default = true];
+}
+
+message GhostUltimateStatisticProgress {
+	optional int32 good_ultimate_progress = 1;
+	optional int32 evil_ultimate_progress = 2;
+}

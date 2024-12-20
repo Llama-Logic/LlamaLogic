@@ -1,0 +1,14 @@
+syntax = "proto2";
+package EA.Sims4.ECommerceServices;
+
+
+message UMMessage {
+	message AttributeList {
+		repeated string attributes = 1;
+	}
+	repeated .EA.Sims4.ECommerceServices.UMMessage.AttributeList messages = 1;
+}
+
+message RefreshFeatureParams {
+	optional uint64 key = 1;
+}

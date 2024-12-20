@@ -1,0 +1,25 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "ResourceKey.proto";
+import "Localization.proto";
+
+
+message LotInfoItem {
+	optional fixed64 zone_id = 1;
+	optional string name = 2;
+	optional uint32 world_id = 3;
+	optional uint32 lot_template_id = 4;
+	optional fixed64 lot_description_id = 5;
+	optional .EA.Sims4.Network.LocalizedString venue_type_name = 6;
+	optional string household_name = 7;
+	optional .EA.Sims4.Network.ResourceKey venue_type = 8;
+	optional uint32 region_description_id = 9;
+	optional string region_name = 10;
+	optional .EA.Sims4.Network.ResourceKey region_icon = 11;
+	optional fixed64 house_description_id = 12;
+}
+
+message LotPlexExteriorUpdate {
+	optional fixed64 zone_id = 1;
+	optional uint32 plex_exterior_house_desc_id = 2;
+}

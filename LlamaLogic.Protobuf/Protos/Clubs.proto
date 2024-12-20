@@ -1,0 +1,56 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "ResourceKey.proto";
+import "Localization.proto";
+import "Lot.proto";
+
+
+message ClubCriteria {
+	enum ClubCriteriaCategory {
+		SKILL = 0;
+		TRAIT = 1;
+		RELATIONSHIP = 2;
+		CAREER = 3;
+		HOUSEHOLD_VALUE = 4;
+		AGE = 5;
+		CLUB_MEMBERSHIP = 6;
+		FAME_RANK = 7;
+	}
+	required .EA.Sims4.Network.ClubCriteria.ClubCriteriaCategory category = 1;
+	repeated .EA.Sims4.Network.ClubCriteriaInfo criteria_infos = 2;
+	optional bool multi_select = 3;
+	optional uint32 criteria_id = 4;
+}
+
+message ClubCriteriaInfo {
+	optional .EA.Sims4.Network.LocalizedString name = 1;
+	optional .EA.Sims4.Network.ResourceKey icon = 2;
+	optional .EA.Sims4.Network.ResourceKey resource_value = 3;
+	optional uint32 enum_value = 4;
+	optional uint64 resource_id = 5;
+	optional .EA.Sims4.Network.LocalizedString tooltip_name = 6;
+}
+
+message ClubConductRule {
+	required bool encouraged = 1;
+	required .EA.Sims4.Network.ResourceKey interaction_group = 2;
+	optional .EA.Sims4.Network.ClubCriteria with_whom = 3;
+}
+
+message ClubBuildingInfo {
+	repeated .EA.Sims4.Network.ClubCriteria criterias = 1;
+	repeated .EA.Sims4.Network.LotInfoItem available_lots = 2;
+}
+
+message ClubInteractionRuleUpdate {
+	enum ClubInteractionRuleStatus {
+		ENCOURAGED = 0;
+		DISCOURAGED = 1;
+		NO_EFFECT = 2;
+	}
+	required .EA.Sims4.Network.ClubInteractionRuleUpdate.ClubInteractionRuleStatus rule_status = 1;
+}
+
+message ShowClubInfoUI {
+	optional uint64 club_id = 1;
+}

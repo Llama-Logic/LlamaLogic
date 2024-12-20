@@ -1,0 +1,223 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "ResourceKey.proto";
+import "Localization.proto";
+import "UI.proto";
+import "Consts.proto";
+import "SimObjectAttributes.proto";
+
+enum SentimentSignType {
+	SIGN_INVALID = 0;
+	SIGN_POSITIVE = 1;
+	SIGN_NEGATIVE = 2;
+}
+enum SentimentDurationType {
+	DURATION_INVALID = 0;
+	DURATION_LONG = 1;
+	DURATION_SHORT = 2;
+}
+enum RelationshipTrackType {
+	TYPE_RELATIONSHIP = 0;
+	TYPE_SENTIMENT = 1;
+}
+
+message Skill_Update {
+	required uint64 skill_id = 1;
+	required uint32 curr_points = 2;
+	optional uint64 sim_id = 3;
+}
+
+message SkillProgressUpdate {
+	required fixed64 skill_id = 1;
+	required float change_rate = 2;
+	optional uint32 curr_points = 3;
+	optional bool hide_progress_bar = 4;
+}
+
+message SkillDelete {
+	optional fixed64 skill_id = 1;
+}
+
+message RelationshipTrack {
+	required float track_score = 1;
+	required uint32 track_bit_id = 2;
+	required fixed64 track_id = 3;
+	required uint32 track_popup_priority = 4;
+	optional float change_rate = 5;
+	optional float delta = 7 [default = 0];
+	optional bool visible_in_relationship_panel = 8 [default = true];
+	optional .EA.Sims4.Network.RelationshipTrackType track_type = 9 [default = TYPE_RELATIONSHIP];
+	optional .EA.Sims4.Network.SentimentSignType sign_type = 10;
+	optional .EA.Sims4.Network.SentimentDurationType duration_type = 11;
+	optional .EA.Sims4.Network.LocalizedString archetype_name = 12;
+	optional .EA.Sims4.Network.LocalizedString track_name = 13;
+}
+
+message RelationshipUpdate {
+	optional float score = 1;
+	repeated uint64 bit_ids = 2;
+	repeated uint64 track_bit_ids = 5;
+	required uint64 actor_sim_id = 3;
+	optional uint64 target_sim_id = 4;
+	repeated uint64 handshake_bit_ids = 6;
+	repeated .EA.Sims4.Network.RelationshipTrack tracks = 7;
+	repeated uint64 known_trait_ids = 8;
+	optional .EA.Sims4.Network.ManagerObjectId target_id = 9;
+	optional uint64 target_instance_id = 10;
+	optional fixed64 target_sim_significant_other_id = 11;
+	optional uint32 num_traits = 12;
+	repeated uint64 known_careertrack_ids = 13;
+	optional uint64 last_update_time = 14;
+	repeated uint64 known_stat_ids = 15;
+	optional .EA.Sims4.Network.IconInfo target_icon_override = 16;
+	repeated .EA.Sims4.Network.RelationshipBitUpdate bit_updates = 17;
+	optional uint64 known_major_id = 18;
+	optional bool is_load = 19;
+	optional fixed64 target_sim_fiance_id = 20;
+	optional bool knows_romantic_preference = 21;
+	optional bool knows_woohoo_preference = 22;
+	repeated uint32 known_romantic_genders = 23;
+	repeated uint32 known_woohoo_genders = 24;
+	optional bool known_exploring_sexuality = 25;
+	optional .EA.Sims4.Network.CompatibilityUpdate compatibility = 26;
+	optional uint64 unconfronted_secret_id = 27;
+	repeated .EA.Sims4.Persistence.ConfrontedSimSecret known_confronted_secrets = 28;
+	optional .EA.Sims4.Network.RelationshipLabelDataUpdate relationship_label_data = 29;
+	repeated uint64 known_rel_track_ids = 30;
+	repeated uint32 known_relationship_expectations_ids = 31;
+	optional bool hidden = 32;
+}
+
+message CompatibilityUpdate {
+	optional uint64 level = 1;
+	optional .EA.Sims4.Network.ResourceKey icon = 2;
+	optional .EA.Sims4.Network.ResourceKey small_icon = 3;
+	optional .EA.Sims4.Network.LocalizedString name = 4;
+	optional .EA.Sims4.Network.LocalizedString desc = 5;
+}
+
+message RelationshipBitUpdate {
+	required fixed64 bit_id = 1;
+	optional uint64 end_time = 2;
+}
+
+message RelationshipDelete {
+	required uint64 actor_sim_id = 1;
+	required uint64 target_id = 2;
+}
+
+message RelHandshakeUpdate {
+	enum HandshakeStatus {
+		NONE = 0;
+		PENDING = 1;
+		ACCEPTED = 2;
+		DENIED = 3;
+		PENDING_RECIEVER = 4;
+	}
+	required uint64 actor_sim_id = 1;
+	required uint64 target_sim_id = 2;
+	repeated uint32 bit_ids = 3;
+	repeated .EA.Sims4.Network.RelHandshakeUpdate.HandshakeStatus bit_status = 4;
+}
+
+message RelationshipLabelDataUpdate {
+	optional string label = 1;
+	optional .EA.Sims4.Network.ResourceKey icon = 2;
+}
+
+message CommodityStaticData {
+	required uint32 commodity_id = 1;
+	optional .EA.Sims4.Network.IconInfo pos_icon_info = 2;
+	optional .EA.Sims4.Network.IconInfo neutral_icon_info = 3;
+	optional .EA.Sims4.Network.IconInfo neg_icon_info = 4;
+	optional .EA.Sims4.Network.LocalizedString commodity_name = 5;
+	repeated .EA.Sims4.Network.IconInfo commodity_states = 6;
+	optional uint32 threshold_index = 7;
+}
+
+message CommodityStaticDataList {
+	repeated .EA.Sims4.Network.CommodityStaticData commodity_data = 1;
+}
+
+message CommodityUpdate {
+	repeated uint32 commodity_ids = 1;
+	repeated float change_rate = 2;
+	repeated uint32 commodity_image_index = 3;
+	repeated uint64 commodity_guids = 4;
+}
+
+message CommodityProgressUpdate {
+	enum UpdateType {
+		UPDATE = 0;
+		REMOVE = 1;
+	}
+	required fixed64 commodity_id = 1;
+	required float current_value = 2;
+	required float rate_of_change = 3;
+	required uint32 commodity_state_index = 4;
+	optional bool is_rate_change = 5;
+	optional .EA.Sims4.Network.CommodityProgressUpdate.UpdateType update_type = 6 [default = UPDATE];
+	optional uint32 adjusted_state_index = 7;
+	optional bool affects_plumbob_color = 8 [default = true];
+}
+
+message CommodityProgressUpdateList {
+	repeated .EA.Sims4.Network.CommodityProgressUpdate commodities = 1;
+}
+
+message CommodityListUpdate {
+	optional uint64 sim_id = 1;
+	repeated .EA.Sims4.Network.CommodityProgressUpdate commodities = 2;
+	optional uint32 motive_commodity_index = 3;
+	repeated .EA.Sims4.Network.CommodityProgressUpdateList commodity_lists = 4;
+}
+
+message MoodUpdate {
+	optional uint64 sim_id = 3;
+	optional uint64 mood_key = 4;
+	optional uint32 mood_intensity = 5;
+}
+
+message GenderPreferenceUpdate {
+	enum GenderPreference {
+		PREFER_NEITHER = 0;
+		PREFER_GUYS = 1;
+		PREFER_GIRLS = 2;
+		PREFER_BOTH = 3;
+	}
+	required uint64 sim_id = 1;
+	required .EA.Sims4.Network.GenderPreferenceUpdate.GenderPreference gender_preference = 2;
+}
+
+message RankedStatisticProgressUpdate {
+	optional fixed64 stat_id = 1;
+	optional float change_rate = 2;
+	optional uint32 rank = 3;
+	optional uint32 curr_rank_points = 4;
+	optional bool is_rank_change = 5;
+}
+
+message RankedStatisticRankChangedUpdate {
+	optional uint64 stat_id = 1;
+	optional uint32 previous_rank = 2;
+	optional uint32 current_rank = 3;
+}
+
+message LifeSkillUpdate {
+	optional uint64 sim_id = 1;
+	optional uint64 life_skill_id = 2;
+	optional float curr_value = 3;
+	optional float rate_of_change = 4;
+	optional bool is_from_add = 5;
+}
+
+message LifeSkillDelete {
+	optional uint64 sim_id = 1;
+	optional uint64 life_skill_id = 2;
+}
+
+message CooldownVisualEffectToggle {
+	optional uint64 sim_id = 1;
+	optional bool cooldown_visual_effect_active = 2;
+	optional float edge_color_multiplier = 3 [default = 1];
+}

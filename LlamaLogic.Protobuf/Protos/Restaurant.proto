@@ -1,0 +1,64 @@
+syntax = "proto2";
+package EA.Sims4.Network;
+import "Venue.proto";
+
+
+message RecipeItem {
+	enum ItemType {
+		NORMAL = 0;
+		SPECIAL = 1;
+	}
+	required uint64 recipe_id = 1;
+	optional .EA.Sims4.Network.RecipeItem.ItemType item_type = 2;
+	optional int32 price_override = 3;
+}
+
+message Course {
+	repeated .EA.Sims4.Network.RecipeItem items = 1;
+	optional uint32 course_tag = 2;
+}
+
+message Menu {
+	repeated .EA.Sims4.Network.Course courses = 1;
+}
+
+message SimOrders {
+	repeated .EA.Sims4.Network.SimOrder sim_orders = 1;
+	optional uint32 meal_cost = 2;
+	optional bool is_recommendation = 3;
+}
+
+message SimOrder {
+	required uint64 sim_id = 1;
+	optional uint64 recipe_id = 2;
+	optional bool locked = 3;
+	optional uint32 course_tag = 4;
+}
+
+message ShowMenu {
+	required .EA.Sims4.Network.Menu menu = 1;
+	repeated .EA.Sims4.Network.SimOrder sim_orders = 2;
+	repeated uint64 sim_ids = 3;
+	optional bool chef_order = 4;
+	optional uint32 running_bill_total = 5;
+	optional bool recommend_order = 6;
+}
+
+message Order {
+	repeated .EA.Sims4.Network.SimOrder sim_orders = 1;
+}
+
+message RestaurantConfiguration {
+	enum RestaurantOutfitType {
+		MALE_CHEF = 0;
+		FEMALE_CHEF = 1;
+		MALE_WAITER = 2;
+		FEMALE_WAITER = 3;
+		MALE_HOST = 4;
+		FEMALE_HOST = 5;
+	}
+	optional uint32 attire_id = 1;
+	optional uint64 preset_id = 2;
+	optional .EA.Sims4.Network.Menu custom_menu = 3;
+	repeated .EA.Sims4.Network.CareerOutfit outfits = 4;
+}
