@@ -1,5 +1,3 @@
-using AuroraLib.Compression.Algorithms;
-
 namespace LlamaLogic.Packages;
 
 /// <summary>
@@ -209,13 +207,11 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Compresses the specified <paramref name="memory"/> in the manner of Maxis' internal algorithm, returning the result
     /// </summary>
-    public static ReadOnlyMemory<byte> InternalCompress(ReadOnlyMemory<byte> memory)
-    {
-        using var decompressedStream = new ReadOnlyMemoryOfByteStream(memory);
-        using var compressedStream = new ArrayBufferWriterOfByteStream();
-        new RefPack().Compress(decompressedStream, compressedStream);
-        return compressedStream.WrittenMemory;
-    }
+    public static ReadOnlyMemory<byte> InternalCompress(ReadOnlyMemory<byte> memory) =>
+        Gibbed.RefPack.Compression.Compress(memory.ToArray(), out var output)
+        && output is not null
+        ? output.AsMemory()
+        : memory;
 
     /// <summary>
     /// Decompresses the specified <paramref name="memory"/> in the manner of Maxis' internal algorithm, returning the result
@@ -223,9 +219,7 @@ public sealed class DataBasePackedFile :
     public static ReadOnlyMemory<byte> InternalDecompress(ReadOnlyMemory<byte> memory)
     {
         using var compressedStream = new ReadOnlyMemoryOfByteStream(memory);
-        using var decompressedStream = new ArrayBufferWriterOfByteStream();
-        new RefPack().Decompress(compressedStream, decompressedStream);
-        return decompressedStream.WrittenMemory;
+        return Gibbed.RefPack.Decompression.Decompress(compressedStream).AsMemory();
     }
 
     static void RemoveIndexedResourceName(Dictionary<string, HashSet<ResourceKey>> resourceKeysByName, Dictionary<ResourceKey, string> resourceNameByKey, ResourceKey key)
