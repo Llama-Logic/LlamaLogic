@@ -9,6 +9,7 @@ items:
   - LlamaLogic.Packages.ResourceFileType.DirectDrawSurface
   - LlamaLogic.Packages.ResourceFileType.JavaScriptObjectNotation
   - LlamaLogic.Packages.ResourceFileType.PortableNetworkGraphic
+  - LlamaLogic.Packages.ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage
   - LlamaLogic.Packages.ResourceFileType.TuningMarkup
   - LlamaLogic.Packages.ResourceFileType.YetAnotherMarkupLanguage
   langs:
@@ -249,6 +250,49 @@ items:
       value: xml
     - type: System.String
       value: application/xml
+- uid: LlamaLogic.Packages.ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage
+  commentId: F:LlamaLogic.Packages.ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage
+  id: Ts4TranslucentJointPhotographicExpertsGroupImage
+  parent: LlamaLogic.Packages.ResourceFileType
+  langs:
+  - csharp
+  - vb
+  name: Ts4TranslucentJointPhotographicExpertsGroupImage
+  nameWithType: ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage
+  fullName: LlamaLogic.Packages.ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceFileType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Ts4TranslucentJointPhotographicExpertsGroupImage
+    path: ../LlamaLogic.Packages/ResourceFileType.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: The Sims 4's proprietary image format in which a PNG alpha mask is embedded in the headers of a JPEG
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileTypeFormat("jpg", "image/jpeg")]
+
+      Ts4TranslucentJointPhotographicExpertsGroupImage = 5
+    return:
+      type: LlamaLogic.Packages.ResourceFileType
+    content.vb: >-
+      <ResourceFileTypeFormat("jpg", "image/jpeg")>
+
+      Ts4TranslucentJointPhotographicExpertsGroupImage = 5
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: jpg
+    - type: System.String
+      value: image/jpeg
 - uid: LlamaLogic.Packages.ResourceFileType.YetAnotherMarkupLanguage
   commentId: F:LlamaLogic.Packages.ResourceFileType.YetAnotherMarkupLanguage
   id: YetAnotherMarkupLanguage
@@ -267,7 +311,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: YetAnotherMarkupLanguage
     path: ../LlamaLogic.Packages/ResourceFileType.cs
-    startLine: 40
+    startLine: 46
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -277,13 +321,13 @@ items:
     content: >-
       [ResourceFileTypeFormat("yml", "application/x-yaml")]
 
-      YetAnotherMarkupLanguage = 5
+      YetAnotherMarkupLanguage = 6
     return:
       type: LlamaLogic.Packages.ResourceFileType
     content.vb: >-
       <ResourceFileTypeFormat("yml", "application/x-yaml")>
 
-      YetAnotherMarkupLanguage = 5
+      YetAnotherMarkupLanguage = 6
   attributes:
   - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
     ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)

@@ -78,13 +78,13 @@ public enum ResourceType :
     /// <summary>
     /// Apartment Thumbnail 1
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     ApartmentThumbnail1 = 0xab19bcba,
 
     /// <summary>
     /// Apartment Thumbnail 2
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     ApartmentThumbnail2 = 0xbd491726,
 
     /// <summary>
@@ -173,13 +173,13 @@ public enum ResourceType :
     /// <summary>
     /// Blueprint Image
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     BlueprintImage = 0xd33c281e,
 
     /// <summary>
     /// Body Part Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     BodyPartThumbnail = 0x5b282d45,
 
     /// <summary>
@@ -232,7 +232,7 @@ public enum ResourceType :
     /// <summary>
     /// Buy Build Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     BuyBuildThumbnail = 0x3c2a8647,
 
     /// <summary>
@@ -328,7 +328,7 @@ public enum ResourceType :
     /// <summary>
     /// CAS Part Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     CASPartThumbnail = 0x3c1af1f2,
 
     /// <summary>
@@ -684,7 +684,7 @@ public enum ResourceType :
     /// <summary>
     /// Lot Preview Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     LotPreviewThumbnail = 0x0d338a3a,
 
     /// <summary>
@@ -882,7 +882,7 @@ public enum ResourceType :
     /// <summary>
     /// Pet Breed Coat Pattern Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     PetBreedCoatPatternThumbnail = 0x8e71065d,
 
     /// <summary>
@@ -898,7 +898,7 @@ public enum ResourceType :
     /// <summary>
     /// Pet Face Preset Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     PetFacePresetThumbnail = 0xb67673a2,
 
     /// <summary>
@@ -915,7 +915,7 @@ public enum ResourceType :
     /// <summary>
     /// Phone Photo Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     PhonePhotoThumbnail = 0xe88db35f,
 
     /// <summary>
@@ -926,13 +926,13 @@ public enum ResourceType :
     /// <summary>
     /// PNG
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     PNG = 0x0119b36d,
 
     /// <summary>
     /// PNG Image
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     PNGImage = 0x2f7d0004,
 
     /// <summary>
@@ -1139,25 +1139,25 @@ public enum ResourceType :
     /// <summary>
     /// Save File Thumbnail 1
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SaveThumbnail1 = 0x0000000f,
 
     /// <summary>
     /// Save File Thumbnail 2
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SaveThumbnail2 = 0x00000010,
 
     /// <summary>
     /// Save File Thumbnail 4
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SaveThumbnail4 = 0x00000014,
 
     /// <summary>
     /// Save File Thumbnail 5
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SaveThumbnail5 = 0xf8e1457a,
 
     /// <summary>
@@ -1203,7 +1203,7 @@ public enum ResourceType :
     /// <summary>
     /// Sim Featured Outfit Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SimFeaturedOutfitThumbnail = 0xcd9de247,
 
     /// <summary>
@@ -1220,7 +1220,7 @@ public enum ResourceType :
     /// <summary>
     /// Sim Household Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SimHouseholdThumbnail = 0x3bd45407,
 
     /// <summary>
@@ -1253,7 +1253,7 @@ public enum ResourceType :
     /// <summary>
     /// Sim Preset Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     SimPresetThumbnail = 0x9c925813,
 
     /// <summary>
@@ -1493,7 +1493,7 @@ public enum ResourceType :
     /// <summary>
     /// Terrain Height Map
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     TerrainHeightMap = 0x2ad195f2,
 
     /// <summary>
@@ -1851,7 +1851,7 @@ public enum ResourceType :
     /// <summary>
     /// Worldmap Lot Thumbnail
     /// </summary>
-    [ResourceFileType(ResourceFileType.PortableNetworkGraphic)]
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
     WorldmapLotThumbnail = 0xa1ff2fc4,
 
     /// <summary>

@@ -9,6 +9,7 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(System.IO.Compression.ZipArchive)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ElectronicArtsPromoCode
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Encode
@@ -65,7 +66,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ModFileManifestModel
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 25
+    startLine: 23
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -136,7 +137,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SupportedTypes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 43
+    startLine: 41
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -169,7 +170,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Decode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 61
+    startLine: 59
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -189,6 +190,49 @@ items:
   nameWithType.vb: ModFileManifestModel.Decode(ReadOnlyMemory(Of Byte))
   fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Decode(System.ReadOnlyMemory(Of Byte))
   name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
+  id: DeleteModFileManifest(System.IO.Compression.ZipArchive)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: DeleteModFileManifest(ZipArchive)
+  nameWithType: ModFileManifestModel.DeleteModFileManifest(ZipArchive)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: DeleteModFileManifest
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 71
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Deletes all mod file manifest resources in the specified <code class="paramref">scriptMod</code>
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("This method will be removed in a future version. Call DeleteModFileManifests instead.")]
+
+      public static void DeleteModFileManifest(ZipArchive scriptMod)
+    parameters:
+    - id: scriptMod
+      type: System.IO.Compression.ZipArchive
+    content.vb: >-
+      <Obsolete("This method will be removed in a future version. Call DeleteModFileManifests instead.")>
+
+      Public Shared Sub DeleteModFileManifest(scriptMod As ZipArchive)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: This method will be removed in a future version. Call DeleteModFileManifests instead.
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
   id: DeleteModFileManifests(LlamaLogic.Packages.DataBasePackedFile)
@@ -207,7 +251,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DeleteModFileManifests
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 73
+    startLine: 78
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -219,6 +263,37 @@ items:
     - id: package
       type: LlamaLogic.Packages.DataBasePackedFile
     content.vb: Public Shared Sub DeleteModFileManifests(package As DataBasePackedFile)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests*
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(System.IO.Compression.ZipArchive)
+  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(System.IO.Compression.ZipArchive)
+  id: DeleteModFileManifests(System.IO.Compression.ZipArchive)
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: DeleteModFileManifests(ZipArchive)
+  nameWithType: ModFileManifestModel.DeleteModFileManifests(ZipArchive)
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests(System.IO.Compression.ZipArchive)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: DeleteModFileManifests
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 88
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Deletes all mod file manifest resources in the specified <code class="paramref">scriptMod</code>
+  example: []
+  syntax:
+    content: public static void DeleteModFileManifests(ZipArchive scriptMod)
+    parameters:
+    - id: scriptMod
+      type: System.IO.Compression.ZipArchive
+    content.vb: Public Shared Sub DeleteModFileManifests(scriptMod As ZipArchive)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests*
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifestsAsync(LlamaLogic.Packages.DataBasePackedFile)
@@ -238,7 +313,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DeleteModFileManifestsAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 83
+    startLine: 98
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -253,37 +328,6 @@ items:
       type: System.Threading.Tasks.Task
     content.vb: Public Shared Function DeleteModFileManifestsAsync(package As DataBasePackedFile) As Task
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifestsAsync*
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
-  commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
-  id: DeleteModFileManifest(System.IO.Compression.ZipArchive)
-  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
-  langs:
-  - csharp
-  - vb
-  name: DeleteModFileManifest(ZipArchive)
-  nameWithType: ModFileManifestModel.DeleteModFileManifest(ZipArchive)
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
-  type: Method
-  source:
-    remote:
-      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-      branch: main
-      repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: DeleteModFileManifest
-    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 93
-  assemblies:
-  - LlamaLogic.Packages
-  namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Deletes all mod file manifest resources in the specified <code class="paramref">scriptMod</code>
-  example: []
-  syntax:
-    content: public static void DeleteModFileManifest(ZipArchive scriptMod)
-    parameters:
-    - id: scriptMod
-      type: System.IO.Compression.ZipArchive
-    content.vb: Public Shared Sub DeleteModFileManifest(scriptMod As ZipArchive)
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest*
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash(System.String)
   commentId: M:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash(System.String)
   id: GetFileSha256Hash(System.String)
@@ -302,7 +346,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFileSha256Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 103
+    startLine: 108
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -338,7 +382,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFileSha256HashAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 115
+    startLine: 120
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -376,7 +420,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileHash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 127
+    startLine: 132
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -414,7 +458,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileHash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 155
+    startLine: 160
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -447,7 +491,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileHashAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 175
+    startLine: 180
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -487,7 +531,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 205
+    startLine: 210
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -520,7 +564,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 233
+    startLine: 238
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -553,7 +597,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAndKey
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 249
+    startLine: 254
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -586,7 +630,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAndKeyAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 279
+    startLine: 284
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -619,7 +663,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 310
+    startLine: 315
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -652,7 +696,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 339
+    startLine: 344
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -685,7 +729,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifests
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 355
+    startLine: 360
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -718,7 +762,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestsAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 375
+    startLine: 380
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -751,7 +795,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 394
+    startLine: 399
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -786,7 +830,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 402
+    startLine: 407
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -823,7 +867,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Parse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 414
+    startLine: 419
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -864,7 +908,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Parse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 423
+    startLine: 428
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -908,7 +952,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetModFileManifest
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 433
+    startLine: 438
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -941,7 +985,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetModFileManifest
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 443
+    startLine: 448
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -974,7 +1018,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetModFileManifestAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 462
+    startLine: 467
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1009,7 +1053,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetModFileManifestAsync
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 472
+    startLine: 477
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1044,7 +1088,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TryParse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 493
+    startLine: 498
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1084,7 +1128,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TryParse
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 502
+    startLine: 507
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1127,7 +1171,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Creators
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 516
+    startLine: 521
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1175,7 +1219,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Exclusivities
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 522
+    startLine: 527
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1223,7 +1267,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Features
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 528
+    startLine: 533
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1271,7 +1315,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 534
+    startLine: 539
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1319,7 +1363,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: HashResourceKeys
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 540
+    startLine: 545
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1367,7 +1411,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 546
+    startLine: 551
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1415,7 +1459,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredMods
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 552
+    startLine: 557
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1463,7 +1507,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredPacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 558
+    startLine: 563
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1511,7 +1555,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: IncompatiblePacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 564
+    startLine: 569
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1559,7 +1603,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ElectronicArtsPromoCode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 570
+    startLine: 575
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1607,7 +1651,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 574
+    startLine: 579
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1651,7 +1695,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SubsumedHashes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 581
+    startLine: 586
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1699,7 +1743,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 587
+    startLine: 592
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1747,7 +1791,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningFullInstance
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 593
+    startLine: 598
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1795,7 +1839,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 599
+    startLine: 604
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1843,7 +1887,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 605
+    startLine: 610
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1891,7 +1935,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 609
+    startLine: 614
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1924,7 +1968,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ToString
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 621
+    startLine: 626
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -2716,6 +2760,57 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_DeleteModFileManifest_System_IO_Compression_ZipArchive_
+  name: DeleteModFileManifest
+  nameWithType: ModFileManifestModel.DeleteModFileManifest
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest
+- uid: System.IO.Compression.ZipArchive
+  commentId: T:System.IO.Compression.ZipArchive
+  parent: System.IO.Compression
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.compression.ziparchive
+  name: ZipArchive
+  nameWithType: ZipArchive
+  fullName: System.IO.Compression.ZipArchive
+- uid: System.IO.Compression
+  commentId: N:System.IO.Compression
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO.Compression
+  nameWithType: System.IO.Compression
+  fullName: System.IO.Compression
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  - name: .
+  - uid: System.IO.Compression
+    name: Compression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.compression
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  - name: .
+  - uid: System.IO.Compression
+    name: Compression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.compression
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifests
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_DeleteModFileManifests_LlamaLogic_Packages_DataBasePackedFile_
@@ -2802,57 +2897,6 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_DeleteModFileManifest_System_IO_Compression_ZipArchive_
-  name: DeleteModFileManifest
-  nameWithType: ModFileManifestModel.DeleteModFileManifest
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest
-- uid: System.IO.Compression.ZipArchive
-  commentId: T:System.IO.Compression.ZipArchive
-  parent: System.IO.Compression
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.io.compression.ziparchive
-  name: ZipArchive
-  nameWithType: ZipArchive
-  fullName: System.IO.Compression.ZipArchive
-- uid: System.IO.Compression
-  commentId: N:System.IO.Compression
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.IO.Compression
-  nameWithType: System.IO.Compression
-  fullName: System.IO.Compression
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.IO
-    name: IO
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.io
-  - name: .
-  - uid: System.IO.Compression
-    name: Compression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.io.compression
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.IO
-    name: IO
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.io
-  - name: .
-  - uid: System.IO.Compression
-    name: Compression
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.io.compression
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.GetFileSha256Hash
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_GetFileSha256Hash_System_String_

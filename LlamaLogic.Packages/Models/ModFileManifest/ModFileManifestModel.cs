@@ -1,5 +1,3 @@
-using System.IO.Compression;
-
 namespace LlamaLogic.Packages.Models.ModFileManifest;
 
 /// <summary>
@@ -69,6 +67,13 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
+    /// Deletes all mod file manifest resources in the specified <paramref name="scriptMod"/>
+    /// </summary>
+    [Obsolete($"This method will be removed in a future version. Call {nameof(DeleteModFileManifests)} instead.")]
+    public static void DeleteModFileManifest(ZipArchive scriptMod) =>
+        DeleteModFileManifests(scriptMod);
+
+    /// <summary>
     /// Deletes all mod file manifest resources in the specified <paramref name="package"/>
     /// </summary>
     public static void DeleteModFileManifests(DataBasePackedFile package)
@@ -79,6 +84,16 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
+    /// Deletes all mod file manifest resources in the specified <paramref name="scriptMod"/>
+    /// </summary>
+    public static void DeleteModFileManifests(ZipArchive scriptMod)
+    {
+        ArgumentNullException.ThrowIfNull(scriptMod);
+        while (scriptMod.Entries.FirstOrDefault(entry => entry.Name.Equals(zipArchiveManifestName, StringComparison.OrdinalIgnoreCase)) is { } entry)
+            entry.Delete();
+    }
+
+    /// <summary>
     /// Deletes all mod file manifest resources in the specified <paramref name="package"/>, asynchronously
     /// </summary>
     public static async Task DeleteModFileManifestsAsync(DataBasePackedFile package)
@@ -86,16 +101,6 @@ public sealed class ModFileManifestModel :
         ArgumentNullException.ThrowIfNull(package);
         foreach (var manifestResourceKey in (await GetModFileManifestsAsync(package).ConfigureAwait(false)).Keys)
             package.Delete(manifestResourceKey);
-    }
-
-    /// <summary>
-    /// Deletes all mod file manifest resources in the specified <paramref name="scriptMod"/>
-    /// </summary>
-    public static void DeleteModFileManifest(ZipArchive scriptMod)
-    {
-        ArgumentNullException.ThrowIfNull(scriptMod);
-        while (scriptMod.Entries.FirstOrDefault(entry => entry.Name.Equals("llamalogic.modfilemanifest.yml", StringComparison.OrdinalIgnoreCase)) is { } entry)
-            entry.Delete();
     }
 
     /// <summary>
@@ -448,7 +453,7 @@ public sealed class ModFileManifestModel :
         var manifestEntryFullName = zipArchiveManifestName;
         var pathSplitEntries = scriptMod.Entries.Select(entry => entry.FullName.Split('/')).ToImmutableArray();
         if (pathSplitEntries.All(pathSplitEntry => pathSplitEntry.Length is > 1)
-            && pathSplitEntries.Select(pathSplitEntry => pathSplitEntry[0]).Distinct(StringComparer.Ordinal).Count() is 1)
+            && pathSplitEntries.Select(pathSplitEntry => pathSplitEntry[0]).Distinct(StringComparer.OrdinalIgnoreCase).Count() is 1)
             manifestEntryFullName = $"{pathSplitEntries[0][0]}/{manifestEntryFullName}";
         var manifestEntry = scriptMod.CreateEntry(manifestEntryFullName);
         using var manifestEntryStream = manifestEntry.Open();

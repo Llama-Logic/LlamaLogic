@@ -36,6 +36,12 @@ public enum ResourceFileType
     TuningMarkup,
 
     /// <summary>
+    /// The Sims 4's proprietary image format in which a PNG alpha mask is embedded in the headers of a JPEG
+    /// </summary>
+    [ResourceFileTypeFormat("jpg", "image/jpeg")]
+    Ts4TranslucentJointPhotographicExpertsGroupImage,
+
+    /// <summary>
     /// Yet Another Markup Language
     /// </summary>
     [ResourceFileTypeFormat("yml", "application/x-yaml")]

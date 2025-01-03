@@ -55,6 +55,7 @@ public sealed class DataBasePackedFile :
     const uint defaultUnused4 = 3U;
     static readonly Version defaultUserVersion = new(0, 0);
     static readonly Memory<byte> expectedFileIdentifier = "DBPF"u8.ToArray();
+    static readonly ReadOnlyMemory<byte> jpegApp0Marker = new byte[] { 0xff, 0xe0 };
     static readonly ImmutableDictionary<ResourceType, ResourceFileType?> resourceFileTypeByResourceType = Enum
         .GetValues<ResourceType>()
         .ToImmutableDictionary(resourceType => resourceType, resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<ResourceFileTypeAttribute>()?.ResourceFileType);
@@ -1139,6 +1140,96 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
+    /// Gets the content of a resource that is a TS4 proprietary translucent JPEG based with the specified <paramref name="key"/>, reintegrated into RGBA and encoded as a PNG
+    /// </summary>
+    public ReadOnlyMemory<byte> GetTranslucentJpegAsPng(ResourceKey key, bool force = false)
+    {
+        var content = Get(key, force);
+        using var contentStream = new ReadOnlyMemoryOfByteStream(content);
+        using var jpegImage = Image.Load<Rgba32>(contentStream);
+        ReadOnlyMemory<byte> alphaData = default;
+        var contentScanningMemory = content;
+        int scanIndex;
+        while ((scanIndex = contentScanningMemory.Span.IndexOf(jpegApp0Marker.Span)) != -1)
+        {
+            var szSection = BinaryPrimitives.ReverseEndianness(MemoryMarshal.Read<ushort>(contentScanningMemory.Slice(scanIndex + 2, 2).Span));
+            var section = contentScanningMemory.Slice(scanIndex + 4, szSection);
+            if (section.Span[0..4].SequenceEqual("ALFA"u8))
+            {
+                alphaData = section[8..];
+                break;
+            }
+            contentScanningMemory = contentScanningMemory[(scanIndex + szSection + 2)..];
+        }
+        if (alphaData.IsEmpty)
+            throw new InvalidDataException("ALFA PNG APP0 marker not found in JPEG");
+        using var pngStream = new ReadOnlyMemoryOfByteStream(alphaData);
+        using var pngImage = Image.Load<L8>(pngStream);
+        if (jpegImage.Size != pngImage.Size)
+            throw new InvalidDataException("JPEG and PNG do not have identical dimensions");
+        using var combined = new Image<Rgba32>(jpegImage.Width, jpegImage.Height);
+        for (var y = 0; y < jpegImage.Height; ++y)
+        {
+            var jpegRow = jpegImage.DangerousGetPixelRowMemory(y).Span;
+            var pngRow = pngImage.DangerousGetPixelRowMemory(y).Span;
+            var combinedRow = combined.DangerousGetPixelRowMemory(y).Span;
+            for (var x = 0; x < jpegImage.Width; ++x)
+            {
+                var jpegPixel = jpegRow[x];
+                combinedRow[x] = new Rgba32(jpegPixel.R, jpegPixel.G, jpegPixel.B, pngRow[x].PackedValue);
+            }
+        }
+        using var writer = new ArrayBufferWriterOfByteStream();
+        combined.SaveAsPng(writer);
+        return writer.WrittenMemory;
+    }
+
+    /// <summary>
+    /// Gets the content of a resource that is a TS4 proprietary translucent JPEG based with the specified <paramref name="key"/>, reintegrated into RGBA and encoded as a PNG, asynchronously
+    /// </summary>
+    public async Task<ReadOnlyMemory<byte>> GetTranslucentJpegAsPngAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    {
+        var content = await GetAsync(key, force, cancellationToken).ConfigureAwait(false);
+        using var contentStream = new ReadOnlyMemoryOfByteStream(content);
+        using var jpegImage = await Image.LoadAsync<Rgba32>(contentStream, cancellationToken).ConfigureAwait(false);
+        ReadOnlyMemory<byte> alphaData = default;
+        var contentScanningMemory = content;
+        int scanIndex;
+        while ((scanIndex = contentScanningMemory.Span.IndexOf(jpegApp0Marker.Span)) != -1)
+        {
+            var szSection = BinaryPrimitives.ReverseEndianness(MemoryMarshal.Read<ushort>(contentScanningMemory.Slice(scanIndex + 2, 2).Span));
+            var section = contentScanningMemory.Slice(scanIndex + 4, szSection);
+            if (section.Span[0..4].SequenceEqual("ALFA"u8))
+            {
+                alphaData = section[8..];
+                break;
+            }
+            contentScanningMemory = contentScanningMemory[(scanIndex + szSection + 2)..];
+        }
+        if (alphaData.IsEmpty)
+            throw new InvalidDataException("ALFA PNG APP0 marker not found in JPEG");
+        using var pngStream = new ReadOnlyMemoryOfByteStream(alphaData);
+        using var pngImage = await Image.LoadAsync<L8>(pngStream, cancellationToken).ConfigureAwait(false);
+        if (jpegImage.Size != pngImage.Size)
+            throw new InvalidDataException("JPEG and PNG do not have identical dimensions");
+        using var combined = new Image<Rgba32>(jpegImage.Width, jpegImage.Height);
+        for (var y = 0; y < jpegImage.Height; ++y)
+        {
+            var jpegRow = jpegImage.DangerousGetPixelRowMemory(y).Span;
+            var pngRow = pngImage.DangerousGetPixelRowMemory(y).Span;
+            var combinedRow = combined.DangerousGetPixelRowMemory(y).Span;
+            for (var x = 0; x < jpegImage.Width; ++x)
+            {
+                var jpegPixel = jpegRow[x];
+                combinedRow[x] = new Rgba32(jpegPixel.R, jpegPixel.G, jpegPixel.B, pngRow[x].PackedValue);
+            }
+        }
+        using var writer = new ArrayBufferWriterOfByteStream();
+        await combined.SaveAsPngAsync(writer, cancellationToken).ConfigureAwait(false);
+        return writer.WrittenMemory;
+    }
+
+    /// <summary>
     /// Gets the content of a resource with the specified <paramref name="key"/> as an <see cref="XDocument"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
@@ -2024,6 +2115,65 @@ public sealed class DataBasePackedFile :
         await xmlWriter.FlushAsync().ConfigureAwait(false);
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
         return await InternalSetAsync(key, newMarkupStream.WrittenMemory, compressionMode, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Sets the content of a resource as a TS4 proprietary translucent JPEG based on an RGBA image encoded as <paramref name="pngData"/> (the resource content will not be DBPF-compressed as it will already be JPEG lossy compressed and PNG DEFLATE compressed)
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="pngData">The encoded PNG data</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    public async Task SetPngAsTranslucentJpegAsync(ResourceKey key, ReadOnlyMemory<byte> pngData, CancellationToken cancellationToken = default)
+    {
+        ReadOnlyMemory<byte> jpegData, alphaData;
+        using (var combinedStream = new ReadOnlyMemoryOfByteStream(pngData))
+        using (var combined = await Image.LoadAsync<Rgba32>(combinedStream, cancellationToken).ConfigureAwait(false))
+        {
+            using (var jpegImage = combined.Clone(c => c.BackgroundColor(Color.White)))
+            {
+                var jpegImageMetadata = jpegImage.Metadata;
+                jpegImageMetadata.ExifProfile ??= new();
+                jpegImageMetadata.ResolutionUnits = PixelResolutionUnit.AspectRatio;
+                jpegImageMetadata.HorizontalResolution = 1;
+                jpegImageMetadata.VerticalResolution = 1;
+                using var jpegWriter = new ArrayBufferWriterOfByteStream();
+                await jpegImage.SaveAsJpegAsync(jpegWriter, new JpegEncoder { Quality = 100 }, cancellationToken).ConfigureAwait(false);
+                jpegData = jpegWriter.WrittenMemory;
+            }
+            using var alphaImage = new Image<L8>(combined.Width, combined.Height);
+            for (var y = 0; y < combined.Height; ++y)
+            {
+                var combinedRow = combined.DangerousGetPixelRowMemory(y).Span;
+                var pngRow = alphaImage.DangerousGetPixelRowMemory(y).Span;
+                for (var x = 0; x < combined.Width; ++x)
+                    pngRow[x] = new L8(combinedRow[x].A);
+            }
+            using var alphaWriter = new ArrayBufferWriterOfByteStream();
+            await alphaImage.SaveAsPngAsync(alphaWriter, new PngEncoder
+            {
+                BitDepth = PngBitDepth.Bit8,
+                ColorType = PngColorType.Grayscale,
+                CompressionLevel = PngCompressionLevel.BestCompression,
+                InterlaceMethod = PngInterlaceMode.None
+            }, cancellationToken).ConfigureAwait(false);
+            alphaData = alphaWriter.WrittenMemory;
+        }
+        var writer = new ArrayBufferWriter<byte>();
+        var firstMarkerSzSection = MemoryMarshal.Read<ushort>(jpegData.Span[4..6]);
+        firstMarkerSzSection = BinaryPrimitives.ReverseEndianness(firstMarkerSzSection);
+        var insertionIndex = 4 + firstMarkerSzSection;
+        writer.Write(jpegData.Span[..insertionIndex]);
+        writer.Write(jpegApp0Marker.Span);
+        var szSection = (ushort)(alphaData.Length + 10);
+        szSection = BinaryPrimitives.ReverseEndianness(szSection);
+        writer.Write(ref szSection);
+        writer.Write("ALFA"u8);
+        var alphaLength = (uint)alphaData.Length;
+        alphaLength = BinaryPrimitives.ReverseEndianness(alphaLength);
+        writer.Write(ref alphaLength);
+        writer.Write(alphaData.Span);
+        writer.Write(jpegData.Span[insertionIndex..]);
+        await SetAsync(key, writer.WrittenMemory, CompressionMode.ForceOff, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>

@@ -68,4 +68,5 @@ Makes use of the following excellent libraries:
 * [Gibbed.RefPack](https://github.com/gibbed/Gibbed.RefPack) by Rick Gibbed
 * [PolySharp](https://github.com/Sergio0694/PolySharp) by Sergio Pedri
 * [SharpZLib](https://github.com/icsharpcode/SharpZipLib)
+* [SixLabors.ImageSharp](https://github.com/SixLabors/ImageSharp)
 * [YamlDotNet](https://github.com/aaubry/YamlDotNet)
