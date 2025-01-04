@@ -614,21 +614,17 @@ public sealed class DataBasePackedFile :
     ReadOnlyMemory<byte> FetchMemory(IndexEntry indexEntry, bool force)
     {
         using var contentStream = FetchStream(indexEntry, force);
-        var content = new byte[indexEntry.mnSizeDecompressed];
-        var bytesToRead = (int)indexEntry.mnSizeDecompressed;
-        while (bytesToRead > 0)
-            bytesToRead -= contentStream.Read(content);
-        return content;
+        Memory<byte> content = new byte[indexEntry.mnSizeDecompressed];
+        var bytesRead = contentStream.Read(content.Span);
+        return content[..bytesRead];
     }
 
     async Task<ReadOnlyMemory<byte>> FetchMemoryAsync(IndexEntry indexEntry, bool force, CancellationToken cancellationToken)
     {
         using var contentStream = FetchStream(indexEntry, force);
         Memory<byte> content = new byte[indexEntry.mnSizeDecompressed];
-        var bytesToRead = (int)indexEntry.mnSizeDecompressed;
-        while (bytesToRead > 0)
-            bytesToRead -= await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
-        return content;
+        var bytesRead = await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
+        return content[..bytesRead];
     }
 
     ReadOnlyMemory<byte> FetchRawMemory(IndexEntry indexEntry, bool force)
