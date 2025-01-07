@@ -259,20 +259,20 @@ message GameSaveLockUnlock {
 }
 
 message UiScreenSlam {
-	enum UiScreenSlamTypes {
+	enum Types {
 		LEGACY = 0;
 		CUSTOM = 1;
 	}
-	enum UiScreenSlamSize {
+	enum Size {
 		SMALL = 0;
 		MEDIUM = 1;
 		LARGE = 2;
 		EXTRA_LARGE = 3;
 	}
-	optional UiScreenSlamTypes type = 1;
+	optional uint32 type = 1;
 	optional .EA.Sims4.Network.LocalizedString name = 2;
 	optional .EA.Sims4.Network.ResourceKey icon = 3;
-	optional UiScreenSlamSize size = 4;
+	optional uint32 size = 4;
 	optional .EA.Sims4.Network.LocalizedString title = 5;
 	optional uint64 sim_id = 6;
 	optional string ui_key = 7;
