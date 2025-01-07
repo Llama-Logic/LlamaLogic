@@ -331,7 +331,7 @@ class Compression
 
             if (input.Length > 0xFFFFFF)
             {
-                output = new byte[compressedLength + 5 + (endIsValid ? 0 : 1)];
+                output = new byte[compressedLength + 6 + (endIsValid ? 0 : 1)];
                 output[0] = 0x10 | 0x80; // 0x80 = length is 4 bytes
                 output[1] = 0xFB;
                 output[2] = (byte)(input.Length >> 24);

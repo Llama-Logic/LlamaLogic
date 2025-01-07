@@ -220,7 +220,7 @@ public sealed class DataBasePackedFile :
     public static ReadOnlyMemory<byte> InternalDecompress(ReadOnlyMemory<byte> memory)
     {
         using var compressedStream = new ReadOnlyMemoryOfByteStream(memory);
-        return Gibbed.RefPack.Decompression.Decompress(compressedStream).AsMemory();
+        return Gibbed.RefPack.Decompression.Decompress(compressedStream);
     }
 
     static void RemoveIndexedResourceName(Dictionary<string, HashSet<ResourceKey>> resourceKeysByName, Dictionary<ResourceKey, string> resourceNameByKey, ResourceKey key)
