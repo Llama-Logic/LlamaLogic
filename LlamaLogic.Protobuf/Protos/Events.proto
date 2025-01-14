@@ -3,6 +3,13 @@ package EA.Sims4.Network;
 import "Consts.proto";
 import "Localization.proto";
 
+enum EventVersion {
+	UNKNOWN = 0;
+	R3_EVENT = 100;
+	DEC_EVENT = 200;
+	R4_EVENT = 300;
+	R5_EVENT = 400;
+}
 
 message EventDefinition {
 	optional string event_id = 1;
@@ -132,4 +139,5 @@ message EventsControlMessage {
 	optional .EA.Sims4.Network.ClaimedRewardUpdate claimed_reward_update = 6;
 	optional .EA.Sims4.Network.EventProgressResponse event_progress_response = 7;
 	optional .EA.Sims4.Network.PlayerInventoryResponse player_inventory_response = 8;
+	optional .EA.Sims4.Network.EventVersion max_event_version = 9;
 }
