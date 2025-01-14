@@ -736,6 +736,32 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"player_inventory_response")]
         public PlayerInventoryResponse PlayerInventoryResponse { get; set; }
 
+        [global::ProtoBuf.ProtoMember(9, Name = @"max_event_version")]
+        [global::System.ComponentModel.DefaultValue(EventVersion.Unknown)]
+        public EventVersion MaxEventVersion
+        {
+            get => __pbn__MaxEventVersion ?? EventVersion.Unknown;
+            set => __pbn__MaxEventVersion = value;
+        }
+        public bool ShouldSerializeMaxEventVersion() => __pbn__MaxEventVersion != null;
+        public void ResetMaxEventVersion() => __pbn__MaxEventVersion = null;
+        private EventVersion? __pbn__MaxEventVersion;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public enum EventVersion
+    {
+        [global::ProtoBuf.ProtoEnum(Name = @"UNKNOWN")]
+        Unknown = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"R3_EVENT")]
+        R3Event = 100,
+        [global::ProtoBuf.ProtoEnum(Name = @"DEC_EVENT")]
+        DecEvent = 200,
+        [global::ProtoBuf.ProtoEnum(Name = @"R4_EVENT")]
+        R4Event = 300,
+        [global::ProtoBuf.ProtoEnum(Name = @"R5_EVENT")]
+        R5Event = 400,
     }
 
 }

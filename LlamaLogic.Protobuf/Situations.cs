@@ -1492,6 +1492,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(7, Name = @"reward_1_tooltip")]
         public LocalizedString Reward1Tooltip { get; set; }
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"situation_display_style")]
+        public uint SituationDisplayStyle
+        {
+            get => __pbn__SituationDisplayStyle.GetValueOrDefault();
+            set => __pbn__SituationDisplayStyle = value;
+        }
+        public bool ShouldSerializeSituationDisplayStyle() => __pbn__SituationDisplayStyle != null;
+        public void ResetSituationDisplayStyle() => __pbn__SituationDisplayStyle = null;
+        private uint? __pbn__SituationDisplayStyle;
+
     }
 
     [global::ProtoBuf.ProtoContract()]

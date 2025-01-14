@@ -6575,6 +6575,9 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(6, Name = @"active_whimset_guids")]
         public ulong[] ActiveWhimsetGuids { get; set; }
 
+        [global::ProtoBuf.ProtoMember(7, Name = @"initial_whimset_history_guids")]
+        public ulong[] InitialWhimsetHistoryGuids { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public partial class WhimData : global::ProtoBuf.IExtensible
         {
