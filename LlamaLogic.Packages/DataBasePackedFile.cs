@@ -239,8 +239,9 @@ public sealed class DataBasePackedFile :
     public static ReadOnlyMemory<byte> ZLibCompress(ReadOnlyMemory<byte> memory)
     {
         using var compressedStream = new ArrayBufferWriterOfByteStream();
-        using var compressionStream = new DeflaterOutputStream(compressedStream);
+        using var compressionStream = new DeflaterOutputStream(compressedStream, new Deflater(Deflater.BEST_COMPRESSION));
         compressionStream.Write(memory.Span);
+        compressionStream.Finish();
         compressionStream.Flush();
         return compressedStream.WrittenMemory;
     }
@@ -251,8 +252,9 @@ public sealed class DataBasePackedFile :
     public static async Task<ReadOnlyMemory<byte>> ZLibCompressAsync(ReadOnlyMemory<byte> memory, CancellationToken cancellationToken = default)
     {
         using var compressedStream = new ArrayBufferWriterOfByteStream();
-        using var compressionStream = new DeflaterOutputStream(compressedStream);
+        using var compressionStream = new DeflaterOutputStream(compressedStream, new Deflater(Deflater.BEST_COMPRESSION));
         await compressionStream.WriteAsync(memory, cancellationToken).ConfigureAwait(false);
+        await compressionStream.FinishAsync(cancellationToken).ConfigureAwait(false);
         await compressionStream.FlushAsync(cancellationToken).ConfigureAwait(false);
         return compressedStream.WrittenMemory;
     }
