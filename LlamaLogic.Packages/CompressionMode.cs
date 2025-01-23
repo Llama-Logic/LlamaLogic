@@ -44,13 +44,17 @@ public enum CompressionMode
     SetDeletedFlag,
 
     /// <summary>
-    /// Deprecated: do not use
+    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' internal method (use with caution)
     /// </summary>
-    [Obsolete($"This setting can no longer be used and will be removed in a future version. Supply the uncompressed data and {nameof(Auto)} or {nameof(ForceInternal)}.", true)]
     CallerSuppliedInternal,
 
     /// <summary>
     /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' streamable method (use with caution)
     /// </summary>
-    CallerSuppliedStreamable
+    CallerSuppliedStreamable,
+
+    /// <summary>
+    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using ZLIB (use with caution)
+    /// </summary>
+    CallerSuppliedZLib
 }
