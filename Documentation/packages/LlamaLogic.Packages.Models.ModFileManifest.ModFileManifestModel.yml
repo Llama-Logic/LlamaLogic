@@ -5,6 +5,8 @@ items:
   id: ModFileManifestModel
   parent: LlamaLogic.Packages.Models.ModFileManifest
   children:
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.DeleteModFileManifest(System.IO.Compression.ZipArchive)
@@ -33,9 +35,11 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Parse(System.String,System.IFormatProvider)
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ResourceName
@@ -46,6 +50,7 @@ items:
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SupportedTypes
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ToString
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TryParse(System.String,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel@)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TryParse(System.String,System.IFormatProvider,LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel@)
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningFullInstance
@@ -1153,6 +1158,102 @@ items:
   nameWithType.vb: ModFileManifestModel.TryParse(String, IFormatProvider, ModFileManifestModel)
   fullName.vb: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TryParse(String, System.IFormatProvider, LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel)
   name.vb: TryParse(String, IFormatProvider, ModFileManifestModel)
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail
+  id: ContactEmail
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: ContactEmail
+  nameWithType: ModFileManifestModel.ContactEmail
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ContactEmail
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 521
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets/sets the email address which can be used to contact this mod's creator
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+
+      public string? ContactEmail { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+
+      Public Property ContactEmail As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 5
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl
+  id: ContactUrl
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: ContactUrl
+  nameWithType: ModFileManifestModel.ContactUrl
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ContactUrl
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 527
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets/sets the URL which can be used to contact this mod's creator
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+
+      public Uri? ContactUrl { get; set; }
+    parameters: []
+    return:
+      type: System.Uri
+    content.vb: >-
+      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+
+      Public Property ContactUrl As Uri
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 6
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators
   id: Creators
@@ -1171,7 +1272,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Creators
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 521
+    startLine: 533
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1219,7 +1320,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Exclusivities
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 527
+    startLine: 539
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1227,14 +1328,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> Exclusivities { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=14, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Exclusivities As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Exclusivities*
@@ -1245,7 +1346,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 9
+      value: 14
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1267,7 +1368,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Features
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 533
+    startLine: 545
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1275,14 +1376,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> Features { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Features As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Features*
@@ -1293,7 +1394,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 8
+      value: 13
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1315,7 +1416,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Hash
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 539
+    startLine: 551
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1323,14 +1424,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public ImmutableArray<byte> Hash { get; set; }
     parameters: []
     return:
       type: System.Collections.Immutable.ImmutableArray{System.Byte}
     content.vb: >-
-      <YamlMember(Order:=5, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property Hash As ImmutableArray(Of Byte)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Hash*
@@ -1341,7 +1442,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 5
+      value: 10
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1363,7 +1464,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: HashResourceKeys
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 545
+    startLine: 557
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1371,14 +1472,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public HashSet<ResourceKey> HashResourceKeys { get; }
     parameters: []
     return:
       type: System.Collections.Generic.HashSet{LlamaLogic.Packages.ResourceKey}
     content.vb: >-
-      <YamlMember(Order:=6, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property HashResourceKeys As HashSet(Of ResourceKey)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys*
@@ -1389,10 +1490,58 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 6
+      value: 11
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators
+  id: MessageToTranslators
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: MessageToTranslators
+  nameWithType: ModFileManifestModel.MessageToTranslators
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MessageToTranslators
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 563
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets/sets the message to translators by this mod's creator
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+
+      public string? MessageToTranslators { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+
+      Public Property MessageToTranslators As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 7
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   id: Name
@@ -1411,7 +1560,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 551
+    startLine: 569
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1441,6 +1590,54 @@ items:
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 2
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages
+  id: RepurposedLanguages
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: RepurposedLanguages
+  nameWithType: ModFileManifestModel.RepurposedLanguages
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RepurposedLanguages
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 575
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets the list of languages repurposed by this mod
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+
+      public Collection<ModFileManifestModelRepurposedLanguage> RepurposedLanguages { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage}
+    content.vb: >-
+      <YamlMember(Order:=9, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+
+      Public Property RepurposedLanguages As Collection(Of ModFileManifestModelRepurposedLanguage)
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 9
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 4
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   id: RequiredMods
@@ -1459,7 +1656,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredMods
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 557
+    startLine: 581
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1467,14 +1664,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRequiredMod}
     content.vb: >-
-      <YamlMember(Order:=13, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=18, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredMods As Collection(Of ModFileManifestModelRequiredMod)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods*
@@ -1485,7 +1682,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 13
+      value: 18
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1507,7 +1704,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RequiredPacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 563
+    startLine: 587
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1515,14 +1712,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 15, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> RequiredPacks { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=10, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=15, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property RequiredPacks As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredPacks*
@@ -1533,7 +1730,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 10
+      value: 15
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1555,7 +1752,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: IncompatiblePacks
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 569
+    startLine: 593
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1563,14 +1760,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 17, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public Collection<string> IncompatiblePacks { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.Collection{System.String}
     content.vb: >-
-      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=17, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property IncompatiblePacks As Collection(Of String)
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.IncompatiblePacks*
@@ -1581,7 +1778,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 12
+      value: 17
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
@@ -1603,7 +1800,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ElectronicArtsPromoCode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 575
+    startLine: 599
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1611,14 +1808,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+      [YamlMember(Order = 16, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
 
       public string? ElectronicArtsPromoCode { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
-      <YamlMember(Order:=11, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+      <YamlMember(Order:=16, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
 
       Public Property ElectronicArtsPromoCode As String
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ElectronicArtsPromoCode*
@@ -1629,7 +1826,7 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 11
+      value: 16
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 1
@@ -1651,7 +1848,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 579
+    startLine: 603
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1695,7 +1892,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SubsumedHashes
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 586
+    startLine: 610
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1703,14 +1900,14 @@ items:
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+      [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
 
       public HashSet<ImmutableArray<byte>> SubsumedHashes { get; }
     parameters: []
     return:
       type: System.Collections.Generic.HashSet{System.Collections.Immutable.ImmutableArray{System.Byte}}
     content.vb: >-
-      <YamlMember(Order:=7, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
+      <YamlMember(Order:=12, DefaultValuesHandling:=DefaultValuesHandling.OmitEmptyCollections)>
 
       Public Property SubsumedHashes As HashSet(Of ImmutableArray(Of Byte))
   overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.SubsumedHashes*
@@ -1721,10 +1918,58 @@ items:
     namedArguments:
     - name: Order
       type: System.Int32
-      value: 7
+      value: 12
     - name: DefaultValuesHandling
       type: YamlDotNet.Serialization.DefaultValuesHandling
       value: 4
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl
+  id: TranslationSubmissionUrl
+  parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  langs:
+  - csharp
+  - vb
+  name: TranslationSubmissionUrl
+  nameWithType: ModFileManifestModel.TranslationSubmissionUrl
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TranslationSubmissionUrl
+    path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
+    startLine: 616
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.ModFileManifest
+  summary: Gets/sets the URL at which translators may submit translations to this mod's creator
+  example: []
+  syntax:
+    content: >-
+      [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+
+      public Uri? TranslationSubmissionUrl { get; set; }
+    parameters: []
+    return:
+      type: System.Uri
+    content.vb: >-
+      <YamlMember(Order:=8, DefaultValuesHandling:=DefaultValuesHandling.OmitNull)>
+
+      Public Property TranslationSubmissionUrl As Uri
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl*
+  attributes:
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 8
+    - name: DefaultValuesHandling
+      type: YamlDotNet.Serialization.DefaultValuesHandling
+      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
   id: TuningName
@@ -1743,7 +1988,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningName
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 592
+    startLine: 622
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1791,7 +2036,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningFullInstance
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 598
+    startLine: 628
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1839,7 +2084,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Url
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 604
+    startLine: 634
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1887,7 +2132,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 610
+    startLine: 640
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1935,7 +2180,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 614
+    startLine: 644
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -1968,7 +2213,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ToString
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModel.cs
-    startLine: 626
+    startLine: 656
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -3711,6 +3956,26 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ContactEmail
+  name: ContactEmail
+  nameWithType: ModFileManifestModel.ContactEmail
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactEmail
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_ContactUrl
+  name: ContactUrl
+  nameWithType: ModFileManifestModel.ContactUrl
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.ContactUrl
+- uid: System.Uri
+  commentId: T:System.Uri
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uri
+  name: Uri
+  nameWithType: Uri
+  fullName: System.Uri
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Creators
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Creators
@@ -3847,12 +4112,57 @@ references:
   name: HashResourceKeys
   nameWithType: ModFileManifestModel.HashResourceKeys
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.HashResourceKeys
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_MessageToTranslators
+  name: MessageToTranslators
+  nameWithType: ModFileManifestModel.MessageToTranslators
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.MessageToTranslators
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Name
   name: Name
   nameWithType: ModFileManifestModel.Name
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Name
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RepurposedLanguages
+  name: RepurposedLanguages
+  nameWithType: ModFileManifestModel.RepurposedLanguages
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RepurposedLanguages
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<ModFileManifestModelRepurposedLanguage>
+  nameWithType: Collection<ModFileManifestModelRepurposedLanguage>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage>
+  nameWithType.vb: Collection(Of ModFileManifestModelRepurposedLanguage)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage)
+  name.vb: Collection(Of ModFileManifestModelRepurposedLanguage)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage
+    name: ModFileManifestModelRepurposedLanguage
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage
+    name: ModFileManifestModelRepurposedLanguage
+    href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html
+  - name: )
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.RequiredMods
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_RequiredMods
@@ -3985,6 +4295,12 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.byte
   - name: )
   - name: )
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_TranslationSubmissionUrl
+  name: TranslationSubmissionUrl
+  nameWithType: ModFileManifestModel.TranslationSubmissionUrl
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TranslationSubmissionUrl
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.TuningName
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_TuningName
@@ -4014,14 +4330,6 @@ references:
   name: Url
   nameWithType: ModFileManifestModel.Url
   fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Url
-- uid: System.Uri
-  commentId: T:System.Uri
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.uri
-  name: Uri
-  nameWithType: Uri
-  fullName: System.Uri
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Version*
   commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.Version
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModel_Version

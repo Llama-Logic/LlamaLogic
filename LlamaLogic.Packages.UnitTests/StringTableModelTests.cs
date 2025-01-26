@@ -24,9 +24,9 @@ public class StringTableModelTests :
         var englishKey = ResourceKey.Parse("220557da:80000000:002100b7f5cfd646");
         var english = englishKey.GetStringTableLocale();
         Assert.AreEqual("English (United States)", english.EnglishName);
-        var polishKey = englishKey.GetResourceKeyForLocale(new CultureInfo("pl-PL"));
+        var polishKey = englishKey.GetResourceKeyForLocale(new CultureInfo("pl"));
         Assert.AreEqual(0x0f, (byte)((polishKey.FullInstance & 0xFF00000000000000) >> 56));
         var polish = polishKey.GetStringTableLocale();
-        Assert.AreEqual("Polish (Poland)", polish.EnglishName);
+        Assert.AreEqual("Polish", polish.EnglishName);
     }
 }

@@ -517,6 +517,18 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
+    /// Gets/sets the email address which can be used to contact this mod's creator
+    /// </summary>
+    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public string? ContactEmail { get; set; }
+
+    /// <summary>
+    /// Gets/sets the URL which can be used to contact this mod's creator
+    /// </summary>
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public Uri? ContactUrl { get; set; }
+
+    /// <summary>
     /// Gets the names of the creators of the mod
     /// </summary>
     [YamlMember(Order = 2, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
@@ -525,26 +537,32 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the globally unique names of the exclusivities of this mod, causing it to be incompatible with other mods which share one or more of them
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Exclusivities { get; private set; } = [];
 
     /// <summary>
     /// Gets the names of the features unique to this mod which it offers to other mods as a dependency
     /// </summary>
-    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Features { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the hash of the mod file
     /// </summary>
-    [YamlMember(Order = 5, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> Hash { get; set; }
 
     /// <summary>
     /// Gets the resource keys for the resources included in the <see cref="Hash"/>
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ResourceKey> HashResourceKeys { get; private set; } = [];
+
+    /// <summary>
+    /// Gets/sets the message to translators by this mod's creator
+    /// </summary>
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public string? MessageToTranslators { get; set; }
 
     /// <summary>
     /// Gets/sets the name of the mod
@@ -553,27 +571,33 @@ public sealed class ModFileManifestModel :
     public required string Name { get; set; }
 
     /// <summary>
+    /// Gets the list of languages repurposed by this mod
+    /// </summary>
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public Collection<ModFileManifestModelRepurposedLanguage> RepurposedLanguages { get; private set; } = [];
+
+    /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 15, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 17, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> IncompatiblePacks { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the promo code it is suggested the player use during check out in the EA Store if purchasing a pack for use with this mod
     /// </summary>
-    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 16, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ElectronicArtsPromoCode { get; set; }
 
     /// <inheritdoc/>
@@ -584,8 +608,14 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the hashes of previous versions of this mod in for which I stand even though my hash is different
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ImmutableArray<byte>> SubsumedHashes { get; private set; } = [];
+
+    /// <summary>
+    /// Gets/sets the URL at which translators may submit translations to this mod's creator
+    /// </summary>
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public Uri? TranslationSubmissionUrl { get; set; }
 
     /// <summary>
     /// Gets the <see cref="ResourceType.SnippetTuning"/> name for the mod file manifest
@@ -663,6 +693,8 @@ public sealed class ModFileManifestModel :
                     HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
                 else if (tunableName == "incompatible_packs")
                     IncompatiblePacks.AddRange(reader.ReadTunableList());
+                else if (tunableName == "repurposed_languages")
+                    RepurposedLanguages.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRepurposedLanguage>());
                 else if (tunableName == "required_mods")
                     RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
                 else if (tunableName == "required_packs")
@@ -673,12 +705,20 @@ public sealed class ModFileManifestModel :
             else
             {
                 var tunableValue = reader.ReadElementContentAsString();
-                if (tunableName == "ea_promo_code")
+                if (tunableName == "contact_email")
+                    ContactEmail = tunableValue;
+                else if (tunableName == "contact_url")
+                    ContactUrl = new Uri(tunableValue, UriKind.Absolute);
+                else if (tunableName == "ea_promo_code")
                     ElectronicArtsPromoCode = tunableValue;
+                else if (tunableName == "message_to_translators")
+                    MessageToTranslators = tunableValue;
                 else if (tunableName == "name")
                     Name = tunableValue;
                 else if (tunableName == "hash")
                     Hash = tunableValue.ToByteSequence().ToImmutableArray();
+                else if (tunableName == "translation_submission_url")
+                    TranslationSubmissionUrl = new Uri(tunableValue, UriKind.Absolute);
                 else if (tunableName == "version")
                     Version = tunableValue;
                 else if (tunableName == "url")
@@ -700,6 +740,11 @@ public sealed class ModFileManifestModel :
         writer.WriteTunableList("creators", Creators);
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
+        writer.WriteTunable("contact_email", ContactEmail);
+        writer.WriteTunable("contact_url", ContactUrl);
+        writer.WriteTunable("message_to_translators", MessageToTranslators);
+        writer.WriteTunable("translation_submission_url", TranslationSubmissionUrl);
+        writer.WriteTunableList("repurposed_languages", RepurposedLanguages);
         writer.WriteTunable("hash", Hash);
         writer.WriteTunableList("hash_resource_keys", HashResourceKeys);
         writer.WriteTunableList("subsumed_hashes", SubsumedHashes);
