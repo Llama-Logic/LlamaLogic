@@ -109,21 +109,19 @@ public sealed class ModFileManifestModelRepurposedLanguage :
         reader.MoveToContent();
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "U")
             throw new XmlException("Expected a tunable tuple element");
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        var element = XElement.Load(reader.ReadSubtree());
+        foreach (var child in element.Elements())
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
+            var (tunableName, isList) = child.ReadTunableDetails();
             if (!isList)
             {
-                var tunableValue = reader.ReadElementContentAsString();
+                var tunableValue = child.Value;
                 if (tunableName == "from")
                     From = tunableValue;
                 else if (tunableName == "to")
                     To = tunableValue;
             }
         }
-        reader.ReadEndElement();
     }
 
     void IXmlSerializable.WriteXml(XmlWriter writer)

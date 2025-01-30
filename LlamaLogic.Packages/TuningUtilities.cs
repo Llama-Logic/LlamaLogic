@@ -18,6 +18,12 @@ static class TuningUtilities
         return(reader.GetAttribute("n"), reader.Name == "L");
     }
 
+    public static (string? name, bool isList) ReadTunableDetails(this XElement element)
+    {
+        ArgumentNullException.ThrowIfNull(element);
+        return (element.Attribute("n")?.Value, element.Name == "L");
+    }
+
     public static IEnumerable<string> ReadTunableList(this XmlReader reader)
     {
         ArgumentNullException.ThrowIfNull(reader);

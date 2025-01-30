@@ -7,18 +7,6 @@ public sealed class ModFileManifestModelTranslator :
     IXmlSerializable
 {
     /// <summary>
-    /// Gets/sets the name of the translator
-    /// </summary>
-    [YamlMember(Order = 1)]
-    public string Name { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets/sets the IETF BCP 47 language tag identifying the language to which this translator contributed
-    /// </summary>
-    [YamlMember(Order = 2)]
-    public string Language { get; set; } = string.Empty;
-
-    /// <summary>
     /// Gets/sets the value of the <see cref="Language"/> property using a <see cref="CultureInfo"/> object
     /// </summary>
     [YamlIgnore]
@@ -38,6 +26,18 @@ public sealed class ModFileManifestModelTranslator :
         set => Language = value?.Name ?? string.Empty;
     }
 
+    /// <summary>
+    /// Gets/sets the IETF BCP 47 language tag identifying the language to which this translator contributed
+    /// </summary>
+    [YamlMember(Order = 2)]
+    public string Language { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets/sets the name of the translator
+    /// </summary>
+    [YamlMember(Order = 1)]
+    public string Name { get; set; } = string.Empty;
+
     #region IXmlSerializable
 
     XmlSchema? IXmlSerializable.GetSchema() =>
@@ -48,21 +48,19 @@ public sealed class ModFileManifestModelTranslator :
         reader.MoveToContent();
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "U")
             throw new XmlException("Expected a tunable tuple element");
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        var element = XElement.Load(reader.ReadSubtree());
+        foreach (var child in element.Elements())
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
+            var (tunableName, isList) = child.ReadTunableDetails();
             if (!isList)
             {
-                var tunableValue = reader.ReadElementContentAsString();
+                var tunableValue = child.Value;
                 if (tunableName == "language")
                     Language = tunableValue;
                 else if (tunableName == "name")
                     Name = tunableValue;
             }
         }
-        reader.ReadEndElement();
     }
 
     void IXmlSerializable.WriteXml(XmlWriter writer)

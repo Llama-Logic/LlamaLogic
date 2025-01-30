@@ -42,51 +42,47 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
-  id: Name
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture
+  id: Culture
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator
   langs:
   - csharp
   - vb
-  name: Name
-  nameWithType: ModFileManifestModelTranslator.Name
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
+  name: Culture
+  nameWithType: ModFileManifestModelTranslator.Culture
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelTranslator.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: Name
+    id: Culture
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelTranslator.cs
     startLine: 11
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets/sets the name of the translator
+  summary: Gets/sets the value of the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language" data-throw-if-not-resolved="false"></xref> property using a <xref href="System.Globalization.CultureInfo" data-throw-if-not-resolved="false"></xref> object
   example: []
   syntax:
     content: >-
-      [YamlMember(Order = 1)]
+      [YamlIgnore]
 
-      public string Name { get; set; }
+      public CultureInfo? Culture { get; set; }
     parameters: []
     return:
-      type: System.String
+      type: System.Globalization.CultureInfo
     content.vb: >-
-      <YamlMember(Order:=1)>
+      <YamlIgnore>
 
-      Public Property Name As String
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name*
+      Public Property Culture As CultureInfo
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture*
   attributes:
-  - type: YamlDotNet.Serialization.YamlMemberAttribute
-    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
+  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
+    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
     arguments: []
-    namedArguments:
-    - name: Order
-      type: System.Int32
-      value: 1
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
   id: Language
@@ -105,7 +101,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Language
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelTranslator.cs
-    startLine: 17
+    startLine: 31
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
@@ -132,47 +128,51 @@ items:
     - name: Order
       type: System.Int32
       value: 2
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture
-  id: Culture
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
+  id: Name
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator
   langs:
   - csharp
   - vb
-  name: Culture
-  nameWithType: ModFileManifestModelTranslator.Culture
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture
+  name: Name
+  nameWithType: ModFileManifestModelTranslator.Name
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelTranslator.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: Culture
+    id: Name
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelTranslator.cs
-    startLine: 23
+    startLine: 37
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets/sets the value of the <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language" data-throw-if-not-resolved="false"></xref> property using a <xref href="System.Globalization.CultureInfo" data-throw-if-not-resolved="false"></xref> object
+  summary: Gets/sets the name of the translator
   example: []
   syntax:
     content: >-
-      [YamlIgnore]
+      [YamlMember(Order = 1)]
 
-      public CultureInfo? Culture { get; set; }
+      public string Name { get; set; }
     parameters: []
     return:
-      type: System.Globalization.CultureInfo
+      type: System.String
     content.vb: >-
-      <YamlIgnore>
+      <YamlMember(Order:=1)>
 
-      Public Property Culture As CultureInfo
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Culture*
+      Public Property Name As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name*
   attributes:
-  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
-    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
+  - type: YamlDotNet.Serialization.YamlMemberAttribute
+    ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
     arguments: []
+    namedArguments:
+    - name: Order
+      type: System.Int32
+      value: 1
 references:
 - uid: LlamaLogic.Packages.ResourceType.SnippetTuning
   commentId: F:LlamaLogic.Packages.ResourceType.SnippetTuning
@@ -476,29 +476,6 @@ references:
     name: Serialization
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelTranslator_Name
-  name: Name
-  nameWithType: ModFileManifestModelTranslator.Name
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelTranslator_Language
-  name: Language
-  nameWithType: ModFileManifestModelTranslator.Language
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
 - uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
   commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
   href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelTranslator_Language
@@ -546,3 +523,26 @@ references:
     name: Globalization
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelTranslator_Language
+  name: Language
+  nameWithType: ModFileManifestModelTranslator.Language
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Language
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelTranslator_Name
+  name: Name
+  nameWithType: ModFileManifestModelTranslator.Name
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelTranslator.Name

@@ -682,37 +682,38 @@ public sealed class ModFileManifestModel :
         TuningName = reader.GetAttribute("n");
         if (ulong.TryParse(reader.GetAttribute("s"), out var parsedTuningFullInstance))
             TuningFullInstance = parsedTuningFullInstance;
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        var element = XElement.Load(reader.ReadSubtree());
+        foreach (var child in element.Elements())
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
+            var (tunableName, isList) = child.ReadTunableDetails();
             if (isList)
             {
+                using var childReader = child.CreateReader();
+                childReader.MoveToContent();
                 if (tunableName == "creators")
-                    Creators.AddRange(reader.ReadTunableList());
+                    Creators.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "exclusivities")
-                    Exclusivities.AddRange(reader.ReadTunableList());
+                    Exclusivities.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "features")
-                    Features.AddRange(reader.ReadTunableList());
+                    Features.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "hash_resource_keys")
-                    HashResourceKeys.AddRangeImmediately(reader.ReadTunableList().Select(ResourceKey.Parse));
+                    HashResourceKeys.AddRangeImmediately(childReader.ReadTunableList().Select(ResourceKey.Parse));
                 else if (tunableName == "incompatible_packs")
-                    IncompatiblePacks.AddRange(reader.ReadTunableList());
+                    IncompatiblePacks.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "repurposed_languages")
-                    RepurposedLanguages.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRepurposedLanguage>());
+                    RepurposedLanguages.AddRange(childReader.ReadTunableTupleList<ModFileManifestModelRepurposedLanguage>());
                 else if (tunableName == "required_mods")
-                    RequiredMods.AddRange(reader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
+                    RequiredMods.AddRange(childReader.ReadTunableTupleList<ModFileManifestModelRequiredMod>());
                 else if (tunableName == "required_packs")
-                    RequiredPacks.AddRange(reader.ReadTunableList());
+                    RequiredPacks.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "subsumed_hashes")
-                    SubsumedHashes.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                    SubsumedHashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
                 else if (tunableName == "translators")
-                    Translators.AddRange(reader.ReadTunableTupleList<ModFileManifestModelTranslator>());
+                    Translators.AddRange(childReader.ReadTunableTupleList<ModFileManifestModelTranslator>());
             }
             else
             {
-                var tunableValue = reader.ReadElementContentAsString();
+                var tunableValue = child.Value;
                 if (tunableName == "contact_email")
                     ContactEmail = tunableValue;
                 else if (tunableName == "contact_url")
@@ -733,7 +734,6 @@ public sealed class ModFileManifestModel :
                     Url = new Uri(tunableValue, UriKind.Absolute);
             }
         }
-        reader.ReadEndElement();
     }
 
     void IXmlSerializable.WriteXml(XmlWriter writer)

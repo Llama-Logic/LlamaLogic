@@ -82,23 +82,24 @@ public sealed class ModFileManifestModelRequiredMod :
         reader.MoveToContent();
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "U")
             throw new XmlException("Expected a tunable tuple element");
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        var element = XElement.Load(reader.ReadSubtree());
+        foreach (var child in element.Elements())
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
+            var (tunableName, isList) = child.ReadTunableDetails();
             if (isList)
             {
+                using var childReader = child.CreateReader();
+                childReader.MoveToContent();
                 if (tunableName == "creators")
-                    Creators.AddRange(reader.ReadTunableList());
+                    Creators.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "hashes")
-                    Hashes.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                    Hashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
                 else if (tunableName == "required_features")
-                    RequiredFeatures.AddRange(reader.ReadTunableList());
+                    RequiredFeatures.AddRange(childReader.ReadTunableList());
             }
             else
             {
-                var tunableValue = reader.ReadElementContentAsString();
+                var tunableValue = child.Value;
                 if (tunableName == "ignore_if_hash_available")
                     IgnoreIfHashAvailable = tunableValue.ToByteSequence().ToImmutableArray();
                 else if (tunableName == "ignore_if_hash_unavailable")
@@ -117,7 +118,6 @@ public sealed class ModFileManifestModelRequiredMod :
                     Url = new Uri(tunableValue, UriKind.Absolute);
             }
         }
-        reader.ReadEndElement();
     }
 
     void IXmlSerializable.WriteXml(XmlWriter writer)

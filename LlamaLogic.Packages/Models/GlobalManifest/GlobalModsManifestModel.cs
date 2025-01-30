@@ -80,20 +80,20 @@ public sealed class GlobalModsManifestModel :
             throw new XmlException($"Expected the \"{tuningModule}\" module");
         if (reader.GetAttribute("c") != tuningClass)
             throw new XmlException($"Expected the \"{tuningClass}\" class");
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        var element = XElement.Load(reader.ReadSubtree());
+        foreach (var child in element.Elements())
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
+            var (tunableName, isList) = child.ReadTunableDetails();
             if (isList)
             {
+                using var childReader = child.CreateReader();
+                childReader.MoveToContent();
                 if (tunableName == "installed_packs")
-                    InstalledPacks.AddRange(reader.ReadTunableList());
+                    InstalledPacks.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "manifested_mod_files")
-                    ManifestedModFiles.AddRange(reader.ReadTunableTupleList<GlobalModsManifestModelManifestedModFile>());
+                    ManifestedModFiles.AddRange(childReader.ReadTunableTupleList<GlobalModsManifestModelManifestedModFile>());
             }
         }
-        reader.ReadEndElement();
     }
 
     void IXmlSerializable.WriteXml(XmlWriter writer)

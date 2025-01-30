@@ -34,19 +34,20 @@ public sealed class GlobalModsManifestModelManifestedModFile :
         reader.MoveToContent();
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "U")
             throw new XmlException("Expected a tunable tuple element");
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        var element = XElement.Load(reader.ReadSubtree());
+        foreach (var child in element.Elements())
         {
-            if (reader.NodeType is not XmlNodeType.Element)
-                continue;
-            var (tunableName, isList) = reader.ReadTunableDetails();
+            var (tunableName, isList) = child.ReadTunableDetails();
             if (isList)
             {
+                using var childReader = child.CreateReader();
+                childReader.MoveToContent();
                 if (tunableName == "hashes")
-                    Hashes.AddRangeImmediately(reader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                    Hashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
             }
             else
             {
-                var tunableValue = reader.ReadElementContentAsString();
+                var tunableValue = child.Value;
                 if (tunableName == "manifest_key")
                     ManifestKey = ResourceKey.Parse(tunableValue);
                 else if (tunableName == "manifest_tuning_name")
@@ -55,7 +56,6 @@ public sealed class GlobalModsManifestModelManifestedModFile :
                     ModsFolderPath = tunableValue;
             }
         }
-        reader.ReadEndElement();
     }
 
     void IXmlSerializable.WriteXml(XmlWriter writer)
