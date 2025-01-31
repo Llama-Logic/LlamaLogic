@@ -741,6 +741,12 @@ public enum ResourceType :
     MaxisWorldPipeline2 = 0xfa25b7de,
 
     /// <summary>
+    /// Memorial Thumbnail
+    /// </summary>
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
+    MemorialThumbnail = 0x00000015,
+
+    /// <summary>
     /// Modal Music Mapping
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -911,12 +917,6 @@ public enum ResourceType :
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
     PieMenuCategoryTuning = 0x03e9d964,
-
-    /// <summary>
-    /// Phone Photo Thumbnail
-    /// </summary>
-    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
-    PhonePhotoThumbnail = 0xe88db35f,
 
     /// <summary>
     /// Platform
@@ -1130,35 +1130,53 @@ public enum ResourceType :
     S4sMergedPackageManifest = 0x7fb6ad8a,
 
     /// <summary>
-    /// Sims 4 Save Game Data
+    /// Save Game Custom Texture
+    /// </summary>
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
+    SaveGameCustomTexture = 0xe88db35f,
+
+    /// <summary>
+    /// Save Game Data
     /// </summary>
     [ResourceFileType(ResourceFileType.Binary)]
     [StandardCompression(CompressionTypeMethodNumber.Internal_compression)]
     SaveGameData = 0x0000000d,
 
     /// <summary>
-    /// Save File Thumbnail 1
+    /// Save Game Household Thumbnail
     /// </summary>
     [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
-    SaveThumbnail1 = 0x0000000f,
+    SaveGameHouseholdThumbnail = 0x00000014,
 
     /// <summary>
-    /// Save File Thumbnail 2
+    /// Save Game Lot Level Thumbnail
     /// </summary>
     [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
-    SaveThumbnail2 = 0x00000010,
+    SaveGameLotLevelThumbnail = 0x00000012,
 
     /// <summary>
-    /// Save File Thumbnail 4
+    /// Save Game Lot Level Thumbnail Mask
     /// </summary>
     [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
-    SaveThumbnail4 = 0x00000014,
+    SaveGameLotLevelThumbnailMask = 0x00000013,
 
     /// <summary>
-    /// Save File Thumbnail 5
+    /// Save Game Lot Thumbnail 1
     /// </summary>
     [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
-    SaveThumbnail5 = 0xf8e1457a,
+    SaveGameLotThumbnail1 = 0x0000000f,
+
+    /// <summary>
+    /// Save Game Lot Thumbnail 2
+    /// </summary>
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
+    SaveGameLotThumbnail2 = 0x00000010,
+
+    /// <summary>
+    /// Save Game Sim Custom Texture
+    /// </summary>
+    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
+    SaveGameSimCustomTexture = 0xf8e1457a,
 
     /// <summary>
     /// ScaleForm GFX
