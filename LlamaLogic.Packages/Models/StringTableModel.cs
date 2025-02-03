@@ -42,7 +42,10 @@ public class StringTableModel :
             var @string = mnLength > 0
                 ? Encoding.UTF8.GetString(dataSpan[(int)readPosition..(int)(readPosition += mnLength)])
                 : string.Empty;
-            entries.Add(mnKeyHash, @string);
+            ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(entries, mnKeyHash, out var exists);
+            if (exists)
+                continue;
+            value = @string;
         }
         return stringTableModel;
     }
