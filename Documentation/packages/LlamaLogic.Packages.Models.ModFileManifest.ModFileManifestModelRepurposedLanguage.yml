@@ -5,8 +5,8 @@ items:
   id: ModFileManifestModelRepurposedLanguage
   parent: LlamaLogic.Packages.Models.ModFileManifest
   children:
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
   langs:
   - csharp
   - vb
@@ -41,23 +41,23 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-  id: From
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
+  id: GameLocale
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage
   langs:
   - csharp
   - vb
-  name: From
-  nameWithType: ModFileManifestModelRepurposedLanguage.From
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
+  name: GameLocale
+  nameWithType: ModFileManifestModelRepurposedLanguage.GameLocale
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRepurposedLanguage.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: From
+    id: GameLocale
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRepurposedLanguage.cs
     startLine: 92
   assemblies:
@@ -73,15 +73,15 @@ items:
     content: >-
       [YamlMember(Order = 1)]
 
-      public string From { get; set; }
+      public string GameLocale { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
       <YamlMember(Order:=1)>
 
-      Public Property From As String
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From*
+      Public Property GameLocale As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -90,43 +90,43 @@ items:
     - name: Order
       type: System.Int32
       value: 1
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To
-  id: To
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale
+  id: ActualLocale
   parent: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage
   langs:
   - csharp
   - vb
-  name: To
-  nameWithType: ModFileManifestModelRepurposedLanguage.To
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To
+  name: ActualLocale
+  nameWithType: ModFileManifestModelRepurposedLanguage.ActualLocale
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRepurposedLanguage.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: To
+    id: ActualLocale
     path: ../LlamaLogic.Packages/Models/ModFileManifest/ModFileManifestModelRepurposedLanguage.cs
     startLine: 98
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.ModFileManifest
-  summary: Gets/sets the IETF BCP 47 language tag identifying the non-game-supported language this mod actually contains in the domain ordinarily reserved to <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From" data-throw-if-not-resolved="false"></xref>
+  summary: Gets/sets the IETF BCP 47 language tag identifying the non-game-supported language this mod actually contains in the domain ordinarily reserved to <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: >-
       [YamlMember(Order = 2)]
 
-      public string To { get; set; }
+      public string ActualLocale { get; set; }
     parameters: []
     return:
       type: System.String
     content.vb: >-
       <YamlMember(Order:=2)>
 
-      Public Property [To] As String
-  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To*
+      Public Property ActualLocale As String
+  overload: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale*
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -438,12 +438,12 @@ references:
     name: Serialization
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.xml.serialization
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRepurposedLanguage_From
-  name: From
-  nameWithType: ModFileManifestModelRepurposedLanguage.From
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRepurposedLanguage_GameLocale
+  name: GameLocale
+  nameWithType: ModFileManifestModelRepurposedLanguage.GameLocale
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -455,15 +455,15 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRepurposedLanguage_From
-  name: From
-  nameWithType: ModFileManifestModelRepurposedLanguage.From
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.From
-- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To*
-  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To
-  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRepurposedLanguage_To
-  name: To
-  nameWithType: ModFileManifestModelRepurposedLanguage.To
-  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.To
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
+  commentId: P:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRepurposedLanguage_GameLocale
+  name: GameLocale
+  nameWithType: ModFileManifestModelRepurposedLanguage.GameLocale
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.GameLocale
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale*
+  commentId: Overload:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.html#LlamaLogic_Packages_Models_ModFileManifest_ModFileManifestModelRepurposedLanguage_ActualLocale
+  name: ActualLocale
+  nameWithType: ModFileManifestModelRepurposedLanguage.ActualLocale
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModelRepurposedLanguage.ActualLocale

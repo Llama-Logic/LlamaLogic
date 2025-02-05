@@ -618,7 +618,7 @@ public sealed class ModFileManifestModel :
     public Uri? TranslationSubmissionUrl { get; set; }
 
     /// <summary>
-    /// Gets the list of mods required by this mod
+    /// Gets the list of translators who have contributed translations to this mod
     /// </summary>
     [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelTranslator> Translators { get; private set; } = [];

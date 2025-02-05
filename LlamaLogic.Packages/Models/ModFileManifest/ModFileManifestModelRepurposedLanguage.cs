@@ -91,13 +91,13 @@ public sealed class ModFileManifestModelRepurposedLanguage :
     /// </list>
     /// </remarks>
     [YamlMember(Order = 1)]
-    public string From { get; set; } = string.Empty;
+    public string GameLocale { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets/sets the IETF BCP 47 language tag identifying the non-game-supported language this mod actually contains in the domain ordinarily reserved to <see cref="From"/>
+    /// Gets/sets the IETF BCP 47 language tag identifying the non-game-supported language this mod actually contains in the domain ordinarily reserved to <see cref="GameLocale"/>
     /// </summary>
     [YamlMember(Order = 2)]
-    public string To { get; set; } = string.Empty;
+    public string ActualLocale { get; set; } = string.Empty;
 
     #region IXmlSerializable
 
@@ -116,10 +116,10 @@ public sealed class ModFileManifestModelRepurposedLanguage :
             if (!isList)
             {
                 var tunableValue = child.Value;
-                if (tunableName == "from")
-                    From = tunableValue;
-                else if (tunableName == "to")
-                    To = tunableValue;
+                if (tunableName == "game_locale")
+                    GameLocale = tunableValue;
+                else if (tunableName == "actual_locale")
+                    ActualLocale = tunableValue;
             }
         }
     }
@@ -127,8 +127,8 @@ public sealed class ModFileManifestModelRepurposedLanguage :
     void IXmlSerializable.WriteXml(XmlWriter writer)
     {
         writer.WriteStartElement("U");
-        writer.WriteTunable("from", From);
-        writer.WriteTunable("to", To);
+        writer.WriteTunable("game_locale", GameLocale);
+        writer.WriteTunable("actual_locale", ActualLocale);
         writer.WriteEndElement();
     }
 
