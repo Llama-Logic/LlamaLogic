@@ -1307,6 +1307,16 @@ namespace EA.Sims4.Persistence
         public void ResetDailyEmployeeWages() => __pbn__DailyEmployeeWages = null;
         private int? __pbn__DailyEmployeeWages;
 
+        [global::ProtoBuf.ProtoMember(15, Name = @"daily_household_employee_wages")]
+        public int DailyHouseholdEmployeeWages
+        {
+            get => __pbn__DailyHouseholdEmployeeWages.GetValueOrDefault();
+            set => __pbn__DailyHouseholdEmployeeWages = value;
+        }
+        public bool ShouldSerializeDailyHouseholdEmployeeWages() => __pbn__DailyHouseholdEmployeeWages != null;
+        public void ResetDailyHouseholdEmployeeWages() => __pbn__DailyHouseholdEmployeeWages = null;
+        private int? __pbn__DailyHouseholdEmployeeWages;
+
         [global::ProtoBuf.ProtoContract()]
         public partial class RetailDataPayroll : global::ProtoBuf.IExtensible
         {
@@ -1394,98 +1404,6 @@ namespace EA.Sims4.Persistence
             public bool ShouldSerializeAmount() => __pbn__Amount != null;
             public void ResetAmount() => __pbn__Amount = null;
             private int? __pbn__Amount;
-
-        }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class BucksData : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"bucks_type")]
-        public uint BucksType
-        {
-            get => __pbn__BucksType.GetValueOrDefault();
-            set => __pbn__BucksType = value;
-        }
-        public bool ShouldSerializeBucksType() => __pbn__BucksType != null;
-        public void ResetBucksType() => __pbn__BucksType = null;
-        private uint? __pbn__BucksType;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"amount")]
-        public uint Amount
-        {
-            get => __pbn__Amount.GetValueOrDefault();
-            set => __pbn__Amount = value;
-        }
-        public bool ShouldSerializeAmount() => __pbn__Amount != null;
-        public void ResetAmount() => __pbn__Amount = null;
-        private uint? __pbn__Amount;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"unlocked_perks")]
-        public global::System.Collections.Generic.List<UnlockedPerk> UnlockedPerks { get; } = new global::System.Collections.Generic.List<UnlockedPerk>();
-
-        [global::ProtoBuf.ProtoContract()]
-        public partial class UnlockedPerk : global::ProtoBuf.IExtensible
-        {
-            private global::ProtoBuf.IExtension __pbn__extensionData;
-            global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-                => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-            [global::ProtoBuf.ProtoMember(1, Name = @"perk")]
-            public uint Perk
-            {
-                get => __pbn__Perk.GetValueOrDefault();
-                set => __pbn__Perk = value;
-            }
-            public bool ShouldSerializePerk() => __pbn__Perk != null;
-            public void ResetPerk() => __pbn__Perk = null;
-            private uint? __pbn__Perk;
-
-            [global::ProtoBuf.ProtoMember(2, Name = @"unlock_reason")]
-            public uint UnlockReason
-            {
-                get => __pbn__UnlockReason.GetValueOrDefault();
-                set => __pbn__UnlockReason = value;
-            }
-            public bool ShouldSerializeUnlockReason() => __pbn__UnlockReason != null;
-            public void ResetUnlockReason() => __pbn__UnlockReason = null;
-            private uint? __pbn__UnlockReason;
-
-            [global::ProtoBuf.ProtoMember(3, Name = @"time_left")]
-            public ulong TimeLeft
-            {
-                get => __pbn__TimeLeft.GetValueOrDefault();
-                set => __pbn__TimeLeft = value;
-            }
-            public bool ShouldSerializeTimeLeft() => __pbn__TimeLeft != null;
-            public void ResetTimeLeft() => __pbn__TimeLeft = null;
-            private ulong? __pbn__TimeLeft;
-
-            [global::ProtoBuf.ProtoMember(4, Name = @"timestamp")]
-            public ulong Timestamp
-            {
-                get => __pbn__Timestamp.GetValueOrDefault();
-                set => __pbn__Timestamp = value;
-            }
-            public bool ShouldSerializeTimestamp() => __pbn__Timestamp != null;
-            public void ResetTimestamp() => __pbn__Timestamp = null;
-            private ulong? __pbn__Timestamp;
-
-            [global::ProtoBuf.ProtoMember(5, Name = @"currently_unlocked")]
-            [global::System.ComponentModel.DefaultValue(true)]
-            public bool CurrentlyUnlocked
-            {
-                get => __pbn__CurrentlyUnlocked ?? true;
-                set => __pbn__CurrentlyUnlocked = value;
-            }
-            public bool ShouldSerializeCurrentlyUnlocked() => __pbn__CurrentlyUnlocked != null;
-            public void ResetCurrentlyUnlocked() => __pbn__CurrentlyUnlocked = null;
-            private bool? __pbn__CurrentlyUnlocked;
 
         }
 
@@ -4734,6 +4652,41 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class UserAccountGameplayData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"key", IsRequired = true)]
+        public string Key { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"value")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Value
+        {
+            get => __pbn__Value ?? "";
+            set => __pbn__Value = value;
+        }
+        public bool ShouldSerializeValue() => __pbn__Value != null;
+        public void ResetValue() => __pbn__Value = null;
+        private string __pbn__Value;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class UserAccountStoredGameplayData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"stored_data")]
+        public global::System.Collections.Generic.List<UserAccountGameplayData> StoredDatas { get; } = new global::System.Collections.Generic.List<UserAccountGameplayData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class GameplaySaveSlotData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -5615,6 +5568,28 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeHeirloomObjectsEnabled() => __pbn__HeirloomObjectsEnabled != null;
         public void ResetHeirloomObjectsEnabled() => __pbn__HeirloomObjectsEnabled = null;
         private bool? __pbn__HeirloomObjectsEnabled;
+
+        [global::ProtoBuf.ProtoMember(47, Name = @"small_business_events_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool SmallBusinessEventsEnabled
+        {
+            get => __pbn__SmallBusinessEventsEnabled ?? true;
+            set => __pbn__SmallBusinessEventsEnabled = value;
+        }
+        public bool ShouldSerializeSmallBusinessEventsEnabled() => __pbn__SmallBusinessEventsEnabled != null;
+        public void ResetSmallBusinessEventsEnabled() => __pbn__SmallBusinessEventsEnabled = null;
+        private bool? __pbn__SmallBusinessEventsEnabled;
+
+        [global::ProtoBuf.ProtoMember(48, Name = @"burglar_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool BurglarEnabled
+        {
+            get => __pbn__BurglarEnabled ?? true;
+            set => __pbn__BurglarEnabled = value;
+        }
+        public bool ShouldSerializeBurglarEnabled() => __pbn__BurglarEnabled != null;
+        public void ResetBurglarEnabled() => __pbn__BurglarEnabled = null;
+        private bool? __pbn__BurglarEnabled;
 
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel

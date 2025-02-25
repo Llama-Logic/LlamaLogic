@@ -42,6 +42,26 @@ namespace EA.Sims4.Network
         public void ResetCriteriaId() => __pbn__CriteriaId = null;
         private uint? __pbn__CriteriaId;
 
+        [global::ProtoBuf.ProtoMember(5, Name = @"required")]
+        public bool Required
+        {
+            get => __pbn__Required.GetValueOrDefault();
+            set => __pbn__Required = value;
+        }
+        public bool ShouldSerializeRequired() => __pbn__Required != null;
+        public void ResetRequired() => __pbn__Required = null;
+        private bool? __pbn__Required;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"supervised")]
+        public bool Supervised
+        {
+            get => __pbn__Supervised.GetValueOrDefault();
+            set => __pbn__Supervised = value;
+        }
+        public bool ShouldSerializeSupervised() => __pbn__Supervised != null;
+        public void ResetSupervised() => __pbn__Supervised = null;
+        private bool? __pbn__Supervised;
+
         [global::ProtoBuf.ProtoContract()]
         public enum ClubCriteriaCategory
         {
@@ -61,6 +81,10 @@ namespace EA.Sims4.Network
             ClubMembership = 6,
             [global::ProtoBuf.ProtoEnum(Name = @"FAME_RANK")]
             FameRank = 7,
+            [global::ProtoBuf.ProtoEnum(Name = @"CARE_SIM_TYPE_SUPERVISED")]
+            CareSimTypeSupervised = 8,
+            [global::ProtoBuf.ProtoEnum(Name = @"OCCULT")]
+            Occult = 9,
         }
 
     }

@@ -15,11 +15,15 @@ message ClubCriteria {
 		AGE = 5;
 		CLUB_MEMBERSHIP = 6;
 		FAME_RANK = 7;
+		CARE_SIM_TYPE_SUPERVISED = 8;
+		OCCULT = 9;
 	}
 	required .EA.Sims4.Network.ClubCriteria.ClubCriteriaCategory category = 1;
 	repeated .EA.Sims4.Network.ClubCriteriaInfo criteria_infos = 2;
 	optional bool multi_select = 3;
 	optional uint32 criteria_id = 4;
+	optional bool required = 5;
+	optional bool supervised = 6;
 }
 
 message ClubCriteriaInfo {

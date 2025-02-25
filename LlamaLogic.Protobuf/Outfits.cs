@@ -46,6 +46,18 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class LayerIdsList : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"layer_id")]
+        public uint[] LayerIds { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class OutfitData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -130,6 +142,9 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(14, Name = @"object_ids")]
         public ObjectIdsList ObjectIds { get; set; }
 
+        [global::ProtoBuf.ProtoMember(15, Name = @"layer_ids")]
+        public LayerIdsList LayerIds { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -178,6 +193,17 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeObjectId() => __pbn__ObjectId != null;
         public void ResetObjectId() => __pbn__ObjectId = null;
         private ulong? __pbn__ObjectId;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"layer_id")]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint LayerId
+        {
+            get => __pbn__LayerId ?? 0u;
+            set => __pbn__LayerId = value;
+        }
+        public bool ShouldSerializeLayerId() => __pbn__LayerId != null;
+        public void ResetLayerId() => __pbn__LayerId = null;
+        private uint? __pbn__LayerId;
 
     }
 
@@ -287,6 +313,103 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(1, Name = @"layers")]
         public global::System.Collections.Generic.List<PeltLayerData> Layers { get; } = new global::System.Collections.Generic.List<PeltLayerData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimPartCustomTattooData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"body_type", IsRequired = true)]
+        public uint BodyType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"texture_id", IsRequired = true)]
+        public ulong TextureId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimPartCreatorData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"body_type")]
+        public uint BodyType
+        {
+            get => __pbn__BodyType.GetValueOrDefault();
+            set => __pbn__BodyType = value;
+        }
+        public bool ShouldSerializeBodyType() => __pbn__BodyType != null;
+        public void ResetBodyType() => __pbn__BodyType = null;
+        private uint? __pbn__BodyType;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"creator_uuid")]
+        public byte[] CreatorUuid
+        {
+            get => __pbn__CreatorUuid;
+            set => __pbn__CreatorUuid = value;
+        }
+        public bool ShouldSerializeCreatorUuid() => __pbn__CreatorUuid != null;
+        public void ResetCreatorUuid() => __pbn__CreatorUuid = null;
+        private byte[] __pbn__CreatorUuid;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"creator_id")]
+        public ulong CreatorId
+        {
+            get => __pbn__CreatorId.GetValueOrDefault();
+            set => __pbn__CreatorId = value;
+        }
+        public bool ShouldSerializeCreatorId() => __pbn__CreatorId != null;
+        public void ResetCreatorId() => __pbn__CreatorId = null;
+        private ulong? __pbn__CreatorId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"creator_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string CreatorName
+        {
+            get => __pbn__CreatorName ?? "";
+            set => __pbn__CreatorName = value;
+        }
+        public bool ShouldSerializeCreatorName() => __pbn__CreatorName != null;
+        public void ResetCreatorName() => __pbn__CreatorName = null;
+        private string __pbn__CreatorName;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"creator_platform")]
+        [global::System.ComponentModel.DefaultValue(global::EA.Sims4.Network.ExchangeItemPlatform.ExchangePlatformUnknown)]
+        public global::EA.Sims4.Network.ExchangeItemPlatform CreatorPlatform
+        {
+            get => __pbn__CreatorPlatform ?? global::EA.Sims4.Network.ExchangeItemPlatform.ExchangePlatformUnknown;
+            set => __pbn__CreatorPlatform = value;
+        }
+        public bool ShouldSerializeCreatorPlatform() => __pbn__CreatorPlatform != null;
+        public void ResetCreatorPlatform() => __pbn__CreatorPlatform = null;
+        private global::EA.Sims4.Network.ExchangeItemPlatform? __pbn__CreatorPlatform;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"creator_platform_id")]
+        public ulong CreatorPlatformId
+        {
+            get => __pbn__CreatorPlatformId.GetValueOrDefault();
+            set => __pbn__CreatorPlatformId = value;
+        }
+        public bool ShouldSerializeCreatorPlatformId() => __pbn__CreatorPlatformId != null;
+        public void ResetCreatorPlatformId() => __pbn__CreatorPlatformId = null;
+        private ulong? __pbn__CreatorPlatformId;
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"creator_platform_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string CreatorPlatformName
+        {
+            get => __pbn__CreatorPlatformName ?? "";
+            set => __pbn__CreatorPlatformName = value;
+        }
+        public bool ShouldSerializeCreatorPlatformName() => __pbn__CreatorPlatformName != null;
+        public void ResetCreatorPlatformName() => __pbn__CreatorPlatformName = null;
+        private string __pbn__CreatorPlatformName;
 
     }
 

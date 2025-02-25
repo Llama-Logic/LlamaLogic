@@ -100,6 +100,8 @@ message PersistenceMaster {
 			PersistableJewelryComponent = 69;
 			PersistableChargeableComponent = 70;
 			HeirloomComponent = 74;
+			PersistableFamilyRecipes = 75;
+			PersistableTattooTracker = 76;
 		}
 		required .EA.Sims4.Persistence.PersistenceMaster.PersistableData.DATA_TYPE type = 1;
 		extensions 21000 to max;
@@ -143,6 +145,8 @@ message PersistableSimInfoAttributes {
 	optional .EA.Sims4.Persistence.PersistableTraitStatisticTracker trait_statistic_tracker = 33;
 	optional .EA.Sims4.Persistence.PersistableLunarEffectTracker lunar_effect_tracker = 34;
 	optional .EA.Sims4.Persistence.PersistableJewelryTracker jewelry_tracker = 35;
+	optional .EA.Sims4.Persistence.PersistableFamilyRecipesTracker family_recipes_tracker = 36;
+	optional .EA.Sims4.Persistence.PersistableTattooTracker tattoo_tracker = 37;
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		required .EA.Sims4.Persistence.PersistableSimInfoAttributes persistable_data = 21001;
 	}
@@ -348,6 +352,7 @@ message CraftingProcess {
 	repeated uint64 executed_phases = 15;
 	repeated .EA.Sims4.Persistence.GenericIngredientData defined_ingredients = 16;
 	optional float single_serving_value = 17;
+	optional .EA.Sims4.Persistence.FamilyRecipe family_recipe = 18;
 }
 
 message PersistableObjectOwnership {
@@ -751,6 +756,7 @@ message PersistableSimCareer {
 	optional .EA.Sims4.Network.ResourceKey icon_override = 41;
 	optional uint64 workplace_rival_id = 42;
 	optional uint32 outfit_index = 43;
+	repeated .EA.Sims4.Persistence.CareerSmallBusinessData small_business_career_data = 44;
 }
 
 message PersistableSimCareers {
@@ -869,6 +875,8 @@ message PersistableOccultTracker {
 		optional uint32 flags = 18;
 		optional .EA.Sims4.Persistence.OutfitList outfits = 21;
 		optional float skin_tone_val_shift = 22 [default = 0];
+		repeated .EA.Sims4.Persistence.SimPartCustomTattooData parts_custom_tattoos = 23;
+		repeated .EA.Sims4.Persistence.SimPartCreatorData parts_creator_data = 24;
 	}
 	optional uint32 occult_types = 1;
 	optional uint32 current_occult_types = 2;
@@ -1105,6 +1113,11 @@ message CareerGigData {
 	optional uint32 budget_spent = 10;
 	optional uint32 gig_budget = 11;
 	optional string client_hh_name = 12;
+}
+
+message CareerSmallBusinessData {
+	optional int32 career_level = 1;
+	optional uint64 owner_id = 2;
 }
 
 message PersistableSuntanTracker {
@@ -1445,4 +1458,55 @@ message PersistableHeirloomComponent {
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		required .EA.Sims4.Persistence.PersistableHeirloomComponent persistable_data = 21074;
 	}
+}
+
+message FamilyRecipe {
+	optional uint64 recipe_id = 1;
+	optional string recipe_name = 2;
+	optional uint64 ingredient_id = 3;
+	optional uint64 buff_id = 4;
+	optional string recipe_owner = 5;
+}
+
+message PersistableFamilyRecipesTracker {
+	repeated .EA.Sims4.Persistence.FamilyRecipe family_recipes = 1;
+	optional bool initial_loot_applied = 2;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		required .EA.Sims4.Persistence.PersistableFamilyRecipesTracker persistable_data = 21075;
+	}
+}
+
+message TattooData {
+	required uint32 body_type = 1;
+	optional uint32 quality = 2;
+	optional uint32 body_part_hash = 3;
+	optional uint32 sentimental_type = 4;
+	optional uint64 sentimental_target = 5;
+	repeated uint64 body_part_hashes = 6;
+	optional uint64 body_part_custom_texture = 7;
+	optional uint32 occult_type = 8;
+}
+
+message PersistableTattooTracker {
+	repeated .EA.Sims4.Persistence.TattooData body_type_tattoo_data = 1;
+	optional .EA.Sims4.Persistence.TattooData pending_tattoo_data = 2;
+	optional uint64 stored_picked_tattoo = 3;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		required .EA.Sims4.Persistence.PersistableTattooTracker persistable_data = 21076;
+	}
+}
+
+message BucksData {
+	message UnlockedPerk {
+		optional uint32 perk = 1;
+		optional uint32 unlock_reason = 2;
+		optional uint64 time_left = 3;
+		optional uint64 timestamp = 4;
+		optional bool currently_unlocked = 5 [default = true];
+	}
+	optional uint32 bucks_type = 1;
+	optional uint32 amount = 2;
+	repeated .EA.Sims4.Persistence.BucksData.UnlockedPerk unlocked_perks = 3;
+	repeated uint64 frozen_perk_ids = 4;
+	optional float frozen_business_rank_value = 5;
 }

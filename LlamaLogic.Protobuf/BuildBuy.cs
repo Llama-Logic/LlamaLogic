@@ -370,6 +370,17 @@ namespace EA.Sims4.Network
         public void ResetKeepVenueType() => __pbn__KeepVenueType = null;
         private bool? __pbn__KeepVenueType;
 
+        [global::ProtoBuf.ProtoMember(23, Name = @"clear_dynamic_areas")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool ClearDynamicAreas
+        {
+            get => __pbn__ClearDynamicAreas ?? false;
+            set => __pbn__ClearDynamicAreas = value;
+        }
+        public bool ShouldSerializeClearDynamicAreas() => __pbn__ClearDynamicAreas != null;
+        public void ResetClearDynamicAreas() => __pbn__ClearDynamicAreas = null;
+        private bool? __pbn__ClearDynamicAreas;
+
     }
 
     [global::ProtoBuf.ProtoContract()]

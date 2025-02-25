@@ -100,6 +100,8 @@ namespace EA.Sims4.Persistence
                 PersistableJewelryComponent = 69,
                 PersistableChargeableComponent = 70,
                 HeirloomComponent = 74,
+                PersistableFamilyRecipes = 75,
+                PersistableTattooTracker = 76,
             }
 
         }
@@ -217,6 +219,12 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(35, Name = @"jewelry_tracker")]
         public PersistableJewelryTracker JewelryTracker { get; set; }
+
+        [global::ProtoBuf.ProtoMember(36, Name = @"family_recipes_tracker")]
+        public PersistableFamilyRecipesTracker FamilyRecipesTracker { get; set; }
+
+        [global::ProtoBuf.ProtoMember(37, Name = @"tattoo_tracker")]
+        public PersistableTattooTracker TattooTracker { get; set; }
 
         public static partial class Extensions
         {
@@ -1313,6 +1321,9 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeSingleServingValue() => __pbn__SingleServingValue != null;
         public void ResetSingleServingValue() => __pbn__SingleServingValue = null;
         private float? __pbn__SingleServingValue;
+
+        [global::ProtoBuf.ProtoMember(18, Name = @"family_recipe")]
+        public FamilyRecipe FamilyRecipe { get; set; }
 
     }
 
@@ -3482,6 +3493,9 @@ namespace EA.Sims4.Persistence
         public void ResetOutfitIndex() => __pbn__OutfitIndex = null;
         private uint? __pbn__OutfitIndex;
 
+        [global::ProtoBuf.ProtoMember(44, Name = @"small_business_career_data")]
+        public global::System.Collections.Generic.List<CareerSmallBusinessData> SmallBusinessCareerDatas { get; } = new global::System.Collections.Generic.List<CareerSmallBusinessData>();
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -4087,6 +4101,12 @@ namespace EA.Sims4.Persistence
             public bool ShouldSerializeSkinToneValShift() => __pbn__SkinToneValShift != null;
             public void ResetSkinToneValShift() => __pbn__SkinToneValShift = null;
             private float? __pbn__SkinToneValShift;
+
+            [global::ProtoBuf.ProtoMember(23, Name = @"parts_custom_tattoos")]
+            public global::System.Collections.Generic.List<SimPartCustomTattooData> PartsCustomTattoos { get; } = new global::System.Collections.Generic.List<SimPartCustomTattooData>();
+
+            [global::ProtoBuf.ProtoMember(24, Name = @"parts_creator_data")]
+            public global::System.Collections.Generic.List<SimPartCreatorData> PartsCreatorDatas { get; } = new global::System.Collections.Generic.List<SimPartCreatorData>();
 
         }
 
@@ -5234,6 +5254,35 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeClientHhName() => __pbn__ClientHhName != null;
         public void ResetClientHhName() => __pbn__ClientHhName = null;
         private string __pbn__ClientHhName;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CareerSmallBusinessData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"career_level")]
+        public int CareerLevel
+        {
+            get => __pbn__CareerLevel.GetValueOrDefault();
+            set => __pbn__CareerLevel = value;
+        }
+        public bool ShouldSerializeCareerLevel() => __pbn__CareerLevel != null;
+        public void ResetCareerLevel() => __pbn__CareerLevel = null;
+        private int? __pbn__CareerLevel;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"owner_id")]
+        public ulong OwnerId
+        {
+            get => __pbn__OwnerId.GetValueOrDefault();
+            set => __pbn__OwnerId = value;
+        }
+        public bool ShouldSerializeOwnerId() => __pbn__OwnerId != null;
+        public void ResetOwnerId() => __pbn__OwnerId = null;
+        private ulong? __pbn__OwnerId;
 
     }
 
@@ -6876,6 +6925,312 @@ namespace EA.Sims4.Persistence
                 => global::ProtoBuf.Extensible.AppendValue<PersistableHeirloomComponent>(obj, 21074, value);
 
         }
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class FamilyRecipe : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"recipe_id")]
+        public ulong RecipeId
+        {
+            get => __pbn__RecipeId.GetValueOrDefault();
+            set => __pbn__RecipeId = value;
+        }
+        public bool ShouldSerializeRecipeId() => __pbn__RecipeId != null;
+        public void ResetRecipeId() => __pbn__RecipeId = null;
+        private ulong? __pbn__RecipeId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"recipe_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string RecipeName
+        {
+            get => __pbn__RecipeName ?? "";
+            set => __pbn__RecipeName = value;
+        }
+        public bool ShouldSerializeRecipeName() => __pbn__RecipeName != null;
+        public void ResetRecipeName() => __pbn__RecipeName = null;
+        private string __pbn__RecipeName;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"ingredient_id")]
+        public ulong IngredientId
+        {
+            get => __pbn__IngredientId.GetValueOrDefault();
+            set => __pbn__IngredientId = value;
+        }
+        public bool ShouldSerializeIngredientId() => __pbn__IngredientId != null;
+        public void ResetIngredientId() => __pbn__IngredientId = null;
+        private ulong? __pbn__IngredientId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"buff_id")]
+        public ulong BuffId
+        {
+            get => __pbn__BuffId.GetValueOrDefault();
+            set => __pbn__BuffId = value;
+        }
+        public bool ShouldSerializeBuffId() => __pbn__BuffId != null;
+        public void ResetBuffId() => __pbn__BuffId = null;
+        private ulong? __pbn__BuffId;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"recipe_owner")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string RecipeOwner
+        {
+            get => __pbn__RecipeOwner ?? "";
+            set => __pbn__RecipeOwner = value;
+        }
+        public bool ShouldSerializeRecipeOwner() => __pbn__RecipeOwner != null;
+        public void ResetRecipeOwner() => __pbn__RecipeOwner = null;
+        private string __pbn__RecipeOwner;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PersistableFamilyRecipesTracker : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"family_recipes")]
+        public global::System.Collections.Generic.List<FamilyRecipe> FamilyRecipes { get; } = new global::System.Collections.Generic.List<FamilyRecipe>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"initial_loot_applied")]
+        public bool InitialLootApplied
+        {
+            get => __pbn__InitialLootApplied.GetValueOrDefault();
+            set => __pbn__InitialLootApplied = value;
+        }
+        public bool ShouldSerializeInitialLootApplied() => __pbn__InitialLootApplied != null;
+        public void ResetInitialLootApplied() => __pbn__InitialLootApplied = null;
+        private bool? __pbn__InitialLootApplied;
+
+        public static partial class Extensions
+        {
+            public static PersistableFamilyRecipesTracker GetPersistableData(PersistenceMaster.PersistableData obj)
+                => obj == null ? default : global::ProtoBuf.Extensible.GetValue<PersistableFamilyRecipesTracker>(obj, 21075);
+
+            public static void SetPersistableData(PersistenceMaster.PersistableData obj, PersistableFamilyRecipesTracker value)
+                => global::ProtoBuf.Extensible.AppendValue<PersistableFamilyRecipesTracker>(obj, 21075, value);
+
+        }
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TattooData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"body_type", IsRequired = true)]
+        public uint BodyType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"quality")]
+        public uint Quality
+        {
+            get => __pbn__Quality.GetValueOrDefault();
+            set => __pbn__Quality = value;
+        }
+        public bool ShouldSerializeQuality() => __pbn__Quality != null;
+        public void ResetQuality() => __pbn__Quality = null;
+        private uint? __pbn__Quality;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"body_part_hash")]
+        public uint BodyPartHash
+        {
+            get => __pbn__BodyPartHash.GetValueOrDefault();
+            set => __pbn__BodyPartHash = value;
+        }
+        public bool ShouldSerializeBodyPartHash() => __pbn__BodyPartHash != null;
+        public void ResetBodyPartHash() => __pbn__BodyPartHash = null;
+        private uint? __pbn__BodyPartHash;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"sentimental_type")]
+        public uint SentimentalType
+        {
+            get => __pbn__SentimentalType.GetValueOrDefault();
+            set => __pbn__SentimentalType = value;
+        }
+        public bool ShouldSerializeSentimentalType() => __pbn__SentimentalType != null;
+        public void ResetSentimentalType() => __pbn__SentimentalType = null;
+        private uint? __pbn__SentimentalType;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"sentimental_target")]
+        public ulong SentimentalTarget
+        {
+            get => __pbn__SentimentalTarget.GetValueOrDefault();
+            set => __pbn__SentimentalTarget = value;
+        }
+        public bool ShouldSerializeSentimentalTarget() => __pbn__SentimentalTarget != null;
+        public void ResetSentimentalTarget() => __pbn__SentimentalTarget = null;
+        private ulong? __pbn__SentimentalTarget;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"body_part_hashes")]
+        public ulong[] BodyPartHashes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"body_part_custom_texture")]
+        public ulong BodyPartCustomTexture
+        {
+            get => __pbn__BodyPartCustomTexture.GetValueOrDefault();
+            set => __pbn__BodyPartCustomTexture = value;
+        }
+        public bool ShouldSerializeBodyPartCustomTexture() => __pbn__BodyPartCustomTexture != null;
+        public void ResetBodyPartCustomTexture() => __pbn__BodyPartCustomTexture = null;
+        private ulong? __pbn__BodyPartCustomTexture;
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"occult_type")]
+        public uint OccultType
+        {
+            get => __pbn__OccultType.GetValueOrDefault();
+            set => __pbn__OccultType = value;
+        }
+        public bool ShouldSerializeOccultType() => __pbn__OccultType != null;
+        public void ResetOccultType() => __pbn__OccultType = null;
+        private uint? __pbn__OccultType;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PersistableTattooTracker : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"body_type_tattoo_data")]
+        public global::System.Collections.Generic.List<TattooData> BodyTypeTattooDatas { get; } = new global::System.Collections.Generic.List<TattooData>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"pending_tattoo_data")]
+        public TattooData PendingTattooData { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"stored_picked_tattoo")]
+        public ulong StoredPickedTattoo
+        {
+            get => __pbn__StoredPickedTattoo.GetValueOrDefault();
+            set => __pbn__StoredPickedTattoo = value;
+        }
+        public bool ShouldSerializeStoredPickedTattoo() => __pbn__StoredPickedTattoo != null;
+        public void ResetStoredPickedTattoo() => __pbn__StoredPickedTattoo = null;
+        private ulong? __pbn__StoredPickedTattoo;
+
+        public static partial class Extensions
+        {
+            public static PersistableTattooTracker GetPersistableData(PersistenceMaster.PersistableData obj)
+                => obj == null ? default : global::ProtoBuf.Extensible.GetValue<PersistableTattooTracker>(obj, 21076);
+
+            public static void SetPersistableData(PersistenceMaster.PersistableData obj, PersistableTattooTracker value)
+                => global::ProtoBuf.Extensible.AppendValue<PersistableTattooTracker>(obj, 21076, value);
+
+        }
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class BucksData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"bucks_type")]
+        public uint BucksType
+        {
+            get => __pbn__BucksType.GetValueOrDefault();
+            set => __pbn__BucksType = value;
+        }
+        public bool ShouldSerializeBucksType() => __pbn__BucksType != null;
+        public void ResetBucksType() => __pbn__BucksType = null;
+        private uint? __pbn__BucksType;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"amount")]
+        public uint Amount
+        {
+            get => __pbn__Amount.GetValueOrDefault();
+            set => __pbn__Amount = value;
+        }
+        public bool ShouldSerializeAmount() => __pbn__Amount != null;
+        public void ResetAmount() => __pbn__Amount = null;
+        private uint? __pbn__Amount;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"unlocked_perks")]
+        public global::System.Collections.Generic.List<UnlockedPerk> UnlockedPerks { get; } = new global::System.Collections.Generic.List<UnlockedPerk>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"frozen_perk_ids")]
+        public ulong[] FrozenPerkIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"frozen_business_rank_value")]
+        public float FrozenBusinessRankValue
+        {
+            get => __pbn__FrozenBusinessRankValue.GetValueOrDefault();
+            set => __pbn__FrozenBusinessRankValue = value;
+        }
+        public bool ShouldSerializeFrozenBusinessRankValue() => __pbn__FrozenBusinessRankValue != null;
+        public void ResetFrozenBusinessRankValue() => __pbn__FrozenBusinessRankValue = null;
+        private float? __pbn__FrozenBusinessRankValue;
+
+        [global::ProtoBuf.ProtoContract()]
+        public partial class UnlockedPerk : global::ProtoBuf.IExtensible
+        {
+            private global::ProtoBuf.IExtension __pbn__extensionData;
+            global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+                => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+            [global::ProtoBuf.ProtoMember(1, Name = @"perk")]
+            public uint Perk
+            {
+                get => __pbn__Perk.GetValueOrDefault();
+                set => __pbn__Perk = value;
+            }
+            public bool ShouldSerializePerk() => __pbn__Perk != null;
+            public void ResetPerk() => __pbn__Perk = null;
+            private uint? __pbn__Perk;
+
+            [global::ProtoBuf.ProtoMember(2, Name = @"unlock_reason")]
+            public uint UnlockReason
+            {
+                get => __pbn__UnlockReason.GetValueOrDefault();
+                set => __pbn__UnlockReason = value;
+            }
+            public bool ShouldSerializeUnlockReason() => __pbn__UnlockReason != null;
+            public void ResetUnlockReason() => __pbn__UnlockReason = null;
+            private uint? __pbn__UnlockReason;
+
+            [global::ProtoBuf.ProtoMember(3, Name = @"time_left")]
+            public ulong TimeLeft
+            {
+                get => __pbn__TimeLeft.GetValueOrDefault();
+                set => __pbn__TimeLeft = value;
+            }
+            public bool ShouldSerializeTimeLeft() => __pbn__TimeLeft != null;
+            public void ResetTimeLeft() => __pbn__TimeLeft = null;
+            private ulong? __pbn__TimeLeft;
+
+            [global::ProtoBuf.ProtoMember(4, Name = @"timestamp")]
+            public ulong Timestamp
+            {
+                get => __pbn__Timestamp.GetValueOrDefault();
+                set => __pbn__Timestamp = value;
+            }
+            public bool ShouldSerializeTimestamp() => __pbn__Timestamp != null;
+            public void ResetTimestamp() => __pbn__Timestamp = null;
+            private ulong? __pbn__Timestamp;
+
+            [global::ProtoBuf.ProtoMember(5, Name = @"currently_unlocked")]
+            [global::System.ComponentModel.DefaultValue(true)]
+            public bool CurrentlyUnlocked
+            {
+                get => __pbn__CurrentlyUnlocked ?? true;
+                set => __pbn__CurrentlyUnlocked = value;
+            }
+            public bool ShouldSerializeCurrentlyUnlocked() => __pbn__CurrentlyUnlocked != null;
+            public void ResetCurrentlyUnlocked() => __pbn__CurrentlyUnlocked = null;
+            private bool? __pbn__CurrentlyUnlocked;
+
+        }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

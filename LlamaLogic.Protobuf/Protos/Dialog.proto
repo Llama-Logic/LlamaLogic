@@ -10,6 +10,7 @@ import "S4Common.proto";
 import "Clubs.proto";
 import "Lot.proto";
 import "Commands.proto";
+import "Commodities.proto";
 
 
 message UiDialogChoiceMessage {
@@ -49,6 +50,10 @@ message UiDialogChoiceMessage {
 		SEND_UI_MESSAGE = 32;
 		PIVOTAL_MOMENT_ASK_LATER = 33;
 		SHOW_GHOST_POWERS_PERKS_PANEL = 34;
+		SHOW_SMALL_BUSINESS_PERKS_PANEL = 35;
+		SHOW_SMALL_BUSINESS_PANEL = 36;
+		SHOW_BUILD_BUY_WITH_FILTER = 37;
+		SHOW_SMALL_BUSINESS_CONFIGURATOR = 38;
 	}
 	required uint32 choice_id = 1;
 	optional .EA.Sims4.Network.LocalizedString text = 2;
@@ -62,6 +67,12 @@ message UiDialogChoiceMessage {
 	optional .EA.Sims4.Network.UiSendMessageArgs ui_message_args = 10;
 	optional .EA.Sims4.Network.LocalizedString tooltip_text = 11;
 	optional .EA.Sims4.Network.IconInfo button_icon = 12;
+	optional .EA.Sims4.Network.UiShowBuildBuyArgs show_build_buy_args = 13;
+}
+
+message UiShowBuildBuyArgs {
+	optional uint32 category_tag = 1;
+	optional uint32 pack_id = 2;
 }
 
 message UiExchangeArgs {
@@ -134,6 +145,7 @@ message UiDialogMessage {
 		REVEAL_SEQUENCE = 10;
 		CRAFTING_JEWELRY = 11;
 		DEATH_OPTIONS = 12;
+		FAMILY_RECIPE = 13;
 	}
 	enum DialogStyle {
 		DEFAULT_STYLE = 0;
@@ -206,6 +218,7 @@ message UiDialogMessage {
 	optional .EA.Sims4.Network.IconInfo mask_alert_icon = 31;
 	optional .EA.Sims4.Network.LocalizedString mask_alert_sim_name = 32;
 	optional .EA.Sims4.Network.IconInfo mask_header_icon = 33;
+	optional string validation_command = 34;
 	extensions 100 to max;
 }
 
@@ -308,6 +321,7 @@ message RecipePickerRowData {
 	optional uint32 price_with_both_fresh_prepped_ingredients = 26;
 	repeated string food_restriction_ingredients = 27;
 	optional uint64 recipe_id = 28;
+	optional uint64 buff_id = 29;
 }
 
 message SimPickerRowData {
@@ -339,6 +353,12 @@ message ObjectPickerRowData {
 	optional uint32 object_picker_style = 9;
 	optional uint32 cost = 10;
 	optional uint32 discounted_cost = 11;
+	optional bool use_cas_catalog_product_thumbnails = 12 [default = false];
+	optional uint32 cas_catalog_gender = 13;
+	repeated .EA.Sims4.Network.ResourceKey slot_types = 14;
+	optional uint64 owner_sim_id = 15;
+	optional bool is_new = 16;
+	optional uint64 target_sim_id = 17;
 }
 
 message OutfitPickerRowData {
@@ -402,6 +422,7 @@ message SimPickerData {
 	optional uint32 column_count = 12 [default = 3];
 	optional uint32 cell_type = 13 [default = 0];
 	optional bool display_filter = 14;
+	repeated .EA.Sims4.Network.RelationshipUpdate override_owner_relationships = 15;
 }
 
 message ObjectPickerData {
@@ -494,6 +515,7 @@ message UiDialogPicker {
 		FASHION_PURCHASE = 23;
 		RELATIONSHIP = 24;
 		OBJECT_EXPANDED_INFO = 25;
+		OBJECT_CAS_ICON = 26;
 	}
 	enum DescriptionDisplay {
 		DEFAULT = 1;
@@ -527,6 +549,14 @@ message UiDialogPicker {
 	optional bool bubble_up_selected = 27;
 	optional .EA.Sims4.Network.LocalizedString subtitle = 28;
 	optional bool force_done_button = 29;
+	optional bool disable_non_selectable_items = 30;
+	repeated .EA.Sims4.Network.SlotTypesMaxSelectable slot_types_max_selectable = 31;
+	optional .EA.Sims4.Network.LocalizedString max_selectable_subtitle = 32;
+}
+
+message SlotTypesMaxSelectable {
+	optional .EA.Sims4.Network.ResourceKey slot_type_key = 1;
+	optional uint32 max_selectable = 2;
 }
 
 message PickerFilterDataList {
@@ -535,6 +565,7 @@ message PickerFilterDataList {
 	optional bool add_all_category = 3;
 	optional bool sort_filter_categories = 4;
 	optional bool remove_empty_filter_categories = 5;
+	optional bool use_sim_inventory_filter_categories = 6;
 }
 
 message UiDialogMultiPicker {
@@ -756,4 +787,8 @@ message MultiPickerResponseItem {
 	repeated uint64 choices = 1;
 	optional uint32 picker_id = 2;
 	repeated uint32 control_ids = 3;
+}
+
+message PickerValidationResponse {
+	required bool is_valid = 1;
 }

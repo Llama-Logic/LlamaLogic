@@ -351,6 +351,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(45, Name = @"engraved_message")]
         public LocalizedString EngravedMessage { get; set; }
 
+        [global::ProtoBuf.ProtoMember(46, Name = @"mark_up_value_tooltip")]
+        public int MarkUpValueTooltip
+        {
+            get => __pbn__MarkUpValueTooltip.GetValueOrDefault();
+            set => __pbn__MarkUpValueTooltip = value;
+        }
+        public bool ShouldSerializeMarkUpValueTooltip() => __pbn__MarkUpValueTooltip != null;
+        public void ResetMarkUpValueTooltip() => __pbn__MarkUpValueTooltip = null;
+        private int? __pbn__MarkUpValueTooltip;
+
         [global::ProtoBuf.ProtoContract()]
         public enum HoverTipStyle
         {
@@ -542,6 +552,16 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(14, Name = @"main_objective")]
         public LocalizedString MainObjective { get; set; }
+
+        [global::ProtoBuf.ProtoMember(15, Name = @"parent_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong ParentId
+        {
+            get => __pbn__ParentId.GetValueOrDefault();
+            set => __pbn__ParentId = value;
+        }
+        public bool ShouldSerializeParentId() => __pbn__ParentId != null;
+        public void ResetParentId() => __pbn__ParentId = null;
+        private ulong? __pbn__ParentId;
 
         [global::ProtoBuf.ProtoContract()]
         public enum CanvasStateType
@@ -4546,6 +4566,109 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeEvilUltimateProgress() => __pbn__EvilUltimateProgress != null;
         public void ResetEvilUltimateProgress() => __pbn__EvilUltimateProgress = null;
         private int? __pbn__EvilUltimateProgress;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SkillsAffectedByMasteryPerk : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"mastery_perk_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong MasteryPerkId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"skill_names")]
+        public global::System.Collections.Generic.List<LocalizedString> SkillNames { get; } = new global::System.Collections.Generic.List<LocalizedString>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShowSmallBusinessConfigurator : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"has_ticket_machine")]
+        public bool HasTicketMachine
+        {
+            get => __pbn__HasTicketMachine.GetValueOrDefault();
+            set => __pbn__HasTicketMachine = value;
+        }
+        public bool ShouldSerializeHasTicketMachine() => __pbn__HasTicketMachine != null;
+        public void ResetHasTicketMachine() => __pbn__HasTicketMachine = null;
+        private bool? __pbn__HasTicketMachine;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"is_edit")]
+        public bool IsEdit
+        {
+            get => __pbn__IsEdit.GetValueOrDefault();
+            set => __pbn__IsEdit = value;
+        }
+        public bool ShouldSerializeIsEdit() => __pbn__IsEdit != null;
+        public void ResetIsEdit() => __pbn__IsEdit = null;
+        private bool? __pbn__IsEdit;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"base_entry_fee")]
+        public int BaseEntryFee
+        {
+            get => __pbn__BaseEntryFee.GetValueOrDefault();
+            set => __pbn__BaseEntryFee = value;
+        }
+        public bool ShouldSerializeBaseEntryFee() => __pbn__BaseEntryFee != null;
+        public void ResetBaseEntryFee() => __pbn__BaseEntryFee = null;
+        private int? __pbn__BaseEntryFee;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"base_hourly_fee")]
+        public int BaseHourlyFee
+        {
+            get => __pbn__BaseHourlyFee.GetValueOrDefault();
+            set => __pbn__BaseHourlyFee = value;
+        }
+        public bool ShouldSerializeBaseHourlyFee() => __pbn__BaseHourlyFee != null;
+        public void ResetBaseHourlyFee() => __pbn__BaseHourlyFee = null;
+        private int? __pbn__BaseHourlyFee;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"is_current_zone_allowed_for_small_business")]
+        public bool IsCurrentZoneAllowedForSmallBusiness
+        {
+            get => __pbn__IsCurrentZoneAllowedForSmallBusiness.GetValueOrDefault();
+            set => __pbn__IsCurrentZoneAllowedForSmallBusiness = value;
+        }
+        public bool ShouldSerializeIsCurrentZoneAllowedForSmallBusiness() => __pbn__IsCurrentZoneAllowedForSmallBusiness != null;
+        public void ResetIsCurrentZoneAllowedForSmallBusiness() => __pbn__IsCurrentZoneAllowedForSmallBusiness = null;
+        private bool? __pbn__IsCurrentZoneAllowedForSmallBusiness;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"is_home_zone_allowed_for_small_business")]
+        public bool IsHomeZoneAllowedForSmallBusiness
+        {
+            get => __pbn__IsHomeZoneAllowedForSmallBusiness.GetValueOrDefault();
+            set => __pbn__IsHomeZoneAllowedForSmallBusiness = value;
+        }
+        public bool ShouldSerializeIsHomeZoneAllowedForSmallBusiness() => __pbn__IsHomeZoneAllowedForSmallBusiness != null;
+        public void ResetIsHomeZoneAllowedForSmallBusiness() => __pbn__IsHomeZoneAllowedForSmallBusiness = null;
+        private bool? __pbn__IsHomeZoneAllowedForSmallBusiness;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class FamilyRecipeCostModifier : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"cost_modifier_size")]
+        public float CostModifierSize
+        {
+            get => __pbn__CostModifierSize.GetValueOrDefault();
+            set => __pbn__CostModifierSize = value;
+        }
+        public bool ShouldSerializeCostModifierSize() => __pbn__CostModifierSize != null;
+        public void ResetCostModifierSize() => __pbn__CostModifierSize = null;
+        private float? __pbn__CostModifierSize;
 
     }
 

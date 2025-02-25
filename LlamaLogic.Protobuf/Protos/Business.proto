@@ -4,6 +4,7 @@ import "UI.proto";
 import "ResourceKey.proto";
 import "Localization.proto";
 import "SimObjectAttributes.proto";
+import "Clubs.proto";
 
 
 message ReviewIconData {
@@ -24,10 +25,18 @@ message BusinessSummaryEntry {
 		NORMAL = 0;
 		TOTAL = 1;
 		SUB_TOTAL = 2;
+		NORMAL_WITH_BEVEL = 3;
+		NORMAL_WITH_SUBTITLE = 4;
+		TOTAL_WITH_BUCKS = 5;
+		CUSTOM_BACKGROUND_ITEM = 6;
 	}
 	optional .EA.Sims4.Network.LocalizedString entry_name = 1;
 	optional .EA.Sims4.Network.LocalizedString entry_value = 2;
 	optional .EA.Sims4.Network.BusinessSummaryEntry.EntryType entry_type = 3 [default = NORMAL];
+	optional .EA.Sims4.Network.LocalizedString entry_subtitle = 4;
+	optional .EA.Sims4.Network.LocalizedString entry_bucks = 5;
+	optional .EA.Sims4.Network.LocalizedString tooltip = 6;
+	optional bool is_locked = 7;
 }
 
 message BusinessRule {
@@ -67,6 +76,15 @@ message RentalUnitBusinessDataUpdate {
 	optional bool is_grace_period = 5;
 	optional int32 unit_rating_alert_state = 6 [default = 0];
 	optional fixed64 house_description_id = 7;
+}
+
+message SmallBusinessDataUpdate {
+	optional fixed64 sim_id = 1;
+	optional string description = 2;
+	repeated .EA.Sims4.Network.ClubConductRule customer_rules = 3;
+	repeated .EA.Sims4.Network.ClubCriteria attendance_criteria = 4;
+	optional uint32 attendance_sale_mode = 5;
+	repeated fixed64 allowed_zone_ids = 6;
 }
 
 message TemplateHouseholdSelectedStatus {
@@ -138,6 +156,7 @@ message EmployeeBusinessData {
 	repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessUniformData employee_uniforms_male = 3;
 	repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessUniformData employee_uniforms_female = 4;
 	repeated .EA.Sims4.Network.EmployeeBusinessData.BusinessDataPayroll employee_payroll = 5;
+	optional int32 daily_household_employee_wages = 6;
 }
 
 message SetBusinessData {
@@ -156,15 +175,23 @@ message SetBusinessData {
 	optional uint64 open_time = 14;
 	optional uint32 daily_customers_served = 17;
 	optional bool minimum_employee_requirements_met = 18;
+	optional fixed64 sim_id = 21;
+	optional int32 default_dynamic_area_type = 23 [default = -1];
+	optional uint32 total_open_hours = 24;
+	optional uint32 total_customers_served = 25;
+	repeated int32 dynamic_area_types = 26;
 	optional .EA.Sims4.Network.RestaurantBusinessDataUpdate restaurant_data = 15;
 	optional .EA.Sims4.Network.RetailBusinessDataUpdate retail_data = 16;
 	optional .EA.Sims4.Network.VetClinicBusinessDataUpdate vet_clinic_data = 19;
 	optional .EA.Sims4.Network.RentalUnitBusinessDataUpdate rental_unit_data = 20;
+	optional .EA.Sims4.Network.SmallBusinessDataUpdate small_business_data = 22;
+	repeated fixed64 allowed_zone_ids = 27;
 }
 
 message BusinessMarkupUpdate {
 	optional fixed64 zone_id = 1;
 	optional float markup_chosen = 2;
+	optional fixed64 sim_id = 3;
 }
 
 message BusinessAdvertisementUpdate {
@@ -181,6 +208,7 @@ message BusinessIsOpenUpdate {
 	optional fixed64 zone_id = 1;
 	optional bool is_open = 2;
 	optional uint64 time_opened = 3;
+	optional fixed64 sim_id = 4;
 }
 
 message BusinessFundsUpdate {
@@ -192,6 +220,7 @@ message BusinessFundsUpdate {
 message BusinessProfitUpdate {
 	optional fixed64 zone_id = 1;
 	optional int32 net_profit = 2;
+	optional fixed64 sim_id = 3;
 }
 
 message BusinessDailyItemsSoldUpdate {
@@ -208,6 +237,14 @@ message BusinessSummaryDialog {
 	optional .EA.Sims4.Network.SetBusinessData business_data = 1;
 	repeated .EA.Sims4.Network.BusinessSummaryEntry lines_entries = 2;
 	repeated .EA.Sims4.Network.ManageEmployeeRowData employees = 3;
+	optional bool is_global_overview = 4;
+	optional bool hide_review_stars = 5;
+	optional bool show_sim_bubble = 6;
+	optional bool show_staff_report = 7;
+	optional bool show_custom_stats_container = 8;
+	optional string stats_custom_background = 9;
+	optional .EA.Sims4.Network.LocalizedString stats_custom_tooltip = 10;
+	optional bool default_highlight_finances_help = 11;
 }
 
 message BusinessCustomerUpdate {
@@ -275,6 +312,27 @@ message RentalUnitSaveData {
 	optional bool has_tenant_ever_received_rent_bill = 8;
 }
 
+message SmallBusinessSaveData {
+	optional .EA.Sims4.Network.SmallBusinessIncomeData small_business_income_data = 1;
+	repeated .EA.Sims4.Persistence.BucksData bucks_data = 2;
+	repeated .EA.Sims4.Network.ClubConductRule customer_rules = 3;
+	repeated .EA.Sims4.Network.ClubCriteria attendance_criteria = 4;
+	optional string name = 5;
+	optional string description = 6;
+	optional .EA.Sims4.Network.ResourceKey icon = 7;
+	repeated .EA.Sims4.Network.SmallBusinessEmployeeData employee_data = 8;
+	optional uint32 business_xp_on_open = 9;
+	optional bool had_ticket_machine_once = 10;
+	optional bool had_employee_once = 11;
+	optional bool had_light_retail_surface_once = 12;
+	optional bool business_has_been_autocreated = 13;
+	repeated fixed64 allowed_zone_ids = 14;
+	optional .EA.Sims4.Network.LocalizedString name_key = 15;
+	optional .EA.Sims4.Network.LocalizedString description_key = 16;
+	optional fixed64 transferred_sim_id = 17;
+	repeated fixed64 business_visitors_ids = 18;
+}
+
 message BusinessSaveData {
 	message BusinessFundsCategoryEntry {
 		optional uint32 funds_category = 1;
@@ -297,8 +355,10 @@ message BusinessSaveData {
 	optional uint32 session_customers_served = 15;
 	optional uint64 last_off_lot_update = 17;
 	optional uint32 buff_bucket_size = 18;
+	optional uint32 total_open_hours = 22;
 	optional .EA.Sims4.Network.VetClinicSaveData vet_clinic_save_data = 19;
 	optional .EA.Sims4.Network.RentalUnitSaveData rental_unit_save_data = 20;
+	optional .EA.Sims4.Network.SmallBusinessSaveData small_business_save_data = 21;
 }
 
 message BusinessServiceData {
@@ -306,6 +366,55 @@ message BusinessServiceData {
 	repeated .EA.Sims4.Network.BusinessTrackerData unowned_business_tracker_data = 2;
 	repeated .EA.Sims4.Network.FirstTimeMessages first_time_messages = 3;
 	optional uint64 rental_unit_payout_timer = 4;
+	repeated .EA.Sims4.Network.BusinessRulePreset rule_presets_data = 5;
+}
+
+message SmallBusinessIncomeData {
+	optional .EA.Sims4.Network.SmallBusinessIncomeRecord current_day_business_income_record = 1;
+	optional .EA.Sims4.Network.SmallBusinessIncomeRecord total_business_income_record = 2;
+	optional uint32 attendance_sale_mode_enum = 3;
+	optional bool is_light_retail_enabled = 4 [default = false];
+}
+
+message SmallBusinessIncomeRecord {
+	optional uint32 customers_visited = 1;
+	optional uint32 aggregate_customers_hours = 2;
+	repeated .EA.Sims4.Network.SingleRevenueRecord records_by_revenue = 3;
+}
+
+message SmallBusinessEmployeeData {
+	optional fixed64 employee_id = 1;
+	repeated .EA.Sims4.Network.ClubConductRule employee_rules = 2;
+}
+
+message ManageSmallBusinessEmployeeRowData {
+	required fixed64 sim_id = 1;
+	optional uint32 pay = 2;
+	repeated .EA.Sims4.Network.ManageEmployeeSkillData skill_data = 3;
+	repeated .EA.Sims4.Network.ClubConductRule rules = 4;
+	optional bool is_fake_payment_enabled = 5;
+	optional .EA.Sims4.Network.ResourceKey salary_icon = 6;
+}
+
+message ManageSmallBusinessEmployeesData {
+	required fixed64 hiring_sim_id = 1;
+	repeated .EA.Sims4.Network.ManageSmallBusinessEmployeeRowData employees = 2;
+	optional bool has_no_potential_employees = 3 [default = false];
+}
+
+message BusinessRulePreset {
+	optional string name = 1;
+	repeated .EA.Sims4.Network.ClubConductRule rules = 2;
+}
+
+message UpdateBusinessRulePresets {
+	repeated .EA.Sims4.Network.BusinessRulePreset presets = 1;
+}
+
+message SingleRevenueRecord {
+	optional uint32 revenue_type = 1;
+	optional uint32 count = 2;
+	optional int32 profit = 3;
 }
 
 message FirstTimeMessages {
@@ -326,12 +435,15 @@ message BusinessTrackerData {
 	optional float additional_customer_count = 5;
 	repeated .EA.Sims4.Network.AdditionalEmployeeSlotData additional_employee_slot_data = 6;
 	optional uint32 rental_unit_payout_cache = 7;
+	repeated .EA.Sims4.Network.BusinessManagerData zoneless_business_manager_data = 8;
+	optional fixed64 sim_id_open_business_on_load = 9;
 }
 
 message BusinessManagerData {
 	optional fixed64 zone_id = 1;
 	optional .EA.Sims4.Network.BusinessSaveData business_data = 2;
 	optional bool make_unowned_on_load = 3 [default = false];
+	optional fixed64 sim_id = 4;
 }
 
 message ManageEmployeeSkillData {
@@ -345,4 +457,8 @@ message ManageEmployeeSkillData {
 message MinEmployeeReqMetUpdate {
 	optional fixed64 zone_id = 1;
 	optional bool minimum_employee_requirements_met = 2;
+}
+
+message DeleteSimBusiness {
+	optional fixed64 sim_id = 1;
 }

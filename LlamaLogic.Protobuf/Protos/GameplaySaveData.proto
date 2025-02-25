@@ -261,19 +261,7 @@ message RetailData {
 	optional int32 daily_revenue = 12;
 	optional int32 daily_items_sold = 13;
 	optional int32 daily_employee_wages = 14;
-}
-
-message BucksData {
-	message UnlockedPerk {
-		optional uint32 perk = 1;
-		optional uint32 unlock_reason = 2;
-		optional uint64 time_left = 3;
-		optional uint64 timestamp = 4;
-		optional bool currently_unlocked = 5 [default = true];
-	}
-	optional uint32 bucks_type = 1;
-	optional uint32 amount = 2;
-	repeated .EA.Sims4.Persistence.BucksData.UnlockedPerk unlocked_perks = 3;
+	optional int32 daily_household_employee_wages = 15;
 }
 
 message PersistableClubService {
@@ -943,6 +931,15 @@ message PersistableTutorialService {
 	repeated .EA.Sims4.Persistence.PivotalMoment pivotal_moments = 1;
 }
 
+message UserAccountGameplayData {
+	required string key = 1;
+	optional string value = 2;
+}
+
+message UserAccountStoredGameplayData {
+	repeated .EA.Sims4.Persistence.UserAccountGameplayData stored_data = 1;
+}
+
 message GameplaySaveSlotData {
 	optional uint64 world_game_time = 1;
 	optional .EA.Sims4.Persistence.SituationSeedData travel_situation_seed = 2;
@@ -1138,6 +1135,8 @@ message GameplayOptions {
 	optional bool npc_autonomy_breakups_enabled = 43 [default = true];
 	optional bool automatic_death_inventory_handling_enabled = 45 [default = false];
 	optional bool heirloom_objects_enabled = 46 [default = true];
+	optional bool small_business_events_enabled = 47 [default = true];
+	optional bool burglar_enabled = 48 [default = true];
 }
 
 message RestaurantZoneDirectorData {

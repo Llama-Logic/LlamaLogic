@@ -221,6 +221,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(7, Name = @"goals_that_show_progress")]
         public bool[] GoalsThatShowProgresses { get; set; }
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"goals_with_update_tooltip_in_special_cases")]
+        public bool[] GoalsWithUpdateTooltipInSpecialCases { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2647,6 +2650,17 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeAgeCompleted() => __pbn__AgeCompleted != null;
         public void ResetAgeCompleted() => __pbn__AgeCompleted = null;
         private uint? __pbn__AgeCompleted;
+
+        [global::ProtoBuf.ProtoMember(16, Name = @"unlocked_small_business_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string UnlockedSmallBusinessName
+        {
+            get => __pbn__UnlockedSmallBusinessName ?? "";
+            set => __pbn__UnlockedSmallBusinessName = value;
+        }
+        public bool ShouldSerializeUnlockedSmallBusinessName() => __pbn__UnlockedSmallBusinessName != null;
+        public void ResetUnlockedSmallBusinessName() => __pbn__UnlockedSmallBusinessName = null;
+        private string __pbn__UnlockedSmallBusinessName;
 
         [global::ProtoBuf.ProtoContract()]
         public enum MilestoneState

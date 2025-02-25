@@ -33,6 +33,7 @@ message TrayBlueprintMetadata {
 	optional uint32 tile_count = 18;
 	optional uint32 unit_count = 19;
 	repeated .EA.Sims4.Network.UnitTraitData unitTraits = 20;
+	repeated uint32 dynamic_areas = 21;
 }
 
 message TrayRoomBlueprintMetadata {
@@ -113,6 +114,7 @@ message TrayMetadata {
 		optional .EA.Sims4.Network.TrayBlueprintMetadata bp_metadata = 1;
 		optional .EA.Sims4.Network.TrayHouseholdMetadata hh_metadata = 2;
 		optional .EA.Sims4.Network.TrayRoomBlueprintMetadata ro_metadata = 7;
+		optional .EA.Sims4.Network.TrayPartMetadata part_metadata = 26;
 		optional bool is_hidden = 3;
 		optional bool is_downloadtemp = 4;
 		optional bool is_modded_content = 5;
@@ -140,7 +142,7 @@ message TrayMetadata {
 	}
 	enum TrayMetadataVersion {
 		v000 = 0;
-		currentVersion = 11200;
+		currentVersion = 11300;
 	}
 	optional uint64 id = 1;
 	optional .EA.Sims4.Network.ExchangeItemTypes type = 2;
@@ -175,6 +177,11 @@ message TrayMetadata {
 
 message ExchangeItemPrerequisites {
 	repeated uint64 item = 1;
+}
+
+message TrayPartMetadata {
+	required uint32 body_type = 1;
+	optional uint32 num_thumbnails = 2 [default = 2];
 }
 
 message ExchangeEnvelope {
@@ -292,6 +299,8 @@ message ExchangeCombinedSearch {
 	optional uint64 upload_time_range_start = 29;
 	optional uint64 upload_time_range_end = 30;
 	repeated .EA.Sims4.Network.Pack exclusive_packs = 31;
+	optional uint32 body_type = 32;
+	optional uint32 compatible_item_version = 33 [default = 0];
 }
 
 message ExchangeTestParameters {

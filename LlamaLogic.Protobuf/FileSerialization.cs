@@ -2005,6 +2005,12 @@ namespace EA.Sims4.Persistence
         public void ResetGhostEdgeColor() => __pbn__GhostEdgeColor = null;
         private uint? __pbn__GhostEdgeColor;
 
+        [global::ProtoBuf.ProtoMember(75, Name = @"parts_custom_tattoos")]
+        public global::System.Collections.Generic.List<SimPartCustomTattooData> PartsCustomTattoos { get; } = new global::System.Collections.Generic.List<SimPartCustomTattooData>();
+
+        [global::ProtoBuf.ProtoMember(76, Name = @"parts_creator_data")]
+        public global::System.Collections.Generic.List<SimPartCreatorData> PartsCreatorDatas { get; } = new global::System.Collections.Generic.List<SimPartCreatorData>();
+
         [global::ProtoBuf.ProtoContract()]
         public enum SimCreationPath
         {
@@ -2062,6 +2068,27 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeIsNewReward() => __pbn__IsNewReward != null;
         public void ResetIsNewReward() => __pbn__IsNewReward = null;
         private bool? __pbn__IsNewReward;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"sim_id")]
+        public ulong SimId
+        {
+            get => __pbn__SimId.GetValueOrDefault();
+            set => __pbn__SimId = value;
+        }
+        public bool ShouldSerializeSimId() => __pbn__SimId != null;
+        public void ResetSimId() => __pbn__SimId = null;
+        private ulong? __pbn__SimId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"reward_part_type")]
+        [global::System.ComponentModel.DefaultValue(55242443u)]
+        public uint RewardPartType
+        {
+            get => __pbn__RewardPartType ?? 55242443u;
+            set => __pbn__RewardPartType = value;
+        }
+        public bool ShouldSerializeRewardPartType() => __pbn__RewardPartType != null;
+        public void ResetRewardPartType() => __pbn__RewardPartType = null;
+        private uint? __pbn__RewardPartType;
 
     }
 

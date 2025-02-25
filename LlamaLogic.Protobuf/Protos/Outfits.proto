@@ -1,5 +1,6 @@
 syntax = "proto2";
 package EA.Sims4.Persistence;
+import "Consts.proto";
 import "S4Common.proto";
 
 
@@ -15,6 +16,10 @@ message ObjectIdsList {
 	repeated uint64 object_id = 1;
 }
 
+message LayerIdsList {
+	repeated uint32 layer_id = 1;
+}
+
 message OutfitData {
 	required uint64 outfit_id = 1;
 	optional uint32 category = 2;
@@ -27,6 +32,7 @@ message OutfitData {
 	optional .EA.Sims4.Persistence.ColorShiftList part_shifts = 12;
 	optional string title = 13;
 	optional .EA.Sims4.Persistence.ObjectIdsList object_ids = 14;
+	optional .EA.Sims4.Persistence.LayerIdsList layer_ids = 15;
 }
 
 message OutfitList {
@@ -38,6 +44,7 @@ message PartData {
 	required uint32 body_type = 2;
 	optional uint64 color_shift = 3 [default = 4611686018427387904];
 	optional uint64 object_id = 4 [default = 0];
+	optional uint32 layer_id = 5 [default = 0];
 }
 
 message PartDataList {
@@ -60,4 +67,19 @@ message PeltLayerData {
 
 message PeltLayerDataList {
 	repeated .EA.Sims4.Persistence.PeltLayerData layers = 1;
+}
+
+message SimPartCustomTattooData {
+	required uint32 body_type = 1;
+	required uint64 texture_id = 2;
+}
+
+message SimPartCreatorData {
+	optional uint32 body_type = 1;
+	optional bytes creator_uuid = 2;
+	optional uint64 creator_id = 3;
+	optional string creator_name = 4;
+	optional .EA.Sims4.Network.ExchangeItemPlatform creator_platform = 5 [default = EXCHANGE_PLATFORM_UNKNOWN];
+	optional uint64 creator_platform_id = 6;
+	optional string creator_platform_name = 7;
 }

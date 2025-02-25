@@ -89,6 +89,7 @@ message UiObjectMetadata {
 	optional .EA.Sims4.Network.LocalizedString heirloom_title = 43;
 	optional .EA.Sims4.Network.LocalizedString heirloom_owner = 44;
 	optional .EA.Sims4.Network.LocalizedString engraved_message = 45;
+	optional int32 mark_up_value_tooltip = 46;
 }
 
 message HovertipCreated {
@@ -123,6 +124,7 @@ message IconInfo {
 	optional .EA.Sims4.Network.LocalizedString location_desc = 12;
 	repeated .EA.Sims4.Network.Vector3 multicolor = 13;
 	optional .EA.Sims4.Network.LocalizedString main_objective = 14;
+	optional fixed64 parent_id = 15;
 }
 
 message InventoryUpdate {
@@ -944,4 +946,22 @@ message ToggleSimInfoPanel {
 message GhostUltimateStatisticProgress {
 	optional int32 good_ultimate_progress = 1;
 	optional int32 evil_ultimate_progress = 2;
+}
+
+message SkillsAffectedByMasteryPerk {
+	required fixed64 mastery_perk_id = 1;
+	repeated .EA.Sims4.Network.LocalizedString skill_names = 2;
+}
+
+message ShowSmallBusinessConfigurator {
+	optional bool has_ticket_machine = 1;
+	optional bool is_edit = 2;
+	optional int32 base_entry_fee = 3;
+	optional int32 base_hourly_fee = 4;
+	optional bool is_current_zone_allowed_for_small_business = 5;
+	optional bool is_home_zone_allowed_for_small_business = 6;
+}
+
+message FamilyRecipeCostModifier {
+	optional float cost_modifier_size = 1;
 }

@@ -11,6 +11,7 @@ import "SimsCustomOptions.proto";
 import "Outfits.proto";
 import "S4Common.proto";
 import "Venue.proto";
+import "Consts.proto";
 
 enum PersistenceActions {
 	BASE_ACTION = 0;
@@ -358,6 +359,8 @@ message SimData {
 	optional .EA.Sims4.Persistence.SteadySimIdList steadies = 72;
 	optional uint32 ghost_base_color = 73;
 	optional uint32 ghost_edge_color = 74;
+	repeated .EA.Sims4.Persistence.SimPartCustomTattooData parts_custom_tattoos = 75;
+	repeated .EA.Sims4.Persistence.SimPartCreatorData parts_creator_data = 76;
 }
 
 message SimList {
@@ -367,6 +370,8 @@ message SimList {
 message RewardPartData {
 	optional uint64 part_id = 1;
 	optional bool is_new_reward = 2;
+	optional uint64 sim_id = 3;
+	optional uint32 reward_part_type = 4 [default = 55242443];
 }
 
 message RewardPartList {

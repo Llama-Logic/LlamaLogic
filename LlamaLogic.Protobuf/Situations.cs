@@ -1004,6 +1004,19 @@ namespace EA.Sims4.Network
         public void ResetPivotalMomentBackgroundStyle() => __pbn__PivotalMomentBackgroundStyle = null;
         private uint? __pbn__PivotalMomentBackgroundStyle;
 
+        [global::ProtoBuf.ProtoMember(33, Name = @"situation_display_description")]
+        public LocalizedString SituationDisplayDescription { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34, Name = @"tutorial_id")]
+        public ulong TutorialId
+        {
+            get => __pbn__TutorialId.GetValueOrDefault();
+            set => __pbn__TutorialId = value;
+        }
+        public bool ShouldSerializeTutorialId() => __pbn__TutorialId != null;
+        public void ResetTutorialId() => __pbn__TutorialId = null;
+        private ulong? __pbn__TutorialId;
+
     }
 
     [global::ProtoBuf.ProtoContract()]

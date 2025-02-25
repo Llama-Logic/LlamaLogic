@@ -173,6 +173,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(6, Name = @"goals_that_show_progress")]
         public bool[] GoalsThatShowProgresses { get; set; }
 
+        [global::ProtoBuf.ProtoMember(7, Name = @"goals_with_update_tooltip_in_special_cases")]
+        public bool[] GoalsWithUpdateTooltipInSpecialCases { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

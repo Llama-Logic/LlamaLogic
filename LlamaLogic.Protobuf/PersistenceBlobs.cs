@@ -25,6 +25,12 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(3, Name = @"body_modifiers")]
         public global::System.Collections.Generic.List<Modifier> BodyModifiers { get; } = new global::System.Collections.Generic.List<Modifier>();
 
+        [global::ProtoBuf.ProtoMember(4, Name = @"aged_face_modifiers")]
+        public global::System.Collections.Generic.List<Modifier> AgedFaceModifiers { get; } = new global::System.Collections.Generic.List<Modifier>();
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"aged_body_modifiers")]
+        public global::System.Collections.Generic.List<Modifier> AgedBodyModifiers { get; } = new global::System.Collections.Generic.List<Modifier>();
+
         [global::ProtoBuf.ProtoContract()]
         public partial class Modifier : global::ProtoBuf.IExtensible
         {

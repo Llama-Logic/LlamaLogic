@@ -577,6 +577,8 @@ namespace EA.Sims4.Network
         MsgSimGhostBurnoutToggle = 417,
         [global::ProtoBuf.ProtoEnum(Name = @"MSG_GHOST_POWERS_ULTIMATE_PROGRESS")]
         MsgGhostPowersUltimateProgress = 418,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_SKILLS_AFFECTED_BY_MASTERY_PERK")]
+        MsgSkillsAffectedByMasteryPerk = 419,
         [global::ProtoBuf.ProtoEnum(Name = @"EVENT_MESSAGE")]
         EventMessage = 500,
         [global::ProtoBuf.ProtoEnum(Name = @"EVENT_GAMECLOCK_SET_GAME_TIME_OFFSET")]
@@ -729,6 +731,16 @@ namespace EA.Sims4.Network
         MsgNsRequestClearVenueOwner = 1222,
         [global::ProtoBuf.ProtoEnum(Name = @"MSG_SIM_UNFINISHED_BUSINESS_ASPIRATION_TRACKER_UPDATE")]
         MsgSimUnfinishedBusinessAspirationTrackerUpdate = 1223,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_SHOW_SMALL_BUSINESS_CONFIGURATOR")]
+        MsgShowSmallBusinessConfigurator = 1224,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_MANAGE_SMALL_BUSINESS_EMPLOYEES_DIALOG")]
+        MsgManageSmallBusinessEmployeesDialog = 1225,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_FAMILY_RECIPE_COST_MODIFIER")]
+        MsgFamilyRecipeCostModifier = 1226,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_MANAGE_SMALL_BUSINESS_EMPLOYEE_TASKS_DIALOG")]
+        MsgManageSmallBusinessEmployeeTasksDialog = 1227,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_PICKER_VALIDATION_RESPONSE")]
+        MsgPickerValidationResponse = 1228,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1133,6 +1145,20 @@ namespace EA.Sims4.Network
         FundsTuitionCost = 33,
         [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SCHOLARSHIP_SURPLUS")]
         FundsScholarshipSurplus = 34,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_INTERACTION_REWARD")]
+        FundsSmallBusinessInteractionReward = 35,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_HOURLY_FEE_REWARD")]
+        FundsSmallBusinessHourlyFeeReward = 36,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_ENTRY_FEE_REWARD")]
+        FundsSmallBusinessEntryFeeReward = 37,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_LIGHT_RETAIL_REWARD")]
+        FundsSmallBusinessLightRetailReward = 38,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_SELL_BUSINESS_VALUE")]
+        FundsSmallBusinessSellBusinessValue = 39,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_OPEN_BUSINESS")]
+        FundsSmallBusinessOpenBusiness = 40,
+        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_EMPLOYEE")]
+        FundsSmallBusinessEmployee = 41,
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1469,10 +1495,10 @@ namespace EA.Sims4.Network
         ExchangeRoom = 3,
         [global::ProtoBuf.ProtoEnum(Name = @"EXCHANGE_ALLTYPES")]
         ExchangeAlltypes = 4,
-        [global::ProtoBuf.ProtoEnum(Name = @"EXCHANGE_ITEMTYPE_MAX")]
-        ExchangeItemtypeMax = 5,
         [global::ProtoBuf.ProtoEnum(Name = @"EXCHANGE_PART")]
-        ExchangePart = 6,
+        ExchangePart = 5,
+        [global::ProtoBuf.ProtoEnum(Name = @"EXCHANGE_ITEMTYPE_MAX")]
+        ExchangeItemtypeMax = 6,
     }
 
     [global::ProtoBuf.ProtoContract()]

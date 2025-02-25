@@ -206,6 +206,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(20)]
         public global::System.Collections.Generic.List<UnitTraitData> unitTraits { get; } = new global::System.Collections.Generic.List<UnitTraitData>();
 
+        [global::ProtoBuf.ProtoMember(21, Name = @"dynamic_areas")]
+        public uint[] DynamicAreas { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -971,6 +974,9 @@ namespace EA.Sims4.Network
             [global::ProtoBuf.ProtoMember(7, Name = @"ro_metadata")]
             public TrayRoomBlueprintMetadata RoMetadata { get; set; }
 
+            [global::ProtoBuf.ProtoMember(26, Name = @"part_metadata")]
+            public TrayPartMetadata PartMetadata { get; set; }
+
             [global::ProtoBuf.ProtoMember(3, Name = @"is_hidden")]
             public bool IsHidden
             {
@@ -1212,7 +1218,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 11200,
+            currentVersion = 11300,
         }
 
     }
@@ -1226,6 +1232,29 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(1, Name = @"item")]
         public ulong[] Items { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TrayPartMetadata : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"body_type", IsRequired = true)]
+        public uint BodyType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"num_thumbnails")]
+        [global::System.ComponentModel.DefaultValue(2u)]
+        public uint NumThumbnails
+        {
+            get => __pbn__NumThumbnails ?? 2u;
+            set => __pbn__NumThumbnails = value;
+        }
+        public bool ShouldSerializeNumThumbnails() => __pbn__NumThumbnails != null;
+        public void ResetNumThumbnails() => __pbn__NumThumbnails = null;
+        private uint? __pbn__NumThumbnails;
 
     }
 
@@ -2019,6 +2048,27 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(31, Name = @"exclusive_packs")]
         public global::System.Collections.Generic.List<Pack> ExclusivePacks { get; } = new global::System.Collections.Generic.List<Pack>();
+
+        [global::ProtoBuf.ProtoMember(32, Name = @"body_type")]
+        public uint BodyType
+        {
+            get => __pbn__BodyType.GetValueOrDefault();
+            set => __pbn__BodyType = value;
+        }
+        public bool ShouldSerializeBodyType() => __pbn__BodyType != null;
+        public void ResetBodyType() => __pbn__BodyType = null;
+        private uint? __pbn__BodyType;
+
+        [global::ProtoBuf.ProtoMember(33, Name = @"compatible_item_version")]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint CompatibleItemVersion
+        {
+            get => __pbn__CompatibleItemVersion ?? 0u;
+            set => __pbn__CompatibleItemVersion = value;
+        }
+        public bool ShouldSerializeCompatibleItemVersion() => __pbn__CompatibleItemVersion != null;
+        public void ResetCompatibleItemVersion() => __pbn__CompatibleItemVersion = null;
+        private uint? __pbn__CompatibleItemVersion;
 
     }
 
