@@ -3058,6 +3058,16 @@ namespace EA.Sims4.Network
         public void ResetScheduleShiftType() => __pbn__ScheduleShiftType = null;
         private uint? __pbn__ScheduleShiftType;
 
+        [global::ProtoBuf.ProtoMember(10, Name = @"pay")]
+        public uint Pay
+        {
+            get => __pbn__Pay.GetValueOrDefault();
+            set => __pbn__Pay = value;
+        }
+        public bool ShouldSerializePay() => __pbn__Pay != null;
+        public void ResetPay() => __pbn__Pay = null;
+        private uint? __pbn__Pay;
+
     }
 
     [global::ProtoBuf.ProtoContract()]

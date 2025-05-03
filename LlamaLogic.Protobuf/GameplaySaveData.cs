@@ -5591,6 +5591,17 @@ namespace EA.Sims4.Persistence
         public void ResetBurglarEnabled() => __pbn__BurglarEnabled = null;
         private bool? __pbn__BurglarEnabled;
 
+        [global::ProtoBuf.ProtoMember(49, Name = @"cheat_sheet_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool CheatSheetEnabled
+        {
+            get => __pbn__CheatSheetEnabled ?? true;
+            set => __pbn__CheatSheetEnabled = value;
+        }
+        public bool ShouldSerializeCheatSheetEnabled() => __pbn__CheatSheetEnabled != null;
+        public void ResetCheatSheetEnabled() => __pbn__CheatSheetEnabled = null;
+        private bool? __pbn__CheatSheetEnabled;
+
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
         {
