@@ -51,7 +51,7 @@ public sealed class ModFileManifestModel :
             .WithNamingConvention(UnderscoredNamingConvention.Instance);
 
     static IDeserializer CreateYamlDeserializer() =>
-        ConfigureBuilder(new DeserializerBuilder()).Build();
+        ConfigureBuilder(new DeserializerBuilder()).IgnoreUnmatchedProperties().Build();
 
     static ISerializer CreateYamlSerializer() =>
         ConfigureBuilder(new SerializerBuilder()).Build();
