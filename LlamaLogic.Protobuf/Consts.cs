@@ -1549,6 +1549,19 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public enum KeywordSearchType
+    {
+        [global::ProtoBuf.ProtoEnum(Name = @"KEYWORD_SEARCH_UNKNOWN")]
+        KeywordSearchUnknown = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"KEYWORD_SEARCH_NAME")]
+        KeywordSearchName = 1,
+        [global::ProtoBuf.ProtoEnum(Name = @"KEYWORD_SEARCH_TEXT_TO_TEXT")]
+        KeywordSearchTextToText = 2,
+        [global::ProtoBuf.ProtoEnum(Name = @"KEYWORD_SEARCH_TEXT_TO_IMAGE")]
+        KeywordSearchTextToImage = 3,
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public enum ExchangeOpResult
     {
         [global::ProtoBuf.ProtoEnum(Name = @"EXCHANGE_OP_RESULT_SUCCESS")]

@@ -882,6 +882,12 @@ namespace EA.Sims4.Network
             SetNpcBusinessData = 1276,
             [global::ProtoBuf.ProtoEnum(Name = @"SET_HOUSEHOLD_INVENTORY_REWARDS")]
             SetHouseholdInventoryRewards = 1277,
+            [global::ProtoBuf.ProtoEnum(Name = @"ADD_MINIMIZED_SITUATION")]
+            AddMinimizedSituation = 1278,
+            [global::ProtoBuf.ProtoEnum(Name = @"REMOVE_MINIMIZED_SITUATION")]
+            RemoveMinimizedSituation = 1279,
+            [global::ProtoBuf.ProtoEnum(Name = @"IS_GUIDANCE_TIP_COMPLETE")]
+            IsGuidanceTipComplete = 1281,
         }
 
     }

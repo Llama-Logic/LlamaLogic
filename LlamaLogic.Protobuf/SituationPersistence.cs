@@ -236,6 +236,9 @@ namespace EA.Sims4.Persistence
         public void Resetgoal_tracker_type() => __pbn__goal_tracker_type = null;
         private GoalTrackerType? __pbn__goal_tracker_type;
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"graphed_goal_tracker_data")]
+        public SituationGraphedGoalTrackerData GraphedGoalTrackerData { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum GoalTrackerType
         {
@@ -247,7 +250,24 @@ namespace EA.Sims4.Persistence
             SimpleGoalTracker = 2,
             [global::ProtoBuf.ProtoEnum(Name = @"ACTIVITY_GOAL_TRACKER")]
             ActivityGoalTracker = 3,
+            [global::ProtoBuf.ProtoEnum(Name = @"STANDARD_GRAPHED_GOAL_TRACKER")]
+            StandardGraphedGoalTracker = 4,
         }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SituationGraphedGoalTrackerData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"completed_goals_ids")]
+        public ulong[] CompletedGoalsIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"unlocked_goals_ids")]
+        public ulong[] UnlockedGoalsIds { get; set; }
 
     }
 

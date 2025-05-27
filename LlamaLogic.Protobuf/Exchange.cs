@@ -1218,7 +1218,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 11400,
+            currentVersion = 11500,
         }
 
     }
@@ -2069,6 +2069,17 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeCompatibleItemVersion() => __pbn__CompatibleItemVersion != null;
         public void ResetCompatibleItemVersion() => __pbn__CompatibleItemVersion = null;
         private uint? __pbn__CompatibleItemVersion;
+
+        [global::ProtoBuf.ProtoMember(34, Name = @"keyword_type")]
+        [global::System.ComponentModel.DefaultValue(KeywordSearchType.KeywordSearchUnknown)]
+        public KeywordSearchType KeywordType
+        {
+            get => __pbn__KeywordType ?? KeywordSearchType.KeywordSearchUnknown;
+            set => __pbn__KeywordType = value;
+        }
+        public bool ShouldSerializeKeywordType() => __pbn__KeywordType != null;
+        public void ResetKeywordType() => __pbn__KeywordType = null;
+        private KeywordSearchType? __pbn__KeywordType;
 
     }
 

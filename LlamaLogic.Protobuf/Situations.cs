@@ -1017,6 +1017,19 @@ namespace EA.Sims4.Network
         public void ResetTutorialId() => __pbn__TutorialId = null;
         private ulong? __pbn__TutorialId;
 
+        [global::ProtoBuf.ProtoMember(35, Name = @"pivotal_moment_id")]
+        public ulong PivotalMomentId
+        {
+            get => __pbn__PivotalMomentId.GetValueOrDefault();
+            set => __pbn__PivotalMomentId = value;
+        }
+        public bool ShouldSerializePivotalMomentId() => __pbn__PivotalMomentId != null;
+        public void ResetPivotalMomentId() => __pbn__PivotalMomentId = null;
+        private ulong? __pbn__PivotalMomentId;
+
+        [global::ProtoBuf.ProtoMember(36, Name = @"reward_description")]
+        public LocalizedString RewardDescription { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1216,6 +1229,16 @@ namespace EA.Sims4.Network
         public void ResetUiElement() => __pbn__UiElement = null;
         private ulong? __pbn__UiElement;
 
+        [global::ProtoBuf.ProtoMember(18, Name = @"mtx_bundle_id")]
+        public ulong MtxBundleId
+        {
+            get => __pbn__MtxBundleId.GetValueOrDefault();
+            set => __pbn__MtxBundleId = value;
+        }
+        public bool ShouldSerializeMtxBundleId() => __pbn__MtxBundleId != null;
+        public void ResetMtxBundleId() => __pbn__MtxBundleId = null;
+        private ulong? __pbn__MtxBundleId;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1267,6 +1290,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"goal_button_data")]
         public SituationGoalButtonData GoalButtonData { get; set; }
 
+        [global::ProtoBuf.ProtoMember(9, Name = @"pivotal_moment_guid64")]
+        public ulong PivotalMomentGuid64
+        {
+            get => __pbn__PivotalMomentGuid64.GetValueOrDefault();
+            set => __pbn__PivotalMomentGuid64 = value;
+        }
+        public bool ShouldSerializePivotalMomentGuid64() => __pbn__PivotalMomentGuid64 != null;
+        public void ResetPivotalMomentGuid64() => __pbn__PivotalMomentGuid64 = null;
+        private ulong? __pbn__PivotalMomentGuid64;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1288,6 +1321,9 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeIsEnabled() => __pbn__IsEnabled != null;
         public void ResetIsEnabled() => __pbn__IsEnabled = null;
         private bool? __pbn__IsEnabled;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"required_packs", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] RequiredPacks { get; set; }
 
     }
 
@@ -1379,6 +1415,67 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(2, Name = @"icon_info")]
         public IconInfo IconInfo { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class AddMinimizedSituation : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_guid64")]
+        public ulong PivotalMomentGuid64
+        {
+            get => __pbn__PivotalMomentGuid64.GetValueOrDefault();
+            set => __pbn__PivotalMomentGuid64 = value;
+        }
+        public bool ShouldSerializePivotalMomentGuid64() => __pbn__PivotalMomentGuid64 != null;
+        public void ResetPivotalMomentGuid64() => __pbn__PivotalMomentGuid64 = null;
+        private ulong? __pbn__PivotalMomentGuid64;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"situation_display_type_override")]
+        public ulong SituationDisplayTypeOverride
+        {
+            get => __pbn__SituationDisplayTypeOverride.GetValueOrDefault();
+            set => __pbn__SituationDisplayTypeOverride = value;
+        }
+        public bool ShouldSerializeSituationDisplayTypeOverride() => __pbn__SituationDisplayTypeOverride != null;
+        public void ResetSituationDisplayTypeOverride() => __pbn__SituationDisplayTypeOverride = null;
+        private ulong? __pbn__SituationDisplayTypeOverride;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"display_name")]
+        public LocalizedString DisplayName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"situation_guid64")]
+        public ulong SituationGuid64
+        {
+            get => __pbn__SituationGuid64.GetValueOrDefault();
+            set => __pbn__SituationGuid64 = value;
+        }
+        public bool ShouldSerializeSituationGuid64() => __pbn__SituationGuid64 != null;
+        public void ResetSituationGuid64() => __pbn__SituationGuid64 = null;
+        private ulong? __pbn__SituationGuid64;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class RemoveMinimizedSituation : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_guid64")]
+        public ulong PivotalMomentGuid64
+        {
+            get => __pbn__PivotalMomentGuid64.GetValueOrDefault();
+            set => __pbn__PivotalMomentGuid64 = value;
+        }
+        public bool ShouldSerializePivotalMomentGuid64() => __pbn__PivotalMomentGuid64 != null;
+        public void ResetPivotalMomentGuid64() => __pbn__PivotalMomentGuid64 = null;
+        private ulong? __pbn__PivotalMomentGuid64;
 
     }
 

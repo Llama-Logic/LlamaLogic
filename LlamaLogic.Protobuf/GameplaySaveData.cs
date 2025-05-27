@@ -559,6 +559,27 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class HouseholdPivotalMomentTracker : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moments")]
+        public global::System.Collections.Generic.List<PivotalMoment> PivotalMoments { get; } = new global::System.Collections.Generic.List<PivotalMoment>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"completed_pivotal_moment_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] CompletedPivotalMomentIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"rewarded_pivotal_moment_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] RewardedPivotalMomentIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"situation_seeds")]
+        public global::System.Collections.Generic.List<SituationSeedData> SituationSeeds { get; } = new global::System.Collections.Generic.List<SituationSeedData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class GameplayScenarioData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -1082,6 +1103,9 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeSimLifeSpanOnLastGameSave() => __pbn__SimLifeSpanOnLastGameSave != null;
         public void ResetSimLifeSpanOnLastGameSave() => __pbn__SimLifeSpanOnLastGameSave = null;
         private SimLifeSpan? __pbn__SimLifeSpanOnLastGameSave;
+
+        [global::ProtoBuf.ProtoMember(44, Name = @"household_pivotal_moment_tracker")]
+        public HouseholdPivotalMomentTracker HouseholdPivotalMomentTracker { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
         public enum SimLifeSpan
@@ -5592,15 +5616,26 @@ namespace EA.Sims4.Persistence
         private bool? __pbn__BurglarEnabled;
 
         [global::ProtoBuf.ProtoMember(49, Name = @"cheat_sheet_enabled")]
-        [global::System.ComponentModel.DefaultValue(true)]
+        [global::System.ComponentModel.DefaultValue(false)]
         public bool CheatSheetEnabled
         {
-            get => __pbn__CheatSheetEnabled ?? true;
+            get => __pbn__CheatSheetEnabled ?? false;
             set => __pbn__CheatSheetEnabled = value;
         }
         public bool ShouldSerializeCheatSheetEnabled() => __pbn__CheatSheetEnabled != null;
         public void ResetCheatSheetEnabled() => __pbn__CheatSheetEnabled = null;
         private bool? __pbn__CheatSheetEnabled;
+
+        [global::ProtoBuf.ProtoMember(50, Name = @"guidance_auto_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool GuidanceAutoEnabled
+        {
+            get => __pbn__GuidanceAutoEnabled ?? true;
+            set => __pbn__GuidanceAutoEnabled = value;
+        }
+        public bool ShouldSerializeGuidanceAutoEnabled() => __pbn__GuidanceAutoEnabled != null;
+        public void ResetGuidanceAutoEnabled() => __pbn__GuidanceAutoEnabled = null;
+        private bool? __pbn__GuidanceAutoEnabled;
 
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel

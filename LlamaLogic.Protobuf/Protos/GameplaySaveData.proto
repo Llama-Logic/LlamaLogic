@@ -122,6 +122,13 @@ message GameplayScenarioTrackerData {
 	optional .EA.Sims4.Persistence.GameplayScenarioData active_scenario_data = 1;
 }
 
+message HouseholdPivotalMomentTracker {
+	repeated .EA.Sims4.Persistence.PivotalMoment pivotal_moments = 1;
+	repeated fixed64 completed_pivotal_moment_ids = 2;
+	repeated fixed64 rewarded_pivotal_moment_ids = 3;
+	repeated .EA.Sims4.Persistence.SituationSeedData situation_seeds = 4;
+}
+
 message GameplayScenarioData {
 	message ScenarioGoalData {
 		optional .EA.Sims4.Persistence.SituationGoalData goal_data = 1;
@@ -213,6 +220,7 @@ message GameplayHouseholdData {
 	optional uint64 rent_late_timer = 41;
 	optional uint64 rent_warning_timer = 42;
 	optional .EA.Sims4.Persistence.GameplayHouseholdData.SimLifeSpan sim_life_span_on_last_game_save = 43 [default = UNKNOWN];
+	optional .EA.Sims4.Persistence.HouseholdPivotalMomentTracker household_pivotal_moment_tracker = 44;
 }
 
 message SituationEarnedMedals {
@@ -1137,7 +1145,8 @@ message GameplayOptions {
 	optional bool heirloom_objects_enabled = 46 [default = true];
 	optional bool small_business_events_enabled = 47 [default = true];
 	optional bool burglar_enabled = 48 [default = true];
-	optional bool cheat_sheet_enabled = 49 [default = true];
+	optional bool cheat_sheet_enabled = 49 [default = false];
+	optional bool guidance_auto_enabled = 50 [default = true];
 }
 
 message RestaurantZoneDirectorData {

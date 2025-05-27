@@ -345,6 +345,10 @@ message GuidanceTipResult {
 	required .EA.Sims4.Network.GuidanceTipResult.ResponseType response = 2;
 }
 
+message IsGuidanceTipComplete {
+	required fixed64 guidance_tip_id = 1;
+}
+
 message ShowMapView {
 	enum MapViewMode {
 		TRAVEL = 0;
@@ -964,4 +968,20 @@ message ShowSmallBusinessConfigurator {
 
 message FamilyRecipeCostModifier {
 	optional float cost_modifier_size = 1;
+}
+
+message CheatSheetDefinition {
+	repeated .EA.Sims4.Network.CheatSheetControl controls = 1;
+}
+
+message CheatSheetControl {
+	repeated .EA.Sims4.Network.CheatSheetElement elements = 1;
+	required .EA.Sims4.Network.LocalizedString description = 2;
+	repeated int32 conditions = 3;
+}
+
+message CheatSheetElement {
+	required int32 element_type = 1;
+	optional string keyframe = 2;
+	optional .EA.Sims4.Network.LocalizedString control = 3;
 }

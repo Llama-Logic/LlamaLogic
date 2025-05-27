@@ -36,6 +36,7 @@ message SituationGoalTrackerData {
 		DYNAMIC_GOAL_TRACKER = 1;
 		SIMPLE_GOAL_TRACKER = 2;
 		ACTIVITY_GOAL_TRACKER = 3;
+		STANDARD_GRAPHED_GOAL_TRACKER = 4;
 	}
 	optional bool has_offered_goals = 1;
 	optional fixed64 inherited_target_id = 2;
@@ -44,6 +45,12 @@ message SituationGoalTrackerData {
 	optional .EA.Sims4.Persistence.SituationGoalData main_goal = 5;
 	repeated .EA.Sims4.Persistence.CompletedSituationGoalData completed_goals = 6;
 	optional .EA.Sims4.Persistence.SituationGoalTrackerData.GoalTrackerType goal_tracker_type = 7 [default = STANDARD_GOAL_TRACKER];
+	optional .EA.Sims4.Persistence.SituationGraphedGoalTrackerData graphed_goal_tracker_data = 8;
+}
+
+message SituationGraphedGoalTrackerData {
+	repeated uint64 completed_goals_ids = 1;
+	repeated uint64 unlocked_goals_ids = 2;
 }
 
 message SituationAssignmentData {

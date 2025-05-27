@@ -1598,6 +1598,18 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class IsGuidanceTipComplete : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"guidance_tip_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong GuidanceTipId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ShowMapView : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -4669,6 +4681,62 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeCostModifierSize() => __pbn__CostModifierSize != null;
         public void ResetCostModifierSize() => __pbn__CostModifierSize = null;
         private float? __pbn__CostModifierSize;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CheatSheetDefinition : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"controls")]
+        public global::System.Collections.Generic.List<CheatSheetControl> Controls { get; } = new global::System.Collections.Generic.List<CheatSheetControl>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CheatSheetControl : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"elements")]
+        public global::System.Collections.Generic.List<CheatSheetElement> Elements { get; } = new global::System.Collections.Generic.List<CheatSheetElement>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"description", IsRequired = true)]
+        public LocalizedString Description { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"conditions")]
+        public int[] Conditions { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CheatSheetElement : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"element_type", IsRequired = true)]
+        public int ElementType { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"keyframe")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Keyframe
+        {
+            get => __pbn__Keyframe ?? "";
+            set => __pbn__Keyframe = value;
+        }
+        public bool ShouldSerializeKeyframe() => __pbn__Keyframe != null;
+        public void ResetKeyframe() => __pbn__Keyframe = null;
+        private string __pbn__Keyframe;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"control")]
+        public LocalizedString Control { get; set; }
 
     }
 
