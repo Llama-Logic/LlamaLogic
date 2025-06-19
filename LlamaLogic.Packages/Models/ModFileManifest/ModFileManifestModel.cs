@@ -21,7 +21,7 @@ namespace LlamaLogic.Packages.Models.ModFileManifest;
 /// The static parsing methods of this type expect YAML representations of manifests and the <see cref="ToString"/> method produces them.
 /// Name your mod file manifest resource `llamalogic.modfilemanifest.yml` and put it in the root of your `.ts4script` archive.
 /// </remarks>
-public sealed class ModFileManifestModel :
+public sealed partial class ModFileManifestModel :
     Model,
     IModel<ModFileManifestModel>,
     IXmlSerializable
@@ -41,6 +41,13 @@ public sealed class ModFileManifestModel :
     /// <inheritdoc/>
     public static new ISet<ResourceType> SupportedTypes =>
         supportedTypes;
+
+#if IS_NET_7_0_OR_GREATER
+    [GeneratedRegex("^(.*/)?llamalogic\\.modfilemanifest\\.yml$", RegexOptions.IgnoreCase, "en-US")]
+    private static partial Regex GetScriptModFileManifestEntryNamePattern();
+#else
+    const string scriptModFileManifestEntryNamePattern = "^(.*/)?llamalogic\\.modfilemanifest\\.yml$";
+#endif
 
     static TBuilder ConfigureBuilder<TBuilder>(TBuilder builder)
         where TBuilder : BuilderSkeleton<TBuilder> => builder
@@ -67,13 +74,6 @@ public sealed class ModFileManifestModel :
     }
 
     /// <summary>
-    /// Deletes all mod file manifest resources in the specified <paramref name="scriptMod"/>
-    /// </summary>
-    [Obsolete($"This method will be removed in a future version. Call {nameof(DeleteModFileManifests)} instead.")]
-    public static void DeleteModFileManifest(ZipArchive scriptMod) =>
-        DeleteModFileManifests(scriptMod);
-
-    /// <summary>
     /// Deletes all mod file manifest resources in the specified <paramref name="package"/>
     /// </summary>
     public static void DeleteModFileManifests(DataBasePackedFile package)
@@ -86,11 +86,15 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Deletes all mod file manifest resources in the specified <paramref name="scriptMod"/>
     /// </summary>
-    public static void DeleteModFileManifests(ZipArchive scriptMod)
+    public static void DeleteModFileManifests(ZipFile scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
-        while (scriptMod.Entries.FirstOrDefault(entry => entry.Name.Equals(zipArchiveManifestName, StringComparison.OrdinalIgnoreCase)) is { } entry)
-            entry.Delete();
+#if IS_NET_7_0_OR_GREATER
+        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } entry)
+#else
+        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } entry)
+#endif
+            scriptMod.Delete(entry);
     }
 
     /// <summary>
@@ -158,17 +162,23 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the hash for the specified <paramref name="scriptMod"/>
     /// </summary>
-    public static ImmutableArray<byte> GetModFileHash(ZipArchive scriptMod)
+    public static ImmutableArray<byte> GetModFileHash(ZipFile scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
         Span<byte> crc32Span = stackalloc byte[4];
         using var sha256 = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-        foreach (var entry in scriptMod.Entries
-            .Where(entry => !entry.Name.Equals(zipArchiveManifestName, StringComparison.OrdinalIgnoreCase))
-            .OrderBy(entry => entry.FullName, StringComparer.Ordinal))
+        foreach (var entry in scriptMod.Cast<ZipEntry>()
+#if IS_NET_7_0_OR_GREATER
+            .Where(entry => !GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name))
+#else
+            .Where(entry => !Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase))
+#endif
+            .OrderBy(entry => entry.Name, StringComparer.Ordinal))
         {
-            sha256.AppendData(Encoding.UTF8.GetBytes(entry.FullName));
-            var crc32 = entry.Crc32;
+            sha256.AppendData(Encoding.UTF8.GetBytes(entry.Name));
+            if (!entry.HasCrc)
+                throw new Exception($"{entry.Name} has no CRC");
+            var crc32 = unchecked((uint)entry.Crc);
             MemoryMarshal.Write(crc32Span, ref crc32);
             sha256.AppendData(crc32Span);
         }
@@ -236,12 +246,16 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the mod file manifest for the specified <paramref name="scriptMod"/>, if it has one
     /// </summary>
-    public static ModFileManifestModel? GetModFileManifest(ZipArchive scriptMod)
+    public static ModFileManifestModel? GetModFileManifest(ZipFile scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
-        if (scriptMod.Entries.OrderBy(entry => entry.Name == entry.FullName ? 0 : 1).ThenBy(entry => entry.FullName, StringComparer.Ordinal).FirstOrDefault(entry => entry.Name.Equals(zipArchiveManifestName, StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
+#if IS_NET_7_0_OR_GREATER
+        if (scriptMod.Cast<ZipEntry>().OrderBy(entry => entry.Name, StringComparer.Ordinal).FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } manifestEntry)
+#else
+        if (scriptMod.Cast<ZipEntry>().OrderBy(entry => entry.Name, StringComparer.Ordinal).FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } manifestEntry)
+#endif
         {
-            using var manifestStream = manifestEntry.Open();
+            using var manifestStream = scriptMod.GetInputStream(manifestEntry);
             using var manifestReader = new StreamReader(manifestStream);
             if (TryParse(manifestReader.ReadToEnd(), out var modFileManifest))
                 return modFileManifest;
@@ -342,12 +356,16 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Gets the mod file manifest for the specified <paramref name="scriptMod"/>, asynchronously, if it has one
     /// </summary>
-    public static async Task<ModFileManifestModel?> GetModFileManifestAsync(ZipArchive scriptMod)
+    public static async Task<ModFileManifestModel?> GetModFileManifestAsync(ZipFile scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
-        if (scriptMod.Entries.OrderBy(entry => entry.Name == entry.FullName ? 0 : 1).ThenBy(entry => entry.FullName, StringComparer.Ordinal).FirstOrDefault(entry => entry.Name.Equals(zipArchiveManifestName, StringComparison.OrdinalIgnoreCase)) is { } manifestEntry)
+#if IS_NET_7_0_OR_GREATER
+        if (scriptMod.Cast<ZipEntry>().OrderBy(entry => entry.Name, StringComparer.Ordinal).FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } manifestEntry)
+#else
+        if (scriptMod.Cast<ZipEntry>().OrderBy(entry => entry.Name, StringComparer.Ordinal).FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } manifestEntry)
+#endif
         {
-            using var manifestStream = manifestEntry.Open();
+            using var manifestStream = scriptMod.GetInputStream(manifestEntry);
             using var manifestReader = new StreamReader(manifestStream);
             if (TryParse(await manifestReader.ReadToEndAsync().ConfigureAwait(false), out var modFileManifest))
                 return modFileManifest;
@@ -446,20 +464,22 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Set the specified <paramref name="manifest"/> for the specified <paramref name="scriptMod"/>
     /// </summary>
-    public static void SetModFileManifest(ZipArchive scriptMod, ModFileManifestModel manifest)
+    public static void SetModFileManifest(ZipFile scriptMod, ModFileManifestModel manifest)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
         ArgumentNullException.ThrowIfNull(manifest);
-        var manifestEntryFullName = zipArchiveManifestName;
-        var pathSplitEntries = scriptMod.Entries.Select(entry => entry.FullName.Split('/')).ToImmutableArray();
+        DeleteModFileManifests(scriptMod);
+        var manifestEntryName = zipArchiveManifestName;
+        var pathSplitEntries = scriptMod.OfType<ZipFile>().Select(entry => entry.Name.Split('/')).ToImmutableArray();
         if (pathSplitEntries.All(pathSplitEntry => pathSplitEntry.Length is > 1)
             && pathSplitEntries.Select(pathSplitEntry => pathSplitEntry[0]).Distinct(StringComparer.OrdinalIgnoreCase).Count() is 1)
-            manifestEntryFullName = $"{pathSplitEntries[0][0]}/{manifestEntryFullName}";
-        var manifestEntry = scriptMod.CreateEntry(manifestEntryFullName);
-        using var manifestEntryStream = manifestEntry.Open();
+            manifestEntryName = $"{pathSplitEntries[0][0]}/{manifestEntryName}";
+        using var manifestEntryStream = new MemoryStream();
         using var manifestEntryStreamWriter = new StreamWriter(manifestEntryStream);
         manifestEntryStreamWriter.WriteLine(manifest.ToString());
         manifestEntryStreamWriter.Flush();
+        manifestEntryStream.Seek(0, SeekOrigin.Begin);
+        scriptMod.Add(new StreamStaticDataSource(manifestEntryStream), manifestEntryName);
     }
 
     /// <summary>
@@ -475,20 +495,22 @@ public sealed class ModFileManifestModel :
     /// <summary>
     /// Set the specified <paramref name="manifest"/> for the specified <paramref name="scriptMod"/>, asynchronously
     /// </summary>
-    public static async Task SetModFileManifestAsync(ZipArchive scriptMod, ModFileManifestModel manifest)
+    public static async Task SetModFileManifestAsync(ZipFile scriptMod, ModFileManifestModel manifest)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
         ArgumentNullException.ThrowIfNull(manifest);
-        var manifestEntryFullName = zipArchiveManifestName;
-        var pathSplitEntries = scriptMod.Entries.Select(entry => entry.FullName.Split('/')).ToImmutableArray();
+        DeleteModFileManifests(scriptMod);
+        var manifestEntryName = zipArchiveManifestName;
+        var pathSplitEntries = scriptMod.Cast<ZipFile>().Select(entry => entry.Name.Split('/')).ToImmutableArray();
         if (pathSplitEntries.All(pathSplitEntry => pathSplitEntry.Length is > 1)
             && pathSplitEntries.Select(pathSplitEntry => pathSplitEntry[0]).Distinct(StringComparer.Ordinal).Count() is 1)
-            manifestEntryFullName = $"{pathSplitEntries[0][0]}/{manifestEntryFullName}";
-        var manifestEntry = scriptMod.CreateEntry(manifestEntryFullName);
-        using var manifestEntryStream = manifestEntry.Open();
+            manifestEntryName = $"{pathSplitEntries[0][0]}/{manifestEntryName}";
+        using var manifestEntryStream = new MemoryStream();
         using var manifestEntryStreamWriter = new StreamWriter(manifestEntryStream);
         await manifestEntryStreamWriter.WriteLineAsync(manifest.ToString()).ConfigureAwait(false);
         await manifestEntryStreamWriter.FlushAsync().ConfigureAwait(false);
+        manifestEntryStream.Seek(0, SeekOrigin.Begin);
+        scriptMod.Add(new StreamStaticDataSource(manifestEntryStream), manifestEntryName);
     }
 
     /// <summary>
@@ -733,7 +755,7 @@ public sealed class ModFileManifestModel :
                 else if (tunableName == "name")
                     Name = tunableValue;
                 else if (tunableName == "hash")
-                    Hash = tunableValue.ToByteSequence().ToImmutableArray();
+                    Hash = [..tunableValue.ToByteSequence()];
                 else if (tunableName == "translation_submission_url")
                     TranslationSubmissionUrl = new Uri(tunableValue, UriKind.Absolute);
                 else if (tunableName == "version")

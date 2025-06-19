@@ -1179,6 +1179,17 @@ public enum ResourceType :
     SaveGameSimCustomTexture = 0xf8e1457a,
 
     /// <summary>
+    /// Save-Specific Relational Data Storage
+    /// </summary>
+    /// <remarks>
+    /// This is a ZIP archive's octet stream set to store, not any level of compression.
+    /// Use DBPF ZLIB compression.
+    /// Each entry should be a SQLite database file using the `.sqlite` extension, the name of which is a valid UUID.
+    /// </remarks>
+    [ResourceFileType(ResourceFileType.Binary)]
+    SaveSpecificRelationalDataStorage = 0x5263aa84,
+
+    /// <summary>
     /// ScaleForm GFX
     /// </summary>
     ScaleFormGFX = 0x62ecc59a,
