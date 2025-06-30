@@ -429,15 +429,17 @@ public sealed partial class ModFileManifestModel :
 
     static void InternalDeleteModFileManifests(ZipFile scriptMod)
     {
+        var deletedEntries = new HashSet<ZipEntry>();
 #if IS_NET_7_0_OR_GREATER
-        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } entry)
+        while (scriptMod.Cast<ZipEntry>().Except(deletedEntries).FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } entry)
 #else
-        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } entry)
+        while (scriptMod.Cast<ZipEntry>().Except(deletedEntries).FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } entry)
 #endif
         {
             if (!scriptMod.IsUpdating)
                 scriptMod.BeginUpdate();
             scriptMod.Delete(entry);
+            deletedEntries.Add(entry);
         }
     }
 
