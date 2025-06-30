@@ -89,12 +89,9 @@ public sealed partial class ModFileManifestModel :
     public static void DeleteModFileManifests(ZipFile scriptMod)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
-#if IS_NET_7_0_OR_GREATER
-        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } entry)
-#else
-        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } entry)
-#endif
-            scriptMod.Delete(entry);
+        InternalDeleteModFileManifests(scriptMod);
+        if (scriptMod.IsUpdating)
+            scriptMod.CommitUpdate();
     }
 
     /// <summary>
@@ -430,6 +427,20 @@ public sealed partial class ModFileManifestModel :
         return Task.FromResult(modFileManifest.ResourceName);
     }
 
+    static void InternalDeleteModFileManifests(ZipFile scriptMod)
+    {
+#if IS_NET_7_0_OR_GREATER
+        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => GetScriptModFileManifestEntryNamePattern().IsMatch(entry.Name)) is { } entry)
+#else
+        while (scriptMod.Cast<ZipEntry>().FirstOrDefault(entry => Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase)) is { } entry)
+#endif
+        {
+            if (!scriptMod.IsUpdating)
+                scriptMod.BeginUpdate();
+            scriptMod.Delete(entry);
+        }
+    }
+
     /// <summary>
     /// Parses a string into a <see cref="ModFileManifestModel"/>
     /// </summary>
@@ -468,9 +479,10 @@ public sealed partial class ModFileManifestModel :
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
         ArgumentNullException.ThrowIfNull(manifest);
-        DeleteModFileManifests(scriptMod);
+        scriptMod.BeginUpdate();
+        InternalDeleteModFileManifests(scriptMod);
         var manifestEntryName = zipArchiveManifestName;
-        var pathSplitEntries = scriptMod.OfType<ZipFile>().Select(entry => entry.Name.Split('/')).ToImmutableArray();
+        var pathSplitEntries = scriptMod.OfType<ZipEntry>().Select(entry => entry.Name.Split('/')).ToImmutableArray();
         if (pathSplitEntries.All(pathSplitEntry => pathSplitEntry.Length is > 1)
             && pathSplitEntries.Select(pathSplitEntry => pathSplitEntry[0]).Distinct(StringComparer.OrdinalIgnoreCase).Count() is 1)
             manifestEntryName = $"{pathSplitEntries[0][0]}/{manifestEntryName}";
@@ -480,6 +492,7 @@ public sealed partial class ModFileManifestModel :
         manifestEntryStreamWriter.Flush();
         manifestEntryStream.Seek(0, SeekOrigin.Begin);
         scriptMod.Add(new StreamStaticDataSource(manifestEntryStream), manifestEntryName);
+        scriptMod.CommitUpdate();
     }
 
     /// <summary>
@@ -499,9 +512,10 @@ public sealed partial class ModFileManifestModel :
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
         ArgumentNullException.ThrowIfNull(manifest);
-        DeleteModFileManifests(scriptMod);
+        scriptMod.BeginUpdate();
+        InternalDeleteModFileManifests(scriptMod);
         var manifestEntryName = zipArchiveManifestName;
-        var pathSplitEntries = scriptMod.Cast<ZipFile>().Select(entry => entry.Name.Split('/')).ToImmutableArray();
+        var pathSplitEntries = scriptMod.Cast<ZipEntry>().Select(entry => entry.Name.Split('/')).ToImmutableArray();
         if (pathSplitEntries.All(pathSplitEntry => pathSplitEntry.Length is > 1)
             && pathSplitEntries.Select(pathSplitEntry => pathSplitEntry[0]).Distinct(StringComparer.Ordinal).Count() is 1)
             manifestEntryName = $"{pathSplitEntries[0][0]}/{manifestEntryName}";
@@ -511,6 +525,7 @@ public sealed partial class ModFileManifestModel :
         await manifestEntryStreamWriter.FlushAsync().ConfigureAwait(false);
         manifestEntryStream.Seek(0, SeekOrigin.Begin);
         scriptMod.Add(new StreamStaticDataSource(manifestEntryStream), manifestEntryName);
+        scriptMod.CommitUpdate();
     }
 
     /// <summary>
