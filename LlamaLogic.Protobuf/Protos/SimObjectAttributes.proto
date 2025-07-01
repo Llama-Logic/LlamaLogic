@@ -927,6 +927,9 @@ message PersistableNotebookTracker {
 		repeated .EA.Sims4.Persistence.PersistableNotebookTracker.NotebookSubEntryData object_sub_entries = 5;
 	}
 	repeated .EA.Sims4.Persistence.PersistableNotebookTracker.NotebookEntryData notebook_entries = 1;
+	optional string notes = 2;
+	optional string tooltip = 3;
+	optional .EA.Sims4.Network.LocalizedString loc_tooltip = 4;
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		required .EA.Sims4.Persistence.PersistableNotebookTracker persistable_data = 21035;
 	}

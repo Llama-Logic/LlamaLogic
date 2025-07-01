@@ -432,6 +432,7 @@ message Operation {
 		SET_HOUSEHOLD_INVENTORY_REWARDS = 1277;
 		ADD_MINIMIZED_SITUATION = 1278;
 		REMOVE_MINIMIZED_SITUATION = 1279;
+		LUCK_UPDATE = 1280;
 		IS_GUIDANCE_TIP_COMPLETE = 1281;
 	}
 	required .EA.Sims4.Network.Operation.Type type = 1;
@@ -606,6 +607,7 @@ message SetSimAttachment {
 	required uint64 attachment_id = 1;
 	optional .EA.Sims4.Network.SetSimAttachment.AttachOption attach_option = 2 [default = ATTACH];
 	optional fixed64 infant_id = 3;
+	optional bool is_wing = 4;
 }
 
 message SetPeltLayers {
@@ -1236,6 +1238,8 @@ message DisplayCareerTooltip {
 
 message NotifyNotebookEntryDiscovered {
 	optional .EA.Sims4.Network.LocalizedString subcategory_name = 1;
+	optional fixed64 sim_id = 2;
+	optional string tooltip = 3;
 }
 
 message SetAtWorkInfos {

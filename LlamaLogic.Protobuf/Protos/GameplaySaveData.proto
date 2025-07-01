@@ -239,6 +239,7 @@ message CollectionData {
 	optional bool new = 3;
 	optional uint32 quality = 4;
 	optional .EA.Sims4.Network.IconInfo icon_info = 5;
+	optional uint32 order_discovered = 6;
 }
 
 message RetailData {
@@ -1004,6 +1005,7 @@ message GameplaySaveSlotData {
 	optional .EA.Sims4.Persistence.PersistableMatchmakingService matchmaking_service = 53;
 	optional .EA.Sims4.Persistence.PersistableUiDialogService ui_dialog_service = 54;
 	optional .EA.Sims4.Persistence.PersistableWillService will_service = 55;
+	optional .EA.Sims4.Persistence.PersistableWispService wisp_service = 56;
 }
 
 message PersistableRelgraphService {
@@ -1147,6 +1149,9 @@ message GameplayOptions {
 	optional bool burglar_enabled = 48 [default = true];
 	optional bool cheat_sheet_enabled = 49 [default = false];
 	optional bool guidance_auto_enabled = 50 [default = true];
+	optional bool restrict_npc_fairies = 51 [default = false];
+	optional bool balance_system_enabled = 52 [default = true];
+	optional bool luck_enabled = 53 [default = true];
 }
 
 message RestaurantZoneDirectorData {
@@ -1361,6 +1366,7 @@ message GameplaySimData {
 	optional bool premade_sim_fixup_completed = 28;
 	optional .EA.Sims4.Persistence.ReincarnationData reincarnation_data = 29;
 	repeated uint64 extra_personality_trait_slot = 30;
+	optional bool restore_wings = 31;
 }
 
 message PremadeLotStatus {
@@ -1592,4 +1598,13 @@ message HouseholdWillDependentData {
 message HouseholdWillSimoleonData {
 	required fixed64 recipient_hh_id = 1;
 	required float percentage = 2;
+}
+
+message PersistableWispService {
+	optional .EA.Sims4.Persistence.WispData wisp_data = 1;
+}
+
+message WispData {
+	optional uint32 cycle_state_id = 1;
+	repeated fixed64 plant_object_ids = 2;
 }

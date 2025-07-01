@@ -52,6 +52,7 @@ enum BuffProgressArrow {
 enum MotiveOverlayType {
 	INVALID = 0;
 	POWER_WARNING = 1;
+	IMPACTING_MOTIVE = 2;
 }
 
 message UpdateClientSim {
@@ -622,4 +623,9 @@ message AllDevelopmentalMilestonesUpdate {
 message LifetimeMilestonesData {
 	optional uint32 category_id = 1;
 	repeated .EA.Sims4.Network.DevelopmentalMilestoneUpdate milestones = 2;
+}
+
+message LuckUpdate {
+	required uint64 sim_id = 1;
+	required uint64 current_level = 2;
 }
