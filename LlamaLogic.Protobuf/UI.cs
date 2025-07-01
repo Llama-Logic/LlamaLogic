@@ -361,6 +361,19 @@ namespace EA.Sims4.Network
         public void ResetMarkUpValueTooltip() => __pbn__MarkUpValueTooltip = null;
         private int? __pbn__MarkUpValueTooltip;
 
+        [global::ProtoBuf.ProtoMember(47, Name = @"enchantment_time")]
+        public ulong EnchantmentTime
+        {
+            get => __pbn__EnchantmentTime.GetValueOrDefault();
+            set => __pbn__EnchantmentTime = value;
+        }
+        public bool ShouldSerializeEnchantmentTime() => __pbn__EnchantmentTime != null;
+        public void ResetEnchantmentTime() => __pbn__EnchantmentTime = null;
+        private ulong? __pbn__EnchantmentTime;
+
+        [global::ProtoBuf.ProtoMember(48, Name = @"active_seasons_text")]
+        public LocalizedString ActiveSeasonsText { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum HoverTipStyle
         {
@@ -1059,6 +1072,16 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(8, Name = @"icon_info")]
         public IconInfo IconInfo { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"order_discovered")]
+        public uint OrderDiscovered
+        {
+            get => __pbn__OrderDiscovered.GetValueOrDefault();
+            set => __pbn__OrderDiscovered = value;
+        }
+        public bool ShouldSerializeOrderDiscovered() => __pbn__OrderDiscovered != null;
+        public void ResetOrderDiscovered() => __pbn__OrderDiscovered = null;
+        private uint? __pbn__OrderDiscovered;
 
         [global::ProtoBuf.ProtoContract()]
         public enum UpdateType
@@ -2141,6 +2164,9 @@ namespace EA.Sims4.Network
         public void ResetIsNewItemSortable() => __pbn__IsNewItemSortable = null;
         private bool? __pbn__IsNewItemSortable;
 
+        [global::ProtoBuf.ProtoMember(11, Name = @"entry_message_description")]
+        public LocalizedString EntryMessageDescription { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2258,6 +2284,9 @@ namespace EA.Sims4.Network
         public void ResetEnumName() => __pbn__EnumName = null;
         private string __pbn__EnumName;
 
+        [global::ProtoBuf.ProtoMember(6, Name = @"category_large_icon")]
+        public IconInfo CategoryLargeIcon { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2289,6 +2318,27 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeSelectedSubcategoryIndex() => __pbn__SelectedSubcategoryIndex != null;
         public void ResetSelectedSubcategoryIndex() => __pbn__SelectedSubcategoryIndex = null;
         private uint? __pbn__SelectedSubcategoryIndex;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"notes")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Notes
+        {
+            get => __pbn__Notes ?? "";
+            set => __pbn__Notes = value;
+        }
+        public bool ShouldSerializeNotes() => __pbn__Notes != null;
+        public void ResetNotes() => __pbn__Notes = null;
+        private string __pbn__Notes;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"open_page")]
+        public bool OpenPage
+        {
+            get => __pbn__OpenPage.GetValueOrDefault();
+            set => __pbn__OpenPage = value;
+        }
+        public bool ShouldSerializeOpenPage() => __pbn__OpenPage != null;
+        public void ResetOpenPage() => __pbn__OpenPage = null;
+        private bool? __pbn__OpenPage;
 
     }
 

@@ -4309,6 +4309,31 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(1, Name = @"notebook_entries")]
         public global::System.Collections.Generic.List<NotebookEntryData> NotebookEntries { get; } = new global::System.Collections.Generic.List<NotebookEntryData>();
 
+        [global::ProtoBuf.ProtoMember(2, Name = @"notes")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Notes
+        {
+            get => __pbn__Notes ?? "";
+            set => __pbn__Notes = value;
+        }
+        public bool ShouldSerializeNotes() => __pbn__Notes != null;
+        public void ResetNotes() => __pbn__Notes = null;
+        private string __pbn__Notes;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"tooltip")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Tooltip
+        {
+            get => __pbn__Tooltip ?? "";
+            set => __pbn__Tooltip = value;
+        }
+        public bool ShouldSerializeTooltip() => __pbn__Tooltip != null;
+        public void ResetTooltip() => __pbn__Tooltip = null;
+        private string __pbn__Tooltip;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"loc_tooltip")]
+        public global::EA.Sims4.Network.LocalizedString LocTooltip { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public partial class NotebookSubEntryData : global::ProtoBuf.IExtensible
         {

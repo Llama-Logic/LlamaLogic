@@ -3846,6 +3846,8 @@ namespace EA.Sims4.Persistence
     {
         [global::ProtoBuf.ProtoEnum(Name = @"FILE_ERROR_TYPE_NONE")]
         FileErrorTypeNone = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"FILE_ERROR_TYPE_SLOT_SAVE")]
+        FileErrorTypeSlotSave = 1127087018,
         [global::ProtoBuf.ProtoEnum(Name = @"FILE_ERROR_TYPE_SLOT_COPY")]
         FileErrorTypeSlotCopy = 1652429822,
         [global::ProtoBuf.ProtoEnum(Name = @"FILE_ERROR_TYPE_SLOT_LOAD")]

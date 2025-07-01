@@ -1217,6 +1217,16 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(5, Name = @"icon_info")]
         public global::EA.Sims4.Network.IconInfo IconInfo { get; set; }
 
+        [global::ProtoBuf.ProtoMember(6, Name = @"order_discovered")]
+        public uint OrderDiscovered
+        {
+            get => __pbn__OrderDiscovered.GetValueOrDefault();
+            set => __pbn__OrderDiscovered = value;
+        }
+        public bool ShouldSerializeOrderDiscovered() => __pbn__OrderDiscovered != null;
+        public void ResetOrderDiscovered() => __pbn__OrderDiscovered = null;
+        private uint? __pbn__OrderDiscovered;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -4912,6 +4922,9 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(55, Name = @"will_service")]
         public PersistableWillService WillService { get; set; }
 
+        [global::ProtoBuf.ProtoMember(56, Name = @"wisp_service")]
+        public PersistableWispService WispService { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -5636,6 +5649,39 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeGuidanceAutoEnabled() => __pbn__GuidanceAutoEnabled != null;
         public void ResetGuidanceAutoEnabled() => __pbn__GuidanceAutoEnabled = null;
         private bool? __pbn__GuidanceAutoEnabled;
+
+        [global::ProtoBuf.ProtoMember(51, Name = @"restrict_npc_fairies")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool RestrictNpcFairies
+        {
+            get => __pbn__RestrictNpcFairies ?? false;
+            set => __pbn__RestrictNpcFairies = value;
+        }
+        public bool ShouldSerializeRestrictNpcFairies() => __pbn__RestrictNpcFairies != null;
+        public void ResetRestrictNpcFairies() => __pbn__RestrictNpcFairies = null;
+        private bool? __pbn__RestrictNpcFairies;
+
+        [global::ProtoBuf.ProtoMember(52, Name = @"balance_system_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool BalanceSystemEnabled
+        {
+            get => __pbn__BalanceSystemEnabled ?? true;
+            set => __pbn__BalanceSystemEnabled = value;
+        }
+        public bool ShouldSerializeBalanceSystemEnabled() => __pbn__BalanceSystemEnabled != null;
+        public void ResetBalanceSystemEnabled() => __pbn__BalanceSystemEnabled = null;
+        private bool? __pbn__BalanceSystemEnabled;
+
+        [global::ProtoBuf.ProtoMember(53, Name = @"luck_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool LuckEnabled
+        {
+            get => __pbn__LuckEnabled ?? true;
+            set => __pbn__LuckEnabled = value;
+        }
+        public bool ShouldSerializeLuckEnabled() => __pbn__LuckEnabled != null;
+        public void ResetLuckEnabled() => __pbn__LuckEnabled = null;
+        private bool? __pbn__LuckEnabled;
 
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
@@ -6897,6 +6943,16 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(30, Name = @"extra_personality_trait_slot")]
         public ulong[] ExtraPersonalityTraitSlots { get; set; }
 
+        [global::ProtoBuf.ProtoMember(31, Name = @"restore_wings")]
+        public bool RestoreWings
+        {
+            get => __pbn__RestoreWings.GetValueOrDefault();
+            set => __pbn__RestoreWings = value;
+        }
+        public bool ShouldSerializeRestoreWings() => __pbn__RestoreWings != null;
+        public void ResetRestoreWings() => __pbn__RestoreWings = null;
+        private bool? __pbn__RestoreWings;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -8002,6 +8058,40 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(2, Name = @"percentage", IsRequired = true)]
         public float Percentage { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PersistableWispService : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"wisp_data")]
+        public WispData WispData { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class WispData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"cycle_state_id")]
+        public uint CycleStateId
+        {
+            get => __pbn__CycleStateId.GetValueOrDefault();
+            set => __pbn__CycleStateId = value;
+        }
+        public bool ShouldSerializeCycleStateId() => __pbn__CycleStateId != null;
+        public void ResetCycleStateId() => __pbn__CycleStateId = null;
+        private uint? __pbn__CycleStateId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"plant_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong[] PlantObjectIds { get; set; }
 
     }
 

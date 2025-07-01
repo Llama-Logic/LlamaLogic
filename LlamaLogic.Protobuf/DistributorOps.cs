@@ -886,6 +886,8 @@ namespace EA.Sims4.Network
             AddMinimizedSituation = 1278,
             [global::ProtoBuf.ProtoEnum(Name = @"REMOVE_MINIMIZED_SITUATION")]
             RemoveMinimizedSituation = 1279,
+            [global::ProtoBuf.ProtoEnum(Name = @"LUCK_UPDATE")]
+            LuckUpdate = 1280,
             [global::ProtoBuf.ProtoEnum(Name = @"IS_GUIDANCE_TIP_COMPLETE")]
             IsGuidanceTipComplete = 1281,
         }
@@ -1526,6 +1528,16 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeInfantId() => __pbn__InfantId != null;
         public void ResetInfantId() => __pbn__InfantId = null;
         private ulong? __pbn__InfantId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"is_wing")]
+        public bool IsWing
+        {
+            get => __pbn__IsWing.GetValueOrDefault();
+            set => __pbn__IsWing = value;
+        }
+        public bool ShouldSerializeIsWing() => __pbn__IsWing != null;
+        public void ResetIsWing() => __pbn__IsWing = null;
+        private bool? __pbn__IsWing;
 
         [global::ProtoBuf.ProtoContract()]
         public enum AttachOption
@@ -4427,6 +4439,27 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(1, Name = @"subcategory_name")]
         public LocalizedString SubcategoryName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SimId
+        {
+            get => __pbn__SimId.GetValueOrDefault();
+            set => __pbn__SimId = value;
+        }
+        public bool ShouldSerializeSimId() => __pbn__SimId != null;
+        public void ResetSimId() => __pbn__SimId = null;
+        private ulong? __pbn__SimId;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"tooltip")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Tooltip
+        {
+            get => __pbn__Tooltip ?? "";
+            set => __pbn__Tooltip = value;
+        }
+        public bool ShouldSerializeTooltip() => __pbn__Tooltip != null;
+        public void ResetTooltip() => __pbn__Tooltip = null;
+        private string __pbn__Tooltip;
 
     }
 

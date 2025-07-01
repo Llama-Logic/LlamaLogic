@@ -145,6 +145,9 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(15, Name = @"layer_ids")]
         public LayerIdsList LayerIds { get; set; }
 
+        [global::ProtoBuf.ProtoMember(16, Name = @"outfitflags_array")]
+        public ulong[] OutfitflagsArrays { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

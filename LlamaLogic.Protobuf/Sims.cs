@@ -2711,6 +2711,21 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class LuckUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", IsRequired = true)]
+        public ulong SimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"current_level", IsRequired = true)]
+        public ulong CurrentLevel { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public enum MixerStateTypes
     {
         [global::ProtoBuf.ProtoEnum(Name = @"MIXER_STATE_AVAILABLE")]
@@ -2799,6 +2814,8 @@ namespace EA.Sims4.Network
         Invalid = 0,
         [global::ProtoBuf.ProtoEnum(Name = @"POWER_WARNING")]
         PowerWarning = 1,
+        [global::ProtoBuf.ProtoEnum(Name = @"IMPACTING_MOTIVE")]
+        ImpactingMotive = 2,
     }
 
 }
