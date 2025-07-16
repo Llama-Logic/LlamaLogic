@@ -3730,6 +3730,26 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(2, Name = @"crop_weights")]
         public float[] CropWeights { get; set; }
 
+        [global::ProtoBuf.ProtoMember(3, Name = @"default_definition_id")]
+        public ulong DefaultDefinitionId
+        {
+            get => __pbn__DefaultDefinitionId.GetValueOrDefault();
+            set => __pbn__DefaultDefinitionId = value;
+        }
+        public bool ShouldSerializeDefaultDefinitionId() => __pbn__DefaultDefinitionId != null;
+        public void ResetDefaultDefinitionId() => __pbn__DefaultDefinitionId = null;
+        private ulong? __pbn__DefaultDefinitionId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"is_plant")]
+        public bool IsPlant
+        {
+            get => __pbn__IsPlant.GetValueOrDefault();
+            set => __pbn__IsPlant = value;
+        }
+        public bool ShouldSerializeIsPlant() => __pbn__IsPlant != null;
+        public void ResetIsPlant() => __pbn__IsPlant = null;
+        private bool? __pbn__IsPlant;
+
         public static partial class Extensions
         {
             public static PersistableGardeningComponent GetPersistableData(PersistenceMaster.PersistableData obj)

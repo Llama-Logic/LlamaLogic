@@ -1256,6 +1256,9 @@ namespace EA.Sims4.Network
         public void ResetNumThumbnails() => __pbn__NumThumbnails = null;
         private uint? __pbn__NumThumbnails;
 
+        [global::ProtoBuf.ProtoMember(3, Name = @"part_Id")]
+        public ulong[] partIds { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
