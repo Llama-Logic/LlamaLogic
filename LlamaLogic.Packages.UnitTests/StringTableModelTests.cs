@@ -29,4 +29,11 @@ public class StringTableModelTests :
         var polish = polishKey.GetStringTableLocale();
         Assert.AreEqual("Polish", polish.EnglishName);
     }
+
+    [TestMethod]
+    public void TheFullRound()
+    {
+        using var dbpf = new DataBasePackedFile(@"C:\Program Files\EA Games\The Sims 4\EP05\ClientFullBuild0.package");
+        var pngData = dbpf.GetDirectDrawSurfaceAsPng("2f7d0004:00000000:0C4B07D782F2C978");
+    }
 }

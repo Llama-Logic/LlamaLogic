@@ -18,6 +18,12 @@ public enum ResourceFileType
     DirectDrawSurface,
 
     /// <summary>
+    /// PNG Image converted from DDS Image
+    /// </summary>
+    [ResourceFileTypeFormat("png", "image/png")]
+    DirectDrawSurfaceAsPortableNetworkGraphic,
+
+    /// <summary>
     /// JavaScript Object Notation
     /// </summary>
     [ResourceFileTypeFormat("json", "application/json")]

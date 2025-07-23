@@ -1,3 +1,5 @@
+global using BCnEncoder.Decoder;
+global using BCnEncoder.ImageSharp;
 global using ICSharpCode.SharpZipLib.Zip;
 global using ICSharpCode.SharpZipLib.Zip.Compression;
 global using ICSharpCode.SharpZipLib.Zip.Compression.Streams;

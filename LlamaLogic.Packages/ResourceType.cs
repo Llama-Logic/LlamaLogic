@@ -930,10 +930,16 @@ public enum ResourceType :
     PNG = 0x0119b36d,
 
     /// <summary>
-    /// PNG Image
+    /// PNG Image converted from DDS Image
     /// </summary>
-    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
+    [ResourceFileType(ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)]
     PNGImage = 0x2f7d0004,
+
+    /// <summary>
+    /// PNG Image converted from DDS Image 2
+    /// </summary>
+    [ResourceFileType(ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)]
+    PNGImage2 = 0x2f7d0006,
 
     /// <summary>
     /// Pond

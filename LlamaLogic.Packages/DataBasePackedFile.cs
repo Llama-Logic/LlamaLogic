@@ -1,3 +1,5 @@
+using LlamaLogic.Packages.Formats;
+
 namespace LlamaLogic.Packages;
 
 /// <summary>
@@ -1109,6 +1111,28 @@ public sealed class DataBasePackedFile :
     /// </summary>
     public Task<DataModel> GetDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
         GetModelAsync<DataModel>(key, force, cancellationToken);
+
+    /// <summary>
+    /// Gets the content of a resource that is a DST/DXT DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG
+    /// </summary>
+    public ReadOnlyMemory<byte> GetDirectDrawSurfaceAsPng(ResourceKey key, bool force = false)
+    {
+        if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
+            && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
+            key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
+        return DirectDrawSurface.GetPngDataFromDiffuseSurfaceTextureData(Get(key, force));
+    }
+
+    /// <summary>
+    /// Gets the content of a resource that is a DST/DXT DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG, asynchronously
+    /// </summary>
+    public async Task<ReadOnlyMemory<byte>> GetDirectDrawSurfaceAsPngAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    {
+        if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
+            && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
+            key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
+        return await DirectDrawSurface.GetPngDataFromDiffuseSurfaceTextureDataAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
+    }
 
     /// <summary>
     /// Gets the <see cref="CompressionMode"/> value to pass to Set methods to ensure they will compress the content of the resource specified by <paramref name="key"/> in the same way it is currently compressed in the package
