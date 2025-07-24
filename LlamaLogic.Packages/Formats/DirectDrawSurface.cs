@@ -81,7 +81,7 @@ public static class DirectDrawSurface
             throw new NotSupportedException("unsupported header flags");
         if (pixelFormatFourCC is dst1 or dst3 or dst5)
         {
-            using var unshuffled = new ArrayBufferWriterOfByteStream();
+            using var unshuffled = new ArrayBufferWriterOfByteStream(ddsData.Length);
             unshuffled.Write(ddsData.Span[0..84]);
             var newPixelFormatFourCC = pixelFormatFourCC switch { dst3 => dxt3, dst5 => dxt5, _ => dxt1 };
             if (endianness is Endianness.Big)
@@ -105,7 +105,21 @@ public static class DirectDrawSurface
                 }
             }
             else if (pixelFormatFourCC is dst3)
-                throw new NotImplementedException("no samples");
+            {
+                var blockOffset0 = 0;
+                var blockOffset2 = blockOffset0 + (dataSpan.Length >> 1);
+                var blockOffset3 = blockOffset2 + (dataSpan.Length >> 2);
+                var count = (blockOffset3 - blockOffset2) / 4;
+                for (var i = 0; i < count; ++i)
+                {
+                    unshuffled.Write(dataSpan[blockOffset0..(blockOffset0 + 8)]);
+                    unshuffled.Write(dataSpan[blockOffset2..(blockOffset2 + 4)]);
+                    unshuffled.Write(dataSpan[blockOffset3..(blockOffset3 + 4)]);
+                    blockOffset0 += 8;
+                    blockOffset2 += 4;
+                    blockOffset3 += 4;
+                }
+            }
             else if (pixelFormatFourCC is dst5)
             {
                 var blockOffset0 = 0;

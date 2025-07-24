@@ -1,9 +1,9 @@
 namespace LlamaLogic.Packages;
 
-sealed class ArrayBufferWriterOfByteStream :
+sealed class ArrayBufferWriterOfByteStream(int? initialCapacity = null) :
     Stream
 {
-    readonly ArrayBufferWriter<byte> writer = new();
+    readonly ArrayBufferWriter<byte> writer = initialCapacity is { } specifiedInitialCapacity ? new(specifiedInitialCapacity) : new();
     long? setLength;
 
     public override bool CanRead =>
