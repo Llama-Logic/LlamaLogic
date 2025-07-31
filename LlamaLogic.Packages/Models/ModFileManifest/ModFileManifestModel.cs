@@ -606,7 +606,7 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 19, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 20, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> IncompatiblePacks { get; private set; } = [];
 
     /// <summary>
@@ -620,6 +620,12 @@ public sealed partial class ModFileManifestModel :
     /// </summary>
     [YamlMember(Order = 1, DefaultValuesHandling = DefaultValuesHandling.OmitDefaults)]
     public required string Name { get; set; }
+
+    /// <summary>
+    /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
+    /// </summary>
+    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public Collection<ModFileManifestModelRecommendedPack> RecommendedPacks { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of languages repurposed by this mod
@@ -642,7 +648,7 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets/sets the promo code it is suggested the player use during check out in the EA Store if purchasing a pack for use with this mod
     /// </summary>
-    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 19, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ElectronicArtsPromoCode { get; set; }
 
     /// <inheritdoc/>
@@ -745,6 +751,8 @@ public sealed partial class ModFileManifestModel :
                     HashResourceKeys.AddRangeImmediately(childReader.ReadTunableList().Select(ResourceKey.Parse));
                 else if (tunableName == "incompatible_packs")
                     IncompatiblePacks.AddRange(childReader.ReadTunableList());
+                else if (tunableName == "recommended_packs")
+                    RecommendedPacks.AddRange(childReader.ReadTunableTupleList<ModFileManifestModelRecommendedPack>());
                 else if (tunableName == "repurposed_languages")
                     RepurposedLanguages.AddRange(childReader.ReadTunableTupleList<ModFileManifestModelRepurposedLanguage>());
                 else if (tunableName == "required_mods")
@@ -808,6 +816,7 @@ public sealed partial class ModFileManifestModel :
         writer.WriteTunableList("features", Features);
         writer.WriteTunableList("exclusivities", Exclusivities);
         writer.WriteTunableList("required_packs", RequiredPacks);
+        writer.WriteTunableList("recommended_packs", RecommendedPacks);
         writer.WriteTunable("ea_promo_code", ElectronicArtsPromoCode);
         writer.WriteTunableList("incompatible_packs", IncompatiblePacks);
         writer.WriteTunableList("required_mods", RequiredMods);
