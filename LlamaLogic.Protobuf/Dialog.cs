@@ -985,10 +985,10 @@ namespace EA.Sims4.Network
         public void ResetIsSelected() => __pbn__IsSelected = null;
         private bool? __pbn__IsSelected;
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"tag_list")]
+        [global::ProtoBuf.ProtoMember(9, Name = @"tag_list", IsPacked = true)]
         public uint[] TagLists { get; set; }
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"second_tag_list")]
+        [global::ProtoBuf.ProtoMember(10, Name = @"second_tag_list", IsPacked = true)]
         public uint[] SecondTagLists { get; set; }
 
         [global::ProtoBuf.ProtoMember(11, Name = @"description_only_prepped")]
@@ -1138,7 +1138,7 @@ namespace EA.Sims4.Network
         public void ResetSkillLevel() => __pbn__SkillLevel = null;
         private uint? __pbn__SkillLevel;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"linked_option_ids")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"linked_option_ids", IsPacked = true)]
         public uint[] LinkedOptionIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"event_icon")]
@@ -1345,7 +1345,7 @@ namespace EA.Sims4.Network
         public void ResetSelectDefault() => __pbn__SelectDefault = null;
         private bool? __pbn__SelectDefault;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"failed_criteria")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"failed_criteria", IsPacked = true)]
         public uint[] FailedCriterias { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"skills")]
@@ -1627,7 +1627,7 @@ namespace EA.Sims4.Network
         public void ResetNumOwned() => __pbn__NumOwned = null;
         private uint? __pbn__NumOwned;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"tag_list")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"tag_list", IsPacked = true)]
         public uint[] TagLists { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"num_available")]
@@ -1802,7 +1802,7 @@ namespace EA.Sims4.Network
         public void ResetSkillId() => __pbn__SkillId = null;
         private ulong? __pbn__SkillId;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"column_sort_list")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"column_sort_list", IsPacked = true)]
         public uint[] ColumnSortLists { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"display_ingredient_check")]
@@ -1864,7 +1864,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(3, Name = @"club_building_info")]
         public ClubBuildingInfo ClubBuildingInfo { get; set; }
 
-        [global::ProtoBuf.ProtoMember(11, Name = @"rel_bit_collection_ids")]
+        [global::ProtoBuf.ProtoMember(11, Name = @"rel_bit_collection_ids", IsPacked = true)]
         public uint[] RelBitCollectionIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(12, Name = @"column_count")]
@@ -1947,7 +1947,7 @@ namespace EA.Sims4.Network
         public void ResetThumbnailType() => __pbn__ThumbnailType = null;
         private ObjectPickerThumbnailType? __pbn__ThumbnailType;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"outfit_category_filters")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"outfit_category_filters", IsPacked = true)]
         public uint[] OutfitCategoryFilters { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
@@ -2617,7 +2617,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"picker_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"picker_ids", IsPacked = true)]
         public uint[] PickerIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"max_selectable")]
@@ -2777,7 +2777,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5, Name = @"description")]
         public LocalizedString Description { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"sim_ids")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"sim_ids", IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"zone_id")]
@@ -2790,7 +2790,7 @@ namespace EA.Sims4.Network
         public void ResetZoneId() => __pbn__ZoneId = null;
         private ulong? __pbn__ZoneId;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"tradition_ids")]
+        [global::ProtoBuf.ProtoMember(8, Name = @"tradition_ids", IsPacked = true)]
         public ulong[] TraditionIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, Name = @"show_go_to_button")]
@@ -3105,13 +3105,13 @@ namespace EA.Sims4.Network
         public void ResetAvailableTraitSlots() => __pbn__AvailableTraitSlots = null;
         private ulong? __pbn__AvailableTraitSlots;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"current_personality_trait_ids")]
+        [global::ProtoBuf.ProtoMember(8, Name = @"current_personality_trait_ids", IsPacked = true)]
         public ulong[] CurrentPersonalityTraitIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"available_personality_trait_ids")]
+        [global::ProtoBuf.ProtoMember(9, Name = @"available_personality_trait_ids", IsPacked = true)]
         public ulong[] AvailablePersonalityTraitIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"available_aspiration_ids")]
+        [global::ProtoBuf.ProtoMember(10, Name = @"available_aspiration_ids", IsPacked = true)]
         public ulong[] AvailableAspirationIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(11, Name = @"is_female")]
@@ -3164,16 +3164,16 @@ namespace EA.Sims4.Network
         public void ResetRewardTraitId() => __pbn__RewardTraitId = null;
         private ulong? __pbn__RewardTraitId;
 
-        [global::ProtoBuf.ProtoMember(16, Name = @"current_skill_ids")]
+        [global::ProtoBuf.ProtoMember(16, Name = @"current_skill_ids", IsPacked = true)]
         public ulong[] CurrentSkillIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"previous_skill_levels")]
+        [global::ProtoBuf.ProtoMember(17, Name = @"previous_skill_levels", IsPacked = true)]
         public uint[] PreviousSkillLevels { get; set; }
 
-        [global::ProtoBuf.ProtoMember(18, Name = @"previous_skill_ids")]
+        [global::ProtoBuf.ProtoMember(18, Name = @"previous_skill_ids", IsPacked = true)]
         public ulong[] PreviousSkillIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(19, Name = @"unlocked_trait_ids")]
+        [global::ProtoBuf.ProtoMember(19, Name = @"unlocked_trait_ids", IsPacked = true)]
         public ulong[] UnlockedTraitIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(20, Name = @"age_up_reward_trait_text")]
@@ -3443,7 +3443,7 @@ namespace EA.Sims4.Network
         public void ResetCategory() => __pbn__Category = null;
         private ulong? __pbn__Category;
 
-        [global::ProtoBuf.ProtoMember(11, Name = @"lock_on_purchase", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(11, Name = @"lock_on_purchase", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] LockOnPurchases { get; set; }
 
         [global::ProtoBuf.ProtoMember(12, Name = @"locked")]
@@ -3466,10 +3466,10 @@ namespace EA.Sims4.Network
         public void ResetNextPerkId() => __pbn__NextPerkId = null;
         private ulong? __pbn__NextPerkId;
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"conflicting_perks", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(14, Name = @"conflicting_perks", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] ConflictingPerks { get; set; }
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"required_perks", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(15, Name = @"required_perks", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] RequiredPerks { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"recently_locked")]
@@ -3603,7 +3603,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"choices")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"choices", IsPacked = true)]
         public ulong[] Choices { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"picker_id")]
@@ -3616,7 +3616,7 @@ namespace EA.Sims4.Network
         public void ResetPickerId() => __pbn__PickerId = null;
         private uint? __pbn__PickerId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"control_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"control_ids", IsPacked = true)]
         public uint[] ControlIds { get; set; }
 
     }

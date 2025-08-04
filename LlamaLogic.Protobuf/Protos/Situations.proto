@@ -15,14 +15,14 @@ message SimPickerItem {
 
 message SituationEditJobData {
 	optional uint64 job_id = 1;
-	repeated uint64 sim_ids = 2;
+	repeated uint64 sim_ids = 2 [packed = true];
 	optional uint32 hire_count = 3;
 }
 
 message SituationEditData {
 	optional uint64 drama_node_id = 1;
 	optional uint64 zone_id = 2;
-	repeated uint64 selected_activity_ids = 3;
+	repeated uint64 selected_activity_ids = 3 [packed = true];
 	optional uint64 guest_attire_style = 4;
 	optional uint64 guest_attire_color = 5;
 	repeated .EA.Sims4.Network.SituationEditJobData job_data = 6;
@@ -35,7 +35,7 @@ message SituationPrepare {
 	repeated .EA.Sims4.Network.SimPickerItem sims = 3;
 	optional fixed64 target_id = 4;
 	optional fixed64 sim_id = 5;
-	repeated uint64 situation_resource_id = 6;
+	repeated uint64 situation_resource_id = 6 [packed = true];
 	optional uint64 creation_time = 7;
 	optional .EA.Sims4.Network.SituationEditData edit_data = 8;
 	optional uint32 situation_category = 9;
@@ -43,17 +43,17 @@ message SituationPrepare {
 
 message SituationIDBatch {
 	required uint32 situation_session_id = 1;
-	repeated uint64 situation_resource_id = 2;
+	repeated uint64 situation_resource_id = 2 [packed = true];
 	repeated .EA.Sims4.Network.LocalizedString situation_name = 3;
-	repeated uint32 category_id = 4;
-	repeated fixed64 mtx_id = 5;
-	repeated int32 highest_medal_earned = 6;
+	repeated uint32 category_id = 4 [packed = true];
+	repeated fixed64 mtx_id = 5 [packed = true];
+	repeated int32 highest_medal_earned = 6 [packed = true];
 	optional bool scoring_enabled = 7;
 	repeated .EA.Sims4.Network.LocalizedString tooltip = 8;
-	repeated bool allow_user_facing_goals = 9;
+	repeated bool allow_user_facing_goals = 9 [packed = true];
 	repeated .EA.Sims4.Network.ResourceKey medal_icon_override = 10;
 	repeated .EA.Sims4.Network.LocalizedString scoring_lock_reason = 11;
-	repeated bool new_entry = 12;
+	repeated bool new_entry = 12 [packed = true];
 }
 
 message SituationDataBatch {
@@ -90,19 +90,19 @@ message SituationData {
 	required uint32 max_participants = 3;
 	repeated .EA.Sims4.Network.SituationLevelReward rewards = 4;
 	repeated .EA.Sims4.Network.SituationJobData jobs = 5;
-	repeated uint64 available_activity_ids = 6;
-	repeated uint64 required_activity_ids = 7;
+	repeated uint64 available_activity_ids = 6 [packed = true];
+	repeated uint64 required_activity_ids = 7 [packed = true];
 	optional .EA.Sims4.Network.SituationStyleData style_data = 8;
 	optional uint32 minimum_activities = 9;
 	optional .EA.Sims4.Network.LocalizedString activities_disabled_tooltip = 10;
 	repeated .EA.Sims4.Network.LocalizedString challenge_reward_override = 11;
 	optional bool activity_goal_situation = 12;
-	repeated uint64 randomizable_activity_ids = 13;
+	repeated uint64 randomizable_activity_ids = 13 [packed = true];
 	optional uint32 num_randomized = 14;
-	repeated uint64 unavailable_activity_ids = 15;
+	repeated uint64 unavailable_activity_ids = 15 [packed = true];
 	optional uint32 jobs_per_row = 16;
-	repeated uint32 job_cell_padding = 17;
-	repeated uint64 role_updates_activity_preferences = 18;
+	repeated uint32 job_cell_padding = 17 [packed = true];
+	repeated uint64 role_updates_activity_preferences = 18 [packed = true];
 	optional uint64 sim_filter_requesting_sim_override = 19;
 }
 
@@ -125,12 +125,12 @@ message SituationLevelReward {
 
 message SituationAssignJob {
 	required uint32 situation_session_id = 1;
-	repeated fixed64 sim_ids = 2;
-	repeated uint64 job_resource_ids = 3;
+	repeated fixed64 sim_ids = 2 [packed = true];
+	repeated uint64 job_resource_ids = 3 [packed = true];
 }
 
 message SituationPreferredActivities {
-	repeated uint64 activities = 1;
+	repeated uint64 activities = 1 [packed = true];
 	optional .EA.Sims4.Network.ResourceKey icon = 2;
 	optional .EA.Sims4.Network.LocalizedString footer = 3;
 }
@@ -147,7 +147,7 @@ message SituationJobSim {
 message SituationJobSims {
 	required uint32 situation_session_id = 1;
 	required uint64 job_resource_id = 2;
-	repeated fixed64 sim_ids = 3;
+	repeated fixed64 sim_ids = 3 [packed = true];
 	optional bool lock_selection = 4;
 	repeated .EA.Sims4.Network.SituationJobSim sims = 5;
 	optional .EA.Sims4.Network.LocalizedString requirements = 6;
@@ -192,7 +192,7 @@ message SituationStart {
 	optional uint64 end_time = 6;
 	optional uint64 situation_id = 7;
 	optional .EA.Sims4.Network.SituationLevelUpdate current_level = 8;
-	repeated fixed64 sim_ids = 9;
+	repeated fixed64 sim_ids = 9 [packed = true];
 	repeated .EA.Sims4.Network.SituationJobAssignment sim_jobs = 10;
 	optional uint64 start_time = 11;
 	optional .EA.Sims4.Network.ResourceKey start_audio_sting = 12;
@@ -273,7 +273,7 @@ message SituationGoalsUpdate {
 message SituationGoalButtonData {
 	optional .EA.Sims4.Network.LocalizedString button_text = 1;
 	optional bool is_enabled = 2;
-	repeated fixed64 required_packs = 3;
+	repeated fixed64 required_packs = 3 [packed = true];
 }
 
 message SituationTimeUpdate {

@@ -447,7 +447,7 @@ message OperationList {
 }
 
 message ObjectCreate {
-	repeated uint32 components = 1;
+	repeated uint32 components = 1 [packed = true];
 	required .EA.Sims4.Network.OperationList operation_list = 2;
 	required uint64 def_id = 3;
 	optional bool visible_to_automation = 4 [default = true];
@@ -514,25 +514,25 @@ message ClubInfo {
 message ClubMembershipCriteriaValidation {
 	message FailureInfo {
 		optional uint64 failed_sim_id = 1;
-		repeated uint32 failed_criteria_ids = 2;
+		repeated uint32 failed_criteria_ids = 2 [packed = true];
 	}
 	repeated .EA.Sims4.Network.ClubMembershipCriteriaValidation.FailureInfo failure_infos = 1;
 }
 
 message ClubValidation {
 	optional uint64 failed_sim_id = 1;
-	repeated uint64 failed_club_ids = 2;
+	repeated uint64 failed_club_ids = 2 [packed = true];
 }
 
 message AskAboutClubsDialog {
 	optional uint64 sim_id = 1;
-	repeated uint64 club_ids = 2;
+	repeated uint64 club_ids = 2 [packed = true];
 	optional bool show_orgs = 3;
 }
 
 message PartyMember {
 	required uint64 sim_id = 1;
-	repeated uint64 brb_sim_ids = 2;
+	repeated uint64 brb_sim_ids = 2 [packed = true];
 }
 
 message PartyCreate {
@@ -544,7 +544,7 @@ message PartyUpdate {
 }
 
 message PartyTurnUpdate {
-	repeated uint64 active_sim_ids = 1;
+	repeated uint64 active_sim_ids = 1 [packed = true];
 }
 
 message PartyKickout {
@@ -700,7 +700,7 @@ message SetSlot {
 }
 
 message SetDisabledSlots {
-	repeated uint32 slots = 1;
+	repeated uint32 slots = 1 [packed = true];
 }
 
 message SetScale {
@@ -806,7 +806,7 @@ message SetActorType {
 
 message SetActorData {
 	required uint32 type = 1;
-	repeated uint32 data = 2;
+	repeated uint32 data = 2 [packed = true];
 }
 
 message SetActorStateMachineParams {
@@ -1011,7 +1011,7 @@ message TakePhoto {
 	optional uint32 num_photos_per_session = 14;
 	optional .EA.Sims4.Network.Vector3 camera_position_offset = 15;
 	optional bool rotate_target = 16 [default = true];
-	repeated fixed64 objects_to_hide = 17;
+	repeated fixed64 objects_to_hide = 17 [packed = true];
 	repeated .EA.Sims4.Network.TakePhoto.MoodCategory mood_categories = 18;
 	repeated string clip_index_values = 19;
 	optional bool randomize_target_sim_order = 20 [default = false];
@@ -1115,7 +1115,7 @@ message ChangeSimOutfit {
 
 message GigInfo {
 	message ObjectiveChain {
-		repeated uint64 objectives = 1;
+		repeated uint64 objectives = 1 [packed = true];
 	}
 	optional uint64 gig_type = 1;
 	optional .EA.Sims4.Network.LocalizedString gig_name = 2;
@@ -1129,10 +1129,10 @@ message GigInfo {
 	optional uint64 customer_id = 10;
 	optional .EA.Sims4.Network.LocalizedString tip_title = 11;
 	optional .EA.Sims4.Network.IconInfo tip_icon = 12;
-	repeated uint64 additional_objectives = 13;
+	repeated uint64 additional_objectives = 13 [packed = true];
 	optional .EA.Sims4.Network.LocalizedString career_panel_info_text = 14;
-	repeated uint64 client_preferences = 15;
-	repeated uint64 known_client_preferences = 16;
+	repeated uint64 client_preferences = 15 [packed = true];
+	repeated uint64 known_client_preferences = 16 [packed = true];
 	optional string client_hh_name = 17;
 	optional uint64 client_lot_id = 18;
 	optional int32 budget_spent = 19;
@@ -1154,8 +1154,8 @@ message AuditionUpdate {
 message PreferencesUpdate {
 	optional uint64 career_uid = 1;
 	optional uint64 revealed_preference_id = 2;
-	repeated uint64 client_preferences = 3;
-	repeated uint64 known_client_preferences = 4;
+	repeated uint64 client_preferences = 3 [packed = true];
+	repeated uint64 known_client_preferences = 4 [packed = true];
 }
 
 message SetCareer {
@@ -1174,7 +1174,7 @@ message SetCareer {
 	optional uint32 pay = 13;
 	optional uint32 pay_raise_count = 14;
 	optional .EA.Sims4.Schedule work_schedule = 15;
-	repeated uint64 active_assignments = 16;
+	repeated uint64 active_assignments = 16 [packed = true];
 	optional bool paid_time_off_disabled = 17;
 	optional .EA.Sims4.Network.GigInfo gig_info = 18;
 	optional uint32 schedule_shift_type = 19;
@@ -1348,9 +1348,9 @@ message SetWhimBucks {
 }
 
 message SetTraits {
-	repeated uint64 trait_ids = 1;
-	repeated uint64 traits_to_add = 2;
-	repeated uint64 traits_to_remove = 3;
+	repeated uint64 trait_ids = 1 [packed = true];
+	repeated uint64 traits_to_add = 2 [packed = true];
+	repeated uint64 traits_to_remove = 3 [packed = true];
 }
 
 message ChangeSimAge {
@@ -1390,11 +1390,11 @@ message SetHouseholdHomeZoneId {
 }
 
 message SetHouseholdSims {
-	repeated fixed64 sim_ids = 1;
+	repeated fixed64 sim_ids = 1 [packed = true];
 }
 
 message SetRelatedObjects {
-	repeated fixed64 related_object_ids = 1;
+	repeated fixed64 related_object_ids = 1 [packed = true];
 	optional fixed64 target_sim_id = 2;
 }
 
@@ -1424,7 +1424,7 @@ message SetCanLiveDrag {
 message LiveDragStart {
 	optional fixed64 live_drag_object_id = 1;
 	optional uint32 drag_start_system = 2;
-	repeated fixed64 drop_object_ids = 3;
+	repeated fixed64 drop_object_ids = 3 [packed = true];
 	optional uint64 stack_id = 4;
 	optional int32 sell_value = 5;
 	optional .EA.Sims4.Network.IconInfo icon_info = 6;
@@ -1487,7 +1487,7 @@ message MoveHouseholdIntoLotFromGallery {
 	required fixed64 zone_id = 1;
 	optional uint64 household_id = 2;
 	optional uint32 num_household_sims = 3;
-	repeated fixed64 zone_ids = 4;
+	repeated fixed64 zone_ids = 4 [packed = true];
 }
 
 message SetOccultTypes {
@@ -1537,7 +1537,7 @@ message CustomizableObjectDataList {
 
 message MakeMemoryFromPhoto {
 	required uint64 household_id = 1;
-	repeated uint64 sim_ids = 2;
+	repeated uint64 sim_ids = 2 [packed = true];
 	required uint64 texture_id = 3;
 	optional uint32 filter_style = 4;
 	optional bool favorite = 5 [default = false];
@@ -1583,7 +1583,7 @@ message SetSimHeadline {
 }
 
 message SetLinkedSims {
-	repeated fixed64 linked_sim_ids = 1;
+	repeated fixed64 linked_sim_ids = 1 [packed = true];
 }
 
 message SetMulticolor {
@@ -1617,7 +1617,7 @@ message EndEnsemble {
 }
 
 message SetDisplayNumber {
-	repeated uint32 number = 1;
+	repeated uint32 number = 1 [packed = true];
 }
 
 message UpdateFlipBook {
@@ -1654,7 +1654,7 @@ message SendHolidayInfo {
 	optional .EA.Sims4.Network.ResourceKey icon = 3;
 	optional bool time_off_for_work = 4;
 	optional bool time_off_for_school = 5;
-	repeated fixed64 traditions = 6;
+	repeated fixed64 traditions = 6 [packed = true];
 	optional uint32 max_traditions = 7;
 	optional bool can_be_modified = 8;
 	optional fixed64 lot_decoration_preset = 9;
@@ -1704,7 +1704,7 @@ message SplitHouseholdDialog {
 	optional uint64 target_household_id = 2 [default = 0];
 	optional bool cancelable = 3 [default = true];
 	optional bool allow_sim_transfer = 4 [default = true];
-	repeated uint64 selected_sim_ids = 5;
+	repeated uint64 selected_sim_ids = 5 [packed = true];
 	optional uint64 destination_zone_id = 6 [default = 0];
 	optional string callback_command_name = 7;
 	optional bool lock_preselected_sims = 8 [default = true];
@@ -1718,7 +1718,7 @@ message OrganizationUpdate {
 	}
 	required uint64 org_id = 1;
 	optional .EA.Sims4.Network.OrganizationUpdate.OrganizationUpdateType update_type = 2;
-	repeated uint64 objective_ids = 3;
+	repeated uint64 objective_ids = 3 [packed = true];
 	optional bool is_enrolled = 4 [default = false];
 }
 
@@ -1799,15 +1799,15 @@ message PivotalCompleted {
 
 message PivotalMomentsItem {
 	required fixed64 pivotal_moment_id = 1;
-	repeated fixed64 prereq_id = 2;
+	repeated fixed64 prereq_id = 2 [packed = true];
 	optional uint32 day_trigger = 3;
 	optional bool disabled = 4;
 	optional uint32 activation_trigger_id = 5;
 }
 
 message PivotalMomentsList {
-	repeated uint64 completed_ids = 1;
-	repeated uint64 rewarded_ids = 2;
+	repeated uint64 completed_ids = 1 [packed = true];
+	repeated uint64 rewarded_ids = 2 [packed = true];
 	repeated .EA.Sims4.Network.PivotalMomentsItem items = 3;
 }
 
@@ -1831,9 +1831,9 @@ message RentalUnitManagementData {
 
 message QuestEvent {
 	required uint64 live_event_id = 1;
-	repeated uint64 active_pivmos = 2;
-	repeated uint64 cancelable_ids = 3;
-	repeated uint64 completed_ids = 4;
+	repeated uint64 active_pivmos = 2 [packed = true];
+	repeated uint64 cancelable_ids = 3 [packed = true];
+	repeated uint64 completed_ids = 4 [packed = true];
 	optional bool event_ending = 5;
 }
 
@@ -1862,7 +1862,7 @@ message TriggerUIFlyAway {
 
 message TraitAppearanceUpdate {
 	required fixed64 sim_id = 1;
-	repeated uint64 trait_ids = 2;
+	repeated uint64 trait_ids = 2 [packed = true];
 }
 
 message ExperimentNames {

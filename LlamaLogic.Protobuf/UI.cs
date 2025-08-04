@@ -748,7 +748,7 @@ namespace EA.Sims4.Network
         public void ResetIsFavorite() => __pbn__IsFavorite = null;
         private bool? __pbn__IsFavorite;
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"dynamic_tags")]
+        [global::ProtoBuf.ProtoMember(14, Name = @"dynamic_tags", IsPacked = true)]
         public uint[] DynamicTags { get; set; }
 
         [global::ProtoBuf.ProtoMember(15, Name = @"visual_state")]
@@ -1367,7 +1367,7 @@ namespace EA.Sims4.Network
         public void ResetLotId() => __pbn__LotId = null;
         private ulong? __pbn__LotId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"at_home_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"at_home_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] AtHomeSimIds { get; set; }
 
     }
@@ -1649,7 +1649,7 @@ namespace EA.Sims4.Network
         public void ResetActorSimId() => __pbn__ActorSimId = null;
         private ulong? __pbn__ActorSimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"lot_ids_for_travel", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"lot_ids_for_travel", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] LotIdsForTravels { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"dialog_id")]
@@ -1662,7 +1662,7 @@ namespace EA.Sims4.Network
         public void ResetDialogId() => __pbn__DialogId = null;
         private uint? __pbn__DialogId;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"traveling_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"traveling_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] TravelingSimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"is_vacation")]
@@ -1696,7 +1696,7 @@ namespace EA.Sims4.Network
         public void ResetPurchaseVenueType() => __pbn__PurchaseVenueType = null;
         private ulong? __pbn__PurchaseVenueType;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"venue_types_allowed", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(8, Name = @"venue_types_allowed", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] VenueTypesAlloweds { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, Name = @"target_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -1741,7 +1741,7 @@ namespace EA.Sims4.Network
         public void ResetActorSimId() => __pbn__ActorSimId = null;
         private ulong? __pbn__ActorSimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"lot_ids_for_travel", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"lot_ids_for_travel", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] LotIdsForTravels { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"dialog_id")]
@@ -1754,7 +1754,7 @@ namespace EA.Sims4.Network
         public void ResetDialogId() => __pbn__DialogId = null;
         private uint? __pbn__DialogId;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"traveling_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"traveling_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] TravelingSimIds { get; set; }
 
     }
@@ -1855,7 +1855,7 @@ namespace EA.Sims4.Network
         public void ResetActorSimId() => __pbn__ActorSimId = null;
         private ulong? __pbn__ActorSimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids_for_travel", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids_for_travel", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIdsForTravels { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"available_sims")]
@@ -1890,7 +1890,7 @@ namespace EA.Sims4.Network
         public void ResetZoneId() => __pbn__ZoneId = null;
         private ulong? __pbn__ZoneId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"days_remaining")]
@@ -2785,10 +2785,10 @@ namespace EA.Sims4.Network
         public void ResetLotId() => __pbn__LotId = null;
         private ulong? __pbn__LotId;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"household_sim_ids")]
+        [global::ProtoBuf.ProtoMember(8, Name = @"household_sim_ids", IsPacked = true)]
         public ulong[] HouseholdSimIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"tradition_ids")]
+        [global::ProtoBuf.ProtoMember(9, Name = @"tradition_ids", IsPacked = true)]
         public ulong[] TraditionIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"holiday_id")]
@@ -3013,7 +3013,7 @@ namespace EA.Sims4.Network
         public void ResetMajorId() => __pbn__MajorId = null;
         private ulong? __pbn__MajorId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"core_class_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"core_class_ids", IsPacked = true)]
         public ulong[] CoreClassIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"class_remaining")]
@@ -3070,7 +3070,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"degrees")]
         public global::System.Collections.Generic.List<UniversityMajorData> Degrees { get; } = new global::System.Collections.Generic.List<UniversityMajorData>();
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"elective_class_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"elective_class_ids", IsPacked = true)]
         public ulong[] ElectiveClassIds { get; set; }
 
     }
@@ -3114,7 +3114,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"universities")]
         public global::System.Collections.Generic.List<UniversityData> Universities { get; } = new global::System.Collections.Generic.List<UniversityData>();
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"housing_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"housing_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] HousingZoneIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"current_enrollment")]
@@ -3262,7 +3262,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(7, Name = @"progress_text")]
         public LocalizedString ProgressText { get; set; }
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"new_entries")]
+        [global::ProtoBuf.ProtoMember(8, Name = @"new_entries", IsPacked = true)]
         public ulong[] NewEntries { get; set; }
 
     }
@@ -3435,10 +3435,10 @@ namespace EA.Sims4.Network
         public void ResetTargetHouseholdId() => __pbn__TargetHouseholdId = null;
         private ulong? __pbn__TargetHouseholdId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"to_source_sims")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"to_source_sims", IsPacked = true)]
         public ulong[] ToSourceSims { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"to_target_sims")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"to_target_sims", IsPacked = true)]
         public ulong[] ToTargetSims { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"source_funds_difference")]
@@ -3681,7 +3681,7 @@ namespace EA.Sims4.Network
         public void ResetSimId() => __pbn__SimId = null;
         private ulong? __pbn__SimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"policy_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"policy_ids", IsPacked = true)]
         public ulong[] PolicyIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"new_policy_allowed")]
@@ -4045,7 +4045,7 @@ namespace EA.Sims4.Network
         public void ResetCount() => __pbn__Count = null;
         private uint? __pbn__Count;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"reacted_sims", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"reacted_sims", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] ReactedSims { get; set; }
 
     }
@@ -4089,13 +4089,13 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
         public ulong SimId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"trait_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"trait_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] TraitIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"selected_ages")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"selected_ages", IsPacked = true)]
         public uint[] SelectedAges { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"selected_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"selected_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SelectedTraits { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"cooldown_mins_left", IsRequired = true)]
@@ -4124,10 +4124,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(10, Name = @"max_save", IsRequired = true)]
         public int MaxSave { get; set; }
 
-        [global::ProtoBuf.ProtoMember(11, Name = @"attracted_options")]
+        [global::ProtoBuf.ProtoMember(11, Name = @"attracted_options", IsPacked = true)]
         public uint[] AttractedOptions { get; set; }
 
-        [global::ProtoBuf.ProtoMember(12, Name = @"woohoo_options")]
+        [global::ProtoBuf.ProtoMember(12, Name = @"woohoo_options", IsPacked = true)]
         public uint[] WoohooOptions { get; set; }
 
         [global::ProtoBuf.ProtoMember(13, Name = @"is_exploring")]
@@ -4493,7 +4493,7 @@ namespace EA.Sims4.Network
         public void ResetSimId() => __pbn__SimId = null;
         private ulong? __pbn__SimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"stacks")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"stacks", IsPacked = true)]
         public ulong[] Stacks { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"items")]
@@ -4759,7 +4759,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"description", IsRequired = true)]
         public LocalizedString Description { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"conditions")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"conditions", IsPacked = true)]
         public int[] Conditions { get; set; }
 
     }

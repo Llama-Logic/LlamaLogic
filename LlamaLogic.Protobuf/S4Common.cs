@@ -16,7 +16,7 @@ namespace EA.Sims4
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] Ids { get; set; }
 
     }
@@ -574,7 +574,7 @@ namespace EA.Sims4
         public void ResetHouseholdId() => __pbn__HouseholdId = null;
         private ulong? __pbn__HouseholdId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
     }
@@ -596,7 +596,7 @@ namespace EA.Sims4
             global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
                 => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-            [global::ProtoBuf.ProtoMember(1, Name = @"days")]
+            [global::ProtoBuf.ProtoMember(1, Name = @"days", IsPacked = true)]
             public global::System.Collections.Generic.List<ScheduleDay> Days { get; } = new global::System.Collections.Generic.List<ScheduleDay>();
 
             [global::ProtoBuf.ProtoMember(2, Name = @"start_hour")]

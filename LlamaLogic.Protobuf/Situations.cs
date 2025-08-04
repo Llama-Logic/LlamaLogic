@@ -49,7 +49,7 @@ namespace EA.Sims4.Network
         public void ResetJobId() => __pbn__JobId = null;
         private ulong? __pbn__JobId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"hire_count")]
@@ -91,7 +91,7 @@ namespace EA.Sims4.Network
         public void ResetZoneId() => __pbn__ZoneId = null;
         private ulong? __pbn__ZoneId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"selected_activity_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"selected_activity_ids", IsPacked = true)]
         public ulong[] SelectedActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"guest_attire_style")]
@@ -166,7 +166,7 @@ namespace EA.Sims4.Network
         public void ResetSimId() => __pbn__SimId = null;
         private ulong? __pbn__SimId;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"situation_resource_id")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"situation_resource_id", IsPacked = true)]
         public ulong[] SituationResourceIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"creation_time")]
@@ -204,19 +204,19 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"situation_session_id", IsRequired = true)]
         public uint SituationSessionId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"situation_resource_id")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"situation_resource_id", IsPacked = true)]
         public ulong[] SituationResourceIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"situation_name")]
         public global::System.Collections.Generic.List<LocalizedString> SituationNames { get; } = new global::System.Collections.Generic.List<LocalizedString>();
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"category_id")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"category_id", IsPacked = true)]
         public uint[] CategoryIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"mtx_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"mtx_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] MtxIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"highest_medal_earned")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"highest_medal_earned", IsPacked = true)]
         public int[] HighestMedalEarneds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"scoring_enabled")]
@@ -232,7 +232,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"tooltip")]
         public global::System.Collections.Generic.List<LocalizedString> Tooltips { get; } = new global::System.Collections.Generic.List<LocalizedString>();
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"allow_user_facing_goals")]
+        [global::ProtoBuf.ProtoMember(9, Name = @"allow_user_facing_goals", IsPacked = true)]
         public bool[] AllowUserFacingGoals { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"medal_icon_override")]
@@ -241,7 +241,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(11, Name = @"scoring_lock_reason")]
         public global::System.Collections.Generic.List<LocalizedString> ScoringLockReasons { get; } = new global::System.Collections.Generic.List<LocalizedString>();
 
-        [global::ProtoBuf.ProtoMember(12, Name = @"new_entry")]
+        [global::ProtoBuf.ProtoMember(12, Name = @"new_entry", IsPacked = true)]
         public bool[] NewEntries { get; set; }
 
     }
@@ -395,10 +395,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5, Name = @"jobs")]
         public global::System.Collections.Generic.List<SituationJobData> Jobs { get; } = new global::System.Collections.Generic.List<SituationJobData>();
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"available_activity_ids")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"available_activity_ids", IsPacked = true)]
         public ulong[] AvailableActivityIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"required_activity_ids")]
+        [global::ProtoBuf.ProtoMember(7, Name = @"required_activity_ids", IsPacked = true)]
         public ulong[] RequiredActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"style_data")]
@@ -430,7 +430,7 @@ namespace EA.Sims4.Network
         public void ResetActivityGoalSituation() => __pbn__ActivityGoalSituation = null;
         private bool? __pbn__ActivityGoalSituation;
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"randomizable_activity_ids")]
+        [global::ProtoBuf.ProtoMember(13, Name = @"randomizable_activity_ids", IsPacked = true)]
         public ulong[] RandomizableActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(14, Name = @"num_randomized")]
@@ -443,7 +443,7 @@ namespace EA.Sims4.Network
         public void ResetNumRandomized() => __pbn__NumRandomized = null;
         private uint? __pbn__NumRandomized;
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"unavailable_activity_ids")]
+        [global::ProtoBuf.ProtoMember(15, Name = @"unavailable_activity_ids", IsPacked = true)]
         public ulong[] UnavailableActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"jobs_per_row")]
@@ -456,10 +456,10 @@ namespace EA.Sims4.Network
         public void ResetJobsPerRow() => __pbn__JobsPerRow = null;
         private uint? __pbn__JobsPerRow;
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"job_cell_padding")]
+        [global::ProtoBuf.ProtoMember(17, Name = @"job_cell_padding", IsPacked = true)]
         public uint[] JobCellPaddings { get; set; }
 
-        [global::ProtoBuf.ProtoMember(18, Name = @"role_updates_activity_preferences")]
+        [global::ProtoBuf.ProtoMember(18, Name = @"role_updates_activity_preferences", IsPacked = true)]
         public ulong[] RoleUpdatesActivityPreferences { get; set; }
 
         [global::ProtoBuf.ProtoMember(19, Name = @"sim_filter_requesting_sim_override")]
@@ -549,10 +549,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"situation_session_id", IsRequired = true)]
         public uint SituationSessionId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"job_resource_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"job_resource_ids", IsPacked = true)]
         public ulong[] JobResourceIds { get; set; }
 
     }
@@ -564,7 +564,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"activities")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"activities", IsPacked = true)]
         public ulong[] Activities { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"icon")]
@@ -643,7 +643,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"job_resource_id", IsRequired = true)]
         public ulong JobResourceId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"lock_selection")]
@@ -813,7 +813,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"current_level")]
         public SituationLevelUpdate CurrentLevel { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(9, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"sim_jobs")]
@@ -1322,7 +1322,7 @@ namespace EA.Sims4.Network
         public void ResetIsEnabled() => __pbn__IsEnabled = null;
         private bool? __pbn__IsEnabled;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"required_packs", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"required_packs", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] RequiredPacks { get; set; }
 
     }

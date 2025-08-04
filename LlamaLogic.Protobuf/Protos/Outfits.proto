@@ -5,19 +5,19 @@ import "S4Common.proto";
 
 
 message BodyTypesList {
-	repeated uint32 body_types = 1;
+	repeated uint32 body_types = 1 [packed = true];
 }
 
 message ColorShiftList {
-	repeated uint64 color_shift = 1;
+	repeated uint64 color_shift = 1 [packed = true];
 }
 
 message ObjectIdsList {
-	repeated uint64 object_id = 1;
+	repeated uint64 object_id = 1 [packed = true];
 }
 
 message LayerIdsList {
-	repeated uint32 layer_id = 1;
+	repeated uint32 layer_id = 1 [packed = true];
 }
 
 message OutfitData {
@@ -33,7 +33,7 @@ message OutfitData {
 	optional string title = 13;
 	optional .EA.Sims4.Persistence.ObjectIdsList object_ids = 14;
 	optional .EA.Sims4.Persistence.LayerIdsList layer_ids = 15;
-	repeated uint64 outfitflags_array = 16;
+	repeated uint64 outfitflags_array = 16 [packed = true];
 }
 
 message OutfitList {

@@ -172,7 +172,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"sim_orders")]
         public global::System.Collections.Generic.List<SimOrder> SimOrders { get; } = new global::System.Collections.Generic.List<SimOrder>();
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"chef_order")]

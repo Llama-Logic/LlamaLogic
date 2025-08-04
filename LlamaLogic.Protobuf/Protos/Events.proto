@@ -89,7 +89,7 @@ message CatchUpPeriod {
 
 message ClaimedRewardUpdate {
 	optional string event_id = 1;
-	repeated uint32 claimed_progress_id = 2;
+	repeated uint32 claimed_progress_id = 2 [packed = true];
 }
 
 message ServerResponse {

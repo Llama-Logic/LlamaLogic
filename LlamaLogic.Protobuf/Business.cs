@@ -425,7 +425,7 @@ namespace EA.Sims4.Network
         public void ResetAttendanceSaleMode() => __pbn__AttendanceSaleMode = null;
         private uint? __pbn__AttendanceSaleMode;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"allowed_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"allowed_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] AllowedZoneIds { get; set; }
 
     }
@@ -656,7 +656,7 @@ namespace EA.Sims4.Network
         public void ResetCustomerId() => __pbn__CustomerId = null;
         private ulong? __pbn__CustomerId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"customer_buffs", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"customer_buffs", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] CustomerBuffs { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"buff_bucket_totals")]
@@ -1012,7 +1012,7 @@ namespace EA.Sims4.Network
         public void ResetTotalCustomersServed() => __pbn__TotalCustomersServed = null;
         private uint? __pbn__TotalCustomersServed;
 
-        [global::ProtoBuf.ProtoMember(26, Name = @"dynamic_area_types")]
+        [global::ProtoBuf.ProtoMember(26, Name = @"dynamic_area_types", IsPacked = true)]
         public int[] DynamicAreaTypes { get; set; }
 
         [global::ProtoBuf.ProtoMember(15, Name = @"restaurant_data")]
@@ -1030,7 +1030,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(22, Name = @"small_business_data")]
         public SmallBusinessDataUpdate SmallBusinessData { get; set; }
 
-        [global::ProtoBuf.ProtoMember(27, Name = @"allowed_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(27, Name = @"allowed_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] AllowedZoneIds { get; set; }
 
     }
@@ -1609,7 +1609,7 @@ namespace EA.Sims4.Network
         public void ResetIngredientQualityEnum() => __pbn__IngredientQualityEnum = null;
         private uint? __pbn__IngredientQualityEnum;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"profit_per_meal_queue")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"profit_per_meal_queue", IsPacked = true)]
         public uint[] ProfitPerMealQueues { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"dining_spot_count")]
@@ -1661,7 +1661,7 @@ namespace EA.Sims4.Network
         public void ResetQualityType() => __pbn__QualityType = null;
         private uint? __pbn__QualityType;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"profit_per_treatment_queue")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"profit_per_treatment_queue", IsPacked = true)]
         public uint[] ProfitPerTreatmentQueues { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"exam_table_count")]
@@ -1862,7 +1862,7 @@ namespace EA.Sims4.Network
         public void ResetBusinessHasBeenAutocreated() => __pbn__BusinessHasBeenAutocreated = null;
         private bool? __pbn__BusinessHasBeenAutocreated;
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"allowed_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(14, Name = @"allowed_zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] AllowedZoneIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(15, Name = @"name_key")]
@@ -1881,7 +1881,7 @@ namespace EA.Sims4.Network
         public void ResetTransferredSimId() => __pbn__TransferredSimId = null;
         private ulong? __pbn__TransferredSimId;
 
-        [global::ProtoBuf.ProtoMember(18, Name = @"business_visitors_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(18, Name = @"business_visitors_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] BusinessVisitorsIds { get; set; }
 
     }
@@ -2357,7 +2357,7 @@ namespace EA.Sims4.Network
         public void ResetBusinessType() => __pbn__BusinessType = null;
         private ulong? __pbn__BusinessType;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"messages")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"messages", IsPacked = true)]
         public uint[] Messages { get; set; }
 
     }

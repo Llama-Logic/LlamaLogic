@@ -197,10 +197,10 @@ namespace EA.Sims4.Network
         public void ResetScore() => __pbn__Score = null;
         private float? __pbn__Score;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"bit_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"bit_ids", IsPacked = true)]
         public ulong[] BitIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"track_bit_ids")]
+        [global::ProtoBuf.ProtoMember(5, Name = @"track_bit_ids", IsPacked = true)]
         public ulong[] TrackBitIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"actor_sim_id", IsRequired = true)]
@@ -216,13 +216,13 @@ namespace EA.Sims4.Network
         public void ResetTargetSimId() => __pbn__TargetSimId = null;
         private ulong? __pbn__TargetSimId;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"handshake_bit_ids")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"handshake_bit_ids", IsPacked = true)]
         public ulong[] HandshakeBitIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"tracks")]
         public global::System.Collections.Generic.List<RelationshipTrack> Tracks { get; } = new global::System.Collections.Generic.List<RelationshipTrack>();
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"known_trait_ids")]
+        [global::ProtoBuf.ProtoMember(8, Name = @"known_trait_ids", IsPacked = true)]
         public ulong[] KnownTraitIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, Name = @"target_id")]
@@ -258,7 +258,7 @@ namespace EA.Sims4.Network
         public void ResetNumTraits() => __pbn__NumTraits = null;
         private uint? __pbn__NumTraits;
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"known_careertrack_ids")]
+        [global::ProtoBuf.ProtoMember(13, Name = @"known_careertrack_ids", IsPacked = true)]
         public ulong[] KnownCareertrackIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(14, Name = @"last_update_time")]
@@ -271,7 +271,7 @@ namespace EA.Sims4.Network
         public void ResetLastUpdateTime() => __pbn__LastUpdateTime = null;
         private ulong? __pbn__LastUpdateTime;
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"known_stat_ids")]
+        [global::ProtoBuf.ProtoMember(15, Name = @"known_stat_ids", IsPacked = true)]
         public ulong[] KnownStatIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"target_icon_override")]
@@ -330,10 +330,10 @@ namespace EA.Sims4.Network
         public void ResetKnowsWoohooPreference() => __pbn__KnowsWoohooPreference = null;
         private bool? __pbn__KnowsWoohooPreference;
 
-        [global::ProtoBuf.ProtoMember(23, Name = @"known_romantic_genders")]
+        [global::ProtoBuf.ProtoMember(23, Name = @"known_romantic_genders", IsPacked = true)]
         public uint[] KnownRomanticGenders { get; set; }
 
-        [global::ProtoBuf.ProtoMember(24, Name = @"known_woohoo_genders")]
+        [global::ProtoBuf.ProtoMember(24, Name = @"known_woohoo_genders", IsPacked = true)]
         public uint[] KnownWoohooGenders { get; set; }
 
         [global::ProtoBuf.ProtoMember(25, Name = @"known_exploring_sexuality")]
@@ -365,10 +365,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(29, Name = @"relationship_label_data")]
         public RelationshipLabelDataUpdate RelationshipLabelData { get; set; }
 
-        [global::ProtoBuf.ProtoMember(30, Name = @"known_rel_track_ids")]
+        [global::ProtoBuf.ProtoMember(30, Name = @"known_rel_track_ids", IsPacked = true)]
         public ulong[] KnownRelTrackIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(31, Name = @"known_relationship_expectations_ids")]
+        [global::ProtoBuf.ProtoMember(31, Name = @"known_relationship_expectations_ids", IsPacked = true)]
         public uint[] KnownRelationshipExpectationsIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(32, Name = @"hidden")]
@@ -464,10 +464,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"target_sim_id", IsRequired = true)]
         public ulong TargetSimId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"bit_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"bit_ids", IsPacked = true)]
         public uint[] BitIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"bit_status")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"bit_status", IsPacked = true)]
         public global::System.Collections.Generic.List<HandshakeStatus> BitStatus { get; } = new global::System.Collections.Generic.List<HandshakeStatus>();
 
         [global::ProtoBuf.ProtoContract()]
@@ -566,16 +566,16 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"commodity_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"commodity_ids", IsPacked = true)]
         public uint[] CommodityIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"change_rate")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"change_rate", IsPacked = true)]
         public float[] ChangeRates { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"commodity_image_index")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"commodity_image_index", IsPacked = true)]
         public uint[] CommodityImageIndexs { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"commodity_guids")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"commodity_guids", IsPacked = true)]
         public ulong[] CommodityGuids { get; set; }
 
     }

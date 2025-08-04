@@ -16,7 +16,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"set_fields")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"set_fields", IsPacked = true)]
         public int[] SetFields { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
@@ -86,10 +86,10 @@ namespace EA.Sims4.Network
         public void ResetIntFieldD() => __pbn__IntFieldD = null;
         private int? __pbn__IntFieldD;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"int_rep_a")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"int_rep_a", IsPacked = true)]
         public int[] IntRepAs { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"int_rep_b")]
+        [global::ProtoBuf.ProtoMember(7, Name = @"int_rep_b", IsPacked = true)]
         public int[] IntRepBs { get; set; }
 
         [global::ProtoBuf.ProtoMember(20, Name = @"str_field")]

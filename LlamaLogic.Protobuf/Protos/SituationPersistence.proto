@@ -49,8 +49,8 @@ message SituationGoalTrackerData {
 }
 
 message SituationGraphedGoalTrackerData {
-	repeated uint64 completed_goals_ids = 1;
-	repeated uint64 unlocked_goals_ids = 2;
+	repeated uint64 completed_goals_ids = 1 [packed = true];
+	repeated uint64 unlocked_goals_ids = 2 [packed = true];
 }
 
 message SituationAssignmentData {
@@ -111,7 +111,7 @@ message SituationSeedData {
 	optional bool main_goal_visibility = 20 [default = true];
 	optional fixed64 linked_sim_id = 21;
 	optional .EA.Sims4.Network.IconInfo special_object_icon = 22;
-	repeated fixed64 situation_activity_ids = 23;
+	repeated fixed64 situation_activity_ids = 23 [packed = true];
 	optional .EA.Sims4.Persistence.SituationSpecialObject special_object = 24;
 	optional uint64 guest_attire_color = 25;
 	optional uint64 guest_attire_style = 26;

@@ -41,7 +41,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"account_id", IsRequired = true)]
         public ulong AccountId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"lot_id")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"lot_id", IsPacked = true)]
         public uint[] LotIds { get; set; }
 
     }
@@ -353,7 +353,7 @@ namespace EA.Sims4.Network
         public void ResetZoneName() => __pbn__ZoneName = null;
         private string __pbn__ZoneName;
 
-        [global::ProtoBuf.ProtoMember(20, Name = @"lot_traits")]
+        [global::ProtoBuf.ProtoMember(20, Name = @"lot_traits", IsPacked = true)]
         public ulong[] LotTraits { get; set; }
 
         [global::ProtoBuf.ProtoMember(21, Name = @"university_housing_configuration")]

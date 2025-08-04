@@ -14,7 +14,7 @@ message LotThumbnailChunkPackageHeader {
 
 message MemoriesThumbnailChunkPackageHeader {
 	optional uint64 memoryId = 1;
-	repeated uint64 simIds = 2;
+	repeated uint64 simIds = 2 [packed = true];
 	optional uint64 householdId = 3;
 	optional bool favorite = 4;
 }

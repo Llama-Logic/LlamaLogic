@@ -9,7 +9,7 @@ message SparseMessageData {
 		kFN_1 = 15;
 		kFN_2 = 2002;
 	}
-	repeated int32 set_fields = 1;
+	repeated int32 set_fields = 1 [packed = true];
 }
 
 message TestSparseMessage {
@@ -18,8 +18,8 @@ message TestSparseMessage {
 	optional int32 int_field_b = 3 [default = 0];
 	optional int32 int_field_c = 4 [default = 10];
 	optional int32 int_field_d = 5 [default = 10];
-	repeated int32 int_rep_a = 6;
-	repeated int32 int_rep_b = 7;
+	repeated int32 int_rep_a = 6 [packed = true];
+	repeated int32 int_rep_b = 7 [packed = true];
 	optional string str_field = 20;
 	repeated string str_rep = 21;
 	optional .EA.Sims4.Network.TestSparseMessage2 sparse_msg_opt = 10;

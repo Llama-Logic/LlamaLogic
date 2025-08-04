@@ -75,7 +75,7 @@ namespace EA.Sims4.Persistence
         public void ResetBedId() => __pbn__BedId = null;
         private ulong? __pbn__BedId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"decoration_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"decoration_ids", IsPacked = true)]
         public ulong[] DecorationIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"leave_reason_infos")]
@@ -129,10 +129,10 @@ namespace EA.Sims4.Persistence
         public void ResetHouseholdId() => __pbn__HouseholdId = null;
         private ulong? __pbn__HouseholdId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"pending_interview_alarms")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"pending_interview_alarms", IsPacked = true)]
         public ulong[] PendingInterviewAlarms { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"interviewee_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"interviewee_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] IntervieweeIds { get; set; }
 
     }
@@ -170,7 +170,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(5, Name = @"blacklist_infos")]
         public global::System.Collections.Generic.List<RoommateBlacklistSimInfo> BlacklistInfos { get; } = new global::System.Collections.Generic.List<RoommateBlacklistSimInfo>();
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"pending_destroy_decoration_ids")]
+        [global::ProtoBuf.ProtoMember(7, Name = @"pending_destroy_decoration_ids", IsPacked = true)]
         public ulong[] PendingDestroyDecorationIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"locked_out_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]

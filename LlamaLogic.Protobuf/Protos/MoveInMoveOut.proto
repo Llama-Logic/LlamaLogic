@@ -24,8 +24,8 @@ message MoveInMoveOutData {
 	optional .EA.Sims4.Network.MoveInData move_in_data = 3;
 	optional .EA.Sims4.Network.MoveOutData move_out_data_src = 4;
 	optional .EA.Sims4.Network.MoveOutData move_out_data_dst = 5;
-	repeated uint64 households_to_update = 6;
-	repeated uint64 travel_groups_to_update = 7;
-	repeated uint64 retail_lots_to_update = 8;
+	repeated uint64 households_to_update = 6 [packed = true];
+	repeated uint64 travel_groups_to_update = 7 [packed = true];
+	repeated uint64 retail_lots_to_update = 8 [packed = true];
 	optional bool notify_gameplay = 9 [default = false];
 }

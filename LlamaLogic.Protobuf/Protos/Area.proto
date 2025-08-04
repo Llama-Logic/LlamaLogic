@@ -42,20 +42,20 @@ message GSI_Open {
 
 message AchievementTrackerUpdate {
 	optional uint64 account_id = 1;
-	repeated uint64 achievements_completed = 2;
-	repeated uint64 objectives_completed = 3;
+	repeated uint64 achievements_completed = 2 [packed = true];
+	repeated uint64 objectives_completed = 3 [packed = true];
 	optional bool init_message = 4;
 	optional bool cheats_used = 5;
 }
 
 message AcctGoalsStatusUpdate {
 	optional uint64 account_id = 1;
-	repeated uint64 goals_updated = 2;
-	repeated int64 goal_values = 3;
-	repeated int64 goal_objectives = 4;
-	repeated bool goals_that_are_money = 5;
-	repeated bool goals_that_show_progress = 6;
-	repeated bool goals_with_update_tooltip_in_special_cases = 7;
+	repeated uint64 goals_updated = 2 [packed = true];
+	repeated int64 goal_values = 3 [packed = true];
+	repeated int64 goal_objectives = 4 [packed = true];
+	repeated bool goals_that_are_money = 5 [packed = true];
+	repeated bool goals_that_show_progress = 6 [packed = true];
+	repeated bool goals_with_update_tooltip_in_special_cases = 7 [packed = true];
 }
 
 message GameTimeCommand {

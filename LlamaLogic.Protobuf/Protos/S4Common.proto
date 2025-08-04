@@ -13,7 +13,7 @@ enum UserState {
 }
 
 message IdList {
-	repeated fixed64 ids = 1;
+	repeated fixed64 ids = 1 [packed = true];
 }
 
 message GameInstanceInfoPB {
@@ -106,7 +106,7 @@ message BoolValue {
 
 message HouseholdSimIds {
 	optional fixed64 household_id = 1;
-	repeated fixed64 sim_ids = 2;
+	repeated fixed64 sim_ids = 2 [packed = true];
 }
 
 message Schedule {
@@ -125,7 +125,7 @@ message Schedule {
 			MORNING = 1;
 			EVENING = 2;
 		}
-		repeated .EA.Sims4.Schedule.ScheduleEntry.ScheduleDay days = 1;
+		repeated .EA.Sims4.Schedule.ScheduleEntry.ScheduleDay days = 1 [packed = true];
 		optional uint32 start_hour = 2;
 		optional uint32 start_minute = 3;
 		optional float duration = 4;
