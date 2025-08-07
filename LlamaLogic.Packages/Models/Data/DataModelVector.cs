@@ -7,11 +7,39 @@ public sealed class DataModelVector :
     DataModelReference
 {
     /// <summary>
-    /// Create a <see cref="DataModelVector"/> null reference
+    /// Creates a <see cref="DataModelVector"/> null reference
     /// </summary>
     /// <param name="count">The number of elements (probably should be `0`)</param>
     public static DataModelVector CreateNullReference(int count = 0) =>
         new(-1, ^0, DataModelType.UNDEFINED, count);
+
+    /// <summary>
+    /// Creates a <see cref="DataModelVector"/> based on a sequence of values
+    /// </summary>
+    /// <param name="dataModel">The model of which the vector is a part</param>
+    /// <param name="type">The type of elements in the vector</param>
+    /// <param name="sequence">The sequence of elements comprising the vector</param>
+    public static DataModelVector CreateForSequence(DataModel dataModel, DataModelType type, IEnumerable<object?> sequence)
+    {
+        ArgumentNullException.ThrowIfNull(dataModel);
+        ArgumentNullException.ThrowIfNull(sequence);
+        var table = dataModel.Tables.FirstOrDefault(t => t.Name is null && t.SchemaName is null && t.SchemaHash is null && t.ColumnCount is 1 && t.ColumnTypes[0] == type);
+        Index rowIndex;
+        int count;
+        if (table is null)
+        {
+            table = new DataModelTable(null, null, null);
+            table.AddColumn(null, type, 0, sequence);
+            rowIndex = 0;
+            count = sequence.Count();
+        }
+        else
+        {
+            rowIndex = table.RowCount;
+            count = table.SetRawValues(table.RowCount..table.RowCount, sequence);
+        }
+        return new DataModelVector(table, rowIndex, type, count);
+    }
 
     internal static Range ProjectRange(Index start, int count) =>
         start.IsFromEnd
