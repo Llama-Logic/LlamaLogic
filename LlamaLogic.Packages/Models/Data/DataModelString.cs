@@ -11,6 +11,32 @@ public sealed class DataModelString :
     /// </summary>
     public static DataModelString NullReference { get; } = new(-1, ^0);
 
+    /// <summary>
+    /// Creates a <see cref="DataModelString"/> based on a string
+    /// </summary>
+    /// <param name="dataModel">The model of which the string is a part</param>
+    /// <param name="str">The string</param>
+    public static DataModelString CreateForString(DataModel dataModel, string str)
+    {
+        ArgumentNullException.ThrowIfNull(dataModel);
+        ArgumentNullException.ThrowIfNull(str);
+        var sequence = str.ToCharArray().Append((char)0).Cast<object?>();
+        var table = dataModel.Tables.FirstOrDefault(t => t.Name is null && t.SchemaName is null && t.SchemaHash is null && t.ColumnCount is 1 && t.ColumnTypes[0] is DataModelType.CHAR8);
+        Index rowIndex;
+        if (table is null)
+        {
+            table = new DataModelTable(null, null, null);
+            table.AddColumn(null, DataModelType.CHAR8, 0, sequence);
+            rowIndex = 0;
+        }
+        else
+        {
+            rowIndex = table.RowCount;
+            table.SetRawValues(table.RowCount..table.RowCount, sequence);
+        }
+        return new DataModelString(table, rowIndex);
+    }
+
     static Range ProjectRange(DataModelTable table, Index start)
     {
         if (table.ColumnCount != 1)
