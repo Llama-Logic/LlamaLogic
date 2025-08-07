@@ -29,6 +29,7 @@ public sealed class DataModelVector :
         if (table is null)
         {
             table = new DataModelTable(null, null, null);
+            dataModel.Tables.Add(table);
             table.AddColumn(null, type, 0, sequence);
             rowIndex = 0;
             count = sequence.Count();

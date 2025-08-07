@@ -26,6 +26,7 @@ public sealed class DataModelString :
         if (table is null)
         {
             table = new DataModelTable(null, null, null);
+            dataModel.Tables.Add(table);
             table.AddColumn(null, DataModelType.CHAR8, 0, sequence);
             rowIndex = 0;
         }

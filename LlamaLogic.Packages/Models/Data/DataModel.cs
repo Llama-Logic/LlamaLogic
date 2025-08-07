@@ -639,14 +639,14 @@ public sealed class DataModel :
         writer.Write(ref mnNumSchemas);
         if (supportVariants)
         {
-            var mUnused = uint.MaxValue;
+            var mUnused = uint.MinValue;
             writer.Write(ref mUnused);
         }
         writer.AlignForNextBlock();
         mnTableHeaderOffset.WriteOffset(writer);
         var tablesAndOriginalIndexesInEncodingOrder = Tables
             .Select((table, index) => (table, index))
-            .OrderBy(t => t.table.ColumnCount is not 1 ? DataModelType.OBJECT : t.table.GetColumnType(0))
+            .OrderBy(t => t.table.ColumnCount is not 1 ? DataModelType.OBJECT : t.table.GetColumnType(0) is { } rawType && rawType is DataModelType.CHAR8 ? DataModelType.STRING8 : rawType)
             .GroupBy(t => t.table.SchemaHash is null)
             .OrderBy(group => group.Key)
             .SelectMany(group => group).ToImmutableArray();
