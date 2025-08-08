@@ -157,9 +157,9 @@ public sealed partial class ModFileManifestModel :
     }
 
     /// <summary>
-    /// Gets the hash for the specified <paramref name="scriptMod"/>
+    /// Gets the hash for the specified <paramref name="scriptMod"/>, excluding entries with the names specified by <paramref name="excludedEntries"/>
     /// </summary>
-    public static ImmutableArray<byte> GetModFileHash(ZipFile scriptMod)
+    public static ImmutableArray<byte> GetModFileHash(ZipFile scriptMod, HashSet<string> excludedEntries)
     {
         ArgumentNullException.ThrowIfNull(scriptMod);
         Span<byte> crc32Span = stackalloc byte[4];
@@ -170,6 +170,7 @@ public sealed partial class ModFileManifestModel :
 #else
             .Where(entry => !Regex.IsMatch(entry.Name, scriptModFileManifestEntryNamePattern, RegexOptions.IgnoreCase))
 #endif
+            .Where(entry => !excludedEntries.Contains(entry.Name))
             .OrderBy(entry => entry.Name, StringComparer.Ordinal))
         {
             sha256.AppendData(Encoding.UTF8.GetBytes(entry.Name));
@@ -580,15 +581,21 @@ public sealed partial class ModFileManifestModel :
     public string? Description { get; set; }
 
     /// <summary>
+    /// Gets the names of entries in a script mod archive to be excluded from the <see cref="Hash"/>
+    /// </summary>
+    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    public HashSet<string> ExcludedEntries { get; private set; } = [];
+
+    /// <summary>
     /// Gets the globally unique names of the exclusivities of this mod, causing it to be incompatible with other mods which share one or more of them
     /// </summary>
-    [YamlMember(Order = 16, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 17, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Exclusivities { get; private set; } = [];
 
     /// <summary>
     /// Gets the names of the features unique to this mod which it offers to other mods as a dependency
     /// </summary>
-    [YamlMember(Order = 15, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 16, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Features { get; private set; } = [];
 
     /// <summary>
@@ -606,7 +613,7 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 20, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 21, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> IncompatiblePacks { get; private set; } = [];
 
     /// <summary>
@@ -624,7 +631,7 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 19, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRecommendedPack> RecommendedPacks { get; private set; } = [];
 
     /// <summary>
@@ -636,19 +643,19 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 20, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 22, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 17, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the promo code it is suggested the player use during check out in the EA Store if purchasing a pack for use with this mod
     /// </summary>
-    [YamlMember(Order = 19, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 20, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ElectronicArtsPromoCode { get; set; }
 
     /// <inheritdoc/>
@@ -659,7 +666,7 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the hashes of previous versions of this mod in for which I stand even though my hash is different
     /// </summary>
-    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 15, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ImmutableArray<byte>> SubsumedHashes { get; private set; } = [];
 
     /// <summary>
@@ -747,6 +754,8 @@ public sealed partial class ModFileManifestModel :
                     Exclusivities.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "features")
                     Features.AddRange(childReader.ReadTunableList());
+                else if (tunableName == "excluded_entries")
+                    ExcludedEntries.AddRangeImmediately(childReader.ReadTunableList());
                 else if (tunableName == "hash_resource_keys")
                     HashResourceKeys.AddRangeImmediately(childReader.ReadTunableList().Select(ResourceKey.Parse));
                 else if (tunableName == "incompatible_packs")
@@ -812,6 +821,7 @@ public sealed partial class ModFileManifestModel :
         writer.WriteTunableList("repurposed_languages", RepurposedLanguages);
         writer.WriteTunable("hash", Hash);
         writer.WriteTunableList("hash_resource_keys", HashResourceKeys);
+        writer.WriteTunableList("excluded_entries", ExcludedEntries);
         writer.WriteTunableList("subsumed_hashes", SubsumedHashes);
         writer.WriteTunableList("features", Features);
         writer.WriteTunableList("exclusivities", Exclusivities);
