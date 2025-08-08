@@ -7,6 +7,7 @@ items:
   children:
   - LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
   - LlamaLogic.Packages.Models.Data.DataModelVector.Count
+  - LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence(LlamaLogic.Packages.Models.Data.DataModel,LlamaLogic.Packages.Models.Data.DataModelType,System.Collections.Generic.IEnumerable{System.Object})
   - LlamaLogic.Packages.Models.Data.DataModelVector.CreateNullReference(System.Int32)
   - LlamaLogic.Packages.Models.Data.DataModelVector.Indicies
   - LlamaLogic.Packages.Models.Data.DataModelVector.IsValid
@@ -73,7 +74,7 @@ items:
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
-  summary: Create a <xref href="LlamaLogic.Packages.Models.Data.DataModelVector" data-throw-if-not-resolved="false"></xref> null reference
+  summary: Creates a <xref href="LlamaLogic.Packages.Models.Data.DataModelVector" data-throw-if-not-resolved="false"></xref> null reference
   example: []
   syntax:
     content: public static DataModelVector CreateNullReference(int count = 0)
@@ -88,6 +89,49 @@ items:
   nameWithType.vb: DataModelVector.CreateNullReference(Integer)
   fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.CreateNullReference(Integer)
   name.vb: CreateNullReference(Integer)
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence(LlamaLogic.Packages.Models.Data.DataModel,LlamaLogic.Packages.Models.Data.DataModelType,System.Collections.Generic.IEnumerable{System.Object})
+  commentId: M:LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence(LlamaLogic.Packages.Models.Data.DataModel,LlamaLogic.Packages.Models.Data.DataModelType,System.Collections.Generic.IEnumerable{System.Object})
+  id: CreateForSequence(LlamaLogic.Packages.Models.Data.DataModel,LlamaLogic.Packages.Models.Data.DataModelType,System.Collections.Generic.IEnumerable{System.Object})
+  parent: LlamaLogic.Packages.Models.Data.DataModelVector
+  langs:
+  - csharp
+  - vb
+  name: CreateForSequence(DataModel, DataModelType, IEnumerable<object?>)
+  nameWithType: DataModelVector.CreateForSequence(DataModel, DataModelType, IEnumerable<object?>)
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence(LlamaLogic.Packages.Models.Data.DataModel, LlamaLogic.Packages.Models.Data.DataModelType, System.Collections.Generic.IEnumerable<object?>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/Data/DataModelVector.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CreateForSequence
+    path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.Data
+  summary: Creates a <xref href="LlamaLogic.Packages.Models.Data.DataModelVector" data-throw-if-not-resolved="false"></xref> based on a sequence of values
+  example: []
+  syntax:
+    content: public static DataModelVector CreateForSequence(DataModel dataModel, DataModelType type, IEnumerable<object?> sequence)
+    parameters:
+    - id: dataModel
+      type: LlamaLogic.Packages.Models.Data.DataModel
+      description: The model of which the vector is a part
+    - id: type
+      type: LlamaLogic.Packages.Models.Data.DataModelType
+      description: The type of elements in the vector
+    - id: sequence
+      type: System.Collections.Generic.IEnumerable{System.Object}
+      description: The sequence of elements comprising the vector
+    return:
+      type: LlamaLogic.Packages.Models.Data.DataModelVector
+    content.vb: Public Shared Function CreateForSequence(dataModel As DataModel, type As DataModelType, sequence As IEnumerable(Of Object)) As DataModelVector
+  overload: LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence*
+  nameWithType.vb: DataModelVector.CreateForSequence(DataModel, DataModelType, IEnumerable(Of Object))
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence(LlamaLogic.Packages.Models.Data.DataModel, LlamaLogic.Packages.Models.Data.DataModelType, System.Collections.Generic.IEnumerable(Of Object))
+  name.vb: CreateForSequence(DataModel, DataModelType, IEnumerable(Of Object))
 - uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
   commentId: M:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)
   id: '#ctor(LlamaLogic.Packages.Models.Data.DataModelTable,System.Index,LlamaLogic.Packages.Models.Data.DataModelType,System.Int32)'
@@ -106,7 +150,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
-    startLine: 27
+    startLine: 56
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -150,7 +194,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Count
     path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
-    startLine: 41
+    startLine: 70
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -181,7 +225,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Indicies
     path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
-    startLine: 46
+    startLine: 75
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -212,7 +256,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: IsValid
     path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
-    startLine: 50
+    startLine: 79
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -244,7 +288,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Range
     path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
-    startLine: 64
+    startLine: 93
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -275,7 +319,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Values
     path: ../LlamaLogic.Packages/Models/Data/DataModelVector.cs
-    startLine: 70
+    startLine: 99
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.Data
@@ -631,30 +675,19 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor*
-  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor
-  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector__ctor_LlamaLogic_Packages_Models_Data_DataModelTable_System_Index_LlamaLogic_Packages_Models_Data_DataModelType_System_Int32_
-  name: DataModelVector
-  nameWithType: DataModelVector.DataModelVector
-  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector
-  nameWithType.vb: DataModelVector.New
-  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New
-  name.vb: New
-- uid: LlamaLogic.Packages.Models.Data.DataModelTable
-  commentId: T:LlamaLogic.Packages.Models.Data.DataModelTable
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence*
+  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence
+  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector_CreateForSequence_LlamaLogic_Packages_Models_Data_DataModel_LlamaLogic_Packages_Models_Data_DataModelType_System_Collections_Generic_IEnumerable_System_Object__
+  name: CreateForSequence
+  nameWithType: DataModelVector.CreateForSequence
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.CreateForSequence
+- uid: LlamaLogic.Packages.Models.Data.DataModel
+  commentId: T:LlamaLogic.Packages.Models.Data.DataModel
   parent: LlamaLogic.Packages.Models.Data
-  href: LlamaLogic.Packages.Models.Data.DataModelTable.html
-  name: DataModelTable
-  nameWithType: DataModelTable
-  fullName: LlamaLogic.Packages.Models.Data.DataModelTable
-- uid: System.Index
-  commentId: T:System.Index
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.index
-  name: Index
-  nameWithType: Index
-  fullName: System.Index
+  href: LlamaLogic.Packages.Models.Data.DataModel.html
+  name: DataModel
+  nameWithType: DataModel
+  fullName: LlamaLogic.Packages.Models.Data.DataModel
 - uid: LlamaLogic.Packages.Models.Data.DataModelType
   commentId: T:LlamaLogic.Packages.Models.Data.DataModelType
   parent: LlamaLogic.Packages.Models.Data
@@ -662,39 +695,27 @@ references:
   name: DataModelType
   nameWithType: DataModelType
   fullName: LlamaLogic.Packages.Models.Data.DataModelType
-- uid: LlamaLogic.Packages.Models.Data.DataModelVector.Count*
-  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.Count
-  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector_Count
-  name: Count
-  nameWithType: DataModelVector.Count
-  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.Count
-- uid: LlamaLogic.Packages.Models.Data.DataModelVector.Indicies*
-  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.Indicies
-  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector_Indicies
-  name: Indicies
-  nameWithType: DataModelVector.Indicies
-  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.Indicies
-- uid: System.Collections.Generic.IEnumerable{System.Int32}
-  commentId: T:System.Collections.Generic.IEnumerable{System.Int32}
+- uid: System.Collections.Generic.IEnumerable{System.Object}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Object}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<int>
-  nameWithType: IEnumerable<int>
-  fullName: System.Collections.Generic.IEnumerable<int>
-  nameWithType.vb: IEnumerable(Of Integer)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of Integer)
-  name.vb: IEnumerable(Of Integer)
+  name: IEnumerable<object>
+  nameWithType: IEnumerable<object>
+  fullName: System.Collections.Generic.IEnumerable<object>
+  nameWithType.vb: IEnumerable(Of Object)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Object)
+  name.vb: IEnumerable(Of Object)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
   - name: <
-  - uid: System.Int32
-    name: int
+  - uid: System.Object
+    name: object
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
@@ -704,10 +725,10 @@ references:
   - name: (
   - name: Of
   - name: " "
-  - uid: System.Int32
-    name: Integer
+  - uid: System.Object
+    name: Object
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
+    href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
 - uid: System.Collections.Generic.IEnumerable`1
   commentId: T:System.Collections.Generic.IEnumerable`1
@@ -774,6 +795,77 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.#ctor*
+  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.#ctor
+  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector__ctor_LlamaLogic_Packages_Models_Data_DataModelTable_System_Index_LlamaLogic_Packages_Models_Data_DataModelType_System_Int32_
+  name: DataModelVector
+  nameWithType: DataModelVector.DataModelVector
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.DataModelVector
+  nameWithType.vb: DataModelVector.New
+  fullName.vb: LlamaLogic.Packages.Models.Data.DataModelVector.New
+  name.vb: New
+- uid: LlamaLogic.Packages.Models.Data.DataModelTable
+  commentId: T:LlamaLogic.Packages.Models.Data.DataModelTable
+  parent: LlamaLogic.Packages.Models.Data
+  href: LlamaLogic.Packages.Models.Data.DataModelTable.html
+  name: DataModelTable
+  nameWithType: DataModelTable
+  fullName: LlamaLogic.Packages.Models.Data.DataModelTable
+- uid: System.Index
+  commentId: T:System.Index
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.index
+  name: Index
+  nameWithType: Index
+  fullName: System.Index
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.Count*
+  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.Count
+  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector_Count
+  name: Count
+  nameWithType: DataModelVector.Count
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.Count
+- uid: LlamaLogic.Packages.Models.Data.DataModelVector.Indicies*
+  commentId: Overload:LlamaLogic.Packages.Models.Data.DataModelVector.Indicies
+  href: LlamaLogic.Packages.Models.Data.DataModelVector.html#LlamaLogic_Packages_Models_Data_DataModelVector_Indicies
+  name: Indicies
+  nameWithType: DataModelVector.Indicies
+  fullName: LlamaLogic.Packages.Models.Data.DataModelVector.Indicies
+- uid: System.Collections.Generic.IEnumerable{System.Int32}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<int>
+  nameWithType: IEnumerable<int>
+  fullName: System.Collections.Generic.IEnumerable<int>
+  nameWithType.vb: IEnumerable(Of Integer)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Integer)
+  name.vb: IEnumerable(Of Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
 - uid: LlamaLogic.Packages.Models.Data.DataModelReference.IsValid
   commentId: P:LlamaLogic.Packages.Models.Data.DataModelReference.IsValid
   parent: LlamaLogic.Packages.Models.Data.DataModelReference
@@ -818,38 +910,3 @@ references:
   name: Values
   nameWithType: DataModelVector.Values
   fullName: LlamaLogic.Packages.Models.Data.DataModelVector.Values
-- uid: System.Collections.Generic.IEnumerable{System.Object}
-  commentId: T:System.Collections.Generic.IEnumerable{System.Object}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.IEnumerable`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<object>
-  nameWithType: IEnumerable<object>
-  fullName: System.Collections.Generic.IEnumerable<object>
-  nameWithType.vb: IEnumerable(Of Object)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of Object)
-  name.vb: IEnumerable(Of Object)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - uid: System.Object
-    name: object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Object
-    name: Object
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.object
-  - name: )

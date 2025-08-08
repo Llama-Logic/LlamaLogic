@@ -11,6 +11,10 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.CanSaveInPlace
   - LlamaLogic.Packages.DataBasePackedFile.ContainsKey(LlamaLogic.Packages.ResourceKey)
   - LlamaLogic.Packages.DataBasePackedFile.ContainsKeyAsync(LlamaLogic.Packages.ResourceKey,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.CopyTo(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder)
   - LlamaLogic.Packages.DataBasePackedFile.CopyToAsync(System.IO.Stream,LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.Count
@@ -34,6 +38,8 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.GetCountAsync(System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetData(LlamaLogic.Packages.ResourceKey,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.GetDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  - LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
   - LlamaLogic.Packages.DataBasePackedFile.GetKeys(LlamaLogic.Packages.ResourceKeyOrder)
   - LlamaLogic.Packages.DataBasePackedFile.GetKeysAsync(LlamaLogic.Packages.ResourceKeyOrder,System.Threading.CancellationToken)
@@ -79,6 +85,7 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.SetAsync(LlamaLogic.Packages.ResourceKey,System.Xml.Linq.XDocument,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte})
   - LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpegAsync(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.SetXml(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode)
   - LlamaLogic.Packages.DataBasePackedFile.SetXmlAsync(LlamaLogic.Packages.ResourceKey,System.String,LlamaLogic.Packages.CompressionMode,System.Threading.CancellationToken)
@@ -102,7 +109,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DataBasePackedFile
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 40
+    startLine: 42
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -181,6 +188,160 @@ items:
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory{System.Byte})
+  id: ConvertPngToTranslucentJpeg(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ConvertPngToTranslucentJpeg(ReadOnlyMemory<byte>)
+  nameWithType: DataBasePackedFile.ConvertPngToTranslucentJpeg(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ConvertPngToTranslucentJpeg
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 82
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Converts the data for a PNG the data for a Maxis Translucent JPEG
+  example: []
+  syntax:
+    content: public static ReadOnlyMemory<byte> ConvertPngToTranslucentJpeg(ReadOnlyMemory<byte> pngData)
+    parameters:
+    - id: pngData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data for a PNG
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Shared Function ConvertPngToTranslucentJpeg(pngData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
+  overload: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg*
+  nameWithType.vb: DataBasePackedFile.ConvertPngToTranslucentJpeg(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory(Of Byte))
+  name.vb: ConvertPngToTranslucentJpeg(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  id: ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ConvertPngToTranslucentJpegAsync(ReadOnlyMemory<byte>, CancellationToken)
+  nameWithType: DataBasePackedFile.ConvertPngToTranslucentJpegAsync(ReadOnlyMemory<byte>, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ConvertPngToTranslucentJpegAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 140
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Converts the data for a PNG the data for a Maxis Translucent JPEG asynhronously
+  example: []
+  syntax:
+    content: public static ValueTask<ReadOnlyMemory<byte>> ConvertPngToTranslucentJpegAsync(ReadOnlyMemory<byte> pngData, CancellationToken cancellationToken)
+    parameters:
+    - id: pngData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data for a PNG
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: The token to monitor for cancellation requests
+    return:
+      type: System.Threading.Tasks.ValueTask{System.ReadOnlyMemory{System.Byte}}
+    content.vb: Public Shared Function ConvertPngToTranslucentJpegAsync(pngData As ReadOnlyMemory(Of Byte), cancellationToken As CancellationToken) As ValueTask(Of ReadOnlyMemory(Of Byte))
+  overload: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync*
+  nameWithType.vb: DataBasePackedFile.ConvertPngToTranslucentJpegAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
+  name.vb: ConvertPngToTranslucentJpegAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng(System.ReadOnlyMemory{System.Byte})
+  id: ConvertTranslucentJpegToPng(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ConvertTranslucentJpegToPng(ReadOnlyMemory<byte>)
+  nameWithType: DataBasePackedFile.ConvertTranslucentJpegToPng(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ConvertTranslucentJpegToPng
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 197
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Converts the data for a Maxis Translucent JPEG the data for a PNG
+  example: []
+  syntax:
+    content: public static ReadOnlyMemory<byte> ConvertTranslucentJpegToPng(ReadOnlyMemory<byte> translucentJpegData)
+    parameters:
+    - id: translucentJpegData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data for a Maxis Translucent JPEG
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Shared Function ConvertTranslucentJpegToPng(translucentJpegData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
+  overload: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng*
+  nameWithType.vb: DataBasePackedFile.ConvertTranslucentJpegToPng(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng(System.ReadOnlyMemory(Of Byte))
+  name.vb: ConvertTranslucentJpegToPng(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  id: ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: ConvertTranslucentJpegToPngAsync(ReadOnlyMemory<byte>, CancellationToken)
+  nameWithType: DataBasePackedFile.ConvertTranslucentJpegToPngAsync(ReadOnlyMemory<byte>, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ConvertTranslucentJpegToPngAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 243
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Converts the data for a Maxis Translucent JPEG the data for a PNG asynhronously
+  example: []
+  syntax:
+    content: public static ValueTask<ReadOnlyMemory<byte>> ConvertTranslucentJpegToPngAsync(ReadOnlyMemory<byte> translucentJpegData, CancellationToken cancellationToken = default)
+    parameters:
+    - id: translucentJpegData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data for a Maxis Translucent JPEG
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: The token to monitor for cancellation requests
+    return:
+      type: System.Threading.Tasks.ValueTask{System.ReadOnlyMemory{System.Byte}}
+    content.vb: Public Shared Function ConvertTranslucentJpegToPngAsync(translucentJpegData As ReadOnlyMemory(Of Byte), cancellationToken As CancellationToken = Nothing) As ValueTask(Of ReadOnlyMemory(Of Byte))
+  overload: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync*
+  nameWithType.vb: DataBasePackedFile.ConvertTranslucentJpegToPngAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
+  name.vb: ConvertTranslucentJpegToPngAsync(ReadOnlyMemory(Of Byte), CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.FromPathAsync(System.String,System.Boolean)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.FromPathAsync(System.String,System.Boolean)
   id: FromPathAsync(System.String,System.Boolean)
@@ -199,7 +360,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FromPathAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 123
+    startLine: 331
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -237,7 +398,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FromStreamAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 151
+    startLine: 359
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -272,7 +433,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: InternalCompress
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 210
+    startLine: 418
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -310,7 +471,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: InternalDecompress
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 226
+    startLine: 434
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -346,7 +507,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZLibCompress
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 245
+    startLine: 453
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -382,7 +543,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZLibCompressAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 258
+    startLine: 466
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -420,7 +581,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZLibDecompress
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 271
+    startLine: 479
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -458,7 +619,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ZLibDecompressAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 287
+    startLine: 495
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -498,7 +659,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 299
+    startLine: 507
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -529,7 +690,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 314
+    startLine: 522
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -565,7 +726,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 335
+    startLine: 543
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -599,7 +760,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Finalize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 374
+    startLine: 582
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -630,7 +791,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CanSaveInPlace
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 389
+    startLine: 597
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -661,7 +822,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Count
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 395
+    startLine: 603
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -692,7 +853,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CreationTime
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 401
+    startLine: 609
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -723,7 +884,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FileVersion
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 411
+    startLine: 619
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -760,7 +921,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Keys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 416
+    startLine: 624
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -791,7 +952,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UserVersion
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 422
+    startLine: 630
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -822,7 +983,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: UpdatedTime
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 427
+    startLine: 635
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -853,7 +1014,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: this[]
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 432
+    startLine: 640
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -889,7 +1050,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ContainsKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 520
+    startLine: 728
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -922,7 +1083,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ContainsKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 530
+    startLine: 738
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -957,7 +1118,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CopyTo
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 542
+    startLine: 750
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -997,7 +1158,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: CopyToAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 554
+    startLine: 762
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1041,7 +1202,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Delete
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 564
+    startLine: 772
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1074,7 +1235,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Dispose
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 579
+    startLine: 787
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1104,7 +1265,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DisposeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 601
+    startLine: 809
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1137,7 +1298,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ForEach
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 694
+    startLine: 902
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1177,7 +1338,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ForEachAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 722
+    startLine: 930
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1219,7 +1380,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ForEachRaw
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 750
+    startLine: 958
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1259,7 +1420,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ForEachRawAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 778
+    startLine: 986
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1301,7 +1462,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Get
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 808
+    startLine: 1016
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1341,7 +1502,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAllSizes
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 830
+    startLine: 1038
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1378,7 +1539,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAllSizesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 848
+    startLine: 1056
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1418,7 +1579,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 867
+    startLine: 1075
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1461,7 +1622,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCount
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 877
+    startLine: 1085
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1491,7 +1652,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCountAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 887
+    startLine: 1095
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1524,7 +1685,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetData
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 897
+    startLine: 1105
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1562,7 +1723,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDataAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 903
+    startLine: 1111
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1584,6 +1745,84 @@ items:
   nameWithType.vb: DataBasePackedFile.GetDataAsync(ResourceKey, Boolean, CancellationToken)
   fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetDataAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
   name.vb: GetDataAsync(ResourceKey, Boolean, CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  id: GetDirectDrawSurfaceAsPng(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetDirectDrawSurfaceAsPng(ResourceKey, bool)
+  nameWithType: DataBasePackedFile.GetDirectDrawSurfaceAsPng(ResourceKey, bool)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng(LlamaLogic.Packages.ResourceKey, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetDirectDrawSurfaceAsPng
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1117
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource that is a DST/DXT DirectDraw Surface with the specified <code class="paramref">key</code>, encoded as a PNG
+  example: []
+  syntax:
+    content: public ReadOnlyMemory<byte> GetDirectDrawSurfaceAsPng(ResourceKey key, bool force = false)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Function GetDirectDrawSurfaceAsPng(key As ResourceKey, force As Boolean = False) As ReadOnlyMemory(Of Byte)
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng*
+  nameWithType.vb: DataBasePackedFile.GetDirectDrawSurfaceAsPng(ResourceKey, Boolean)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng(LlamaLogic.Packages.ResourceKey, Boolean)
+  name.vb: GetDirectDrawSurfaceAsPng(ResourceKey, Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  id: GetDirectDrawSurfaceAsPngAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetDirectDrawSurfaceAsPngAsync(ResourceKey, bool, CancellationToken)
+  nameWithType: DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(ResourceKey, bool, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(LlamaLogic.Packages.ResourceKey, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetDirectDrawSurfaceAsPngAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1128
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource that is a DST/DXT DirectDraw Surface with the specified <code class="paramref">key</code>, encoded as a PNG, asynchronously
+  example: []
+  syntax:
+    content: public Task<ReadOnlyMemory<byte>> GetDirectDrawSurfaceAsPngAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.ReadOnlyMemory{System.Byte}}
+    content.vb: Public Function GetDirectDrawSurfaceAsPngAsync(key As ResourceKey, force As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of ReadOnlyMemory(Of Byte))
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync*
+  nameWithType.vb: DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(ResourceKey, Boolean, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
+  name.vb: GetDirectDrawSurfaceAsPngAsync(ResourceKey, Boolean, CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
   id: GetExplicitCompressionMode(LlamaLogic.Packages.ResourceKey)
@@ -1602,7 +1841,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetExplicitCompressionMode
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 909
+    startLine: 1139
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1635,7 +1874,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 935
+    startLine: 1165
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1668,7 +1907,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 945
+    startLine: 1175
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1703,7 +1942,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByName
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 955
+    startLine: 1185
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1739,7 +1978,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByNameAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 966
+    startLine: 1196
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1777,7 +2016,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModel
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 979
+    startLine: 1209
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1822,7 +2061,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModelAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 992
+    startLine: 1222
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1869,7 +2108,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1003
+    startLine: 1233
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1907,7 +2146,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1009
+    startLine: 1239
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1947,7 +2186,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1015
+    startLine: 1245
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1980,7 +2219,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1026
+    startLine: 1256
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2015,7 +2254,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1037
+    startLine: 1267
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2045,7 +2284,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1048
+    startLine: 1278
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2078,7 +2317,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRaw
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1061
+    startLine: 1291
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2118,7 +2357,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRawAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1074
+    startLine: 1304
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2161,7 +2400,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1084
+    startLine: 1314
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2194,7 +2433,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSizeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1098
+    startLine: 1328
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2229,7 +2468,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTable
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1112
+    startLine: 1342
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2267,7 +2506,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTableAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1118
+    startLine: 1348
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2307,7 +2546,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetText
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1126
+    startLine: 1356
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2347,7 +2586,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTextAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1138
+    startLine: 1368
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2390,7 +2629,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTranslucentJpegAsPng
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1152
+    startLine: 1382
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2428,7 +2667,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTranslucentJpegAsPngAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1197
+    startLine: 1388
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2468,7 +2707,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1244
+    startLine: 1396
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2508,7 +2747,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1256
+    startLine: 1408
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2551,7 +2790,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAll
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1824
+    startLine: 1976
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2589,7 +2828,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1834
+    startLine: 1986
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2617,7 +2856,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1844
+    startLine: 1996
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2650,7 +2889,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAllAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1857
+    startLine: 2009
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2693,7 +2932,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Save
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1969
+    startLine: 2121
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2733,7 +2972,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAs
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1990
+    startLine: 2142
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2769,7 +3008,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2011
+    startLine: 2163
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2813,7 +3052,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2032
+    startLine: 2184
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2853,7 +3092,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2055
+    startLine: 2207
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2896,7 +3135,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2070
+    startLine: 2222
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2936,7 +3175,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2082
+    startLine: 2234
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2979,7 +3218,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2097
+    startLine: 2249
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3019,7 +3258,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2116
+    startLine: 2268
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3065,7 +3304,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2132
+    startLine: 2284
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3108,7 +3347,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2145
+    startLine: 2297
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3154,7 +3393,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2161
+    startLine: 2313
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3179,6 +3418,44 @@ items:
       type: System.Threading.Tasks.Task{System.Boolean}
     content.vb: Public Function SetAsync(key As ResourceKey, content As XDocument, compressionMode As CompressionMode = CompressionMode.Auto, cancellationToken As CancellationToken = Nothing) As Task(Of Boolean)
   overload: LlamaLogic.Packages.DataBasePackedFile.SetAsync*
+- uid: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte})
+  id: SetPngAsTranslucentJpeg(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: SetPngAsTranslucentJpeg(ResourceKey, ReadOnlyMemory<byte>)
+  nameWithType: DataBasePackedFile.SetPngAsTranslucentJpeg(ResourceKey, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg(LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SetPngAsTranslucentJpeg
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 2330
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Sets the content of a resource as a TS4 proprietary translucent JPEG based on an RGBA image encoded as <code class="paramref">pngData</code> (the resource content will not be DBPF-compressed as it will already be JPEG lossy compressed and PNG DEFLATE compressed)
+  example: []
+  syntax:
+    content: public void SetPngAsTranslucentJpeg(ResourceKey key, ReadOnlyMemory<byte> pngData)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+      description: The key of the resource
+    - id: pngData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The encoded PNG data
+    content.vb: Public Sub SetPngAsTranslucentJpeg(key As ResourceKey, pngData As ReadOnlyMemory(Of Byte))
+  overload: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg*
+  nameWithType.vb: DataBasePackedFile.SetPngAsTranslucentJpeg(ResourceKey, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg(LlamaLogic.Packages.ResourceKey, System.ReadOnlyMemory(Of Byte))
+  name.vb: SetPngAsTranslucentJpeg(ResourceKey, ReadOnlyMemory(Of Byte))
 - uid: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpegAsync(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpegAsync(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
   id: SetPngAsTranslucentJpegAsync(LlamaLogic.Packages.ResourceKey,System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
@@ -3197,11 +3474,11 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsTranslucentJpegAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2179
+    startLine: 2339
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
-  summary: Sets the content of a resource as a TS4 proprietary translucent JPEG based on an RGBA image encoded as <code class="paramref">pngData</code> (the resource content will not be DBPF-compressed as it will already be JPEG lossy compressed and PNG DEFLATE compressed)
+  summary: Sets the content of a resource as a TS4 proprietary translucent JPEG based on an RGBA image encoded as <code class="paramref">pngData</code> (the resource content will not be DBPF-compressed as it will already be JPEG lossy compressed and PNG DEFLATE compressed) asycnhronously
   example: []
   syntax:
     content: public Task SetPngAsTranslucentJpegAsync(ResourceKey key, ReadOnlyMemory<byte> pngData, CancellationToken cancellationToken = default)
@@ -3240,7 +3517,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2238
+    startLine: 2348
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3283,7 +3560,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2248
+    startLine: 2358
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3852,6 +4129,242 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ConvertPngToTranslucentJpeg_System_ReadOnlyMemory_System_Byte__
+  name: ConvertPngToTranslucentJpeg
+  nameWithType: DataBasePackedFile.ConvertPngToTranslucentJpeg
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpeg
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ConvertPngToTranslucentJpegAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_
+  name: ConvertPngToTranslucentJpegAsync
+  nameWithType: DataBasePackedFile.ConvertPngToTranslucentJpegAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertPngToTranslucentJpegAsync
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.ValueTask{System.ReadOnlyMemory{System.Byte}}
+  commentId: T:System.Threading.Tasks.ValueTask{System.ReadOnlyMemory{System.Byte}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<ReadOnlyMemory<byte>>
+  nameWithType: ValueTask<ReadOnlyMemory<byte>>
+  fullName: System.Threading.Tasks.ValueTask<System.ReadOnlyMemory<byte>>
+  nameWithType.vb: ValueTask(Of ReadOnlyMemory(Of Byte))
+  fullName.vb: System.Threading.Tasks.ValueTask(Of System.ReadOnlyMemory(Of Byte))
+  name.vb: ValueTask(Of ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ConvertTranslucentJpegToPng_System_ReadOnlyMemory_System_Byte__
+  name: ConvertTranslucentJpegToPng
+  nameWithType: DataBasePackedFile.ConvertTranslucentJpegToPng
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPng
+- uid: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_ConvertTranslucentJpegToPngAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_
+  name: ConvertTranslucentJpegToPngAsync
+  nameWithType: DataBasePackedFile.ConvertTranslucentJpegToPngAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.ConvertTranslucentJpegToPngAsync
 - uid: LlamaLogic.Packages.DataBasePackedFile
   commentId: T:LlamaLogic.Packages.DataBasePackedFile
   parent: LlamaLogic.Packages
@@ -3937,153 +4450,18 @@ references:
   - name: " "
   - name: TResult
   - name: )
-- uid: System.Threading.Tasks
-  commentId: N:System.Threading.Tasks
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
-  fullName: System.Threading.Tasks
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  - name: .
-  - uid: System.Threading.Tasks
-    name: Tasks
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
 - uid: LlamaLogic.Packages.DataBasePackedFile.FromStreamAsync*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.FromStreamAsync
   href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_FromStreamAsync_System_IO_Stream_System_Threading_CancellationToken_
   name: FromStreamAsync
   nameWithType: DataBasePackedFile.FromStreamAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.FromStreamAsync
-- uid: System.Threading.CancellationToken
-  commentId: T:System.Threading.CancellationToken
-  parent: System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
-  name: CancellationToken
-  nameWithType: CancellationToken
-  fullName: System.Threading.CancellationToken
-- uid: System.Threading
-  commentId: N:System.Threading
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Threading
-  nameWithType: System.Threading
-  fullName: System.Threading
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Threading
-    name: Threading
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.threading
 - uid: LlamaLogic.Packages.DataBasePackedFile.InternalCompress*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.InternalCompress
   href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_InternalCompress_System_ReadOnlyMemory_System_Byte__System_Boolean__
   name: InternalCompress
   nameWithType: DataBasePackedFile.InternalCompress
   fullName: LlamaLogic.Packages.DataBasePackedFile.InternalCompress
-- uid: System.ReadOnlyMemory{System.Byte}
-  commentId: T:System.ReadOnlyMemory{System.Byte}
-  parent: System
-  definition: System.ReadOnlyMemory`1
-  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  name: ReadOnlyMemory<byte>
-  nameWithType: ReadOnlyMemory<byte>
-  fullName: System.ReadOnlyMemory<byte>
-  nameWithType.vb: ReadOnlyMemory(Of Byte)
-  fullName.vb: System.ReadOnlyMemory(Of Byte)
-  name.vb: ReadOnlyMemory(Of Byte)
-  spec.csharp:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: <
-  - uid: System.Byte
-    name: byte
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '>'
-  spec.vb:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Byte
-    name: Byte
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: )
-- uid: System.ReadOnlyMemory`1
-  commentId: T:System.ReadOnlyMemory`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  name: ReadOnlyMemory<T>
-  nameWithType: ReadOnlyMemory<T>
-  fullName: System.ReadOnlyMemory<T>
-  nameWithType.vb: ReadOnlyMemory(Of T)
-  fullName.vb: System.ReadOnlyMemory(Of T)
-  name.vb: ReadOnlyMemory(Of T)
-  spec.csharp:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: LlamaLogic.Packages.DataBasePackedFile.InternalDecompress*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.InternalDecompress
   href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_InternalDecompress_System_ReadOnlyMemory_System_Byte__
@@ -5112,6 +5490,18 @@ references:
     name: DataModel
     href: LlamaLogic.Packages.Models.Data.DataModel.html
   - name: )
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetDirectDrawSurfaceAsPng_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: GetDirectDrawSurfaceAsPng
+  nameWithType: DataBasePackedFile.GetDirectDrawSurfaceAsPng
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPng
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetDirectDrawSurfaceAsPngAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_
+  name: GetDirectDrawSurfaceAsPngAsync
+  nameWithType: DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetDirectDrawSurfaceAsPngAsync
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetExplicitCompressionMode
   href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetExplicitCompressionMode_LlamaLogic_Packages_ResourceKey_
@@ -5770,6 +6160,12 @@ references:
   name: SetAsync
   nameWithType: DataBasePackedFile.SetAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.SetAsync
+- uid: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SetPngAsTranslucentJpeg_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__
+  name: SetPngAsTranslucentJpeg
+  nameWithType: DataBasePackedFile.SetPngAsTranslucentJpeg
+  fullName: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpeg
 - uid: LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpegAsync*
   commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.SetPngAsTranslucentJpegAsync
   href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_SetPngAsTranslucentJpegAsync_LlamaLogic_Packages_ResourceKey_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_

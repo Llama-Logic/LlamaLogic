@@ -7,6 +7,7 @@ items:
   children:
   - LlamaLogic.Packages.ResourceFileType.Binary
   - LlamaLogic.Packages.ResourceFileType.DirectDrawSurface
+  - LlamaLogic.Packages.ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic
   - LlamaLogic.Packages.ResourceFileType.JavaScriptObjectNotation
   - LlamaLogic.Packages.ResourceFileType.PortableNetworkGraphic
   - LlamaLogic.Packages.ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage
@@ -121,6 +122,49 @@ items:
       value: dds
     - type: System.String
       value: image/vnd.ms-dds
+- uid: LlamaLogic.Packages.ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic
+  commentId: F:LlamaLogic.Packages.ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic
+  id: DirectDrawSurfaceAsPortableNetworkGraphic
+  parent: LlamaLogic.Packages.ResourceFileType
+  langs:
+  - csharp
+  - vb
+  name: DirectDrawSurfaceAsPortableNetworkGraphic
+  nameWithType: ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic
+  fullName: LlamaLogic.Packages.ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/ResourceFileType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: DirectDrawSurfaceAsPortableNetworkGraphic
+    path: ../LlamaLogic.Packages/ResourceFileType.cs
+    startLine: 22
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: PNG Image converted from DDS Image
+  example: []
+  syntax:
+    content: >-
+      [ResourceFileTypeFormat("png", "image/png")]
+
+      DirectDrawSurfaceAsPortableNetworkGraphic = 2
+    return:
+      type: LlamaLogic.Packages.ResourceFileType
+    content.vb: >-
+      <ResourceFileTypeFormat("png", "image/png")>
+
+      DirectDrawSurfaceAsPortableNetworkGraphic = 2
+  attributes:
+  - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
+    ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: png
+    - type: System.String
+      value: image/png
 - uid: LlamaLogic.Packages.ResourceFileType.JavaScriptObjectNotation
   commentId: F:LlamaLogic.Packages.ResourceFileType.JavaScriptObjectNotation
   id: JavaScriptObjectNotation
@@ -139,7 +183,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: JavaScriptObjectNotation
     path: ../LlamaLogic.Packages/ResourceFileType.cs
-    startLine: 22
+    startLine: 28
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -149,13 +193,13 @@ items:
     content: >-
       [ResourceFileTypeFormat("json", "application/json")]
 
-      JavaScriptObjectNotation = 2
+      JavaScriptObjectNotation = 3
     return:
       type: LlamaLogic.Packages.ResourceFileType
     content.vb: >-
       <ResourceFileTypeFormat("json", "application/json")>
 
-      JavaScriptObjectNotation = 2
+      JavaScriptObjectNotation = 3
   attributes:
   - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
     ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
@@ -182,7 +226,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: PortableNetworkGraphic
     path: ../LlamaLogic.Packages/ResourceFileType.cs
-    startLine: 28
+    startLine: 34
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -192,13 +236,13 @@ items:
     content: >-
       [ResourceFileTypeFormat("png", "image/png")]
 
-      PortableNetworkGraphic = 3
+      PortableNetworkGraphic = 4
     return:
       type: LlamaLogic.Packages.ResourceFileType
     content.vb: >-
       <ResourceFileTypeFormat("png", "image/png")>
 
-      PortableNetworkGraphic = 3
+      PortableNetworkGraphic = 4
   attributes:
   - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
     ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
@@ -225,7 +269,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: TuningMarkup
     path: ../LlamaLogic.Packages/ResourceFileType.cs
-    startLine: 34
+    startLine: 40
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -235,13 +279,13 @@ items:
     content: >-
       [ResourceFileTypeFormat("xml", "application/xml")]
 
-      TuningMarkup = 4
+      TuningMarkup = 5
     return:
       type: LlamaLogic.Packages.ResourceFileType
     content.vb: >-
       <ResourceFileTypeFormat("xml", "application/xml")>
 
-      TuningMarkup = 4
+      TuningMarkup = 5
   attributes:
   - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
     ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
@@ -268,7 +312,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Ts4TranslucentJointPhotographicExpertsGroupImage
     path: ../LlamaLogic.Packages/ResourceFileType.cs
-    startLine: 40
+    startLine: 46
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -278,13 +322,13 @@ items:
     content: >-
       [ResourceFileTypeFormat("jpg", "image/jpeg")]
 
-      Ts4TranslucentJointPhotographicExpertsGroupImage = 5
+      Ts4TranslucentJointPhotographicExpertsGroupImage = 6
     return:
       type: LlamaLogic.Packages.ResourceFileType
     content.vb: >-
       <ResourceFileTypeFormat("jpg", "image/jpeg")>
 
-      Ts4TranslucentJointPhotographicExpertsGroupImage = 5
+      Ts4TranslucentJointPhotographicExpertsGroupImage = 6
   attributes:
   - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
     ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
@@ -311,7 +355,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: YetAnotherMarkupLanguage
     path: ../LlamaLogic.Packages/ResourceFileType.cs
-    startLine: 46
+    startLine: 52
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -321,13 +365,13 @@ items:
     content: >-
       [ResourceFileTypeFormat("yml", "application/x-yaml")]
 
-      YetAnotherMarkupLanguage = 6
+      YetAnotherMarkupLanguage = 7
     return:
       type: LlamaLogic.Packages.ResourceFileType
     content.vb: >-
       <ResourceFileTypeFormat("yml", "application/x-yaml")>
 
-      YetAnotherMarkupLanguage = 6
+      YetAnotherMarkupLanguage = 7
   attributes:
   - type: LlamaLogic.Packages.ResourceFileTypeFormatAttribute
     ctor: LlamaLogic.Packages.ResourceFileTypeFormatAttribute.#ctor(System.String,System.String)
