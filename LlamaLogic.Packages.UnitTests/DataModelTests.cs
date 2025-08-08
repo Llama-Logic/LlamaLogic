@@ -65,11 +65,4 @@ public class DataModelTests :
         Assert.AreEqual(0x573597ddcdbad0eaUL, smallIconValue.FullInstance);
         Assert.IsFalse((bool)table.Get(0, "visible")!);
     }
-
-    [TestMethod]
-    public void LMS()
-    {
-        using var dbpf = new DataBasePackedFile(@"C:\Users\Daniel\Desktop\TestOutput\creator_name-tuning-export-1754587889.package");
-        File.WriteAllBytes(@"C:\Users\Daniel\Desktop\bro.bin", dbpf.Get(new ResourceKey(ResourceType.SimData, 0x0097F8C8, 0x0000000000003D93)).ToArray());
-    }
 }
