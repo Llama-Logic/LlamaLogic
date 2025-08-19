@@ -1017,15 +1017,15 @@ namespace EA.Sims4.Network
         public void ResetTutorialId() => __pbn__TutorialId = null;
         private ulong? __pbn__TutorialId;
 
-        [global::ProtoBuf.ProtoMember(35, Name = @"pivotal_moment_id")]
-        public ulong PivotalMomentId
+        [global::ProtoBuf.ProtoMember(35, Name = @"pivotal_moment_guid")]
+        public ulong PivotalMomentGuid
         {
-            get => __pbn__PivotalMomentId.GetValueOrDefault();
-            set => __pbn__PivotalMomentId = value;
+            get => __pbn__PivotalMomentGuid.GetValueOrDefault();
+            set => __pbn__PivotalMomentGuid = value;
         }
-        public bool ShouldSerializePivotalMomentId() => __pbn__PivotalMomentId != null;
-        public void ResetPivotalMomentId() => __pbn__PivotalMomentId = null;
-        private ulong? __pbn__PivotalMomentId;
+        public bool ShouldSerializePivotalMomentGuid() => __pbn__PivotalMomentGuid != null;
+        public void ResetPivotalMomentGuid() => __pbn__PivotalMomentGuid = null;
+        private ulong? __pbn__PivotalMomentGuid;
 
         [global::ProtoBuf.ProtoMember(36, Name = @"reward_description")]
         public LocalizedString RewardDescription { get; set; }
@@ -1425,38 +1425,38 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_guid64")]
-        public ulong PivotalMomentGuid64
+        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_guid")]
+        public ulong PivotalMomentGuid
         {
-            get => __pbn__PivotalMomentGuid64.GetValueOrDefault();
-            set => __pbn__PivotalMomentGuid64 = value;
+            get => __pbn__PivotalMomentGuid.GetValueOrDefault();
+            set => __pbn__PivotalMomentGuid = value;
         }
-        public bool ShouldSerializePivotalMomentGuid64() => __pbn__PivotalMomentGuid64 != null;
-        public void ResetPivotalMomentGuid64() => __pbn__PivotalMomentGuid64 = null;
-        private ulong? __pbn__PivotalMomentGuid64;
+        public bool ShouldSerializePivotalMomentGuid() => __pbn__PivotalMomentGuid != null;
+        public void ResetPivotalMomentGuid() => __pbn__PivotalMomentGuid = null;
+        private ulong? __pbn__PivotalMomentGuid;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"situation_display_type_override")]
-        public ulong SituationDisplayTypeOverride
+        [global::ProtoBuf.ProtoMember(2, Name = @"display_type")]
+        public ulong DisplayType
         {
-            get => __pbn__SituationDisplayTypeOverride.GetValueOrDefault();
-            set => __pbn__SituationDisplayTypeOverride = value;
+            get => __pbn__DisplayType.GetValueOrDefault();
+            set => __pbn__DisplayType = value;
         }
-        public bool ShouldSerializeSituationDisplayTypeOverride() => __pbn__SituationDisplayTypeOverride != null;
-        public void ResetSituationDisplayTypeOverride() => __pbn__SituationDisplayTypeOverride = null;
-        private ulong? __pbn__SituationDisplayTypeOverride;
+        public bool ShouldSerializeDisplayType() => __pbn__DisplayType != null;
+        public void ResetDisplayType() => __pbn__DisplayType = null;
+        private ulong? __pbn__DisplayType;
 
         [global::ProtoBuf.ProtoMember(3, Name = @"display_name")]
         public LocalizedString DisplayName { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"situation_guid64")]
-        public ulong SituationGuid64
+        [global::ProtoBuf.ProtoMember(4, Name = @"situation_guid")]
+        public ulong SituationGuid
         {
-            get => __pbn__SituationGuid64.GetValueOrDefault();
-            set => __pbn__SituationGuid64 = value;
+            get => __pbn__SituationGuid.GetValueOrDefault();
+            set => __pbn__SituationGuid = value;
         }
-        public bool ShouldSerializeSituationGuid64() => __pbn__SituationGuid64 != null;
-        public void ResetSituationGuid64() => __pbn__SituationGuid64 = null;
-        private ulong? __pbn__SituationGuid64;
+        public bool ShouldSerializeSituationGuid() => __pbn__SituationGuid != null;
+        public void ResetSituationGuid() => __pbn__SituationGuid = null;
+        private ulong? __pbn__SituationGuid;
 
     }
 
@@ -1467,15 +1467,15 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_guid64")]
-        public ulong PivotalMomentGuid64
+        [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_guid")]
+        public ulong PivotalMomentGuid
         {
-            get => __pbn__PivotalMomentGuid64.GetValueOrDefault();
-            set => __pbn__PivotalMomentGuid64 = value;
+            get => __pbn__PivotalMomentGuid.GetValueOrDefault();
+            set => __pbn__PivotalMomentGuid = value;
         }
-        public bool ShouldSerializePivotalMomentGuid64() => __pbn__PivotalMomentGuid64 != null;
-        public void ResetPivotalMomentGuid64() => __pbn__PivotalMomentGuid64 = null;
-        private ulong? __pbn__PivotalMomentGuid64;
+        public bool ShouldSerializePivotalMomentGuid() => __pbn__PivotalMomentGuid != null;
+        public void ResetPivotalMomentGuid() => __pbn__PivotalMomentGuid = null;
+        private ulong? __pbn__PivotalMomentGuid;
 
     }
 

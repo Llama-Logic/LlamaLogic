@@ -1189,6 +1189,9 @@ namespace EA.Sims4.Network
             public void ResetCdsContentPatchMounted() => __pbn__CdsContentPatchMounted = null;
             private bool? __pbn__CdsContentPatchMounted;
 
+            [global::ProtoBuf.ProtoMember(27, Name = @"sku_bits", IsPacked = true)]
+            public uint[] SkuBits { get; set; }
+
             [global::ProtoBuf.ProtoMember(1000, Name = @"version_OBSOLETE")]
             [global::System.ComponentModel.DefaultValue(TrayMetadata.TrayMetadataVersion.V000)]
             public TrayMetadata.TrayMetadataVersion versionOBSOLETE
@@ -1218,7 +1221,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 11600,
+            currentVersion = 11700,
         }
 
     }
@@ -2050,7 +2053,7 @@ namespace EA.Sims4.Network
         private ulong? __pbn__UploadTimeRangeEnd;
 
         [global::ProtoBuf.ProtoMember(31, Name = @"exclusive_packs", IsPacked = true)]
-        public global::System.Collections.Generic.List<Pack> ExclusivePacks { get; } = new global::System.Collections.Generic.List<Pack>();
+        public uint[] ExclusivePacks { get; set; }
 
         [global::ProtoBuf.ProtoMember(32, Name = @"body_type")]
         public uint BodyType
@@ -2083,6 +2086,9 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeKeywordType() => __pbn__KeywordType != null;
         public void ResetKeywordType() => __pbn__KeywordType = null;
         private KeywordSearchType? __pbn__KeywordType;
+
+        [global::ProtoBuf.ProtoMember(35, Name = @"sku_bits", IsPacked = true)]
+        public uint[] SkuBits { get; set; }
 
     }
 

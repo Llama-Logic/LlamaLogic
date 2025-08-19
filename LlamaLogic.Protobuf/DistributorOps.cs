@@ -890,6 +890,8 @@ namespace EA.Sims4.Network
             LuckUpdate = 1280,
             [global::ProtoBuf.ProtoEnum(Name = @"IS_GUIDANCE_TIP_COMPLETE")]
             IsGuidanceTipComplete = 1281,
+            [global::ProtoBuf.ProtoEnum(Name = @"SET_CALL_TO_ACTION_LOT")]
+            SetCallToActionLot = 1282,
         }
 
     }
@@ -6273,6 +6275,21 @@ namespace EA.Sims4.Network
         public float Thickness { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"tutorial_text")]
+        public LocalizedString TutorialText { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SetCallToActionLot : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"zone_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong ZoneId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"tutorial_text")]
         public LocalizedString TutorialText { get; set; }
 
     }

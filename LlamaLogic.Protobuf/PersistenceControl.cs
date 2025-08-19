@@ -10,6 +10,121 @@ namespace EA.Sims4.Network
 {
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class CASInfoDataFragment : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"save_slot")]
+        public global::EA.Sims4.Persistence.SaveSlotData SaveSlot { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"households")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.HouseholdData> Households { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.HouseholdData>();
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"sims")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.SimData> Sims { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.SimData>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"mannequins")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.MannequinSimData> Mannequins { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.MannequinSimData>();
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"relgraph")]
+        public global::EA.Sims4.Persistence.SimRelationshipGraphData Relgraph { get; set; }
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"custom_colors")]
+        public global::EA.Sims4.Persistence.PlayerCustomColors CustomColors { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"account_nucleus_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong AccountNucleusId
+        {
+            get => __pbn__AccountNucleusId.GetValueOrDefault();
+            set => __pbn__AccountNucleusId = value;
+        }
+        public bool ShouldSerializeAccountNucleusId() => __pbn__AccountNucleusId != null;
+        public void ResetAccountNucleusId() => __pbn__AccountNucleusId = null;
+        private ulong? __pbn__AccountNucleusId;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TutorialDataFragment : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"tutorial_tips", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] TutorialTips { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"tutorial_mode")]
+        [global::System.ComponentModel.DefaultValue(1)]
+        public int TutorialMode
+        {
+            get => __pbn__TutorialMode ?? 1;
+            set => __pbn__TutorialMode = value;
+        }
+        public bool ShouldSerializeTutorialMode() => __pbn__TutorialMode != null;
+        public void ResetTutorialMode() => __pbn__TutorialMode = null;
+        private int? __pbn__TutorialMode;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NeighborhoodInfoCacheFragment : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"save_game_data_guid")]
+        public uint SaveGameDataGuid
+        {
+            get => __pbn__SaveGameDataGuid.GetValueOrDefault();
+            set => __pbn__SaveGameDataGuid = value;
+        }
+        public bool ShouldSerializeSaveGameDataGuid() => __pbn__SaveGameDataGuid != null;
+        public void ResetSaveGameDataGuid() => __pbn__SaveGameDataGuid = null;
+        private uint? __pbn__SaveGameDataGuid;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"object_fallbacks")]
+        public global::EA.Sims4.Persistence.ObjectFallbackDataList ObjectFallbacks { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"gameplay_data")]
+        public global::EA.Sims4.Persistence.GameplaySaveSlotData GameplayData { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"zones")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneData> Zones { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneData>();
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"neighborhoods")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.NeighborhoodData> Neighborhoods { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.NeighborhoodData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimDataFragment : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sims")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.SimData> Sims { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.SimData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ZonesDataFragment : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"zones")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneData> Zones { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class PersistenceControlMessageData : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -30,6 +145,43 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(5, Name = @"scratch_path")]
         public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneObjectDataScratchPair> ScratchPaths { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.ZoneObjectDataScratchPair>();
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"world_game_time_fragment")]
+        public ulong WorldGameTimeFragment
+        {
+            get => __pbn__WorldGameTimeFragment.GetValueOrDefault();
+            set => __pbn__WorldGameTimeFragment = value;
+        }
+        public bool ShouldSerializeWorldGameTimeFragment() => __pbn__WorldGameTimeFragment != null;
+        public void ResetWorldGameTimeFragment() => __pbn__WorldGameTimeFragment = null;
+        private ulong? __pbn__WorldGameTimeFragment;
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"accout_data_fragment")]
+        public global::EA.Sims4.Persistence.AccountData AccoutDataFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"protected_households_story_progression_rule_set_fragment")]
+        public global::EA.Sims4.Persistence.StoryProgressionRuleSet ProtectedHouseholdsStoryProgressionRuleSetFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"unprotected_households_story_progression_rule_set_fragment")]
+        public global::EA.Sims4.Persistence.StoryProgressionRuleSet UnprotectedHouseholdsStoryProgressionRuleSetFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10, Name = @"cas_info_data_fragment")]
+        public CASInfoDataFragment CasInfoDataFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11, Name = @"tutorial_data_fragment")]
+        public TutorialDataFragment TutorialDataFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(12, Name = @"neighborhood_data_fragment")]
+        public global::EA.Sims4.Persistence.NeighborhoodDataMessage NeighborhoodDataFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"neighborhood_info_cache_fragment")]
+        public NeighborhoodInfoCacheFragment NeighborhoodInfoCacheFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(14, Name = @"sim_data_fragment")]
+        public SimDataFragment SimDataFragment { get; set; }
+
+        [global::ProtoBuf.ProtoMember(15, Name = @"zones_data_fragment")]
+        public ZonesDataFragment ZonesDataFragment { get; set; }
 
     }
 

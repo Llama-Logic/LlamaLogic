@@ -74,6 +74,16 @@ namespace EA.Sims4.Persistence
         public void ResetCdsContentPatchMounted() => __pbn__CdsContentPatchMounted = null;
         private bool? __pbn__CdsContentPatchMounted;
 
+        [global::ProtoBuf.ProtoMember(4, Name = @"saved_by_feature_preview_build")]
+        public bool SavedByFeaturePreviewBuild
+        {
+            get => __pbn__SavedByFeaturePreviewBuild.GetValueOrDefault();
+            set => __pbn__SavedByFeaturePreviewBuild = value;
+        }
+        public bool ShouldSerializeSavedByFeaturePreviewBuild() => __pbn__SavedByFeaturePreviewBuild != null;
+        public void ResetSavedByFeaturePreviewBuild() => __pbn__SavedByFeaturePreviewBuild = null;
+        private bool? __pbn__SavedByFeaturePreviewBuild;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -3338,6 +3348,16 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(14, Name = @"scenario_ids", IsPacked = true)]
         public ulong[] ScenarioIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(15, Name = @"saved_by_feature_preview_build")]
+        public bool SavedByFeaturePreviewBuild
+        {
+            get => __pbn__SavedByFeaturePreviewBuild.GetValueOrDefault();
+            set => __pbn__SavedByFeaturePreviewBuild = value;
+        }
+        public bool ShouldSerializeSavedByFeaturePreviewBuild() => __pbn__SavedByFeaturePreviewBuild != null;
+        public void ResetSavedByFeaturePreviewBuild() => __pbn__SavedByFeaturePreviewBuild = null;
+        private bool? __pbn__SavedByFeaturePreviewBuild;
 
     }
 

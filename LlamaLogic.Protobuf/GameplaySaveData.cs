@@ -5683,6 +5683,17 @@ namespace EA.Sims4.Persistence
         public void ResetLuckEnabled() => __pbn__LuckEnabled = null;
         private bool? __pbn__LuckEnabled;
 
+        [global::ProtoBuf.ProtoMember(54, Name = @"ailments_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool AilmentsEnabled
+        {
+            get => __pbn__AilmentsEnabled ?? true;
+            set => __pbn__AilmentsEnabled = value;
+        }
+        public bool ShouldSerializeAilmentsEnabled() => __pbn__AilmentsEnabled != null;
+        public void ResetAilmentsEnabled() => __pbn__AilmentsEnabled = null;
+        private bool? __pbn__AilmentsEnabled;
+
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
         {
