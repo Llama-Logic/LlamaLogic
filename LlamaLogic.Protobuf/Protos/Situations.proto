@@ -218,7 +218,7 @@ message SituationStart {
 	optional uint32 pivotal_moment_background_style = 32;
 	optional .EA.Sims4.Network.LocalizedString situation_display_description = 33;
 	optional uint64 tutorial_id = 34;
-	optional uint64 pivotal_moment_id = 35;
+	optional uint64 pivotal_moment_guid = 35;
 	optional .EA.Sims4.Network.LocalizedString reward_description = 36;
 }
 
@@ -293,14 +293,14 @@ message SituationIconUpdate {
 }
 
 message AddMinimizedSituation {
-	optional uint64 pivotal_moment_guid64 = 1;
-	optional uint64 situation_display_type_override = 2;
+	optional uint64 pivotal_moment_guid = 1;
+	optional uint64 display_type = 2;
 	optional .EA.Sims4.Network.LocalizedString display_name = 3;
-	optional uint64 situation_guid64 = 4;
+	optional uint64 situation_guid = 4;
 }
 
 message RemoveMinimizedSituation {
-	optional uint64 pivotal_moment_guid64 = 1;
+	optional uint64 pivotal_moment_guid = 1;
 }
 
 message SituationMeterData {

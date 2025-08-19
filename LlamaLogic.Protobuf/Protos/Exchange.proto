@@ -137,12 +137,13 @@ message TrayMetadata {
 		optional uint64 sku2_id = 23;
 		repeated uint32 cds_patch_base_changelists = 24 [packed = true];
 		optional bool cds_content_patch_mounted = 25;
+		repeated uint32 sku_bits = 27 [packed = true];
 		optional .EA.Sims4.Network.TrayMetadata.TrayMetadataVersion version_OBSOLETE = 1000 [default = v000];
 		optional uint32 version = 1001 [default = 0];
 	}
 	enum TrayMetadataVersion {
 		v000 = 0;
-		currentVersion = 11600;
+		currentVersion = 11700;
 	}
 	optional uint64 id = 1;
 	optional .EA.Sims4.Network.ExchangeItemTypes type = 2;
@@ -299,10 +300,11 @@ message ExchangeCombinedSearch {
 	optional uint64 download_count_range_min = 28;
 	optional uint64 upload_time_range_start = 29;
 	optional uint64 upload_time_range_end = 30;
-	repeated .EA.Sims4.Network.Pack exclusive_packs = 31 [packed = true];
+	repeated uint32 exclusive_packs = 31 [packed = true];
 	optional uint32 body_type = 32;
 	optional uint32 compatible_item_version = 33 [default = 0];
 	optional .EA.Sims4.Network.KeywordSearchType keyword_type = 34 [default = KEYWORD_SEARCH_UNKNOWN];
+	repeated uint32 sku_bits = 35 [packed = true];
 }
 
 message ExchangeTestParameters {

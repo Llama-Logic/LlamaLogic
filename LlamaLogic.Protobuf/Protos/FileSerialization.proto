@@ -88,6 +88,7 @@ message GameContentData {
 	repeated uint32 required_pack_ids = 1 [packed = true];
 	repeated uint32 cds_patch_base_changelists = 2 [packed = true];
 	optional bool cds_content_patch_mounted = 3;
+	optional bool saved_by_feature_preview_build = 4;
 }
 
 message UiOptionsData {
@@ -580,6 +581,7 @@ message SaveGameSlotMetaData {
 	repeated uint32 cds_patch_base_changelists = 12 [packed = true];
 	optional bool cds_content_patch_mounted = 13;
 	repeated uint64 scenario_ids = 14 [packed = true];
+	optional bool saved_by_feature_preview_build = 15;
 }
 
 message SaveGameSlotList {

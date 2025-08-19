@@ -29,3 +29,16 @@ message TelemetryMessage {
 	required fixed32 timestamp = 4;
 	repeated .EA.Sims4.Network.TelemetryAttribute attrs = 5;
 }
+
+message TelemetryMessages {
+	repeated .EA.Sims4.Network.TelemetryMessage messages = 1;
+}
+
+message OfflineTelemetryMessage {
+	required uint32 uint32val = 1;
+	required uint64 uint64val = 2;
+}
+
+message OfflineTelemetryMessages {
+	repeated .EA.Sims4.Network.OfflineTelemetryMessage messages = 1;
+}

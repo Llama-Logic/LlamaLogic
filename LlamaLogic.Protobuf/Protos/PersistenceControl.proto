@@ -2,7 +2,40 @@ syntax = "proto2";
 package EA.Sims4.Network;
 import "Consts.proto";
 import "FileSerialization.proto";
+import "SimObjectAttributes.proto";
+import "GameplaySaveData.proto";
 
+
+message CASInfoDataFragment {
+	optional .EA.Sims4.Persistence.SaveSlotData save_slot = 1;
+	repeated .EA.Sims4.Persistence.HouseholdData households = 2;
+	repeated .EA.Sims4.Persistence.SimData sims = 3;
+	repeated .EA.Sims4.Persistence.MannequinSimData mannequins = 4;
+	optional .EA.Sims4.Persistence.SimRelationshipGraphData relgraph = 5;
+	optional .EA.Sims4.Persistence.PlayerCustomColors custom_colors = 6;
+	optional fixed64 account_nucleus_id = 7;
+}
+
+message TutorialDataFragment {
+	repeated fixed64 tutorial_tips = 1 [packed = true];
+	optional int32 tutorial_mode = 2 [default = 1];
+}
+
+message NeighborhoodInfoCacheFragment {
+	optional uint32 save_game_data_guid = 1;
+	optional .EA.Sims4.Persistence.ObjectFallbackDataList object_fallbacks = 2;
+	optional .EA.Sims4.Persistence.GameplaySaveSlotData gameplay_data = 3;
+	repeated .EA.Sims4.Persistence.ZoneData zones = 4;
+	repeated .EA.Sims4.Persistence.NeighborhoodData neighborhoods = 5;
+}
+
+message SimDataFragment {
+	repeated .EA.Sims4.Persistence.SimData sims = 1;
+}
+
+message ZonesDataFragment {
+	repeated .EA.Sims4.Persistence.ZoneData zones = 1;
+}
 
 message PersistenceControlMessageData {
 	repeated .EA.Sims4.Persistence.SaveGameSlotMetaData slot_meta_data = 1;
@@ -10,6 +43,16 @@ message PersistenceControlMessageData {
 	repeated .EA.Sims4.Persistence.ZoneObjectData zone_object_data = 3;
 	optional .EA.Sims4.Persistence.FeedbackContext errors = 4;
 	repeated .EA.Sims4.Persistence.ZoneObjectDataScratchPair scratch_path = 5;
+	optional uint64 world_game_time_fragment = 6;
+	optional .EA.Sims4.Persistence.AccountData accout_data_fragment = 7;
+	optional .EA.Sims4.Persistence.StoryProgressionRuleSet protected_households_story_progression_rule_set_fragment = 8;
+	optional .EA.Sims4.Persistence.StoryProgressionRuleSet unprotected_households_story_progression_rule_set_fragment = 9;
+	optional .EA.Sims4.Network.CASInfoDataFragment cas_info_data_fragment = 10;
+	optional .EA.Sims4.Network.TutorialDataFragment tutorial_data_fragment = 11;
+	optional .EA.Sims4.Persistence.NeighborhoodDataMessage neighborhood_data_fragment = 12;
+	optional .EA.Sims4.Network.NeighborhoodInfoCacheFragment neighborhood_info_cache_fragment = 13;
+	optional .EA.Sims4.Network.SimDataFragment sim_data_fragment = 14;
+	optional .EA.Sims4.Network.ZonesDataFragment zones_data_fragment = 15;
 }
 
 message PersistenceControlMessage {

@@ -434,6 +434,7 @@ message Operation {
 		REMOVE_MINIMIZED_SITUATION = 1279;
 		LUCK_UPDATE = 1280;
 		IS_GUIDANCE_TIP_COMPLETE = 1281;
+		SET_CALL_TO_ACTION_LOT = 1282;
 	}
 	required .EA.Sims4.Network.Operation.Type type = 1;
 	optional bytes data = 2;
@@ -1642,6 +1643,11 @@ message SetCallToAction {
 	required float speed = 3;
 	required float thickness = 4;
 	optional .EA.Sims4.Network.LocalizedString tutorial_text = 5;
+}
+
+message SetCallToActionLot {
+	required fixed64 zone_id = 1;
+	optional .EA.Sims4.Network.LocalizedString tutorial_text = 2;
 }
 
 message SetScratchedOverlay {
