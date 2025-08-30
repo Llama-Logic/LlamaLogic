@@ -101,9 +101,9 @@ public sealed class ModFileManifestModelRequiredMod :
             {
                 var tunableValue = child.Value;
                 if (tunableName == "ignore_if_hash_available")
-                    IgnoreIfHashAvailable = tunableValue.ToByteSequence().ToImmutableArray();
+                    IgnoreIfHashAvailable = [..tunableValue.ToByteSequence()];
                 else if (tunableName == "ignore_if_hash_unavailable")
-                    IgnoreIfHashUnavailable = tunableValue.ToByteSequence().ToImmutableArray();
+                    IgnoreIfHashUnavailable = [..tunableValue.ToByteSequence()];
                 else if (tunableName == "ignore_if_pack_available")
                     IgnoreIfPackAvailable = tunableValue;
                 else if (tunableName == "ignore_if_pash_unavailable")
@@ -112,10 +112,10 @@ public sealed class ModFileManifestModelRequiredMod :
                     Name = tunableValue;
                 else if (tunableName == "requirement_identifier")
                     RequirementIdentifier = tunableValue;
-                else if (tunableName == "version")
-                    Version = tunableValue;
                 else if (tunableName == "url")
                     Url = new Uri(tunableValue, UriKind.Absolute);
+                else if (tunableName == "version")
+                    Version = tunableValue;
             }
         }
     }

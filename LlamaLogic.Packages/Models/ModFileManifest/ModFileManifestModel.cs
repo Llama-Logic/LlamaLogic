@@ -792,10 +792,10 @@ public sealed partial class ModFileManifestModel :
                     Hash = [..tunableValue.ToByteSequence()];
                 else if (tunableName == "translation_submission_url")
                     TranslationSubmissionUrl = new Uri(tunableValue, UriKind.Absolute);
-                else if (tunableName == "version")
-                    Version = tunableValue;
                 else if (tunableName == "url")
                     Url = new Uri(tunableValue, UriKind.Absolute);
+                else if (tunableName == "version")
+                    Version = tunableValue;
             }
         }
     }

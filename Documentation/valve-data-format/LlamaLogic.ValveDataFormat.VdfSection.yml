@@ -1,0 +1,1242 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.ValveDataFormat.VdfSection
+  commentId: T:LlamaLogic.ValveDataFormat.VdfSection
+  id: VdfSection
+  parent: LlamaLogic.ValveDataFormat
+  children:
+  - LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  - LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  - LlamaLogic.ValveDataFormat.VdfSection.Equals(System.Object)
+  - LlamaLogic.ValveDataFormat.VdfSection.GetHashCode
+  - LlamaLogic.ValveDataFormat.VdfSection.Item(System.Int32)
+  - LlamaLogic.ValveDataFormat.VdfSection.Item(System.String)
+  - LlamaLogic.ValveDataFormat.VdfSection.Nodes
+  - LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment
+  - LlamaLogic.ValveDataFormat.VdfSection.op_Equality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  - LlamaLogic.ValveDataFormat.VdfSection.op_Inequality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  langs:
+  - csharp
+  - vb
+  name: VdfSection
+  nameWithType: VdfSection
+  fullName: LlamaLogic.ValveDataFormat.VdfSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VdfSection
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Represents a section in a VDF document
+  example: []
+  syntax:
+    content: 'public sealed class VdfSection : VdfNode, IEquatable<VdfNode>, IEquatable<VdfSection>'
+    content.vb: Public NotInheritable Class VdfSection Inherits VdfNode Implements IEquatable(Of VdfNode), IEquatable(Of VdfSection)
+  inheritance:
+  - System.Object
+  - LlamaLogic.ValveDataFormat.VdfNode
+  implements:
+  - System.IEquatable{LlamaLogic.ValveDataFormat.VdfNode}
+  - System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}
+  inheritedMembers:
+  - LlamaLogic.ValveDataFormat.VdfNode.Deserialize(System.IO.StreamReader)
+  - LlamaLogic.ValveDataFormat.VdfNode.DeserializeAsync(System.IO.StreamReader)
+  - LlamaLogic.ValveDataFormat.VdfNode.Parse(System.String)
+  - LlamaLogic.ValveDataFormat.VdfNode.TryParse(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}@)
+  - LlamaLogic.ValveDataFormat.VdfNode.TrailingComment
+  - LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+  - LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+  - LlamaLogic.ValveDataFormat.VdfNode.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.op_Equality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfSection.op_Equality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  id: op_Equality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: operator ==(VdfSection?, VdfSection?)
+  nameWithType: VdfSection.operator ==(VdfSection?, VdfSection?)
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.operator ==(LlamaLogic.ValveDataFormat.VdfSection?, LlamaLogic.ValveDataFormat.VdfSection?)
+  type: Operator
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: op_Equality
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  example: []
+  syntax:
+    content: public static bool operator ==(VdfSection? left, VdfSection? right)
+    parameters:
+    - id: left
+      type: LlamaLogic.ValveDataFormat.VdfSection
+    - id: right
+      type: LlamaLogic.ValveDataFormat.VdfSection
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As VdfSection, right As VdfSection) As Boolean
+  overload: LlamaLogic.ValveDataFormat.VdfSection.op_Equality*
+  nameWithType.vb: VdfSection.=(VdfSection, VdfSection)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.=(LlamaLogic.ValveDataFormat.VdfSection, LlamaLogic.ValveDataFormat.VdfSection)
+  name.vb: =(VdfSection, VdfSection)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.op_Inequality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfSection.op_Inequality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  id: op_Inequality(LlamaLogic.ValveDataFormat.VdfSection,LlamaLogic.ValveDataFormat.VdfSection)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: operator !=(VdfSection?, VdfSection?)
+  nameWithType: VdfSection.operator !=(VdfSection?, VdfSection?)
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.operator !=(LlamaLogic.ValveDataFormat.VdfSection?, LlamaLogic.ValveDataFormat.VdfSection?)
+  type: Operator
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: op_Inequality
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 14
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  example: []
+  syntax:
+    content: public static bool operator !=(VdfSection? left, VdfSection? right)
+    parameters:
+    - id: left
+      type: LlamaLogic.ValveDataFormat.VdfSection
+    - id: right
+      type: LlamaLogic.ValveDataFormat.VdfSection
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As VdfSection, right As VdfSection) As Boolean
+  overload: LlamaLogic.ValveDataFormat.VdfSection.op_Inequality*
+  nameWithType.vb: VdfSection.<>(VdfSection, VdfSection)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.<>(LlamaLogic.ValveDataFormat.VdfSection, LlamaLogic.ValveDataFormat.VdfSection)
+  name.vb: <>(VdfSection, VdfSection)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Nodes
+  commentId: P:LlamaLogic.ValveDataFormat.VdfSection.Nodes
+  id: Nodes
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: Nodes
+  nameWithType: VdfSection.Nodes
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.Nodes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Nodes
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 20
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Gets the list of <xref href="LlamaLogic.ValveDataFormat.VdfNode" data-throw-if-not-resolved="false"></xref> in the <xref href="LlamaLogic.ValveDataFormat.VdfSection" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public IList<VdfNode> Nodes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IList{LlamaLogic.ValveDataFormat.VdfNode}
+    content.vb: Public ReadOnly Property Nodes As IList(Of VdfNode)
+  overload: LlamaLogic.ValveDataFormat.VdfSection.Nodes*
+- uid: LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment
+  commentId: P:LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment
+  id: OpeningTrailingComment
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: OpeningTrailingComment
+  nameWithType: VdfSection.OpeningTrailingComment
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: OpeningTrailingComment
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Gets/sets the comment following the opening character ('{') of the section
+  example: []
+  syntax:
+    content: public string? OpeningTrailingComment { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property OpeningTrailingComment As String
+  overload: LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment*
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Item(System.Int32)
+  commentId: P:LlamaLogic.ValveDataFormat.VdfSection.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: VdfSection.this[int]
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.this[int]
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: this[]
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Gets/sets <xref href="LlamaLogic.ValveDataFormat.VdfKeyValuePair.Value" data-throw-if-not-resolved="false"></xref> of the <xref href="LlamaLogic.ValveDataFormat.VdfKeyValuePair" data-throw-if-not-resolved="false"></xref> at the specified <code class="paramref">index</code> of the section
+  example: []
+  syntax:
+    content: public object this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: System.Object
+    content.vb: Public Default Property this[](index As Integer) As Object
+  overload: LlamaLogic.ValveDataFormat.VdfSection.Item*
+  nameWithType.vb: VdfSection.this[](Integer)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.this[](Integer)
+  name.vb: this[](Integer)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Item(System.String)
+  commentId: P:LlamaLogic.ValveDataFormat.VdfSection.Item(System.String)
+  id: Item(System.String)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: this[string]
+  nameWithType: VdfSection.this[string]
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.this[string]
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: this[]
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 39
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Gets/sets <xref href="LlamaLogic.ValveDataFormat.VdfKeyValuePair.Value" data-throw-if-not-resolved="false"></xref> of the <xref href="LlamaLogic.ValveDataFormat.VdfKeyValuePair" data-throw-if-not-resolved="false"></xref> with the specified <code class="paramref">key</code>
+  example: []
+  syntax:
+    content: public object this[string key] { get; set; }
+    parameters:
+    - id: key
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Default Property this[](key As String) As Object
+  overload: LlamaLogic.ValveDataFormat.VdfSection.Item*
+  nameWithType.vb: VdfSection.this[](String)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.this[](String)
+  name.vb: this[](String)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Equals(System.Object)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfSection.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: VdfSection.Equals(object?)
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Equals
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 46
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Determines whether the specified object is equal to the current object.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: LlamaLogic.ValveDataFormat.VdfNode.Equals(System.Object)
+  overload: LlamaLogic.ValveDataFormat.VdfSection.Equals*
+  nameWithType.vb: VdfSection.Equals(Object)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.Equals(Object)
+  name.vb: Equals(Object)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  id: Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: Equals(VdfNode?)
+  nameWithType: VdfSection.Equals(VdfNode?)
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfNode?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Equals
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 51
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public override bool Equals(VdfNode? other)
+    parameters:
+    - id: other
+      type: LlamaLogic.ValveDataFormat.VdfNode
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(other As VdfNode) As Boolean
+  overridden: LlamaLogic.ValveDataFormat.VdfNode.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  overload: LlamaLogic.ValveDataFormat.VdfSection.Equals*
+  nameWithType.vb: VdfSection.Equals(VdfNode)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  name.vb: Equals(VdfNode)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  id: Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: Equals(VdfSection?)
+  nameWithType: VdfSection.Equals(VdfSection?)
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfSection?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Equals
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 56
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(VdfSection? other)
+    parameters:
+    - id: other
+      type: LlamaLogic.ValveDataFormat.VdfSection
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As VdfSection) As Boolean
+  overload: LlamaLogic.ValveDataFormat.VdfSection.Equals*
+  implements:
+  - System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  nameWithType.vb: VdfSection.Equals(VdfSection)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  name.vb: Equals(VdfSection)
+- uid: LlamaLogic.ValveDataFormat.VdfSection.GetHashCode
+  commentId: M:LlamaLogic.ValveDataFormat.VdfSection.GetHashCode
+  id: GetHashCode
+  parent: LlamaLogic.ValveDataFormat.VdfSection
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: VdfSection.GetHashCode()
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.ValveDataFormat/VdfSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetHashCode
+    path: ../LlamaLogic.ValveDataFormat/VdfSection.cs
+    startLine: 69
+  assemblies:
+  - LlamaLogic.ValveDataFormat
+  namespace: LlamaLogic.ValveDataFormat
+  summary: Serves as the default hash function.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for the current object.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: LlamaLogic.ValveDataFormat.VdfNode.GetHashCode
+  overload: LlamaLogic.ValveDataFormat.VdfSection.GetHashCode*
+references:
+- uid: LlamaLogic.ValveDataFormat
+  commentId: N:LlamaLogic.ValveDataFormat
+  href: LlamaLogic.html
+  name: LlamaLogic.ValveDataFormat
+  nameWithType: LlamaLogic.ValveDataFormat
+  fullName: LlamaLogic.ValveDataFormat
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.ValveDataFormat
+    name: ValveDataFormat
+    href: LlamaLogic.ValveDataFormat.html
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+    href: LlamaLogic.html
+  - name: .
+  - uid: LlamaLogic.ValveDataFormat
+    name: ValveDataFormat
+    href: LlamaLogic.ValveDataFormat.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.ValveDataFormat.VdfNode
+  commentId: T:LlamaLogic.ValveDataFormat.VdfNode
+  parent: LlamaLogic.ValveDataFormat
+  href: LlamaLogic.ValveDataFormat.VdfNode.html
+  name: VdfNode
+  nameWithType: VdfNode
+  fullName: LlamaLogic.ValveDataFormat.VdfNode
+- uid: System.IEquatable{LlamaLogic.ValveDataFormat.VdfNode}
+  commentId: T:System.IEquatable{LlamaLogic.ValveDataFormat.VdfNode}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<VdfNode>
+  nameWithType: IEquatable<VdfNode>
+  fullName: System.IEquatable<LlamaLogic.ValveDataFormat.VdfNode>
+  nameWithType.vb: IEquatable(Of VdfNode)
+  fullName.vb: System.IEquatable(Of LlamaLogic.ValveDataFormat.VdfNode)
+  name.vb: IEquatable(Of VdfNode)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: )
+- uid: System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}
+  commentId: T:System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<VdfSection>
+  nameWithType: IEquatable<VdfSection>
+  fullName: System.IEquatable<LlamaLogic.ValveDataFormat.VdfSection>
+  nameWithType.vb: IEquatable(Of VdfSection)
+  fullName.vb: System.IEquatable(Of LlamaLogic.ValveDataFormat.VdfSection)
+  name.vb: IEquatable(Of VdfSection)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.ValveDataFormat.VdfSection
+    name: VdfSection
+    href: LlamaLogic.ValveDataFormat.VdfSection.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.ValveDataFormat.VdfSection
+    name: VdfSection
+    href: LlamaLogic.ValveDataFormat.VdfSection.html
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.Deserialize(System.IO.StreamReader)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Deserialize(System.IO.StreamReader)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Deserialize_System_IO_StreamReader_
+  name: Deserialize(StreamReader)
+  nameWithType: VdfNode.Deserialize(StreamReader)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.Deserialize(System.IO.StreamReader)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Deserialize(System.IO.StreamReader)
+    name: Deserialize
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Deserialize_System_IO_StreamReader_
+  - name: (
+  - uid: System.IO.StreamReader
+    name: StreamReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.streamreader
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Deserialize(System.IO.StreamReader)
+    name: Deserialize
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Deserialize_System_IO_StreamReader_
+  - name: (
+  - uid: System.IO.StreamReader
+    name: StreamReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.streamreader
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.DeserializeAsync(System.IO.StreamReader)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.DeserializeAsync(System.IO.StreamReader)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_DeserializeAsync_System_IO_StreamReader_
+  name: DeserializeAsync(StreamReader)
+  nameWithType: VdfNode.DeserializeAsync(StreamReader)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.DeserializeAsync(System.IO.StreamReader)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.DeserializeAsync(System.IO.StreamReader)
+    name: DeserializeAsync
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_DeserializeAsync_System_IO_StreamReader_
+  - name: (
+  - uid: System.IO.StreamReader
+    name: StreamReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.streamreader
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.DeserializeAsync(System.IO.StreamReader)
+    name: DeserializeAsync
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_DeserializeAsync_System_IO_StreamReader_
+  - name: (
+  - uid: System.IO.StreamReader
+    name: StreamReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.streamreader
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.Parse(System.String)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Parse(System.String)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Parse_System_String_
+  name: Parse(string)
+  nameWithType: VdfNode.Parse(string)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.Parse(string)
+  nameWithType.vb: VdfNode.Parse(String)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfNode.Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Parse(System.String)
+    name: Parse
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Parse(System.String)
+    name: Parse
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.TryParse(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}@)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.TryParse(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}@)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_TryParse_System_String_System_Collections_Generic_IReadOnlyList_LlamaLogic_ValveDataFormat_VdfNode___
+  name: TryParse(string, out IReadOnlyList<VdfNode>)
+  nameWithType: VdfNode.TryParse(string, out IReadOnlyList<VdfNode>)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.TryParse(string, out System.Collections.Generic.IReadOnlyList<LlamaLogic.ValveDataFormat.VdfNode>)
+  nameWithType.vb: VdfNode.TryParse(String, IReadOnlyList(Of VdfNode))
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfNode.TryParse(String, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.ValveDataFormat.VdfNode))
+  name.vb: TryParse(String, IReadOnlyList(Of VdfNode))
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.TryParse(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}@)
+    name: TryParse
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_TryParse_System_String_System_Collections_Generic_IReadOnlyList_LlamaLogic_ValveDataFormat_VdfNode___
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.TryParse(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}@)
+    name: TryParse
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_TryParse_System_String_System_Collections_Generic_IReadOnlyList_LlamaLogic_ValveDataFormat_VdfNode___
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: )
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.TrailingComment
+  commentId: P:LlamaLogic.ValveDataFormat.VdfNode.TrailingComment
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_TrailingComment
+  name: TrailingComment
+  nameWithType: VdfNode.TrailingComment
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.TrailingComment
+- uid: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Serialize_System_IO_StringWriter_
+  name: Serialize(StringWriter)
+  nameWithType: VdfNode.Serialize(StringWriter)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+    name: Serialize
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Serialize_System_IO_StringWriter_
+  - name: (
+  - uid: System.IO.StringWriter
+    name: StringWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stringwriter
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+    name: Serialize
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Serialize_System_IO_StringWriter_
+  - name: (
+  - uid: System.IO.StringWriter
+    name: StringWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stringwriter
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_SerializeAsync_System_IO_StringWriter_
+  name: SerializeAsync(StringWriter)
+  nameWithType: VdfNode.SerializeAsync(StringWriter)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+    name: SerializeAsync
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_SerializeAsync_System_IO_StringWriter_
+  - name: (
+  - uid: System.IO.StringWriter
+    name: StringWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stringwriter
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+    name: SerializeAsync
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_SerializeAsync_System_IO_StringWriter_
+  - name: (
+  - uid: System.IO.StringWriter
+    name: StringWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stringwriter
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.ToString
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.ToString
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_ToString
+  name: ToString()
+  nameWithType: VdfNode.ToString()
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.ToString()
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.ToString
+    name: ToString
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.ToString
+    name: ToString
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_ToString
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfSection.op_Equality*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.op_Equality
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_op_Equality_LlamaLogic_ValveDataFormat_VdfSection_LlamaLogic_ValveDataFormat_VdfSection_
+  name: operator ==
+  nameWithType: VdfSection.operator ==
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.operator ==
+  nameWithType.vb: VdfSection.=
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: LlamaLogic.ValveDataFormat.VdfSection.op_Equality*
+    name: ==
+    href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_op_Equality_LlamaLogic_ValveDataFormat_VdfSection_LlamaLogic_ValveDataFormat_VdfSection_
+- uid: LlamaLogic.ValveDataFormat.VdfSection
+  commentId: T:LlamaLogic.ValveDataFormat.VdfSection
+  parent: LlamaLogic.ValveDataFormat
+  href: LlamaLogic.ValveDataFormat.VdfSection.html
+  name: VdfSection
+  nameWithType: VdfSection
+  fullName: LlamaLogic.ValveDataFormat.VdfSection
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.ValveDataFormat.VdfSection.op_Inequality*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.op_Inequality
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_op_Inequality_LlamaLogic_ValveDataFormat_VdfSection_LlamaLogic_ValveDataFormat_VdfSection_
+  name: operator !=
+  nameWithType: VdfSection.operator !=
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.operator !=
+  nameWithType.vb: VdfSection.<>
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: LlamaLogic.ValveDataFormat.VdfSection.op_Inequality*
+    name: '!='
+    href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_op_Inequality_LlamaLogic_ValveDataFormat_VdfSection_LlamaLogic_ValveDataFormat_VdfSection_
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Nodes*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.Nodes
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_Nodes
+  name: Nodes
+  nameWithType: VdfSection.Nodes
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.Nodes
+- uid: System.Collections.Generic.IList{LlamaLogic.ValveDataFormat.VdfNode}
+  commentId: T:System.Collections.Generic.IList{LlamaLogic.ValveDataFormat.VdfNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<VdfNode>
+  nameWithType: IList<VdfNode>
+  fullName: System.Collections.Generic.IList<LlamaLogic.ValveDataFormat.VdfNode>
+  nameWithType.vb: IList(Of VdfNode)
+  fullName.vb: System.Collections.Generic.IList(Of LlamaLogic.ValveDataFormat.VdfNode)
+  name.vb: IList(Of VdfNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_OpeningTrailingComment
+  name: OpeningTrailingComment
+  nameWithType: VdfSection.OpeningTrailingComment
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.OpeningTrailingComment
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.ValveDataFormat.VdfKeyValuePair.Value
+  commentId: P:LlamaLogic.ValveDataFormat.VdfKeyValuePair.Value
+  href: LlamaLogic.ValveDataFormat.VdfKeyValuePair.html#LlamaLogic_ValveDataFormat_VdfKeyValuePair_Value
+  name: Value
+  nameWithType: VdfKeyValuePair.Value
+  fullName: LlamaLogic.ValveDataFormat.VdfKeyValuePair.Value
+- uid: LlamaLogic.ValveDataFormat.VdfKeyValuePair
+  commentId: T:LlamaLogic.ValveDataFormat.VdfKeyValuePair
+  parent: LlamaLogic.ValveDataFormat
+  href: LlamaLogic.ValveDataFormat.VdfKeyValuePair.html
+  name: VdfKeyValuePair
+  nameWithType: VdfKeyValuePair
+  fullName: LlamaLogic.ValveDataFormat.VdfKeyValuePair
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Item*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.Item
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_Item_System_Int32_
+  name: this
+  nameWithType: VdfSection.this
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.this
+  nameWithType.vb: VdfSection.this[]
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfSection.this[]
+  name.vb: this[]
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.ValveDataFormat.VdfNode.Equals(System.Object)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Equals(System.Object)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  isExternal: true
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Equals_System_Object_
+  name: Equals(object)
+  nameWithType: VdfNode.Equals(object)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.Equals(object)
+  nameWithType.vb: VdfNode.Equals(Object)
+  fullName.vb: LlamaLogic.ValveDataFormat.VdfNode.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Equals(System.Object)
+    name: Equals
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Equals(System.Object)
+    name: Equals
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Equals_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfSection.Equals*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.Equals
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_Equals_System_Object_
+  name: Equals
+  nameWithType: VdfSection.Equals
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.Equals
+- uid: LlamaLogic.ValveDataFormat.VdfNode.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Equals_LlamaLogic_ValveDataFormat_VdfNode_
+  name: Equals(VdfNode)
+  nameWithType: VdfNode.Equals(VdfNode)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+    name: Equals
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Equals_LlamaLogic_ValveDataFormat_VdfNode_
+  - name: (
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.Equals(LlamaLogic.ValveDataFormat.VdfNode)
+    name: Equals
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Equals_LlamaLogic_ValveDataFormat_VdfNode_
+  - name: (
+  - uid: LlamaLogic.ValveDataFormat.VdfNode
+    name: VdfNode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html
+  - name: )
+- uid: System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  commentId: M:System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  parent: System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(VdfSection)
+  nameWithType: IEquatable<VdfSection>.Equals(VdfSection)
+  fullName: System.IEquatable<LlamaLogic.ValveDataFormat.VdfSection>.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  nameWithType.vb: IEquatable(Of VdfSection).Equals(VdfSection)
+  fullName.vb: System.IEquatable(Of LlamaLogic.ValveDataFormat.VdfSection).Equals(LlamaLogic.ValveDataFormat.VdfSection)
+  spec.csharp:
+  - uid: System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: LlamaLogic.ValveDataFormat.VdfSection
+    name: VdfSection
+    href: LlamaLogic.ValveDataFormat.VdfSection.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{LlamaLogic.ValveDataFormat.VdfSection}.Equals(LlamaLogic.ValveDataFormat.VdfSection)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: LlamaLogic.ValveDataFormat.VdfSection
+    name: VdfSection
+    href: LlamaLogic.ValveDataFormat.VdfSection.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfNode.GetHashCode
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.GetHashCode
+  parent: LlamaLogic.ValveDataFormat.VdfNode
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_GetHashCode
+  name: GetHashCode()
+  nameWithType: VdfNode.GetHashCode()
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.GetHashCode()
+  spec.csharp:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.GetHashCode
+    name: GetHashCode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_GetHashCode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.ValveDataFormat.VdfNode.GetHashCode
+    name: GetHashCode
+    href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_GetHashCode
+  - name: (
+  - name: )
+- uid: LlamaLogic.ValveDataFormat.VdfSection.GetHashCode*
+  commentId: Overload:LlamaLogic.ValveDataFormat.VdfSection.GetHashCode
+  href: LlamaLogic.ValveDataFormat.VdfSection.html#LlamaLogic_ValveDataFormat_VdfSection_GetHashCode
+  name: GetHashCode
+  nameWithType: VdfSection.GetHashCode
+  fullName: LlamaLogic.ValveDataFormat.VdfSection.GetHashCode
