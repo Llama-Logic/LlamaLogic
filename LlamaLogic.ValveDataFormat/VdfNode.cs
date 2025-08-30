@@ -10,8 +10,10 @@ public class VdfNode :
     {
         InNodeList,
         InKey,
+        InKeyEscapeSequence,
         InBetweenKeyAndValue,
         InScalarValue,
+        InScalarValueEscapeSequence,
         InCommentDelimiter,
         InKeyTrailingCommentDelimiter,
         InBeforeNodeListCommentDelimiter,
@@ -84,6 +86,30 @@ public class VdfNode :
                 builder.Clear();
                 mode = ParserMode.InNodeList;
                 return;
+            case '\\' when mode is ParserMode.InKey:
+                mode = ParserMode.InKeyEscapeSequence;
+                return;
+            case '\\' when mode is ParserMode.InScalarValue:
+                mode = ParserMode.InScalarValueEscapeSequence;
+                return;
+            case '\\' when mode is ParserMode.InKeyEscapeSequence:
+                builder.Append('\\');
+                mode = ParserMode.InKey;
+                return;
+            case '\\' when mode is ParserMode.InScalarValueEscapeSequence:
+                builder.Append('\\');
+                mode = ParserMode.InScalarValue;
+                return;
+            case '\"' when mode is ParserMode.InKeyEscapeSequence:
+                builder.Append('\"');
+                mode = ParserMode.InKey;
+                return;
+            case '\"' when mode is ParserMode.InScalarValueEscapeSequence:
+                builder.Append('\"');
+                mode = ParserMode.InScalarValue;
+                return;
+            case not ('\\' or '\"') when mode is ParserMode.InKeyEscapeSequence or ParserMode.InScalarValueEscapeSequence:
+                throw new FormatException("Unknown escape sequence");
             case not '\"' when mode is ParserMode.InKey or ParserMode.InScalarValue:
                 builder.Append(c);
                 return;

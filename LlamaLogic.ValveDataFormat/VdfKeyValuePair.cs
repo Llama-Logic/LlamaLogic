@@ -64,9 +64,7 @@ public sealed class VdfKeyValuePair() :
     {
         for (var i = 0; i < depth; ++i)
             writer.Write('\t');
-        if (Key.Contains('\"', StringComparison.Ordinal))
-            throw new InvalidOperationException("Keys cannot contain quotes");
-        writer.Write($"\"{Key}\"");
+        writer.Write($"\"{Key.Replace(@"\", @"\\", StringComparison.Ordinal).Replace(@"""", @"\""", StringComparison.Ordinal)}\"");
         if (KeyTrailingComment is { } keyTrailingComment)
             writer.Write($"\t\t// {keyTrailingComment}");
         if (Value is VdfSection section)
@@ -86,9 +84,7 @@ public sealed class VdfKeyValuePair() :
                     writer.Write('\t');
             }
             var value = Value?.ToString() ?? string.Empty;
-            if (value.Contains('\"', StringComparison.Ordinal))
-                throw new InvalidOperationException("Values cannot contain quotes");
-            writer.Write($"\t\t\"{value}\"");
+            writer.Write($"\t\t\"{value.Replace(@"\", @"\\", StringComparison.Ordinal).Replace(@"""", @"\""", StringComparison.Ordinal)}\"");
             if (TrailingComment is { } trailingComment)
                 writer.WriteLine($"\t\t// {trailingComment}");
             else
@@ -100,8 +96,6 @@ public sealed class VdfKeyValuePair() :
     {
         for (var i = 0; i < depth; ++i)
             await writer.WriteAsync('\t').ConfigureAwait(false);
-        if (Key.Contains('\"', StringComparison.Ordinal))
-            throw new InvalidOperationException("Keys cannot contain quotes");
         await writer.WriteAsync($"\"{Key}\"").ConfigureAwait(false);
         if (KeyTrailingComment is { } keyTrailingComment)
             await writer.WriteAsync($"\t\t// {keyTrailingComment}").ConfigureAwait(false);
@@ -122,8 +116,6 @@ public sealed class VdfKeyValuePair() :
                     await writer.WriteAsync('\t').ConfigureAwait(false);
             }
             var value = Value?.ToString() ?? string.Empty;
-            if (value.Contains('\"', StringComparison.Ordinal))
-                throw new InvalidOperationException("Values cannot contain quotes");
             await writer.WriteAsync($"\t\t\"{value}\"").ConfigureAwait(false);
             if (TrailingComment is { } trailingComment)
                 await writer.WriteLineAsync($"\t\t// {trailingComment}").ConfigureAwait(false);
