@@ -250,13 +250,13 @@ public class VdfNode :
     /// <summary>
     /// Serializes this <see cref="VdfNode"/> to the specified <paramref name="writer"/>
     /// </summary>
-    public void Serialize(StringWriter writer)
+    public void Serialize(StreamWriter writer)
     {
         ArgumentNullException.ThrowIfNull(writer);
         Serialize(writer, 0);
     }
 
-    internal virtual void Serialize(StringWriter writer, int depth)
+    internal virtual void Serialize(StreamWriter writer, int depth)
     {
         for (var i = 0; i < depth; ++i)
             writer.Write('\t');
@@ -269,13 +269,13 @@ public class VdfNode :
     /// <summary>
     /// Serializes this <see cref="VdfNode"/> to the specified <paramref name="writer"/> asynchronously
     /// </summary>
-    public async ValueTask SerializeAsync(StringWriter writer)
+    public async ValueTask SerializeAsync(StreamWriter writer)
     {
         ArgumentNullException.ThrowIfNull(writer);
         await SerializeAsync(writer, 0).ConfigureAwait(false);
     }
 
-    internal virtual async ValueTask SerializeAsync(StringWriter writer, int depth)
+    internal virtual async ValueTask SerializeAsync(StreamWriter writer, int depth)
     {
         for (var i = 0; i < depth; ++i)
             await writer.WriteAsync('\t').ConfigureAwait(false);
@@ -288,8 +288,10 @@ public class VdfNode :
     /// <inheritdoc/>
     public override string ToString()
     {
-        using var writer = new StringWriter();
+        using var memoryStream = new MemoryStream();
+        using var writer = new StreamWriter(memoryStream);
         Serialize(writer);
-        return writer.ToString();
+        writer.Flush();
+        return Encoding.UTF8.GetString(memoryStream.ToArray());
     }
 }

@@ -60,7 +60,7 @@ public sealed class VdfKeyValuePair() :
             base.GetHashCode()
         );
 
-    internal override void Serialize(StringWriter writer, int depth)
+    internal override void Serialize(StreamWriter writer, int depth)
     {
         for (var i = 0; i < depth; ++i)
             writer.Write('\t');
@@ -92,7 +92,7 @@ public sealed class VdfKeyValuePair() :
         }
     }
 
-    internal override async ValueTask SerializeAsync(StringWriter writer, int depth)
+    internal override async ValueTask SerializeAsync(StreamWriter writer, int depth)
     {
         for (var i = 0; i < depth; ++i)
             await writer.WriteAsync('\t').ConfigureAwait(false);

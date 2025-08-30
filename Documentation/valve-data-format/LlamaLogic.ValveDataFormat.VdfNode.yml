@@ -11,8 +11,8 @@ items:
   - LlamaLogic.ValveDataFormat.VdfNode.Equals(System.Object)
   - LlamaLogic.ValveDataFormat.VdfNode.GetHashCode
   - LlamaLogic.ValveDataFormat.VdfNode.Parse(System.String)
-  - LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
-  - LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+  - LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StreamWriter)
+  - LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StreamWriter)
   - LlamaLogic.ValveDataFormat.VdfNode.ToString
   - LlamaLogic.ValveDataFormat.VdfNode.TrailingComment
   - LlamaLogic.ValveDataFormat.VdfNode.TryParse(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}@)
@@ -413,16 +413,16 @@ items:
     content.vb: Public Overrides Function GetHashCode() As Integer
   overridden: System.Object.GetHashCode
   overload: LlamaLogic.ValveDataFormat.VdfNode.GetHashCode*
-- uid: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
-  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
-  id: Serialize(System.IO.StringWriter)
+- uid: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StreamWriter)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StreamWriter)
+  id: Serialize(System.IO.StreamWriter)
   parent: LlamaLogic.ValveDataFormat.VdfNode
   langs:
   - csharp
   - vb
-  name: Serialize(StringWriter)
-  nameWithType: VdfNode.Serialize(StringWriter)
-  fullName: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StringWriter)
+  name: Serialize(StreamWriter)
+  nameWithType: VdfNode.Serialize(StreamWriter)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.Serialize(System.IO.StreamWriter)
   type: Method
   source:
     remote:
@@ -438,22 +438,22 @@ items:
   summary: Serializes this <xref href="LlamaLogic.ValveDataFormat.VdfNode" data-throw-if-not-resolved="false"></xref> to the specified <code class="paramref">writer</code>
   example: []
   syntax:
-    content: public void Serialize(StringWriter writer)
+    content: public void Serialize(StreamWriter writer)
     parameters:
     - id: writer
-      type: System.IO.StringWriter
-    content.vb: Public Sub Serialize(writer As StringWriter)
+      type: System.IO.StreamWriter
+    content.vb: Public Sub Serialize(writer As StreamWriter)
   overload: LlamaLogic.ValveDataFormat.VdfNode.Serialize*
-- uid: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
-  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
-  id: SerializeAsync(System.IO.StringWriter)
+- uid: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StreamWriter)
+  commentId: M:LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StreamWriter)
+  id: SerializeAsync(System.IO.StreamWriter)
   parent: LlamaLogic.ValveDataFormat.VdfNode
   langs:
   - csharp
   - vb
-  name: SerializeAsync(StringWriter)
-  nameWithType: VdfNode.SerializeAsync(StringWriter)
-  fullName: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StringWriter)
+  name: SerializeAsync(StreamWriter)
+  nameWithType: VdfNode.SerializeAsync(StreamWriter)
+  fullName: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync(System.IO.StreamWriter)
   type: Method
   source:
     remote:
@@ -469,13 +469,13 @@ items:
   summary: Serializes this <xref href="LlamaLogic.ValveDataFormat.VdfNode" data-throw-if-not-resolved="false"></xref> to the specified <code class="paramref">writer</code> asynchronously
   example: []
   syntax:
-    content: public ValueTask SerializeAsync(StringWriter writer)
+    content: public ValueTask SerializeAsync(StreamWriter writer)
     parameters:
     - id: writer
-      type: System.IO.StringWriter
+      type: System.IO.StreamWriter
     return:
       type: System.Threading.Tasks.ValueTask
-    content.vb: Public Function SerializeAsync(writer As StringWriter) As ValueTask
+    content.vb: Public Function SerializeAsync(writer As StreamWriter) As ValueTask
   overload: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync*
 - uid: LlamaLogic.ValveDataFormat.VdfNode.ToString
   commentId: M:LlamaLogic.ValveDataFormat.VdfNode.ToString
@@ -1220,21 +1220,21 @@ references:
   name.vb: Integer
 - uid: LlamaLogic.ValveDataFormat.VdfNode.Serialize*
   commentId: Overload:LlamaLogic.ValveDataFormat.VdfNode.Serialize
-  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Serialize_System_IO_StringWriter_
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_Serialize_System_IO_StreamWriter_
   name: Serialize
   nameWithType: VdfNode.Serialize
   fullName: LlamaLogic.ValveDataFormat.VdfNode.Serialize
-- uid: System.IO.StringWriter
-  commentId: T:System.IO.StringWriter
+- uid: System.IO.StreamWriter
+  commentId: T:System.IO.StreamWriter
   parent: System.IO
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.io.stringwriter
-  name: StringWriter
-  nameWithType: StringWriter
-  fullName: System.IO.StringWriter
+  href: https://learn.microsoft.com/dotnet/api/system.io.streamwriter
+  name: StreamWriter
+  nameWithType: StreamWriter
+  fullName: System.IO.StreamWriter
 - uid: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync*
   commentId: Overload:LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync
-  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_SerializeAsync_System_IO_StringWriter_
+  href: LlamaLogic.ValveDataFormat.VdfNode.html#LlamaLogic_ValveDataFormat_VdfNode_SerializeAsync_System_IO_StreamWriter_
   name: SerializeAsync
   nameWithType: VdfNode.SerializeAsync
   fullName: LlamaLogic.ValveDataFormat.VdfNode.SerializeAsync
