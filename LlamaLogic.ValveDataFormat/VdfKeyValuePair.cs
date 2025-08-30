@@ -96,7 +96,7 @@ public sealed class VdfKeyValuePair() :
     {
         for (var i = 0; i < depth; ++i)
             await writer.WriteAsync('\t').ConfigureAwait(false);
-        await writer.WriteAsync($"\"{Key}\"").ConfigureAwait(false);
+        await writer.WriteAsync($"\"{Key.Replace(@"\", @"\\", StringComparison.Ordinal).Replace(@"""", @"\""", StringComparison.Ordinal)}\"").ConfigureAwait(false);
         if (KeyTrailingComment is { } keyTrailingComment)
             await writer.WriteAsync($"\t\t// {keyTrailingComment}").ConfigureAwait(false);
         if (Value is VdfSection section)
@@ -116,7 +116,7 @@ public sealed class VdfKeyValuePair() :
                     await writer.WriteAsync('\t').ConfigureAwait(false);
             }
             var value = Value?.ToString() ?? string.Empty;
-            await writer.WriteAsync($"\t\t\"{value}\"").ConfigureAwait(false);
+            await writer.WriteAsync($"\t\t\"{value.Replace(@"\", @"\\", StringComparison.Ordinal).Replace(@"""", @"\""", StringComparison.Ordinal)}\"").ConfigureAwait(false);
             if (TrailingComment is { } trailingComment)
                 await writer.WriteLineAsync($"\t\t// {trailingComment}").ConfigureAwait(false);
             else
