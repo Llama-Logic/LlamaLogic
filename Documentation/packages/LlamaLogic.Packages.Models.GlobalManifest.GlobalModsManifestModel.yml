@@ -6,6 +6,7 @@ items:
   parent: LlamaLogic.Packages.Models.GlobalManifest
   children:
   - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks
   - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Encode
   - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
   - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
@@ -156,6 +157,37 @@ items:
   nameWithType.vb: GlobalModsManifestModel.Decode(ReadOnlyMemory(Of Byte))
   fullName.vb: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.Decode(System.ReadOnlyMemory(Of Byte))
   name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks
+  commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks
+  id: DisabledPacks
+  parent: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  langs:
+  - csharp
+  - vb
+  name: DisabledPacks
+  nameWithType: GlobalModsManifestModel.DisabledPacks
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: DisabledPacks
+    path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.GlobalManifest
+  summary: Gets the collection of pack codes that the launcher has specified as disabled
+  example: []
+  syntax:
+    content: public Collection<string> DisabledPacks { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.String}
+    content.vb: Public Property DisabledPacks As Collection(Of String)
+  overload: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks*
 - uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
   commentId: P:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
   id: InstalledPacks
@@ -174,7 +206,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: InstalledPacks
     path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
-    startLine: 45
+    startLine: 50
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.GlobalManifest
@@ -205,7 +237,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ManifestedModFiles
     path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
-    startLine: 50
+    startLine: 55
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.GlobalManifest
@@ -236,7 +268,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
-    startLine: 53
+    startLine: 58
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.GlobalManifest
@@ -270,7 +302,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/GlobalManifest/GlobalModsManifestModel.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.GlobalManifest
@@ -1155,12 +1187,12 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks*
-  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
-  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_InstalledPacks
-  name: InstalledPacks
-  nameWithType: GlobalModsManifestModel.InstalledPacks
-  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_DisabledPacks
+  name: DisabledPacks
+  nameWithType: GlobalModsManifestModel.DisabledPacks
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.DisabledPacks
 - uid: System.Collections.ObjectModel.Collection{System.String}
   commentId: T:System.Collections.ObjectModel.Collection{System.String}
   parent: System.Collections.ObjectModel
@@ -1261,6 +1293,12 @@ references:
     name: ObjectModel
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks*
+  commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
+  href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_InstalledPacks
+  name: InstalledPacks
+  nameWithType: GlobalModsManifestModel.InstalledPacks
+  fullName: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.InstalledPacks
 - uid: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles*
   commentId: Overload:LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.ManifestedModFiles
   href: LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel.html#LlamaLogic_Packages_Models_GlobalManifest_GlobalModsManifestModel_ManifestedModFiles

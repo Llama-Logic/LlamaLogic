@@ -41,6 +41,11 @@ public sealed class GlobalModsManifestModel :
     }
 
     /// <summary>
+    /// Gets the collection of pack codes that the launcher has specified as disabled
+    /// </summary>
+    public Collection<string> DisabledPacks { get; private set; } = [];
+
+    /// <summary>
     /// Gets the collection of pack codes for this game installation's installed packs
     /// </summary>
     public Collection<string> InstalledPacks { get; private set; } = [];
@@ -88,7 +93,9 @@ public sealed class GlobalModsManifestModel :
             {
                 using var childReader = child.CreateReader();
                 childReader.MoveToContent();
-                if (tunableName == "installed_packs")
+                if (tunableName == "disabled_packs")
+                    DisabledPacks.AddRange(childReader.ReadTunableList());
+                else if (tunableName == "installed_packs")
                     InstalledPacks.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "manifested_mod_files")
                     ManifestedModFiles.AddRange(childReader.ReadTunableTupleList<GlobalModsManifestModelManifestedModFile>());
@@ -105,6 +112,7 @@ public sealed class GlobalModsManifestModel :
         writer.WriteAttributeString("n", tuningName);
         writer.WriteAttributeString("s", ResourceKey.FullInstance.ToString());
         writer.WriteTunableList("installed_packs", InstalledPacks);
+        writer.WriteTunableList("disabled_packs", DisabledPacks);
         writer.WriteTunableList("manifested_mod_files", ManifestedModFiles);
         writer.WriteEndElement();
     }
