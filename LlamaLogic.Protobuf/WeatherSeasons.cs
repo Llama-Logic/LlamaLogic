@@ -138,7 +138,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5, Name = @"next_weather_event_time", IsRequired = true)]
         public ulong NextWeatherEventTime { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"forecasts", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"forecasts")]
         public ulong[] Forecasts { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"override_forecast")]
@@ -182,7 +182,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"weather_type_enums", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"weather_type_enums")]
         public long[] WeatherTypeEnums { get; set; }
 
     }
@@ -194,7 +194,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"forecast_instance_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"forecast_instance_ids")]
         public ulong[] ForecastInstanceIds { get; set; }
 
     }
@@ -267,7 +267,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"forecast_moon_phases", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"forecast_moon_phases")]
         public global::System.Collections.Generic.List<MoonPhase> ForecastMoonPhases { get; } = new global::System.Collections.Generic.List<MoonPhase>();
 
         [global::ProtoBuf.ProtoContract()]

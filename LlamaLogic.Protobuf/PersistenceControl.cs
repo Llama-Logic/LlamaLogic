@@ -53,7 +53,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"tutorial_tips", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"tutorial_tips", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] TutorialTips { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"tutorial_mode")]

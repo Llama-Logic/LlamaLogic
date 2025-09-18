@@ -294,7 +294,7 @@ namespace EA.Sims4.Persistence
         public void ResetExceptHousehold() => __pbn__ExceptHousehold = null;
         private bool? __pbn__ExceptHousehold;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"exception_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"exception_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] ExceptionSimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"participant_enum", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -307,10 +307,10 @@ namespace EA.Sims4.Persistence
         public void ResetParticipantEnum() => __pbn__ParticipantEnum = null;
         private ulong? __pbn__ParticipantEnum;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"situation_jobs", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(8, Name = @"situation_jobs", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SituationJobs { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"role_tags", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(9, Name = @"role_tags", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] RoleTags { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"negate")]
@@ -333,7 +333,7 @@ namespace EA.Sims4.Persistence
         public void ResetExceptRetailEmployee() => __pbn__ExceptRetailEmployee = null;
         private bool? __pbn__ExceptRetailEmployee;
 
-        [global::ProtoBuf.ProtoMember(12, Name = @"locked_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(12, Name = @"locked_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] LockedSimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(13, Name = @"gender", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -346,10 +346,10 @@ namespace EA.Sims4.Persistence
         public void ResetGender() => __pbn__Gender = null;
         private ulong? __pbn__Gender;
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"ages", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(14, Name = @"ages", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Ages { get; set; }
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"species", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(15, Name = @"species", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Species { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"match_type")]
@@ -392,10 +392,10 @@ namespace EA.Sims4.Persistence
         public void ResetThresholdComparison() => __pbn__ThresholdComparison = null;
         private uint? __pbn__ThresholdComparison;
 
-        [global::ProtoBuf.ProtoMember(20, Name = @"buff_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(20, Name = @"buff_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] BuffIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(21, Name = @"creature_types", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(21, Name = @"creature_types")]
         public uint[] CreatureTypes { get; set; }
 
     }
@@ -472,7 +472,7 @@ namespace EA.Sims4.Persistence
         public void ResetValue() => __pbn__Value = null;
         private float? __pbn__Value;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"bits", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"bits")]
         public ulong[] Bits { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"timeouts")]
@@ -545,7 +545,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"trait_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"trait_ids")]
         public ulong[] TraitIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"num_traits")]
@@ -568,7 +568,7 @@ namespace EA.Sims4.Persistence
         public void ResetKnowsCareer() => __pbn__KnowsCareer = null;
         private bool? __pbn__KnowsCareer;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"stats", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"stats")]
         public ulong[] Stats { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"knows_major")]
@@ -601,10 +601,10 @@ namespace EA.Sims4.Persistence
         public void ResetKnowsWoohooPreference() => __pbn__KnowsWoohooPreference = null;
         private bool? __pbn__KnowsWoohooPreference;
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"known_romantic_genders", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(8, Name = @"known_romantic_genders")]
         public uint[] KnownRomanticGenders { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"known_woohoo_genders", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(9, Name = @"known_woohoo_genders")]
         public uint[] KnownWoohooGenders { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"known_exploring_sexuality")]
@@ -630,10 +630,10 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(12, Name = @"confronted_secrets")]
         public global::System.Collections.Generic.List<ConfrontedSimSecret> ConfrontedSecrets { get; } = new global::System.Collections.Generic.List<ConfrontedSimSecret>();
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"known_relationship_expectations_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(13, Name = @"known_relationship_expectations_ids")]
         public uint[] KnownRelationshipExpectationsIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"known_rel_tracks", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(14, Name = @"known_rel_tracks")]
         public ulong[] KnownRelTracks { get; set; }
 
         [global::ProtoBuf.ProtoMember(15, Name = @"known_net_worth")]
@@ -753,7 +753,7 @@ namespace EA.Sims4.Persistence
         public void ResetBitId() => __pbn__BitId = null;
         private ulong? __pbn__BitId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"buff_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"buff_ids")]
         public ulong[] BuffIds { get; set; }
 
     }
@@ -1306,7 +1306,7 @@ namespace EA.Sims4.Persistence
         public void ResetSituationId() => __pbn__SituationId = null;
         private ulong? __pbn__SituationId;
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"executed_phases", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(15, Name = @"executed_phases")]
         public ulong[] ExecutedPhases { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"defined_ingredients")]
@@ -1623,8 +1623,41 @@ namespace EA.Sims4.Persistence
         public void ResetMilestoneGuid() => __pbn__MilestoneGuid = null;
         private ulong? __pbn__MilestoneGuid;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"objective_guids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"objective_guids")]
         public ulong[] ObjectiveGuids { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SuggestedAspiration : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"visible_suggested_aspirations")]
+        public ulong[] VisibleSuggestedAspirations { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"invisible_suggested_aspirations")]
+        public ulong[] InvisibleSuggestedAspirations { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"cool_down_dict")]
+        public global::System.Collections.Generic.List<CoolDownAspiration> CoolDownDicts { get; } = new global::System.Collections.Generic.List<CoolDownAspiration>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CoolDownAspiration : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"aspiration", IsRequired = true)]
+        public ulong Aspiration { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"timestamp", IsRequired = true)]
+        public ulong Timestamp { get; set; }
 
     }
 
@@ -1635,16 +1668,16 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"milestones_completed", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"milestones_completed")]
         public ulong[] MilestonesCompleteds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"objectives_completed", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"objectives_completed")]
         public ulong[] ObjectivesCompleteds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"data")]
         public EventDataObject Data { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"unlocked_hidden_aspiration_tracks", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"unlocked_hidden_aspiration_tracks")]
         public ulong[] UnlockedHiddenAspirationTracks { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"timed_aspirations")]
@@ -1655,6 +1688,19 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(7, Name = @"additional_objectives")]
         public global::System.Collections.Generic.List<AdditionalObjectives> AdditionalObjectives { get; } = new global::System.Collections.Generic.List<AdditionalObjectives>();
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"suggested_aspiration")]
+        public SuggestedAspiration SuggestedAspiration { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"childhood_inspirations_completed")]
+        public bool ChildhoodInspirationsCompleted
+        {
+            get => __pbn__ChildhoodInspirationsCompleted.GetValueOrDefault();
+            set => __pbn__ChildhoodInspirationsCompleted = value;
+        }
+        public bool ShouldSerializeChildhoodInspirationsCompleted() => __pbn__ChildhoodInspirationsCompleted != null;
+        public void ResetChildhoodInspirationsCompleted() => __pbn__ChildhoodInspirationsCompleted = null;
+        private bool? __pbn__ChildhoodInspirationsCompleted;
 
         public static partial class Extensions
         {
@@ -1692,7 +1738,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(6, Name = @"relationship_data")]
         public global::System.Collections.Generic.List<EventDataRelationshipData> RelationshipDatas { get; } = new global::System.Collections.Generic.List<EventDataRelationshipData>();
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"travel_data", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(8, Name = @"travel_data")]
         public ulong[] TravelDatas { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, Name = @"tag_data")]
@@ -1738,7 +1784,7 @@ namespace EA.Sims4.Persistence
         public void ResetObjectiveGuid64() => __pbn__ObjectiveGuid64 = null;
         private ulong? __pbn__ObjectiveGuid64;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"starting_values", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"starting_values")]
         public ulong[] StartingValues { get; set; }
 
     }
@@ -1899,7 +1945,7 @@ namespace EA.Sims4.Persistence
         public void ResetAmount() => __pbn__Amount = null;
         private uint? __pbn__Amount;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Ids { get; set; }
 
     }
@@ -2100,13 +2146,13 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(2, Name = @"sim_info_name_data")]
         public SimInfoNameData SimInfoNameData { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"sim_id_set", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"sim_id_set", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SimIdSets { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"sim_info_name_data_set")]
         public global::System.Collections.Generic.List<SimInfoNameData> SimInfoNameDataSets { get; } = new global::System.Collections.Generic.List<SimInfoNameData>();
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"sim_id_list", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"sim_id_list", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SimIdLists { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, Name = @"sim_info_name_data_list")]
@@ -2140,7 +2186,7 @@ namespace EA.Sims4.Persistence
         public void ResetDeprecatedSeed() => __pbn__DeprecatedSeed = null;
         private float? __pbn__DeprecatedSeed;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"parent_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"parent_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] ParentIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"last_modified")]
@@ -2191,7 +2237,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"enabled_permissions", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"enabled_permissions")]
         public ulong[] EnabledPermissions { get; set; }
 
         public static partial class Extensions
@@ -2241,7 +2287,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"trait_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"trait_ids")]
         public ulong[] TraitIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"gameplay_object_preference_map")]
@@ -2502,7 +2548,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"puddle_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"puddle_ids")]
         public ulong[] PuddleIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"is_active")]
@@ -3002,7 +3048,7 @@ namespace EA.Sims4.Persistence
         public void ResetState() => __pbn__State = null;
         private uint? __pbn__State;
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"temp_household_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"temp_household_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] TempHouseholdIds { get; set; }
 
     }
@@ -3049,10 +3095,10 @@ namespace EA.Sims4.Persistence
         public void ResetCrimeSceneEventId() => __pbn__CrimeSceneEventId = null;
         private ulong? __pbn__CrimeSceneEventId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"unused_clue_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"unused_clue_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] UnusedClueIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"used_clue_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"used_clue_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] UsedClueIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"case_start_time_in_minutes", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -3113,7 +3159,7 @@ namespace EA.Sims4.Persistence
         public void ResetGuid() => __pbn__Guid = null;
         private ulong? __pbn__Guid;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"claimed_object_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"claimed_object_ids")]
         public ulong[] ClaimedObjectIds { get; set; }
 
     }
@@ -3375,10 +3421,10 @@ namespace EA.Sims4.Persistence
         public void ResetShouldRestoreCareerState() => __pbn__ShouldRestoreCareerState = null;
         private bool? __pbn__ShouldRestoreCareerState;
 
-        [global::ProtoBuf.ProtoMember(28, Name = @"offered_assignments", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(28, Name = @"offered_assignments")]
         public ulong[] OfferedAssignments { get; set; }
 
-        [global::ProtoBuf.ProtoMember(29, Name = @"active_assignments", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(29, Name = @"active_assignments")]
         public ulong[] ActiveAssignments { get; set; }
 
         [global::ProtoBuf.ProtoMember(30, Name = @"pto_taken")]
@@ -3727,7 +3773,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(1, Name = @"fruit_spawners")]
         public global::System.Collections.Generic.List<FruitSpawner> FruitSpawners { get; } = new global::System.Collections.Generic.List<FruitSpawner>();
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"crop_weights", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"crop_weights")]
         public float[] CropWeights { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"default_definition_id")]
@@ -3839,7 +3885,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"spawned_obj_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"spawned_obj_ids")]
         public ulong[] SpawnedObjIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"spawner_initialized")]
@@ -4400,7 +4446,7 @@ namespace EA.Sims4.Persistence
             public void ResetObjectRecipeId() => __pbn__ObjectRecipeId = null;
             private ulong? __pbn__ObjectRecipeId;
 
-            [global::ProtoBuf.ProtoMember(2, Name = @"object_entry_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(2, Name = @"object_entry_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
             public ulong[] ObjectEntryIds { get; set; }
 
             [global::ProtoBuf.ProtoMember(3, Name = @"tuning_reference_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -4842,7 +4888,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"high_score_sim_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"high_score_sim_ids")]
         public ulong[] HighScoreSimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"high_score")]
@@ -4873,7 +4919,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"previous_sicknesses", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"previous_sicknesses")]
         public ulong[] PreviousSicknesses { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"current_sickness")]
@@ -4889,16 +4935,16 @@ namespace EA.Sims4.Persistence
             [global::ProtoBuf.ProtoMember(1, Name = @"sickness", IsRequired = true)]
             public ulong Sickness { get; set; }
 
-            [global::ProtoBuf.ProtoMember(2, Name = @"symptoms_discovered", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(2, Name = @"symptoms_discovered")]
             public ulong[] SymptomsDiscovereds { get; set; }
 
-            [global::ProtoBuf.ProtoMember(3, Name = @"exams_performed", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(3, Name = @"exams_performed")]
             public ulong[] ExamsPerformeds { get; set; }
 
-            [global::ProtoBuf.ProtoMember(4, Name = @"treatments_performed", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(4, Name = @"treatments_performed")]
             public ulong[] TreatmentsPerformeds { get; set; }
 
-            [global::ProtoBuf.ProtoMember(5, Name = @"treatments_ruled_out", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(5, Name = @"treatments_ruled_out")]
             public ulong[] TreatmentsRuledOuts { get; set; }
 
             [global::ProtoBuf.ProtoMember(6, Name = @"is_discovered", IsRequired = true)]
@@ -4924,7 +4970,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"known_relics", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"known_relics")]
         public ulong[] KnownRelics { get; set; }
 
         public static partial class Extensions
@@ -5132,7 +5178,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"situation_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"situation_ids")]
         public ulong[] SituationIds { get; set; }
 
         public static partial class Extensions
@@ -5163,7 +5209,7 @@ namespace EA.Sims4.Persistence
         public void ResetZoneId() => __pbn__ZoneId = null;
         private ulong? __pbn__ZoneId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"situation_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"situation_ids")]
         public ulong[] SituationIds { get; set; }
 
     }
@@ -5227,7 +5273,7 @@ namespace EA.Sims4.Persistence
         public void ResetGigTime() => __pbn__GigTime = null;
         private ulong? __pbn__GigTime;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"cast_list", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"cast_list")]
         public ulong[] CastLists { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"customer_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -5253,10 +5299,10 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(6, Name = @"mission_objective_data")]
         public global::System.Collections.Generic.List<MissionObjectiveData> MissionObjectiveDatas { get; } = new global::System.Collections.Generic.List<MissionObjectiveData>();
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"client_preferences", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(7, Name = @"client_preferences")]
         public ulong[] ClientPreferences { get; set; }
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"known_client_preferences", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(8, Name = @"known_client_preferences")]
         public ulong[] KnownClientPreferences { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, Name = @"client_lot_id")]
@@ -5496,7 +5542,7 @@ namespace EA.Sims4.Persistence
         public void ResetUniversityId() => __pbn__UniversityId = null;
         private ulong? __pbn__UniversityId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"degree_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"degree_ids")]
         public ulong[] DegreeIds { get; set; }
 
     }
@@ -5547,7 +5593,7 @@ namespace EA.Sims4.Persistence
         public void ResetUniversityId() => __pbn__UniversityId = null;
         private ulong? __pbn__UniversityId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"elective_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"elective_ids")]
         public ulong[] ElectiveIds { get; set; }
 
     }
@@ -5609,10 +5655,10 @@ namespace EA.Sims4.Persistence
         public void ResetTotalCourses() => __pbn__TotalCourses = null;
         private long? __pbn__TotalCourses;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"previous_majors", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"previous_majors")]
         public ulong[] PreviousMajors { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"previous_courses", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(7, Name = @"previous_courses")]
         public ulong[] PreviousCourses { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"current_courses")]
@@ -5701,13 +5747,13 @@ namespace EA.Sims4.Persistence
         public void ResetDiplomaMailTime() => __pbn__DiplomaMailTime = null;
         private ulong? __pbn__DiplomaMailTime;
 
-        [global::ProtoBuf.ProtoMember(18, Name = @"active_scholarships", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(18, Name = @"active_scholarships")]
         public ulong[] ActiveScholarships { get; set; }
 
-        [global::ProtoBuf.ProtoMember(19, Name = @"accepted_scholarships", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(19, Name = @"accepted_scholarships")]
         public ulong[] AcceptedScholarships { get; set; }
 
-        [global::ProtoBuf.ProtoMember(20, Name = @"rejected_scholarships", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(20, Name = @"rejected_scholarships")]
         public ulong[] RejectedScholarships { get; set; }
 
         [global::ProtoBuf.ProtoMember(21, Name = @"pending_scholarships")]
@@ -5811,7 +5857,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(2, Name = @"tasks_map")]
         public global::System.Collections.Generic.List<OrganizationActiveTasks> TasksMaps { get; } = new global::System.Collections.Generic.List<OrganizationActiveTasks>();
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"unenrolled_org_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"unenrolled_org_ids")]
         public ulong[] UnenrolledOrgIds { get; set; }
 
         public static partial class Extensions
@@ -6074,7 +6120,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"pending_fixups", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"pending_fixups")]
         public ulong[] PendingFixups { get; set; }
 
         public static partial class Extensions
@@ -6362,7 +6408,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"piece_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"piece_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] PieceIds { get; set; }
 
         public static partial class Extensions
@@ -6514,7 +6560,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"possible_fish_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"possible_fish_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] PossibleFishIds { get; set; }
 
     }
@@ -6568,10 +6614,10 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"like_preferences", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"like_preferences")]
         public uint[] LikePreferences { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"dislike_preferences", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"dislike_preferences")]
         public uint[] DislikePreferences { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"favorite_preference", IsRequired = true)]
@@ -6592,10 +6638,10 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(1, Name = @"household_id", IsRequired = true)]
         public ulong HouseholdId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"unknown_tags", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"unknown_tags")]
         public uint[] UnknownTags { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"known_tags", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"known_tags")]
         public uint[] KnownTags { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"general_timestamp")]
@@ -7114,7 +7160,7 @@ namespace EA.Sims4.Persistence
         public void ResetSentimentalTarget() => __pbn__SentimentalTarget = null;
         private ulong? __pbn__SentimentalTarget;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"body_part_hashes", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"body_part_hashes")]
         public ulong[] BodyPartHashes { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"body_part_custom_texture")]
@@ -7203,7 +7249,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(3, Name = @"unlocked_perks")]
         public global::System.Collections.Generic.List<UnlockedPerk> UnlockedPerks { get; } = new global::System.Collections.Generic.List<UnlockedPerk>();
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"frozen_perk_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"frozen_perk_ids")]
         public ulong[] FrozenPerkIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"frozen_business_rank_value")]

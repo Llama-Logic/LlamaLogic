@@ -22,7 +22,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"offerid", IsRequired = true)]
         public string Offerid { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"children", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"children")]
         public ulong[] Childrens { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"instances")]
@@ -56,7 +56,7 @@ namespace EA.Sims4.Network
         public void ResetcontainmentType() => __pbn__containmentType = null;
         private BundleContainment? __pbn__containmentType;
 
-        [global::ProtoBuf.ProtoMember(9, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(9)]
         public ulong[] childProductIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(10)]

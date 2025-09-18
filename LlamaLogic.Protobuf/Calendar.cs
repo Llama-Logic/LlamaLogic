@@ -23,7 +23,7 @@ public partial class CalendarFavoriteData : global::ProtoBuf.IExtensible
     public void ResetHouseholdId() => __pbn__HouseholdId = null;
     private ulong? __pbn__HouseholdId;
 
-    [global::ProtoBuf.ProtoMember(2, Name = @"favorited_event_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+    [global::ProtoBuf.ProtoMember(2, Name = @"favorited_event_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
     public ulong[] FavoritedEventIds { get; set; }
 
 }

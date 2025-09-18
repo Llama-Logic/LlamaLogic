@@ -58,10 +58,10 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"required_pack_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"required_pack_ids")]
         public uint[] RequiredPackIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"cds_patch_base_changelists", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"cds_patch_base_changelists")]
         public uint[] CdsPatchBaseChangelists { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"cds_content_patch_mounted")]
@@ -276,7 +276,7 @@ namespace EA.Sims4.Persistence
         public void ResetSlotId() => __pbn__SlotId = null;
         private ulong? __pbn__SlotId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"neighboorhoods", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"neighboorhoods", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Neighboorhoods { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"last_neighborhood", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -289,7 +289,7 @@ namespace EA.Sims4.Persistence
         public void ResetLastNeighborhood() => __pbn__LastNeighborhood = null;
         private ulong? __pbn__LastNeighborhood;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"zones", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"zones", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Zones { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"last_zone", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -496,7 +496,7 @@ namespace EA.Sims4.Persistence
         public void ResetNucleusId() => __pbn__NucleusId = null;
         private ulong? __pbn__NucleusId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"slot_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"slot_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SlotIds { get; set; }
 
     }
@@ -920,7 +920,7 @@ namespace EA.Sims4.Persistence
         public void ResetIsNewObject() => __pbn__IsNewObject = null;
         private bool? __pbn__IsNewObject;
 
-        [global::ProtoBuf.ProtoMember(38, Name = @"persisted_tags", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(38, Name = @"persisted_tags")]
         public uint[] PersistedTags { get; set; }
 
         [global::ProtoBuf.ProtoMember(39, Name = @"canvas_state_type")]
@@ -1121,7 +1121,7 @@ namespace EA.Sims4.Persistence
         public void ResetDescription() => __pbn__Description = null;
         private string __pbn__Description;
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"spawn_point_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(15, Name = @"spawn_point_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SpawnPointIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"bedroom_count")]
@@ -1164,7 +1164,7 @@ namespace EA.Sims4.Persistence
         public void ResetMasterZoneObjectDataId() => __pbn__MasterZoneObjectDataId = null;
         private ulong? __pbn__MasterZoneObjectDataId;
 
-        [global::ProtoBuf.ProtoMember(20, Name = @"lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(20, Name = @"lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] LotTraits { get; set; }
 
         [global::ProtoBuf.ProtoMember(21, Name = @"pending_house_desc_id")]
@@ -1189,6 +1189,9 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializePendingPlexExteriorHouseDescId() => __pbn__PendingPlexExteriorHouseDescId != null;
         public void ResetPendingPlexExteriorHouseDescId() => __pbn__PendingPlexExteriorHouseDescId = null;
         private uint? __pbn__PendingPlexExteriorHouseDescId;
+
+        [global::ProtoBuf.ProtoMember(24, Name = @"custom_schedule")]
+        public global::EA.Sims4.Network.CustomSchedule CustomSchedule { get; set; }
 
     }
 
@@ -1215,7 +1218,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(3, Name = @"objects")]
         public global::System.Collections.Generic.List<ObjectList> Objects { get; } = new global::System.Collections.Generic.List<ObjectList>();
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"sub_venue_keys", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"sub_venue_keys", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SubVenueKeys { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"active_data_index")]
@@ -1280,7 +1283,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(1, Name = @"layer_guid", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
         public ulong LayerGuid { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"situation_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"situation_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SituationIds { get; set; }
 
     }
@@ -1369,7 +1372,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SimIds { get; set; }
 
     }
@@ -2333,7 +2336,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(16, Name = @"gameplay_data")]
         public GameplayHouseholdData GameplayData { get; set; }
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"cas_inventory", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(17, Name = @"cas_inventory")]
         public ulong[] CasInventories { get; set; }
 
         [global::ProtoBuf.ProtoMember(18, Name = @"description")]
@@ -2549,7 +2552,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] LotTraits { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"lot_owner_info")]
@@ -2584,7 +2587,7 @@ namespace EA.Sims4.Persistence
         public void ResetSubVenueEligible() => __pbn__SubVenueEligible = null;
         private bool? __pbn__SubVenueEligible;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"sub_venue_lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"sub_venue_lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SubVenueLotTraits { get; set; }
 
     }
@@ -2775,8 +2778,38 @@ namespace EA.Sims4.Persistence
         public void ResetSituationId() => __pbn__SituationId = null;
         private ulong? __pbn__SituationId;
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"claimed_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(10, Name = @"claimed_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] ClaimedObjectIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11, Name = @"initiating_sim_id")]
+        public ulong InitiatingSimId
+        {
+            get => __pbn__InitiatingSimId.GetValueOrDefault();
+            set => __pbn__InitiatingSimId = value;
+        }
+        public bool ShouldSerializeInitiatingSimId() => __pbn__InitiatingSimId != null;
+        public void ResetInitiatingSimId() => __pbn__InitiatingSimId = null;
+        private ulong? __pbn__InitiatingSimId;
+
+        [global::ProtoBuf.ProtoMember(12, Name = @"lot_value")]
+        public uint LotValue
+        {
+            get => __pbn__LotValue.GetValueOrDefault();
+            set => __pbn__LotValue = value;
+        }
+        public bool ShouldSerializeLotValue() => __pbn__LotValue != null;
+        public void ResetLotValue() => __pbn__LotValue = null;
+        private uint? __pbn__LotValue;
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"custom_data")]
+        public byte[] CustomData
+        {
+            get => __pbn__CustomData;
+            set => __pbn__CustomData = value;
+        }
+        public bool ShouldSerializeCustomData() => __pbn__CustomData != null;
+        public void ResetCustomData() => __pbn__CustomData = null;
+        private byte[] __pbn__CustomData;
 
         [global::ProtoBuf.ProtoContract()]
         public enum GroupType
@@ -2785,6 +2818,8 @@ namespace EA.Sims4.Persistence
             GrouptypeVacation = 0,
             [global::ProtoBuf.ProtoEnum(Name = @"GROUPTYPE_STAYOVER")]
             GrouptypeStayover = 1,
+            [global::ProtoBuf.ProtoEnum(Name = @"GROUPTYPE_GETAWAY")]
+            GrouptypeGetaway = 2,
         }
 
     }
@@ -2882,7 +2917,7 @@ namespace EA.Sims4.Persistence
         public void ResetWorldId() => __pbn__WorldId = null;
         private ulong? __pbn__WorldId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"map_overlays", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"map_overlays")]
         public uint[] MapOverlays { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"eco_footprint_state")]
@@ -3037,7 +3072,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(2, Name = @"travel_groups")]
         public global::System.Collections.Generic.List<TravelGroupData> TravelGroups { get; } = new global::System.Collections.Generic.List<TravelGroupData>();
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"uninstalled_region_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"uninstalled_region_ids")]
         public ulong[] UninstalledRegionIds { get; set; }
 
     }
@@ -3330,10 +3365,10 @@ namespace EA.Sims4.Persistence
         public void ResetIncompatible() => __pbn__Incompatible = null;
         private bool? __pbn__Incompatible;
 
-        [global::ProtoBuf.ProtoMember(11, Name = @"required_pack_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(11, Name = @"required_pack_ids")]
         public uint[] RequiredPackIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(12, Name = @"cds_patch_base_changelists", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(12, Name = @"cds_patch_base_changelists")]
         public uint[] CdsPatchBaseChangelists { get; set; }
 
         [global::ProtoBuf.ProtoMember(13, Name = @"cds_content_patch_mounted")]
@@ -3346,7 +3381,7 @@ namespace EA.Sims4.Persistence
         public void ResetCdsContentPatchMounted() => __pbn__CdsContentPatchMounted = null;
         private bool? __pbn__CdsContentPatchMounted;
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"scenario_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(14, Name = @"scenario_ids")]
         public ulong[] ScenarioIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(15, Name = @"saved_by_feature_preview_build")]
@@ -3393,7 +3428,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(1, Name = @"part_id", IsRequired = true)]
         public global::EA.Sims4.Network.ResourceKey PartId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"color_shifts", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"color_shifts")]
         public ulong[] ColorShifts { get; set; }
 
     }
@@ -3463,7 +3498,7 @@ namespace EA.Sims4.Persistence
         public void ResetTileCount() => __pbn__TileCount = null;
         private int? __pbn__TileCount;
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"block_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"block_ids")]
         public uint[] BlockIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, Name = @"objects")]
@@ -3554,7 +3589,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(9, Name = @"travel_groups")]
         public global::System.Collections.Generic.List<TravelGroupData> TravelGroups { get; } = new global::System.Collections.Generic.List<TravelGroupData>();
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"uninstalled_region_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(10, Name = @"uninstalled_region_ids")]
         public ulong[] UninstalledRegionIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(11, Name = @"object_fallbacks")]
@@ -3572,10 +3607,10 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(16, Name = @"relgraph")]
         public SimRelationshipGraphData Relgraph { get; set; }
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"tutorial_tips", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(17, Name = @"tutorial_tips", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] TutorialTips { get; set; }
 
-        [global::ProtoBuf.ProtoMember(18, Name = @"sims_removed_from_travel_groups", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(18, Name = @"sims_removed_from_travel_groups")]
         public ulong[] SimsRemovedFromTravelGroups { get; set; }
 
         [global::ProtoBuf.ProtoMember(19, Name = @"custom_colors")]

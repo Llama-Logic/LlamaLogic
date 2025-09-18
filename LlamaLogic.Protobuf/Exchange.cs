@@ -19,7 +19,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, IsRequired = true)]
         public uint unitId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Traits { get; set; }
 
     }
@@ -154,10 +154,10 @@ namespace EA.Sims4.Network
         public void ResetGroundFloorIndex() => __pbn__GroundFloorIndex = null;
         private uint? __pbn__GroundFloorIndex;
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"optional_rule_satisfied_stringkeys", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(13, Name = @"optional_rule_satisfied_stringkeys")]
         public uint[] OptionalRuleSatisfiedStringkeys { get; set; }
 
-        [global::ProtoBuf.ProtoMember(14, Name = @"lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(14, Name = @"lot_traits", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] LotTraits { get; set; }
 
         [global::ProtoBuf.ProtoMember(15, Name = @"building_type")]
@@ -206,7 +206,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(20)]
         public global::System.Collections.Generic.List<UnitTraitData> unitTraits { get; } = new global::System.Collections.Generic.List<UnitTraitData>();
 
-        [global::ProtoBuf.ProtoMember(21, Name = @"dynamic_areas", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(21, Name = @"dynamic_areas")]
         public uint[] DynamicAreas { get; set; }
 
     }
@@ -774,7 +774,7 @@ namespace EA.Sims4.Network
         public void ResetItemTimestamp() => __pbn__ItemTimestamp = null;
         private ulong? __pbn__ItemTimestamp;
 
-        [global::ProtoBuf.ProtoMember(12, Name = @"mtx_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(12, Name = @"mtx_ids")]
         public ulong[] MtxIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(13, Name = @"creator_uuid")]
@@ -808,7 +808,7 @@ namespace EA.Sims4.Network
         public void ResetModifierName() => __pbn__ModifierName = null;
         private string __pbn__ModifierName;
 
-        [global::ProtoBuf.ProtoMember(16, Name = @"meta_info", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(16, Name = @"meta_info")]
         public uint[] MetaInfoes { get; set; }
 
         [global::ProtoBuf.ProtoMember(17, Name = @"verify_code")]
@@ -953,7 +953,7 @@ namespace EA.Sims4.Network
             global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
                 => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-            [global::ProtoBuf.ProtoMember(1, Name = @"thumbnail_info", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(1, Name = @"thumbnail_info")]
             public uint[] ThumbnailInfoes { get; set; }
 
         }
@@ -1176,7 +1176,7 @@ namespace EA.Sims4.Network
             public void ResetSku2Id() => __pbn__Sku2Id = null;
             private ulong? __pbn__Sku2Id;
 
-            [global::ProtoBuf.ProtoMember(24, Name = @"cds_patch_base_changelists", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(24, Name = @"cds_patch_base_changelists")]
             public uint[] CdsPatchBaseChangelists { get; set; }
 
             [global::ProtoBuf.ProtoMember(25, Name = @"cds_content_patch_mounted")]
@@ -1189,7 +1189,7 @@ namespace EA.Sims4.Network
             public void ResetCdsContentPatchMounted() => __pbn__CdsContentPatchMounted = null;
             private bool? __pbn__CdsContentPatchMounted;
 
-            [global::ProtoBuf.ProtoMember(27, Name = @"sku_bits", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(27, Name = @"sku_bits")]
             public uint[] SkuBits { get; set; }
 
             [global::ProtoBuf.ProtoMember(1000, Name = @"version_OBSOLETE")]
@@ -1221,7 +1221,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 11700,
+            currentVersion = 11800,
         }
 
     }
@@ -1233,7 +1233,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"item", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"item")]
         public ulong[] Items { get; set; }
 
     }
@@ -1259,7 +1259,7 @@ namespace EA.Sims4.Network
         public void ResetNumThumbnails() => __pbn__NumThumbnails = null;
         private uint? __pbn__NumThumbnails;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"part_Id", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"part_Id")]
         public ulong[] partIds { get; set; }
 
     }
@@ -1338,7 +1338,7 @@ namespace EA.Sims4.Network
             global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
                 => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-            [global::ProtoBuf.ProtoMember(1, Name = @"thumbnail_info", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(1, Name = @"thumbnail_info")]
             public uint[] ThumbnailInfoes { get; set; }
 
             [global::ProtoBuf.ProtoMember(2, Name = @"thumbnail_data")]
@@ -2052,7 +2052,7 @@ namespace EA.Sims4.Network
         public void ResetUploadTimeRangeEnd() => __pbn__UploadTimeRangeEnd = null;
         private ulong? __pbn__UploadTimeRangeEnd;
 
-        [global::ProtoBuf.ProtoMember(31, Name = @"exclusive_packs", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(31, Name = @"exclusive_packs")]
         public uint[] ExclusivePacks { get; set; }
 
         [global::ProtoBuf.ProtoMember(32, Name = @"body_type")]
@@ -2087,7 +2087,7 @@ namespace EA.Sims4.Network
         public void ResetKeywordType() => __pbn__KeywordType = null;
         private KeywordSearchType? __pbn__KeywordType;
 
-        [global::ProtoBuf.ProtoMember(35, Name = @"sku_bits", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(35, Name = @"sku_bits")]
         public uint[] SkuBits { get; set; }
 
     }
@@ -2148,10 +2148,10 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"friends", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"friends")]
         public ulong[] Friends { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"subscriptions", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"subscriptions")]
         public ulong[] Subscriptions { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"added")]
@@ -2757,7 +2757,7 @@ namespace EA.Sims4.Network
             public void ResetHidden() => __pbn__Hidden = null;
             private bool? __pbn__Hidden;
 
-            [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(2)]
             public uint[] filterTypes { get; set; }
 
         }

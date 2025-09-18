@@ -113,10 +113,10 @@ namespace EA.Sims4.Network
         public void ResetAccountId() => __pbn__AccountId = null;
         private ulong? __pbn__AccountId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"achievements_completed", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"achievements_completed")]
         public ulong[] AchievementsCompleteds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"objectives_completed", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"objectives_completed")]
         public ulong[] ObjectivesCompleteds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"init_message")]
@@ -158,22 +158,22 @@ namespace EA.Sims4.Network
         public void ResetAccountId() => __pbn__AccountId = null;
         private ulong? __pbn__AccountId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"goals_updated", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"goals_updated")]
         public ulong[] GoalsUpdateds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"goal_values", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"goal_values")]
         public long[] GoalValues { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"goal_objectives", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"goal_objectives")]
         public long[] GoalObjectives { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"goals_that_are_money", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"goals_that_are_money")]
         public bool[] GoalsThatAreMoneys { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"goals_that_show_progress", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"goals_that_show_progress")]
         public bool[] GoalsThatShowProgresses { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"goals_with_update_tooltip_in_special_cases", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(7, Name = @"goals_with_update_tooltip_in_special_cases")]
         public bool[] GoalsWithUpdateTooltipInSpecialCases { get; set; }
 
     }

@@ -85,6 +85,14 @@ namespace EA.Sims4.Network
             CareSimTypeSupervised = 8,
             [global::ProtoBuf.ProtoEnum(Name = @"OCCULT")]
             Occult = 9,
+            [global::ProtoBuf.ProtoEnum(Name = @"GENDER")]
+            Gender = 10,
+            [global::ProtoBuf.ProtoEnum(Name = @"REGION")]
+            Region = 11,
+            [global::ProtoBuf.ProtoEnum(Name = @"ROMANTIC_ATTRACTION")]
+            RomanticAttraction = 12,
+            [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_STATUS")]
+            RelationshipStatus = 13,
         }
 
     }

@@ -32,7 +32,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(4, Name = @"final_level")]
         public SituationLevelUpdate FinalLevel { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, Name = @"audio_sting")]

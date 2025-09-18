@@ -233,7 +233,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"channels_to_remove", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"channels_to_remove")]
         public global::System.Collections.Generic.List<AwarenessChannelName> ChannelsToRemoves { get; } = new global::System.Collections.Generic.List<AwarenessChannelName>();
 
         [global::ProtoBuf.ProtoMember(4, Name = @"channels_to_configure")]

@@ -46,7 +46,7 @@ namespace EA.Sims4.Network
         public void ResetisFavorites() => __pbn__isFavorites = null;
         private bool? __pbn__isFavorites;
 
-        [global::ProtoBuf.ProtoMember(4, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(4)]
         public ulong[] memoryIds { get; set; }
 
     }

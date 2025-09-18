@@ -16,7 +16,7 @@ namespace EA.Sims4
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] Ids { get; set; }
 
     }
@@ -574,7 +574,7 @@ namespace EA.Sims4
         public void ResetHouseholdId() => __pbn__HouseholdId = null;
         private ulong? __pbn__HouseholdId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SimIds { get; set; }
 
     }
@@ -596,7 +596,7 @@ namespace EA.Sims4
             global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
                 => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-            [global::ProtoBuf.ProtoMember(1, Name = @"days", IsPacked = true)]
+            [global::ProtoBuf.ProtoMember(1, Name = @"days")]
             public global::System.Collections.Generic.List<ScheduleDay> Days { get; } = new global::System.Collections.Generic.List<ScheduleDay>();
 
             [global::ProtoBuf.ProtoMember(2, Name = @"start_hour")]
@@ -640,6 +640,26 @@ namespace EA.Sims4
             public void Resetschedule_shift_type() => __pbn__schedule_shift_type = null;
             private ScheduleShiftType? __pbn__schedule_shift_type;
 
+            [global::ProtoBuf.ProtoMember(6, Name = @"multi_day_start_day")]
+            public uint MultiDayStartDay
+            {
+                get => __pbn__MultiDayStartDay.GetValueOrDefault();
+                set => __pbn__MultiDayStartDay = value;
+            }
+            public bool ShouldSerializeMultiDayStartDay() => __pbn__MultiDayStartDay != null;
+            public void ResetMultiDayStartDay() => __pbn__MultiDayStartDay = null;
+            private uint? __pbn__MultiDayStartDay;
+
+            [global::ProtoBuf.ProtoMember(7, Name = @"multi_day_end_day")]
+            public uint MultiDayEndDay
+            {
+                get => __pbn__MultiDayEndDay.GetValueOrDefault();
+                set => __pbn__MultiDayEndDay = value;
+            }
+            public bool ShouldSerializeMultiDayEndDay() => __pbn__MultiDayEndDay != null;
+            public void ResetMultiDayEndDay() => __pbn__MultiDayEndDay = null;
+            private uint? __pbn__MultiDayEndDay;
+
             [global::ProtoBuf.ProtoContract()]
             public enum ScheduleDay
             {
@@ -668,6 +688,8 @@ namespace EA.Sims4
                 Morning = 1,
                 [global::ProtoBuf.ProtoEnum(Name = @"EVENING")]
                 Evening = 2,
+                [global::ProtoBuf.ProtoEnum(Name = @"MULTI_DAY")]
+                MultiDay = 3,
             }
 
         }

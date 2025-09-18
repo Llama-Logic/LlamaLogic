@@ -263,10 +263,10 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"completed_goals_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"completed_goals_ids")]
         public ulong[] CompletedGoalsIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"unlocked_goals_ids", IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"unlocked_goals_ids")]
         public ulong[] UnlockedGoalsIds { get; set; }
 
     }
@@ -646,7 +646,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(22, Name = @"special_object_icon")]
         public global::EA.Sims4.Network.IconInfo SpecialObjectIcon { get; set; }
 
-        [global::ProtoBuf.ProtoMember(23, Name = @"situation_activity_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        [global::ProtoBuf.ProtoMember(23, Name = @"situation_activity_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
         public ulong[] SituationActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(24, Name = @"special_object")]
