@@ -87,12 +87,18 @@ message TimedAspirationUpdate {
 	optional uint64 timed_aspiration_end_time = 4;
 	optional uint64 timed_aspiration_type = 5;
 	repeated uint64 objectives = 6 [packed = true];
+	optional uint64 reward_trait_id = 7;
 }
 
 message UnfinishedBusinessAspirationUpdate {
 	optional uint64 sim_id = 1;
 	repeated uint64 objectives = 2 [packed = true];
 	repeated uint64 objectives_completed = 3 [packed = true];
+}
+
+message SuggestedAspirationUpdate {
+	optional uint64 sim_id = 1;
+	repeated uint64 visible_suggested_aspiration_list = 2 [packed = true];
 }
 
 message GoalsStatusUpdate {
@@ -118,6 +124,7 @@ message SatisfactionReward {
 		OBJECT = 2;
 		TRAIT = 3;
 		CASPART = 4;
+		CHILDHOOD_INSPIRATION = 5;
 	}
 	required uint64 reward_id = 1;
 	optional uint32 cost = 2;

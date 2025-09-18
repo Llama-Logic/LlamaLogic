@@ -15,6 +15,7 @@ import "WeatherSeasons.proto";
 import "Roommates.proto";
 import "Calendar.proto";
 import "Outfits.proto";
+import "CustomSchedule.proto";
 
 enum EcoFootprintStateType {
 	GREEN = 0;
@@ -1006,6 +1007,8 @@ message GameplaySaveSlotData {
 	optional .EA.Sims4.Persistence.PersistableUiDialogService ui_dialog_service = 54;
 	optional .EA.Sims4.Persistence.PersistableWillService will_service = 55;
 	optional .EA.Sims4.Persistence.PersistableWispService wisp_service = 56;
+	optional .EA.Sims4.Persistence.PersistableImaginaryFriendService imaginary_friend_service = 57;
+	optional .EA.Sims4.Persistence.PersistableCustomScheduleService custom_schedule_service = 58;
 }
 
 message PersistableRelgraphService {
@@ -1608,4 +1611,40 @@ message PersistableWispService {
 message WispData {
 	optional uint32 cycle_state_id = 1;
 	repeated fixed64 plant_object_ids = 2 [packed = true];
+}
+
+message PersistableImaginaryFriendService {
+	repeated .EA.Sims4.Persistence.ImaginaryFriendChildData friend_child_data = 1;
+	repeated .EA.Sims4.Persistence.ImaginaryFriendStatusData friend_status_data = 2;
+	repeated .EA.Sims4.Persistence.ImaginaryFriendDollData friend_doll_data = 3;
+}
+
+message ImaginaryFriendChildData {
+	required fixed64 imaginary_friend_sim_id = 1;
+	required fixed64 child_sim_id = 2;
+}
+
+message ImaginaryFriendStatusData {
+	required fixed64 imaginary_friend_sim_id = 1;
+	required uint32 imaginary_friend_status = 2;
+}
+
+message ImaginaryFriendDollData {
+	required fixed64 imaginary_friend_sim_id = 1;
+	required fixed64 doll_obj_id = 2;
+}
+
+message PersistableCustomScheduleService {
+	message ScheduledGetawayEntry {
+		optional uint64 start_time = 1;
+		optional uint64 zone_id = 2;
+		optional uint32 duration = 3;
+		optional .EA.Sims4.Network.CustomSchedule schedule = 4;
+		optional uint64 owner_id = 5;
+	}
+	repeated .EA.Sims4.Network.CustomSchedule custom_schedules = 1;
+	repeated .EA.Sims4.Network.ScheduleAssignment custom_assignments = 2;
+	repeated .EA.Sims4.Persistence.PersistableCustomScheduleService.ScheduledGetawayEntry scheduled_getaways = 3;
+	optional fixed64 mannequin_id = 4;
+	optional uint64 current_schedule_zone_id = 5;
 }

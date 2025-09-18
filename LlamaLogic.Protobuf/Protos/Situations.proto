@@ -6,6 +6,7 @@ import "DistributorOps.proto";
 import "UI.proto";
 import "Lot.proto";
 import "Math.proto";
+import "CustomSchedule.proto";
 
 
 message SimPickerItem {
@@ -27,6 +28,11 @@ message SituationEditData {
 	optional uint64 guest_attire_color = 5;
 	repeated .EA.Sims4.Network.SituationEditJobData job_data = 6;
 	optional .EA.Sims4.Network.IconInfo special_object_icon_info = 7;
+	optional .EA.Sims4.Network.CustomSchedule getaway_schedule = 8;
+	optional uint32 duration_nights = 9;
+	repeated uint32 recurring_days = 10 [packed = true];
+	optional uint64 end_time = 11;
+	optional bool has_valid_zone_schedule = 12;
 }
 
 message SituationPrepare {
@@ -39,6 +45,8 @@ message SituationPrepare {
 	optional uint64 creation_time = 7;
 	optional .EA.Sims4.Network.SituationEditData edit_data = 8;
 	optional uint32 situation_category = 9;
+	optional bool is_active = 10;
+	optional bool is_new_from_tuning = 11;
 }
 
 message SituationIDBatch {
@@ -104,6 +112,9 @@ message SituationData {
 	repeated uint32 job_cell_padding = 17 [packed = true];
 	repeated uint64 role_updates_activity_preferences = 18 [packed = true];
 	optional uint64 sim_filter_requesting_sim_override = 19;
+	optional .EA.Sims4.Network.CustomSchedule getaway_schedule = 20;
+	optional uint32 max_duration_nights = 21;
+	optional uint32 default_duration_nights = 22;
 }
 
 message SituationJobData {
@@ -155,6 +166,26 @@ message SituationJobSims {
 
 message SituationLocations {
 	repeated .EA.Sims4.Network.LotInfoItem situation_locations = 1;
+}
+
+message SituationGetawayRuleOption {
+	message RuleOptionGroup {
+		optional uint32 category_id = 1;
+		optional .EA.Sims4.Network.LocalizedString category_display_name = 2;
+		optional bool is_multi_select = 3;
+		repeated uint32 disallowed_ages = 4 [packed = true];
+		repeated uint32 disallowed_species = 5 [packed = true];
+	}
+	optional .EA.Sims4.Network.LocalizedString display_name = 1;
+	optional .EA.Sims4.Network.LocalizedString description = 2;
+	optional .EA.Sims4.Network.ResourceKey icon = 3;
+	repeated .EA.Sims4.Network.SituationGetawayRuleOption.RuleOptionGroup groups = 4;
+	optional uint64 rule_guid64 = 5;
+	optional bool is_track_based_challenge = 6;
+}
+
+message SituationGetawayRules {
+	repeated .EA.Sims4.Network.SituationGetawayRuleOption options = 1;
 }
 
 message SituationSimScore {
@@ -220,6 +251,7 @@ message SituationStart {
 	optional uint64 tutorial_id = 34;
 	optional uint64 pivotal_moment_guid = 35;
 	optional .EA.Sims4.Network.LocalizedString reward_description = 36;
+	optional .EA.Sims4.Network.CustomSchedule custom_schedule = 37;
 }
 
 message SituationSimJoined {
@@ -332,6 +364,11 @@ message SituationOutcomeData {
 	optional .EA.Sims4.Network.LocalizedString reward_1_name = 6;
 	optional .EA.Sims4.Network.LocalizedString reward_1_tooltip = 7;
 	optional uint32 situation_display_style = 8;
+}
+
+message SituationActiveScheduleUpdate {
+	optional uint64 situation_id = 1;
+	optional .EA.Sims4.Network.CustomSchedule custom_schedule = 2;
 }
 
 message ScenarioGoalGroup {

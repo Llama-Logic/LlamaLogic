@@ -12,6 +12,7 @@ import "Outfits.proto";
 import "S4Common.proto";
 import "Venue.proto";
 import "Consts.proto";
+import "CustomSchedule.proto";
 
 enum PersistenceActions {
 	BASE_ACTION = 0;
@@ -242,6 +243,7 @@ message ZoneData {
 	optional uint32 pending_house_desc_id = 21;
 	optional .EA.Sims4.Network.UniversityHousingConfiguration university_housing_configuration = 22;
 	optional uint32 pending_plex_exterior_house_desc_id = 23;
+	optional .EA.Sims4.Network.CustomSchedule custom_schedule = 24;
 }
 
 message ZoneObjectData {
@@ -475,6 +477,7 @@ message TravelGroupData {
 	enum GroupType {
 		GROUPTYPE_VACATION = 0;
 		GROUPTYPE_STAYOVER = 1;
+		GROUPTYPE_GETAWAY = 2;
 	}
 	optional fixed64 travel_group_id = 1;
 	repeated .EA.Sims4.HouseholdSimIds household_sim_ids = 2;
@@ -486,6 +489,9 @@ message TravelGroupData {
 	optional .EA.Sims4.Persistence.TravelGroupData.GroupType group_type = 8;
 	optional uint64 situation_id = 9;
 	repeated fixed64 claimed_object_ids = 10 [packed = true];
+	optional uint64 initiating_sim_id = 11;
+	optional uint32 lot_value = 12;
+	optional bytes custom_data = 13;
 }
 
 message TravelGroupList {

@@ -435,6 +435,18 @@ message Operation {
 		LUCK_UPDATE = 1280;
 		IS_GUIDANCE_TIP_COMPLETE = 1281;
 		SET_CALL_TO_ACTION_LOT = 1282;
+		CUSTOM_SCHEDULE_SET_CUSTOM_SCHEDULE = 1300;
+		CUSTOM_SCHEDULE_SET_CUSTOM_ASSIGNMENT = 1301;
+		CUSTOM_SCHEDULE_SET_CUSTOM_SET_SCHEDULE_LIST = 1302;
+		CUSTOM_SCHEDULE_SET_CUSTOM_SET_ASSIGNMENT_LIST = 1303;
+		CUSTOM_SCHEDULE_SET_CUSTOM_SET_MANNEQUIN_DATA = 1304;
+		SITUATION_UPDATE_ACTIVE_SCHEDULE = 1305;
+		MSG_SITUATION_GETAWAY_RULES = 1306;
+		SIM_SUGGESTED_ASPIRATION_UPDATE = 1307;
+		CHILDHOOD_INSPIRATION_COMPLETE_STATE_UPDATE = 1308;
+		CUSTOM_SCHEDULE_SET_AVAILABLE_SIMS = 1309;
+		SET_VISIBILITY_IMMEDIATE = 1310;
+		SET_RESIDENT_LIST = 1311;
 	}
 	required .EA.Sims4.Network.Operation.Type type = 1;
 	optional bytes data = 2;
@@ -766,6 +778,12 @@ message SetVisibility {
 
 message SetVisibilityFlags {
 	optional uint32 visibility_flags = 1;
+}
+
+message SetVisibilityImmediate {
+	required bool visibility = 1;
+	optional bool inherits = 2;
+	optional bool enable_drop_shadow = 3 [default = true];
 }
 
 message SetMaterialState {
@@ -1881,4 +1899,13 @@ message SetPartsCustomTattoos {
 
 message SetHouseholdInventoryRewards {
 	required .EA.Sims4.Persistence.RewardPartList reward_part_list = 1;
+}
+
+message ChildhoodInspirationCompleteStateUpdate {
+	optional uint64 sim_id = 1;
+	optional bool complete_state = 2;
+}
+
+message SetResidentList {
+	repeated uint64 sim_ids = 1 [packed = true];
 }

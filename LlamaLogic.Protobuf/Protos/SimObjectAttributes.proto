@@ -413,6 +413,17 @@ message AdditionalObjectives {
 	repeated uint64 objective_guids = 2 [packed = true];
 }
 
+message SuggestedAspiration {
+	repeated uint64 visible_suggested_aspirations = 1 [packed = true];
+	repeated uint64 invisible_suggested_aspirations = 2 [packed = true];
+	repeated .EA.Sims4.Persistence.CoolDownAspiration cool_down_dict = 3;
+}
+
+message CoolDownAspiration {
+	required uint64 aspiration = 1;
+	required uint64 timestamp = 2;
+}
+
 message PersistableEventDataTracker {
 	repeated uint64 milestones_completed = 1 [packed = true];
 	repeated uint64 objectives_completed = 2 [packed = true];
@@ -421,6 +432,8 @@ message PersistableEventDataTracker {
 	repeated .EA.Sims4.Persistence.TimedAspiration timed_aspirations = 5;
 	repeated .EA.Sims4.Persistence.MilestoneCompletionCount milestone_completion_counts = 6;
 	repeated .EA.Sims4.Persistence.AdditionalObjectives additional_objectives = 7;
+	optional .EA.Sims4.Persistence.SuggestedAspiration suggested_aspiration = 8;
+	optional bool childhood_inspirations_completed = 9;
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		optional .EA.Sims4.Persistence.PersistableEventDataTracker persistable_data = 21013;
 	}

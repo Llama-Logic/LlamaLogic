@@ -401,6 +401,8 @@ message ExtendVacation {
 	optional fixed64 household_description_id = 5;
 	optional string lot_name = 6;
 	optional uint32 lot_daily_cost = 7;
+	optional bool is_getaway = 8;
+	optional uint32 dialog_type = 9;
 }
 
 message SimInfoLocationStatus {
@@ -593,6 +595,9 @@ message CalendarEntry {
 	optional uint64 entry_guid = 15;
 	optional bool show_go_to_event_button = 16;
 	optional bool in_progress = 17;
+	optional string getaway_name = 18;
+	optional uint32 getaway_duration = 19;
+	repeated uint32 getaway_recurring_days = 20 [packed = true];
 }
 
 message CalendarUpdate {
