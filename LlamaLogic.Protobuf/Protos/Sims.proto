@@ -68,11 +68,11 @@ message UpdateClientSim {
 
 message AspirationTrackerUpdate {
 	optional uint64 sim_id = 1;
-	repeated uint64 aspirations_completed = 2;
-	repeated uint64 objectives_completed = 3;
+	repeated uint64 aspirations_completed = 2 [packed = true];
+	repeated uint64 objectives_completed = 3 [packed = true];
 	optional bool init_message = 4;
-	repeated uint64 unlocked_hidden_aspiration_tracks = 5;
-	repeated uint64 objectives_reset = 6;
+	repeated uint64 unlocked_hidden_aspiration_tracks = 5 [packed = true];
+	repeated uint64 objectives_reset = 6 [packed = true];
 }
 
 message TimedAspirationUpdate {
@@ -86,30 +86,24 @@ message TimedAspirationUpdate {
 	optional uint64 timed_aspiration_id = 3;
 	optional uint64 timed_aspiration_end_time = 4;
 	optional uint64 timed_aspiration_type = 5;
-	repeated uint64 objectives = 6;
-	optional uint64 reward_trait_id = 7;
+	repeated uint64 objectives = 6 [packed = true];
 }
 
 message UnfinishedBusinessAspirationUpdate {
 	optional uint64 sim_id = 1;
-	repeated uint64 objectives = 2;
-	repeated uint64 objectives_completed = 3;
-}
-
-message SuggestedAspirationUpdate {
-	optional uint64 sim_id = 1;
-	repeated uint64 visible_suggested_aspiration_list = 2;
+	repeated uint64 objectives = 2 [packed = true];
+	repeated uint64 objectives_completed = 3 [packed = true];
 }
 
 message GoalsStatusUpdate {
 	optional uint64 sim_id = 1;
-	repeated uint64 goals_updated = 2;
-	repeated int64 goal_values = 3;
-	repeated int64 goal_objectives = 4;
-	repeated bool goals_that_are_money = 5;
+	repeated uint64 goals_updated = 2 [packed = true];
+	repeated int64 goal_values = 3 [packed = true];
+	repeated int64 goal_objectives = 4 [packed = true];
+	repeated bool goals_that_are_money = 5 [packed = true];
 	optional bool cheats_used = 6;
-	repeated bool goals_that_show_progress = 7;
-	repeated bool goals_with_update_tooltip_in_special_cases = 8;
+	repeated bool goals_that_show_progress = 7 [packed = true];
+	repeated bool goals_with_update_tooltip_in_special_cases = 8 [packed = true];
 }
 
 message SelectedAspirationUpdate {
@@ -124,7 +118,6 @@ message SatisfactionReward {
 		OBJECT = 2;
 		TRAIT = 3;
 		CASPART = 4;
-		CHILDHOOD_INSPIRATION = 5;
 	}
 	required uint64 reward_id = 1;
 	optional uint32 cost = 2;
@@ -269,7 +262,7 @@ message Interaction {
 	optional uint64 super_id = 13;
 	optional .EA.Sims4.Network.Interaction.VisualType visual_type = 14;
 	optional fixed64 initiating_id = 15;
-	repeated fixed64 interactions_to_be_canceled = 16;
+	repeated fixed64 interactions_to_be_canceled = 16 [packed = true];
 	optional uint64 skill_id = 23;
 	optional bool is_primary = 26;
 	optional .EA.Sims4.Network.IQ_PipelineStage pipeline_progress = 29;
@@ -278,7 +271,7 @@ message Interaction {
 	repeated .EA.Sims4.Network.ManagerObjectId participant_manager_object_ids = 33;
 	optional fixed64 stc_bit_id = 34;
 	optional .EA.Sims4.Network.IconInfo super_icon_info = 35;
-	repeated fixed64 mood_list = 36;
+	repeated fixed64 mood_list = 36 [packed = true];
 }
 
 message InteractionsAdd {
@@ -360,7 +353,7 @@ message InteractionQueueViewAdd {
 
 message InteractionsRemove {
 	required uint64 sim_id = 1;
-	repeated uint64 interaction_ids = 2;
+	repeated uint64 interaction_ids = 2 [packed = true];
 }
 
 message InteractionsRemoveAll {
@@ -393,7 +386,7 @@ message InteractionEnd {
 }
 
 message InteractionTurnStart {
-	repeated uint64 sim_ids = 1;
+	repeated uint64 sim_ids = 1 [packed = true];
 	required uint64 social_group = 2;
 }
 
@@ -517,7 +510,7 @@ message TutorialUpdate {
 }
 
 message TutorialViewedList {
-	repeated uint64 tutorial_ids = 1;
+	repeated uint64 tutorial_ids = 1 [packed = true];
 }
 
 message MemoryTriggerUpdate {
@@ -582,16 +575,16 @@ message RewardCount {
 }
 
 message RewardList {
-	repeated uint64 instance_ids = 1;
-	repeated uint64 reward_ids = 2;
-	repeated fixed64 sim_ids = 3;
+	repeated uint64 instance_ids = 1 [packed = true];
+	repeated uint64 reward_ids = 2 [packed = true];
+	repeated fixed64 sim_ids = 3 [packed = true];
 }
 
 message RewardPayout {
 	required uint64 reward_id = 1;
-	repeated uint32 money = 2;
-	repeated fixed64 cas_part_keys = 3;
-	repeated uint64 trait_ids = 4;
+	repeated uint32 money = 2 [packed = true];
+	repeated fixed64 cas_part_keys = 3 [packed = true];
+	repeated uint64 trait_ids = 4 [packed = true];
 	repeated .EA.Sims4.Network.LocalizedString object_names = 5;
 }
 

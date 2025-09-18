@@ -118,53 +118,6 @@ namespace EA.Sims4.Network
         public void ResetHouseDescriptionId() => __pbn__HouseDescriptionId = null;
         private ulong? __pbn__HouseDescriptionId;
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"custom_schedule_name")]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string CustomScheduleName
-        {
-            get => __pbn__CustomScheduleName ?? "";
-            set => __pbn__CustomScheduleName = value;
-        }
-        public bool ShouldSerializeCustomScheduleName() => __pbn__CustomScheduleName != null;
-        public void ResetCustomScheduleName() => __pbn__CustomScheduleName = null;
-        private string __pbn__CustomScheduleName;
-
-        [global::ProtoBuf.ProtoMember(14, Name = @"custom_schedule_activity_names")]
-        public global::System.Collections.Generic.List<LocalizedString> CustomScheduleActivityNames { get; } = new global::System.Collections.Generic.List<LocalizedString>();
-
-        [global::ProtoBuf.ProtoMember(15, Name = @"cost_for_getaway")]
-        public uint CostForGetaway
-        {
-            get => __pbn__CostForGetaway.GetValueOrDefault();
-            set => __pbn__CostForGetaway = value;
-        }
-        public bool ShouldSerializeCostForGetaway() => __pbn__CostForGetaway != null;
-        public void ResetCostForGetaway() => __pbn__CostForGetaway = null;
-        private uint? __pbn__CostForGetaway;
-
-        [global::ProtoBuf.ProtoMember(16, Name = @"related_household")]
-        public bool RelatedHousehold
-        {
-            get => __pbn__RelatedHousehold.GetValueOrDefault();
-            set => __pbn__RelatedHousehold = value;
-        }
-        public bool ShouldSerializeRelatedHousehold() => __pbn__RelatedHousehold != null;
-        public void ResetRelatedHousehold() => __pbn__RelatedHousehold = null;
-        private bool? __pbn__RelatedHousehold;
-
-        [global::ProtoBuf.ProtoMember(17, Name = @"is_premade_custom_schedule")]
-        public bool IsPremadeCustomSchedule
-        {
-            get => __pbn__IsPremadeCustomSchedule.GetValueOrDefault();
-            set => __pbn__IsPremadeCustomSchedule = value;
-        }
-        public bool ShouldSerializeIsPremadeCustomSchedule() => __pbn__IsPremadeCustomSchedule != null;
-        public void ResetIsPremadeCustomSchedule() => __pbn__IsPremadeCustomSchedule = null;
-        private bool? __pbn__IsPremadeCustomSchedule;
-
-        [global::ProtoBuf.ProtoMember(18, Name = @"custom_schedule_name_key")]
-        public LocalizedString CustomScheduleNameKey { get; set; }
-
     }
 
     [global::ProtoBuf.ProtoContract()]

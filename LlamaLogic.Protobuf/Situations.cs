@@ -49,7 +49,7 @@ namespace EA.Sims4.Network
         public void ResetJobId() => __pbn__JobId = null;
         private ulong? __pbn__JobId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"hire_count")]
@@ -91,7 +91,7 @@ namespace EA.Sims4.Network
         public void ResetZoneId() => __pbn__ZoneId = null;
         private ulong? __pbn__ZoneId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"selected_activity_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"selected_activity_ids", IsPacked = true)]
         public ulong[] SelectedActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"guest_attire_style")]
@@ -119,42 +119,6 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(7, Name = @"special_object_icon_info")]
         public IconInfo SpecialObjectIconInfo { get; set; }
-
-        [global::ProtoBuf.ProtoMember(8, Name = @"getaway_schedule")]
-        public CustomSchedule GetawaySchedule { get; set; }
-
-        [global::ProtoBuf.ProtoMember(9, Name = @"duration_nights")]
-        public uint DurationNights
-        {
-            get => __pbn__DurationNights.GetValueOrDefault();
-            set => __pbn__DurationNights = value;
-        }
-        public bool ShouldSerializeDurationNights() => __pbn__DurationNights != null;
-        public void ResetDurationNights() => __pbn__DurationNights = null;
-        private uint? __pbn__DurationNights;
-
-        [global::ProtoBuf.ProtoMember(10, Name = @"recurring_days")]
-        public uint[] RecurringDays { get; set; }
-
-        [global::ProtoBuf.ProtoMember(11, Name = @"end_time")]
-        public ulong EndTime
-        {
-            get => __pbn__EndTime.GetValueOrDefault();
-            set => __pbn__EndTime = value;
-        }
-        public bool ShouldSerializeEndTime() => __pbn__EndTime != null;
-        public void ResetEndTime() => __pbn__EndTime = null;
-        private ulong? __pbn__EndTime;
-
-        [global::ProtoBuf.ProtoMember(12, Name = @"has_valid_zone_schedule")]
-        public bool HasValidZoneSchedule
-        {
-            get => __pbn__HasValidZoneSchedule.GetValueOrDefault();
-            set => __pbn__HasValidZoneSchedule = value;
-        }
-        public bool ShouldSerializeHasValidZoneSchedule() => __pbn__HasValidZoneSchedule != null;
-        public void ResetHasValidZoneSchedule() => __pbn__HasValidZoneSchedule = null;
-        private bool? __pbn__HasValidZoneSchedule;
 
     }
 
@@ -202,7 +166,7 @@ namespace EA.Sims4.Network
         public void ResetSimId() => __pbn__SimId = null;
         private ulong? __pbn__SimId;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"situation_resource_id")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"situation_resource_id", IsPacked = true)]
         public ulong[] SituationResourceIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"creation_time")]
@@ -228,26 +192,6 @@ namespace EA.Sims4.Network
         public void ResetSituationCategory() => __pbn__SituationCategory = null;
         private uint? __pbn__SituationCategory;
 
-        [global::ProtoBuf.ProtoMember(10, Name = @"is_active")]
-        public bool IsActive
-        {
-            get => __pbn__IsActive.GetValueOrDefault();
-            set => __pbn__IsActive = value;
-        }
-        public bool ShouldSerializeIsActive() => __pbn__IsActive != null;
-        public void ResetIsActive() => __pbn__IsActive = null;
-        private bool? __pbn__IsActive;
-
-        [global::ProtoBuf.ProtoMember(11, Name = @"is_new_from_tuning")]
-        public bool IsNewFromTuning
-        {
-            get => __pbn__IsNewFromTuning.GetValueOrDefault();
-            set => __pbn__IsNewFromTuning = value;
-        }
-        public bool ShouldSerializeIsNewFromTuning() => __pbn__IsNewFromTuning != null;
-        public void ResetIsNewFromTuning() => __pbn__IsNewFromTuning = null;
-        private bool? __pbn__IsNewFromTuning;
-
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -260,19 +204,19 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"situation_session_id", IsRequired = true)]
         public uint SituationSessionId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"situation_resource_id")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"situation_resource_id", IsPacked = true)]
         public ulong[] SituationResourceIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"situation_name")]
         public global::System.Collections.Generic.List<LocalizedString> SituationNames { get; } = new global::System.Collections.Generic.List<LocalizedString>();
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"category_id")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"category_id", IsPacked = true)]
         public uint[] CategoryIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"mtx_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(5, Name = @"mtx_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] MtxIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"highest_medal_earned")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"highest_medal_earned", IsPacked = true)]
         public int[] HighestMedalEarneds { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"scoring_enabled")]
@@ -288,7 +232,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"tooltip")]
         public global::System.Collections.Generic.List<LocalizedString> Tooltips { get; } = new global::System.Collections.Generic.List<LocalizedString>();
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"allow_user_facing_goals")]
+        [global::ProtoBuf.ProtoMember(9, Name = @"allow_user_facing_goals", IsPacked = true)]
         public bool[] AllowUserFacingGoals { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"medal_icon_override")]
@@ -297,7 +241,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(11, Name = @"scoring_lock_reason")]
         public global::System.Collections.Generic.List<LocalizedString> ScoringLockReasons { get; } = new global::System.Collections.Generic.List<LocalizedString>();
 
-        [global::ProtoBuf.ProtoMember(12, Name = @"new_entry")]
+        [global::ProtoBuf.ProtoMember(12, Name = @"new_entry", IsPacked = true)]
         public bool[] NewEntries { get; set; }
 
     }
@@ -451,10 +395,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5, Name = @"jobs")]
         public global::System.Collections.Generic.List<SituationJobData> Jobs { get; } = new global::System.Collections.Generic.List<SituationJobData>();
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"available_activity_ids")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"available_activity_ids", IsPacked = true)]
         public ulong[] AvailableActivityIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"required_activity_ids")]
+        [global::ProtoBuf.ProtoMember(7, Name = @"required_activity_ids", IsPacked = true)]
         public ulong[] RequiredActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(8, Name = @"style_data")]
@@ -486,7 +430,7 @@ namespace EA.Sims4.Network
         public void ResetActivityGoalSituation() => __pbn__ActivityGoalSituation = null;
         private bool? __pbn__ActivityGoalSituation;
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"randomizable_activity_ids")]
+        [global::ProtoBuf.ProtoMember(13, Name = @"randomizable_activity_ids", IsPacked = true)]
         public ulong[] RandomizableActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(14, Name = @"num_randomized")]
@@ -499,7 +443,7 @@ namespace EA.Sims4.Network
         public void ResetNumRandomized() => __pbn__NumRandomized = null;
         private uint? __pbn__NumRandomized;
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"unavailable_activity_ids")]
+        [global::ProtoBuf.ProtoMember(15, Name = @"unavailable_activity_ids", IsPacked = true)]
         public ulong[] UnavailableActivityIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(16, Name = @"jobs_per_row")]
@@ -512,10 +456,10 @@ namespace EA.Sims4.Network
         public void ResetJobsPerRow() => __pbn__JobsPerRow = null;
         private uint? __pbn__JobsPerRow;
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"job_cell_padding")]
+        [global::ProtoBuf.ProtoMember(17, Name = @"job_cell_padding", IsPacked = true)]
         public uint[] JobCellPaddings { get; set; }
 
-        [global::ProtoBuf.ProtoMember(18, Name = @"role_updates_activity_preferences")]
+        [global::ProtoBuf.ProtoMember(18, Name = @"role_updates_activity_preferences", IsPacked = true)]
         public ulong[] RoleUpdatesActivityPreferences { get; set; }
 
         [global::ProtoBuf.ProtoMember(19, Name = @"sim_filter_requesting_sim_override")]
@@ -527,29 +471,6 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeSimFilterRequestingSimOverride() => __pbn__SimFilterRequestingSimOverride != null;
         public void ResetSimFilterRequestingSimOverride() => __pbn__SimFilterRequestingSimOverride = null;
         private ulong? __pbn__SimFilterRequestingSimOverride;
-
-        [global::ProtoBuf.ProtoMember(20, Name = @"getaway_schedule")]
-        public CustomSchedule GetawaySchedule { get; set; }
-
-        [global::ProtoBuf.ProtoMember(21, Name = @"max_duration_nights")]
-        public uint MaxDurationNights
-        {
-            get => __pbn__MaxDurationNights.GetValueOrDefault();
-            set => __pbn__MaxDurationNights = value;
-        }
-        public bool ShouldSerializeMaxDurationNights() => __pbn__MaxDurationNights != null;
-        public void ResetMaxDurationNights() => __pbn__MaxDurationNights = null;
-        private uint? __pbn__MaxDurationNights;
-
-        [global::ProtoBuf.ProtoMember(22, Name = @"default_duration_nights")]
-        public uint DefaultDurationNights
-        {
-            get => __pbn__DefaultDurationNights.GetValueOrDefault();
-            set => __pbn__DefaultDurationNights = value;
-        }
-        public bool ShouldSerializeDefaultDurationNights() => __pbn__DefaultDurationNights != null;
-        public void ResetDefaultDurationNights() => __pbn__DefaultDurationNights = null;
-        private uint? __pbn__DefaultDurationNights;
 
     }
 
@@ -628,10 +549,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"situation_session_id", IsRequired = true)]
         public uint SituationSessionId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"job_resource_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"job_resource_ids", IsPacked = true)]
         public ulong[] JobResourceIds { get; set; }
 
     }
@@ -643,7 +564,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"activities")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"activities", IsPacked = true)]
         public ulong[] Activities { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"icon")]
@@ -722,7 +643,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"job_resource_id", IsRequired = true)]
         public ulong JobResourceId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"lock_selection")]
@@ -752,97 +673,6 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(1)]
         public global::System.Collections.Generic.List<LotInfoItem> situation_locations { get; } = new global::System.Collections.Generic.List<LotInfoItem>();
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SituationGetawayRuleOption : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"display_name")]
-        public LocalizedString DisplayName { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"description")]
-        public LocalizedString Description { get; set; }
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"icon")]
-        public ResourceKey Icon { get; set; }
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"groups")]
-        public global::System.Collections.Generic.List<RuleOptionGroup> Groups { get; } = new global::System.Collections.Generic.List<RuleOptionGroup>();
-
-        [global::ProtoBuf.ProtoMember(5, Name = @"rule_guid64")]
-        public ulong RuleGuid64
-        {
-            get => __pbn__RuleGuid64.GetValueOrDefault();
-            set => __pbn__RuleGuid64 = value;
-        }
-        public bool ShouldSerializeRuleGuid64() => __pbn__RuleGuid64 != null;
-        public void ResetRuleGuid64() => __pbn__RuleGuid64 = null;
-        private ulong? __pbn__RuleGuid64;
-
-        [global::ProtoBuf.ProtoMember(6, Name = @"is_track_based_challenge")]
-        public bool IsTrackBasedChallenge
-        {
-            get => __pbn__IsTrackBasedChallenge.GetValueOrDefault();
-            set => __pbn__IsTrackBasedChallenge = value;
-        }
-        public bool ShouldSerializeIsTrackBasedChallenge() => __pbn__IsTrackBasedChallenge != null;
-        public void ResetIsTrackBasedChallenge() => __pbn__IsTrackBasedChallenge = null;
-        private bool? __pbn__IsTrackBasedChallenge;
-
-        [global::ProtoBuf.ProtoContract()]
-        public partial class RuleOptionGroup : global::ProtoBuf.IExtensible
-        {
-            private global::ProtoBuf.IExtension __pbn__extensionData;
-            global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-                => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-            [global::ProtoBuf.ProtoMember(1, Name = @"category_id")]
-            public uint CategoryId
-            {
-                get => __pbn__CategoryId.GetValueOrDefault();
-                set => __pbn__CategoryId = value;
-            }
-            public bool ShouldSerializeCategoryId() => __pbn__CategoryId != null;
-            public void ResetCategoryId() => __pbn__CategoryId = null;
-            private uint? __pbn__CategoryId;
-
-            [global::ProtoBuf.ProtoMember(2, Name = @"category_display_name")]
-            public LocalizedString CategoryDisplayName { get; set; }
-
-            [global::ProtoBuf.ProtoMember(3, Name = @"is_multi_select")]
-            public bool IsMultiSelect
-            {
-                get => __pbn__IsMultiSelect.GetValueOrDefault();
-                set => __pbn__IsMultiSelect = value;
-            }
-            public bool ShouldSerializeIsMultiSelect() => __pbn__IsMultiSelect != null;
-            public void ResetIsMultiSelect() => __pbn__IsMultiSelect = null;
-            private bool? __pbn__IsMultiSelect;
-
-            [global::ProtoBuf.ProtoMember(4, Name = @"disallowed_ages")]
-            public uint[] DisallowedAges { get; set; }
-
-            [global::ProtoBuf.ProtoMember(5, Name = @"disallowed_species")]
-            public uint[] DisallowedSpecies { get; set; }
-
-        }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SituationGetawayRules : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"options")]
-        public global::System.Collections.Generic.List<SituationGetawayRuleOption> Options { get; } = new global::System.Collections.Generic.List<SituationGetawayRuleOption>();
 
     }
 
@@ -983,7 +813,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"current_level")]
         public SituationLevelUpdate CurrentLevel { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(9, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(10, Name = @"sim_jobs")]
@@ -1199,9 +1029,6 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(36, Name = @"reward_description")]
         public LocalizedString RewardDescription { get; set; }
-
-        [global::ProtoBuf.ProtoMember(37, Name = @"custom_schedule")]
-        public CustomSchedule CustomSchedule { get; set; }
 
     }
 
@@ -1495,7 +1322,7 @@ namespace EA.Sims4.Network
         public void ResetIsEnabled() => __pbn__IsEnabled = null;
         private bool? __pbn__IsEnabled;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"required_packs", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"required_packs", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] RequiredPacks { get; set; }
 
     }
@@ -1784,28 +1611,6 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeSituationDisplayStyle() => __pbn__SituationDisplayStyle != null;
         public void ResetSituationDisplayStyle() => __pbn__SituationDisplayStyle = null;
         private uint? __pbn__SituationDisplayStyle;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SituationActiveScheduleUpdate : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"situation_id")]
-        public ulong SituationId
-        {
-            get => __pbn__SituationId.GetValueOrDefault();
-            set => __pbn__SituationId = value;
-        }
-        public bool ShouldSerializeSituationId() => __pbn__SituationId != null;
-        public void ResetSituationId() => __pbn__SituationId = null;
-        private ulong? __pbn__SituationId;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"custom_schedule")]
-        public CustomSchedule CustomSchedule { get; set; }
 
     }
 

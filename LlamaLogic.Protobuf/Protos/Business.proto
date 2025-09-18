@@ -84,7 +84,7 @@ message SmallBusinessDataUpdate {
 	repeated .EA.Sims4.Network.ClubConductRule customer_rules = 3;
 	repeated .EA.Sims4.Network.ClubCriteria attendance_criteria = 4;
 	optional uint32 attendance_sale_mode = 5;
-	repeated fixed64 allowed_zone_ids = 6;
+	repeated fixed64 allowed_zone_ids = 6 [packed = true];
 }
 
 message TemplateHouseholdSelectedStatus {
@@ -128,7 +128,7 @@ message PotentialTenantApplicationHouseholds {
 
 message CustomerBusinessData {
 	optional fixed64 customer_id = 1;
-	repeated fixed64 customer_buffs = 2;
+	repeated fixed64 customer_buffs = 2 [packed = true];
 	repeated .EA.Sims4.Network.BusinessBuffBucketTotal buff_bucket_totals = 3;
 	optional fixed64 last_buff_id = 4;
 }
@@ -179,13 +179,13 @@ message SetBusinessData {
 	optional int32 default_dynamic_area_type = 23 [default = -1];
 	optional uint32 total_open_hours = 24;
 	optional uint32 total_customers_served = 25;
-	repeated int32 dynamic_area_types = 26;
+	repeated int32 dynamic_area_types = 26 [packed = true];
 	optional .EA.Sims4.Network.RestaurantBusinessDataUpdate restaurant_data = 15;
 	optional .EA.Sims4.Network.RetailBusinessDataUpdate retail_data = 16;
 	optional .EA.Sims4.Network.VetClinicBusinessDataUpdate vet_clinic_data = 19;
 	optional .EA.Sims4.Network.RentalUnitBusinessDataUpdate rental_unit_data = 20;
 	optional .EA.Sims4.Network.SmallBusinessDataUpdate small_business_data = 22;
-	repeated fixed64 allowed_zone_ids = 27;
+	repeated fixed64 allowed_zone_ids = 27 [packed = true];
 }
 
 message BusinessMarkupUpdate {
@@ -289,7 +289,7 @@ message BusinessBuffBucketTotal {
 
 message RestaurantSaveData {
 	optional uint32 ingredient_quality_enum = 1;
-	repeated uint32 profit_per_meal_queue = 2;
+	repeated uint32 profit_per_meal_queue = 2 [packed = true];
 	optional uint32 dining_spot_count = 3;
 	optional uint32 advertising_type = 4;
 }
@@ -297,7 +297,7 @@ message RestaurantSaveData {
 message VetClinicSaveData {
 	optional uint32 advertising_type = 1;
 	optional uint32 quality_type = 2;
-	repeated uint32 profit_per_treatment_queue = 3;
+	repeated uint32 profit_per_treatment_queue = 3 [packed = true];
 	optional uint32 exam_table_count = 4;
 }
 
@@ -326,11 +326,11 @@ message SmallBusinessSaveData {
 	optional bool had_employee_once = 11;
 	optional bool had_light_retail_surface_once = 12;
 	optional bool business_has_been_autocreated = 13;
-	repeated fixed64 allowed_zone_ids = 14;
+	repeated fixed64 allowed_zone_ids = 14 [packed = true];
 	optional .EA.Sims4.Network.LocalizedString name_key = 15;
 	optional .EA.Sims4.Network.LocalizedString description_key = 16;
 	optional fixed64 transferred_sim_id = 17;
-	repeated fixed64 business_visitors_ids = 18;
+	repeated fixed64 business_visitors_ids = 18 [packed = true];
 }
 
 message BusinessSaveData {
@@ -419,7 +419,7 @@ message SingleRevenueRecord {
 
 message FirstTimeMessages {
 	optional fixed64 business_type = 1;
-	repeated uint32 messages = 2;
+	repeated uint32 messages = 2 [packed = true];
 }
 
 message AdditionalEmployeeSlotData {

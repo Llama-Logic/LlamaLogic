@@ -892,30 +892,6 @@ namespace EA.Sims4.Network
             IsGuidanceTipComplete = 1281,
             [global::ProtoBuf.ProtoEnum(Name = @"SET_CALL_TO_ACTION_LOT")]
             SetCallToActionLot = 1282,
-            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SCHEDULE")]
-            CustomScheduleSetCustomSchedule = 1300,
-            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_ASSIGNMENT")]
-            CustomScheduleSetCustomAssignment = 1301,
-            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SET_SCHEDULE_LIST")]
-            CustomScheduleSetCustomSetScheduleList = 1302,
-            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SET_ASSIGNMENT_LIST")]
-            CustomScheduleSetCustomSetAssignmentList = 1303,
-            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SET_MANNEQUIN_DATA")]
-            CustomScheduleSetCustomSetMannequinData = 1304,
-            [global::ProtoBuf.ProtoEnum(Name = @"SITUATION_UPDATE_ACTIVE_SCHEDULE")]
-            SituationUpdateActiveSchedule = 1305,
-            [global::ProtoBuf.ProtoEnum(Name = @"MSG_SITUATION_GETAWAY_RULES")]
-            MsgSituationGetawayRules = 1306,
-            [global::ProtoBuf.ProtoEnum(Name = @"SIM_SUGGESTED_ASPIRATION_UPDATE")]
-            SimSuggestedAspirationUpdate = 1307,
-            [global::ProtoBuf.ProtoEnum(Name = @"CHILDHOOD_INSPIRATION_COMPLETE_STATE_UPDATE")]
-            ChildhoodInspirationCompleteStateUpdate = 1308,
-            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_AVAILABLE_SIMS")]
-            CustomScheduleSetAvailableSims = 1309,
-            [global::ProtoBuf.ProtoEnum(Name = @"SET_VISIBILITY_IMMEDIATE")]
-            SetVisibilityImmediate = 1310,
-            [global::ProtoBuf.ProtoEnum(Name = @"SET_RESIDENT_LIST")]
-            SetResidentList = 1311,
         }
 
     }
@@ -939,7 +915,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"components")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"components", IsPacked = true)]
         public uint[] Components { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"operation_list", IsRequired = true)]
@@ -1209,7 +1185,7 @@ namespace EA.Sims4.Network
             public void ResetFailedSimId() => __pbn__FailedSimId = null;
             private ulong? __pbn__FailedSimId;
 
-            [global::ProtoBuf.ProtoMember(2, Name = @"failed_criteria_ids")]
+            [global::ProtoBuf.ProtoMember(2, Name = @"failed_criteria_ids", IsPacked = true)]
             public uint[] FailedCriteriaIds { get; set; }
 
         }
@@ -1233,7 +1209,7 @@ namespace EA.Sims4.Network
         public void ResetFailedSimId() => __pbn__FailedSimId = null;
         private ulong? __pbn__FailedSimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"failed_club_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"failed_club_ids", IsPacked = true)]
         public ulong[] FailedClubIds { get; set; }
 
     }
@@ -1255,7 +1231,7 @@ namespace EA.Sims4.Network
         public void ResetSimId() => __pbn__SimId = null;
         private ulong? __pbn__SimId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"club_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"club_ids", IsPacked = true)]
         public ulong[] ClubIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"show_orgs")]
@@ -1280,7 +1256,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", IsRequired = true)]
         public ulong SimId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"brb_sim_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"brb_sim_ids", IsPacked = true)]
         public ulong[] BrbSimIds { get; set; }
 
     }
@@ -1316,7 +1292,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"active_sim_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"active_sim_ids", IsPacked = true)]
         public ulong[] ActiveSimIds { get; set; }
 
     }
@@ -1883,7 +1859,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"slots")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"slots", IsPacked = true)]
         public uint[] Slots { get; set; }
 
     }
@@ -2123,39 +2099,6 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class SetVisibilityImmediate : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"visibility", IsRequired = true)]
-        public bool Visibility { get; set; }
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"inherits")]
-        public bool Inherits
-        {
-            get => __pbn__Inherits.GetValueOrDefault();
-            set => __pbn__Inherits = value;
-        }
-        public bool ShouldSerializeInherits() => __pbn__Inherits != null;
-        public void ResetInherits() => __pbn__Inherits = null;
-        private bool? __pbn__Inherits;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"enable_drop_shadow")]
-        [global::System.ComponentModel.DefaultValue(true)]
-        public bool EnableDropShadow
-        {
-            get => __pbn__EnableDropShadow ?? true;
-            set => __pbn__EnableDropShadow = value;
-        }
-        public bool ShouldSerializeEnableDropShadow() => __pbn__EnableDropShadow != null;
-        public void ResetEnableDropShadow() => __pbn__EnableDropShadow = null;
-        private bool? __pbn__EnableDropShadow;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public partial class SetMaterialState : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -2307,7 +2250,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"type", IsRequired = true)]
         public uint Type { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"data")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"data", IsPacked = true)]
         public uint[] Datas { get; set; }
 
     }
@@ -3138,7 +3081,7 @@ namespace EA.Sims4.Network
         public void ResetRotateTarget() => __pbn__RotateTarget = null;
         private bool? __pbn__RotateTarget;
 
-        [global::ProtoBuf.ProtoMember(17, Name = @"objects_to_hide", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(17, Name = @"objects_to_hide", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] ObjectsToHides { get; set; }
 
         [global::ProtoBuf.ProtoMember(18, Name = @"mood_categories")]
@@ -3826,16 +3769,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(12, Name = @"tip_icon")]
         public IconInfo TipIcon { get; set; }
 
-        [global::ProtoBuf.ProtoMember(13, Name = @"additional_objectives")]
+        [global::ProtoBuf.ProtoMember(13, Name = @"additional_objectives", IsPacked = true)]
         public ulong[] AdditionalObjectives { get; set; }
 
         [global::ProtoBuf.ProtoMember(14, Name = @"career_panel_info_text")]
         public LocalizedString CareerPanelInfoText { get; set; }
 
-        [global::ProtoBuf.ProtoMember(15, Name = @"client_preferences")]
+        [global::ProtoBuf.ProtoMember(15, Name = @"client_preferences", IsPacked = true)]
         public ulong[] ClientPreferences { get; set; }
 
-        [global::ProtoBuf.ProtoMember(16, Name = @"known_client_preferences")]
+        [global::ProtoBuf.ProtoMember(16, Name = @"known_client_preferences", IsPacked = true)]
         public ulong[] KnownClientPreferences { get; set; }
 
         [global::ProtoBuf.ProtoMember(17, Name = @"client_hh_name")]
@@ -3950,7 +3893,7 @@ namespace EA.Sims4.Network
             global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
                 => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-            [global::ProtoBuf.ProtoMember(1, Name = @"objectives")]
+            [global::ProtoBuf.ProtoMember(1, Name = @"objectives", IsPacked = true)]
             public ulong[] Objectives { get; set; }
 
         }
@@ -3999,10 +3942,10 @@ namespace EA.Sims4.Network
         public void ResetRevealedPreferenceId() => __pbn__RevealedPreferenceId = null;
         private ulong? __pbn__RevealedPreferenceId;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"client_preferences")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"client_preferences", IsPacked = true)]
         public ulong[] ClientPreferences { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"known_client_preferences")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"known_client_preferences", IsPacked = true)]
         public ulong[] KnownClientPreferences { get; set; }
 
     }
@@ -4129,7 +4072,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(15, Name = @"work_schedule")]
         public global::EA.Sims4.Schedule WorkSchedule { get; set; }
 
-        [global::ProtoBuf.ProtoMember(16, Name = @"active_assignments")]
+        [global::ProtoBuf.ProtoMember(16, Name = @"active_assignments", IsPacked = true)]
         public ulong[] ActiveAssignments { get; set; }
 
         [global::ProtoBuf.ProtoMember(17, Name = @"paid_time_off_disabled")]
@@ -5040,13 +4983,13 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"trait_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"trait_ids", IsPacked = true)]
         public ulong[] TraitIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"traits_to_add")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"traits_to_add", IsPacked = true)]
         public ulong[] TraitsToAdds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"traits_to_remove")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"traits_to_remove", IsPacked = true)]
         public ulong[] TraitsToRemoves { get; set; }
 
     }
@@ -5166,7 +5109,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
     }
@@ -5178,7 +5121,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"related_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"related_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] RelatedObjectIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"target_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -5310,7 +5253,7 @@ namespace EA.Sims4.Network
         public void ResetDragStartSystem() => __pbn__DragStartSystem = null;
         private uint? __pbn__DragStartSystem;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"drop_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(3, Name = @"drop_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] DropObjectIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"stack_id")]
@@ -5648,7 +5591,7 @@ namespace EA.Sims4.Network
         public void ResetNumHouseholdSims() => __pbn__NumHouseholdSims = null;
         private uint? __pbn__NumHouseholdSims;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(4, Name = @"zone_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] ZoneIds { get; set; }
 
     }
@@ -5872,7 +5815,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"household_id", IsRequired = true)]
         public ulong HouseholdId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"texture_id", IsRequired = true)]
@@ -6068,7 +6011,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"linked_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(1, Name = @"linked_sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] LinkedSimIds { get; set; }
 
     }
@@ -6217,7 +6160,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"number")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"number", IsPacked = true)]
         public uint[] Numbers { get; set; }
 
     }
@@ -6399,7 +6342,7 @@ namespace EA.Sims4.Network
         public void ResetTimeOffForSchool() => __pbn__TimeOffForSchool = null;
         private bool? __pbn__TimeOffForSchool;
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"traditions", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(6, Name = @"traditions", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] Traditions { get; set; }
 
         [global::ProtoBuf.ProtoMember(7, Name = @"max_traditions")]
@@ -6667,7 +6610,7 @@ namespace EA.Sims4.Network
         public void ResetAllowSimTransfer() => __pbn__AllowSimTransfer = null;
         private bool? __pbn__AllowSimTransfer;
 
-        [global::ProtoBuf.ProtoMember(5, Name = @"selected_sim_ids")]
+        [global::ProtoBuf.ProtoMember(5, Name = @"selected_sim_ids", IsPacked = true)]
         public ulong[] SelectedSimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(6, Name = @"destination_zone_id")]
@@ -6726,7 +6669,7 @@ namespace EA.Sims4.Network
         public void ResetUpdateType() => __pbn__UpdateType = null;
         private OrganizationUpdateType? __pbn__UpdateType;
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"objective_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"objective_ids", IsPacked = true)]
         public ulong[] ObjectiveIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(4, Name = @"is_enrolled")]
@@ -7100,7 +7043,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"pivotal_moment_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
         public ulong PivotalMomentId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"prereq_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"prereq_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] PrereqIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"day_trigger")]
@@ -7142,10 +7085,10 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"completed_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"completed_ids", IsPacked = true)]
         public ulong[] CompletedIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"rewarded_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"rewarded_ids", IsPacked = true)]
         public ulong[] RewardedIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"items")]
@@ -7262,13 +7205,13 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"live_event_id", IsRequired = true)]
         public ulong LiveEventId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"active_pivmos")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"active_pivmos", IsPacked = true)]
         public ulong[] ActivePivmos { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"cancelable_ids")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"cancelable_ids", IsPacked = true)]
         public ulong[] CancelableIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"completed_ids")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"completed_ids", IsPacked = true)]
         public ulong[] CompletedIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"event_ending")]
@@ -7383,7 +7326,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
         public ulong SimId { get; set; }
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"trait_ids")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"trait_ids", IsPacked = true)]
         public ulong[] TraitIds { get; set; }
 
     }
@@ -7421,47 +7364,6 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(1, Name = @"reward_part_list", IsRequired = true)]
         public global::EA.Sims4.Persistence.RewardPartList RewardPartList { get; set; }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class ChildhoodInspirationCompleteStateUpdate : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id")]
-        public ulong SimId
-        {
-            get => __pbn__SimId.GetValueOrDefault();
-            set => __pbn__SimId = value;
-        }
-        public bool ShouldSerializeSimId() => __pbn__SimId != null;
-        public void ResetSimId() => __pbn__SimId = null;
-        private ulong? __pbn__SimId;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"complete_state")]
-        public bool CompleteState
-        {
-            get => __pbn__CompleteState.GetValueOrDefault();
-            set => __pbn__CompleteState = value;
-        }
-        public bool ShouldSerializeCompleteState() => __pbn__CompleteState != null;
-        public void ResetCompleteState() => __pbn__CompleteState = null;
-        private bool? __pbn__CompleteState;
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class SetResidentList : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids")]
-        public ulong[] SimIds { get; set; }
 
     }
 

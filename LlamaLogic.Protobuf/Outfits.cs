@@ -16,7 +16,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"body_types")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"body_types", IsPacked = true)]
         public uint[] BodyTypes { get; set; }
 
     }
@@ -28,7 +28,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"color_shift")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"color_shift", IsPacked = true)]
         public ulong[] ColorShifts { get; set; }
 
     }
@@ -40,7 +40,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"object_id")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"object_id", IsPacked = true)]
         public ulong[] ObjectIds { get; set; }
 
     }
@@ -52,7 +52,7 @@ namespace EA.Sims4.Persistence
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"layer_id")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"layer_id", IsPacked = true)]
         public uint[] LayerIds { get; set; }
 
     }
@@ -145,7 +145,7 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(15, Name = @"layer_ids")]
         public LayerIdsList LayerIds { get; set; }
 
-        [global::ProtoBuf.ProtoMember(16, Name = @"outfitflags_array")]
+        [global::ProtoBuf.ProtoMember(16, Name = @"outfitflags_array", IsPacked = true)]
         public ulong[] OutfitflagsArrays { get; set; }
 
     }

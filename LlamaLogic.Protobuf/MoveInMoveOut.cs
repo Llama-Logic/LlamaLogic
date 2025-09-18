@@ -164,13 +164,13 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5, Name = @"move_out_data_dst")]
         public MoveOutData MoveOutDataDst { get; set; }
 
-        [global::ProtoBuf.ProtoMember(6, Name = @"households_to_update")]
+        [global::ProtoBuf.ProtoMember(6, Name = @"households_to_update", IsPacked = true)]
         public ulong[] HouseholdsToUpdates { get; set; }
 
-        [global::ProtoBuf.ProtoMember(7, Name = @"travel_groups_to_update")]
+        [global::ProtoBuf.ProtoMember(7, Name = @"travel_groups_to_update", IsPacked = true)]
         public ulong[] TravelGroupsToUpdates { get; set; }
 
-        [global::ProtoBuf.ProtoMember(8, Name = @"retail_lots_to_update")]
+        [global::ProtoBuf.ProtoMember(8, Name = @"retail_lots_to_update", IsPacked = true)]
         public ulong[] RetailLotsToUpdates { get; set; }
 
         [global::ProtoBuf.ProtoMember(9, Name = @"notify_gameplay")]

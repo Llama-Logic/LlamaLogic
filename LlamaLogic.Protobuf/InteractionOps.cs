@@ -57,10 +57,10 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(2, Name = @"loc_string", IsRequired = true)]
         public LocalizedString LocString { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3, Name = @"related_skills")]
+        [global::ProtoBuf.ProtoMember(3, Name = @"related_skills", IsPacked = true)]
         public ulong[] RelatedSkills { get; set; }
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"target_ids")]
+        [global::ProtoBuf.ProtoMember(4, Name = @"target_ids", IsPacked = true)]
         public ulong[] TargetIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(5, Name = @"icon")]
@@ -295,7 +295,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids", IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
     }
@@ -393,7 +393,7 @@ namespace EA.Sims4.Network
         public void ResetZoneId() => __pbn__ZoneId = null;
         private ulong? __pbn__ZoneId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3, Name = @"active_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
@@ -607,7 +607,7 @@ namespace EA.Sims4.Network
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
-        [global::ProtoBuf.ProtoMember(1, Name = @"interaction_ids")]
+        [global::ProtoBuf.ProtoMember(1, Name = @"interaction_ids", IsPacked = true)]
         public ulong[] InteractionIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"sim_id", IsRequired = true)]

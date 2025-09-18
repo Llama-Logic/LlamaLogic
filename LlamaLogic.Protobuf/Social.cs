@@ -1326,7 +1326,7 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(1, Name = @"control")]
         public SocialControlMessage Control { get; set; }
 
-        [global::ProtoBuf.ProtoMember(3)]
+        [global::ProtoBuf.ProtoMember(3, IsPacked = true)]
         public ulong[] friendIds { get; set; }
 
     }
@@ -1348,7 +1348,7 @@ namespace EA.Sims4.Network
         public void ResetType() => __pbn__Type = null;
         private uint? __pbn__Type;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        [global::ProtoBuf.ProtoMember(2, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] SimIds { get; set; }
 
     }

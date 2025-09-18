@@ -11,7 +11,7 @@ message RoommateLeaveReasonInfo {
 message RoommateInfo {
 	optional fixed64 sim_id = 1;
 	optional uint64 bed_id = 2;
-	repeated uint64 decoration_ids = 3;
+	repeated uint64 decoration_ids = 3 [packed = true];
 	repeated .EA.Sims4.Persistence.RoommateLeaveReasonInfo leave_reason_infos = 4;
 }
 
@@ -22,8 +22,8 @@ message RoommateBlacklistSimInfo {
 
 message RoommateAdInfo {
 	optional fixed64 household_id = 1;
-	repeated uint64 pending_interview_alarms = 2;
-	repeated fixed64 interviewee_ids = 3;
+	repeated uint64 pending_interview_alarms = 2 [packed = true];
+	repeated fixed64 interviewee_ids = 3 [packed = true];
 }
 
 message RoommateData {
@@ -31,7 +31,7 @@ message RoommateData {
 	optional fixed64 household_id = 2;
 	repeated .EA.Sims4.Persistence.RoommateInfo roommate_infos = 4;
 	repeated .EA.Sims4.Persistence.RoommateBlacklistSimInfo blacklist_infos = 5;
-	repeated uint64 pending_destroy_decoration_ids = 7;
+	repeated uint64 pending_destroy_decoration_ids = 7 [packed = true];
 	optional fixed64 locked_out_id = 8;
 	optional int32 available_beds = 9;
 }

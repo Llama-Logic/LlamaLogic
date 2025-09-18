@@ -84,7 +84,7 @@ namespace EA.Sims4.Network
         public void ResetmemoryId() => __pbn__memoryId = null;
         private ulong? __pbn__memoryId;
 
-        [global::ProtoBuf.ProtoMember(2)]
+        [global::ProtoBuf.ProtoMember(2, IsPacked = true)]
         public ulong[] simIds { get; set; }
 
         [global::ProtoBuf.ProtoMember(3)]

@@ -58,7 +58,7 @@ message RegionWeather {
 	required fixed64 weather_event = 3;
 	required uint64 forecast_time_stamp = 4;
 	required uint64 next_weather_event_time = 5;
-	repeated uint64 forecasts = 6;
+	repeated uint64 forecasts = 6 [packed = true];
 	optional uint64 override_forecast = 7;
 	optional uint64 override_forecast_season_stamp = 8;
 }
@@ -68,11 +68,11 @@ message PersistableWeatherService {
 }
 
 message UiWeatherUpdate {
-	repeated int64 weather_type_enums = 1;
+	repeated int64 weather_type_enums = 1 [packed = true];
 }
 
 message UiWeatherForecastUpdate {
-	repeated uint64 forecast_instance_ids = 1;
+	repeated uint64 forecast_instance_ids = 1 [packed = true];
 }
 
 message MoonPhaseUpdate {
@@ -108,5 +108,5 @@ message MoonForecastUpdate {
 		THIRD_QUARTER = 6;
 		WANING_CRESCENT = 7;
 	}
-	repeated .EA.Sims4.Network.MoonForecastUpdate.MoonPhase forecast_moon_phases = 1;
+	repeated .EA.Sims4.Network.MoonForecastUpdate.MoonPhase forecast_moon_phases = 1 [packed = true];
 }

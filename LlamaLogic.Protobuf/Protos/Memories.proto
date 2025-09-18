@@ -6,7 +6,7 @@ message MemoriesList {
 	optional uint64 simId = 1;
 	optional uint64 householdId = 2;
 	optional bool isFavorites = 3;
-	repeated uint64 memoryIds = 4;
+	repeated uint64 memoryIds = 4 [packed = true];
 }
 
 message MemoriesFilterFile {

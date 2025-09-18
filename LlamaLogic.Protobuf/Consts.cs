@@ -1159,10 +1159,6 @@ namespace EA.Sims4.Network
         FundsSmallBusinessOpenBusiness = 40,
         [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_SMALL_BUSINESS_EMPLOYEE")]
         FundsSmallBusinessEmployee = 41,
-        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_GETAWAY_PROFIT")]
-        FundsGetawayProfit = 42,
-        [global::ProtoBuf.ProtoEnum(Name = @"FUNDS_GETAWAY_COSTS")]
-        FundsGetawayCosts = 43,
     }
 
     [global::ProtoBuf.ProtoContract()]

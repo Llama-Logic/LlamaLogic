@@ -49,17 +49,6 @@ namespace EA.Sims4.Network
         public void ResetType() => __pbn__Type = null;
         private uint? __pbn__Type;
 
-        [global::ProtoBuf.ProtoMember(4, Name = @"routable_surface_height")]
-        [global::System.ComponentModel.DefaultValue(0)]
-        public int RoutableSurfaceHeight
-        {
-            get => __pbn__RoutableSurfaceHeight ?? 0;
-            set => __pbn__RoutableSurfaceHeight = value;
-        }
-        public bool ShouldSerializeRoutableSurfaceHeight() => __pbn__RoutableSurfaceHeight != null;
-        public void ResetRoutableSurfaceHeight() => __pbn__RoutableSurfaceHeight = null;
-        private int? __pbn__RoutableSurfaceHeight;
-
     }
 
     [global::ProtoBuf.ProtoContract()]

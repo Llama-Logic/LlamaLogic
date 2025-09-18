@@ -478,7 +478,7 @@ namespace EA.Sims4.Network
         public void ResetEventId() => __pbn__EventId = null;
         private string __pbn__EventId;
 
-        [global::ProtoBuf.ProtoMember(2, Name = @"claimed_progress_id")]
+        [global::ProtoBuf.ProtoMember(2, Name = @"claimed_progress_id", IsPacked = true)]
         public uint[] ClaimedProgressIds { get; set; }
 
     }
@@ -762,7 +762,6 @@ namespace EA.Sims4.Network
         R4Event = 300,
         [global::ProtoBuf.ProtoEnum(Name = @"R5_EVENT")]
         R5Event = 400,
-        EVTSept25 = 500,
     }
 
 }
