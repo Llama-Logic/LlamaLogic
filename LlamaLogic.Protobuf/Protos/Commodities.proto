@@ -55,20 +55,20 @@ message RelationshipTrack {
 
 message RelationshipUpdate {
 	optional float score = 1;
-	repeated uint64 bit_ids = 2 [packed = true];
-	repeated uint64 track_bit_ids = 5 [packed = true];
+	repeated uint64 bit_ids = 2;
+	repeated uint64 track_bit_ids = 5;
 	required uint64 actor_sim_id = 3;
 	optional uint64 target_sim_id = 4;
-	repeated uint64 handshake_bit_ids = 6 [packed = true];
+	repeated uint64 handshake_bit_ids = 6;
 	repeated .EA.Sims4.Network.RelationshipTrack tracks = 7;
-	repeated uint64 known_trait_ids = 8 [packed = true];
+	repeated uint64 known_trait_ids = 8;
 	optional .EA.Sims4.Network.ManagerObjectId target_id = 9;
 	optional uint64 target_instance_id = 10;
 	optional fixed64 target_sim_significant_other_id = 11;
 	optional uint32 num_traits = 12;
-	repeated uint64 known_careertrack_ids = 13 [packed = true];
+	repeated uint64 known_careertrack_ids = 13;
 	optional uint64 last_update_time = 14;
-	repeated uint64 known_stat_ids = 15 [packed = true];
+	repeated uint64 known_stat_ids = 15;
 	optional .EA.Sims4.Network.IconInfo target_icon_override = 16;
 	repeated .EA.Sims4.Network.RelationshipBitUpdate bit_updates = 17;
 	optional uint64 known_major_id = 18;
@@ -76,15 +76,15 @@ message RelationshipUpdate {
 	optional fixed64 target_sim_fiance_id = 20;
 	optional bool knows_romantic_preference = 21;
 	optional bool knows_woohoo_preference = 22;
-	repeated uint32 known_romantic_genders = 23 [packed = true];
-	repeated uint32 known_woohoo_genders = 24 [packed = true];
+	repeated uint32 known_romantic_genders = 23;
+	repeated uint32 known_woohoo_genders = 24;
 	optional bool known_exploring_sexuality = 25;
 	optional .EA.Sims4.Network.CompatibilityUpdate compatibility = 26;
 	optional uint64 unconfronted_secret_id = 27;
 	repeated .EA.Sims4.Persistence.ConfrontedSimSecret known_confronted_secrets = 28;
 	optional .EA.Sims4.Network.RelationshipLabelDataUpdate relationship_label_data = 29;
-	repeated uint64 known_rel_track_ids = 30 [packed = true];
-	repeated uint32 known_relationship_expectations_ids = 31 [packed = true];
+	repeated uint64 known_rel_track_ids = 30;
+	repeated uint32 known_relationship_expectations_ids = 31;
 	optional bool hidden = 32;
 }
 
@@ -116,8 +116,8 @@ message RelHandshakeUpdate {
 	}
 	required uint64 actor_sim_id = 1;
 	required uint64 target_sim_id = 2;
-	repeated uint32 bit_ids = 3 [packed = true];
-	repeated .EA.Sims4.Network.RelHandshakeUpdate.HandshakeStatus bit_status = 4 [packed = true];
+	repeated uint32 bit_ids = 3;
+	repeated .EA.Sims4.Network.RelHandshakeUpdate.HandshakeStatus bit_status = 4;
 }
 
 message RelationshipLabelDataUpdate {
@@ -140,10 +140,10 @@ message CommodityStaticDataList {
 }
 
 message CommodityUpdate {
-	repeated uint32 commodity_ids = 1 [packed = true];
-	repeated float change_rate = 2 [packed = true];
-	repeated uint32 commodity_image_index = 3 [packed = true];
-	repeated uint64 commodity_guids = 4 [packed = true];
+	repeated uint32 commodity_ids = 1;
+	repeated float change_rate = 2;
+	repeated uint32 commodity_image_index = 3;
+	repeated uint64 commodity_guids = 4;
 }
 
 message CommodityProgressUpdate {

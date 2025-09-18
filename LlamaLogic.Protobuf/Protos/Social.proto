@@ -248,12 +248,12 @@ message SocialInvalidateMsg {
 
 message SocialControlQueueBroadcastMessage {
 	optional .EA.Sims4.Network.SocialControlMessage control = 1;
-	repeated uint64 friendIds = 3 [packed = true];
+	repeated uint64 friendIds = 3;
 }
 
 message LifeEventMessage {
 	optional uint32 type = 1;
-	repeated fixed64 sim_ids = 2 [packed = true];
+	repeated fixed64 sim_ids = 2;
 }
 
 message SocialFacebookEventMessage {

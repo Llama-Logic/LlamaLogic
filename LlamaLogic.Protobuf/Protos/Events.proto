@@ -9,6 +9,7 @@ enum EventVersion {
 	DEC_EVENT = 200;
 	R4_EVENT = 300;
 	R5_EVENT = 400;
+	EVTSept25 = 500;
 }
 
 message EventDefinition {
@@ -89,7 +90,7 @@ message CatchUpPeriod {
 
 message ClaimedRewardUpdate {
 	optional string event_id = 1;
-	repeated uint32 claimed_progress_id = 2 [packed = true];
+	repeated uint32 claimed_progress_id = 2;
 }
 
 message ServerResponse {

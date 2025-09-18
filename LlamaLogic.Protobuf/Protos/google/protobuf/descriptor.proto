@@ -134,7 +134,6 @@ message FieldOptions {
 
 message EnumOptions {
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
-	optional bool allow_alias = 2;
 	extensions 1000 to max;
 }
 
@@ -169,8 +168,8 @@ message UninterpretedOption {
 
 message SourceCodeInfo {
 	message Location {
-		repeated int32 path = 1 [packed = true];
-		repeated int32 span = 2 [packed = true];
+		repeated int32 path = 1;
+		repeated int32 span = 2;
 	}
 	repeated .google.protobuf.SourceCodeInfo.Location location = 1;
 }

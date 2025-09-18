@@ -18,8 +18,8 @@ message Interactable {
 message PieMenuItem {
 	required uint32 id = 1;
 	required .EA.Sims4.Network.LocalizedString loc_string = 2;
-	repeated uint64 related_skills = 3 [packed = true];
-	repeated uint64 target_ids = 4 [packed = true];
+	repeated uint64 related_skills = 3;
+	repeated uint64 target_ids = 4;
 	optional .EA.Sims4.Network.ResourceKey icon = 5;
 	optional .EA.Sims4.Network.LocalizedString disabled_text = 6;
 	optional .EA.Sims4.Network.ResourceKey score_icon = 7;
@@ -57,7 +57,7 @@ message TravelMenuCreate {
 }
 
 message TravelMenuInfo {
-	repeated uint64 sim_ids = 1 [packed = true];
+	repeated uint64 sim_ids = 1;
 }
 
 message TravelMenuResponse {
@@ -80,7 +80,7 @@ message SellRetailLot {
 
 message TravelSimsToZone {
 	optional fixed64 zone_id = 1;
-	repeated fixed64 sim_ids = 2 [packed = true];
+	repeated fixed64 sim_ids = 2;
 	optional fixed64 active_sim_id = 3;
 }
 
@@ -118,6 +118,6 @@ message SimTransferRequest {
 }
 
 message PhoneNotificationUpdate {
-	repeated uint64 interaction_ids = 1 [packed = true];
+	repeated uint64 interaction_ids = 1;
 	required uint64 sim_id = 2;
 }

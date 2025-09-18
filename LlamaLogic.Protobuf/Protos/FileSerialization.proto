@@ -12,6 +12,7 @@ import "Outfits.proto";
 import "S4Common.proto";
 import "Venue.proto";
 import "Consts.proto";
+import "CustomSchedule.proto";
 
 enum PersistenceActions {
 	BASE_ACTION = 0;
@@ -85,8 +86,8 @@ message EntitlementData {
 }
 
 message GameContentData {
-	repeated uint32 required_pack_ids = 1 [packed = true];
-	repeated uint32 cds_patch_base_changelists = 2 [packed = true];
+	repeated uint32 required_pack_ids = 1;
+	repeated uint32 cds_patch_base_changelists = 2;
 	optional bool cds_content_patch_mounted = 3;
 	optional bool saved_by_feature_preview_build = 4;
 }
@@ -121,9 +122,9 @@ message NotificationSaveData {
 
 message SaveSlotData {
 	optional fixed64 slot_id = 1;
-	repeated fixed64 neighboorhoods = 2 [packed = true];
+	repeated fixed64 neighboorhoods = 2;
 	optional fixed64 last_neighborhood = 3;
-	repeated fixed64 zones = 4 [packed = true];
+	repeated fixed64 zones = 4;
 	optional fixed64 last_zone = 5;
 	optional .EA.Sims4.IdList households = 6;
 	optional bool is_migrated = 7;
@@ -151,7 +152,7 @@ message SaveSlotDataDescOnly {
 
 message SaveListData {
 	optional fixed64 nucleus_id = 1;
-	repeated fixed64 slot_ids = 2 [packed = true];
+	repeated fixed64 slot_ids = 2;
 }
 
 message LotCoord {
@@ -202,7 +203,7 @@ message ObjectData {
 	repeated .EA.Sims4.Network.Vector3 multicolor = 35;
 	optional int32 inventory_plex_id = 36;
 	optional bool is_new_object = 37;
-	repeated uint32 persisted_tags = 38 [packed = true];
+	repeated uint32 persisted_tags = 38;
 	optional .EA.Sims4.Network.IconInfo.CanvasStateType canvas_state_type = 39;
 }
 
@@ -233,22 +234,23 @@ message ZoneData {
 	optional fixed64 lot_description_id = 12;
 	optional fixed64 front_door_id = 13;
 	optional string description = 14;
-	repeated fixed64 spawn_point_ids = 15 [packed = true];
+	repeated fixed64 spawn_point_ids = 15;
 	optional uint32 bedroom_count = 16;
 	optional uint32 bathroom_count = 17;
 	optional uint32 active_plex = 18;
 	optional fixed64 master_zone_object_data_id = 19;
-	repeated fixed64 lot_traits = 20 [packed = true];
+	repeated fixed64 lot_traits = 20;
 	optional uint32 pending_house_desc_id = 21;
 	optional .EA.Sims4.Network.UniversityHousingConfiguration university_housing_configuration = 22;
 	optional uint32 pending_plex_exterior_house_desc_id = 23;
+	optional .EA.Sims4.Network.CustomSchedule custom_schedule = 24;
 }
 
 message ZoneObjectData {
 	optional fixed64 zone_id = 1;
 	repeated bytes architecture_data = 2;
 	repeated .EA.Sims4.Persistence.ObjectList objects = 3;
-	repeated fixed64 sub_venue_keys = 5 [packed = true];
+	repeated fixed64 sub_venue_keys = 5;
 	optional int32 active_data_index = 4;
 	optional bool is_modified_from_lot_template = 6;
 }
@@ -260,7 +262,7 @@ message ZoneObjectDataScratchPair {
 
 message SituationConditionalLayerData {
 	required fixed64 layer_guid = 1;
-	repeated fixed64 situation_ids = 2 [packed = true];
+	repeated fixed64 situation_ids = 2;
 }
 
 message OpenStreetsData {
@@ -278,7 +280,7 @@ message OpenStreetsData {
 }
 
 message SteadySimIdList {
-	repeated fixed64 sim_id = 1 [packed = true];
+	repeated fixed64 sim_id = 1;
 }
 
 message SimData {
@@ -416,7 +418,7 @@ message HouseholdData {
 	optional uint32 instanced_object_count = 13;
 	optional uint32 revision = 15;
 	optional .EA.Sims4.Persistence.GameplayHouseholdData gameplay_data = 16;
-	repeated uint64 cas_inventory = 17 [packed = true];
+	repeated uint64 cas_inventory = 17;
 	optional string description = 18;
 	optional uint64 last_modified_time = 19;
 	optional fixed64 creator_id = 20;
@@ -447,14 +449,14 @@ message HouseholdAccountPair {
 }
 
 message LotTraitUpdateInfo {
-	repeated fixed64 lot_traits = 1 [packed = true];
+	repeated fixed64 lot_traits = 1;
 	optional .EA.Sims4.Persistence.LotOwnerInfo lot_owner_info = 2;
 }
 
 message SubVenueInfo {
 	optional fixed64 sub_venue_key = 1;
 	optional bool sub_venue_eligible = 2;
-	repeated fixed64 sub_venue_lot_traits = 3 [packed = true];
+	repeated fixed64 sub_venue_lot_traits = 3;
 }
 
 message LotOwnerInfo {
@@ -475,6 +477,7 @@ message TravelGroupData {
 	enum GroupType {
 		GROUPTYPE_VACATION = 0;
 		GROUPTYPE_STAYOVER = 1;
+		GROUPTYPE_GETAWAY = 2;
 	}
 	optional fixed64 travel_group_id = 1;
 	repeated .EA.Sims4.HouseholdSimIds household_sim_ids = 2;
@@ -485,7 +488,10 @@ message TravelGroupData {
 	optional .EA.Sims4.Persistence.ObjectPreferenceTracker object_preference_tracker = 7;
 	optional .EA.Sims4.Persistence.TravelGroupData.GroupType group_type = 8;
 	optional uint64 situation_id = 9;
-	repeated fixed64 claimed_object_ids = 10 [packed = true];
+	repeated fixed64 claimed_object_ids = 10;
+	optional uint64 initiating_sim_id = 11;
+	optional uint32 lot_value = 12;
+	optional bytes custom_data = 13;
 }
 
 message TravelGroupList {
@@ -506,7 +512,7 @@ message GameplayDestinationCleanUpData {
 
 message StreetInfoData {
 	optional fixed64 world_id = 1;
-	repeated uint32 map_overlays = 2 [packed = true];
+	repeated uint32 map_overlays = 2;
 	optional .EA.Sims4.Persistence.EcoFootprintStateType eco_footprint_state = 3 [default = NEUTRAL];
 	optional float normalized_eco_footprint_state_progress = 4;
 	optional float eco_footprint_delta = 5;
@@ -531,7 +537,7 @@ message NeighborhoodData {
 message NeighborhoodDataMessage {
 	repeated .EA.Sims4.Persistence.NeighborhoodData neighborhoods = 1;
 	repeated .EA.Sims4.Persistence.TravelGroupData travel_groups = 2;
-	repeated uint64 uninstalled_region_ids = 3 [packed = true];
+	repeated uint64 uninstalled_region_ids = 3;
 }
 
 message AccountSettingsData {
@@ -577,10 +583,10 @@ message SaveGameSlotMetaData {
 	optional int32 scratch_id = 8;
 	optional int32 slot_version = 9;
 	optional bool incompatible = 10;
-	repeated uint32 required_pack_ids = 11 [packed = true];
-	repeated uint32 cds_patch_base_changelists = 12 [packed = true];
+	repeated uint32 required_pack_ids = 11;
+	repeated uint32 cds_patch_base_changelists = 12;
 	optional bool cds_content_patch_mounted = 13;
-	repeated uint64 scenario_ids = 14 [packed = true];
+	repeated uint64 scenario_ids = 14;
 	optional bool saved_by_feature_preview_build = 15;
 }
 
@@ -591,7 +597,7 @@ message SaveGameSlotList {
 
 message PlayerCustomColorList {
 	required .EA.Sims4.Network.ResourceKey part_id = 1;
-	repeated uint64 color_shifts = 2 [packed = true];
+	repeated uint64 color_shifts = 2;
 }
 
 message PlayerCustomColors {
@@ -612,7 +618,7 @@ message GigObjectsTrackingData {
 	required uint64 zone_id = 1;
 	repeated .EA.Sims4.Persistence.GigTagCount tag_counts = 3;
 	optional int32 tile_count = 4;
-	repeated uint32 block_ids = 5 [packed = true];
+	repeated uint32 block_ids = 5;
 	repeated .EA.Sims4.Persistence.GigObjectInfo objects = 6;
 	required int32 max_level = 7;
 	required int32 min_level = 8;
@@ -635,14 +641,14 @@ message SaveGameData {
 	repeated .EA.Sims4.Persistence.ZoneData zones = 7;
 	repeated .EA.Sims4.Persistence.OpenStreetsData streets = 8;
 	repeated .EA.Sims4.Persistence.TravelGroupData travel_groups = 9;
-	repeated uint64 uninstalled_region_ids = 10 [packed = true];
+	repeated uint64 uninstalled_region_ids = 10;
 	optional .EA.Sims4.Persistence.ObjectFallbackDataList object_fallbacks = 11;
 	repeated .EA.Sims4.Persistence.GameplayDestinationCleanUpData destination_clean_up_data = 12;
 	optional .EA.Sims4.Persistence.GameplayData gameplay_data = 14;
 	repeated .EA.Sims4.Persistence.MannequinSimData mannequins = 15;
 	optional .EA.Sims4.Persistence.SimRelationshipGraphData relgraph = 16;
-	repeated fixed64 tutorial_tips = 17 [packed = true];
-	repeated uint64 sims_removed_from_travel_groups = 18 [packed = true];
+	repeated fixed64 tutorial_tips = 17;
+	repeated uint64 sims_removed_from_travel_groups = 18;
 	optional .EA.Sims4.Persistence.PlayerCustomColors custom_colors = 19;
 	repeated .EA.Sims4.Persistence.GigObjectsTrackingData gig_start_objects_tracking_data = 20;
 	repeated .EA.Sims4.Persistence.GigObjectsTrackingData gig_end_objects_tracking_data = 21;

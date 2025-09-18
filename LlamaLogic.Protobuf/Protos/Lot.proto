@@ -17,6 +17,12 @@ message LotInfoItem {
 	optional string region_name = 10;
 	optional .EA.Sims4.Network.ResourceKey region_icon = 11;
 	optional fixed64 house_description_id = 12;
+	optional string custom_schedule_name = 13;
+	repeated .EA.Sims4.Network.LocalizedString custom_schedule_activity_names = 14;
+	optional uint32 cost_for_getaway = 15;
+	optional bool related_household = 16;
+	optional bool is_premade_custom_schedule = 17;
+	optional .EA.Sims4.Network.LocalizedString custom_schedule_name_key = 18;
 }
 
 message LotPlexExteriorUpdate {

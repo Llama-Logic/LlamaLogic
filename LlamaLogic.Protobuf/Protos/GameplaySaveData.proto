@@ -15,6 +15,7 @@ import "WeatherSeasons.proto";
 import "Roommates.proto";
 import "Calendar.proto";
 import "Outfits.proto";
+import "CustomSchedule.proto";
 
 enum EcoFootprintStateType {
 	GREEN = 0;
@@ -66,12 +67,12 @@ message LotUnpaidBillData {
 	optional uint32 money_amount = 1;
 	optional fixed64 zone_id = 2;
 	optional fixed64 situation_id = 3;
-	repeated fixed64 sim_ids_on_lot = 4 [packed = true];
+	repeated fixed64 sim_ids_on_lot = 4;
 }
 
 message HouseholdMilestoneDataTracker {
-	repeated uint32 milestones_completed = 1 [packed = true];
-	repeated uint32 objectives_completed = 2 [packed = true];
+	repeated uint32 milestones_completed = 1;
+	repeated uint32 objectives_completed = 2;
 	optional .EA.Sims4.Persistence.EventDataObject data = 3;
 	repeated .EA.Sims4.Persistence.MilestoneCompletionCount milestone_completion_counts = 4;
 }
@@ -82,7 +83,7 @@ message Holiday {
 	optional .EA.Sims4.Network.ResourceKey icon = 3;
 	optional bool time_off_for_work = 4;
 	optional bool time_off_for_school = 5;
-	repeated fixed64 traditions = 6 [packed = true];
+	repeated fixed64 traditions = 6;
 	optional fixed64 lot_decoration_preset = 7;
 }
 
@@ -124,8 +125,8 @@ message GameplayScenarioTrackerData {
 
 message HouseholdPivotalMomentTracker {
 	repeated .EA.Sims4.Persistence.PivotalMoment pivotal_moments = 1;
-	repeated fixed64 completed_pivotal_moment_ids = 2 [packed = true];
-	repeated fixed64 rewarded_pivotal_moment_ids = 3 [packed = true];
+	repeated fixed64 completed_pivotal_moment_ids = 2;
+	repeated fixed64 rewarded_pivotal_moment_ids = 3;
 	repeated .EA.Sims4.Persistence.SituationSeedData situation_seeds = 4;
 }
 
@@ -160,12 +161,12 @@ message GameplayScenarioData {
 	repeated .EA.Sims4.Persistence.GameplayScenarioData.ScenarioGoalData active_goals = 2;
 	optional uint64 sim_time_lapsed = 3;
 	optional uint64 active_phase_guid = 4;
-	repeated uint64 completed_goals = 5 [packed = true];
-	repeated uint64 triggered_phases = 6 [packed = true];
+	repeated uint64 completed_goals = 5;
+	repeated uint64 triggered_phases = 6;
 	repeated .EA.Sims4.Persistence.GameplayScenarioData.IndexGoalMandatoryTriple last_completed_goal_sequence_pair = 7;
 	repeated .EA.Sims4.Persistence.GameplayScenarioData.SimFilterInfoPair sim_filter_sim_info_pair = 8;
-	repeated uint64 skipped_phases = 9 [packed = true];
-	repeated uint64 terminated_phases = 10 [packed = true];
+	repeated uint64 skipped_phases = 9;
+	repeated uint64 terminated_phases = 10;
 	repeated .EA.Sims4.Persistence.GameplayScenarioData.PhaseOutputInfo last_phase_outputs = 11;
 	repeated .EA.Sims4.Persistence.GameplayScenarioData.CompletedGoalInfo completed_goal_infos = 12;
 	repeated .EA.Sims4.Persistence.GameplayScenarioData.TerminatedPhaseInfo terminated_phase_infos = 13;
@@ -181,7 +182,7 @@ message GameplayHouseholdData {
 	optional bool cheats_enabled = 1;
 	optional uint32 owned_object_count = 2;
 	repeated .EA.Sims4.Persistence.ServiceNpcRecord service_npc_records = 3;
-	repeated uint32 delinquent_utilities = 4 [packed = true];
+	repeated uint32 delinquent_utilities = 4;
 	optional bool can_deliver_bill = 5;
 	optional int64 current_payment_owed = 6;
 	optional uint64 bill_timer = 7;
@@ -192,7 +193,7 @@ message GameplayHouseholdData {
 	optional bool put_bill_in_hidden_inventory = 12;
 	optional uint64 billable_household_value = 13;
 	repeated .EA.Sims4.Persistence.SituationEarnedMedals highest_earned_situation_medals = 14;
-	repeated uint64 build_buy_unlocks = 15 [packed = true];
+	repeated uint64 build_buy_unlocks = 15;
 	optional bool situation_scoring_enabled = 16 [default = true];
 	optional .EA.Sims4.Network.ResourceKeyList build_buy_unlock_list = 17;
 	repeated .EA.Sims4.Persistence.RetailData retail_data = 18;
@@ -202,7 +203,7 @@ message GameplayHouseholdData {
 	optional uint64 home_world_id = 22;
 	optional fixed64 last_played_home_zone_id = 23;
 	optional uint64 home_zone_move_in_ticks = 24;
-	repeated fixed64 always_welcomed_sim_ids = 25 [packed = true];
+	repeated fixed64 always_welcomed_sim_ids = 25;
 	optional .EA.Sims4.Persistence.HouseholdMilestoneDataTracker household_milestone_tracker = 27;
 	optional .EA.Sims4.Persistence.MissingPetTrackerData missing_pet_tracker_data = 28;
 	optional .EA.Sims4.Persistence.LaundryData laundry_data = 29;
@@ -257,7 +258,7 @@ message RetailData {
 		optional int32 amount = 2;
 	}
 	optional fixed64 retail_zone_id = 1;
-	repeated fixed64 employee_ids = 2 [packed = true];
+	repeated fixed64 employee_ids = 2;
 	optional bool is_open = 3;
 	optional float markup = 4;
 	optional int32 funds = 5;
@@ -297,7 +298,7 @@ message Club {
 	optional string description = 4;
 	optional bool invite_only = 5;
 	required fixed64 leader = 6;
-	repeated fixed64 members = 7 [packed = true];
+	repeated fixed64 members = 7;
 	optional .EA.Sims4.Network.ResourceKey venue_type = 8;
 	repeated .EA.Sims4.Network.ClubCriteria membership_criteria = 9;
 	repeated .EA.Sims4.Network.ClubConductRule club_rules = 10;
@@ -311,7 +312,7 @@ message Club {
 	optional .EA.Sims4.Persistence.MannequinSimData club_uniform_child_female = 18;
 	optional .EA.Sims4.Persistence.Club.ClubOutfitSetting outfit_setting = 19;
 	optional uint32 member_cap = 20;
-	repeated fixed64 recent_members = 21 [packed = true];
+	repeated fixed64 recent_members = 21;
 	optional .EA.Sims4.Persistence.Club.ClubHangoutSetting hangout_setting = 22;
 	optional fixed64 hangout_zone_id = 23;
 }
@@ -319,8 +320,8 @@ message Club {
 message PersistableSocialMediaService {
 	repeated .EA.Sims4.Persistence.SocialMediaPostEntry post_entries = 1;
 	repeated .EA.Sims4.Persistence.SocialMediaMessageEntry direct_messages = 2;
-	repeated uint64 sims_with_new_posts = 3 [packed = true];
-	repeated uint64 sims_with_new_messages = 4 [packed = true];
+	repeated uint64 sims_with_new_posts = 3;
+	repeated uint64 sims_with_new_messages = 4;
 }
 
 message SocialMediaPostEntry {
@@ -354,20 +355,20 @@ message SocialMediaReaction {
 	optional uint32 narrative_type = 1;
 	optional uint32 polarity_type = 2;
 	optional uint32 count = 3;
-	repeated fixed64 reacted_sims = 4 [packed = true];
+	repeated fixed64 reacted_sims = 4;
 }
 
 message ServiceNpcRecord {
 	optional uint64 service_type = 1;
-	repeated fixed64 preferred_sim_ids = 2 [packed = true];
-	repeated fixed64 fired_sim_ids = 3 [packed = true];
+	repeated fixed64 preferred_sim_ids = 2;
+	repeated fixed64 fired_sim_ids = 3;
 	optional bool hired = 4;
 	optional uint64 time_last_started_service = 5;
 	optional bool recurring = 6;
 	optional uint64 time_last_finished_service = 7;
 	optional uint64 user_specified_data_id = 8;
-	repeated uint64 user_specified_data_selection = 9 [packed = true];
-	repeated uint64 user_specified_data_selection_count = 10 [packed = true];
+	repeated uint64 user_specified_data_selection = 9;
+	repeated uint64 user_specified_data_selection_count = 10;
 	optional uint64 hiring_sim_id = 11;
 }
 
@@ -416,7 +417,7 @@ message PersistableDramaNode {
 }
 
 message PersistableCallToActionService {
-	repeated fixed64 permanently_disabled_ids = 1 [packed = true];
+	repeated fixed64 permanently_disabled_ids = 1;
 }
 
 message PersistableLandlordService {
@@ -424,17 +425,17 @@ message PersistableLandlordService {
 }
 
 message PersistableTrendService {
-	repeated uint32 current_trend_tags = 1 [packed = true];
+	repeated uint32 current_trend_tags = 1;
 	optional uint64 next_update_ticks = 2;
 }
 
 message FashionMarketplaceSoldOutfits {
-	repeated uint64 sim_ids = 1 [packed = true];
+	repeated uint64 sim_ids = 1;
 	optional .EA.Sims4.Persistence.MannequinSimData outfit_info_data = 2;
 }
 
 message PersistableFashionTrendService {
-	repeated uint64 thrift_store_inventory = 1 [packed = true];
+	repeated uint64 thrift_store_inventory = 1;
 	optional .EA.Sims4.Persistence.MannequinSimData thrift_store_mannequin = 2;
 	optional uint64 next_trend_shift_ticks = 3;
 	optional .EA.Sims4.Persistence.PersistableCommodityTracker commodity_tracker = 4;
@@ -456,10 +457,10 @@ message PersistableDramaScheduleService {
 	repeated .EA.Sims4.Persistence.PersistableDramaNode drama_nodes = 1;
 	repeated .EA.Sims4.Persistence.CooldownDramaNode cooldown_nodes = 2;
 	repeated .EA.Sims4.Persistence.PersistableDramaNode running_nodes = 3;
-	repeated fixed64 drama_nodes_on_permanent_cooldown = 4 [packed = true];
-	repeated uint64 startup_drama_node_buckets_used = 5 [packed = true];
+	repeated fixed64 drama_nodes_on_permanent_cooldown = 4;
+	repeated uint64 startup_drama_node_buckets_used = 5;
 	repeated .EA.Sims4.Persistence.DramaNodeCooldownGroup cooldown_groups = 6;
-	repeated uint64 cooldown_groups_on_permanent_cooldown = 7 [packed = true];
+	repeated uint64 cooldown_groups_on_permanent_cooldown = 7;
 }
 
 message PersistableRelationshipBitLock {
@@ -468,17 +469,17 @@ message PersistableRelationshipBitLock {
 }
 
 message PersistableUnidirectionalRelationshipData {
-	repeated uint64 bits = 1 [packed = true];
+	repeated uint64 bits = 1;
 	repeated .EA.Sims4.Persistence.Timeout timeouts = 2;
 	optional .EA.Sims4.Persistence.SimKnowledge knowledge = 3;
-	repeated uint64 bit_added_buffs = 4 [packed = true];
+	repeated uint64 bit_added_buffs = 4;
 	repeated .EA.Sims4.Persistence.PersistableRelationshipBitLock relationship_bit_locks = 5;
 	optional uint64 sentiment_proximity_cooldown_end = 6;
 	repeated .EA.Sims4.Persistence.PersistableRelationshipTrack tracks = 7;
 }
 
 message PersistableBidirectionalRelationshipData {
-	repeated uint64 bits = 1 [packed = true];
+	repeated uint64 bits = 1;
 	repeated .EA.Sims4.Persistence.Timeout timeouts = 2;
 	repeated .EA.Sims4.Persistence.PersistableRelationshipTrack tracks = 3;
 	repeated .EA.Sims4.Persistence.PersistableRelationshipBitLock relationship_bit_locks = 4;
@@ -616,13 +617,13 @@ message RabbitHoleData {
 	optional fixed64 sim_id = 1;
 	optional uint64 rabbit_hole_id = 2;
 	optional uint64 time_remaining = 3;
-	repeated uint64 linked_sim_ids = 4 [packed = true];
+	repeated uint64 linked_sim_ids = 4;
 	optional uint64 picked_stat_id = 5;
 	optional uint64 rabbit_hole_instance_id = 6;
-	repeated uint64 linked_rabbit_hole_ids = 7 [packed = true];
+	repeated uint64 linked_rabbit_hole_ids = 7;
 	optional uint64 phase = 8;
 	optional uint64 career_uid = 9;
-	repeated uint64 all_participant_sim_ids = 10 [packed = true];
+	repeated uint64 all_participant_sim_ids = 10;
 }
 
 message PersistableRabbitHoleService {
@@ -664,16 +665,16 @@ message NarrativeData {
 
 message NarrativeLayerData {
 	optional uint64 street_id = 1;
-	repeated uint64 layers = 2 [packed = true];
+	repeated uint64 layers = 2;
 }
 
 message PersistableNarrativeService {
-	repeated uint64 active_narratives = 1 [packed = true];
-	repeated uint64 completed_narratives = 2 [packed = true];
+	repeated uint64 active_narratives = 1;
+	repeated uint64 completed_narratives = 2;
 	repeated .EA.Sims4.Persistence.NarrativeData narratives = 3;
 	repeated .EA.Sims4.Persistence.NarrativeLayerData layer_data = 4;
 	optional bool streets_need_cleanup = 5 [default = true];
-	repeated uint64 streets_to_cleanup = 6 [packed = true];
+	repeated uint64 streets_to_cleanup = 6;
 }
 
 message PersistableOrganizationService {
@@ -731,7 +732,7 @@ message PersistableCullingServiceInteractingSim {
 
 message PersistableCullingService {
 	repeated .EA.Sims4.Persistence.PersistableCullingServiceInteractingSim interacting_sims = 1;
-	repeated uint64 sims_to_cull = 2 [packed = true];
+	repeated uint64 sims_to_cull = 2;
 }
 
 message PersistableUniversityStoryProgressionAction {
@@ -749,7 +750,7 @@ message PersistableCivicPolicyCustomData {
 
 message PersistableDefaultConditionalLayerData {
 	optional uint64 layer = 1;
-	repeated uint64 policies = 2 [packed = true];
+	repeated uint64 policies = 2;
 }
 
 message PersistableCivicPolicyProviderData {
@@ -757,9 +758,9 @@ message PersistableCivicPolicyProviderData {
 	optional .EA.Sims4.Persistence.PersistableCommodityTracker commodity_tracker = 2;
 	optional .EA.Sims4.Persistence.PersistableStatisticsTracker statistics_tracker = 3;
 	optional .EA.Sims4.Persistence.PersistableRankedStatisticTracker ranked_statistic_tracker = 4;
-	repeated uint64 balloted_policy_ids = 5 [packed = true];
-	repeated uint64 up_for_repeal_policy_ids = 6 [packed = true];
-	repeated uint64 loaded_conditional_layers = 7 [packed = true];
+	repeated uint64 balloted_policy_ids = 5;
+	repeated uint64 up_for_repeal_policy_ids = 6;
+	repeated uint64 loaded_conditional_layers = 7;
 	repeated .EA.Sims4.Persistence.PersistableDefaultConditionalLayerData turned_off_default_conditional_layers = 8;
 	optional bool requires_initial_layer_setup = 9 [default = true];
 }
@@ -802,7 +803,7 @@ message PersistableLifestyleService {
 	optional bool has_seen_daily_cap_notification = 1;
 	optional bool has_seen_in_progress_notification = 2;
 	optional bool has_seen_hidden_notification = 3;
-	repeated uint64 hidden_lifestyles = 4 [packed = true];
+	repeated uint64 hidden_lifestyles = 4;
 }
 
 message PersistableABTestService {
@@ -874,12 +875,12 @@ message ClanLeaderData {
 
 message ClanMembersData {
 	optional uint64 clan_guid = 1;
-	repeated fixed64 member_sim_ids = 2 [packed = true];
+	repeated fixed64 member_sim_ids = 2;
 }
 
 message PersistableGraduationService {
-	repeated fixed64 graduating_sim_ids = 1 [packed = true];
-	repeated fixed64 waiting_to_graduate_sim_ids = 2 [packed = true];
+	repeated fixed64 graduating_sim_ids = 1;
+	repeated fixed64 waiting_to_graduate_sim_ids = 2;
 	optional fixed64 current_valedictorian_id = 3 [default = 0];
 	optional fixed64 waiting_valedictorian_id = 4 [default = 0];
 }
@@ -891,25 +892,25 @@ message PersistableVenueGameService {
 }
 
 message PersistablePromService {
-	repeated fixed64 prom_attendee_ids = 1 [packed = true];
+	repeated fixed64 prom_attendee_ids = 1;
 	optional uint64 cleanup_prom_alarm_time = 2;
 	optional uint64 prom_zone_id = 3;
-	repeated fixed64 skipping_prom_ids = 4 [packed = true];
+	repeated fixed64 skipping_prom_ids = 4;
 }
 
 message PersistableSimSecretsService {
-	repeated uint64 unavailable_secrets = 1 [packed = true];
+	repeated uint64 unavailable_secrets = 1;
 }
 
 message PersistableCareerService {
-	repeated fixed64 subvenue_zone_ids = 1 [packed = true];
+	repeated fixed64 subvenue_zone_ids = 1;
 	repeated .EA.Sims4.Persistence.GigPickerDisabledGigData disabled_gig_data = 2;
 	repeated .EA.Sims4.Persistence.GigPickerAssociatedSimData gig_associated_sim_data = 3;
 }
 
 message GigPickerDisabledGigData {
 	optional uint64 gig_uid = 1;
-	repeated uint64 sim_ids = 2 [packed = true];
+	repeated uint64 sim_ids = 2;
 }
 
 message GigPickerAssociatedSimData {
@@ -961,7 +962,7 @@ message GameplaySaveSlotData {
 	optional .EA.Sims4.Persistence.PersistableRelgraphService relgraph_service = 9;
 	optional .EA.Sims4.Network.BusinessServiceData business_service_data = 10;
 	optional .EA.Sims4.Persistence.PersistableCallToActionService call_to_action_service = 11;
-	repeated fixed64 once_only_drama_nodes = 12 [packed = true];
+	repeated fixed64 once_only_drama_nodes = 12;
 	optional .EA.Sims4.Persistence.PersistableRelationshipService relationship_service = 13;
 	optional .EA.Sims4.Persistence.PersistableAdoptionService adoption_service = 14;
 	optional .EA.Sims4.Persistence.PersistableHiddenSimService hidden_sim_service = 15;
@@ -1006,6 +1007,8 @@ message GameplaySaveSlotData {
 	optional .EA.Sims4.Persistence.PersistableUiDialogService ui_dialog_service = 54;
 	optional .EA.Sims4.Persistence.PersistableWillService will_service = 55;
 	optional .EA.Sims4.Persistence.PersistableWispService wisp_service = 56;
+	optional .EA.Sims4.Persistence.PersistableImaginaryFriendService imaginary_friend_service = 57;
+	optional .EA.Sims4.Persistence.PersistableCustomScheduleService custom_schedule_service = 58;
 }
 
 message PersistableRelgraphService {
@@ -1040,8 +1043,8 @@ message GameplayAccountData {
 }
 
 message AccountEventDataTracker {
-	repeated uint32 milestones_completed = 1 [packed = true];
-	repeated uint32 objectives_completed = 2 [packed = true];
+	repeated uint32 milestones_completed = 1;
+	repeated uint32 objectives_completed = 2;
 	optional .EA.Sims4.Persistence.EventDataObject data = 3;
 	repeated .EA.Sims4.Persistence.MilestoneCompletionCount milestone_completion_counts = 4;
 }
@@ -1179,7 +1182,7 @@ message RestaurantZoneDirectorData {
 		optional fixed64 situation_id = 2;
 		optional uint32 order_status = 3;
 		optional uint32 current_bucket = 4;
-		repeated fixed64 table_ids = 5 [packed = true];
+		repeated fixed64 table_ids = 5;
 		repeated .EA.Sims4.Persistence.RestaurantZoneDirectorData.GroupOrder.FoodAndDrink sim_orders = 6;
 		optional fixed64 assigned_waitstaff_id = 7;
 		optional fixed64 assigned_chef_id = 8;
@@ -1194,7 +1197,7 @@ message RestaurantZoneDirectorData {
 
 message ZoneDirectorCleanupActionData {
 	optional uint32 guid = 1 [default = 0];
-	repeated fixed64 object_ids = 2 [packed = true];
+	repeated fixed64 object_ids = 2;
 	repeated .EA.Sims4.Network.ResourceKey resource_keys = 3;
 	repeated .EA.Sims4.Persistence.StateComponentState states = 4;
 	optional .EA.Sims4.Network.Location location = 5;
@@ -1202,13 +1205,13 @@ message ZoneDirectorCleanupActionData {
 
 message ZoneDirectorSituationData {
 	optional uint32 situation_list_guid = 1;
-	repeated uint64 situation_ids = 2 [packed = true];
+	repeated uint64 situation_ids = 2;
 }
 
 message ObjectBasedSituationZoneDirectorData {
 	optional uint32 object_tag = 1;
 	optional uint32 situation_list_guid = 2;
-	repeated uint64 situation_ids = 3 [packed = true];
+	repeated uint64 situation_ids = 3;
 }
 
 message ZoneDirectorData {
@@ -1240,17 +1243,17 @@ message VenueData {
 
 message OpenStreetDirectorData {
 	optional .EA.Sims4.Network.ResourceKey resource_key = 1;
-	repeated fixed64 created_objects = 2 [packed = true];
-	repeated uint64 situation_ids = 3 [packed = true];
+	repeated fixed64 created_objects = 2;
+	repeated uint64 situation_ids = 3;
 	optional bytes custom_data = 4;
-	repeated fixed64 loaded_layers = 5 [packed = true];
+	repeated fixed64 loaded_layers = 5;
 	repeated .EA.Sims4.Persistence.ZoneDirectorSituationData situations = 6;
-	repeated fixed64 loaded_layer_guids = 7 [packed = true];
+	repeated fixed64 loaded_layer_guids = 7;
 }
 
 message ConditionalLayerInfo {
 	optional uint64 layer_hash = 1;
-	repeated fixed64 object_ids = 2 [packed = true];
+	repeated fixed64 object_ids = 2;
 	optional uint64 conditional_layer = 3;
 }
 
@@ -1260,7 +1263,7 @@ message ConditionalLayerServiceData {
 
 message AmbientSourceData {
 	optional uint32 source_type = 1;
-	repeated uint64 situation_ids = 2 [packed = true];
+	repeated uint64 situation_ids = 2;
 	repeated .EA.Sims4.Persistence.ZoneDirectorSituationData situations = 3;
 }
 
@@ -1320,8 +1323,8 @@ message WhimsetTrackerData {
 	}
 	repeated .EA.Sims4.Persistence.WhimsetTrackerData.WhimData active_whims = 4;
 	repeated .EA.Sims4.Persistence.WhimsetTrackerData.WhimData recently_completed_whims = 5;
-	repeated uint64 active_whimset_guids = 6 [packed = true];
-	repeated uint64 initial_whimset_history_guids = 7 [packed = true];
+	repeated uint64 active_whimset_guids = 6;
+	repeated uint64 initial_whimset_history_guids = 7;
 }
 
 message AwayActionData {
@@ -1334,7 +1337,7 @@ message AwayActionTrackerData {
 }
 
 message SimFavoriteData {
-	repeated fixed64 recipe_ids = 1 [packed = true];
+	repeated fixed64 recipe_ids = 1;
 }
 
 message GameplaySimData {
@@ -1345,11 +1348,11 @@ message GameplaySimData {
 	optional .EA.Sims4.Persistence.SuperInteractionSaveState interaction_state = 6;
 	optional uint32 whim_bucks = 7;
 	optional fixed64 spawn_point_id = 8;
-	repeated uint32 spawner_tags = 9 [packed = true];
+	repeated uint32 spawner_tags = 9;
 	optional uint32 spawn_point_option = 10;
 	optional .EA.Sims4.Persistence.WhimsetTrackerData whim_tracker = 11;
 	repeated .EA.Sims4.Persistence.CollectionData collection_data = 12;
-	repeated uint64 build_buy_unlocks = 13 [packed = true];
+	repeated uint64 build_buy_unlocks = 13;
 	optional .EA.Sims4.Persistence.AwayActionTrackerData away_action_tracker = 14;
 	optional uint32 serialization_option = 15 [default = 0];
 	optional uint64 time_alive = 16 [default = 0];
@@ -1361,12 +1364,12 @@ message GameplaySimData {
 	optional string creation_source_data = 17;
 	optional uint64 creation_source = 23;
 	optional uint64 gameplay_options = 24;
-	repeated uint64 squad_members = 25 [packed = true];
+	repeated uint64 squad_members = 25;
 	optional uint64 vehicle_id = 26;
 	optional .EA.Sims4.Persistence.DevelopmentalMilestoneTrackerData developmental_milestone_tracker = 27;
 	optional bool premade_sim_fixup_completed = 28;
 	optional .EA.Sims4.Persistence.ReincarnationData reincarnation_data = 29;
-	repeated uint64 extra_personality_trait_slot = 30 [packed = true];
+	repeated uint64 extra_personality_trait_slot = 30;
 	optional bool restore_wings = 31;
 }
 
@@ -1381,7 +1384,7 @@ message EnsembleServiceData {
 
 message EnsembleData {
 	optional fixed64 ensemble_type_id = 1;
-	repeated fixed64 sim_ids = 2 [packed = true];
+	repeated fixed64 sim_ids = 2;
 }
 
 message MissingPetTrackerData {
@@ -1397,7 +1400,7 @@ message MissingPetTrackerData {
 
 message MotiveTestResults {
 	optional uint64 pet_id = 1;
-	repeated uint32 test_results = 2 [packed = true];
+	repeated uint32 test_results = 2;
 }
 
 message LaundryData {
@@ -1450,7 +1453,7 @@ message MultiUnitZoneEventData {
 	optional uint64 property_owner_event_drama_node_guid64 = 2;
 	optional uint64 active_event_drama_node_guid64 = 3;
 	optional uint64 tenant_alarm_time = 4;
-	repeated uint64 tested_zone_modifier_guid64s = 5 [packed = true];
+	repeated uint64 tested_zone_modifier_guid64s = 5;
 }
 
 message PropertyOwnerEventData {
@@ -1492,13 +1495,13 @@ message MatchmakingGalleryIdsOnCooldown {
 
 message MatchmakingActorData {
 	required fixed64 sim_id = 1;
-	repeated fixed64 candidate_ids = 2 [packed = true];
-	repeated uint64 selected_ages = 3 [packed = true];
-	repeated uint64 displayed_trait_ids = 4 [packed = true];
+	repeated fixed64 candidate_ids = 2;
+	repeated uint64 selected_ages = 3;
+	repeated uint64 displayed_trait_ids = 4;
 	optional uint64 time_last_refreshed = 5;
 	optional uint64 num_contact_actions = 6;
 	optional uint64 time_num_contact_action_reset = 7;
-	repeated fixed64 saved_ids = 8 [packed = true];
+	repeated fixed64 saved_ids = 8;
 	optional .EA.Sims4.Network.ResourceKey selfie_res_key = 9;
 	optional .EA.Sims4.Network.ResourceKey bg_res_key = 10;
 	optional bool is_first_refresh = 11;
@@ -1513,7 +1516,7 @@ message MatchmakingCandidateData {
 	optional uint32 extended_species = 4;
 	optional fixed64 real_sim_id = 5;
 	optional string first_name = 6;
-	repeated uint64 displayed_trait_ids = 7 [packed = true];
+	repeated uint64 displayed_trait_ids = 7;
 	optional bool contacted = 8;
 	optional bool reported = 9;
 	optional int32 profile_type = 10;
@@ -1530,7 +1533,7 @@ message MatchmakingCandidateData {
 	optional uint32 current_outfit_index = 23;
 	optional uint32 previous_outfit_type = 24;
 	optional uint32 previous_outfit_index = 25;
-	repeated uint32 trait_ids = 30 [packed = true];
+	repeated uint32 trait_ids = 30;
 	optional .EA.Sims4.Network.ResourceKey profile_bg_res_key = 31;
 	optional string exchange_data_creator_name = 32;
 	optional string exchange_data_remote_id = 33;
@@ -1549,7 +1552,7 @@ message PersistableUiDialogService {
 
 message ReincarnationData {
 	optional fixed64 previous_sim_id = 1;
-	repeated uint64 trait_ids = 2 [packed = true];
+	repeated uint64 trait_ids = 2;
 	optional bool has_shown_reincarnation_animation = 3;
 }
 
@@ -1561,9 +1564,9 @@ message PersistableWillService {
 message SimWillData {
 	required fixed64 sim_id = 1;
 	required bool active = 2;
-	repeated fixed64 claimant_sim_ids = 3 [packed = true];
+	repeated fixed64 claimant_sim_ids = 3;
 	optional uint64 burial_preference_id = 4;
-	repeated uint64 funeral_activity_preferences = 5 [packed = true];
+	repeated uint64 funeral_activity_preferences = 5;
 	optional fixed64 emotion_mood_id = 6;
 	optional .EA.Sims4.Network.LocalizedString note = 7;
 	repeated .EA.Sims4.Persistence.SimWillHeirloomData heirloom_distribution = 8;
@@ -1574,7 +1577,7 @@ message SimWillData {
 message HouseholdWillData {
 	required fixed64 household_id = 1;
 	required bool active = 2;
-	repeated fixed64 claimant_hh_ids = 3 [packed = true];
+	repeated fixed64 claimant_hh_ids = 3;
 	repeated .EA.Sims4.Persistence.HouseholdWillDependentData dependent_distribution = 4;
 	repeated .EA.Sims4.Persistence.HouseholdWillSimoleonData simoleon_distribution = 5;
 	required float charity_percentage = 6;
@@ -1607,5 +1610,41 @@ message PersistableWispService {
 
 message WispData {
 	optional uint32 cycle_state_id = 1;
-	repeated fixed64 plant_object_ids = 2 [packed = true];
+	repeated fixed64 plant_object_ids = 2;
+}
+
+message PersistableImaginaryFriendService {
+	repeated .EA.Sims4.Persistence.ImaginaryFriendChildData friend_child_data = 1;
+	repeated .EA.Sims4.Persistence.ImaginaryFriendStatusData friend_status_data = 2;
+	repeated .EA.Sims4.Persistence.ImaginaryFriendDollData friend_doll_data = 3;
+}
+
+message ImaginaryFriendChildData {
+	required fixed64 imaginary_friend_sim_id = 1;
+	required fixed64 child_sim_id = 2;
+}
+
+message ImaginaryFriendStatusData {
+	required fixed64 imaginary_friend_sim_id = 1;
+	required uint32 imaginary_friend_status = 2;
+}
+
+message ImaginaryFriendDollData {
+	required fixed64 imaginary_friend_sim_id = 1;
+	required fixed64 doll_obj_id = 2;
+}
+
+message PersistableCustomScheduleService {
+	message ScheduledGetawayEntry {
+		optional uint64 start_time = 1;
+		optional uint64 zone_id = 2;
+		optional uint32 duration = 3;
+		optional .EA.Sims4.Network.CustomSchedule schedule = 4;
+		optional uint64 owner_id = 5;
+	}
+	repeated .EA.Sims4.Network.CustomSchedule custom_schedules = 1;
+	repeated .EA.Sims4.Network.ScheduleAssignment custom_assignments = 2;
+	repeated .EA.Sims4.Persistence.PersistableCustomScheduleService.ScheduledGetawayEntry scheduled_getaways = 3;
+	optional fixed64 mannequin_id = 4;
+	optional uint64 current_schedule_zone_id = 5;
 }

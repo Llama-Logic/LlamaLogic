@@ -38,7 +38,7 @@ message SimOrder {
 message ShowMenu {
 	required .EA.Sims4.Network.Menu menu = 1;
 	repeated .EA.Sims4.Network.SimOrder sim_orders = 2;
-	repeated uint64 sim_ids = 3 [packed = true];
+	repeated uint64 sim_ids = 3;
 	optional bool chef_order = 4;
 	optional uint32 running_bill_total = 5;
 	optional bool recommend_order = 6;

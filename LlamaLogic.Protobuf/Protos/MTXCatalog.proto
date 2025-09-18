@@ -17,13 +17,13 @@ message Product {
 	}
 	required uint64 id = 1;
 	required string offerid = 2;
-	repeated uint64 children = 3 [packed = true];
+	repeated uint64 children = 3;
 	repeated .EA.Sims4.Network.ResourceKey instances = 4;
 	optional string name = 5;
 	repeated .EA.Sims4.Network.Country countries = 6;
 	required bool isBundle = 7;
 	optional .EA.Sims4.Network.Product.BundleContainment containmentType = 8;
-	repeated uint64 childProductIds = 9 [packed = true];
+	repeated uint64 childProductIds = 9;
 	optional int32 bundlePriority = 10;
 	optional uint32 keyNameHash = 11;
 	optional uint32 keyDescriptionHash = 12;

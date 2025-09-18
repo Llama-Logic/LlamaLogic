@@ -9,7 +9,7 @@ import "S4Common.proto";
 
 message UnitTraitData {
 	required uint32 unitId = 1;
-	repeated fixed64 traits = 2 [packed = true];
+	repeated fixed64 traits = 2;
 }
 
 message TrayBlueprintMetadata {
@@ -25,15 +25,15 @@ message TrayBlueprintMetadata {
 	optional uint32 front_side = 10 [default = 0];
 	optional uint32 venue_type_stringkey = 11;
 	optional uint32 ground_floor_index = 12 [default = 2];
-	repeated uint32 optional_rule_satisfied_stringkeys = 13 [packed = true];
-	repeated fixed64 lot_traits = 14 [packed = true];
+	repeated uint32 optional_rule_satisfied_stringkeys = 13;
+	repeated fixed64 lot_traits = 14;
 	optional uint32 building_type = 15;
 	optional uint64 lot_template_id = 16;
 	optional .EA.Sims4.Network.UniversityHousingConfiguration university_housing_configuration = 17;
 	optional uint32 tile_count = 18;
 	optional uint32 unit_count = 19;
 	repeated .EA.Sims4.Network.UnitTraitData unitTraits = 20;
-	repeated uint32 dynamic_areas = 21 [packed = true];
+	repeated uint32 dynamic_areas = 21;
 }
 
 message TrayRoomBlueprintMetadata {
@@ -108,7 +108,7 @@ message TrayHouseholdMetadata {
 
 message TrayMetadata {
 	message ExtraThumbnailInfo {
-		repeated uint32 thumbnail_info = 1 [packed = true];
+		repeated uint32 thumbnail_info = 1;
 	}
 	message SpecificData {
 		optional .EA.Sims4.Network.TrayBlueprintMetadata bp_metadata = 1;
@@ -135,15 +135,15 @@ message TrayMetadata {
 		optional bool is_cg_interested = 21;
 		optional string cg_name = 22;
 		optional uint64 sku2_id = 23;
-		repeated uint32 cds_patch_base_changelists = 24 [packed = true];
+		repeated uint32 cds_patch_base_changelists = 24;
 		optional bool cds_content_patch_mounted = 25;
-		repeated uint32 sku_bits = 27 [packed = true];
+		repeated uint32 sku_bits = 27;
 		optional .EA.Sims4.Network.TrayMetadata.TrayMetadataVersion version_OBSOLETE = 1000 [default = v000];
 		optional uint32 version = 1001 [default = 0];
 	}
 	enum TrayMetadataVersion {
 		v000 = 0;
-		currentVersion = 11700;
+		currentVersion = 11800;
 	}
 	optional uint64 id = 1;
 	optional .EA.Sims4.Network.ExchangeItemTypes type = 2;
@@ -156,11 +156,11 @@ message TrayMetadata {
 	optional uint64 downloads = 9;
 	optional .EA.Sims4.Network.TrayMetadata.SpecificData metadata = 10;
 	optional uint64 item_timestamp = 11;
-	repeated uint64 mtx_ids = 12 [packed = true];
+	repeated uint64 mtx_ids = 12;
 	optional bytes creator_uuid = 13;
 	optional uint64 modifier_id = 14;
 	optional string modifier_name = 15;
-	repeated uint32 meta_info = 16 [packed = true];
+	repeated uint32 meta_info = 16;
 	optional int32 verify_code = 17;
 	optional uint32 custom_image_count = 20;
 	optional uint32 mannequin_count = 21;
@@ -177,18 +177,18 @@ message TrayMetadata {
 }
 
 message ExchangeItemPrerequisites {
-	repeated uint64 item = 1 [packed = true];
+	repeated uint64 item = 1;
 }
 
 message TrayPartMetadata {
 	required uint32 body_type = 1;
 	optional uint32 num_thumbnails = 2 [default = 2];
-	repeated uint64 part_Id = 3 [packed = true];
+	repeated uint64 part_Id = 3;
 }
 
 message ExchangeEnvelope {
 	message ThumbnailMessage {
-		repeated uint32 thumbnail_info = 1 [packed = true];
+		repeated uint32 thumbnail_info = 1;
 		repeated bytes thumbnail_data = 2;
 	}
 	optional bytes uuid = 1;
@@ -300,11 +300,11 @@ message ExchangeCombinedSearch {
 	optional uint64 download_count_range_min = 28;
 	optional uint64 upload_time_range_start = 29;
 	optional uint64 upload_time_range_end = 30;
-	repeated uint32 exclusive_packs = 31 [packed = true];
+	repeated uint32 exclusive_packs = 31;
 	optional uint32 body_type = 32;
 	optional uint32 compatible_item_version = 33 [default = 0];
 	optional .EA.Sims4.Network.KeywordSearchType keyword_type = 34 [default = KEYWORD_SEARCH_UNKNOWN];
-	repeated uint32 sku_bits = 35 [packed = true];
+	repeated uint32 sku_bits = 35;
 }
 
 message ExchangeTestParameters {
@@ -315,8 +315,8 @@ message ExchangeTestParameters {
 }
 
 message ExchangeSocialMessage {
-	repeated uint64 friends = 1 [packed = true];
-	repeated uint64 subscriptions = 2 [packed = true];
+	repeated uint64 friends = 1;
+	repeated uint64 subscriptions = 2;
 	optional bool added = 3;
 }
 
@@ -398,7 +398,7 @@ message SocialResponseFollowersMessage {
 message SocialFeedSubMessage {
 	message SubscriptionFlags {
 		optional bool hidden = 1;
-		repeated uint32 filterTypes = 2 [packed = true];
+		repeated uint32 filterTypes = 2;
 	}
 	message SubscriptionObject {
 		optional string name = 1;

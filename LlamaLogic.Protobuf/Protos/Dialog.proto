@@ -265,8 +265,8 @@ message PickerBaseRowData {
 	optional .EA.Sims4.Network.IconInfo icon_info = 6;
 	optional .EA.Sims4.Network.LocalizedString tooltip = 7;
 	optional bool is_selected = 8 [default = false];
-	repeated uint32 tag_list = 9 [packed = true];
-	repeated uint32 second_tag_list = 10 [packed = true];
+	repeated uint32 tag_list = 9;
+	repeated uint32 second_tag_list = 10;
 	optional .EA.Sims4.Network.LocalizedString description_only_prepped = 11;
 	optional .EA.Sims4.Network.LocalizedString description_both_fresh_prepped = 12;
 	optional .EA.Sims4.Network.LocalizedString tooltip_only_prepped = 13;
@@ -296,7 +296,7 @@ message RecipePickerRowData {
 	required .EA.Sims4.Network.PickerBaseRowData base_data = 1;
 	optional uint32 price = 2;
 	optional uint32 skill_level = 3;
-	repeated uint32 linked_option_ids = 4 [packed = true];
+	repeated uint32 linked_option_ids = 4;
 	optional .EA.Sims4.Network.ResourceKey event_icon = 5;
 	optional bool visible_as_subrow = 6 [default = true];
 	repeated .EA.Sims4.Network.RecipeIngredientData ingredients = 7;
@@ -328,7 +328,7 @@ message SimPickerRowData {
 	required .EA.Sims4.Network.PickerBaseRowData base_data = 1;
 	optional uint64 sim_id = 2;
 	optional bool select_default = 3 [default = false];
-	repeated uint32 failed_criteria = 4 [packed = true];
+	repeated uint32 failed_criteria = 4;
 	repeated .EA.Sims4.Network.SimPickerSkillRowData skills = 5;
 	optional fixed64 mood_id = 6;
 	optional string sim_location = 7;
@@ -372,7 +372,7 @@ message PurchasePickerRowData {
 	required .EA.Sims4.Network.PickerBaseRowData base_data = 1;
 	optional uint64 def_id = 2;
 	optional uint32 num_owned = 3;
-	repeated uint32 tag_list = 4 [packed = true];
+	repeated uint32 tag_list = 4;
 	optional int32 num_available = 5 [default = -1];
 	optional fixed64 object_id = 6;
 	optional int32 custom_price = 7 [default = -1];
@@ -408,7 +408,7 @@ message RecipePickerData {
 	repeated .EA.Sims4.Network.PickerColumn column_list = 1;
 	repeated .EA.Sims4.Network.RecipePickerRowData row_data = 2;
 	optional uint64 skill_id = 3;
-	repeated uint32 column_sort_list = 4 [packed = true];
+	repeated uint32 column_sort_list = 4;
 	optional bool display_ingredient_check = 5 [default = true];
 	optional bool display_funds = 6 [default = true];
 	optional bool display_prepped_ingredient_check = 7 [default = false];
@@ -418,7 +418,7 @@ message SimPickerData {
 	repeated .EA.Sims4.Network.SimPickerRowData row_data = 1;
 	optional bool should_show_names = 2 [default = true];
 	optional .EA.Sims4.Network.ClubBuildingInfo club_building_info = 3;
-	repeated uint32 rel_bit_collection_ids = 11 [packed = true];
+	repeated uint32 rel_bit_collection_ids = 11;
 	optional uint32 column_count = 12 [default = 3];
 	optional uint32 cell_type = 13 [default = 0];
 	optional bool display_filter = 14;
@@ -437,7 +437,7 @@ message OutfitPickerData {
 	}
 	repeated .EA.Sims4.Network.OutfitPickerRowData row_data = 1;
 	optional .EA.Sims4.Network.OutfitPickerData.ObjectPickerThumbnailType thumbnail_type = 2;
-	repeated uint32 outfit_category_filters = 3 [packed = true];
+	repeated uint32 outfit_category_filters = 3;
 }
 
 message PurchasePickerData {
@@ -552,6 +552,8 @@ message UiDialogPicker {
 	optional bool disable_non_selectable_items = 30;
 	repeated .EA.Sims4.Network.SlotTypesMaxSelectable slot_types_max_selectable = 31;
 	optional .EA.Sims4.Network.LocalizedString max_selectable_subtitle = 32;
+	optional .EA.Sims4.Network.LocalizedString tooltip_text_cancel = 33;
+	optional .EA.Sims4.Network.LocalizedString tooltip_text_ok = 34;
 }
 
 message SlotTypesMaxSelectable {
@@ -584,7 +586,7 @@ message UiDialogMultiPicker {
 }
 
 message UIDialogMultiPickerCombinedLimitsData {
-	repeated uint32 picker_ids = 1 [packed = true];
+	repeated uint32 picker_ids = 1;
 	optional uint32 max_selectable = 2;
 	optional uint32 min_selectable = 3;
 	optional .EA.Sims4.Network.LocalizedString max_selectable_tooltip = 4;
@@ -618,9 +620,9 @@ message UiCalendarMessage {
 	optional uint64 start_time = 3;
 	optional uint64 lot_id = 4;
 	optional .EA.Sims4.Network.LocalizedString description = 5;
-	repeated uint64 sim_ids = 6 [packed = true];
+	repeated uint64 sim_ids = 6;
 	optional uint64 zone_id = 7;
-	repeated uint64 tradition_ids = 8 [packed = true];
+	repeated uint64 tradition_ids = 8;
 	optional bool show_go_to_button = 9 [default = false];
 	optional uint64 drama_node_guid = 10;
 }
@@ -659,7 +661,7 @@ message UiDialogNotification {
 	optional .EA.Sims4.Network.UiCareerNotificationArgs career_args = 9;
 	optional .EA.Sims4.Network.UiDialogNotification.NotificationAutoDeleteReason auto_delete_reason = 10;
 	extend .EA.Sims4.Network.UiDialogMessage {
-		optional .EA.Sims4.Network.UiDialogNotification dialog = 102;
+		required .EA.Sims4.Network.UiDialogNotification dialog = 102;
 	}
 }
 
@@ -684,18 +686,18 @@ message SimPersonalityAssignmentDialog {
 	optional .EA.Sims4.Network.LocalizedString naming_title_text = 5;
 	optional .EA.Sims4.Network.LocalizedString aspirations_and_trait_assignment_text = 6;
 	optional uint64 available_trait_slots = 7;
-	repeated uint64 current_personality_trait_ids = 8 [packed = true];
-	repeated uint64 available_personality_trait_ids = 9 [packed = true];
-	repeated uint64 available_aspiration_ids = 10 [packed = true];
+	repeated uint64 current_personality_trait_ids = 8;
+	repeated uint64 available_personality_trait_ids = 9;
+	repeated uint64 available_aspiration_ids = 10;
 	optional bool is_female = 11;
 	optional uint64 current_aspiration_id = 12;
 	optional uint64 current_aspiration_trait_id = 13;
 	optional uint64 replace_trait_id = 14;
 	optional uint64 reward_trait_id = 15;
-	repeated uint64 current_skill_ids = 16 [packed = true];
-	repeated uint32 previous_skill_levels = 17 [packed = true];
-	repeated uint64 previous_skill_ids = 18 [packed = true];
-	repeated uint64 unlocked_trait_ids = 19 [packed = true];
+	repeated uint64 current_skill_ids = 16;
+	repeated uint32 previous_skill_levels = 17;
+	repeated uint64 previous_skill_ids = 18;
+	repeated uint64 unlocked_trait_ids = 19;
 	optional .EA.Sims4.Network.LocalizedString age_up_reward_trait_text = 20;
 }
 
@@ -757,11 +759,11 @@ message GameplayPerk {
 	optional bool affordable = 8;
 	optional bool purchased = 9;
 	optional uint64 category = 10;
-	repeated fixed64 lock_on_purchase = 11 [packed = true];
+	repeated fixed64 lock_on_purchase = 11;
 	optional bool locked = 12;
 	optional fixed64 next_perk_id = 13;
-	repeated fixed64 conflicting_perks = 14 [packed = true];
-	repeated fixed64 required_perks = 15 [packed = true];
+	repeated fixed64 conflicting_perks = 14;
+	repeated fixed64 required_perks = 15;
 	optional bool recently_locked = 16 [default = false];
 	optional uint64 unlock_timestamp = 17;
 	optional bool locked_from_tests = 18;
@@ -785,9 +787,9 @@ message MultiPickerResponse {
 }
 
 message MultiPickerResponseItem {
-	repeated uint64 choices = 1 [packed = true];
+	repeated uint64 choices = 1;
 	optional uint32 picker_id = 2;
-	repeated uint32 control_ids = 3 [packed = true];
+	repeated uint32 control_ids = 3;
 }
 
 message PickerValidationResponse {
