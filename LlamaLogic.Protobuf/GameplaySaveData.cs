@@ -4925,6 +4925,12 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(56, Name = @"wisp_service")]
         public PersistableWispService WispService { get; set; }
 
+        [global::ProtoBuf.ProtoMember(57, Name = @"imaginary_friend_service")]
+        public PersistableImaginaryFriendService ImaginaryFriendService { get; set; }
+
+        [global::ProtoBuf.ProtoMember(58, Name = @"custom_schedule_service")]
+        public PersistableCustomScheduleService CustomScheduleService { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -8103,6 +8109,159 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(2, Name = @"plant_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] PlantObjectIds { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PersistableImaginaryFriendService : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"friend_child_data")]
+        public global::System.Collections.Generic.List<ImaginaryFriendChildData> FriendChildDatas { get; } = new global::System.Collections.Generic.List<ImaginaryFriendChildData>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"friend_status_data")]
+        public global::System.Collections.Generic.List<ImaginaryFriendStatusData> FriendStatusDatas { get; } = new global::System.Collections.Generic.List<ImaginaryFriendStatusData>();
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"friend_doll_data")]
+        public global::System.Collections.Generic.List<ImaginaryFriendDollData> FriendDollDatas { get; } = new global::System.Collections.Generic.List<ImaginaryFriendDollData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ImaginaryFriendChildData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"imaginary_friend_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong ImaginaryFriendSimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"child_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong ChildSimId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ImaginaryFriendStatusData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"imaginary_friend_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong ImaginaryFriendSimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"imaginary_friend_status", IsRequired = true)]
+        public uint ImaginaryFriendStatus { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ImaginaryFriendDollData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"imaginary_friend_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong ImaginaryFriendSimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"doll_obj_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong DollObjId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PersistableCustomScheduleService : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"custom_schedules")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Network.CustomSchedule> CustomSchedules { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Network.CustomSchedule>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"custom_assignments")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.Network.ScheduleAssignment> CustomAssignments { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Network.ScheduleAssignment>();
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"scheduled_getaways")]
+        public global::System.Collections.Generic.List<ScheduledGetawayEntry> ScheduledGetaways { get; } = new global::System.Collections.Generic.List<ScheduledGetawayEntry>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"mannequin_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong MannequinId
+        {
+            get => __pbn__MannequinId.GetValueOrDefault();
+            set => __pbn__MannequinId = value;
+        }
+        public bool ShouldSerializeMannequinId() => __pbn__MannequinId != null;
+        public void ResetMannequinId() => __pbn__MannequinId = null;
+        private ulong? __pbn__MannequinId;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"current_schedule_zone_id")]
+        public ulong CurrentScheduleZoneId
+        {
+            get => __pbn__CurrentScheduleZoneId.GetValueOrDefault();
+            set => __pbn__CurrentScheduleZoneId = value;
+        }
+        public bool ShouldSerializeCurrentScheduleZoneId() => __pbn__CurrentScheduleZoneId != null;
+        public void ResetCurrentScheduleZoneId() => __pbn__CurrentScheduleZoneId = null;
+        private ulong? __pbn__CurrentScheduleZoneId;
+
+        [global::ProtoBuf.ProtoContract()]
+        public partial class ScheduledGetawayEntry : global::ProtoBuf.IExtensible
+        {
+            private global::ProtoBuf.IExtension __pbn__extensionData;
+            global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+                => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+            [global::ProtoBuf.ProtoMember(1, Name = @"start_time")]
+            public ulong StartTime
+            {
+                get => __pbn__StartTime.GetValueOrDefault();
+                set => __pbn__StartTime = value;
+            }
+            public bool ShouldSerializeStartTime() => __pbn__StartTime != null;
+            public void ResetStartTime() => __pbn__StartTime = null;
+            private ulong? __pbn__StartTime;
+
+            [global::ProtoBuf.ProtoMember(2, Name = @"zone_id")]
+            public ulong ZoneId
+            {
+                get => __pbn__ZoneId.GetValueOrDefault();
+                set => __pbn__ZoneId = value;
+            }
+            public bool ShouldSerializeZoneId() => __pbn__ZoneId != null;
+            public void ResetZoneId() => __pbn__ZoneId = null;
+            private ulong? __pbn__ZoneId;
+
+            [global::ProtoBuf.ProtoMember(3, Name = @"duration")]
+            public uint Duration
+            {
+                get => __pbn__Duration.GetValueOrDefault();
+                set => __pbn__Duration = value;
+            }
+            public bool ShouldSerializeDuration() => __pbn__Duration != null;
+            public void ResetDuration() => __pbn__Duration = null;
+            private uint? __pbn__Duration;
+
+            [global::ProtoBuf.ProtoMember(4, Name = @"schedule")]
+            public global::EA.Sims4.Network.CustomSchedule Schedule { get; set; }
+
+            [global::ProtoBuf.ProtoMember(5, Name = @"owner_id")]
+            public ulong OwnerId
+            {
+                get => __pbn__OwnerId.GetValueOrDefault();
+                set => __pbn__OwnerId = value;
+            }
+            public bool ShouldSerializeOwnerId() => __pbn__OwnerId != null;
+            public void ResetOwnerId() => __pbn__OwnerId = null;
+            private ulong? __pbn__OwnerId;
+
+        }
 
     }
 

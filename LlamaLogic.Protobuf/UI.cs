@@ -1934,6 +1934,26 @@ namespace EA.Sims4.Network
         public void ResetLotDailyCost() => __pbn__LotDailyCost = null;
         private uint? __pbn__LotDailyCost;
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"is_getaway")]
+        public bool IsGetaway
+        {
+            get => __pbn__IsGetaway.GetValueOrDefault();
+            set => __pbn__IsGetaway = value;
+        }
+        public bool ShouldSerializeIsGetaway() => __pbn__IsGetaway != null;
+        public void ResetIsGetaway() => __pbn__IsGetaway = null;
+        private bool? __pbn__IsGetaway;
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"dialog_type")]
+        public uint DialogType
+        {
+            get => __pbn__DialogType.GetValueOrDefault();
+            set => __pbn__DialogType = value;
+        }
+        public bool ShouldSerializeDialogType() => __pbn__DialogType != null;
+        public void ResetDialogType() => __pbn__DialogType = null;
+        private uint? __pbn__DialogType;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2863,6 +2883,30 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeInProgress() => __pbn__InProgress != null;
         public void ResetInProgress() => __pbn__InProgress = null;
         private bool? __pbn__InProgress;
+
+        [global::ProtoBuf.ProtoMember(18, Name = @"getaway_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string GetawayName
+        {
+            get => __pbn__GetawayName ?? "";
+            set => __pbn__GetawayName = value;
+        }
+        public bool ShouldSerializeGetawayName() => __pbn__GetawayName != null;
+        public void ResetGetawayName() => __pbn__GetawayName = null;
+        private string __pbn__GetawayName;
+
+        [global::ProtoBuf.ProtoMember(19, Name = @"getaway_duration")]
+        public uint GetawayDuration
+        {
+            get => __pbn__GetawayDuration.GetValueOrDefault();
+            set => __pbn__GetawayDuration = value;
+        }
+        public bool ShouldSerializeGetawayDuration() => __pbn__GetawayDuration != null;
+        public void ResetGetawayDuration() => __pbn__GetawayDuration = null;
+        private uint? __pbn__GetawayDuration;
+
+        [global::ProtoBuf.ProtoMember(20, Name = @"getaway_recurring_days", IsPacked = true)]
+        public uint[] GetawayRecurringDays { get; set; }
 
     }
 

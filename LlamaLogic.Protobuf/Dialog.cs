@@ -2386,6 +2386,12 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(32, Name = @"max_selectable_subtitle")]
         public LocalizedString MaxSelectableSubtitle { get; set; }
 
+        [global::ProtoBuf.ProtoMember(33, Name = @"tooltip_text_cancel")]
+        public LocalizedString TooltipTextCancel { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34, Name = @"tooltip_text_ok")]
+        public LocalizedString TooltipTextOk { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum ObjectPickerType
         {

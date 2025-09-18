@@ -1221,7 +1221,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 11700,
+            currentVersion = 11800,
         }
 
     }

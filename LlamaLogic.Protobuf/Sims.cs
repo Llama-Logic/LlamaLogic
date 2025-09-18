@@ -141,6 +141,16 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(6, Name = @"objectives", IsPacked = true)]
         public ulong[] Objectives { get; set; }
 
+        [global::ProtoBuf.ProtoMember(7, Name = @"reward_trait_id")]
+        public ulong RewardTraitId
+        {
+            get => __pbn__RewardTraitId.GetValueOrDefault();
+            set => __pbn__RewardTraitId = value;
+        }
+        public bool ShouldSerializeRewardTraitId() => __pbn__RewardTraitId != null;
+        public void ResetRewardTraitId() => __pbn__RewardTraitId = null;
+        private ulong? __pbn__RewardTraitId;
+
         [global::ProtoBuf.ProtoContract()]
         public enum UpdateType
         {
@@ -176,6 +186,28 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(3, Name = @"objectives_completed", IsPacked = true)]
         public ulong[] ObjectivesCompleteds { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SuggestedAspirationUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id")]
+        public ulong SimId
+        {
+            get => __pbn__SimId.GetValueOrDefault();
+            set => __pbn__SimId = value;
+        }
+        public bool ShouldSerializeSimId() => __pbn__SimId != null;
+        public void ResetSimId() => __pbn__SimId = null;
+        private ulong? __pbn__SimId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"visible_suggested_aspiration_list", IsPacked = true)]
+        public ulong[] VisibleSuggestedAspirationLists { get; set; }
 
     }
 
@@ -322,6 +354,8 @@ namespace EA.Sims4.Network
             Trait = 3,
             [global::ProtoBuf.ProtoEnum(Name = @"CASPART")]
             Caspart = 4,
+            [global::ProtoBuf.ProtoEnum(Name = @"CHILDHOOD_INSPIRATION")]
+            ChildhoodInspiration = 5,
         }
 
     }

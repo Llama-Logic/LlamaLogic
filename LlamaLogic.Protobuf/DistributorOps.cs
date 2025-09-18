@@ -892,6 +892,30 @@ namespace EA.Sims4.Network
             IsGuidanceTipComplete = 1281,
             [global::ProtoBuf.ProtoEnum(Name = @"SET_CALL_TO_ACTION_LOT")]
             SetCallToActionLot = 1282,
+            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SCHEDULE")]
+            CustomScheduleSetCustomSchedule = 1300,
+            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_ASSIGNMENT")]
+            CustomScheduleSetCustomAssignment = 1301,
+            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SET_SCHEDULE_LIST")]
+            CustomScheduleSetCustomSetScheduleList = 1302,
+            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SET_ASSIGNMENT_LIST")]
+            CustomScheduleSetCustomSetAssignmentList = 1303,
+            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_CUSTOM_SET_MANNEQUIN_DATA")]
+            CustomScheduleSetCustomSetMannequinData = 1304,
+            [global::ProtoBuf.ProtoEnum(Name = @"SITUATION_UPDATE_ACTIVE_SCHEDULE")]
+            SituationUpdateActiveSchedule = 1305,
+            [global::ProtoBuf.ProtoEnum(Name = @"MSG_SITUATION_GETAWAY_RULES")]
+            MsgSituationGetawayRules = 1306,
+            [global::ProtoBuf.ProtoEnum(Name = @"SIM_SUGGESTED_ASPIRATION_UPDATE")]
+            SimSuggestedAspirationUpdate = 1307,
+            [global::ProtoBuf.ProtoEnum(Name = @"CHILDHOOD_INSPIRATION_COMPLETE_STATE_UPDATE")]
+            ChildhoodInspirationCompleteStateUpdate = 1308,
+            [global::ProtoBuf.ProtoEnum(Name = @"CUSTOM_SCHEDULE_SET_AVAILABLE_SIMS")]
+            CustomScheduleSetAvailableSims = 1309,
+            [global::ProtoBuf.ProtoEnum(Name = @"SET_VISIBILITY_IMMEDIATE")]
+            SetVisibilityImmediate = 1310,
+            [global::ProtoBuf.ProtoEnum(Name = @"SET_RESIDENT_LIST")]
+            SetResidentList = 1311,
         }
 
     }
@@ -2095,6 +2119,39 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeVisibilityFlags() => __pbn__VisibilityFlags != null;
         public void ResetVisibilityFlags() => __pbn__VisibilityFlags = null;
         private uint? __pbn__VisibilityFlags;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SetVisibilityImmediate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"visibility", IsRequired = true)]
+        public bool Visibility { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"inherits")]
+        public bool Inherits
+        {
+            get => __pbn__Inherits.GetValueOrDefault();
+            set => __pbn__Inherits = value;
+        }
+        public bool ShouldSerializeInherits() => __pbn__Inherits != null;
+        public void ResetInherits() => __pbn__Inherits = null;
+        private bool? __pbn__Inherits;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"enable_drop_shadow")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool EnableDropShadow
+        {
+            get => __pbn__EnableDropShadow ?? true;
+            set => __pbn__EnableDropShadow = value;
+        }
+        public bool ShouldSerializeEnableDropShadow() => __pbn__EnableDropShadow != null;
+        public void ResetEnableDropShadow() => __pbn__EnableDropShadow = null;
+        private bool? __pbn__EnableDropShadow;
 
     }
 
@@ -7364,6 +7421,47 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(1, Name = @"reward_part_list", IsRequired = true)]
         public global::EA.Sims4.Persistence.RewardPartList RewardPartList { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ChildhoodInspirationCompleteStateUpdate : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id")]
+        public ulong SimId
+        {
+            get => __pbn__SimId.GetValueOrDefault();
+            set => __pbn__SimId = value;
+        }
+        public bool ShouldSerializeSimId() => __pbn__SimId != null;
+        public void ResetSimId() => __pbn__SimId = null;
+        private ulong? __pbn__SimId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"complete_state")]
+        public bool CompleteState
+        {
+            get => __pbn__CompleteState.GetValueOrDefault();
+            set => __pbn__CompleteState = value;
+        }
+        public bool ShouldSerializeCompleteState() => __pbn__CompleteState != null;
+        public void ResetCompleteState() => __pbn__CompleteState = null;
+        private bool? __pbn__CompleteState;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SetResidentList : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids", IsPacked = true)]
+        public ulong[] SimIds { get; set; }
 
     }
 

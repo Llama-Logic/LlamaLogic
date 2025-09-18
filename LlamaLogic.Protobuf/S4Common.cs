@@ -640,6 +640,26 @@ namespace EA.Sims4
             public void Resetschedule_shift_type() => __pbn__schedule_shift_type = null;
             private ScheduleShiftType? __pbn__schedule_shift_type;
 
+            [global::ProtoBuf.ProtoMember(6, Name = @"multi_day_start_day")]
+            public uint MultiDayStartDay
+            {
+                get => __pbn__MultiDayStartDay.GetValueOrDefault();
+                set => __pbn__MultiDayStartDay = value;
+            }
+            public bool ShouldSerializeMultiDayStartDay() => __pbn__MultiDayStartDay != null;
+            public void ResetMultiDayStartDay() => __pbn__MultiDayStartDay = null;
+            private uint? __pbn__MultiDayStartDay;
+
+            [global::ProtoBuf.ProtoMember(7, Name = @"multi_day_end_day")]
+            public uint MultiDayEndDay
+            {
+                get => __pbn__MultiDayEndDay.GetValueOrDefault();
+                set => __pbn__MultiDayEndDay = value;
+            }
+            public bool ShouldSerializeMultiDayEndDay() => __pbn__MultiDayEndDay != null;
+            public void ResetMultiDayEndDay() => __pbn__MultiDayEndDay = null;
+            private uint? __pbn__MultiDayEndDay;
+
             [global::ProtoBuf.ProtoContract()]
             public enum ScheduleDay
             {
@@ -668,6 +688,8 @@ namespace EA.Sims4
                 Morning = 1,
                 [global::ProtoBuf.ProtoEnum(Name = @"EVENING")]
                 Evening = 2,
+                [global::ProtoBuf.ProtoEnum(Name = @"MULTI_DAY")]
+                MultiDay = 3,
             }
 
         }

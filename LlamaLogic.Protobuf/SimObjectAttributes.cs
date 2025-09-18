@@ -1629,6 +1629,39 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class SuggestedAspiration : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"visible_suggested_aspirations", IsPacked = true)]
+        public ulong[] VisibleSuggestedAspirations { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"invisible_suggested_aspirations", IsPacked = true)]
+        public ulong[] InvisibleSuggestedAspirations { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"cool_down_dict")]
+        public global::System.Collections.Generic.List<CoolDownAspiration> CoolDownDicts { get; } = new global::System.Collections.Generic.List<CoolDownAspiration>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CoolDownAspiration : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"aspiration", IsRequired = true)]
+        public ulong Aspiration { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"timestamp", IsRequired = true)]
+        public ulong Timestamp { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class PersistableEventDataTracker : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -1655,6 +1688,19 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(7, Name = @"additional_objectives")]
         public global::System.Collections.Generic.List<AdditionalObjectives> AdditionalObjectives { get; } = new global::System.Collections.Generic.List<AdditionalObjectives>();
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"suggested_aspiration")]
+        public SuggestedAspiration SuggestedAspiration { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"childhood_inspirations_completed")]
+        public bool ChildhoodInspirationsCompleted
+        {
+            get => __pbn__ChildhoodInspirationsCompleted.GetValueOrDefault();
+            set => __pbn__ChildhoodInspirationsCompleted = value;
+        }
+        public bool ShouldSerializeChildhoodInspirationsCompleted() => __pbn__ChildhoodInspirationsCompleted != null;
+        public void ResetChildhoodInspirationsCompleted() => __pbn__ChildhoodInspirationsCompleted = null;
+        private bool? __pbn__ChildhoodInspirationsCompleted;
 
         public static partial class Extensions
         {

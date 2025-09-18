@@ -762,6 +762,7 @@ namespace EA.Sims4.Network
         R4Event = 300,
         [global::ProtoBuf.ProtoEnum(Name = @"R5_EVENT")]
         R5Event = 400,
+        EVTSept25 = 500,
     }
 
 }

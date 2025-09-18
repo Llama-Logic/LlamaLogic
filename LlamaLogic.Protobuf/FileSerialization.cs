@@ -1190,6 +1190,9 @@ namespace EA.Sims4.Persistence
         public void ResetPendingPlexExteriorHouseDescId() => __pbn__PendingPlexExteriorHouseDescId = null;
         private uint? __pbn__PendingPlexExteriorHouseDescId;
 
+        [global::ProtoBuf.ProtoMember(24, Name = @"custom_schedule")]
+        public global::EA.Sims4.Network.CustomSchedule CustomSchedule { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2778,6 +2781,36 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(10, Name = @"claimed_object_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
         public ulong[] ClaimedObjectIds { get; set; }
 
+        [global::ProtoBuf.ProtoMember(11, Name = @"initiating_sim_id")]
+        public ulong InitiatingSimId
+        {
+            get => __pbn__InitiatingSimId.GetValueOrDefault();
+            set => __pbn__InitiatingSimId = value;
+        }
+        public bool ShouldSerializeInitiatingSimId() => __pbn__InitiatingSimId != null;
+        public void ResetInitiatingSimId() => __pbn__InitiatingSimId = null;
+        private ulong? __pbn__InitiatingSimId;
+
+        [global::ProtoBuf.ProtoMember(12, Name = @"lot_value")]
+        public uint LotValue
+        {
+            get => __pbn__LotValue.GetValueOrDefault();
+            set => __pbn__LotValue = value;
+        }
+        public bool ShouldSerializeLotValue() => __pbn__LotValue != null;
+        public void ResetLotValue() => __pbn__LotValue = null;
+        private uint? __pbn__LotValue;
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"custom_data")]
+        public byte[] CustomData
+        {
+            get => __pbn__CustomData;
+            set => __pbn__CustomData = value;
+        }
+        public bool ShouldSerializeCustomData() => __pbn__CustomData != null;
+        public void ResetCustomData() => __pbn__CustomData = null;
+        private byte[] __pbn__CustomData;
+
         [global::ProtoBuf.ProtoContract()]
         public enum GroupType
         {
@@ -2785,6 +2818,8 @@ namespace EA.Sims4.Persistence
             GrouptypeVacation = 0,
             [global::ProtoBuf.ProtoEnum(Name = @"GROUPTYPE_STAYOVER")]
             GrouptypeStayover = 1,
+            [global::ProtoBuf.ProtoEnum(Name = @"GROUPTYPE_GETAWAY")]
+            GrouptypeGetaway = 2,
         }
 
     }
