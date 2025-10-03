@@ -106,7 +106,7 @@ public sealed class ModFileManifestModelRequiredMod :
                     IgnoreIfHashUnavailable = [..tunableValue.ToByteSequence()];
                 else if (tunableName == "ignore_if_pack_available")
                     IgnoreIfPackAvailable = tunableValue;
-                else if (tunableName == "ignore_if_pash_unavailable")
+                else if (tunableName is "ignore_if_pack_unavailable" or "ignore_if_pash_unavailable" /* preserve due to historical error */)
                     IgnoreIfPackUnavailable = tunableValue;
                 else if (tunableName == "name")
                     Name = tunableValue;
@@ -133,7 +133,7 @@ public sealed class ModFileManifestModelRequiredMod :
         writer.WriteTunable("ignore_if_hash_available", IgnoreIfHashAvailable);
         writer.WriteTunable("ignore_if_hash_unavailable", IgnoreIfHashUnavailable);
         writer.WriteTunable("ignore_if_pack_available", IgnoreIfPackAvailable);
-        writer.WriteTunable("ignore_if_pash_unavailable", IgnoreIfPackUnavailable);
+        writer.WriteTunable("ignore_if_pack_unavailable", IgnoreIfPackUnavailable);
         writer.WriteEndElement();
     }
 
