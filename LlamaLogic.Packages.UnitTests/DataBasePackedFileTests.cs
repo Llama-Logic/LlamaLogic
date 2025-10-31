@@ -178,4 +178,20 @@ public class DataBasePackedFileTests :
         );
         Assert.AreEqual(2, dbpf.GetXml("0904df10:00000000:00000000d1d56a53").XPathSelectElements("/I[@c = 'RelationshipBit' and @i = 'relbit' and @m = 'relationships.relationship_bit' and @n = 'LlamaLogicPackageTests:NonsenseRelationshipBit' and @s = '3520424531']/L[@n = 'collection_ids']/E").Count());
     }
+
+    [TestMethod]
+    public void TS2PackageIsReadable()
+    {
+        using var dbpf = new DataBasePackedFile(tempTS2PackagePath);
+        Assert.AreEqual(1, dbpf.FileVersion.Major);
+        Assert.AreEqual(1, dbpf.FileVersion.Minor);
+    }
+
+    [TestMethod]
+    public void TS3PackageIsReadable()
+    {
+        using var dbpf = new DataBasePackedFile(tempTS3PackagePage);
+        Assert.AreEqual(2, dbpf.FileVersion.Major);
+        Assert.AreEqual(0, dbpf.FileVersion.Minor);
+    }
 }

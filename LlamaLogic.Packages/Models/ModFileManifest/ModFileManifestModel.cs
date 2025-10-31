@@ -559,13 +559,13 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets/sets the email address which can be used to contact this mod's creator
     /// </summary>
-    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ContactEmail { get; set; }
 
     /// <summary>
     /// Gets/sets the URL which can be used to contact this mod's creator
     /// </summary>
-    [YamlMember(Order = 7, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public Uri? ContactUrl { get; set; }
 
     /// <summary>
@@ -583,43 +583,49 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the names of entries in a script mod archive to be excluded from the <see cref="Hash"/>
     /// </summary>
-    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 15, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<string> ExcludedEntries { get; private set; } = [];
 
     /// <summary>
     /// Gets the globally unique names of the exclusivities of this mod, causing it to be incompatible with other mods which share one or more of them
     /// </summary>
-    [YamlMember(Order = 17, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Exclusivities { get; private set; } = [];
 
     /// <summary>
     /// Gets the names of the features unique to this mod which it offers to other mods as a dependency
     /// </summary>
-    [YamlMember(Order = 16, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 17, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> Features { get; private set; } = [];
+
+    /// <summary>
+    /// Gets/sets the URL to which players can go to offer support to the mod creator
+    /// </summary>
+    [YamlMember(Order = 6, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    public Uri? FundingUrl { get; set; }
 
     /// <summary>
     /// Gets/sets the hash of the mod file
     /// </summary>
-    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public ImmutableArray<byte> Hash { get; set; }
 
     /// <summary>
     /// Gets the resource keys for the resources included in the <see cref="Hash"/>
     /// </summary>
-    [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 14, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ResourceKey> HashResourceKeys { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs incompatible with this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 21, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 22, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> IncompatiblePacks { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the message to translators by this mod's creator
     /// </summary>
-    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? MessageToTranslators { get; set; }
 
     /// <summary>
@@ -631,31 +637,31 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 19, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 20, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRecommendedPack> RecommendedPacks { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of languages repurposed by this mod
     /// </summary>
-    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 12, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRepurposedLanguage> RepurposedLanguages { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of mods required by this mod
     /// </summary>
-    [YamlMember(Order = 22, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 23, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelRequiredMod> RequiredMods { get; private set; } = [];
 
     /// <summary>
     /// Gets the list of pack codes identifying the packs required by this mod (e.g. "EP01" for Get to Work)
     /// </summary>
-    [YamlMember(Order = 18, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 19, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<string> RequiredPacks { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the promo code it is suggested the player use during check out in the EA Store if purchasing a pack for use with this mod
     /// </summary>
-    [YamlMember(Order = 20, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 21, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public string? ElectronicArtsPromoCode { get; set; }
 
     /// <inheritdoc/>
@@ -666,19 +672,19 @@ public sealed partial class ModFileManifestModel :
     /// <summary>
     /// Gets the hashes of previous versions of this mod in for which I stand even though my hash is different
     /// </summary>
-    [YamlMember(Order = 15, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 16, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public HashSet<ImmutableArray<byte>> SubsumedHashes { get; private set; } = [];
 
     /// <summary>
     /// Gets/sets the URL at which translators may submit translations to this mod's creator
     /// </summary>
-    [YamlMember(Order = 10, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
+    [YamlMember(Order = 11, DefaultValuesHandling = DefaultValuesHandling.OmitNull)]
     public Uri? TranslationSubmissionUrl { get; set; }
 
     /// <summary>
     /// Gets the list of translators who have contributed translations to this mod
     /// </summary>
-    [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
+    [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
     public Collection<ModFileManifestModelTranslator> Translators { get; private set; } = [];
 
     /// <summary>
@@ -784,6 +790,8 @@ public sealed partial class ModFileManifestModel :
                     Description = tunableValue;
                 else if (tunableName == "ea_promo_code")
                     ElectronicArtsPromoCode = tunableValue;
+                else if (tunableName == "funding_url")
+                    FundingUrl = new Uri(tunableValue, UriKind.Absolute);
                 else if (tunableName == "message_to_translators")
                     MessageToTranslators = tunableValue;
                 else if (tunableName == "name")
@@ -813,6 +821,7 @@ public sealed partial class ModFileManifestModel :
         writer.WriteTunableList("creators", Creators);
         writer.WriteTunable("version", Version);
         writer.WriteTunable("url", Url);
+        writer.WriteTunable("funding_url", FundingUrl);
         writer.WriteTunable("contact_email", ContactEmail);
         writer.WriteTunable("contact_url", ContactUrl);
         writer.WriteTunableList("translators", Translators);
