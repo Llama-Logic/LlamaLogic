@@ -15,7 +15,7 @@ public class StringTableModelTests :
         dbpf.Set("220557da:80000000:002100b7f5cfd646", stringTable);
         stringTable = dbpf.GetStringTable("220557da:80000000:002100b7f5cfd646");
         Assert.AreEqual("How bad could it really be?", stringTable[howBadKey]);
-        Assert.ThrowsException<ArgumentException>(() => stringTable.AddNew("How bad could it really be?"));
+        Assert.ThrowsExactly<ArgumentException>(() => stringTable.AddNew("How bad could it really be?"));
     }
 
     [TestMethod]

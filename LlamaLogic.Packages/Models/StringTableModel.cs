@@ -33,6 +33,7 @@ public class StringTableModel :
         var mnNumEntries = dataSpan.ReadAndAdvancePosition<ulong>(ref readPosition);
         readPosition += 6; // mReserved[2] & mnStringLength
         var stringTableModel = new StringTableModel();
+        var orderedKeyHashes = stringTableModel.orderedKeyHashes;
         var entries = stringTableModel.entries;
         for (ulong i = 0; i < mnNumEntries; ++i)
         {
@@ -46,6 +47,7 @@ public class StringTableModel :
             if (exists)
                 continue;
             value = @string;
+            orderedKeyHashes.Add(mnKeyHash);
         }
         return stringTableModel;
     }
@@ -59,6 +61,7 @@ public class StringTableModel :
         Task.FromResult<string?>(null);
 
     readonly Dictionary<uint, string> entries = [];
+    readonly List<uint> orderedKeyHashes = [];
     readonly AsyncLock resourceLock = new();
 
     /// <summary>
@@ -81,7 +84,7 @@ public class StringTableModel :
         get
         {
             using var heldResourceLock = resourceLock.Lock();
-            return [..entries.Keys];
+            return [..orderedKeyHashes];
         }
     }
 
@@ -111,6 +114,7 @@ public class StringTableModel :
         if (exists)
             throw new ArgumentException($"Duplicate keyHash 0x{keyHash:x8} already exists in the string table; to add your new entry with a different key, use the {nameof(Set)} method");
         entry = @string;
+        orderedKeyHashes.Add(keyHash);
         return keyHash;
     }
 
@@ -120,6 +124,7 @@ public class StringTableModel :
     public bool Delete(uint keyHash)
     {
         using var heldResourceLock = resourceLock.Lock();
+        orderedKeyHashes.Remove(keyHash);
         return entries.Remove(keyHash);
     }
 
@@ -138,9 +143,10 @@ public class StringTableModel :
         writer.Advance(2); // mReserved[2]
         var mnStringLength = (uint)(allEntriesByteLength + entries.Count);
         writer.Write(ref mnStringLength);
-        foreach (var (key, @string) in entries)
+        foreach (var keyHash in orderedKeyHashes)
         {
-            var mnKeyHash = key;
+            var mnKeyHash = keyHash;
+            var @string = entries[mnKeyHash];
             writer.Write(ref mnKeyHash);
             writer.Advance(1); // mnFlags
             var stringBytes = Encoding.UTF8.GetBytes(@string);
@@ -172,6 +178,8 @@ public class StringTableModel :
         using var heldResourceLock = resourceLock.Lock();
         ref var entry = ref CollectionsMarshal.GetValueRefOrAddDefault(entries, keyHash, out var exists);
         entry = @string;
+        if (!exists)
+            orderedKeyHashes.Add(keyHash);
         return !exists;
     }
 }
