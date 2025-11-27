@@ -892,9 +892,12 @@ public sealed class DataBasePackedFile :
 #endif
             stream = new ReadOnlyMemoryOfByteStream(InternalDecompress(compressed));
         }
-        else if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Deleted_record && !force)
-            throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} cannot be retrieved unless forced");
-        else if (indexEntry.mnCompressionType is not CompressionTypeMethodNumber.Uncompressed or CompressionTypeMethodNumber.Deleted_record)
+        else if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Deleted_record)
+        {
+            if (!force)
+                throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} cannot be retrieved unless forced");
+        }
+        else if (indexEntry.mnCompressionType is not CompressionTypeMethodNumber.Uncompressed)
             throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} not supported");
         return stream;
     }
