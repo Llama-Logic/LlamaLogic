@@ -78,6 +78,23 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(10, Name = @"last_revision_time")]
         public LocalizedDateAndTimeData LastRevisionTime { get; set; }
 
+        [global::ProtoBuf.ProtoMember(11, Name = @"base_event_id")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string BaseEventId
+        {
+            get => __pbn__BaseEventId ?? "";
+            set => __pbn__BaseEventId = value;
+        }
+        public bool ShouldSerializeBaseEventId() => __pbn__BaseEventId != null;
+        public void ResetBaseEventId() => __pbn__BaseEventId = null;
+        private string __pbn__BaseEventId;
+
+        [global::ProtoBuf.ProtoMember(12, Name = @"available_start_date")]
+        public LocalizedDateAndTimeData AvailableStartDate { get; set; }
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"available_end_date")]
+        public LocalizedDateAndTimeData AvailableEndDate { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -130,6 +147,9 @@ namespace EA.Sims4.Network
         public void ResetMaxXp() => __pbn__MaxXp = null;
         private long? __pbn__MaxXp;
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"rewards")]
+        public global::System.Collections.Generic.List<Reward> Rewards { get; } = new global::System.Collections.Generic.List<Reward>();
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -169,6 +189,47 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeAmount() => __pbn__Amount != null;
         public void ResetAmount() => __pbn__Amount = null;
         private long? __pbn__Amount;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"progress_id")]
+        public uint ProgressId
+        {
+            get => __pbn__ProgressId.GetValueOrDefault();
+            set => __pbn__ProgressId = value;
+        }
+        public bool ShouldSerializeProgressId() => __pbn__ProgressId != null;
+        public void ResetProgressId() => __pbn__ProgressId = null;
+        private uint? __pbn__ProgressId;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"type")]
+        [global::System.ComponentModel.DefaultValue(ProgressType.ProgressTypeUnknown)]
+        public ProgressType Type
+        {
+            get => __pbn__Type ?? ProgressType.ProgressTypeUnknown;
+            set => __pbn__Type = value;
+        }
+        public bool ShouldSerializeType() => __pbn__Type != null;
+        public void ResetType() => __pbn__Type = null;
+        private ProgressType? __pbn__Type;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"target_xp")]
+        public long TargetXp
+        {
+            get => __pbn__TargetXp.GetValueOrDefault();
+            set => __pbn__TargetXp = value;
+        }
+        public bool ShouldSerializeTargetXp() => __pbn__TargetXp != null;
+        public void ResetTargetXp() => __pbn__TargetXp = null;
+        private long? __pbn__TargetXp;
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"target_days_login")]
+        public long TargetDaysLogin
+        {
+            get => __pbn__TargetDaysLogin.GetValueOrDefault();
+            set => __pbn__TargetDaysLogin = value;
+        }
+        public bool ShouldSerializeTargetDaysLogin() => __pbn__TargetDaysLogin != null;
+        public void ResetTargetDaysLogin() => __pbn__TargetDaysLogin = null;
+        private long? __pbn__TargetDaysLogin;
 
     }
 
@@ -252,6 +313,16 @@ namespace EA.Sims4.Network
         public void ResetRewardClaimed() => __pbn__RewardClaimed = null;
         private bool? __pbn__RewardClaimed;
 
+        [global::ProtoBuf.ProtoMember(4, Name = @"reward_id")]
+        public long RewardId
+        {
+            get => __pbn__RewardId.GetValueOrDefault();
+            set => __pbn__RewardId = value;
+        }
+        public bool ShouldSerializeRewardId() => __pbn__RewardId != null;
+        public void ResetRewardId() => __pbn__RewardId = null;
+        private long? __pbn__RewardId;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -297,6 +368,22 @@ namespace EA.Sims4.Network
 
             [global::ProtoBuf.ProtoMember(4, Name = @"progress_rewards")]
             public global::System.Collections.Generic.List<ProgressReward> ProgressRewards { get; } = new global::System.Collections.Generic.List<ProgressReward>();
+
+            [global::ProtoBuf.ProtoMember(5, Name = @"login_days_count")]
+            public long LoginDaysCount
+            {
+                get => __pbn__LoginDaysCount.GetValueOrDefault();
+                set => __pbn__LoginDaysCount = value;
+            }
+            public bool ShouldSerializeLoginDaysCount() => __pbn__LoginDaysCount != null;
+            public void ResetLoginDaysCount() => __pbn__LoginDaysCount = null;
+            private long? __pbn__LoginDaysCount;
+
+            [global::ProtoBuf.ProtoMember(6, Name = @"last_login_count_time")]
+            public LocalizedDateAndTimeData LastLoginCountTime { get; set; }
+
+            [global::ProtoBuf.ProtoMember(7, Name = @"next_login_count_time")]
+            public LocalizedDateAndTimeData NextLoginCountTime { get; set; }
 
         }
 
@@ -763,6 +850,18 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoEnum(Name = @"R5_EVENT")]
         R5Event = 400,
         EVTSept25 = 500,
+        [global::ProtoBuf.ProtoEnum(Name = @"EV007")]
+        Ev007 = 700,
+        [global::ProtoBuf.ProtoEnum(Name = @"EV008")]
+        Ev008 = 800,
+        [global::ProtoBuf.ProtoEnum(Name = @"EV009")]
+        Ev009 = 900,
+        [global::ProtoBuf.ProtoEnum(Name = @"EV010")]
+        Ev010 = 1000,
+        [global::ProtoBuf.ProtoEnum(Name = @"EV011")]
+        Ev011 = 1100,
+        [global::ProtoBuf.ProtoEnum(Name = @"EV012")]
+        Ev012 = 1200,
     }
 
 }

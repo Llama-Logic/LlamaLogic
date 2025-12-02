@@ -7845,6 +7845,26 @@ namespace EA.Sims4.Persistence
         public void ResetFamilyInfoMsg() => __pbn__FamilyInfoMsg = null;
         private byte[] __pbn__FamilyInfoMsg;
 
+        [global::ProtoBuf.ProtoMember(37, Name = @"voice_actor")]
+        public uint VoiceActor
+        {
+            get => __pbn__VoiceActor.GetValueOrDefault();
+            set => __pbn__VoiceActor = value;
+        }
+        public bool ShouldSerializeVoiceActor() => __pbn__VoiceActor != null;
+        public void ResetVoiceActor() => __pbn__VoiceActor = null;
+        private uint? __pbn__VoiceActor;
+
+        [global::ProtoBuf.ProtoMember(38, Name = @"voice_pitch")]
+        public float VoicePitch
+        {
+            get => __pbn__VoicePitch.GetValueOrDefault();
+            set => __pbn__VoicePitch = value;
+        }
+        public bool ShouldSerializeVoicePitch() => __pbn__VoicePitch != null;
+        public void ResetVoicePitch() => __pbn__VoicePitch = null;
+        private float? __pbn__VoicePitch;
+
     }
 
     [global::ProtoBuf.ProtoContract()]

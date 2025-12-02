@@ -65,4 +65,19 @@ public class DataModelTests :
         Assert.AreEqual(0x573597ddcdbad0eaUL, smallIconValue.FullInstance);
         Assert.IsFalse((bool)table.Get(0, "visible")!);
     }
+
+    //[TestMethod]
+    //public async Task GetCombinedBinaryTuningAsync()
+    //{
+    //    foreach (var gamePackageFile in new DirectoryInfo(@"C:\Program Files\EA Games\The Sims 4").GetFiles("*.package", SearchOption.AllDirectories))
+    //    {
+    //        var dbpf = await DataBasePackedFile.FromPathAsync(gamePackageFile.FullName);
+    //        foreach (var key in await dbpf.GetKeysAsync().ConfigureAwait(false))
+    //            if (key.Type is ResourceType.CombinedTuning)
+    //            {
+    //                var combinedTuning = await dbpf.GetModelAsync<DataModel>(key);
+    //                combinedTuning.ToString();
+    //            }
+    //    }
+    //}
 }

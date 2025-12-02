@@ -2159,6 +2159,8 @@ namespace EA.Sims4.Network
         EvopGetProgress = 6,
         [global::ProtoBuf.ProtoEnum(Name = @"EVOP_DELETE_PROGRESS")]
         EvopDeleteProgress = 7,
+        [global::ProtoBuf.ProtoEnum(Name = @"EVOP_SET_LOGIN_PROGRESS")]
+        EvopSetLoginProgress = 8,
     }
 
     [global::ProtoBuf.ProtoContract()]
