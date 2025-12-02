@@ -10,6 +10,12 @@ enum EventVersion {
 	R4_EVENT = 300;
 	R5_EVENT = 400;
 	EVTSept25 = 500;
+	EV007 = 700;
+	EV008 = 800;
+	EV009 = 900;
+	EV010 = 1000;
+	EV011 = 1100;
+	EV012 = 1200;
 }
 
 message EventDefinition {
@@ -23,6 +29,9 @@ message EventDefinition {
 	repeated .EA.Sims4.Network.EventProgressReward progress_rewards = 8;
 	optional .EA.Sims4.Network.LocalizedDateAndTimeData grace_period_end_date = 9;
 	optional .EA.Sims4.Network.LocalizedDateAndTimeData last_revision_time = 10;
+	optional string base_event_id = 11;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData available_start_date = 12;
+	optional .EA.Sims4.Network.LocalizedDateAndTimeData available_end_date = 13;
 }
 
 message RewardPeriod {
@@ -33,12 +42,17 @@ message RewardPeriod {
 	repeated .EA.Sims4.Network.Quest quests = 5;
 	repeated .EA.Sims4.Network.CatchUpPeriod catch_up_periods = 6;
 	optional int64 max_xp = 7;
+	repeated .EA.Sims4.Network.Reward rewards = 8;
 }
 
 message Reward {
 	optional int64 reward_id = 1;
 	optional .EA.Sims4.Network.RewardType reward_type = 2;
 	optional int64 amount = 3;
+	optional uint32 progress_id = 4;
+	optional .EA.Sims4.Network.ProgressType type = 5;
+	optional int64 target_xp = 6;
+	optional int64 target_days_login = 7;
 }
 
 message EventProgressReward {
@@ -52,6 +66,7 @@ message ProgressReward {
 	optional uint32 progress_id = 1;
 	optional bool reward_unlocked = 2;
 	optional bool reward_claimed = 3;
+	optional int64 reward_id = 4;
 }
 
 message EventProgressResponse {
@@ -60,6 +75,9 @@ message EventProgressResponse {
 		optional int64 event_xp = 2;
 		repeated .EA.Sims4.Network.RewardPeriodProgress progress = 3;
 		repeated .EA.Sims4.Network.ProgressReward progress_rewards = 4;
+		optional int64 login_days_count = 5;
+		optional .EA.Sims4.Network.LocalizedDateAndTimeData last_login_count_time = 6;
+		optional .EA.Sims4.Network.LocalizedDateAndTimeData next_login_count_time = 7;
 	}
 	repeated .EA.Sims4.Network.EventProgressResponse.EventProgress event_progress = 1;
 }
