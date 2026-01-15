@@ -1118,25 +1118,25 @@ public sealed class DataBasePackedFile :
         GetModelAsync<DataModel>(key, force, cancellationToken);
 
     /// <summary>
-    /// Gets the content of a resource that is a DST/DXT DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG
+    /// Gets the content of a resource that is a DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG
     /// </summary>
-    public ReadOnlyMemory<byte> GetDirectDrawSurfaceAsPng(ResourceKey key, bool force = false)
+    public ReadOnlyMemory<byte> GetDdsAsPng(ResourceKey key, bool force = false)
     {
         if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
             && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
             key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
-        return DirectDrawSurface.GetPngDataFromDiffuseSurfaceTextureData(Get(key, force));
+        return DirectDrawSurface.GetPngDataFromDdsData(Get(key, force));
     }
 
     /// <summary>
-    /// Gets the content of a resource that is a DST/DXT DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG, asynchronously
+    /// Gets the content of a resource that is a DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG, asynchronously
     /// </summary>
-    public async Task<ReadOnlyMemory<byte>> GetDirectDrawSurfaceAsPngAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    public async Task<ReadOnlyMemory<byte>> GetDdsAsPngAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
     {
         if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
             && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
             key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
-        return await DirectDrawSurface.GetPngDataFromDiffuseSurfaceTextureDataAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
+        return await DirectDrawSurface.GetPngDataFromDdsDataAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -2329,7 +2329,24 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Sets the content of a resource as a TS4 proprietary translucent JPEG based on an RGBA image encoded as <paramref name="pngData"/> (the resource content will not be DBPF-compressed as it will already be JPEG lossy compressed and PNG DEFLATE compressed)
+    /// Sets the content of a resource specified by <paramref name="key"/> to a shuffled DirectDraw Surface based on <paramref name="pngData"/>
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="pngData">The encoded PNG data</param>
+    public void SetPngAsDds(ResourceKey key, ReadOnlyMemory<byte> pngData) =>
+        Set(key, DirectDrawSurface.GetDstDataFromPngData(pngData), CompressionMode.ForceZLib);
+
+    /// <summary>
+    /// Sets the content of a resource specified by <paramref name="key"/> to a shuffled DirectDraw Surface based on <paramref name="pngData"/> asycnhronously
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="pngData">The encoded PNG data</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    public async Task SetPngAsDdsAsync(ResourceKey key, ReadOnlyMemory<byte> pngData, CancellationToken cancellationToken = default) =>
+        await SetAsync(key, await DirectDrawSurface.GetDstDataFromPngDataAsync(pngData, cancellationToken).ConfigureAwait(false), CompressionMode.ForceZLib, cancellationToken).ConfigureAwait(false);
+
+    /// <summary>
+    /// Sets the content of a resource specified by <paramref name="key"/> to a TS4 proprietary translucent JPEG based on <paramref name="pngData"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="pngData">The encoded PNG data</param>
@@ -2337,7 +2354,7 @@ public sealed class DataBasePackedFile :
         Set(key, ConvertPngToTranslucentJpeg(pngData), CompressionMode.ForceOff);
 
     /// <summary>
-    /// Sets the content of a resource as a TS4 proprietary translucent JPEG based on an RGBA image encoded as <paramref name="pngData"/> (the resource content will not be DBPF-compressed as it will already be JPEG lossy compressed and PNG DEFLATE compressed) asycnhronously
+    /// Sets the content of a resource specified by <paramref name="key"/> to a TS4 proprietary translucent JPEG based on <paramref name="pngData"/> asycnhronously
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="pngData">The encoded PNG data</param>
