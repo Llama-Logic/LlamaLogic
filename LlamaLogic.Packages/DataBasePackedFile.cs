@@ -688,7 +688,7 @@ public sealed class DataBasePackedFile :
         else if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Deleted_record)
         {
             if (!force)
-                throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} cannot be retrieved unless forced");
+                throw new FileNotFoundException($"Compression type {indexEntry.mnCompressionType} cannot be retrieved unless forced");
         }
         else if (indexEntry.mnCompressionType is not CompressionTypeMethodNumber.Uncompressed)
             throw new NotSupportedException($"Compression type {indexEntry.mnCompressionType} not supported");
