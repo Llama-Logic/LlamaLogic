@@ -30,6 +30,12 @@ public enum ResourceFileType
     JavaScriptObjectNotation,
 
     /// <summary>
+    /// JPEG Image
+    /// </summary>
+    [ResourceFileTypeFormat("jpg", "image/jpeg")]
+    JointPhotographicExpertsGroupImage,
+
+    /// <summary>
     /// PNG Image
     /// </summary>
     [ResourceFileTypeFormat("png", "image/png")]

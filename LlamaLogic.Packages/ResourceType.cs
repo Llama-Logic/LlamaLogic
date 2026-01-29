@@ -1138,7 +1138,7 @@ public enum ResourceType :
     /// <summary>
     /// Save Game Custom Texture
     /// </summary>
-    [ResourceFileType(ResourceFileType.Ts4TranslucentJointPhotographicExpertsGroupImage)]
+    [ResourceFileType(ResourceFileType.JointPhotographicExpertsGroupImage)]
     SaveGameCustomTexture = 0xe88db35f,
 
     /// <summary>
