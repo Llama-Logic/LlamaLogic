@@ -129,7 +129,8 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
     public static ReadOnlyMemory<byte> ConvertTranslucentJpegToPng(ReadOnlyMemory<byte> translucentJpegData)
     {
         using var contentStream = new ReadOnlyMemoryOfByteStream(translucentJpegData);
-        using var jpegImage = Image.Load<Rgba32>(contentStream);
+        if (Image.DetectFormat(contentStream) != JpegFormat.Instance)
+            throw new FormatException($"{nameof(translucentJpegData)} is not a valid JPEG");
         ReadOnlyMemory<byte> alphaData = default;
         var contentScanningMemory = translucentJpegData;
         int scanIndex;
@@ -146,6 +147,7 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
         }
         if (alphaData.IsEmpty)
             throw new InvalidDataException("ALFA PNG APP0 marker not found in JPEG");
+        using var jpegImage = Image.Load<Rgba32>(contentStream);
         using var pngStream = new ReadOnlyMemoryOfByteStream(alphaData);
         using var pngImage = Image.Load<L8>(pngStream);
         if (jpegImage.Size != pngImage.Size)
@@ -175,7 +177,8 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
     public static async Task<ReadOnlyMemory<byte>> ConvertTranslucentJpegToPngAsync(ReadOnlyMemory<byte> translucentJpegData, CancellationToken cancellationToken = default)
     {
         using var contentStream = new ReadOnlyMemoryOfByteStream(translucentJpegData);
-        using var jpegImage = await Image.LoadAsync<Rgba32>(contentStream, cancellationToken).ConfigureAwait(false);
+        if (await Image.DetectFormatAsync(contentStream, cancellationToken).ConfigureAwait(false) != JpegFormat.Instance)
+            throw new FormatException($"{nameof(translucentJpegData)} is not a valid JPEG");
         ReadOnlyMemory<byte> alphaData = default;
         var contentScanningMemory = translucentJpegData;
         int scanIndex;
@@ -192,6 +195,7 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
         }
         if (alphaData.IsEmpty)
             throw new InvalidDataException("ALFA PNG APP0 marker not found in JPEG");
+        using var jpegImage = await Image.LoadAsync<Rgba32>(contentStream, cancellationToken).ConfigureAwait(false);
         using var pngStream = new ReadOnlyMemoryOfByteStream(alphaData);
         using var pngImage = await Image.LoadAsync<L8>(pngStream, cancellationToken).ConfigureAwait(false);
         if (jpegImage.Size != pngImage.Size)
