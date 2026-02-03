@@ -406,6 +406,16 @@ namespace EA.Sims4.Network
         public void ResetActiveSimId() => __pbn__ActiveSimId = null;
         private ulong? __pbn__ActiveSimId;
 
+        [global::ProtoBuf.ProtoMember(4, Name = @"spawn_object_id")]
+        public ulong SpawnObjectId
+        {
+            get => __pbn__SpawnObjectId.GetValueOrDefault();
+            set => __pbn__SpawnObjectId = value;
+        }
+        public bool ShouldSerializeSpawnObjectId() => __pbn__SpawnObjectId != null;
+        public void ResetSpawnObjectId() => __pbn__SpawnObjectId = null;
+        private ulong? __pbn__SpawnObjectId;
+
     }
 
     [global::ProtoBuf.ProtoContract()]

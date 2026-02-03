@@ -576,6 +576,9 @@ namespace EA.Sims4.Network
         public void ResetParentId() => __pbn__ParentId = null;
         private ulong? __pbn__ParentId;
 
+        [global::ProtoBuf.ProtoMember(16, Name = @"icon_background")]
+        public ResourceKey IconBackground { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum CanvasStateType
         {
@@ -894,6 +897,8 @@ namespace EA.Sims4.Network
             TypeRemove = 2,
             [global::ProtoBuf.ProtoEnum(Name = @"TYPE_SET_STACK_OPTION")]
             TypeSetStackOption = 3,
+            [global::ProtoBuf.ProtoEnum(Name = @"TYPE_SET_VALUE")]
+            TypeSetValue = 4,
         }
 
         [global::ProtoBuf.ProtoContract()]
@@ -2071,6 +2076,83 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class NotebookSecretScandalMessage : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"secret_status")]
+        public LocalizedString SecretStatus { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"expiration_text")]
+        public LocalizedString ExpirationText { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"expiration_seconds")]
+        public ulong ExpirationSeconds
+        {
+            get => __pbn__ExpirationSeconds.GetValueOrDefault();
+            set => __pbn__ExpirationSeconds = value;
+        }
+        public bool ShouldSerializeExpirationSeconds() => __pbn__ExpirationSeconds != null;
+        public void ResetExpirationSeconds() => __pbn__ExpirationSeconds = null;
+        private ulong? __pbn__ExpirationSeconds;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"complicit_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong ComplicitSimId
+        {
+            get => __pbn__ComplicitSimId.GetValueOrDefault();
+            set => __pbn__ComplicitSimId = value;
+        }
+        public bool ShouldSerializeComplicitSimId() => __pbn__ComplicitSimId != null;
+        public void ResetComplicitSimId() => __pbn__ComplicitSimId = null;
+        private ulong? __pbn__ComplicitSimId;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"secret_holder_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SecretHolderSimId
+        {
+            get => __pbn__SecretHolderSimId.GetValueOrDefault();
+            set => __pbn__SecretHolderSimId = value;
+        }
+        public bool ShouldSerializeSecretHolderSimId() => __pbn__SecretHolderSimId != null;
+        public void ResetSecretHolderSimId() => __pbn__SecretHolderSimId = null;
+        private ulong? __pbn__SecretHolderSimId;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"severity")]
+        public IconInfo Severity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"blackmailers", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] Blackmailers { get; set; }
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"confidantes", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] Confidantes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"scandal_effects")]
+        public LocalizedString ScandalEffects { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10, Name = @"secret_owner_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SecretOwnerSimId
+        {
+            get => __pbn__SecretOwnerSimId.GetValueOrDefault();
+            set => __pbn__SecretOwnerSimId = value;
+        }
+        public bool ShouldSerializeSecretOwnerSimId() => __pbn__SecretOwnerSimId != null;
+        public void ResetSecretOwnerSimId() => __pbn__SecretOwnerSimId = null;
+        private ulong? __pbn__SecretOwnerSimId;
+
+        [global::ProtoBuf.ProtoMember(11, Name = @"secret_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SecretId
+        {
+            get => __pbn__SecretId.GetValueOrDefault();
+            set => __pbn__SecretId = value;
+        }
+        public bool ShouldSerializeSecretId() => __pbn__SecretId != null;
+        public void ResetSecretId() => __pbn__SecretId = null;
+        private ulong? __pbn__SecretId;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class NotebookEntryListMessage : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -2187,6 +2269,35 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(11, Name = @"entry_message_description")]
         public LocalizedString EntryMessageDescription { get; set; }
 
+        [global::ProtoBuf.ProtoMember(12, Name = @"entry_type")]
+        [global::System.ComponentModel.DefaultValue(NotebookEntryType.None)]
+        public NotebookEntryType EntryType
+        {
+            get => __pbn__EntryType ?? NotebookEntryType.None;
+            set => __pbn__EntryType = value;
+        }
+        public bool ShouldSerializeEntryType() => __pbn__EntryType != null;
+        public void ResetEntryType() => __pbn__EntryType = null;
+        private NotebookEntryType? __pbn__EntryType;
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"secret_scandal_data")]
+        public NotebookSecretScandalMessage SecretScandalData { get; set; }
+
+        [global::ProtoBuf.ProtoContract()]
+        public enum NotebookEntryType
+        {
+            [global::ProtoBuf.ProtoEnum(Name = @"NONE")]
+            None = 0,
+            [global::ProtoBuf.ProtoEnum(Name = @"MY_SECRET")]
+            MySecret = 1,
+            [global::ProtoBuf.ProtoEnum(Name = @"MY_SCANDAL")]
+            MyScandal = 2,
+            [global::ProtoBuf.ProtoEnum(Name = @"OTHERS_SECRET")]
+            OthersSecret = 3,
+            [global::ProtoBuf.ProtoEnum(Name = @"OTHERS_SCANDAL")]
+            OthersScandal = 4,
+        }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2270,6 +2381,8 @@ namespace EA.Sims4.Network
             NotebookIconDescription = 2,
             [global::ProtoBuf.ProtoEnum(Name = @"NOTEBOOK_EXPANDABLE_SINGLE")]
             NotebookExpandableSingle = 3,
+            [global::ProtoBuf.ProtoEnum(Name = @"NOTEBOOK_EXPANDABLE_SECRET_SCANDAL")]
+            NotebookExpandableSecretScandal = 4,
         }
 
     }
@@ -2306,6 +2419,17 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(6, Name = @"category_large_icon")]
         public IconInfo CategoryLargeIcon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"display_subcategory_title")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool DisplaySubcategoryTitle
+        {
+            get => __pbn__DisplaySubcategoryTitle ?? false;
+            set => __pbn__DisplaySubcategoryTitle = value;
+        }
+        public bool ShouldSerializeDisplaySubcategoryTitle() => __pbn__DisplaySubcategoryTitle != null;
+        public void ResetDisplaySubcategoryTitle() => __pbn__DisplaySubcategoryTitle = null;
+        private bool? __pbn__DisplaySubcategoryTitle;
 
     }
 
@@ -4124,6 +4248,45 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class ShowSimCompetitionSelector : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"is_update")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool IsUpdate
+        {
+            get => __pbn__IsUpdate ?? false;
+            set => __pbn__IsUpdate = value;
+        }
+        public bool ShouldSerializeIsUpdate() => __pbn__IsUpdate != null;
+        public void ResetIsUpdate() => __pbn__IsUpdate = null;
+        private bool? __pbn__IsUpdate;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"selected_sim")]
+        public SimCompetitionAssigneeData SelectedSim { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"competition_metadatas")]
+        public global::System.Collections.Generic.List<SimCompetitionMetadata> CompetitionMetadatas { get; } = new global::System.Collections.Generic.List<SimCompetitionMetadata>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"selected_object")]
+        public SimCompetitionObjectData SelectedObject { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"category")]
+        public uint Category
+        {
+            get => __pbn__Category.GetValueOrDefault();
+            set => __pbn__Category = value;
+        }
+        public bool ShouldSerializeCategory() => __pbn__Category != null;
+        public void ResetCategory() => __pbn__Category = null;
+        private uint? __pbn__Category;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ShowMatchmakingDialog : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -4492,6 +4655,132 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class SimCompetitionMetadata : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"competition_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong CompetitionId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"eligible_to_compete", IsRequired = true)]
+        public bool EligibleToCompete { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"not_eligible_reason")]
+        public LocalizedString NotEligibleReason { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"has_placed_previously", IsRequired = true)]
+        public bool HasPlacedPreviously { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"highest_placement")]
+        public int HighestPlacement
+        {
+            get => __pbn__HighestPlacement.GetValueOrDefault();
+            set => __pbn__HighestPlacement = value;
+        }
+        public bool ShouldSerializeHighestPlacement() => __pbn__HighestPlacement != null;
+        public void ResetHighestPlacement() => __pbn__HighestPlacement = null;
+        private int? __pbn__HighestPlacement;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimCompetitionAssigneeSkillData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"skill_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong SkillId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"level", IsRequired = true)]
+        public uint Level { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimCompetitionAssigneeData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong SimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"mood_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong MoodId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"mood_intensity", IsRequired = true)]
+        public uint MoodIntensity { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"mood_tooltip")]
+        public LocalizedString MoodTooltip { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"skills")]
+        public global::System.Collections.Generic.List<SimCompetitionAssigneeSkillData> Skills { get; } = new global::System.Collections.Generic.List<SimCompetitionAssigneeSkillData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimCompetitionObjectData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"selected_object_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SelectedObjectId
+        {
+            get => __pbn__SelectedObjectId.GetValueOrDefault();
+            set => __pbn__SelectedObjectId = value;
+        }
+        public bool ShouldSerializeSelectedObjectId() => __pbn__SelectedObjectId != null;
+        public void ResetSelectedObjectId() => __pbn__SelectedObjectId = null;
+        private ulong? __pbn__SelectedObjectId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"icon")]
+        public IconInfo Icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"name")]
+        public LocalizedString Name { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShowSimCompetitionResults : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong SimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"competition_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsRequired = true)]
+        public ulong CompetitionId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"placement", IsRequired = true)]
+        public int Placement { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"unlocked_new_competition", IsRequired = true)]
+        public bool UnlockedNewCompetition { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"unlocked_competition_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong UnlockedCompetitionId
+        {
+            get => __pbn__UnlockedCompetitionId.GetValueOrDefault();
+            set => __pbn__UnlockedCompetitionId = value;
+        }
+        public bool ShouldSerializeUnlockedCompetitionId() => __pbn__UnlockedCompetitionId != null;
+        public void ResetUnlockedCompetitionId() => __pbn__UnlockedCompetitionId = null;
+        private ulong? __pbn__UnlockedCompetitionId;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class InventoryItemSellRequest : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -4831,6 +5120,540 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(3, Name = @"control")]
         public LocalizedString Control { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class FamilyTreeForgeryPath : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] SimIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"forged_to_next_states", IsPacked = true)]
+        public bool[] ForgedToNextStates { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class FamilyTreeForgeryRelationOptions : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"relbit_ids", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] RelbitIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"possible_paths")]
+        public global::System.Collections.Generic.List<FamilyTreeForgeryPath> PossiblePaths { get; } = new global::System.Collections.Generic.List<FamilyTreeForgeryPath>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShowFamilyTreeForgery : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"origin_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong OriginSimId
+        {
+            get => __pbn__OriginSimId.GetValueOrDefault();
+            set => __pbn__OriginSimId = value;
+        }
+        public bool ShouldSerializeOriginSimId() => __pbn__OriginSimId != null;
+        public void ResetOriginSimId() => __pbn__OriginSimId = null;
+        private ulong? __pbn__OriginSimId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"target_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong TargetSimId
+        {
+            get => __pbn__TargetSimId.GetValueOrDefault();
+            set => __pbn__TargetSimId = value;
+        }
+        public bool ShouldSerializeTargetSimId() => __pbn__TargetSimId != null;
+        public void ResetTargetSimId() => __pbn__TargetSimId = null;
+        private ulong? __pbn__TargetSimId;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"all_possible_relations")]
+        public global::System.Collections.Generic.List<FamilyTreeForgeryRelationOptions> AllPossibleRelations { get; } = new global::System.Collections.Generic.List<FamilyTreeForgeryRelationOptions>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"path_sim_from_picker", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong PathSimFromPicker
+        {
+            get => __pbn__PathSimFromPicker.GetValueOrDefault();
+            set => __pbn__PathSimFromPicker = value;
+        }
+        public bool ShouldSerializePathSimFromPicker() => __pbn__PathSimFromPicker != null;
+        public void ResetPathSimFromPicker() => __pbn__PathSimFromPicker = null;
+        private ulong? __pbn__PathSimFromPicker;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"forger_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong ForgerSimId
+        {
+            get => __pbn__ForgerSimId.GetValueOrDefault();
+            set => __pbn__ForgerSimId = value;
+        }
+        public bool ShouldSerializeForgerSimId() => __pbn__ForgerSimId != null;
+        public void ResetForgerSimId() => __pbn__ForgerSimId = null;
+        private ulong? __pbn__ForgerSimId;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShowDynastyConfigurator : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"view_type")]
+        public int ViewType
+        {
+            get => __pbn__ViewType.GetValueOrDefault();
+            set => __pbn__ViewType = value;
+        }
+        public bool ShouldSerializeViewType() => __pbn__ViewType != null;
+        public void ResetViewType() => __pbn__ViewType = null;
+        private int? __pbn__ViewType;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"predefined_members", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] PredefinedMembers { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"first_spouse", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong FirstSpouse
+        {
+            get => __pbn__FirstSpouse.GetValueOrDefault();
+            set => __pbn__FirstSpouse = value;
+        }
+        public bool ShouldSerializeFirstSpouse() => __pbn__FirstSpouse != null;
+        public void ResetFirstSpouse() => __pbn__FirstSpouse = null;
+        private ulong? __pbn__FirstSpouse;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"second_spouse", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SecondSpouse
+        {
+            get => __pbn__SecondSpouse.GetValueOrDefault();
+            set => __pbn__SecondSpouse = value;
+        }
+        public bool ShouldSerializeSecondSpouse() => __pbn__SecondSpouse != null;
+        public void ResetSecondSpouse() => __pbn__SecondSpouse = null;
+        private ulong? __pbn__SecondSpouse;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"dynasty_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong DynastyId
+        {
+            get => __pbn__DynastyId.GetValueOrDefault();
+            set => __pbn__DynastyId = value;
+        }
+        public bool ShouldSerializeDynastyId() => __pbn__DynastyId != null;
+        public void ResetDynastyId() => __pbn__DynastyId = null;
+        private ulong? __pbn__DynastyId;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"raw_eligible_sim_count")]
+        public int RawEligibleSimCount
+        {
+            get => __pbn__RawEligibleSimCount.GetValueOrDefault();
+            set => __pbn__RawEligibleSimCount = value;
+        }
+        public bool ShouldSerializeRawEligibleSimCount() => __pbn__RawEligibleSimCount != null;
+        public void ResetRawEligibleSimCount() => __pbn__RawEligibleSimCount = null;
+        private int? __pbn__RawEligibleSimCount;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DynastyMemberBreakdowns : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"member_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong MemberId
+        {
+            get => __pbn__MemberId.GetValueOrDefault();
+            set => __pbn__MemberId = value;
+        }
+        public bool ShouldSerializeMemberId() => __pbn__MemberId != null;
+        public void ResetMemberId() => __pbn__MemberId = null;
+        private ulong? __pbn__MemberId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"member_rank")]
+        public int MemberRank
+        {
+            get => __pbn__MemberRank.GetValueOrDefault();
+            set => __pbn__MemberRank = value;
+        }
+        public bool ShouldSerializeMemberRank() => __pbn__MemberRank != null;
+        public void ResetMemberRank() => __pbn__MemberRank = null;
+        private int? __pbn__MemberRank;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"is_black_sheep")]
+        public bool IsBlackSheep
+        {
+            get => __pbn__IsBlackSheep.GetValueOrDefault();
+            set => __pbn__IsBlackSheep = value;
+        }
+        public bool ShouldSerializeIsBlackSheep() => __pbn__IsBlackSheep != null;
+        public void ResetIsBlackSheep() => __pbn__IsBlackSheep = null;
+        private bool? __pbn__IsBlackSheep;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"member_pose")]
+        public int MemberPose
+        {
+            get => __pbn__MemberPose.GetValueOrDefault();
+            set => __pbn__MemberPose = value;
+        }
+        public bool ShouldSerializeMemberPose() => __pbn__MemberPose != null;
+        public void ResetMemberPose() => __pbn__MemberPose = null;
+        private int? __pbn__MemberPose;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"is_poor_performer")]
+        public bool IsPoorPerformer
+        {
+            get => __pbn__IsPoorPerformer.GetValueOrDefault();
+            set => __pbn__IsPoorPerformer = value;
+        }
+        public bool ShouldSerializeIsPoorPerformer() => __pbn__IsPoorPerformer != null;
+        public void ResetIsPoorPerformer() => __pbn__IsPoorPerformer = null;
+        private bool? __pbn__IsPoorPerformer;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"trait_values")]
+        public global::System.Collections.Generic.List<DynastyValueDetailData> TraitValues { get; } = new global::System.Collections.Generic.List<DynastyValueDetailData>();
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"career_values")]
+        public global::System.Collections.Generic.List<DynastyValueDetailData> CareerValues { get; } = new global::System.Collections.Generic.List<DynastyValueDetailData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DynastyValueDetailData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"id")]
+        public ulong Id
+        {
+            get => __pbn__Id.GetValueOrDefault();
+            set => __pbn__Id = value;
+        }
+        public bool ShouldSerializeId() => __pbn__Id != null;
+        public void ResetId() => __pbn__Id = null;
+        private ulong? __pbn__Id;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"dynasty_value")]
+        public LocalizedString DynastyValue { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"is_aligned")]
+        public bool IsAligned
+        {
+            get => __pbn__IsAligned.GetValueOrDefault();
+            set => __pbn__IsAligned = value;
+        }
+        public bool ShouldSerializeIsAligned() => __pbn__IsAligned != null;
+        public void ResetIsAligned() => __pbn__IsAligned = null;
+        private bool? __pbn__IsAligned;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DynastyValues : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"value_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong ValueId
+        {
+            get => __pbn__ValueId.GetValueOrDefault();
+            set => __pbn__ValueId = value;
+        }
+        public bool ShouldSerializeValueId() => __pbn__ValueId != null;
+        public void ResetValueId() => __pbn__ValueId = null;
+        private ulong? __pbn__ValueId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"value_name")]
+        public LocalizedString ValueName { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"value_type")]
+        public ulong ValueType
+        {
+            get => __pbn__ValueType.GetValueOrDefault();
+            set => __pbn__ValueType = value;
+        }
+        public bool ShouldSerializeValueType() => __pbn__ValueType != null;
+        public void ResetValueType() => __pbn__ValueType = null;
+        private ulong? __pbn__ValueType;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"value_icon")]
+        public IconInfo ValueIcon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"value_tooltip")]
+        public LocalizedString ValueTooltip { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DynastyAlliesRivals : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"alliances")]
+        public global::System.Collections.Generic.List<DynastySimpleData> Alliances { get; } = new global::System.Collections.Generic.List<DynastySimpleData>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"rivalries")]
+        public global::System.Collections.Generic.List<DynastySimpleData> Rivalries { get; } = new global::System.Collections.Generic.List<DynastySimpleData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DynastySimpleData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"dynasty_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong DynastyId
+        {
+            get => __pbn__DynastyId.GetValueOrDefault();
+            set => __pbn__DynastyId = value;
+        }
+        public bool ShouldSerializeDynastyId() => __pbn__DynastyId != null;
+        public void ResetDynastyId() => __pbn__DynastyId = null;
+        private ulong? __pbn__DynastyId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Name
+        {
+            get => __pbn__Name ?? "";
+            set => __pbn__Name = value;
+        }
+        public bool ShouldSerializeName() => __pbn__Name != null;
+        public void ResetName() => __pbn__Name = null;
+        private string __pbn__Name;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"icon")]
+        public IconInfo Icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"icon_background")]
+        public IconInfo IconBackground { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"prestige_level")]
+        public int PrestigeLevel
+        {
+            get => __pbn__PrestigeLevel.GetValueOrDefault();
+            set => __pbn__PrestigeLevel = value;
+        }
+        public bool ShouldSerializePrestigeLevel() => __pbn__PrestigeLevel != null;
+        public void ResetPrestigeLevel() => __pbn__PrestigeLevel = null;
+        private int? __pbn__PrestigeLevel;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"number_members")]
+        public int NumberMembers
+        {
+            get => __pbn__NumberMembers.GetValueOrDefault();
+            set => __pbn__NumberMembers = value;
+        }
+        public bool ShouldSerializeNumberMembers() => __pbn__NumberMembers != null;
+        public void ResetNumberMembers() => __pbn__NumberMembers = null;
+        private int? __pbn__NumberMembers;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class DynastyUIData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"dynasty_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong DynastyId
+        {
+            get => __pbn__DynastyId.GetValueOrDefault();
+            set => __pbn__DynastyId = value;
+        }
+        public bool ShouldSerializeDynastyId() => __pbn__DynastyId != null;
+        public void ResetDynastyId() => __pbn__DynastyId = null;
+        private ulong? __pbn__DynastyId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Name
+        {
+            get => __pbn__Name ?? "";
+            set => __pbn__Name = value;
+        }
+        public bool ShouldSerializeName() => __pbn__Name != null;
+        public void ResetName() => __pbn__Name = null;
+        private string __pbn__Name;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"icon")]
+        public IconInfo Icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"head_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong HeadSimId
+        {
+            get => __pbn__HeadSimId.GetValueOrDefault();
+            set => __pbn__HeadSimId = value;
+        }
+        public bool ShouldSerializeHeadSimId() => __pbn__HeadSimId != null;
+        public void ResetHeadSimId() => __pbn__HeadSimId = null;
+        private ulong? __pbn__HeadSimId;
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"heir_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong HeirSimId
+        {
+            get => __pbn__HeirSimId.GetValueOrDefault();
+            set => __pbn__HeirSimId = value;
+        }
+        public bool ShouldSerializeHeirSimId() => __pbn__HeirSimId != null;
+        public void ResetHeirSimId() => __pbn__HeirSimId = null;
+        private ulong? __pbn__HeirSimId;
+
+        [global::ProtoBuf.ProtoMember(6, Name = @"members")]
+        public global::System.Collections.Generic.List<DynastyMemberBreakdowns> Members { get; } = new global::System.Collections.Generic.List<DynastyMemberBreakdowns>();
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"values")]
+        public global::System.Collections.Generic.List<DynastyValues> Values { get; } = new global::System.Collections.Generic.List<DynastyValues>();
+
+        [global::ProtoBuf.ProtoMember(8, Name = @"alliances", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] Alliances { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"rivalries", DataFormat = global::ProtoBuf.DataFormat.FixedSize, IsPacked = true)]
+        public ulong[] Rivalries { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10, Name = @"description")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Description
+        {
+            get => __pbn__Description ?? "";
+            set => __pbn__Description = value;
+        }
+        public bool ShouldSerializeDescription() => __pbn__Description != null;
+        public void ResetDescription() => __pbn__Description = null;
+        private string __pbn__Description;
+
+        [global::ProtoBuf.ProtoMember(11, Name = @"icon_background")]
+        public IconInfo IconBackground { get; set; }
+
+        [global::ProtoBuf.ProtoMember(12, Name = @"prestige_level")]
+        public int PrestigeLevel
+        {
+            get => __pbn__PrestigeLevel.GetValueOrDefault();
+            set => __pbn__PrestigeLevel = value;
+        }
+        public bool ShouldSerializePrestigeLevel() => __pbn__PrestigeLevel != null;
+        public void ResetPrestigeLevel() => __pbn__PrestigeLevel = null;
+        private int? __pbn__PrestigeLevel;
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"bucks_data")]
+        public global::System.Collections.Generic.List<global::EA.Sims4.BucksData> BucksDatas { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.BucksData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ScandalSecretSimpleData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"secret_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SecretId
+        {
+            get => __pbn__SecretId.GetValueOrDefault();
+            set => __pbn__SecretId = value;
+        }
+        public bool ShouldSerializeSecretId() => __pbn__SecretId != null;
+        public void ResetSecretId() => __pbn__SecretId = null;
+        private ulong? __pbn__SecretId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"name")]
+        public LocalizedString Name { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"description")]
+        public LocalizedString Description { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"icon")]
+        public IconInfo Icon { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"status_id")]
+        public int StatusId
+        {
+            get => __pbn__StatusId.GetValueOrDefault();
+            set => __pbn__StatusId = value;
+        }
+        public bool ShouldSerializeStatusId() => __pbn__StatusId != null;
+        public void ResetStatusId() => __pbn__StatusId = null;
+        private int? __pbn__StatusId;
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"expiration_date", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong ExpirationDate
+        {
+            get => __pbn__ExpirationDate.GetValueOrDefault();
+            set => __pbn__ExpirationDate = value;
+        }
+        public bool ShouldSerializeExpirationDate() => __pbn__ExpirationDate != null;
+        public void ResetExpirationDate() => __pbn__ExpirationDate = null;
+        private ulong? __pbn__ExpirationDate;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ScandalSecretData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"secrets")]
+        public global::System.Collections.Generic.List<ScandalSecretSimpleData> Secrets { get; } = new global::System.Collections.Generic.List<ScandalSecretSimpleData>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"scandals")]
+        public global::System.Collections.Generic.List<ScandalSecretSimpleData> Scandals { get; } = new global::System.Collections.Generic.List<ScandalSecretSimpleData>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ShowFamilyTreeUI : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong SimId
+        {
+            get => __pbn__SimId.GetValueOrDefault();
+            set => __pbn__SimId = value;
+        }
+        public bool ShouldSerializeSimId() => __pbn__SimId != null;
+        public void ResetSimId() => __pbn__SimId = null;
+        private ulong? __pbn__SimId;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"pov_sim_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong PovSimId
+        {
+            get => __pbn__PovSimId.GetValueOrDefault();
+            set => __pbn__PovSimId = value;
+        }
+        public bool ShouldSerializePovSimId() => __pbn__PovSimId != null;
+        public void ResetPovSimId() => __pbn__PovSimId = null;
+        private ulong? __pbn__PovSimId;
 
     }
 

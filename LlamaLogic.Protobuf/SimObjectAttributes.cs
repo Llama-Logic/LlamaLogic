@@ -102,6 +102,7 @@ namespace EA.Sims4.Persistence
                 HeirloomComponent = 74,
                 PersistableFamilyRecipes = 75,
                 PersistableTattooTracker = 76,
+                TravelDestinationComponent = 77,
             }
 
         }
@@ -397,6 +398,16 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(21, Name = @"creature_types", IsPacked = true)]
         public uint[] CreatureTypes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(22, Name = @"remove_sim_exception")]
+        public bool RemoveSimException
+        {
+            get => __pbn__RemoveSimException.GetValueOrDefault();
+            set => __pbn__RemoveSimException = value;
+        }
+        public bool ShouldSerializeRemoveSimException() => __pbn__RemoveSimException != null;
+        public void ResetRemoveSimException() => __pbn__RemoveSimException = null;
+        private bool? __pbn__RemoveSimException;
 
     }
 
@@ -2219,6 +2230,16 @@ namespace EA.Sims4.Persistence
         public void ResetOrigin() => __pbn__Origin = null;
         private uint? __pbn__Origin;
 
+        [global::ProtoBuf.ProtoMember(6, Name = @"chosen_partner_parent_id", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong ChosenPartnerParentId
+        {
+            get => __pbn__ChosenPartnerParentId.GetValueOrDefault();
+            set => __pbn__ChosenPartnerParentId = value;
+        }
+        public bool ShouldSerializeChosenPartnerParentId() => __pbn__ChosenPartnerParentId != null;
+        public void ResetChosenPartnerParentId() => __pbn__ChosenPartnerParentId = null;
+        private ulong? __pbn__ChosenPartnerParentId;
+
         public static partial class Extensions
         {
             public static PersistablePregnancyTracker GetPersistableData(PersistenceMaster.PersistableData obj)
@@ -3638,6 +3659,31 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class ArchivedFamilyRelbit : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"target_sim_id", IsRequired = true)]
+        public ulong TargetSimId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"relationship_bit_id", IsRequired = true)]
+        public ulong RelationshipBitId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"time_archived")]
+        public ulong TimeArchived
+        {
+            get => __pbn__TimeArchived.GetValueOrDefault();
+            set => __pbn__TimeArchived = value;
+        }
+        public bool ShouldSerializeTimeArchived() => __pbn__TimeArchived != null;
+        public void ResetTimeArchived() => __pbn__TimeArchived = null;
+        private ulong? __pbn__TimeArchived;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class PersistableGenealogyTracker : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -3649,6 +3695,12 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(2, Name = @"relationship_tropes")]
         public global::System.Collections.Generic.List<RelationshipTrope> RelationshipTropes { get; } = new global::System.Collections.Generic.List<RelationshipTrope>();
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"archived_family_relbits")]
+        public global::System.Collections.Generic.List<ArchivedFamilyRelbit> ArchivedFamilyRelbits { get; } = new global::System.Collections.Generic.List<ArchivedFamilyRelbit>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"pinned_family_relbits")]
+        public global::System.Collections.Generic.List<ArchivedFamilyRelbit> PinnedFamilyRelbits { get; } = new global::System.Collections.Generic.List<ArchivedFamilyRelbit>();
 
         public static partial class Extensions
         {
@@ -5188,6 +5240,34 @@ namespace EA.Sims4.Persistence
 
             public static void SetPersistableData(PersistenceMaster.PersistableData obj, PersistableSituationSchedulerComponent value)
                 => global::ProtoBuf.Extensible.AppendValue<PersistableSituationSchedulerComponent>(obj, 21048, value);
+
+        }
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class TravelDestinationComponent : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"zone_id")]
+        public ulong ZoneId
+        {
+            get => __pbn__ZoneId.GetValueOrDefault();
+            set => __pbn__ZoneId = value;
+        }
+        public bool ShouldSerializeZoneId() => __pbn__ZoneId != null;
+        public void ResetZoneId() => __pbn__ZoneId = null;
+        private ulong? __pbn__ZoneId;
+
+        public static partial class Extensions
+        {
+            public static TravelDestinationComponent GetPersistableData(PersistenceMaster.PersistableData obj)
+                => obj == null ? default : global::ProtoBuf.Extensible.GetValue<TravelDestinationComponent>(obj, 21077);
+
+            public static void SetPersistableData(PersistenceMaster.PersistableData obj, TravelDestinationComponent value)
+                => global::ProtoBuf.Extensible.AppendValue<TravelDestinationComponent>(obj, 21077, value);
 
         }
     }
@@ -7220,111 +7300,6 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class BucksData : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1, Name = @"bucks_type")]
-        public uint BucksType
-        {
-            get => __pbn__BucksType.GetValueOrDefault();
-            set => __pbn__BucksType = value;
-        }
-        public bool ShouldSerializeBucksType() => __pbn__BucksType != null;
-        public void ResetBucksType() => __pbn__BucksType = null;
-        private uint? __pbn__BucksType;
-
-        [global::ProtoBuf.ProtoMember(2, Name = @"amount")]
-        public uint Amount
-        {
-            get => __pbn__Amount.GetValueOrDefault();
-            set => __pbn__Amount = value;
-        }
-        public bool ShouldSerializeAmount() => __pbn__Amount != null;
-        public void ResetAmount() => __pbn__Amount = null;
-        private uint? __pbn__Amount;
-
-        [global::ProtoBuf.ProtoMember(3, Name = @"unlocked_perks")]
-        public global::System.Collections.Generic.List<UnlockedPerk> UnlockedPerks { get; } = new global::System.Collections.Generic.List<UnlockedPerk>();
-
-        [global::ProtoBuf.ProtoMember(4, Name = @"frozen_perk_ids", IsPacked = true)]
-        public ulong[] FrozenPerkIds { get; set; }
-
-        [global::ProtoBuf.ProtoMember(5, Name = @"frozen_business_rank_value")]
-        public float FrozenBusinessRankValue
-        {
-            get => __pbn__FrozenBusinessRankValue.GetValueOrDefault();
-            set => __pbn__FrozenBusinessRankValue = value;
-        }
-        public bool ShouldSerializeFrozenBusinessRankValue() => __pbn__FrozenBusinessRankValue != null;
-        public void ResetFrozenBusinessRankValue() => __pbn__FrozenBusinessRankValue = null;
-        private float? __pbn__FrozenBusinessRankValue;
-
-        [global::ProtoBuf.ProtoContract()]
-        public partial class UnlockedPerk : global::ProtoBuf.IExtensible
-        {
-            private global::ProtoBuf.IExtension __pbn__extensionData;
-            global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-                => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-            [global::ProtoBuf.ProtoMember(1, Name = @"perk")]
-            public uint Perk
-            {
-                get => __pbn__Perk.GetValueOrDefault();
-                set => __pbn__Perk = value;
-            }
-            public bool ShouldSerializePerk() => __pbn__Perk != null;
-            public void ResetPerk() => __pbn__Perk = null;
-            private uint? __pbn__Perk;
-
-            [global::ProtoBuf.ProtoMember(2, Name = @"unlock_reason")]
-            public uint UnlockReason
-            {
-                get => __pbn__UnlockReason.GetValueOrDefault();
-                set => __pbn__UnlockReason = value;
-            }
-            public bool ShouldSerializeUnlockReason() => __pbn__UnlockReason != null;
-            public void ResetUnlockReason() => __pbn__UnlockReason = null;
-            private uint? __pbn__UnlockReason;
-
-            [global::ProtoBuf.ProtoMember(3, Name = @"time_left")]
-            public ulong TimeLeft
-            {
-                get => __pbn__TimeLeft.GetValueOrDefault();
-                set => __pbn__TimeLeft = value;
-            }
-            public bool ShouldSerializeTimeLeft() => __pbn__TimeLeft != null;
-            public void ResetTimeLeft() => __pbn__TimeLeft = null;
-            private ulong? __pbn__TimeLeft;
-
-            [global::ProtoBuf.ProtoMember(4, Name = @"timestamp")]
-            public ulong Timestamp
-            {
-                get => __pbn__Timestamp.GetValueOrDefault();
-                set => __pbn__Timestamp = value;
-            }
-            public bool ShouldSerializeTimestamp() => __pbn__Timestamp != null;
-            public void ResetTimestamp() => __pbn__Timestamp = null;
-            private ulong? __pbn__Timestamp;
-
-            [global::ProtoBuf.ProtoMember(5, Name = @"currently_unlocked")]
-            [global::System.ComponentModel.DefaultValue(true)]
-            public bool CurrentlyUnlocked
-            {
-                get => __pbn__CurrentlyUnlocked ?? true;
-                set => __pbn__CurrentlyUnlocked = value;
-            }
-            public bool ShouldSerializeCurrentlyUnlocked() => __pbn__CurrentlyUnlocked != null;
-            public void ResetCurrentlyUnlocked() => __pbn__CurrentlyUnlocked = null;
-            private bool? __pbn__CurrentlyUnlocked;
-
-        }
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
     public enum RelationshipIndex
     {
         [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_MOTHER")]
@@ -7363,6 +7338,24 @@ namespace EA.Sims4.Persistence
         RelationshipParentsSibling = 16,
         [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_COUSIN")]
         RelationshipCousin = 17,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_DISTANT_RELATIVE")]
+        RelationshipDistantRelative = 18,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_GREAT_GRANDPARENT")]
+        RelationshipGreatGrandparent = 19,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_GREAT_GRANDCHILD")]
+        RelationshipGreatGrandchild = 20,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_GRANDPARENT_SIBLING")]
+        RelationshipGrandparentSibling = 21,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_FIRST_COUSIN_ONCE_REMOVED")]
+        RelationshipFirstCousinOnceRemoved = 22,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_SIBLINGS_GRANDCHILD")]
+        RelationshipSiblingsGrandchild = 23,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_SIBLINGS_GREAT_GRANDCHILD")]
+        RelationshipSiblingsGreatGrandchild = 24,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_GREAT_GRANDPARENT_SIBLING")]
+        RelationshipGreatGrandparentSibling = 25,
+        [global::ProtoBuf.ProtoEnum(Name = @"RELATIONSHIP_HALF_SIBLING")]
+        RelationshipHalfSibling = 26,
     }
 
 }

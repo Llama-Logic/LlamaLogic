@@ -690,6 +690,8 @@ namespace EA.Sims4
                 Evening = 2,
                 [global::ProtoBuf.ProtoEnum(Name = @"MULTI_DAY")]
                 MultiDay = 3,
+                [global::ProtoBuf.ProtoEnum(Name = @"TWENTY_FOUR_HOURS")]
+                TwentyFourHours = 4,
             }
 
         }
@@ -753,6 +755,111 @@ namespace EA.Sims4
 
         [global::ProtoBuf.ProtoMember(1, Name = @"pronouns")]
         public global::System.Collections.Generic.List<SimPronoun> Pronouns { get; } = new global::System.Collections.Generic.List<SimPronoun>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class BucksData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"bucks_type")]
+        public uint BucksType
+        {
+            get => __pbn__BucksType.GetValueOrDefault();
+            set => __pbn__BucksType = value;
+        }
+        public bool ShouldSerializeBucksType() => __pbn__BucksType != null;
+        public void ResetBucksType() => __pbn__BucksType = null;
+        private uint? __pbn__BucksType;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"amount")]
+        public uint Amount
+        {
+            get => __pbn__Amount.GetValueOrDefault();
+            set => __pbn__Amount = value;
+        }
+        public bool ShouldSerializeAmount() => __pbn__Amount != null;
+        public void ResetAmount() => __pbn__Amount = null;
+        private uint? __pbn__Amount;
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"unlocked_perks")]
+        public global::System.Collections.Generic.List<UnlockedPerk> UnlockedPerks { get; } = new global::System.Collections.Generic.List<UnlockedPerk>();
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"frozen_perk_ids", IsPacked = true)]
+        public ulong[] FrozenPerkIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(5, Name = @"frozen_business_rank_value")]
+        public float FrozenBusinessRankValue
+        {
+            get => __pbn__FrozenBusinessRankValue.GetValueOrDefault();
+            set => __pbn__FrozenBusinessRankValue = value;
+        }
+        public bool ShouldSerializeFrozenBusinessRankValue() => __pbn__FrozenBusinessRankValue != null;
+        public void ResetFrozenBusinessRankValue() => __pbn__FrozenBusinessRankValue = null;
+        private float? __pbn__FrozenBusinessRankValue;
+
+        [global::ProtoBuf.ProtoContract()]
+        public partial class UnlockedPerk : global::ProtoBuf.IExtensible
+        {
+            private global::ProtoBuf.IExtension __pbn__extensionData;
+            global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+                => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+            [global::ProtoBuf.ProtoMember(1, Name = @"perk")]
+            public uint Perk
+            {
+                get => __pbn__Perk.GetValueOrDefault();
+                set => __pbn__Perk = value;
+            }
+            public bool ShouldSerializePerk() => __pbn__Perk != null;
+            public void ResetPerk() => __pbn__Perk = null;
+            private uint? __pbn__Perk;
+
+            [global::ProtoBuf.ProtoMember(2, Name = @"unlock_reason")]
+            public uint UnlockReason
+            {
+                get => __pbn__UnlockReason.GetValueOrDefault();
+                set => __pbn__UnlockReason = value;
+            }
+            public bool ShouldSerializeUnlockReason() => __pbn__UnlockReason != null;
+            public void ResetUnlockReason() => __pbn__UnlockReason = null;
+            private uint? __pbn__UnlockReason;
+
+            [global::ProtoBuf.ProtoMember(3, Name = @"time_left")]
+            public ulong TimeLeft
+            {
+                get => __pbn__TimeLeft.GetValueOrDefault();
+                set => __pbn__TimeLeft = value;
+            }
+            public bool ShouldSerializeTimeLeft() => __pbn__TimeLeft != null;
+            public void ResetTimeLeft() => __pbn__TimeLeft = null;
+            private ulong? __pbn__TimeLeft;
+
+            [global::ProtoBuf.ProtoMember(4, Name = @"timestamp")]
+            public ulong Timestamp
+            {
+                get => __pbn__Timestamp.GetValueOrDefault();
+                set => __pbn__Timestamp = value;
+            }
+            public bool ShouldSerializeTimestamp() => __pbn__Timestamp != null;
+            public void ResetTimestamp() => __pbn__Timestamp = null;
+            private ulong? __pbn__Timestamp;
+
+            [global::ProtoBuf.ProtoMember(5, Name = @"currently_unlocked")]
+            [global::System.ComponentModel.DefaultValue(true)]
+            public bool CurrentlyUnlocked
+            {
+                get => __pbn__CurrentlyUnlocked ?? true;
+                set => __pbn__CurrentlyUnlocked = value;
+            }
+            public bool ShouldSerializeCurrentlyUnlocked() => __pbn__CurrentlyUnlocked != null;
+            public void ResetCurrentlyUnlocked() => __pbn__CurrentlyUnlocked = null;
+            private bool? __pbn__CurrentlyUnlocked;
+
+        }
 
     }
 

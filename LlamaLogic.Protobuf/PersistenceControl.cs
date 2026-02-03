@@ -98,6 +98,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(5, Name = @"neighborhoods")]
         public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.NeighborhoodData> Neighborhoods { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.NeighborhoodData>();
 
+        [global::ProtoBuf.ProtoMember(6, Name = @"kingdom_service")]
+        public global::EA.Sims4.Persistence.PersistableKingdomService KingdomService { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

@@ -414,6 +414,9 @@ namespace EA.Sims4.Persistence
         public void ResetAppliedAgingFixup() => __pbn__AppliedAgingFixup = null;
         private bool? __pbn__AppliedAgingFixup;
 
+        [global::ProtoBuf.ProtoMember(19, Name = @"kingdom_service")]
+        public PersistableKingdomService KingdomService { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

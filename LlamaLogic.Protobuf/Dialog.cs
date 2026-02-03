@@ -152,6 +152,12 @@ namespace EA.Sims4.Network
             ShowBuildBuyWithFilter = 37,
             [global::ProtoBuf.ProtoEnum(Name = @"SHOW_SMALL_BUSINESS_CONFIGURATOR")]
             ShowSmallBusinessConfigurator = 38,
+            [global::ProtoBuf.ProtoEnum(Name = @"SHOW_NOBILITY_PERKS_PANEL")]
+            ShowNobilityPerksPanel = 39,
+            [global::ProtoBuf.ProtoEnum(Name = @"SHOW_DYNASTY_PANEL")]
+            ShowDynastyPanel = 40,
+            [global::ProtoBuf.ProtoEnum(Name = @"SHOW_DYNASTY_PERKS_PANEL")]
+            ShowDynastyPerksPanel = 41,
         }
 
     }
@@ -698,6 +704,17 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeValidationCommand() => __pbn__ValidationCommand != null;
         public void ResetValidationCommand() => __pbn__ValidationCommand = null;
         private string __pbn__ValidationCommand;
+
+        [global::ProtoBuf.ProtoMember(35, Name = @"show_dialog_message_override")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ShowDialogMessageOverride
+        {
+            get => __pbn__ShowDialogMessageOverride ?? "";
+            set => __pbn__ShowDialogMessageOverride = value;
+        }
+        public bool ShouldSerializeShowDialogMessageOverride() => __pbn__ShowDialogMessageOverride != null;
+        public void ResetShowDialogMessageOverride() => __pbn__ShowDialogMessageOverride = null;
+        private string __pbn__ShowDialogMessageOverride;
 
         [global::ProtoBuf.ProtoContract()]
         public enum Type
@@ -1553,6 +1570,12 @@ namespace EA.Sims4.Network
         public void ResetTargetSimId() => __pbn__TargetSimId = null;
         private ulong? __pbn__TargetSimId;
 
+        [global::ProtoBuf.ProtoMember(18, Name = @"status_icons")]
+        public global::System.Collections.Generic.List<IconInfo> StatusIcons { get; } = new global::System.Collections.Generic.List<IconInfo>();
+
+        [global::ProtoBuf.ProtoMember(19, Name = @"dynasty_icon")]
+        public IconInfo DynastyIcon { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1838,6 +1861,34 @@ namespace EA.Sims4.Network
         public void ResetDisplayPreppedIngredientCheck() => __pbn__DisplayPreppedIngredientCheck = null;
         private bool? __pbn__DisplayPreppedIngredientCheck;
 
+        [global::ProtoBuf.ProtoMember(8, Name = @"use_ingredients_text_override")]
+        public LocalizedString UseIngredientsTextOverride { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class SimPickerCustomFilter : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"filter_value")]
+        public uint FilterValue
+        {
+            get => __pbn__FilterValue.GetValueOrDefault();
+            set => __pbn__FilterValue = value;
+        }
+        public bool ShouldSerializeFilterValue() => __pbn__FilterValue != null;
+        public void ResetFilterValue() => __pbn__FilterValue = null;
+        private uint? __pbn__FilterValue;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"icon_info")]
+        public IconInfo IconInfo { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"tooltip")]
+        public LocalizedString Tooltip { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1901,6 +1952,9 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(15, Name = @"override_owner_relationships")]
         public global::System.Collections.Generic.List<RelationshipUpdate> OverrideOwnerRelationships { get; } = new global::System.Collections.Generic.List<RelationshipUpdate>();
+
+        [global::ProtoBuf.ProtoMember(16, Name = @"custom_filters")]
+        public global::System.Collections.Generic.List<SimPickerCustomFilter> CustomFilters { get; } = new global::System.Collections.Generic.List<SimPickerCustomFilter>();
 
     }
 
@@ -2447,6 +2501,8 @@ namespace EA.Sims4.Network
             ObjectExpandedInfo = 25,
             [global::ProtoBuf.ProtoEnum(Name = @"OBJECT_CAS_ICON")]
             ObjectCasIcon = 26,
+            [global::ProtoBuf.ProtoEnum(Name = @"OBJECT_ICON_TITLE")]
+            ObjectIconTitle = 27,
         }
 
         [global::ProtoBuf.ProtoContract()]
@@ -3184,6 +3240,46 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(20, Name = @"age_up_reward_trait_text")]
         public LocalizedString AgeUpRewardTraitText { get; set; }
+
+        [global::ProtoBuf.ProtoMember(21, Name = @"parent_pregnancy_partner_id")]
+        public ulong ParentPregnancyPartnerId
+        {
+            get => __pbn__ParentPregnancyPartnerId.GetValueOrDefault();
+            set => __pbn__ParentPregnancyPartnerId = value;
+        }
+        public bool ShouldSerializeParentPregnancyPartnerId() => __pbn__ParentPregnancyPartnerId != null;
+        public void ResetParentPregnancyPartnerId() => __pbn__ParentPregnancyPartnerId = null;
+        private ulong? __pbn__ParentPregnancyPartnerId;
+
+        [global::ProtoBuf.ProtoMember(22, Name = @"parent_partner_id")]
+        public ulong ParentPartnerId
+        {
+            get => __pbn__ParentPartnerId.GetValueOrDefault();
+            set => __pbn__ParentPartnerId = value;
+        }
+        public bool ShouldSerializeParentPartnerId() => __pbn__ParentPartnerId != null;
+        public void ResetParentPartnerId() => __pbn__ParentPartnerId = null;
+        private ulong? __pbn__ParentPartnerId;
+
+        [global::ProtoBuf.ProtoMember(23, Name = @"pregnancy_parent_id")]
+        public ulong PregnancyParentId
+        {
+            get => __pbn__PregnancyParentId.GetValueOrDefault();
+            set => __pbn__PregnancyParentId = value;
+        }
+        public bool ShouldSerializePregnancyParentId() => __pbn__PregnancyParentId != null;
+        public void ResetPregnancyParentId() => __pbn__PregnancyParentId = null;
+        private ulong? __pbn__PregnancyParentId;
+
+        [global::ProtoBuf.ProtoMember(24, Name = @"parent_partner_relbit_id")]
+        public ulong ParentPartnerRelbitId
+        {
+            get => __pbn__ParentPartnerRelbitId.GetValueOrDefault();
+            set => __pbn__ParentPartnerRelbitId = value;
+        }
+        public bool ShouldSerializeParentPartnerRelbitId() => __pbn__ParentPartnerRelbitId != null;
+        public void ResetParentPartnerRelbitId() => __pbn__ParentPartnerRelbitId = null;
+        private ulong? __pbn__ParentPartnerRelbitId;
 
     }
 

@@ -1776,7 +1776,7 @@ namespace EA.Sims4.Network
         public SmallBusinessIncomeData SmallBusinessIncomeData { get; set; }
 
         [global::ProtoBuf.ProtoMember(2, Name = @"bucks_data")]
-        public global::System.Collections.Generic.List<global::EA.Sims4.Persistence.BucksData> BucksDatas { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.Persistence.BucksData>();
+        public global::System.Collections.Generic.List<global::EA.Sims4.BucksData> BucksDatas { get; } = new global::System.Collections.Generic.List<global::EA.Sims4.BucksData>();
 
         [global::ProtoBuf.ProtoMember(3, Name = @"customer_rules")]
         public global::System.Collections.Generic.List<ClubConductRule> CustomerRules { get; } = new global::System.Collections.Generic.List<ClubConductRule>();

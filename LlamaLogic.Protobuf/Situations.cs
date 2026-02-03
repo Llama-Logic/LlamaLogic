@@ -156,6 +156,16 @@ namespace EA.Sims4.Network
         public void ResetHasValidZoneSchedule() => __pbn__HasValidZoneSchedule = null;
         private bool? __pbn__HasValidZoneSchedule;
 
+        [global::ProtoBuf.ProtoMember(13, Name = @"apply_appearance_modifier")]
+        public bool ApplyAppearanceModifier
+        {
+            get => __pbn__ApplyAppearanceModifier.GetValueOrDefault();
+            set => __pbn__ApplyAppearanceModifier = value;
+        }
+        public bool ShouldSerializeApplyAppearanceModifier() => __pbn__ApplyAppearanceModifier != null;
+        public void ResetApplyAppearanceModifier() => __pbn__ApplyAppearanceModifier = null;
+        private bool? __pbn__ApplyAppearanceModifier;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -417,15 +427,28 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(8, Name = @"cas_edit_no_sim_icon")]
         public ResourceKey CasEditNoSimIcon { get; set; }
 
-        [global::ProtoBuf.ProtoMember(9, Name = @"visible_on_role_page")]
-        public bool VisibleOnRolePage
+        [global::ProtoBuf.ProtoMember(9, Name = @"guest_attire_visible_on_role_page")]
+        public bool GuestAttireVisibleOnRolePage
         {
-            get => __pbn__VisibleOnRolePage.GetValueOrDefault();
-            set => __pbn__VisibleOnRolePage = value;
+            get => __pbn__GuestAttireVisibleOnRolePage.GetValueOrDefault();
+            set => __pbn__GuestAttireVisibleOnRolePage = value;
         }
-        public bool ShouldSerializeVisibleOnRolePage() => __pbn__VisibleOnRolePage != null;
-        public void ResetVisibleOnRolePage() => __pbn__VisibleOnRolePage = null;
-        private bool? __pbn__VisibleOnRolePage;
+        public bool ShouldSerializeGuestAttireVisibleOnRolePage() => __pbn__GuestAttireVisibleOnRolePage != null;
+        public void ResetGuestAttireVisibleOnRolePage() => __pbn__GuestAttireVisibleOnRolePage = null;
+        private bool? __pbn__GuestAttireVisibleOnRolePage;
+
+        [global::ProtoBuf.ProtoMember(10, Name = @"appearance_modifier_text")]
+        public LocalizedString AppearanceModifierText { get; set; }
+
+        [global::ProtoBuf.ProtoMember(11, Name = @"outfit_selector_visible_on_role_page")]
+        public bool OutfitSelectorVisibleOnRolePage
+        {
+            get => __pbn__OutfitSelectorVisibleOnRolePage.GetValueOrDefault();
+            set => __pbn__OutfitSelectorVisibleOnRolePage = value;
+        }
+        public bool ShouldSerializeOutfitSelectorVisibleOnRolePage() => __pbn__OutfitSelectorVisibleOnRolePage != null;
+        public void ResetOutfitSelectorVisibleOnRolePage() => __pbn__OutfitSelectorVisibleOnRolePage = null;
+        private bool? __pbn__OutfitSelectorVisibleOnRolePage;
 
     }
 
@@ -707,6 +730,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(6, Name = @"cell_disabled_tooltip")]
         public LocalizedString CellDisabledTooltip { get; set; }
 
+        [global::ProtoBuf.ProtoMember(7, Name = @"tag_list", IsPacked = true)]
+        public uint[] TagLists { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -740,6 +766,9 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(6, Name = @"requirements")]
         public LocalizedString Requirements { get; set; }
+
+        [global::ProtoBuf.ProtoMember(7, Name = @"custom_filters")]
+        public global::System.Collections.Generic.List<SimPickerCustomFilter> CustomFilters { get; } = new global::System.Collections.Generic.List<SimPickerCustomFilter>();
 
     }
 
@@ -1412,6 +1441,16 @@ namespace EA.Sims4.Network
         public void ResetMtxBundleId() => __pbn__MtxBundleId = null;
         private ulong? __pbn__MtxBundleId;
 
+        [global::ProtoBuf.ProtoMember(19, Name = @"goal_guid")]
+        public ulong GoalGuid
+        {
+            get => __pbn__GoalGuid.GetValueOrDefault();
+            set => __pbn__GoalGuid = value;
+        }
+        public bool ShouldSerializeGoalGuid() => __pbn__GoalGuid != null;
+        public void ResetGoalGuid() => __pbn__GoalGuid = null;
+        private ulong? __pbn__GoalGuid;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -1963,6 +2002,16 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeSituationGoalId() => __pbn__SituationGoalId != null;
         public void ResetSituationGoalId() => __pbn__SituationGoalId = null;
         private ulong? __pbn__SituationGoalId;
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"completed_via_autonomy")]
+        public bool CompletedViaAutonomy
+        {
+            get => __pbn__CompletedViaAutonomy.GetValueOrDefault();
+            set => __pbn__CompletedViaAutonomy = value;
+        }
+        public bool ShouldSerializeCompletedViaAutonomy() => __pbn__CompletedViaAutonomy != null;
+        public void ResetCompletedViaAutonomy() => __pbn__CompletedViaAutonomy = null;
+        private bool? __pbn__CompletedViaAutonomy;
 
     }
 

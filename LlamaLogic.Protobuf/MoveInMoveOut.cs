@@ -184,6 +184,17 @@ namespace EA.Sims4.Network
         public void ResetNotifyGameplay() => __pbn__NotifyGameplay = null;
         private bool? __pbn__NotifyGameplay;
 
+        [global::ProtoBuf.ProtoMember(10, Name = @"is_evict")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool IsEvict
+        {
+            get => __pbn__IsEvict ?? false;
+            set => __pbn__IsEvict = value;
+        }
+        public bool ShouldSerializeIsEvict() => __pbn__IsEvict != null;
+        public void ResetIsEvict() => __pbn__IsEvict = null;
+        private bool? __pbn__IsEvict;
+
     }
 
 }

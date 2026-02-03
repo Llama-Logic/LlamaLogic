@@ -165,6 +165,19 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(18, Name = @"custom_schedule_name_key")]
         public LocalizedString CustomScheduleNameKey { get; set; }
 
+        [global::ProtoBuf.ProtoMember(19, Name = @"priority")]
+        public int Priority
+        {
+            get => __pbn__Priority.GetValueOrDefault();
+            set => __pbn__Priority = value;
+        }
+        public bool ShouldSerializePriority() => __pbn__Priority != null;
+        public void ResetPriority() => __pbn__Priority = null;
+        private int? __pbn__Priority;
+
+        [global::ProtoBuf.ProtoMember(20, Name = @"requires_objects_text")]
+        public LocalizedString RequiresObjectsText { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]

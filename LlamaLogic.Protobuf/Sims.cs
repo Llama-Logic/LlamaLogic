@@ -829,6 +829,47 @@ namespace EA.Sims4.Network
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class PlumbbobEnsembleTintOverride : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"color")]
+        public Vector3 Color { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"alpha")]
+        public float Alpha
+        {
+            get => __pbn__Alpha.GetValueOrDefault();
+            set => __pbn__Alpha = value;
+        }
+        public bool ShouldSerializeAlpha() => __pbn__Alpha != null;
+        public void ResetAlpha() => __pbn__Alpha = null;
+        private float? __pbn__Alpha;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class PlumbbobEnsembleTextureOverride : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"texture_id")]
+        public ulong TextureId
+        {
+            get => __pbn__TextureId.GetValueOrDefault();
+            set => __pbn__TextureId = value;
+        }
+        public bool ShouldSerializeTextureId() => __pbn__TextureId != null;
+        public void ResetTextureId() => __pbn__TextureId = null;
+        private ulong? __pbn__TextureId;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class ServerResponseFailed : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -1940,6 +1981,9 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(12, Name = @"rel_track")]
         public RelationshipTrack RelTrack { get; set; }
 
+        [global::ProtoBuf.ProtoMember(13, Name = @"icon_info")]
+        public IconInfo IconInfo { get; set; }
+
         [global::ProtoBuf.ProtoContract()]
         public enum BalloonType
         {
@@ -2349,6 +2393,19 @@ namespace EA.Sims4.Network
         [global::ProtoBuf.ProtoMember(11, Name = @"not_selectable_tooltip")]
         public LocalizedString NotSelectableTooltip { get; set; }
 
+        [global::ProtoBuf.ProtoMember(12, Name = @"work_from_home_description")]
+        public LocalizedString WorkFromHomeDescription { get; set; }
+
+        [global::ProtoBuf.ProtoMember(13, Name = @"enable_infants_tray_button")]
+        public bool EnableInfantsTrayButton
+        {
+            get => __pbn__EnableInfantsTrayButton.GetValueOrDefault();
+            set => __pbn__EnableInfantsTrayButton = value;
+        }
+        public bool ShouldSerializeEnableInfantsTrayButton() => __pbn__EnableInfantsTrayButton != null;
+        public void ResetEnableInfantsTrayButton() => __pbn__EnableInfantsTrayButton = null;
+        private bool? __pbn__EnableInfantsTrayButton;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -2695,6 +2752,17 @@ namespace EA.Sims4.Network
         public bool ShouldSerializeUnlockedSmallBusinessName() => __pbn__UnlockedSmallBusinessName != null;
         public void ResetUnlockedSmallBusinessName() => __pbn__UnlockedSmallBusinessName = null;
         private string __pbn__UnlockedSmallBusinessName;
+
+        [global::ProtoBuf.ProtoMember(17, Name = @"unlocked_dynasty_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string UnlockedDynastyName
+        {
+            get => __pbn__UnlockedDynastyName ?? "";
+            set => __pbn__UnlockedDynastyName = value;
+        }
+        public bool ShouldSerializeUnlockedDynastyName() => __pbn__UnlockedDynastyName != null;
+        public void ResetUnlockedDynastyName() => __pbn__UnlockedDynastyName = null;
+        private string __pbn__UnlockedDynastyName;
 
         [global::ProtoBuf.ProtoContract()]
         public enum MilestoneState

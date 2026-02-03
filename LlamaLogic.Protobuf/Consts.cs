@@ -741,6 +741,14 @@ namespace EA.Sims4.Network
         MsgManageSmallBusinessEmployeeTasksDialog = 1227,
         [global::ProtoBuf.ProtoEnum(Name = @"MSG_PICKER_VALIDATION_RESPONSE")]
         MsgPickerValidationResponse = 1228,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_SHOW_FAMILY_TREE_FORGERY")]
+        MsgShowFamilyTreeForgery = 1229,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_SHOW_DYNASTY_CONFIGURATOR")]
+        MsgShowDynastyConfigurator = 1230,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_UPDATE_DYNASTY_MEMBER_BREAKDOWNS")]
+        MsgUpdateDynastyMemberBreakdowns = 1231,
+        [global::ProtoBuf.ProtoEnum(Name = @"MSG_SHOW_FAMILY_TREE_UI")]
+        MsgShowFamilyTreeUi = 1232,
     }
 
     [global::ProtoBuf.ProtoContract()]

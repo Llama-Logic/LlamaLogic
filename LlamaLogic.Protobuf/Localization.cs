@@ -114,6 +114,27 @@ namespace EA.Sims4.Network
         public void ResetPackedPronouns() => __pbn__PackedPronouns = null;
         private string __pbn__PackedPronouns;
 
+        [global::ProtoBuf.ProtoMember(38, Name = @"name_prefix_key")]
+        public uint NamePrefixKey
+        {
+            get => __pbn__NamePrefixKey.GetValueOrDefault();
+            set => __pbn__NamePrefixKey = value;
+        }
+        public bool ShouldSerializeNamePrefixKey() => __pbn__NamePrefixKey != null;
+        public void ResetNamePrefixKey() => __pbn__NamePrefixKey = null;
+        private uint? __pbn__NamePrefixKey;
+
+        [global::ProtoBuf.ProtoMember(39, Name = @"name_prefix_string")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string NamePrefixString
+        {
+            get => __pbn__NamePrefixString ?? "";
+            set => __pbn__NamePrefixString = value;
+        }
+        public bool ShouldSerializeNamePrefixString() => __pbn__NamePrefixString != null;
+        public void ResetNamePrefixString() => __pbn__NamePrefixString = null;
+        private string __pbn__NamePrefixString;
+
         [global::ProtoBuf.ProtoMember(8, Name = @"text_string")]
         public LocalizedString TextString { get; set; }
 
