@@ -214,6 +214,15 @@ message PlumbbobSetPlumbbobOverrideModelKey {
 	repeated .EA.Sims4.Network.PlumbbobOverrideModelKey overrides = 1;
 }
 
+message PlumbbobEnsembleTintOverride {
+	optional .EA.Sims4.Network.Vector3 color = 1;
+	optional float alpha = 2;
+}
+
+message PlumbbobEnsembleTextureOverride {
+	optional uint64 texture_id = 1;
+}
+
 message ServerResponseFailed {
 	enum Reason {
 		REJECT_CLIENT_SELECT_MIXERINTERACTION = 1;
@@ -472,6 +481,7 @@ message AddBalloon {
 	optional .EA.Sims4.Network.IconInfo category_icon = 10;
 	optional .EA.Sims4.Network.Vector3 view_offset_override = 11;
 	optional .EA.Sims4.Network.RelationshipTrack rel_track = 12;
+	optional .EA.Sims4.Network.IconInfo icon_info = 13;
 }
 
 message ReslotPlumbbob {
@@ -547,6 +557,8 @@ message CareerInfo {
 	optional uint32 hourly_pay = 9;
 	optional .EA.Sims4.Network.LocalizedString benefit_description = 10;
 	optional .EA.Sims4.Network.LocalizedString not_selectable_tooltip = 11;
+	optional .EA.Sims4.Network.LocalizedString work_from_home_description = 12;
+	optional bool enable_infants_tray_button = 13;
 }
 
 message CareerSelectionUI {
@@ -620,6 +632,7 @@ message DevelopmentalMilestoneUpdate {
 	optional uint64 completed_time = 14;
 	optional uint32 age_completed = 15;
 	optional string unlocked_small_business_name = 16;
+	optional string unlocked_dynasty_name = 17;
 }
 
 message AllDevelopmentalMilestonesUpdate {

@@ -125,6 +125,7 @@ message Schedule {
 			MORNING = 1;
 			EVENING = 2;
 			MULTI_DAY = 3;
+			TWENTY_FOUR_HOURS = 4;
 		}
 		repeated .EA.Sims4.Schedule.ScheduleEntry.ScheduleDay days = 1 [packed = true];
 		optional uint32 start_hour = 2;
@@ -152,4 +153,19 @@ message SimPronoun {
 
 message SimPronounList {
 	repeated .EA.Sims4.SimPronoun pronouns = 1;
+}
+
+message BucksData {
+	message UnlockedPerk {
+		optional uint32 perk = 1;
+		optional uint32 unlock_reason = 2;
+		optional uint64 time_left = 3;
+		optional uint64 timestamp = 4;
+		optional bool currently_unlocked = 5 [default = true];
+	}
+	optional uint32 bucks_type = 1;
+	optional uint32 amount = 2;
+	repeated .EA.Sims4.BucksData.UnlockedPerk unlocked_perks = 3;
+	repeated uint64 frozen_perk_ids = 4 [packed = true];
+	optional float frozen_business_rank_value = 5;
 }

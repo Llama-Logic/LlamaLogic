@@ -54,6 +54,9 @@ message UiDialogChoiceMessage {
 		SHOW_SMALL_BUSINESS_PANEL = 36;
 		SHOW_BUILD_BUY_WITH_FILTER = 37;
 		SHOW_SMALL_BUSINESS_CONFIGURATOR = 38;
+		SHOW_NOBILITY_PERKS_PANEL = 39;
+		SHOW_DYNASTY_PANEL = 40;
+		SHOW_DYNASTY_PERKS_PANEL = 41;
 	}
 	required uint32 choice_id = 1;
 	optional .EA.Sims4.Network.LocalizedString text = 2;
@@ -219,6 +222,7 @@ message UiDialogMessage {
 	optional .EA.Sims4.Network.LocalizedString mask_alert_sim_name = 32;
 	optional .EA.Sims4.Network.IconInfo mask_header_icon = 33;
 	optional string validation_command = 34;
+	optional string show_dialog_message_override = 35;
 	extensions 100 to max;
 }
 
@@ -359,6 +363,8 @@ message ObjectPickerRowData {
 	optional uint64 owner_sim_id = 15;
 	optional bool is_new = 16;
 	optional uint64 target_sim_id = 17;
+	repeated .EA.Sims4.Network.IconInfo status_icons = 18;
+	optional .EA.Sims4.Network.IconInfo dynasty_icon = 19;
 }
 
 message OutfitPickerRowData {
@@ -412,6 +418,13 @@ message RecipePickerData {
 	optional bool display_ingredient_check = 5 [default = true];
 	optional bool display_funds = 6 [default = true];
 	optional bool display_prepped_ingredient_check = 7 [default = false];
+	optional .EA.Sims4.Network.LocalizedString use_ingredients_text_override = 8;
+}
+
+message SimPickerCustomFilter {
+	optional uint32 filter_value = 1;
+	optional .EA.Sims4.Network.IconInfo icon_info = 2;
+	optional .EA.Sims4.Network.LocalizedString tooltip = 3;
 }
 
 message SimPickerData {
@@ -423,6 +436,7 @@ message SimPickerData {
 	optional uint32 cell_type = 13 [default = 0];
 	optional bool display_filter = 14;
 	repeated .EA.Sims4.Network.RelationshipUpdate override_owner_relationships = 15;
+	repeated .EA.Sims4.Network.SimPickerCustomFilter custom_filters = 16;
 }
 
 message ObjectPickerData {
@@ -516,6 +530,7 @@ message UiDialogPicker {
 		RELATIONSHIP = 24;
 		OBJECT_EXPANDED_INFO = 25;
 		OBJECT_CAS_ICON = 26;
+		OBJECT_ICON_TITLE = 27;
 	}
 	enum DescriptionDisplay {
 		DEFAULT = 1;
@@ -699,6 +714,10 @@ message SimPersonalityAssignmentDialog {
 	repeated uint64 previous_skill_ids = 18 [packed = true];
 	repeated uint64 unlocked_trait_ids = 19 [packed = true];
 	optional .EA.Sims4.Network.LocalizedString age_up_reward_trait_text = 20;
+	optional uint64 parent_pregnancy_partner_id = 21;
+	optional uint64 parent_partner_id = 22;
+	optional uint64 pregnancy_parent_id = 23;
+	optional uint64 parent_partner_relbit_id = 24;
 }
 
 message RetailSummaryDialog {

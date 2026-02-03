@@ -4,6 +4,7 @@ import "Consts.proto";
 import "FileSerialization.proto";
 import "SimObjectAttributes.proto";
 import "GameplaySaveData.proto";
+import "Kingdom.proto";
 
 
 message CASInfoDataFragment {
@@ -27,6 +28,7 @@ message NeighborhoodInfoCacheFragment {
 	optional .EA.Sims4.Persistence.GameplaySaveSlotData gameplay_data = 3;
 	repeated .EA.Sims4.Persistence.ZoneData zones = 4;
 	repeated .EA.Sims4.Persistence.NeighborhoodData neighborhoods = 5;
+	optional .EA.Sims4.Persistence.PersistableKingdomService kingdom_service = 6;
 }
 
 message SimDataFragment {

@@ -5,6 +5,7 @@ import "ResourceKey.proto";
 import "Localization.proto";
 import "SimObjectAttributes.proto";
 import "Clubs.proto";
+import "S4Common.proto";
 
 
 message ReviewIconData {
@@ -314,7 +315,7 @@ message RentalUnitSaveData {
 
 message SmallBusinessSaveData {
 	optional .EA.Sims4.Network.SmallBusinessIncomeData small_business_income_data = 1;
-	repeated .EA.Sims4.Persistence.BucksData bucks_data = 2;
+	repeated .EA.Sims4.BucksData bucks_data = 2;
 	repeated .EA.Sims4.Network.ClubConductRule customer_rules = 3;
 	repeated .EA.Sims4.Network.ClubCriteria attendance_criteria = 4;
 	optional string name = 5;

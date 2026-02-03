@@ -13,6 +13,7 @@ import "S4Common.proto";
 import "Outfits.proto";
 import "UI.proto";
 import "Business.proto";
+import "Kingdom.proto";
 
 
 message Operation {
@@ -251,6 +252,7 @@ message Operation {
 		SET_PACKED_PRONOUNS = 235;
 		TRAIT_APPEARANCE_UPDATE = 236;
 		BOUND_OBJECT_UPDATE = 237;
+		DISPLAY_FAMILY_TREE = 238;
 		SET_OCCULT_TYPES = 250;
 		SET_CURRENT_OCCULT_TYPES = 251;
 		NOTEBOOK_VIEW = 252;
@@ -447,6 +449,17 @@ message Operation {
 		CUSTOM_SCHEDULE_SET_AVAILABLE_SIMS = 1309;
 		SET_VISIBILITY_IMMEDIATE = 1310;
 		SET_RESIDENT_LIST = 1311;
+		KINGDOM_UPDATE = 1320;
+		SEND_DYNASTY_INFO = 1321;
+		KINGDOM_SEND_AVAILABLE_DECREES = 1322;
+		SET_PLUMBBOB_ENSEMBLE_TEXTURE = 1323;
+		SET_PLUMBBOB_ENSEMBLE_TINT = 1324;
+		SEND_SCANDAL_SECRET_INFO = 1325;
+		SET_DYNASTY_NAME_DESCRIPTION_KEY = 1326;
+		SHOW_SIM_COMPETITION_SELECTOR = 1327;
+		SHOW_SIM_COMPETITION_RESULTS = 1328;
+		KINGDOM_REQUEST_DEFAULT_PRONOUNS = 1329;
+		SET_ANCESTORS_DATA = 1330;
 	}
 	required .EA.Sims4.Network.Operation.Type type = 1;
 	optional bytes data = 2;
@@ -689,6 +702,12 @@ message SetBreedNameKey {
 
 message SetBusinessNameAndDescriptionKey {
 	optional uint64 sim_id = 1;
+	optional uint32 name_key = 2;
+	optional uint32 description_key = 3;
+}
+
+message SetDynastyNameAndDescriptionKey {
+	optional uint64 dynasty_id = 1;
 	optional uint32 name_key = 2;
 	optional uint32 description_key = 3;
 }
@@ -1213,12 +1232,26 @@ message SetCareer {
 	optional uint64 workplace_rival_id = 33;
 	optional bool burnout = 34;
 	repeated .EA.Sims4.Network.SmallBusinessCareerData small_business_career_data = 35;
+	optional bool enable_infants_tray_button = 36;
+}
+
+message VirtualCareerExtraData {
+	optional string key = 1;
+	optional string value = 2;
+}
+
+message VirtualCareer {
+	optional fixed64 sim_id = 1;
+	optional uint32 career_panel_type = 2;
+	optional bool show_when_no_careers = 3;
+	repeated .EA.Sims4.Network.VirtualCareerExtraData extra_data = 4;
 }
 
 message SetCareers {
 	repeated .EA.Sims4.Network.SetCareer careers = 1;
 	optional string custom_name = 2;
 	optional string custom_description = 3;
+	repeated .EA.Sims4.Network.VirtualCareer virtual_careers = 4;
 }
 
 message SmallBusinessCareerData {
@@ -1305,6 +1338,7 @@ message TravelBringToZone {
 message TravelLiveToNhdToLive {
 	optional uint64 sim_to_control_id = 1;
 	optional uint64 household_to_control_id = 2;
+	optional uint64 override_zone_to_load = 3;
 }
 
 message SetPrimaryAspiration {
@@ -1538,6 +1572,36 @@ message ShowFamilyTree {
 		repeated .EA.Sims4.Network.ShowFamilyTree.FamilyTreeNode dead_spouses = 9;
 	}
 	optional .EA.Sims4.Network.ShowFamilyTree.FamilyTreeNode root = 1;
+}
+
+message FamilyTreeServiceNode {
+	optional fixed64 sim_id = 1;
+	optional fixed64 spouse = 2;
+	optional fixed64 fiance = 3;
+	repeated fixed64 steady_relationships = 4 [packed = true];
+	repeated fixed64 parents = 5 [packed = true];
+	repeated fixed64 children = 6 [packed = true];
+	repeated fixed64 siblings = 7 [packed = true];
+	repeated fixed64 divorced_spouses = 8 [packed = true];
+	repeated fixed64 dead_spouses = 9 [packed = true];
+	optional fixed64 bit_id = 10;
+	optional bool is_adopted = 11;
+	optional .EA.Sims4.Network.LocalizedString localized_full_name = 12;
+	optional string first_name = 13;
+	optional string last_name = 14;
+	optional .EA.Sims4.Network.ResourceKey thumbnail_override = 15;
+	optional uint64 death_trait_id_override = 16;
+	optional uint32 gender = 17;
+	repeated fixed64 sims_connected_by_forgery = 18 [packed = true];
+	optional bool is_forged = 19;
+	repeated fixed64 known_secret_parents = 20 [packed = true];
+	repeated fixed64 known_secret_children = 21 [packed = true];
+	optional .EA.Sims4.Persistence.FamilyTreeNodeKingdomData dead_kingdom_data = 22;
+}
+
+message DisplayFamilyTree {
+	optional fixed64 root_id = 1;
+	repeated .EA.Sims4.Network.FamilyTreeServiceNode family_nodes = 2;
 }
 
 message CustomizableObjectData {
@@ -1901,6 +1965,16 @@ message SetHouseholdInventoryRewards {
 	required .EA.Sims4.Persistence.RewardPartList reward_part_list = 1;
 }
 
+message AncestorData {
+	optional uint64 sim_id = 1;
+	optional uint32 full_name = 2;
+	optional .EA.Sims4.Network.ResourceKey thumbnail_id = 3;
+}
+
+message SetAncestorsData {
+	repeated .EA.Sims4.Network.AncestorData ancestors = 1;
+}
+
 message ChildhoodInspirationCompleteStateUpdate {
 	optional uint64 sim_id = 1;
 	optional bool complete_state = 2;
@@ -1908,4 +1982,38 @@ message ChildhoodInspirationCompleteStateUpdate {
 
 message SetResidentList {
 	repeated uint64 sim_ids = 1 [packed = true];
+}
+
+message DynastyInfo {
+	enum DynastyMessageType {
+		ADD = 0;
+		REMOVE = 1;
+		UPDATE = 2;
+		UPDATE_MEMBERS_RANK = 3;
+	}
+	required .EA.Sims4.Network.DynastyInfo.DynastyMessageType message_type = 1;
+	repeated .EA.Sims4.Network.DynastyUIData dynasties = 2;
+	optional uint64 active_sim_id = 3;
+}
+
+message KingdomSendAvailableDecrees {
+	repeated .EA.Sims4.Persistence.KingdomDecree decrees = 1;
+	repeated uint32 enacted_decrees = 2 [packed = true];
+}
+
+message ScandalSecretInfo {
+	enum ScandalSecretMessageType {
+		ADD = 0;
+		REMOVE = 1;
+		UPDATE = 2;
+	}
+	enum SecretOwnership {
+		MY_SECRET = 0;
+		OTHERS_SECRET = 1;
+	}
+	required .EA.Sims4.Network.ScandalSecretInfo.ScandalSecretMessageType message_type = 1;
+	required .EA.Sims4.Network.ScandalSecretInfo.SecretOwnership secret_ownership = 2;
+	required fixed64 secret_owner_id = 3;
+	required fixed64 secret_keeper_id = 4;
+	required .EA.Sims4.Network.ScandalSecretSimpleData scandal_secret = 5;
 }

@@ -5,6 +5,7 @@ import "Sparse.proto";
 import "ResourceKey.proto";
 import "Localization.proto";
 import "Math.proto";
+import "S4Common.proto";
 
 enum BookCategoryDisplayType {
 	DEFAULT = 0;
@@ -127,6 +128,7 @@ message IconInfo {
 	repeated .EA.Sims4.Network.Vector3 multicolor = 13;
 	optional .EA.Sims4.Network.LocalizedString main_objective = 14;
 	optional fixed64 parent_id = 15;
+	optional .EA.Sims4.Network.ResourceKey icon_background = 16;
 }
 
 message InventoryUpdate {
@@ -185,6 +187,7 @@ message InventoryItemUpdate {
 		TYPE_UPDATE = 1;
 		TYPE_REMOVE = 2;
 		TYPE_SET_STACK_OPTION = 3;
+		TYPE_SET_VALUE = 4;
 	}
 	enum InventoryType {
 		TYPE_OBJECT = 0;
@@ -424,6 +427,20 @@ message TravelViewHouseholdsInfo {
 	repeated .EA.Sims4.Network.HouseholdLocationStatus household_locations = 1;
 }
 
+message NotebookSecretScandalMessage {
+	optional .EA.Sims4.Network.LocalizedString secret_status = 1;
+	optional .EA.Sims4.Network.LocalizedString expiration_text = 2;
+	optional uint64 expiration_seconds = 3;
+	optional fixed64 complicit_sim_id = 4;
+	optional fixed64 secret_holder_sim_id = 5;
+	optional .EA.Sims4.Network.IconInfo severity = 6;
+	repeated fixed64 blackmailers = 7 [packed = true];
+	repeated fixed64 confidantes = 8 [packed = true];
+	optional .EA.Sims4.Network.LocalizedString scandal_effects = 9;
+	optional fixed64 secret_owner_sim_id = 10;
+	optional fixed64 secret_id = 11;
+}
+
 message NotebookEntryListMessage {
 	optional .EA.Sims4.Network.LocalizedString item_message = 1;
 	optional uint32 item_count = 2;
@@ -434,6 +451,13 @@ message NotebookEntryListMessage {
 }
 
 message NotebookEntryMessage {
+	enum NotebookEntryType {
+		NONE = 0;
+		MY_SECRET = 1;
+		MY_SCANDAL = 2;
+		OTHERS_SECRET = 3;
+		OTHERS_SCANDAL = 4;
+	}
 	optional .EA.Sims4.Network.LocalizedString entry_message = 1;
 	optional .EA.Sims4.Network.IconInfo entry_icon = 2;
 	optional .EA.Sims4.Network.LocalizedString entry_tooltip = 3;
@@ -445,6 +469,8 @@ message NotebookEntryMessage {
 	optional bool is_sortable = 9;
 	optional bool is_new_item_sortable = 10;
 	optional .EA.Sims4.Network.LocalizedString entry_message_description = 11;
+	optional .EA.Sims4.Network.NotebookEntryMessage.NotebookEntryType entry_type = 12 [default = NONE];
+	optional .EA.Sims4.Network.NotebookSecretScandalMessage secret_scandal_data = 13;
 }
 
 message NotebookSubCategoryMessage {
@@ -453,6 +479,7 @@ message NotebookSubCategoryMessage {
 		NOTEBOOK_NUMBERED = 1;
 		NOTEBOOK_ICON_DESCRIPTION = 2;
 		NOTEBOOK_EXPANDABLE_SINGLE = 3;
+		NOTEBOOK_EXPANDABLE_SECRET_SCANDAL = 4;
 	}
 	optional .EA.Sims4.Network.LocalizedString subcategory_name = 1;
 	optional .EA.Sims4.Network.IconInfo subcategory_icon = 2;
@@ -472,6 +499,7 @@ message NotebookCategoryMessage {
 	optional .EA.Sims4.Network.LocalizedString category_description = 4;
 	optional string enum_name = 5;
 	optional .EA.Sims4.Network.IconInfo category_large_icon = 6;
+	optional bool display_subcategory_title = 7 [default = false];
 }
 
 message NotebookView {
@@ -846,6 +874,14 @@ message ShowHorseCompetitionSelector {
 	repeated .EA.Sims4.Network.HorseCompetitionMetadata competition_metadatas = 4;
 }
 
+message ShowSimCompetitionSelector {
+	optional bool is_update = 1 [default = false];
+	optional .EA.Sims4.Network.SimCompetitionAssigneeData selected_sim = 2;
+	repeated .EA.Sims4.Network.SimCompetitionMetadata competition_metadatas = 3;
+	optional .EA.Sims4.Network.SimCompetitionObjectData selected_object = 4;
+	optional uint32 category = 5;
+}
+
 message ShowMatchmakingDialog {
 	required fixed64 sim_id = 1;
 	repeated fixed64 trait_ids = 2 [packed = true];
@@ -926,6 +962,41 @@ message ShowHorseCompetitionResults {
 	optional fixed64 unlocked_competition_id = 6;
 }
 
+message SimCompetitionMetadata {
+	required fixed64 competition_id = 1;
+	required bool eligible_to_compete = 2;
+	optional .EA.Sims4.Network.LocalizedString not_eligible_reason = 3;
+	required bool has_placed_previously = 4;
+	optional int32 highest_placement = 5;
+}
+
+message SimCompetitionAssigneeSkillData {
+	required fixed64 skill_id = 1;
+	required uint32 level = 2;
+}
+
+message SimCompetitionAssigneeData {
+	required fixed64 sim_id = 1;
+	required fixed64 mood_id = 2;
+	required uint32 mood_intensity = 3;
+	optional .EA.Sims4.Network.LocalizedString mood_tooltip = 4;
+	repeated .EA.Sims4.Network.SimCompetitionAssigneeSkillData skills = 5;
+}
+
+message SimCompetitionObjectData {
+	optional fixed64 selected_object_id = 1;
+	optional .EA.Sims4.Network.IconInfo icon = 2;
+	optional .EA.Sims4.Network.LocalizedString name = 3;
+}
+
+message ShowSimCompetitionResults {
+	required fixed64 sim_id = 1;
+	required fixed64 competition_id = 2;
+	required int32 placement = 3;
+	required bool unlocked_new_competition = 4;
+	optional fixed64 unlocked_competition_id = 5;
+}
+
 message InventoryItemSellRequest {
 	optional uint64 id = 1;
 	optional uint32 count = 2;
@@ -996,4 +1067,104 @@ message CheatSheetElement {
 	required int32 element_type = 1;
 	optional string keyframe = 2;
 	optional .EA.Sims4.Network.LocalizedString control = 3;
+}
+
+message FamilyTreeForgeryPath {
+	repeated fixed64 sim_ids = 1 [packed = true];
+	repeated bool forged_to_next_states = 2 [packed = true];
+}
+
+message FamilyTreeForgeryRelationOptions {
+	repeated fixed64 relbit_ids = 1 [packed = true];
+	repeated .EA.Sims4.Network.FamilyTreeForgeryPath possible_paths = 2;
+}
+
+message ShowFamilyTreeForgery {
+	optional fixed64 origin_sim_id = 1;
+	optional fixed64 target_sim_id = 2;
+	repeated .EA.Sims4.Network.FamilyTreeForgeryRelationOptions all_possible_relations = 3;
+	optional fixed64 path_sim_from_picker = 4;
+	optional fixed64 forger_sim_id = 5;
+}
+
+message ShowDynastyConfigurator {
+	optional int32 view_type = 1;
+	repeated fixed64 predefined_members = 2 [packed = true];
+	optional fixed64 first_spouse = 3;
+	optional fixed64 second_spouse = 4;
+	optional fixed64 dynasty_id = 5;
+	optional int32 raw_eligible_sim_count = 6;
+}
+
+message DynastyMemberBreakdowns {
+	optional fixed64 member_id = 1;
+	optional int32 member_rank = 2;
+	optional bool is_black_sheep = 3;
+	optional int32 member_pose = 4;
+	optional bool is_poor_performer = 5;
+	repeated .EA.Sims4.Network.DynastyValueDetailData trait_values = 6;
+	repeated .EA.Sims4.Network.DynastyValueDetailData career_values = 7;
+}
+
+message DynastyValueDetailData {
+	optional uint64 id = 1;
+	optional .EA.Sims4.Network.LocalizedString dynasty_value = 2;
+	optional bool is_aligned = 3;
+}
+
+message DynastyValues {
+	optional fixed64 value_id = 1;
+	optional .EA.Sims4.Network.LocalizedString value_name = 2;
+	optional uint64 value_type = 3;
+	optional .EA.Sims4.Network.IconInfo value_icon = 4;
+	optional .EA.Sims4.Network.LocalizedString value_tooltip = 5;
+}
+
+message DynastyAlliesRivals {
+	repeated .EA.Sims4.Network.DynastySimpleData alliances = 1;
+	repeated .EA.Sims4.Network.DynastySimpleData rivalries = 2;
+}
+
+message DynastySimpleData {
+	optional fixed64 dynasty_id = 1;
+	optional string name = 2;
+	optional .EA.Sims4.Network.IconInfo icon = 3;
+	optional .EA.Sims4.Network.IconInfo icon_background = 4;
+	optional int32 prestige_level = 5;
+	optional int32 number_members = 6;
+}
+
+message DynastyUIData {
+	optional fixed64 dynasty_id = 1;
+	optional string name = 2;
+	optional .EA.Sims4.Network.IconInfo icon = 3;
+	optional fixed64 head_sim_id = 4;
+	optional fixed64 heir_sim_id = 5;
+	repeated .EA.Sims4.Network.DynastyMemberBreakdowns members = 6;
+	repeated .EA.Sims4.Network.DynastyValues values = 7;
+	repeated fixed64 alliances = 8 [packed = true];
+	repeated fixed64 rivalries = 9 [packed = true];
+	optional string description = 10;
+	optional .EA.Sims4.Network.IconInfo icon_background = 11;
+	optional int32 prestige_level = 12;
+	repeated .EA.Sims4.BucksData bucks_data = 13;
+}
+
+message ScandalSecretSimpleData {
+	optional fixed64 secret_id = 1;
+	optional .EA.Sims4.Network.LocalizedString name = 2;
+	optional .EA.Sims4.Network.LocalizedString description = 3;
+	optional .EA.Sims4.Network.IconInfo icon = 4;
+	optional int32 status_id = 5;
+	optional fixed64 expiration_date = 7;
+}
+
+message ScandalSecretData {
+	repeated .EA.Sims4.Network.ScandalSecretSimpleData secrets = 1;
+	repeated .EA.Sims4.Network.ScandalSecretSimpleData scandals = 2;
+}
+
+message ShowFamilyTreeUI {
+	optional fixed64 sim_id = 1;
+	optional fixed64 pov_sim_id = 2;
 }

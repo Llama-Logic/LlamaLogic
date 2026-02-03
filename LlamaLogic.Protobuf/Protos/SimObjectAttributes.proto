@@ -27,6 +27,15 @@ enum RelationshipIndex {
 	RELATIONSHIP_SIBLINGS_CHILDREN = 15;
 	RELATIONSHIP_PARENTS_SIBLING = 16;
 	RELATIONSHIP_COUSIN = 17;
+	RELATIONSHIP_DISTANT_RELATIVE = 18;
+	RELATIONSHIP_GREAT_GRANDPARENT = 19;
+	RELATIONSHIP_GREAT_GRANDCHILD = 20;
+	RELATIONSHIP_GRANDPARENT_SIBLING = 21;
+	RELATIONSHIP_FIRST_COUSIN_ONCE_REMOVED = 22;
+	RELATIONSHIP_SIBLINGS_GRANDCHILD = 23;
+	RELATIONSHIP_SIBLINGS_GREAT_GRANDCHILD = 24;
+	RELATIONSHIP_GREAT_GRANDPARENT_SIBLING = 25;
+	RELATIONSHIP_HALF_SIBLING = 26;
 }
 
 message PersistenceMaster {
@@ -102,6 +111,7 @@ message PersistenceMaster {
 			HeirloomComponent = 74;
 			PersistableFamilyRecipes = 75;
 			PersistableTattooTracker = 76;
+			TravelDestinationComponent = 77;
 		}
 		required .EA.Sims4.Persistence.PersistenceMaster.PersistableData.DATA_TYPE type = 1;
 		extensions 21000 to max;
@@ -174,6 +184,7 @@ message LockData {
 	optional uint32 threshold_comparison = 19;
 	repeated fixed64 buff_ids = 20 [packed = true];
 	repeated uint32 creature_types = 21 [packed = true];
+	optional bool remove_sim_exception = 22;
 }
 
 message PersistableStateComponent {
@@ -551,6 +562,7 @@ message PersistablePregnancyTracker {
 	optional uint64 last_modified = 3;
 	optional uint32 seed = 4;
 	optional uint32 origin = 5;
+	optional fixed64 chosen_partner_parent_id = 6;
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		optional .EA.Sims4.Persistence.PersistablePregnancyTracker persistable_data = 21016;
 	}
@@ -793,9 +805,17 @@ message RelationshipTrope {
 	required uint64 trope_id = 2;
 }
 
+message ArchivedFamilyRelbit {
+	required uint64 target_sim_id = 1;
+	required uint64 relationship_bit_id = 2;
+	optional uint64 time_archived = 3;
+}
+
 message PersistableGenealogyTracker {
 	repeated .EA.Sims4.Persistence.FamilyRelation family_relations = 1;
 	repeated .EA.Sims4.Persistence.RelationshipTrope relationship_tropes = 2;
+	repeated .EA.Sims4.Persistence.ArchivedFamilyRelbit archived_family_relbits = 3;
+	repeated .EA.Sims4.Persistence.ArchivedFamilyRelbit pinned_family_relbits = 4;
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		optional .EA.Sims4.Persistence.PersistableGenealogyTracker persistable_data = 21024;
 	}
@@ -1104,6 +1124,13 @@ message PersistableSituationSchedulerComponent {
 	repeated uint64 situation_ids = 1 [packed = true];
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		optional .EA.Sims4.Persistence.PersistableSituationSchedulerComponent persistable_data = 21048;
+	}
+}
+
+message TravelDestinationComponent {
+	optional uint64 zone_id = 1;
+	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
+		optional .EA.Sims4.Persistence.TravelDestinationComponent persistable_data = 21077;
 	}
 }
 
@@ -1512,19 +1539,4 @@ message PersistableTattooTracker {
 	extend .EA.Sims4.Persistence.PersistenceMaster.PersistableData {
 		optional .EA.Sims4.Persistence.PersistableTattooTracker persistable_data = 21076;
 	}
-}
-
-message BucksData {
-	message UnlockedPerk {
-		optional uint32 perk = 1;
-		optional uint32 unlock_reason = 2;
-		optional uint64 time_left = 3;
-		optional uint64 timestamp = 4;
-		optional bool currently_unlocked = 5 [default = true];
-	}
-	optional uint32 bucks_type = 1;
-	optional uint32 amount = 2;
-	repeated .EA.Sims4.Persistence.BucksData.UnlockedPerk unlocked_perks = 3;
-	repeated uint64 frozen_perk_ids = 4 [packed = true];
-	optional float frozen_business_rank_value = 5;
 }

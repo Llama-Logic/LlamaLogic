@@ -7,6 +7,7 @@ import "UI.proto";
 import "Lot.proto";
 import "Math.proto";
 import "CustomSchedule.proto";
+import "Dialog.proto";
 
 
 message SimPickerItem {
@@ -33,6 +34,7 @@ message SituationEditData {
 	repeated uint32 recurring_days = 10 [packed = true];
 	optional uint64 end_time = 11;
 	optional bool has_valid_zone_schedule = 12;
+	optional bool apply_appearance_modifier = 13;
 }
 
 message SituationPrepare {
@@ -89,7 +91,9 @@ message SituationStyleData {
 	optional uint64 cas_edit_job_id = 6;
 	optional uint32 cas_edit_outfit_category = 7;
 	optional .EA.Sims4.Network.ResourceKey cas_edit_no_sim_icon = 8;
-	optional bool visible_on_role_page = 9;
+	optional bool guest_attire_visible_on_role_page = 9;
+	optional .EA.Sims4.Network.LocalizedString appearance_modifier_text = 10;
+	optional bool outfit_selector_visible_on_role_page = 11;
 }
 
 message SituationData {
@@ -153,6 +157,7 @@ message SituationJobSim {
 	optional fixed64 career_track_id = 4;
 	optional bool cell_disabled = 5;
 	optional .EA.Sims4.Network.LocalizedString cell_disabled_tooltip = 6;
+	repeated uint32 tag_list = 7 [packed = true];
 }
 
 message SituationJobSims {
@@ -162,6 +167,7 @@ message SituationJobSims {
 	optional bool lock_selection = 4;
 	repeated .EA.Sims4.Network.SituationJobSim sims = 5;
 	optional .EA.Sims4.Network.LocalizedString requirements = 6;
+	repeated .EA.Sims4.Network.SimPickerCustomFilter custom_filters = 7;
 }
 
 message SituationLocations {
@@ -289,6 +295,7 @@ message SituationGoal {
 	optional uint64 expiration_time = 16;
 	optional uint64 ui_element = 17;
 	optional uint64 mtx_bundle_id = 18;
+	optional uint64 goal_guid = 19;
 }
 
 message SituationGoalsUpdate {
@@ -405,4 +412,5 @@ message QuestGoalUpdate {
 	optional uint64 live_event_id = 1;
 	optional uint64 quest_id = 2;
 	optional uint64 situation_goal_id = 3;
+	optional bool completed_via_autonomy = 4;
 }

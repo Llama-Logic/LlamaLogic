@@ -1,0 +1,95 @@
+syntax = "proto2";
+package EA.Sims4.Persistence;
+import "ResourceKey.proto";
+import "S4Common.proto";
+import "Localization.proto";
+
+
+message KingdomSimData {
+	optional fixed64 sim_id = 1;
+	optional uint32 level = 2;
+	optional uint32 priority = 3;
+	optional fixed64 inheriting_sim_id = 4;
+}
+
+message KingdomSimCareerLevel {
+	optional fixed64 sim_id = 1;
+	optional uint32 level = 2;
+}
+
+message KingdomDecree {
+	optional fixed64 decree_type = 1;
+	optional .EA.Sims4.Network.ResourceKey icon_key = 2;
+	optional .EA.Sims4.Network.LocalizedString title_key = 3;
+	optional .EA.Sims4.Network.LocalizedString subtitle_key = 4;
+	optional .EA.Sims4.Network.LocalizedString description_key = 5;
+	repeated .EA.Sims4.Network.LocalizedString gameplay_descriptions = 6;
+}
+
+message KingdomTitle {
+	optional uint32 level = 1;
+	optional uint32 priority = 2;
+	optional string male_title = 3;
+	optional string female_title = 4;
+	optional string neutral_title = 5;
+}
+
+message KingdomNeighborhoodData {
+	optional fixed64 neighborhood_id = 1;
+	repeated .EA.Sims4.Persistence.KingdomSimData sims = 2;
+	repeated .EA.Sims4.Persistence.KingdomDecree enacted_decrees = 3;
+	repeated .EA.Sims4.Persistence.KingdomTitle titles = 4;
+	optional uint32 tax_level = 5;
+}
+
+message KingdomUpdatedSims {
+	repeated fixed64 added_sim_ids = 1 [packed = true];
+	repeated fixed64 removed_sim_ids = 2 [packed = true];
+	repeated fixed64 updated_sim_ids = 3 [packed = true];
+}
+
+message KingdomRequestDefaultPronouns {
+}
+
+message KingdomRequestDefaultGenderPronouns {
+	optional uint32 gender = 1;
+	optional string packed_pronouns = 2;
+}
+
+message KingdomRequestDefaultPronounsResponse {
+	repeated .EA.Sims4.Persistence.KingdomRequestDefaultGenderPronouns gender_pronouns = 1;
+	optional string empty_pronouns = 2;
+}
+
+message KingdomUpdatedTitles {
+	repeated fixed64 neighborhood_ids = 1 [packed = true];
+	repeated .EA.Sims4.Persistence.KingdomTitle titles = 2;
+}
+
+message AvailableTitles {
+	optional fixed64 neighborhood_id = 1;
+	optional fixed64 dead_sim_id = 2;
+	optional uint32 career_level = 3;
+	optional fixed64 candidate_sim_id = 4;
+}
+
+message KingdomUpdate {
+	repeated .EA.Sims4.Persistence.KingdomNeighborhoodData neighborhoods = 1;
+	repeated .EA.Sims4.Persistence.KingdomSimCareerLevel sim_career_levels = 2;
+	repeated fixed64 affected_sim_ids = 3 [packed = true];
+}
+
+message KingdomSimVirtualNeighborhood {
+	optional fixed64 sim_id = 1;
+	optional fixed64 neighborhood_id = 2;
+}
+
+message PersistableKingdomService {
+	repeated .EA.Sims4.Persistence.KingdomNeighborhoodData neighborhoods = 1;
+	optional .EA.Sims4.Persistence.KingdomUpdatedSims updated_sims = 2;
+	repeated .EA.Sims4.Persistence.AvailableTitles available_titles = 3;
+	repeated .EA.Sims4.Persistence.KingdomSimCareerLevel sim_career_levels = 4;
+	repeated .EA.Sims4.Persistence.KingdomSimVirtualNeighborhood sim_virtual_neighborhoods = 5;
+	repeated fixed64 affected_sim_ids = 6 [packed = true];
+	optional .EA.Sims4.Persistence.KingdomRequestDefaultPronounsResponse default_pronouns = 7;
+}

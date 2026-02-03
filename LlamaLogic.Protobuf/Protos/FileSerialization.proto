@@ -13,6 +13,7 @@ import "S4Common.proto";
 import "Venue.proto";
 import "Consts.proto";
 import "CustomSchedule.proto";
+import "Kingdom.proto";
 
 enum PersistenceActions {
 	BASE_ACTION = 0;
@@ -139,6 +140,7 @@ message SaveSlotData {
 	optional int32 tutorial_mode = 16 [default = 1];
 	optional .EA.Sims4.Persistence.GameContentData game_content_data = 17;
 	optional bool applied_aging_fixup = 18 [default = false];
+	optional .EA.Sims4.Persistence.PersistableKingdomService kingdom_service = 19;
 }
 
 message SaveSlotDataDescOnly {

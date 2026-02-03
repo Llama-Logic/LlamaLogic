@@ -16,6 +16,8 @@ import "Roommates.proto";
 import "Calendar.proto";
 import "Outfits.proto";
 import "CustomSchedule.proto";
+import "S4Common.proto";
+import "Kingdom.proto";
 
 enum EcoFootprintStateType {
 	GREEN = 0;
@@ -197,7 +199,7 @@ message GameplayHouseholdData {
 	optional bool situation_scoring_enabled = 16 [default = true];
 	optional .EA.Sims4.Network.ResourceKeyList build_buy_unlock_list = 17;
 	repeated .EA.Sims4.Persistence.RetailData retail_data = 18;
-	repeated .EA.Sims4.Persistence.BucksData bucks_data = 19;
+	repeated .EA.Sims4.BucksData bucks_data = 19;
 	optional uint32 additional_employee_slots = 20;
 	repeated .EA.Sims4.Persistence.LotUnpaidBillData lot_unpaid_bill_data = 21;
 	optional uint64 home_world_id = 22;
@@ -304,7 +306,7 @@ message Club {
 	repeated .EA.Sims4.Network.ClubConductRule club_rules = 10;
 	optional uint32 associated_color = 11;
 	optional .EA.Sims4.Network.ResourceKey club_seed = 12;
-	repeated .EA.Sims4.Persistence.BucksData bucks_data = 13;
+	repeated .EA.Sims4.BucksData bucks_data = 13;
 	optional uint32 associated_style = 14;
 	optional .EA.Sims4.Persistence.MannequinSimData club_uniform_adult_male = 15;
 	optional .EA.Sims4.Persistence.MannequinSimData club_uniform_child_male = 16;
@@ -485,6 +487,8 @@ message PersistableBidirectionalRelationshipData {
 	repeated .EA.Sims4.Persistence.PersistableRelationshipBitLock relationship_bit_locks = 4;
 	optional float compatibility_score = 5;
 	optional uint32 compatibility_level = 6;
+	optional uint64 family_trope_id = 7;
+	optional uint64 romance_trope_id = 8;
 }
 
 message PersistableRelationshipLabelData {
@@ -650,6 +654,29 @@ message HorseCompetitionHorsePlacementData {
 message PersistableHorseCompetitionService {
 	repeated .EA.Sims4.Persistence.HorseCompetitionData competitions = 1;
 	repeated .EA.Sims4.Persistence.HorseCompetitionHorsePlacementData horse_placements = 2;
+}
+
+message SimCompetitionData {
+	required uint64 competition_id = 1;
+	required fixed64 sim_id = 2;
+	required fixed64 situation_id = 3;
+	optional fixed64 default_object_id = 4;
+	optional uint32 object_tag = 5;
+}
+
+message SimCompetitionHighestPlacementData {
+	required uint64 competition_id = 1;
+	required uint64 highest_placement = 2;
+}
+
+message SimCompetitionSimPlacementData {
+	required fixed64 sim_id = 1;
+	repeated .EA.Sims4.Persistence.SimCompetitionHighestPlacementData placements = 2;
+}
+
+message PersistableSimCompetitionService {
+	repeated .EA.Sims4.Persistence.SimCompetitionData competitions = 1;
+	repeated .EA.Sims4.Persistence.SimCompetitionSimPlacementData sim_placements = 2;
 }
 
 message NarrativeProgressionData {
@@ -900,6 +927,43 @@ message PersistablePromService {
 
 message PersistableSimSecretsService {
 	repeated uint64 unavailable_secrets = 1 [packed = true];
+	optional .EA.Sims4.Persistence.PersistableSimSecretsScandalsData scandal_secrets_data = 2;
+}
+
+message PersistableSimSecretsScandalsData {
+	repeated .EA.Sims4.Persistence.ScandalSecretData secrets = 1;
+	repeated .EA.Sims4.Persistence.SimSecretData sim_secrets = 2;
+	repeated .EA.Sims4.Persistence.SimSecretData known_secrets = 3;
+}
+
+message ScandalSecretData {
+	optional fixed64 secret_id = 1;
+	optional fixed64 secret_guid = 2;
+	optional int32 status_id = 3;
+	optional int32 initial_status_id = 4;
+	repeated fixed64 complicit_sims_ids = 5 [packed = true];
+	repeated .EA.Sims4.Persistence.SecretKeepersData secret_keepers = 6;
+	optional uint64 secret_remaining_time = 7;
+	repeated fixed64 dead_complicit_sims_ids = 8 [packed = true];
+	repeated .EA.Sims4.Persistence.SecretNotebookStatus notebook_status = 9;
+	optional bool sold = 10;
+	optional fixed64 secret_expiration_date = 11;
+}
+
+message SecretNotebookStatus {
+	optional fixed64 sim_id = 1;
+	optional bool is_new = 2;
+}
+
+message SimSecretData {
+	optional fixed64 sim_id = 1;
+	repeated fixed64 secret_ids = 2 [packed = true];
+}
+
+message SecretKeepersData {
+	optional fixed64 secret_owner_id = 1;
+	optional fixed64 secret_keeper_id = 2;
+	optional int32 status_id = 3;
 }
 
 message PersistableCareerService {
@@ -1009,6 +1073,12 @@ message GameplaySaveSlotData {
 	optional .EA.Sims4.Persistence.PersistableWispService wisp_service = 56;
 	optional .EA.Sims4.Persistence.PersistableImaginaryFriendService imaginary_friend_service = 57;
 	optional .EA.Sims4.Persistence.PersistableCustomScheduleService custom_schedule_service = 58;
+	optional .EA.Sims4.Persistence.PersistableKingdomService kingdom_service = 59;
+	optional .EA.Sims4.Persistence.PersistableDynastyService dynasty_service = 60;
+	optional .EA.Sims4.Persistence.PersistableGlobalSimObjectRelationshipService sim_object_relationship_service = 61;
+	optional .EA.Sims4.Persistence.PersistableFamilyTreeService family_tree_service = 62;
+	optional .EA.Sims4.Persistence.PersistableSimCompetitionService sim_competition_service = 63;
+	optional .EA.Sims4.Persistence.PersistableFamilyTreeForgeryService family_tree_forgery_service = 64;
 }
 
 message PersistableRelgraphService {
@@ -1156,6 +1226,11 @@ message GameplayOptions {
 	optional bool balance_system_enabled = 52 [default = true];
 	optional bool luck_enabled = 53 [default = true];
 	optional bool ailments_enabled = 54 [default = true];
+	optional bool show_adopted_sims = 55 [default = false];
+	optional bool npc_blackmail_system_enabled = 56 [default = true];
+	optional bool scandal_system_enabled = 57 [default = true];
+	optional bool noble_career_auto_promotion_enabled = 58 [default = false];
+	optional bool dynasty_prestige_decay_enabled = 59 [default = true];
 }
 
 message RestaurantZoneDirectorData {
@@ -1360,7 +1435,7 @@ message GameplaySimData {
 	optional fixed64 old_household_id = 19;
 	optional fixed64 premade_sim_template_id = 20;
 	optional .EA.Sims4.Persistence.SimFavoriteData favorite_data = 21;
-	repeated .EA.Sims4.Persistence.BucksData bucks_data = 22;
+	repeated .EA.Sims4.BucksData bucks_data = 22;
 	optional string creation_source_data = 17;
 	optional uint64 creation_source = 23;
 	optional uint64 gameplay_options = 24;
@@ -1371,6 +1446,7 @@ message GameplaySimData {
 	optional .EA.Sims4.Persistence.ReincarnationData reincarnation_data = 29;
 	repeated uint64 extra_personality_trait_slot = 30 [packed = true];
 	optional bool restore_wings = 31;
+	optional uint64 spawn_object_id = 32;
 }
 
 message PremadeLotStatus {
@@ -1385,6 +1461,9 @@ message EnsembleServiceData {
 message EnsembleData {
 	optional fixed64 ensemble_type_id = 1;
 	repeated fixed64 sim_ids = 2 [packed = true];
+	optional uint64 override_texture_id = 3;
+	optional uint32 override_tint_color = 4;
+	optional float override_alpha = 5;
 }
 
 message MissingPetTrackerData {
@@ -1649,4 +1728,130 @@ message PersistableCustomScheduleService {
 	repeated .EA.Sims4.Persistence.PersistableCustomScheduleService.ScheduledGetawayEntry scheduled_getaways = 3;
 	optional fixed64 mannequin_id = 4;
 	optional uint64 current_schedule_zone_id = 5;
+}
+
+message PersistableDynastyService {
+	repeated .EA.Sims4.Persistence.DynastySaveData dynasty_data = 1;
+}
+
+message DynastyMemberData {
+	optional fixed64 member_id = 1;
+	optional uint32 dynasty_rank = 4;
+	repeated float prestige = 5 [packed = true];
+	optional bool is_black_sheep = 6;
+}
+
+message DynastySaveData {
+	optional fixed64 dynasty_id = 1;
+	optional string name = 2;
+	optional .EA.Sims4.Network.ResourceKey icon = 3;
+	optional fixed64 head_sim_id = 4;
+	optional fixed64 heir_sim_id = 5;
+	repeated .EA.Sims4.Persistence.DynastyMemberData members = 6;
+	repeated fixed64 values = 7 [packed = true];
+	repeated fixed64 alliances = 8 [packed = true];
+	repeated fixed64 rivalries = 9 [packed = true];
+	optional string description = 10;
+	optional .EA.Sims4.Network.ResourceKey icon_background = 11;
+	repeated .EA.Sims4.BucksData bucks_data = 12;
+	optional float total_prestige = 13;
+}
+
+message SetDynastyData {
+	optional fixed64 dynasty_id = 1;
+	optional string name = 2;
+	optional .EA.Sims4.Network.ResourceKey icon = 3;
+	optional fixed64 head_sim_id = 4;
+	optional fixed64 spouse_sim_id = 5;
+	repeated fixed64 members = 6 [packed = true];
+	repeated fixed64 values = 7 [packed = true];
+	optional string description = 8;
+	optional fixed64 heir_sim_id = 9;
+	optional .EA.Sims4.Network.ResourceKey icon_background = 10;
+}
+
+message PersistableGlobalSimObjectRelationshipService {
+	repeated .EA.Sims4.Persistence.SimObjectRelationshipObjectDataByTag object_data = 1;
+	repeated .EA.Sims4.Persistence.SimToObjectData sim_to_object_data = 2;
+}
+
+message SimObjectRelationshipObjectDataByTag {
+	repeated .EA.Sims4.Persistence.SimObjectRelationshipObjectData object_data = 1;
+	optional uint32 tag = 2;
+}
+
+message SimObjectRelationshipObjectData {
+	optional fixed64 object_id = 1;
+	optional fixed64 zone_id = 2;
+	optional fixed64 travel_destination_zone_id = 3;
+}
+
+message SimToObjectData {
+	optional fixed64 sim_id = 1;
+	repeated fixed64 objects_ids = 2 [packed = true];
+}
+
+message PersistableFamilyTreeService {
+	optional .EA.Sims4.Persistence.FamilyTreeGraph family_tree_graph = 1;
+}
+
+message FamilyTreeNodeKingdomData {
+	optional uint64 localized_title = 1;
+	optional string custom_title = 2;
+	optional uint64 region_name = 3;
+	optional uint32 level = 4;
+}
+
+message FamilyTreeNode {
+	optional uint64 sim_id = 1;
+	optional string first_name = 2;
+	optional string last_name = 3;
+	repeated .EA.Sims4.Persistence.FamilyTreeEdge outgoing_edges = 4;
+	optional .EA.Sims4.Network.LocalizedString full_name = 5;
+	optional .EA.Sims4.Network.ResourceKey thumbnail_override = 6;
+	optional uint64 death_trait_id_override = 7;
+	optional uint32 gender = 8;
+	optional bool culled = 9;
+	optional .EA.Sims4.Persistence.FamilyTreeNodeKingdomData dead_kingdom_data = 10;
+}
+
+message FamilyTreeEdge {
+	optional uint64 source_sim_id = 1;
+	optional uint64 target_sim_id = 2;
+	optional uint64 relationship_flags = 3;
+}
+
+message FamilyTreePremadeAncestor {
+	optional uint64 tuning_id = 1;
+	optional uint64 ancestor_sim_id = 2;
+	optional .EA.Sims4.Network.LocalizedString full_name = 3;
+	optional .EA.Sims4.Network.ResourceKey thumbnail_id = 4;
+}
+
+message FamilyTreeFixupApplied {
+	optional uint64 sim_id_a = 1;
+	optional uint64 sim_id_b = 2;
+}
+
+message FamilyTreeGraph {
+	repeated .EA.Sims4.Persistence.FamilyTreeNode nodes = 1;
+	repeated .EA.Sims4.Persistence.FamilyTreePremadeAncestor premade_ancestors = 2;
+	repeated .EA.Sims4.Persistence.FamilyTreeFixupApplied family_fixups = 3;
+}
+
+message PersistableFamilyTreeForgeryService {
+	repeated .EA.Sims4.Persistence.FamilyTreeForgery forgeries = 1;
+}
+
+message FamilyTreeForgery {
+	optional uint64 forger_sim_id = 1;
+	repeated uint64 forgery_aware_sim_ids = 2 [packed = true];
+	repeated .EA.Sims4.Persistence.FamilyTreeForgeryConnection forged_connections = 3;
+	optional uint64 secret_parent_id = 4;
+	repeated uint64 secret_children_ids = 5 [packed = true];
+}
+
+message FamilyTreeForgeryConnection {
+	optional uint64 child_sim_id = 1;
+	optional uint64 parent_sim_id = 2;
 }
