@@ -1038,6 +1038,15 @@ enum EventOpResponse {
 	EVOP_INVALID = 4;
 	EVOP_OP_FAIL_THROTTLE = 5;
 }
+enum ExchangeSpeciesFilter {
+	ALL = 0;
+	DOGS = 1;
+	CATS = 2;
+	FOXES = 3;
+	HORSES = 4;
+	WITH_PETS = 5;
+	NO_PETS = 6;
+}
 
 message ManagerObjectId {
 	required .EA.Sims4.Network.ManagerIds manager_id = 1;

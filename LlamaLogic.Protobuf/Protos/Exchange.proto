@@ -143,7 +143,7 @@ message TrayMetadata {
 	}
 	enum TrayMetadataVersion {
 		v000 = 0;
-		currentVersion = 12100;
+		currentVersion = 12200;
 	}
 	optional uint64 id = 1;
 	optional .EA.Sims4.Network.ExchangeItemTypes type = 2;
@@ -305,6 +305,10 @@ message ExchangeCombinedSearch {
 	optional uint32 compatible_item_version = 33 [default = 0];
 	optional .EA.Sims4.Network.KeywordSearchType keyword_type = 34 [default = KEYWORD_SEARCH_UNKNOWN];
 	repeated uint32 sku_bits = 35 [packed = true];
+	optional bool gallery_must_have_filters = 36;
+	repeated uint32 packs_ids = 37 [packed = true];
+	repeated uint64 products_ids = 38 [packed = true];
+	optional .EA.Sims4.Network.ExchangeSpeciesFilter species_filter = 39 [default = ALL];
 }
 
 message ExchangeTestParameters {
