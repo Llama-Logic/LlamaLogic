@@ -1221,7 +1221,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 12100,
+            currentVersion = 12200,
         }
 
     }
@@ -2089,6 +2089,33 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(35, Name = @"sku_bits", IsPacked = true)]
         public uint[] SkuBits { get; set; }
+
+        [global::ProtoBuf.ProtoMember(36, Name = @"gallery_must_have_filters")]
+        public bool GalleryMustHaveFilters
+        {
+            get => __pbn__GalleryMustHaveFilters.GetValueOrDefault();
+            set => __pbn__GalleryMustHaveFilters = value;
+        }
+        public bool ShouldSerializeGalleryMustHaveFilters() => __pbn__GalleryMustHaveFilters != null;
+        public void ResetGalleryMustHaveFilters() => __pbn__GalleryMustHaveFilters = null;
+        private bool? __pbn__GalleryMustHaveFilters;
+
+        [global::ProtoBuf.ProtoMember(37, Name = @"packs_ids", IsPacked = true)]
+        public uint[] PacksIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(38, Name = @"products_ids", IsPacked = true)]
+        public ulong[] ProductsIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(39, Name = @"species_filter")]
+        [global::System.ComponentModel.DefaultValue(ExchangeSpeciesFilter.All)]
+        public ExchangeSpeciesFilter SpeciesFilter
+        {
+            get => __pbn__SpeciesFilter ?? ExchangeSpeciesFilter.All;
+            set => __pbn__SpeciesFilter = value;
+        }
+        public bool ShouldSerializeSpeciesFilter() => __pbn__SpeciesFilter != null;
+        public void ResetSpeciesFilter() => __pbn__SpeciesFilter = null;
+        private ExchangeSpeciesFilter? __pbn__SpeciesFilter;
 
     }
 

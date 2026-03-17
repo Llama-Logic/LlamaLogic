@@ -2188,6 +2188,25 @@ namespace EA.Sims4.Network
         EvopOpFailThrottle = 5,
     }
 
+    [global::ProtoBuf.ProtoContract()]
+    public enum ExchangeSpeciesFilter
+    {
+        [global::ProtoBuf.ProtoEnum(Name = @"ALL")]
+        All = 0,
+        [global::ProtoBuf.ProtoEnum(Name = @"DOGS")]
+        Dogs = 1,
+        [global::ProtoBuf.ProtoEnum(Name = @"CATS")]
+        Cats = 2,
+        [global::ProtoBuf.ProtoEnum(Name = @"FOXES")]
+        Foxes = 3,
+        [global::ProtoBuf.ProtoEnum(Name = @"HORSES")]
+        Horses = 4,
+        [global::ProtoBuf.ProtoEnum(Name = @"WITH_PETS")]
+        WithPets = 5,
+        [global::ProtoBuf.ProtoEnum(Name = @"NO_PETS")]
+        NoPets = 6,
+    }
+
 }
 
 #pragma warning restore CS0612, CS0618, CS1591, CS3021, CS8981, IDE0079, IDE1006, RCS1036, RCS1057, RCS1085, RCS1192
