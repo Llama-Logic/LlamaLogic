@@ -1231,6 +1231,7 @@ message GameplayOptions {
 	optional bool scandal_system_enabled = 57 [default = true];
 	optional bool noble_career_auto_promotion_enabled = 58 [default = false];
 	optional bool dynasty_prestige_decay_enabled = 59 [default = true];
+	optional bool autonomy_infants_caregiver_disabled = 60 [default = false];
 }
 
 message RestaurantZoneDirectorData {
@@ -1447,6 +1448,7 @@ message GameplaySimData {
 	repeated uint64 extra_personality_trait_slot = 30 [packed = true];
 	optional bool restore_wings = 31;
 	optional uint64 spawn_object_id = 32;
+	optional fixed64 carrying_sim = 33;
 }
 
 message PremadeLotStatus {
