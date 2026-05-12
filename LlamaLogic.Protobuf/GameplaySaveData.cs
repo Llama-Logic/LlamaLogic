@@ -6078,6 +6078,17 @@ namespace EA.Sims4.Persistence
         public void ResetDynastyPrestigeDecayEnabled() => __pbn__DynastyPrestigeDecayEnabled = null;
         private bool? __pbn__DynastyPrestigeDecayEnabled;
 
+        [global::ProtoBuf.ProtoMember(60, Name = @"autonomy_infants_caregiver_disabled")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool AutonomyInfantsCaregiverDisabled
+        {
+            get => __pbn__AutonomyInfantsCaregiverDisabled ?? false;
+            set => __pbn__AutonomyInfantsCaregiverDisabled = value;
+        }
+        public bool ShouldSerializeAutonomyInfantsCaregiverDisabled() => __pbn__AutonomyInfantsCaregiverDisabled != null;
+        public void ResetAutonomyInfantsCaregiverDisabled() => __pbn__AutonomyInfantsCaregiverDisabled = null;
+        private bool? __pbn__AutonomyInfantsCaregiverDisabled;
+
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
         {
@@ -7357,6 +7368,16 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeSpawnObjectId() => __pbn__SpawnObjectId != null;
         public void ResetSpawnObjectId() => __pbn__SpawnObjectId = null;
         private ulong? __pbn__SpawnObjectId;
+
+        [global::ProtoBuf.ProtoMember(33, Name = @"carrying_sim", DataFormat = global::ProtoBuf.DataFormat.FixedSize)]
+        public ulong CarryingSim
+        {
+            get => __pbn__CarryingSim.GetValueOrDefault();
+            set => __pbn__CarryingSim = value;
+        }
+        public bool ShouldSerializeCarryingSim() => __pbn__CarryingSim != null;
+        public void ResetCarryingSim() => __pbn__CarryingSim = null;
+        private ulong? __pbn__CarryingSim;
 
     }
 
