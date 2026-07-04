@@ -1119,6 +1119,10 @@ message AccountEventDataTracker {
 	repeated .EA.Sims4.Persistence.MilestoneCompletionCount milestone_completion_counts = 4;
 }
 
+message FestivalNotificationBlacklist {
+	repeated int64 disabled_option_keys = 1 [packed = true];
+}
+
 message GameplayOptions {
 	enum AutonomyLevel {
 		OFF = 0;
@@ -1232,6 +1236,7 @@ message GameplayOptions {
 	optional bool noble_career_auto_promotion_enabled = 58 [default = false];
 	optional bool dynasty_prestige_decay_enabled = 59 [default = true];
 	optional bool autonomy_infants_caregiver_disabled = 60 [default = false];
+	optional .EA.Sims4.Persistence.FestivalNotificationBlacklist festival_notification_blacklist = 61;
 }
 
 message RestaurantZoneDirectorData {
@@ -1734,6 +1739,7 @@ message PersistableCustomScheduleService {
 
 message PersistableDynastyService {
 	repeated .EA.Sims4.Persistence.DynastySaveData dynasty_data = 1;
+	optional bool offspring_repair_done = 2;
 }
 
 message DynastyMemberData {

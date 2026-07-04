@@ -143,7 +143,7 @@ message TrayMetadata {
 	}
 	enum TrayMetadataVersion {
 		v000 = 0;
-		currentVersion = 12400;
+		currentVersion = 12500;
 	}
 	optional uint64 id = 1;
 	optional .EA.Sims4.Network.ExchangeItemTypes type = 2;
@@ -199,6 +199,7 @@ message ExchangeEnvelope {
 	optional bytes payload = 6;
 	optional .EA.Sims4.Network.TrayMetadata metadata = 7;
 	optional .EA.Sims4.Network.ExchangeEnvelope.ThumbnailMessage thumbnail_message = 8;
+	repeated uint64 products_ids = 9 [packed = true];
 }
 
 message ExchangeSocialEnvelope {
