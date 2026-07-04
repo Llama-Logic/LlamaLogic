@@ -5423,6 +5423,18 @@ namespace EA.Sims4.Persistence
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class FestivalNotificationBlacklist : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"disabled_option_keys", IsPacked = true)]
+        public long[] DisabledOptionKeys { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class GameplayOptions : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -6088,6 +6100,9 @@ namespace EA.Sims4.Persistence
         public bool ShouldSerializeAutonomyInfantsCaregiverDisabled() => __pbn__AutonomyInfantsCaregiverDisabled != null;
         public void ResetAutonomyInfantsCaregiverDisabled() => __pbn__AutonomyInfantsCaregiverDisabled = null;
         private bool? __pbn__AutonomyInfantsCaregiverDisabled;
+
+        [global::ProtoBuf.ProtoMember(61, Name = @"festival_notification_blacklist")]
+        public FestivalNotificationBlacklist FestivalNotificationBlacklist { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
@@ -8733,6 +8748,16 @@ namespace EA.Sims4.Persistence
 
         [global::ProtoBuf.ProtoMember(1, Name = @"dynasty_data")]
         public global::System.Collections.Generic.List<DynastySaveData> DynastyDatas { get; } = new global::System.Collections.Generic.List<DynastySaveData>();
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"offspring_repair_done")]
+        public bool OffspringRepairDone
+        {
+            get => __pbn__OffspringRepairDone.GetValueOrDefault();
+            set => __pbn__OffspringRepairDone = value;
+        }
+        public bool ShouldSerializeOffspringRepairDone() => __pbn__OffspringRepairDone != null;
+        public void ResetOffspringRepairDone() => __pbn__OffspringRepairDone = null;
+        private bool? __pbn__OffspringRepairDone;
 
     }
 

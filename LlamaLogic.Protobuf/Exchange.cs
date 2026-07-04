@@ -1221,7 +1221,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 12400,
+            currentVersion = 12500,
         }
 
     }
@@ -1330,6 +1330,9 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(8)]
         public ThumbnailMessage thumbnail_message { get; set; }
+
+        [global::ProtoBuf.ProtoMember(9, Name = @"products_ids", IsPacked = true)]
+        public ulong[] ProductsIds { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
         public partial class ThumbnailMessage : global::ProtoBuf.IExtensible
