@@ -2970,6 +2970,16 @@ namespace EA.Sims4.Network
         public void ResetAutoDeleteReason() => __pbn__AutoDeleteReason = null;
         private NotificationAutoDeleteReason? __pbn__AutoDeleteReason;
 
+        [global::ProtoBuf.ProtoMember(11, Name = @"disable_prompt_buttons_during_save_lock")]
+        public bool DisablePromptButtonsDuringSaveLock
+        {
+            get => __pbn__DisablePromptButtonsDuringSaveLock.GetValueOrDefault();
+            set => __pbn__DisablePromptButtonsDuringSaveLock = value;
+        }
+        public bool ShouldSerializeDisablePromptButtonsDuringSaveLock() => __pbn__DisablePromptButtonsDuringSaveLock != null;
+        public void ResetDisablePromptButtonsDuringSaveLock() => __pbn__DisablePromptButtonsDuringSaveLock = null;
+        private bool? __pbn__DisablePromptButtonsDuringSaveLock;
+
         [global::ProtoBuf.ProtoContract()]
         public enum NotificationExpandBehavior
         {

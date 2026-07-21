@@ -1221,7 +1221,7 @@ namespace EA.Sims4.Network
         {
             [global::ProtoBuf.ProtoEnum(Name = @"v000")]
             V000 = 0,
-            currentVersion = 12500,
+            currentVersion = 12600,
         }
 
     }
@@ -1261,6 +1261,28 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(3, Name = @"part_Id", IsPacked = true)]
         public ulong[] partIds { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ObjectURL : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"uuid")]
+        public byte[] Uuid
+        {
+            get => __pbn__Uuid;
+            set => __pbn__Uuid = value;
+        }
+        public bool ShouldSerializeUuid() => __pbn__Uuid != null;
+        public void ResetUuid() => __pbn__Uuid = null;
+        private byte[] __pbn__Uuid;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"url")]
+        public global::System.Collections.Generic.List<string> Urls { get; } = new global::System.Collections.Generic.List<string>();
 
     }
 
@@ -1333,6 +1355,9 @@ namespace EA.Sims4.Network
 
         [global::ProtoBuf.ProtoMember(9, Name = @"products_ids", IsPacked = true)]
         public ulong[] ProductsIds { get; set; }
+
+        [global::ProtoBuf.ProtoMember(10, Name = @"uuid_url")]
+        public ObjectURL UuidUrl { get; set; }
 
         [global::ProtoBuf.ProtoContract()]
         public partial class ThumbnailMessage : global::ProtoBuf.IExtensible
@@ -1491,6 +1516,8 @@ namespace EA.Sims4.Network
             LegacyCdn = 1,
             [global::ProtoBuf.ProtoEnum(Name = @"GOOGLE_CLOUD_STORAGE")]
             GoogleCloudStorage = 2,
+            [global::ProtoBuf.ProtoEnum(Name = @"UGC_SERVICE")]
+            UgcService = 3,
         }
 
     }

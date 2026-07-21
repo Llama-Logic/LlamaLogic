@@ -6104,6 +6104,71 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(61, Name = @"festival_notification_blacklist")]
         public FestivalNotificationBlacklist FestivalNotificationBlacklist { get; set; }
 
+        [global::ProtoBuf.ProtoMember(62, Name = @"autosave_real_time_enabled")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool AutosaveRealTimeEnabled
+        {
+            get => __pbn__AutosaveRealTimeEnabled ?? false;
+            set => __pbn__AutosaveRealTimeEnabled = value;
+        }
+        public bool ShouldSerializeAutosaveRealTimeEnabled() => __pbn__AutosaveRealTimeEnabled != null;
+        public void ResetAutosaveRealTimeEnabled() => __pbn__AutosaveRealTimeEnabled = null;
+        private bool? __pbn__AutosaveRealTimeEnabled;
+
+        [global::ProtoBuf.ProtoMember(63, Name = @"autosave_sim_time_frequency")]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint AutosaveSimTimeFrequency
+        {
+            get => __pbn__AutosaveSimTimeFrequency ?? 0u;
+            set => __pbn__AutosaveSimTimeFrequency = value;
+        }
+        public bool ShouldSerializeAutosaveSimTimeFrequency() => __pbn__AutosaveSimTimeFrequency != null;
+        public void ResetAutosaveSimTimeFrequency() => __pbn__AutosaveSimTimeFrequency = null;
+        private uint? __pbn__AutosaveSimTimeFrequency;
+
+        [global::ProtoBuf.ProtoMember(64, Name = @"save_reminder_frequency")]
+        [global::System.ComponentModel.DefaultValue(0u)]
+        public uint SaveReminderFrequency
+        {
+            get => __pbn__SaveReminderFrequency ?? 0u;
+            set => __pbn__SaveReminderFrequency = value;
+        }
+        public bool ShouldSerializeSaveReminderFrequency() => __pbn__SaveReminderFrequency != null;
+        public void ResetSaveReminderFrequency() => __pbn__SaveReminderFrequency = null;
+        private uint? __pbn__SaveReminderFrequency;
+
+        [global::ProtoBuf.ProtoMember(65, Name = @"autosave_on_build_buy_exit")]
+        [global::System.ComponentModel.DefaultValue(false)]
+        public bool AutosaveOnBuildBuyExit
+        {
+            get => __pbn__AutosaveOnBuildBuyExit ?? false;
+            set => __pbn__AutosaveOnBuildBuyExit = value;
+        }
+        public bool ShouldSerializeAutosaveOnBuildBuyExit() => __pbn__AutosaveOnBuildBuyExit != null;
+        public void ResetAutosaveOnBuildBuyExit() => __pbn__AutosaveOnBuildBuyExit = null;
+        private bool? __pbn__AutosaveOnBuildBuyExit;
+
+        [global::ProtoBuf.ProtoMember(66, Name = @"autosave_on_travel")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool AutosaveOnTravel
+        {
+            get => __pbn__AutosaveOnTravel ?? true;
+            set => __pbn__AutosaveOnTravel = value;
+        }
+        public bool ShouldSerializeAutosaveOnTravel() => __pbn__AutosaveOnTravel != null;
+        public void ResetAutosaveOnTravel() => __pbn__AutosaveOnTravel = null;
+        private bool? __pbn__AutosaveOnTravel;
+
+        [global::ProtoBuf.ProtoMember(67, Name = @"autosave_real_time_frequency")]
+        public uint AutosaveRealTimeFrequency
+        {
+            get => __pbn__AutosaveRealTimeFrequency.GetValueOrDefault();
+            set => __pbn__AutosaveRealTimeFrequency = value;
+        }
+        public bool ShouldSerializeAutosaveRealTimeFrequency() => __pbn__AutosaveRealTimeFrequency != null;
+        public void ResetAutosaveRealTimeFrequency() => __pbn__AutosaveRealTimeFrequency = null;
+        private uint? __pbn__AutosaveRealTimeFrequency;
+
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
         {

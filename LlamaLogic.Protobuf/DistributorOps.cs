@@ -940,6 +940,8 @@ namespace EA.Sims4.Network
             KingdomRequestDefaultPronouns = 1329,
             [global::ProtoBuf.ProtoEnum(Name = @"SET_ANCESTORS_DATA")]
             SetAncestorsData = 1330,
+            [global::ProtoBuf.ProtoEnum(Name = @"REQUEST_AUTOSAVE")]
+            RequestAutosave = 1331,
         }
 
     }
