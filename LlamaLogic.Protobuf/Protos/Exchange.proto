@@ -143,7 +143,7 @@ message TrayMetadata {
 	}
 	enum TrayMetadataVersion {
 		v000 = 0;
-		currentVersion = 12500;
+		currentVersion = 12600;
 	}
 	optional uint64 id = 1;
 	optional .EA.Sims4.Network.ExchangeItemTypes type = 2;
@@ -186,6 +186,11 @@ message TrayPartMetadata {
 	repeated uint64 part_Id = 3 [packed = true];
 }
 
+message ObjectURL {
+	optional bytes uuid = 1;
+	repeated string url = 2;
+}
+
 message ExchangeEnvelope {
 	message ThumbnailMessage {
 		repeated uint32 thumbnail_info = 1 [packed = true];
@@ -200,6 +205,7 @@ message ExchangeEnvelope {
 	optional .EA.Sims4.Network.TrayMetadata metadata = 7;
 	optional .EA.Sims4.Network.ExchangeEnvelope.ThumbnailMessage thumbnail_message = 8;
 	repeated uint64 products_ids = 9 [packed = true];
+	optional .EA.Sims4.Network.ObjectURL uuid_url = 10;
 }
 
 message ExchangeSocialEnvelope {
@@ -226,6 +232,7 @@ message BaseUri {
 		UNKNOWN = 0;
 		LEGACY_CDN = 1;
 		GOOGLE_CLOUD_STORAGE = 2;
+		UGC_SERVICE = 3;
 	}
 	optional .EA.Sims4.Network.BaseUri.BaseUriType type = 1;
 	optional string baseuri = 2;

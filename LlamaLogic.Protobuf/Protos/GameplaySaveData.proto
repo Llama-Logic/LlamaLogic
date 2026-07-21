@@ -1237,6 +1237,12 @@ message GameplayOptions {
 	optional bool dynasty_prestige_decay_enabled = 59 [default = true];
 	optional bool autonomy_infants_caregiver_disabled = 60 [default = false];
 	optional .EA.Sims4.Persistence.FestivalNotificationBlacklist festival_notification_blacklist = 61;
+	optional bool autosave_real_time_enabled = 62 [default = false];
+	optional uint32 autosave_sim_time_frequency = 63 [default = 0];
+	optional uint32 save_reminder_frequency = 64 [default = 0];
+	optional bool autosave_on_build_buy_exit = 65 [default = false];
+	optional bool autosave_on_travel = 66 [default = true];
+	optional uint32 autosave_real_time_frequency = 67;
 }
 
 message RestaurantZoneDirectorData {

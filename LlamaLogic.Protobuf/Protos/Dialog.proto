@@ -675,6 +675,7 @@ message UiDialogNotification {
 	optional bool does_persist = 8 [default = true];
 	optional .EA.Sims4.Network.UiCareerNotificationArgs career_args = 9;
 	optional .EA.Sims4.Network.UiDialogNotification.NotificationAutoDeleteReason auto_delete_reason = 10;
+	optional bool disable_prompt_buttons_during_save_lock = 11;
 	extend .EA.Sims4.Network.UiDialogMessage {
 		optional .EA.Sims4.Network.UiDialogNotification dialog = 102;
 	}
