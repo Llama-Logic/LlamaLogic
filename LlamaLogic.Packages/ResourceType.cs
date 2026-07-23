@@ -1936,5 +1936,6 @@ public enum ResourceType :
     /// <summary>
     /// Zone Object Data
     /// </summary>
+    [StandardCompression(CompressionTypeMethodNumber.Internal_compression)]
     ZoneObjectData = 0x00000006
 }
