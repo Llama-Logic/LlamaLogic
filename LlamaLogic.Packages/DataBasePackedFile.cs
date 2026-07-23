@@ -54,7 +54,11 @@ public sealed class DataBasePackedFile :
     const FileOptions createPackageFileStreamOptions = FileOptions.RandomAccess;
     static readonly Version defaultFileVersion = new(2, 1);
     const ushort defaultMnCommitted = 1;
-    const uint defaultUnused4 = 3U;
+    static readonly ReadOnlyMemory<byte> defaultUnused1 = Enumerable.Range(0, 4).Select(_ => (byte)0x00).ToArray();
+    static readonly ReadOnlyMemory<byte> defaultUnused2 = Enumerable.Range(0, 4).Select(_ => (byte)0x00).ToArray();
+    static readonly ReadOnlyMemory<byte> defaultUnused3 = Enumerable.Range(0, 12).Select(_ => (byte)0x00).ToArray();
+    static readonly ReadOnlyMemory<byte> defaultUnused4 = new byte[] { 0x03, 0x00, 0x00, 0x00 };
+    static readonly ReadOnlyMemory<byte> defaultUnused5 = Enumerable.Range(0, 24).Select(_ => (byte)0x00).ToArray();
     static readonly Version defaultUserVersion = new(0, 0);
     static readonly Memory<byte> expectedFileIdentifier = "DBPF"u8.ToArray();
     static readonly ImmutableDictionary<ResourceType, ResourceFileType?> resourceFileTypeByResourceType = Enum
@@ -304,6 +308,11 @@ public sealed class DataBasePackedFile :
         loadedResources = [];
         resourceLock = new();
         unloadedResources = [];
+        unused1 = defaultUnused1;
+        unused2 = defaultUnused2;
+        unused3 = defaultUnused3;
+        unused4 = defaultUnused4;
+        unused5 = defaultUnused5;
         CreationTime = DateTimeOffset.UtcNow;
         FileVersion = defaultFileVersion;
         UpdatedTime = DateTimeOffset.UtcNow;
@@ -384,6 +393,11 @@ public sealed class DataBasePackedFile :
     Dictionary<ResourceKey, string>? resourceNameByKey;
     readonly Stream? stream;
     readonly Dictionary<ResourceKey, IndexEntry> unloadedResources;
+    ReadOnlyMemory<byte> unused1;
+    ReadOnlyMemory<byte> unused2;
+    ReadOnlyMemory<byte> unused3;
+    ReadOnlyMemory<byte> unused4;
+    ReadOnlyMemory<byte> unused5;
 
     /// <summary>
     /// Gets whether the package can be saved in place
@@ -419,14 +433,84 @@ public sealed class DataBasePackedFile :
         GetKeys();
 
     /// <summary>
-    /// Gets/sets the version of the user (presumably the user agent, actually? -- is Maxis versioning human beings?)
+    /// Gets/sets the four bytes in the package header starting at index 14h
     /// </summary>
-    public Version UserVersion { get; set; }
+    public ReadOnlyMemory<byte> Unused1
+    {
+        get => unused1;
+        set
+        {
+            if (value.Length is not 4)
+                throw new InvalidOperationException($"{nameof(Unused1)} must be four bytes in length");
+            unused1 = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets/sets the four bytes in the package header starting at index 20h
+    /// </summary>
+    public ReadOnlyMemory<byte> Unused2
+    {
+        get => unused2;
+        set
+        {
+            if (value.Length is not 4)
+                throw new InvalidOperationException($"{nameof(Unused2)} must be four bytes in length");
+            unused2 = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets/sets the twelve bytes in the package header starting at index 30h
+    /// </summary>
+    public ReadOnlyMemory<byte> Unused3
+    {
+        get => unused3;
+        set
+        {
+            if (value.Length is not 12)
+                throw new InvalidOperationException($"{nameof(Unused3)} must be twelve bytes in length");
+            unused3 = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets/sets the four bytes in the package header starting at index 3Ch
+    /// </summary>
+    public ReadOnlyMemory<byte> Unused4
+    {
+        get => unused4;
+        set
+        {
+            if (value.Length is not 4)
+                throw new InvalidOperationException($"{nameof(Unused4)} must be four bytes in length");
+            unused4 = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets/sets the twenty-four bytes in the package header starting at index 48h
+    /// </summary>
+    public ReadOnlyMemory<byte> Unused5
+    {
+        get => unused5;
+        set
+        {
+            if (value.Length is not 24)
+                throw new InvalidOperationException($"{nameof(Unused5)} must be four bytes in length");
+            unused5 = value;
+        }
+    }
 
     /// <summary>
     /// Gets/sets when the package was last updated
     /// </summary>
     public DateTimeOffset UpdatedTime { get; set; }
+
+    /// <summary>
+    /// Gets/sets the version of the user (presumably the user agent, actually? -- is Maxis versioning human beings?)
+    /// </summary>
+    public Version UserVersion { get; set; }
 
     /// <summary>
     /// Gets/sets the content of a resource with the specified <paramref name="key"/>
@@ -1814,7 +1898,7 @@ public sealed class DataBasePackedFile :
 
     void ParseHeader(ReadOnlySpan<byte> header, out int indexEntryCount, out int indexSize, out long indexPosition)
     {
-        if (header.Length != 96)
+        if (header.Length is not 96)
             throw new NotSupportedException("Header length is not supported");
         var mnFileIdentifier = header[0..4];
         if (!mnFileIdentifier.SequenceEqual(expectedFileIdentifier.Span))
@@ -1825,17 +1909,22 @@ public sealed class DataBasePackedFile :
         var mnUserVersion_major = MemoryMarshal.Read<uint>(header[12..16]);
         var mnUserVersion_minor = MemoryMarshal.Read<uint>(header[16..20]);
         UserVersion = new Version((int)mnUserVersion_major, (int)mnUserVersion_minor);
+        unused1 = header[20..24].ToArray();
         var mnCreationTime = MemoryMarshal.Read<int>(header[24..28]);
         CreationTime = DateTimeOffset.FromUnixTimeSeconds(mnCreationTime);
         var mnUpdatedTime = MemoryMarshal.Read<int>(header[28..32]);
         UpdatedTime = DateTimeOffset.FromUnixTimeSeconds(mnUpdatedTime);
+        unused2 = header[32..36].ToArray();
         var mnIndexRecordEntryCount = MemoryMarshal.Read<uint>(header[36..40]);
         indexEntryCount = (int)mnIndexRecordEntryCount;
         var mnIndexRecordPositionLow = MemoryMarshal.Read<uint>(header[40..44]);
         var mnIndexRecordSize = MemoryMarshal.Read<uint>(header[44..48]);
         indexSize = (int)mnIndexRecordSize;
+        unused3 = header[48..60].ToArray();
+        unused4 = header[60..64].ToArray();
         var mnIndexRecordPosition = MemoryMarshal.Read<ulong>(header[64..72]);
         indexPosition = mnIndexRecordPosition != 0 ? (long)mnIndexRecordPosition : mnIndexRecordPositionLow;
+        unused5 = header[72..96].ToArray();
     }
 
     void ParseIndex(ReadOnlySpan<byte> index, int indexEntryCount)
@@ -2194,16 +2283,18 @@ public sealed class DataBasePackedFile :
         var mnUserVersion_minor = (uint)UserVersion.Minor;
         MemoryMarshal.Write(header[12..16], ref mnUserVersion_major);
         MemoryMarshal.Write(header[16..20], ref mnUserVersion_minor);
+        unused1.Span.CopyTo(header[20..24]);
         var mnCreationTime = (int)CreationTime.ToUnixTimeSeconds();
         MemoryMarshal.Write(header[24..28], ref mnCreationTime);
         var mnUpdatedTime = (int)UpdatedTime.ToUnixTimeSeconds();
         MemoryMarshal.Write(header[28..32], ref mnUpdatedTime);
+        unused2.Span.CopyTo(header[32..36]);
         var mnIndexRecordEntryCount = (uint)unloadedResources.Count + (uint)loadedResources.Count;
         MemoryMarshal.Write(header[36..40], ref mnIndexRecordEntryCount);
         var mnIndexRecordSize = (uint)indexSize;
         MemoryMarshal.Write(header[44..48], ref mnIndexRecordSize);
-        var unused4 = defaultUnused4;
-        MemoryMarshal.Write(header[60..64], ref unused4);
+        unused3.Span.CopyTo(header[48..60]);
+        unused4.Span.CopyTo(header[60..64]);
         if (hasIndex)
         {
             var mnIndexRecordPosition = 96UL
@@ -2211,6 +2302,7 @@ public sealed class DataBasePackedFile :
                 + (ulong)loadedResources.Values.Sum(loadedResource => (uint)loadedResource.Memory.Length);
             MemoryMarshal.Write(header[64..72], ref mnIndexRecordPosition);
         }
+        unused5.Span.CopyTo(header[72..96]);
     }
 
     static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, int position, ResourceKey key, CompressionTypeMethodBitmask mnSize, uint mnSizeDecompressed, CompressionTypeMethodNumber mnCompressionType, ushort mnCommitted)
