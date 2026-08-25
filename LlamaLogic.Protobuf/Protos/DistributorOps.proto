@@ -461,6 +461,7 @@ message Operation {
 		KINGDOM_REQUEST_DEFAULT_PRONOUNS = 1329;
 		SET_ANCESTORS_DATA = 1330;
 		REQUEST_AUTOSAVE = 1331;
+		GSI_DATA = 1332;
 	}
 	required .EA.Sims4.Network.Operation.Type type = 1;
 	optional bytes data = 2;
@@ -2017,4 +2018,9 @@ message ScandalSecretInfo {
 	required fixed64 secret_owner_id = 3;
 	required fixed64 secret_keeper_id = 4;
 	required .EA.Sims4.Network.ScandalSecretSimpleData scandal_secret = 5;
+}
+
+message GSIData {
+	optional string text = 1;
+	optional string context_data = 2;
 }
