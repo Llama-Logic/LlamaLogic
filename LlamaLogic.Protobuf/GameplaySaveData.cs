@@ -6127,10 +6127,10 @@ namespace EA.Sims4.Persistence
         private uint? __pbn__AutosaveSimTimeFrequency;
 
         [global::ProtoBuf.ProtoMember(64, Name = @"save_reminder_frequency")]
-        [global::System.ComponentModel.DefaultValue(0u)]
+        [global::System.ComponentModel.DefaultValue(4u)]
         public uint SaveReminderFrequency
         {
-            get => __pbn__SaveReminderFrequency ?? 0u;
+            get => __pbn__SaveReminderFrequency ?? 4u;
             set => __pbn__SaveReminderFrequency = value;
         }
         public bool ShouldSerializeSaveReminderFrequency() => __pbn__SaveReminderFrequency != null;

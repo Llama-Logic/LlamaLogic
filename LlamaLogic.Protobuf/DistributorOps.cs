@@ -942,6 +942,8 @@ namespace EA.Sims4.Network
             SetAncestorsData = 1330,
             [global::ProtoBuf.ProtoEnum(Name = @"REQUEST_AUTOSAVE")]
             RequestAutosave = 1331,
+            [global::ProtoBuf.ProtoEnum(Name = @"GSI_DATA")]
+            GsiData = 1332,
         }
 
     }
@@ -7933,6 +7935,37 @@ namespace EA.Sims4.Network
             [global::ProtoBuf.ProtoEnum(Name = @"OTHERS_SECRET")]
             OthersSecret = 1,
         }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class GSIData : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"text")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Text
+        {
+            get => __pbn__Text ?? "";
+            set => __pbn__Text = value;
+        }
+        public bool ShouldSerializeText() => __pbn__Text != null;
+        public void ResetText() => __pbn__Text = null;
+        private string __pbn__Text;
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"context_data")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ContextData
+        {
+            get => __pbn__ContextData ?? "";
+            set => __pbn__ContextData = value;
+        }
+        public bool ShouldSerializeContextData() => __pbn__ContextData != null;
+        public void ResetContextData() => __pbn__ContextData = null;
+        private string __pbn__ContextData;
 
     }
 

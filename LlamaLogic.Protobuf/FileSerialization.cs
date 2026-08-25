@@ -417,6 +417,27 @@ namespace EA.Sims4.Persistence
         [global::ProtoBuf.ProtoMember(19, Name = @"kingdom_service")]
         public PersistableKingdomService KingdomService { get; set; }
 
+        [global::ProtoBuf.ProtoMember(20, Name = @"preferred_manual_slot_id")]
+        public uint PreferredManualSlotId
+        {
+            get => __pbn__PreferredManualSlotId.GetValueOrDefault();
+            set => __pbn__PreferredManualSlotId = value;
+        }
+        public bool ShouldSerializePreferredManualSlotId() => __pbn__PreferredManualSlotId != null;
+        public void ResetPreferredManualSlotId() => __pbn__PreferredManualSlotId = null;
+        private uint? __pbn__PreferredManualSlotId;
+
+        [global::ProtoBuf.ProtoMember(21, Name = @"preferred_manual_slot_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string PreferredManualSlotName
+        {
+            get => __pbn__PreferredManualSlotName ?? "";
+            set => __pbn__PreferredManualSlotName = value;
+        }
+        public bool ShouldSerializePreferredManualSlotName() => __pbn__PreferredManualSlotName != null;
+        public void ResetPreferredManualSlotName() => __pbn__PreferredManualSlotName = null;
+        private string __pbn__PreferredManualSlotName;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
