@@ -7459,6 +7459,16 @@ namespace EA.Sims4.Persistence
         public void ResetCarryingSim() => __pbn__CarryingSim = null;
         private ulong? __pbn__CarryingSim;
 
+        [global::ProtoBuf.ProtoMember(34, Name = @"carry_track")]
+        public uint CarryTrack
+        {
+            get => __pbn__CarryTrack.GetValueOrDefault();
+            set => __pbn__CarryTrack = value;
+        }
+        public bool ShouldSerializeCarryTrack() => __pbn__CarryTrack != null;
+        public void ResetCarryTrack() => __pbn__CarryTrack = null;
+        private uint? __pbn__CarryTrack;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
