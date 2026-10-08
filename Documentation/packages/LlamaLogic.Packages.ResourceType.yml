@@ -366,8 +366,26 @@ items:
   summary: A type of resource within a <xref href="LlamaLogic.Packages.DataBasePackedFile" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
-    content: 'public enum ResourceType : uint'
-    content.vb: Public Enum ResourceType As UInteger
+    content: >-
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "This is by nature of how the package files work. We have no control over that.")]
+
+      public enum ResourceType : uint
+    content.vb: >-
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="This is by nature of how the package files work. We have no control over that.")>
+
+      Public Enum ResourceType As UInteger
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This is by nature of how the package files work. We have no control over that.
 - uid: LlamaLogic.Packages.ResourceType.Unspecified
   commentId: F:LlamaLogic.Packages.ResourceType.Unspecified
   id: Unspecified
@@ -12790,26 +12808,21 @@ references:
   fullName: LlamaLogic.Packages.DataBasePackedFile
 - uid: LlamaLogic.Packages
   commentId: N:LlamaLogic.Packages
-  href: LlamaLogic.html
   name: LlamaLogic.Packages
   nameWithType: LlamaLogic.Packages
   fullName: LlamaLogic.Packages
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
 - uid: LlamaLogic.Packages.ResourceType
   commentId: T:LlamaLogic.Packages.ResourceType
   parent: LlamaLogic.Packages

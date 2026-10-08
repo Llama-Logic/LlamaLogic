@@ -31,6 +31,11 @@ items:
     typeParameters:
     - id: TSelf
     content.vb: Public Interface IModel(Of TSelf As IModel(Of TSelf)) Inherits IModel
+  derivedClasses:
+  - LlamaLogic.Packages.Models.Data.DataModel
+  - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
+  - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  - LlamaLogic.Packages.Models.StringTableModel
   inheritedMembers:
   - LlamaLogic.Packages.Models.IModel.SupportedTypes
   - LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
@@ -79,34 +84,27 @@ items:
 references:
 - uid: LlamaLogic.Packages.Models
   commentId: N:LlamaLogic.Packages.Models
-  href: LlamaLogic.html
   name: LlamaLogic.Packages.Models
   nameWithType: LlamaLogic.Packages.Models
   fullName: LlamaLogic.Packages.Models
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
 - uid: LlamaLogic.Packages.Models.IModel.SupportedTypes
   commentId: P:LlamaLogic.Packages.Models.IModel.SupportedTypes
   parent: LlamaLogic.Packages.Models.IModel

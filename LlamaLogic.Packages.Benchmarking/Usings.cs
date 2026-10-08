@@ -1,0 +1,11 @@
+global using BenchmarkDotNet.Attributes;
+global using BenchmarkDotNet.Engines;
+global using BenchmarkDotNet.Running;
+global using LlamaLogic.Packages;
+global using Microsoft.VSDiagnostics;
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Security.Cryptography;
+global using System.Threading.Tasks;

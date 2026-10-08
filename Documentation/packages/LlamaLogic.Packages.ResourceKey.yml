@@ -396,15 +396,33 @@ items:
   summary: Converts a string into a <xref href="LlamaLogic.Packages.ResourceKey" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
-    content: public static implicit operator ResourceKey(string s)
+    content: >-
+      [SuppressMessage("Usage", "CA2225:Operator overloads have named alternates", Justification = "For convenience in Python.")]
+
+      public static implicit operator ResourceKey(string s)
     parameters:
     - id: s
       type: System.String
       description: The string to convert
     return:
       type: LlamaLogic.Packages.ResourceKey
-    content.vb: Public Shared Widening Operator CType(s As String) As ResourceKey
+    content.vb: >-
+      <SuppressMessage("Usage", "CA2225:Operator overloads have named alternates", Justification:="For convenience in Python.")>
+
+      Public Shared Widening Operator CType(s As String) As ResourceKey
   overload: LlamaLogic.Packages.ResourceKey.op_Implicit*
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Usage
+    - type: System.String
+      value: CA2225:Operator overloads have named alternates
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: For convenience in Python.
   nameWithType.vb: ResourceKey.CType(String)
   fullName.vb: LlamaLogic.Packages.ResourceKey.CType(String)
   name.vb: CType(String)
@@ -940,26 +958,21 @@ references:
   fullName: LlamaLogic.Packages.DataBasePackedFile
 - uid: LlamaLogic.Packages
   commentId: N:LlamaLogic.Packages
-  href: LlamaLogic.html
   name: LlamaLogic.Packages
   nameWithType: LlamaLogic.Packages
   fullName: LlamaLogic.Packages
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
 - uid: System.IEquatable{LlamaLogic.Packages.ResourceKey}
   commentId: T:System.IEquatable{LlamaLogic.Packages.ResourceKey}
   parent: System

@@ -186,9 +186,21 @@ items:
     - id: s
       type: System.String
       description: The <xref href="System.String" data-throw-if-not-resolved="false"></xref> to parse
+      attributes:
+      - type: System.Diagnostics.CodeAnalysis.NotNullWhenAttribute
+        ctor: System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)
+        arguments:
+        - type: System.Boolean
+          value: true
     - id: result
       type: System.Collections.Generic.IReadOnlyList{LlamaLogic.ValveDataFormat.VdfNode}
       description: The list of <xref href="LlamaLogic.ValveDataFormat.VdfNode" data-throw-if-not-resolved="false"></xref> if <code class="paramref">s</code> was successfully parsed
+      attributes:
+      - type: System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute
+        ctor: System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)
+        arguments:
+        - type: System.Boolean
+          value: false
     return:
       type: System.Boolean
       description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">s</code> was successfully parsed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
@@ -512,26 +524,21 @@ items:
 references:
 - uid: LlamaLogic.ValveDataFormat
   commentId: N:LlamaLogic.ValveDataFormat
-  href: LlamaLogic.html
   name: LlamaLogic.ValveDataFormat
   nameWithType: LlamaLogic.ValveDataFormat
   fullName: LlamaLogic.ValveDataFormat
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.ValveDataFormat
     name: ValveDataFormat
-    href: LlamaLogic.ValveDataFormat.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.ValveDataFormat
     name: ValveDataFormat
-    href: LlamaLogic.ValveDataFormat.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System

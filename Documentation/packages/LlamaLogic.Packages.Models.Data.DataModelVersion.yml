@@ -28,8 +28,41 @@ items:
   summary: Known versions of the format for <xref href="LlamaLogic.Packages.ResourceType.SimData" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Packages.ResourceType.CombinedTuning" data-throw-if-not-resolved="false"></xref> resources
   example: []
   syntax:
-    content: 'public enum DataModelVersion : uint'
-    content.vb: Public Enum DataModelVersion As UInteger
+    content: >-
+      [SuppressMessage("Design", "CA1008: Enums should have zero value", Justification = "We do not know what the proper name of such a value would be.")]
+
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.")]
+
+      public enum DataModelVersion : uint
+    content.vb: >-
+      <SuppressMessage("Design", "CA1008: Enums should have zero value", Justification:="We do not know what the proper name of such a value would be.")>
+
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.")>
+
+      Public Enum DataModelVersion As UInteger
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1008: Enums should have zero value'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: We do not know what the proper name of such a value would be.
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.
 - uid: LlamaLogic.Packages.Models.Data.DataModelVersion.SmartSimOriginalEdition
   commentId: F:LlamaLogic.Packages.Models.Data.DataModelVersion.SmartSimOriginalEdition
   id: SmartSimOriginalEdition
@@ -101,42 +134,33 @@ references:
   fullName: LlamaLogic.Packages.ResourceType.CombinedTuning
 - uid: LlamaLogic.Packages.Models.Data
   commentId: N:LlamaLogic.Packages.Models.Data
-  href: LlamaLogic.html
   name: LlamaLogic.Packages.Models.Data
   nameWithType: LlamaLogic.Packages.Models.Data
   fullName: LlamaLogic.Packages.Models.Data
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
   - name: .
   - uid: LlamaLogic.Packages.Models.Data
     name: Data
-    href: LlamaLogic.Packages.Models.Data.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
   - name: .
   - uid: LlamaLogic.Packages.Models.Data
     name: Data
-    href: LlamaLogic.Packages.Models.Data.html
 - uid: LlamaLogic.Packages.Models.Data.DataModelVersion
   commentId: T:LlamaLogic.Packages.Models.Data.DataModelVersion
   parent: LlamaLogic.Packages.Models.Data

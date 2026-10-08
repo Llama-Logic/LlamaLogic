@@ -164,14 +164,32 @@ items:
   summary: Computes the hash value for the specified string
   example: []
   syntax:
-    content: public byte[] ComputeHash(string? value)
+    content: >-
+      [SuppressMessage("Globalization", "CA1308: Normalize strings to uppercase", Justification = "It's not our fault Maxis did this wrong, Code Analyzer.")]
+
+      public byte[] ComputeHash(string? value)
     parameters:
     - id: value
       type: System.String
     return:
       type: System.Byte[]
-    content.vb: Public Function ComputeHash(value As String) As Byte()
+    content.vb: >-
+      <SuppressMessage("Globalization", "CA1308: Normalize strings to uppercase", Justification:="It's not our fault Maxis did this wrong, Code Analyzer.")>
+
+      Public Function ComputeHash(value As String) As Byte()
   overload: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash*
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Globalization
+    - type: System.String
+      value: 'CA1308: Normalize strings to uppercase'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: It's not our fault Maxis did this wrong, Code Analyzer.
   nameWithType.vb: FnvHash.ComputeHash(String)
   fullName.vb: LlamaLogic.Packages.Cryptography.FnvHash.ComputeHash(String)
   name.vb: ComputeHash(String)
@@ -281,34 +299,27 @@ items:
 references:
 - uid: LlamaLogic.Packages.Cryptography
   commentId: N:LlamaLogic.Packages.Cryptography
-  href: LlamaLogic.html
   name: LlamaLogic.Packages.Cryptography
   nameWithType: LlamaLogic.Packages.Cryptography
   fullName: LlamaLogic.Packages.Cryptography
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Cryptography
     name: Cryptography
-    href: LlamaLogic.Packages.Cryptography.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Cryptography
     name: Cryptography
-    href: LlamaLogic.Packages.Cryptography.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System

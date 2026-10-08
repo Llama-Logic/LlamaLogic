@@ -1074,6 +1074,12 @@ items:
     - id: result
       type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
       description: When this method returns, contains the result of successfully parsing <code class="paramref">s</code> or an undefined value on failure
+      attributes:
+      - type: System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute
+        ctor: System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)
+        arguments:
+        - type: System.Boolean
+          value: false
     return:
       type: System.Boolean
     content.vb: Public Shared Function TryParse(s As String, result As ModFileManifestModel) As Boolean
@@ -1111,12 +1117,24 @@ items:
     - id: s
       type: System.String
       description: The string to parse
+      attributes:
+      - type: System.Diagnostics.CodeAnalysis.NotNullWhenAttribute
+        ctor: System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)
+        arguments:
+        - type: System.Boolean
+          value: true
     - id: provider
       type: System.IFormatProvider
       description: An object that provides culture-specific formatting information about <code class="paramref">s</code>
     - id: result
       type: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
       description: When this method returns, contains the result of successfully parsing <code class="paramref">s</code> or an undefined value on failure
+      attributes:
+      - type: System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute
+        ctor: System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)
+        arguments:
+        - type: System.Boolean
+          value: false
     return:
       type: System.Boolean
     content.vb: Public Shared Function TryParse(s As String, provider As IFormatProvider, result As ModFileManifestModel) As Boolean
@@ -2477,42 +2495,33 @@ references:
   - name: )
 - uid: LlamaLogic.Packages.Models.ModFileManifest
   commentId: N:LlamaLogic.Packages.Models.ModFileManifest
-  href: LlamaLogic.html
   name: LlamaLogic.Packages.Models.ModFileManifest
   nameWithType: LlamaLogic.Packages.Models.ModFileManifest
   fullName: LlamaLogic.Packages.Models.ModFileManifest
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
   - name: .
   - uid: LlamaLogic.Packages.Models.ModFileManifest
     name: ModFileManifest
-    href: LlamaLogic.Packages.Models.ModFileManifest.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
   - name: .
   - uid: LlamaLogic.Packages.Models.ModFileManifest
     name: ModFileManifest
-    href: LlamaLogic.Packages.Models.ModFileManifest.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -2845,34 +2854,27 @@ references:
   fullName: System
 - uid: LlamaLogic.Packages.Models
   commentId: N:LlamaLogic.Packages.Models
-  href: LlamaLogic.html
   name: LlamaLogic.Packages.Models
   nameWithType: LlamaLogic.Packages.Models
   fullName: LlamaLogic.Packages.Models
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   - name: .
   - uid: LlamaLogic.Packages.Models
     name: Models
-    href: LlamaLogic.Packages.Models.html
 - uid: LlamaLogic.Packages.Models.IModel`1
   commentId: T:LlamaLogic.Packages.Models.IModel`1
   href: LlamaLogic.Packages.Models.IModel-1.html
@@ -3226,26 +3228,21 @@ references:
   fullName: LlamaLogic.Packages.DataBasePackedFile
 - uid: LlamaLogic.Packages
   commentId: N:LlamaLogic.Packages
-  href: LlamaLogic.html
   name: LlamaLogic.Packages
   nameWithType: LlamaLogic.Packages
   fullName: LlamaLogic.Packages
   spec.csharp:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
   spec.vb:
   - uid: LlamaLogic
     name: LlamaLogic
-    href: LlamaLogic.html
   - name: .
   - uid: LlamaLogic.Packages
     name: Packages
-    href: LlamaLogic.Packages.html
 - uid: ICSharpCode.SharpZipLib.Zip.ZipFile
   commentId: T:ICSharpCode.SharpZipLib.Zip.ZipFile
   parent: ICSharpCode.SharpZipLib.Zip
