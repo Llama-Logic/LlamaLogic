@@ -52,7 +52,7 @@ public static class DirectDrawSurface
         var encoder = new BcEncoder();
         DdsFile ddsImage;
         using (var pngDataStream = new ReadOnlyMemoryOfByteStream(pngData))
-        using (var pngImage = Image.Load<Rgba32>(pngDataStream))
+        using (var pngImage = Image.Load<Rgba32>(ImageDecoding.Options, pngDataStream))
         {
             encoder.OutputOptions.Format = CompressionFormat.Bc3;
             ddsImage = encoder.EncodeToDds(pngImage);
@@ -72,7 +72,7 @@ public static class DirectDrawSurface
         var encoder = new BcEncoder();
         DdsFile ddsImage;
         using (var pngDataStream = new ReadOnlyMemoryOfByteStream(pngData))
-        using (var pngImage = await Image.LoadAsync<Rgba32>(pngDataStream, cancellationToken).ConfigureAwait(false))
+        using (var pngImage = await Image.LoadAsync<Rgba32>(ImageDecoding.Options, pngDataStream, cancellationToken).ConfigureAwait(false))
         {
             encoder.OutputOptions.Format = CompressionFormat.Bc3;
             ddsImage = await encoder.EncodeToDdsAsync(pngImage, token: cancellationToken).ConfigureAwait(false);

@@ -2022,7 +2022,7 @@ public sealed class DataBasePackedFile :
     {
         RequireWritableStream();
         using var heldResourceLock = resourceLock.Lock();
-        InternalLoadAll(false);
+        InternalLoadAll(true);
         stream.Seek(0, SeekOrigin.Begin);
         InternalCopyTo(stream, resourceKeyOrder);
         stream.SetLength(stream.Position);
@@ -2070,7 +2070,7 @@ public sealed class DataBasePackedFile :
     {
         RequireWritableStream();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
-        await InternalLoadAllAsync(false, cancellationToken).ConfigureAwait(false);
+        await InternalLoadAllAsync(true, cancellationToken).ConfigureAwait(false);
         stream.Seek(0, SeekOrigin.Begin);
         await InternalCopyToAsync(stream, resourceKeyOrder, cancellationToken).ConfigureAwait(false);
         stream.SetLength(stream.Position);

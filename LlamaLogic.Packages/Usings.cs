@@ -11,6 +11,7 @@ global using LlamaLogic.Packages.Models.ModFileManifest;
 global using Nito.AsyncEx;
 global using SixLabors.ImageSharp;
 global using SixLabors.ImageSharp.Advanced;
+global using SixLabors.ImageSharp.Formats;
 global using SixLabors.ImageSharp.Formats.Jpeg;
 global using SixLabors.ImageSharp.Formats.Png;
 global using SixLabors.ImageSharp.Metadata;

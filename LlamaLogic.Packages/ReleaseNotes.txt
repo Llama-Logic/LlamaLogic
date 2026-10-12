@@ -1,2 +1,3 @@
-DataBasePackedFile no longer throws KeyNotFoundException for resource types not defined in ResourceType when indexing names, using the indexer, or setting content with CompressionMode.Auto.
-Save and SaveAsync now document that they overwrite the package in place and how to update a package safely with SaveAs instead.
+DataBasePackedFile.Save and SaveAsync no longer throw on packages containing deleted records; they keep those records, as SaveAs and CopyTo already did.
+Image conversions now decode only PNG and JPEG input and ignore metadata embedded in it, so other formats (such as TIFF) passed as PNG data or embedded as the alpha channel of a translucent JPEG are rejected with an ImageFormatException.
+Reading a translucent JPEG now takes the alpha image's length from its ALFA header instead of also including two bytes of the following marker.

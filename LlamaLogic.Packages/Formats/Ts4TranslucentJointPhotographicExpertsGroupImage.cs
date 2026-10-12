@@ -15,7 +15,7 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
     {
         ReadOnlyMemory<byte> jpegData, alphaData;
         using (var combinedStream = new ReadOnlyMemoryOfByteStream(pngData))
-        using (var combined = Image.Load<Rgba32>(combinedStream))
+        using (var combined = Image.Load<Rgba32>(ImageDecoding.Options, combinedStream))
         {
             using (var jpegImage = combined.Clone(c => c.BackgroundColor(Color.White)))
             {
@@ -73,7 +73,7 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
     {
         ReadOnlyMemory<byte> jpegData, alphaData;
         using (var combinedStream = new ReadOnlyMemoryOfByteStream(pngData))
-        using (var combined = await Image.LoadAsync<Rgba32>(combinedStream, cancellationToken).ConfigureAwait(false))
+        using (var combined = await Image.LoadAsync<Rgba32>(ImageDecoding.Options, combinedStream, cancellationToken).ConfigureAwait(false))
         {
             using (var jpegImage = combined.Clone(c => c.BackgroundColor(Color.White)))
             {
@@ -137,19 +137,22 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
         while ((scanIndex = contentScanningMemory.Span.IndexOf(jpegApp0Marker.Span)) != -1)
         {
             var szSection = BinaryPrimitives.ReverseEndianness(MemoryMarshal.Read<ushort>(contentScanningMemory.Slice(scanIndex + 2, 2).Span));
-            var section = contentScanningMemory.Slice(scanIndex + 4, szSection);
-            if (section.Span[0..4].SequenceEqual("ALFA"u8))
+            var section = contentScanningMemory.Slice(scanIndex + 4, szSection - 2);
+            if (section.Length >= 8 && section.Span[0..4].SequenceEqual("ALFA"u8))
             {
-                alphaData = section[8..];
+                var alphaLength = BinaryPrimitives.ReverseEndianness(MemoryMarshal.Read<uint>(section.Span[4..8]));
+                if (alphaLength > section.Length - 8)
+                    throw new InvalidDataException("ALFA PNG APP0 marker declares more data than its section contains");
+                alphaData = section.Slice(8, (int)alphaLength);
                 break;
             }
             contentScanningMemory = contentScanningMemory[(scanIndex + szSection + 2)..];
         }
         if (alphaData.IsEmpty)
             throw new InvalidDataException("ALFA PNG APP0 marker not found in JPEG");
-        using var jpegImage = Image.Load<Rgba32>(contentStream);
+        using var jpegImage = Image.Load<Rgba32>(ImageDecoding.Options, contentStream);
         using var pngStream = new ReadOnlyMemoryOfByteStream(alphaData);
-        using var pngImage = Image.Load<L8>(pngStream);
+        using var pngImage = Image.Load<L8>(ImageDecoding.Options, pngStream);
         if (jpegImage.Size != pngImage.Size)
             throw new InvalidDataException("JPEG and PNG do not have identical dimensions");
         using var combined = new Image<Rgba32>(jpegImage.Width, jpegImage.Height);
@@ -185,19 +188,22 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
         while ((scanIndex = contentScanningMemory.Span.IndexOf(jpegApp0Marker.Span)) != -1)
         {
             var szSection = BinaryPrimitives.ReverseEndianness(MemoryMarshal.Read<ushort>(contentScanningMemory.Slice(scanIndex + 2, 2).Span));
-            var section = contentScanningMemory.Slice(scanIndex + 4, szSection);
-            if (section.Span[0..4].SequenceEqual("ALFA"u8))
+            var section = contentScanningMemory.Slice(scanIndex + 4, szSection - 2);
+            if (section.Length >= 8 && section.Span[0..4].SequenceEqual("ALFA"u8))
             {
-                alphaData = section[8..];
+                var alphaLength = BinaryPrimitives.ReverseEndianness(MemoryMarshal.Read<uint>(section.Span[4..8]));
+                if (alphaLength > section.Length - 8)
+                    throw new InvalidDataException("ALFA PNG APP0 marker declares more data than its section contains");
+                alphaData = section.Slice(8, (int)alphaLength);
                 break;
             }
             contentScanningMemory = contentScanningMemory[(scanIndex + szSection + 2)..];
         }
         if (alphaData.IsEmpty)
             throw new InvalidDataException("ALFA PNG APP0 marker not found in JPEG");
-        using var jpegImage = await Image.LoadAsync<Rgba32>(contentStream, cancellationToken).ConfigureAwait(false);
+        using var jpegImage = await Image.LoadAsync<Rgba32>(ImageDecoding.Options, contentStream, cancellationToken).ConfigureAwait(false);
         using var pngStream = new ReadOnlyMemoryOfByteStream(alphaData);
-        using var pngImage = await Image.LoadAsync<L8>(pngStream, cancellationToken).ConfigureAwait(false);
+        using var pngImage = await Image.LoadAsync<L8>(ImageDecoding.Options, pngStream, cancellationToken).ConfigureAwait(false);
         if (jpegImage.Size != pngImage.Size)
             throw new InvalidDataException("JPEG and PNG do not have identical dimensions");
         using var combined = new Image<Rgba32>(jpegImage.Width, jpegImage.Height);
