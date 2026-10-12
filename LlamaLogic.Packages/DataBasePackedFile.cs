@@ -123,6 +123,24 @@ public sealed class DataBasePackedFile :
         return memory;
     }
 
+    static int FillBuffer(Stream stream, Span<byte> buffer)
+    {
+        var totalBytesRead = 0;
+        int bytesRead;
+        while (totalBytesRead < buffer.Length && (bytesRead = stream.Read(buffer[totalBytesRead..])) > 0)
+            totalBytesRead += bytesRead;
+        return totalBytesRead;
+    }
+
+    static async ValueTask<int> FillBufferAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken)
+    {
+        var totalBytesRead = 0;
+        int bytesRead;
+        while (totalBytesRead < buffer.Length && (bytesRead = await stream.ReadAsync(buffer[totalBytesRead..], cancellationToken).ConfigureAwait(false)) > 0)
+            totalBytesRead += bytesRead;
+        return totalBytesRead;
+    }
+
     /// <summary>
     /// Initializes a <see cref="DataBasePackedFile"/> asynchronously from the specified <paramref name="path"/> (🗑️💤)
     /// </summary>
@@ -285,11 +303,8 @@ public sealed class DataBasePackedFile :
         using var compressedStream = new ReadOnlyMemoryOfByteStream(memory);
         using var decompressionStream = new InflaterInputStream(compressedStream);
         var decompressed = new byte[sizeDecompressed];
-#if IS_NET_7_0_OR_GREATER
-        decompressionStream.ReadExactly(decompressed);
-#else
-        decompressionStream.Read(decompressed);
-#endif
+        if (FillBuffer(decompressionStream, decompressed) < decompressed.Length)
+            throw new EndOfStreamException($"The data decompressed to fewer than {sizeDecompressed} bytes");
         return decompressed;
     }
 
@@ -301,7 +316,8 @@ public sealed class DataBasePackedFile :
         using var compressedStream = new ReadOnlyMemoryOfByteStream(memory);
         using var decompressionStream = new InflaterInputStream(compressedStream);
         Memory<byte> decompressed = new byte[sizeDecompressed];
-        await decompressionStream.ReadAsync(decompressed, cancellationToken).ConfigureAwait(false);
+        if (await FillBufferAsync(decompressionStream, decompressed, cancellationToken).ConfigureAwait(false) < decompressed.Length)
+            throw new EndOfStreamException($"The data decompressed to fewer than {sizeDecompressed} bytes");
         return decompressed;
     }
 
@@ -592,7 +608,11 @@ public sealed class DataBasePackedFile :
                 + sizeof(uint) // mnPosition
                 + sizeof(CompressionTypeMethodBitmask) // mnSize
                 + sizeof(uint) // mnSizeDecompressed
-                + sizeof(CompressionTypeMethodNumber) // mnCompressionType
+            )
+            + keys.Count(key => !unloadedResources.TryGetValue(key, out var indexEntry) || indexEntry.mnSize.HasFlag(CompressionTypeMethodBitmask.mbExtendedCompressionType))
+            *
+            (
+                  sizeof(CompressionTypeMethodNumber) // mnCompressionType
                 + sizeof(ushort) // mnCommitted
             );
         index = new ArrayBufferWriter<byte>(indexSize);
@@ -715,27 +735,22 @@ public sealed class DataBasePackedFile :
     {
         using var contentStream = FetchStream(indexEntry, force);
         Memory<byte> content = new byte[indexEntry.mnSizeDecompressed];
-        var bytesRead = contentStream.Read(content.Span);
-        return content[..bytesRead];
+        return content[..FillBuffer(contentStream, content.Span)];
     }
 
     async Task<ReadOnlyMemory<byte>> FetchMemoryAsync(IndexEntry indexEntry, bool force, CancellationToken cancellationToken)
     {
         using var contentStream = FetchStream(indexEntry, force);
         Memory<byte> content = new byte[indexEntry.mnSizeDecompressed];
-        var bytesRead = await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
-        return content[..bytesRead];
+        return content[..await FillBufferAsync(contentStream, content, cancellationToken).ConfigureAwait(false)];
     }
 
     ReadOnlyMemory<byte> FetchRawMemory(IndexEntry indexEntry, bool force)
     {
         using var contentStream = FetchRawStream(indexEntry, force);
         var content = new byte[contentStream.Length];
-#if IS_NET_7_0_OR_GREATER
-        contentStream.ReadExactly(content);
-#else
-        contentStream.Read(content);
-#endif
+        if (FillBuffer(contentStream, content) < content.Length)
+            throw new EndOfStreamException("The resource could not be fully read");
         return content;
     }
 
@@ -743,7 +758,8 @@ public sealed class DataBasePackedFile :
     {
         using var contentStream = FetchRawStream(indexEntry, force);
         Memory<byte> content = new byte[contentStream.Length];
-        await contentStream.ReadAsync(content, cancellationToken).ConfigureAwait(false);
+        if (await FillBufferAsync(contentStream, content, cancellationToken).ConfigureAwait(false) < content.Length)
+            throw new EndOfStreamException("The resource could not be fully read");
         return content;
     }
 
@@ -753,10 +769,7 @@ public sealed class DataBasePackedFile :
             throw new FileNotFoundException($"Resource is marked as deleted (you can provide a value of {true} for the {nameof(force)} parameter of the retrieval method you used to try to recover the content anyway, but this is not guaranteed to work)");
         RequireStream();
         var position = (int)indexEntry.mnPosition;
-        var size =
-              indexEntry.mnCompressionType is CompressionTypeMethodNumber.Uncompressed
-            ? (int)indexEntry.mnSizeDecompressed
-            : (int)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask);
+        var size = (int)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask);
         return new ReadOnlySubStream(stream, new Range(Index.FromStart(position), Index.FromStart(position + size)));
     }
 
@@ -768,11 +781,8 @@ public sealed class DataBasePackedFile :
         else if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Internal_compression or CompressionTypeMethodNumber.Streamable_compression)
         {
             Memory<byte> compressed = new byte[stream.Length];
-#if IS_NET_7_0_OR_GREATER
-            stream.ReadExactly(compressed.Span);
-#else
-            stream.Read(compressed.Span);
-#endif
+            if (FillBuffer(stream, compressed.Span) < compressed.Length)
+                throw new EndOfStreamException("The resource could not be fully read");
             stream = new ReadOnlyMemoryOfByteStream(InternalDecompress(compressed));
         }
         else if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Deleted_record)
@@ -1470,7 +1480,7 @@ public sealed class DataBasePackedFile :
     {
         stream!.Seek(0, SeekOrigin.Begin);
         Span<byte> header = stackalloc byte[96];
-        var headerBytesRead = stream.Read(header);
+        var headerBytesRead = FillBuffer(stream, header);
         ParseHeader(header[..headerBytesRead], out var indexEntryCount, out var indexSize, out var indexPosition);
         if (indexSize > 0)
         {
@@ -1479,7 +1489,7 @@ public sealed class DataBasePackedFile :
             try
             {
                 var index = indexPoolArray.AsSpan()[..indexSize];
-                var indexBytesRead = stream.Read(index);
+                var indexBytesRead = FillBuffer(stream, index);
                 if (indexBytesRead != indexSize)
                     throw new InvalidDataException($"Index at position {indexPosition} of size {indexSize} could not be fully read");
                 ParseIndex(index, indexEntryCount);
@@ -1498,7 +1508,7 @@ public sealed class DataBasePackedFile :
         try
         {
             var header = headerPoolArray.AsMemory()[..96];
-            var headerBytesRead = await stream.ReadAsync(header, cancellationToken).ConfigureAwait(false);
+            var headerBytesRead = await FillBufferAsync(stream, header, cancellationToken).ConfigureAwait(false);
             ParseHeader(header[..headerBytesRead].Span, out var indexEntryCount, out var indexSize, out var indexPosition);
             if (indexSize > 0)
             {
@@ -1507,7 +1517,7 @@ public sealed class DataBasePackedFile :
                 try
                 {
                     var index = indexPoolArray.AsMemory()[..indexSize];
-                    var indexBytesRead = await stream.ReadAsync(index, cancellationToken).ConfigureAwait(false);
+                    var indexBytesRead = await FillBufferAsync(stream, index, cancellationToken).ConfigureAwait(false);
                     if (indexBytesRead != indexSize)
                         throw new InvalidDataException($"Index at position {indexPosition} of size {indexSize} could not be fully read");
                     ParseIndex(index.Span, indexEntryCount);

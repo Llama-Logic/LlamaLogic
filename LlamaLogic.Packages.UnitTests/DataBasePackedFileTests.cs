@@ -162,6 +162,16 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    public void GetRawReadsStoredSizeOfUncompressedEntries()
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var stored = "stored"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.Build([(key, stored, (uint)(stored.Length * 2), (ushort?)0), (new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 2), "following"u8.ToArray(), 9U, (ushort?)0)])));
+        CollectionAssert.AreEqual(stored, dbpf.GetRaw(key).ToArray());
+        CollectionAssert.AreEqual(stored, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
     public void GetTranslucentJpegAsPngRejectsOtherAlphaFormats()
     {
         var key = new ResourceKey(ResourceType.CASPartThumbnail, 0, 1);

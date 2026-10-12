@@ -1,3 +1,4 @@
-DataBasePackedFile.Save and SaveAsync no longer throw on packages containing deleted records; they keep those records, as SaveAs and CopyTo already did.
-Image conversions now decode only PNG and JPEG input and ignore metadata embedded in it, so other formats (such as TIFF) passed as PNG data or embedded as the alpha channel of a translucent JPEG are rejected with an ImageFormatException.
-Reading a translucent JPEG now takes the alpha image's length from its ALFA header instead of also including two bytes of the following marker.
+DataBasePackedFile.CopyTo, SaveAs and SaveAsAsync now write the correct index size when some entries lack extended compression fields, so the packages they write from such sources can be reopened.
+DataBasePackedFile now reads completely from streams that return fewer bytes than requested per read, both when opening packages and when reading resources, on every target framework.
+ZLibDecompress and ZLibDecompressAsync now throw EndOfStreamException when the data decompresses to fewer bytes than requested instead of returning a partly empty result.
+Reading the raw content of a resource marked uncompressed now returns the bytes the index says are stored instead of reading as many bytes as its decompressed size, which could run into the following resource.

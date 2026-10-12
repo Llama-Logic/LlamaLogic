@@ -5,11 +5,17 @@ static class RawPackageBuilder
     public static byte[] Build(IReadOnlyList<(ResourceKey key, byte[] content, bool hasExtendedCompressionType)> entries)
     {
         ArgumentNullException.ThrowIfNull(entries);
+        return Build(entries.Select(entry => (entry.key, entry.content, (uint)entry.content.Length, entry.hasExtendedCompressionType ? (ushort?)0 : null)).ToList());
+    }
+
+    public static byte[] Build(IReadOnlyList<(ResourceKey key, byte[] content, uint sizeDecompressed, ushort? compressionType)> entries)
+    {
+        ArgumentNullException.ThrowIfNull(entries);
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream);
         writer.Write(new byte[96]);
         var positions = new List<uint>();
-        foreach (var (_, content, _) in entries)
+        foreach (var (_, content, _, _) in entries)
         {
             positions.Add((uint)stream.Position);
             writer.Write(content);
@@ -18,17 +24,17 @@ static class RawPackageBuilder
         writer.Write(0U);
         for (var i = 0; i < entries.Count; ++i)
         {
-            var (key, content, hasExtendedCompressionType) = entries[i];
+            var (key, content, sizeDecompressed, compressionType) = entries[i];
             writer.Write((uint)key.Type);
             writer.Write(key.Group);
             writer.Write(key.InstanceEx);
             writer.Write(key.Instance);
             writer.Write(positions[i]);
-            writer.Write((uint)content.Length | (hasExtendedCompressionType ? 0x80000000U : 0U));
-            writer.Write((uint)content.Length);
-            if (hasExtendedCompressionType)
+            writer.Write((uint)content.Length | (compressionType is not null ? 0x80000000U : 0U));
+            writer.Write(sizeDecompressed);
+            if (compressionType is { } nonNullCompressionType)
             {
-                writer.Write((ushort)0);
+                writer.Write(nonNullCompressionType);
                 writer.Write((ushort)1);
             }
         }
