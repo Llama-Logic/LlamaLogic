@@ -174,6 +174,12 @@ public sealed class DataBasePackedFile :
         return FileAccess.ReadWrite;
     }
 
+    static ResourceFileType? GetResourceFileType(ResourceType resourceType) =>
+        resourceFileTypeByResourceType.TryGetValue(resourceType, out var resourceFileType) ? resourceFileType : null;
+
+    static CompressionTypeMethodNumber? GetStandardCompression(ResourceType resourceType) =>
+        standardCompressionByResourceType.TryGetValue(resourceType, out var standardCompression) ? standardCompression : null;
+
     static string? GetTuningMarkupResourceName(Stream tuningMarkupStream)
     {
         try
@@ -521,7 +527,7 @@ public sealed class DataBasePackedFile :
         {
             if (!ContainsKey(key))
                 return null;
-            var fileType = resourceFileTypeByResourceType[key.Type];
+            var fileType = GetResourceFileType(key.Type);
             if (fileType is ResourceFileType.JavaScriptObjectNotation
                 or ResourceFileType.TuningMarkup)
                 return GetText(key);
@@ -533,7 +539,7 @@ public sealed class DataBasePackedFile :
                 Delete(key);
             else if (value is string str)
             {
-                var fileType = resourceFileTypeByResourceType[key.Type];
+                var fileType = GetResourceFileType(key.Type);
                 if (fileType is ResourceFileType.TuningMarkup)
                     SetXml(key, str);
                 else
@@ -1309,7 +1315,7 @@ public sealed class DataBasePackedFile :
                     key: kv.Key,
                     indexEntry: kv.Value,
                     resourceType: kv.Key.Type,
-                    resourceFileType: resourceFileTypeByResourceType[kv.Key.Type]
+                    resourceFileType: GetResourceFileType(kv.Key.Type)
                 )
             ))
         {
@@ -1343,7 +1349,7 @@ public sealed class DataBasePackedFile :
                     key: kv.Key,
                     loadedResource: kv.Value,
                     resourceType: kv.Key.Type,
-                    resourceFileType: resourceFileTypeByResourceType[kv.Key.Type]
+                    resourceFileType: GetResourceFileType(kv.Key.Type)
                 )
             ))
         {
@@ -1385,7 +1391,7 @@ public sealed class DataBasePackedFile :
                     key: kv.Key,
                     indexEntry: kv.Value,
                     resourceType: kv.Key.Type,
-                    resourceFileType: resourceFileTypeByResourceType[kv.Key.Type]
+                    resourceFileType: GetResourceFileType(kv.Key.Type)
                 )
             ))
         {
@@ -1426,7 +1432,7 @@ public sealed class DataBasePackedFile :
                     key: kv.Key,
                     loadedResource: kv.Value,
                     resourceType: kv.Key.Type,
-                    resourceFileType: resourceFileTypeByResourceType[kv.Key.Type]
+                    resourceFileType: GetResourceFileType(kv.Key.Type)
                 )
             ))
         {
@@ -1693,7 +1699,7 @@ public sealed class DataBasePackedFile :
     {
         var compressionMethod = compressionMode switch
         {
-            CompressionMode.Auto => standardCompressionByResourceType[key.Type] ?? CompressionTypeMethodNumber.ZLIB,
+            CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
             CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
             CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
             CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
@@ -1735,7 +1741,7 @@ public sealed class DataBasePackedFile :
             {
                 resourceNameByKey.TryGetValue(key, out var previousName);
                 string? newName = null;
-                if (resourceFileTypeByResourceType[key.Type] is ResourceFileType.TuningMarkup)
+                if (GetResourceFileType(key.Type) is ResourceFileType.TuningMarkup)
                 {
                     using var tuningMarkupStream = new ReadOnlyMemoryOfByteStream(memory);
                     newName = GetTuningMarkupResourceName(tuningMarkupStream);
@@ -1774,7 +1780,7 @@ public sealed class DataBasePackedFile :
     {
         var compressionMethod = compressionMode switch
         {
-            CompressionMode.Auto => standardCompressionByResourceType[key.Type] ?? CompressionTypeMethodNumber.ZLIB,
+            CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
             CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
             CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
             CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
@@ -1816,7 +1822,7 @@ public sealed class DataBasePackedFile :
             {
                 resourceNameByKey.TryGetValue(key, out var previousName);
                 string? newName = null;
-                if (resourceFileTypeByResourceType[key.Type] is ResourceFileType.TuningMarkup)
+                if (GetResourceFileType(key.Type) is ResourceFileType.TuningMarkup)
                 {
                     using var tuningMarkupStream = new ReadOnlyMemoryOfByteStream(memory);
                     newName = await GetTuningMarkupResourceNameAsync(tuningMarkupStream).ConfigureAwait(false);
@@ -2006,6 +2012,12 @@ public sealed class DataBasePackedFile :
     /// Saves the package to the stream from which it was loaded
     /// </summary>
     /// <exception cref="InvalidOperationException">The package was not loaded from stream or the stream is not writeable</exception>
+    /// <remarks>
+    /// This method overwrites the stream in place.
+    /// If it fails partway through writing (for example, because the disk is full, another process has the file open, or the process is terminated), the stream will hold neither the original package nor the new one, and the original cannot be recovered.
+    /// If losing the original would be costly, load the package as read-only, use <see cref="SaveAs(string, ResourceKeyOrder)"/> to write a temporary file in the same directory, dispose of the package, and then replace the original with the temporary file (e.g. with <see cref="File.Replace(string, string, string)"/>).
+    /// <see cref="SaveAs(string, ResourceKeyOrder)"/> cannot write to the path from which the package is currently open.
+    /// </remarks>
     public void Save(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve)
     {
         RequireWritableStream();
@@ -2048,6 +2060,12 @@ public sealed class DataBasePackedFile :
     /// Saves the package to the stream from which it was loaded asynchronously
     /// </summary>
     /// <exception cref="InvalidOperationException">The package was not loaded from stream or the stream is not writeable</exception>
+    /// <remarks>
+    /// This method overwrites the stream in place.
+    /// If it fails partway through writing (for example, because the disk is full, another process has the file open, or the process is terminated), the stream will hold neither the original package nor the new one, and the original cannot be recovered.
+    /// If losing the original would be costly, load the package as read-only, use <see cref="SaveAsAsync(string, ResourceKeyOrder, CancellationToken)"/> to write a temporary file in the same directory, dispose of the package, and then replace the original with the temporary file (e.g. with <see cref="File.Replace(string, string, string)"/>).
+    /// <see cref="SaveAsAsync(string, ResourceKeyOrder, CancellationToken)"/> cannot write to the path from which the package is currently open.
+    /// </remarks>
     public async Task SaveAsync(bool unloadFromMemory = false, ResourceKeyOrder resourceKeyOrder = ResourceKeyOrder.Preserve, CancellationToken cancellationToken = default)
     {
         RequireWritableStream();

@@ -85,10 +85,66 @@ public class DataBasePackedFileTests :
 
     #endregion MonitoredDisposeFileStream
 
+    static byte[] EncodeTiff(int width, int height)
+    {
+        using var image = new Image<L8>(width, height);
+        using var stream = new MemoryStream();
+        image.SaveAsTiff(stream);
+        return stream.ToArray();
+    }
+
+    static byte[] EncodeTranslucentJpeg(byte[] alphaData, int width, int height)
+    {
+        using var image = new Image<Rgba32>(width, height);
+        using var jpegStream = new MemoryStream();
+        image.SaveAsJpeg(jpegStream);
+        var jpegData = jpegStream.ToArray();
+        var insertionIndex = 4 + ((jpegData[4] << 8) | jpegData[5]);
+        var sectionSize = alphaData.Length + 10;
+        using var stream = new MemoryStream();
+        stream.Write(jpegData, 0, insertionIndex);
+        stream.Write([0xff, 0xe0, (byte)(sectionSize >> 8), (byte)sectionSize]);
+        stream.Write("ALFA"u8);
+        stream.Write([(byte)(alphaData.Length >> 24), (byte)(alphaData.Length >> 16), (byte)(alphaData.Length >> 8), (byte)alphaData.Length]);
+        stream.Write(alphaData);
+        stream.Write(jpegData, insertionIndex, jpegData.Length - insertionIndex);
+        return stream.ToArray();
+    }
+
+    [TestMethod]
+    public void CopyToRoundTripsEntriesWithoutExtendedCompression()
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var content = "content"u8.ToArray();
+        using var source = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.Build([(key, content, false)])));
+        var copy = new MemoryStream();
+        source.CopyTo(copy);
+        using var reopened = new DataBasePackedFile(copy);
+        CollectionAssert.AreEqual(content, reopened.Get(key).ToArray());
+    }
+
     [TestMethod]
     public void CreatePackage()
     {
         using var dbpf = new DataBasePackedFile();
+    }
+
+    [TestMethod]
+    public void FirstDuplicateKeyWins()
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var first = "first"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.Build([(key, first, true), (key, "second"u8.ToArray(), true)])));
+        Assert.AreEqual(1, dbpf.Count);
+        CollectionAssert.AreEqual(first, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void GetNamesToleratesUndefinedResourceType()
+    {
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(new ResourceKey((ResourceType)0xb6c8b6a0, 0, 1), "DDS "u8.ToArray(), CompressionMode.ForceZLib);
+        Assert.AreEqual(0, dbpf.GetNames().Count);
     }
 
     [TestMethod]
@@ -106,6 +162,15 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    public void GetTranslucentJpegAsPngRejectsOtherAlphaFormats()
+    {
+        var key = new ResourceKey(ResourceType.CASPartThumbnail, 0, 1);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, EncodeTranslucentJpeg(EncodeTiff(4, 4), 4, 4), CompressionMode.ForceOff);
+        Assert.Throws<ImageFormatException>(() => dbpf.GetTranslucentJpegAsPng(key));
+    }
+
+    [TestMethod]
     public void Indexer()
     {
         using var dbpf = new DataBasePackedFile(tempPackagePath);
@@ -113,6 +178,16 @@ public class DataBasePackedFileTests :
         Assert.IsInstanceOfType(tuningXmlObj, typeof(string));
         var tuningXDocument = XDocument.Parse((string)tuningXmlObj);
         Assert.AreEqual("relationships.relationship_bit", tuningXDocument.Root!.Attribute("m")!.Value);
+    }
+
+    [TestMethod]
+    public void IndexerToleratesUndefinedResourceType()
+    {
+        var key = new ResourceKey((ResourceType)0xb6c8b6a0, 0, 1);
+        var content = "DDS "u8.ToArray();
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, content, CompressionMode.ForceZLib);
+        CollectionAssert.AreEqual(content, ((ReadOnlyMemory<byte>)dbpf[key]!).ToArray());
     }
 
     [TestMethod]
@@ -148,6 +223,71 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    public void SaveAndCopyToAgreeOnDeletedRecords()
+    {
+        var live = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var deleted = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 2);
+        byte[] packageBytes;
+        using (var source = new DataBasePackedFile())
+        {
+            source.Set(live, "live"u8.ToArray());
+            source.Set(deleted, "deleted"u8.ToArray(), CompressionMode.SetDeletedFlag);
+            using var packageStream = new MemoryStream();
+            source.CopyTo(packageStream);
+            packageBytes = packageStream.ToArray();
+        }
+        var copiedStream = new MemoryStream();
+        using (var dbpf = new DataBasePackedFile(new MemoryStream(packageBytes)))
+            dbpf.CopyTo(copiedStream);
+        var savedStream = new MemoryStream();
+        savedStream.Write(packageBytes);
+        using (var dbpf = new DataBasePackedFile(savedStream))
+            dbpf.Save();
+        using var copied = new DataBasePackedFile(new MemoryStream(copiedStream.ToArray()));
+        using var saved = new DataBasePackedFile(new MemoryStream(savedStream.ToArray()));
+        CollectionAssert.AreEquivalent(copied.Keys.ToArray(), saved.Keys.ToArray());
+        foreach (var key in copied.Keys)
+            CollectionAssert.AreEqual(copied.GetRaw(key, true).ToArray(), saved.GetRaw(key, true).ToArray(), key.ToString());
+    }
+
+    [TestMethod]
+    public void SaveKeepsDeletedRecords()
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var content = "deleted"u8.ToArray();
+        byte[] packageBytes;
+        using (var source = new DataBasePackedFile())
+        {
+            source.Set(key, content, CompressionMode.SetDeletedFlag);
+            using var packageStream = new MemoryStream();
+            source.CopyTo(packageStream);
+            packageBytes = packageStream.ToArray();
+        }
+        var savedStream = new MemoryStream();
+        savedStream.Write(packageBytes);
+        using (var dbpf = new DataBasePackedFile(savedStream))
+            dbpf.Save();
+        using var saved = new DataBasePackedFile(new MemoryStream(savedStream.ToArray()));
+        Assert.AreEqual(CompressionMode.SetDeletedFlag, saved.GetExplicitCompressionMode(key));
+        CollectionAssert.AreEqual(content, saved.GetRaw(key, true).ToArray());
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.CallerSuppliedInternal)]
+    [DataRow(CompressionMode.CallerSuppliedStreamable)]
+    [DataRow(CompressionMode.CallerSuppliedZLib)]
+    public async Task SetAsyncRejectsCallerSuppliedCompression(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        await using var dbpf = new DataBasePackedFile();
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => dbpf.SetAsync(key, "content"u8.ToArray(), compressionMode));
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => dbpf.SetAsync(key, "content", compressionMode));
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => dbpf.SetAsync(key, new XDocument(new XElement("I")), compressionMode));
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => dbpf.SetAsync(key, new StringTableModel(), compressionMode));
+        Assert.AreEqual(0, dbpf.Count);
+    }
+
+    [TestMethod]
     public void SetNonsenseRelationshipBitTuning()
     {
         using var dbpf = new DataBasePackedFile(tempPackagePath);
@@ -177,6 +317,77 @@ public class DataBasePackedFileTests :
             """
         );
         Assert.AreEqual(2, dbpf.GetXml("0904df10:00000000:00000000d1d56a53").XPathSelectElements("/I[@c = 'RelationshipBit' and @i = 'relbit' and @m = 'relationships.relationship_bit' and @n = 'LlamaLogicPackageTests:NonsenseRelationshipBit' and @s = '3520424531']/L[@n = 'collection_ids']/E").Count());
+    }
+
+    [TestMethod]
+    public void SetPngAsDdsRejectsOtherImageFormats()
+    {
+        using var dbpf = new DataBasePackedFile();
+        Assert.Throws<ImageFormatException>(() => dbpf.SetPngAsDds(new ResourceKey(ResourceType.DSTImage, 0, 1), EncodeTiff(4, 4)));
+    }
+
+    [TestMethod]
+    public void SetPngAsTranslucentJpegRejectsOtherImageFormats()
+    {
+        using var dbpf = new DataBasePackedFile();
+        Assert.Throws<ImageFormatException>(() => dbpf.SetPngAsTranslucentJpeg(new ResourceKey(ResourceType.CASPartThumbnail, 0, 1), EncodeTiff(4, 4)));
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.CallerSuppliedInternal)]
+    [DataRow(CompressionMode.CallerSuppliedStreamable)]
+    [DataRow(CompressionMode.CallerSuppliedZLib)]
+    public void SetRejectsCallerSuppliedCompression(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<ArgumentException>(() => dbpf.Set(key, "content"u8.ToArray(), compressionMode));
+        Assert.ThrowsExactly<ArgumentException>(() => dbpf.Set(key, "content", compressionMode));
+        Assert.ThrowsExactly<ArgumentException>(() => dbpf.Set(key, new XDocument(new XElement("I")), compressionMode));
+        Assert.ThrowsExactly<ArgumentException>(() => dbpf.Set(key, new StringTableModel(), compressionMode));
+        Assert.AreEqual(0, dbpf.Count);
+    }
+
+    [TestMethod]
+    public void SetToleratesUndefinedResourceType()
+    {
+        var key = new ResourceKey((ResourceType)0xb6c8b6a0, 0, 1);
+        var content = "DDS "u8.ToArray();
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, content);
+        CollectionAssert.AreEqual(content, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void ShortReadsAreTolerated()
+    {
+        var packageBytes = File.ReadAllBytes(tempPackagePath);
+        using var expected = new DataBasePackedFile(new MemoryStream(packageBytes));
+        using var actual = new DataBasePackedFile(new ShortReadStream(new MemoryStream(packageBytes), 3));
+        foreach (var key in expected.Keys)
+            CollectionAssert.AreEqual(expected.Get(key).ToArray(), actual.Get(key).ToArray(), key.ToString());
+    }
+
+    [TestMethod]
+    public async Task ShortReadsAreToleratedAsync()
+    {
+        var packageBytes = await File.ReadAllBytesAsync(tempPackagePath);
+        await using var expected = await DataBasePackedFile.FromStreamAsync(new MemoryStream(packageBytes));
+        await using var actual = await DataBasePackedFile.FromStreamAsync(new ShortReadStream(new MemoryStream(packageBytes), 3));
+        foreach (var key in await expected.GetKeysAsync())
+            CollectionAssert.AreEqual((await expected.GetAsync(key)).ToArray(), (await actual.GetAsync(key)).ToArray(), key.ToString());
+    }
+
+    [TestMethod]
+    public void TS2PackageIndexIsReadable()
+    {
+        var packageBytes = File.ReadAllBytes(tempTS2PackagePath);
+        using var dbpf = new DataBasePackedFile(new MemoryStream(packageBytes));
+        var firstKey = new ResourceKey((ResourceType)0x54544173, 0xffffffff, 0x80);
+        Assert.AreEqual(31, dbpf.Count);
+        Assert.AreEqual(firstKey, dbpf.Keys[0]);
+        CollectionAssert.AreEqual(packageBytes[0x60..(0x60 + 0x1ebb)], dbpf.GetRaw(firstKey).ToArray());
+        Assert.AreEqual(129878, dbpf.Keys.Sum(key => dbpf.GetRaw(key).Length));
     }
 
     [TestMethod]

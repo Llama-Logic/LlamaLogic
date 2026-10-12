@@ -1,6 +1,11 @@
+global using LlamaLogic.Packages.Formats;
+global using LlamaLogic.Packages.Models;
 global using LlamaLogic.Packages.Models.Data;
 global using Microsoft.Win32.SafeHandles;
+global using SixLabors.ImageSharp;
+global using SixLabors.ImageSharp.PixelFormats;
 global using System;
+global using System.Collections.Generic;
 global using System.Collections.Immutable;
 global using System.Globalization;
 global using System.IO;

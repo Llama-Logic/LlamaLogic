@@ -5,6 +5,31 @@ public class StringTableModelTests :
     TestPackageTests
 {
     [TestMethod]
+    public void FirstDuplicateKeyHashWins()
+    {
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream);
+        var values = new[] { "first"u8.ToArray(), "second"u8.ToArray() };
+        writer.Write("STBL"u8);
+        writer.Write((ushort)5);
+        writer.Write((byte)0);
+        writer.Write((ulong)values.Length);
+        writer.Write((ushort)0);
+        writer.Write((uint)values.Sum(value => value.Length + 1));
+        foreach (var value in values)
+        {
+            writer.Write(0xd4fc0137U);
+            writer.Write((byte)0);
+            writer.Write((ushort)value.Length);
+            writer.Write(value);
+        }
+        writer.Flush();
+        var stringTable = StringTableModel.Decode(stream.ToArray());
+        Assert.AreEqual(1, stringTable.Count);
+        Assert.AreEqual("first", stringTable[0xd4fc0137]);
+    }
+
+    [TestMethod]
     public void StringTableManipulation()
     {
         using var dbpf = new DataBasePackedFile(tempPackagePath);

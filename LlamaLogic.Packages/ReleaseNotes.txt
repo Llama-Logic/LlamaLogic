@@ -1,1 +1,2 @@
-DataBasePackedFile now preserves unused portions of the DBPF header per Maxis documentation and allows callers to alter them.
+DataBasePackedFile no longer throws KeyNotFoundException for resource types not defined in ResourceType when indexing names, using the indexer, or setting content with CompressionMode.Auto.
+Save and SaveAsync now document that they overwrite the package in place and how to update a package safely with SaveAs instead.
