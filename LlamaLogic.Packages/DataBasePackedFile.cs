@@ -825,9 +825,7 @@ public sealed class DataBasePackedFile :
         if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Deleted_record && !force)
             throw new FileNotFoundException($"Resource is marked as deleted (you can provide a value of {true} for the {nameof(force)} parameter of the retrieval method you used to try to recover the content anyway, but this is not guaranteed to work)");
         RequireStream();
-        var position = (int)indexEntry.mnPosition;
-        var size = (int)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask);
-        return new ReadOnlySubStream(stream, new Range(Index.FromStart(position), Index.FromStart(position + size)));
+        return new ReadOnlySubStream(stream, indexEntry.mnPosition, (uint)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask));
     }
 
     Stream FetchStream(IndexEntry indexEntry, bool force)
@@ -1623,10 +1621,11 @@ public sealed class DataBasePackedFile :
             UpdateVersion1Directory(version1IndexMinorVersion.Value, directory);
         }
         var hasIndex = BeginIndex(resourceKeyOrder, version1IndexMinorVersion, out var index, out var keys, out var indexFlags, out var indexSize);
+        RequireResourcePositionsFit(keys);
         Span<byte> header = stackalloc byte[96];
         WriteHeader(header, hasIndex, indexSize, version1IndexMinorVersion);
         destination.Write(header);
-        var position = 96;
+        var position = 96L;
         var bufferPoolArray = ArrayPool<byte>.Shared.Rent(unloadedResourceCopyBufferSize);
         try
         {
@@ -1684,6 +1683,7 @@ public sealed class DataBasePackedFile :
             UpdateVersion1Directory(version1IndexMinorVersion.Value, directory);
         }
         var hasIndex = BeginIndex(resourceKeyOrder, version1IndexMinorVersion, out var index, out var keys, out var indexFlags, out var indexSize);
+        RequireResourcePositionsFit(keys);
         var headerPoolArray = ArrayPool<byte>.Shared.Rent(96);
         try
         {
@@ -1691,7 +1691,7 @@ public sealed class DataBasePackedFile :
             header.Span.Clear();
             WriteHeader(header.Span, hasIndex, indexSize, version1IndexMinorVersion);
             await destination.WriteAsync(header, cancellationToken).ConfigureAwait(false);
-            var position = 96;
+            var position = 96L;
             var bufferPoolArray = ArrayPool<byte>.Shared.Rent(unloadedResourceCopyBufferSize);
             try
             {
@@ -2149,6 +2149,19 @@ public sealed class DataBasePackedFile :
             throw new ObjectDisposedException(nameof(DataBasePackedFile));
     }
 #endif
+
+    void RequireResourcePositionsFit(ImmutableArray<ResourceKey> keys)
+    {
+        var position = 96L;
+        foreach (var key in keys)
+        {
+            if (position > uint.MaxValue)
+                throw new InvalidOperationException($"Resource {key} would begin beyond 4 GiB, which an index entry cannot record");
+            position += unloadedResources.TryGetValue(key, out var indexEntry)
+                ? (uint)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask)
+                : loadedResources[key].Memory.Length;
+        }
+    }
 
     [MemberNotNull(nameof(stream))]
     void RequireStream()
@@ -2635,7 +2648,7 @@ public sealed class DataBasePackedFile :
         unused5.Span.CopyTo(header[72..96]);
     }
 
-    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, int position, ResourceKey key, CompressionTypeMethodBitmask mnSize, uint mnSizeDecompressed, CompressionTypeMethodNumber mnCompressionType, ushort mnCommitted)
+    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, long position, ResourceKey key, CompressionTypeMethodBitmask mnSize, uint mnSizeDecompressed, CompressionTypeMethodNumber mnCompressionType, ushort mnCommitted)
     {
         if (!indexFlags.HasFlag(IndexFlags.constantType))
         {
@@ -2665,7 +2678,7 @@ public sealed class DataBasePackedFile :
         }
     }
 
-    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, uint? version1IndexMinorVersion, int position, ResourceKey key, IndexEntry indexEntry)
+    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, uint? version1IndexMinorVersion, long position, ResourceKey key, IndexEntry indexEntry)
     {
         if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
             WriteVersion1IndexEntry(index, nonNullVersion1IndexMinorVersion, position, key, (uint)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask));
@@ -2673,7 +2686,7 @@ public sealed class DataBasePackedFile :
             WriteIndexEntry(index, indexFlags, position, key, indexEntry.mnSize, indexEntry.mnSizeDecompressed, indexEntry.mnCompressionType, indexEntry.mnCommitted);
     }
 
-    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, uint? version1IndexMinorVersion, int position, ResourceKey key, LoadedResource loadedResource)
+    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, uint? version1IndexMinorVersion, long position, ResourceKey key, LoadedResource loadedResource)
     {
         if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
             WriteVersion1IndexEntry(index, nonNullVersion1IndexMinorVersion, position, key, (uint)loadedResource.Memory.Length);
@@ -2691,7 +2704,7 @@ public sealed class DataBasePackedFile :
             );
     }
 
-    static void WriteVersion1IndexEntry(ArrayBufferWriter<byte> index, uint indexMinorVersion, int position, ResourceKey key, uint mnSize)
+    static void WriteVersion1IndexEntry(ArrayBufferWriter<byte> index, uint indexMinorVersion, long position, ResourceKey key, uint mnSize)
     {
         var type = key.Type;
         index.Write(ref type);

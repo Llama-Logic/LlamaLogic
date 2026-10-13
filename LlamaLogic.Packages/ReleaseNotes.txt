@@ -1,4 +1,2 @@
-DataBasePackedFile has new SetRaw and SetRawAsync methods, which store content the caller has already compressed exactly as supplied, marked with the caller-supplied compression mode and the decompressed size the caller states, so the index records the correct decompressed size.
-Breaking: DataBasePackedFile Set, SetAsync, SetXml, and SetXmlAsync methods now throw ArgumentException for the caller-supplied compression modes (use SetRaw or SetRawAsync instead).
-Setting content with a caller-supplied compression mode now causes resource names to be rebuilt from the decompressed content instead of being read from the compressed bytes.
-DataBasePackedFile SetAsync for XDocument content and SetXmlAsync no longer always throw InvalidOperationException.
+DataBasePackedFile now reads resources stored at or beyond 2 GiB into a package instead of throwing ArgumentOutOfRangeException.
+DataBasePackedFile now throws InvalidOperationException before writing anything when a resource would begin beyond 4 GiB in the written package, which its index entry cannot record.

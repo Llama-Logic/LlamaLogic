@@ -3,18 +3,21 @@ namespace LlamaLogic.Packages;
 sealed class ReadOnlySubStream :
     Stream
 {
-    public ReadOnlySubStream(Stream source, Range range)
+    public ReadOnlySubStream(Stream source, long sourceOffset, long length)
     {
         ArgumentNullException.ThrowIfNull(source);
         if (!source.CanSeek)
             throw new ArgumentException("Source must be seekable", nameof(source));
         if (!source.CanRead)
             throw new ArgumentException("Source must be readable", nameof(source));
-        (sourceOffset, length) = range.GetOffsetAndLength((int)source.Length);
         if (sourceOffset < 0)
-            throw new ArgumentOutOfRangeException(nameof(range), "range lower bound cannot precede beginning of source");
+            throw new ArgumentOutOfRangeException(nameof(sourceOffset), "range lower bound cannot precede beginning of source");
+        if (length < 0)
+            throw new ArgumentOutOfRangeException(nameof(length), "range length cannot be negative");
         if (sourceOffset + length > source.Length)
-            throw new ArgumentOutOfRangeException(nameof(range), "range upper bound cannot extend beyond ending of source");
+            throw new ArgumentOutOfRangeException(nameof(length), "range upper bound cannot extend beyond ending of source");
+        this.sourceOffset = sourceOffset;
+        this.length = length;
         this.source = source;
         this.source.Seek(sourceOffset, SeekOrigin.Begin);
     }

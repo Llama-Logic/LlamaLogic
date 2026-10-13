@@ -54,6 +54,38 @@ static class RawPackageBuilder
         return stream.ToArray();
     }
 
+    public static SparseStream BuildSparse(IReadOnlyList<(ResourceKey key, long position, int size, byte[] content)> entries)
+    {
+        ArgumentNullException.ThrowIfNull(entries);
+        var indexPosition = entries.Max(entry => entry.position + entry.size);
+        using var indexStream = new MemoryStream();
+        using var indexWriter = new BinaryWriter(indexStream);
+        indexWriter.Write(0U);
+        foreach (var (key, position, size, _) in entries)
+        {
+            indexWriter.Write((uint)key.Type);
+            indexWriter.Write(key.Group);
+            indexWriter.Write(key.InstanceEx);
+            indexWriter.Write(key.Instance);
+            indexWriter.Write((uint)position);
+            indexWriter.Write((uint)size | 0x80000000U);
+            indexWriter.Write((uint)size);
+            indexWriter.Write((ushort)0);
+            indexWriter.Write((ushort)1);
+        }
+        indexWriter.Flush();
+        var index = indexStream.ToArray();
+        var header = new byte[96];
+        "DBPF"u8.CopyTo(header);
+        BitConverter.TryWriteBytes(header.AsSpan(4), 2U);
+        BitConverter.TryWriteBytes(header.AsSpan(8), 1U);
+        BitConverter.TryWriteBytes(header.AsSpan(36), (uint)entries.Count);
+        BitConverter.TryWriteBytes(header.AsSpan(44), (uint)index.Length);
+        BitConverter.TryWriteBytes(header.AsSpan(60), 3U);
+        BitConverter.TryWriteBytes(header.AsSpan(64), (ulong)indexPosition);
+        return new SparseStream(indexPosition + index.Length, [(0, header), .. entries.Select(entry => (entry.position, entry.content)), (indexPosition, index)]);
+    }
+
     public static byte[] BuildVersion1(IReadOnlyList<(ResourceKey key, byte[] stored)> entries, uint indexMinorVersion)
     {
         ArgumentNullException.ThrowIfNull(entries);

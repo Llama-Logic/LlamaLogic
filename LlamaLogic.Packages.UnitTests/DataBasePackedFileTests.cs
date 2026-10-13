@@ -126,6 +126,18 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    public void CopyToRejectsResourcesBeyondFourGigabytes()
+    {
+        const int largeSize = 0x40000000;
+        var smallKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 5);
+        var small = "small"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(RawPackageBuilder.BuildSparse([(smallKey, 96, small.Length, small), .. Enumerable.Range(1, 4).Select(i => (new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, (ulong)i), 96L + small.Length + (i - 1) * (long)largeSize, largeSize, Array.Empty<byte>()))]));
+        var copy = new SparseStream();
+        Assert.ThrowsExactly<InvalidOperationException>(() => dbpf.CopyTo(copy, ResourceKeyOrder.InstanceTypeGroup));
+        Assert.AreEqual(0, copy.Length);
+    }
+
+    [TestMethod]
     public void CopyToRoundTripsEntriesWithoutExtendedCompression()
     {
         var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
@@ -135,6 +147,26 @@ public class DataBasePackedFileTests :
         source.CopyTo(copy);
         using var reopened = new DataBasePackedFile(copy);
         CollectionAssert.AreEqual(content, reopened.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void CopyToWritesBeyondTwoGigabytes()
+    {
+        const int largeSize = 0x40000000;
+        var firstKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var secondKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 2);
+        var farKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 3);
+        var far = "far"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(RawPackageBuilder.BuildSparse([(firstKey, 96, largeSize, []), (secondKey, 96 + largeSize, largeSize, []), (farKey, 96 + 2L * largeSize, far.Length, far)]));
+        var copy = new SparseStream();
+        dbpf.CopyTo(copy);
+        var header = new byte[96];
+        copy.Position = 0;
+        Assert.AreEqual(header.Length, copy.Read(header));
+        Assert.AreEqual(96 + 2L * largeSize + far.Length, BitConverter.ToInt64(header, 64));
+        using var reopened = new DataBasePackedFile(copy);
+        Assert.AreEqual(largeSize, reopened.GetSize(secondKey));
+        CollectionAssert.AreEqual(far, reopened.Get(farKey).ToArray());
     }
 
     [TestMethod]
@@ -183,6 +215,34 @@ public class DataBasePackedFileTests :
         using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.Build([(key, stored, (uint)(stored.Length * 2), (ushort?)0), (new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 2), "following"u8.ToArray(), 9U, (ushort?)0)])));
         CollectionAssert.AreEqual(stored, dbpf.GetRaw(key).ToArray());
         CollectionAssert.AreEqual(stored, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void GetReadsBeyondTwoGigabytes()
+    {
+        var nearKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var farKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 2);
+        var near = "near"u8.ToArray();
+        var far = "far"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(RawPackageBuilder.BuildSparse([(nearKey, 96, near.Length, near), (farKey, 0x80000100L, far.Length, far)]));
+        CollectionAssert.AreEqual(near, dbpf.Get(nearKey).ToArray());
+        CollectionAssert.AreEqual(near, dbpf.GetRaw(nearKey).ToArray());
+        CollectionAssert.AreEqual(far, dbpf.Get(farKey).ToArray());
+        CollectionAssert.AreEqual(far, dbpf.GetRaw(farKey).ToArray());
+    }
+
+    [TestMethod]
+    public async Task GetReadsBeyondTwoGigabytesAsync()
+    {
+        var nearKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var farKey = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 2);
+        var near = "near"u8.ToArray();
+        var far = "far"u8.ToArray();
+        await using var dbpf = await DataBasePackedFile.FromStreamAsync(RawPackageBuilder.BuildSparse([(nearKey, 96, near.Length, near), (farKey, 0x80000100L, far.Length, far)]));
+        CollectionAssert.AreEqual(near, (await dbpf.GetAsync(nearKey)).ToArray());
+        CollectionAssert.AreEqual(near, (await dbpf.GetRawAsync(nearKey)).ToArray());
+        CollectionAssert.AreEqual(far, (await dbpf.GetAsync(farKey)).ToArray());
+        CollectionAssert.AreEqual(far, (await dbpf.GetRawAsync(farKey)).ToArray());
     }
 
     [TestMethod]
