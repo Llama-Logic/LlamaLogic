@@ -26,6 +26,16 @@ public class StringTableModelTests :
     }
 
     [TestMethod]
+    [DataRow('a', 65536)]
+    [DataRow('\u20ac', 21846)]
+    public void AddNewRejectsStringsTooLongForTheFormat(char character, int count)
+    {
+        var stringTable = new StringTableModel();
+        Assert.ThrowsExactly<ArgumentException>(() => stringTable.AddNew(new string(character, count)));
+        Assert.AreEqual(0, stringTable.Count);
+    }
+
+    [TestMethod]
     public void DecodeReadsWellFormedTables()
     {
         var stringTable = StringTableModel.Decode(BuildStringTable("first"u8.ToArray(), "second"u8.ToArray()));
@@ -109,6 +119,33 @@ public class StringTableModelTests :
         var stringTable = StringTableModel.Decode(stream.ToArray());
         Assert.AreEqual(1, stringTable.Count);
         Assert.AreEqual("first", stringTable[0xd4fc0137]);
+    }
+
+    [TestMethod]
+    public void SetAcceptsStringsAsLongAsTheFormatAllows()
+    {
+        var stringTable = new StringTableModel();
+        var longest = new string('a', 65535);
+        stringTable.Set(1, longest);
+        Assert.AreEqual(longest, StringTableModel.Decode(stringTable.Encode())[1]);
+    }
+
+    [TestMethod]
+    public void SetRejectsNull()
+    {
+        var stringTable = new StringTableModel();
+        Assert.ThrowsExactly<ArgumentNullException>(() => stringTable.Set(1, null!));
+        Assert.AreEqual(0, stringTable.Count);
+    }
+
+    [TestMethod]
+    [DataRow('a', 65536)]
+    [DataRow('\u20ac', 21846)]
+    public void SetRejectsStringsTooLongForTheFormat(char character, int count)
+    {
+        var stringTable = new StringTableModel();
+        Assert.ThrowsExactly<ArgumentException>(() => stringTable.Set(1, new string(character, count)));
+        Assert.AreEqual(0, stringTable.Count);
     }
 
     [TestMethod]

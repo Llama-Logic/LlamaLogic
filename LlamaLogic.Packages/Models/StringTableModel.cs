@@ -83,6 +83,13 @@ public class StringTableModel :
     public static new Task<string?> GetNameAsync(Stream stream, CancellationToken cancellationToken = default) =>
         Task.FromResult<string?>(null);
 
+    static void RequireEncodable(string @string, string paramName)
+    {
+        ArgumentNullException.ThrowIfNull(@string, paramName);
+        if (Encoding.UTF8.GetByteCount(@string) > ushort.MaxValue)
+            throw new ArgumentException($"A string table entry cannot be longer than {ushort.MaxValue} bytes in UTF-8", paramName);
+    }
+
     readonly Dictionary<uint, string> entries = [];
     readonly List<uint> orderedKeyHashes = [];
     readonly AsyncLock resourceLock = new();
@@ -118,6 +125,8 @@ public class StringTableModel :
     /// <summary>
     /// Gets/sets the string associated with a <paramref name="keyHash"/>
     /// </summary>
+    /// <exception cref="ArgumentNullException">The value is <see langword="null"/></exception>
+    /// <exception cref="ArgumentException">The value is longer than 65,535 bytes in UTF-8</exception>
     public string this[uint keyHash]
     {
         get => Get(keyHash);
@@ -127,10 +136,11 @@ public class StringTableModel :
     /// <summary>
     /// Adds <paramref name="string"/> to the string table, returning its key hash
     /// </summary>
-    /// <exception cref="ArgumentException">The key hash generated for <paramref name="string"/> already existed in the string table</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="string"/> is <see langword="null"/></exception>
+    /// <exception cref="ArgumentException"><paramref name="string"/> is longer than 65,535 bytes in UTF-8, or the key hash generated for it already existed in the string table</exception>
     public uint AddNew(string @string)
     {
-        ArgumentNullException.ThrowIfNull(@string);
+        RequireEncodable(@string, nameof(@string));
         var keyHash = Fnv32.GetHash(@string);
         using var heldResourceLock = resourceLock.Lock();
         ref var entry = ref CollectionsMarshal.GetValueRefOrAddDefault(entries, keyHash, out var exists);
@@ -196,8 +206,11 @@ public class StringTableModel :
     /// <summary>
     /// Sets the <paramref name="string"/> associated with a <paramref name="keyHash"/>, returning <see langword="true"/> if the key hash did not already exist in the string table
     /// </summary>
+    /// <exception cref="ArgumentNullException"><paramref name="string"/> is <see langword="null"/></exception>
+    /// <exception cref="ArgumentException"><paramref name="string"/> is longer than 65,535 bytes in UTF-8</exception>
     public bool Set(uint keyHash, string @string)
     {
+        RequireEncodable(@string, nameof(@string));
         using var heldResourceLock = resourceLock.Lock();
         ref var entry = ref CollectionsMarshal.GetValueRefOrAddDefault(entries, keyHash, out var exists);
         entry = @string;
