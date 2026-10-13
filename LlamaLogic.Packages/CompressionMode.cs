@@ -44,17 +44,17 @@ public enum CompressionMode
     SetDeletedFlag,
 
     /// <summary>
-    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' internal method (use with caution)
+    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' internal method; accepted by <see cref="DataBasePackedFile.SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> and <see cref="DataBasePackedFile.SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> only, which also take the decompressed size (use with caution)
     /// </summary>
     CallerSuppliedInternal,
 
     /// <summary>
-    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' streamable method (use with caution)
+    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using Maxis' streamable method; accepted by <see cref="DataBasePackedFile.SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> and <see cref="DataBasePackedFile.SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> only, which also take the decompressed size (use with caution)
     /// </summary>
     CallerSuppliedStreamable,
 
     /// <summary>
-    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using ZLIB (use with caution)
+    /// ⚠️ The data will not be processed for compression by the library and the resource will be marked as having been compressed using ZLIB; accepted by <see cref="DataBasePackedFile.SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> and <see cref="DataBasePackedFile.SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> only, which also take the decompressed size (use with caution)
     /// </summary>
     CallerSuppliedZLib
 }

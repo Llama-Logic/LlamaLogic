@@ -87,6 +87,15 @@ public class DataBasePackedFileTests :
 
     static readonly ResourceKey ts2DirectoryKey = new((ResourceType)0xe86b1eef, 0xe86b1eef, 0x286b1f03);
 
+    static ReadOnlyMemory<byte> CompressAsCallerSupplied(ReadOnlyMemory<byte> content, CompressionMode compressionMode)
+    {
+        if (compressionMode is CompressionMode.CallerSuppliedZLib)
+            return DataBasePackedFile.ZLibCompress(content);
+        var compressed = DataBasePackedFile.InternalCompress(content, out var wasCompressed);
+        Assert.IsTrue(wasCompressed);
+        return compressed;
+    }
+
     static byte[] CreateCompressibleContent() =>
         [.. Enumerable.Repeat("compressible content "u8.ToArray(), 20).SelectMany(bytes => bytes)];
 
@@ -352,6 +361,94 @@ public class DataBasePackedFileTests :
     [DataRow(CompressionMode.CallerSuppliedInternal)]
     [DataRow(CompressionMode.CallerSuppliedStreamable)]
     [DataRow(CompressionMode.CallerSuppliedZLib)]
+    public async Task SetRawAsyncStoresContentAsSupplied(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var content = CreateCompressibleContent();
+        var raw = CompressAsCallerSupplied(content, compressionMode).ToArray();
+        await using var dbpf = new DataBasePackedFile();
+        await dbpf.SetRawAsync(key, raw, compressionMode, content.Length);
+        CollectionAssert.AreEqual(raw, (await dbpf.GetRawAsync(key)).ToArray());
+        CollectionAssert.AreEqual(content, (await dbpf.GetAsync(key)).ToArray());
+        Assert.AreEqual(content.Length, await dbpf.GetSizeAsync(key));
+        var copy = new MemoryStream();
+        await dbpf.CopyToAsync(copy);
+        copy.Position = 0;
+        await using var reopened = await DataBasePackedFile.FromStreamAsync(copy);
+        CollectionAssert.AreEqual(raw, (await reopened.GetRawAsync(key)).ToArray());
+        CollectionAssert.AreEqual(content, (await reopened.GetAsync(key)).ToArray());
+        Assert.AreEqual(content.Length, await reopened.GetSizeAsync(key));
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.CallerSuppliedInternal)]
+    [DataRow(CompressionMode.CallerSuppliedStreamable)]
+    [DataRow(CompressionMode.CallerSuppliedZLib)]
+    public void SetRawInvalidatesNames(CompressionMode compressionMode)
+    {
+        static XDocument createSnippetTuning(string name) =>
+            new(new XElement("I", new XAttribute("c", "Snippet"), new XAttribute("i", "snippet"), new XAttribute("m", "snippets"), new XAttribute("n", name), new XAttribute("s", "1"), Enumerable.Range(0, 64).Select(i => new XElement("T", new XAttribute("n", $"value{i}"), "0"))));
+        var key = new ResourceKey(ResourceType.SnippetTuning, 0x80000000, 1);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, createSnippetTuning("LlamaLogicPackageTests:Original"));
+        dbpf.LoadNames();
+        using var replacementStream = new MemoryStream();
+        createSnippetTuning("LlamaLogicPackageTests:Replacement").Save(replacementStream);
+        var replacement = replacementStream.ToArray();
+        dbpf.SetRaw(key, CompressAsCallerSupplied(replacement, compressionMode), compressionMode, replacement.Length);
+        Assert.AreEqual("LlamaLogicPackageTests:Replacement", dbpf.GetNameByKey(key));
+    }
+
+    [TestMethod]
+    public void SetRawRejectsNegativeSize()
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => dbpf.SetRaw(key, DataBasePackedFile.ZLibCompress(CreateCompressibleContent()), CompressionMode.CallerSuppliedZLib, -1));
+        Assert.AreEqual(0, dbpf.Count);
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.Auto)]
+    [DataRow(CompressionMode.ForceOff)]
+    [DataRow(CompressionMode.ForceZLib)]
+    [DataRow(CompressionMode.ForceInternal)]
+    [DataRow(CompressionMode.SetDeletedFlag)]
+    public async Task SetRawRejectsOtherCompressionModes(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        await using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<ArgumentException>(() => dbpf.SetRaw(key, "content"u8.ToArray(), compressionMode, 7));
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => dbpf.SetRawAsync(key, "content"u8.ToArray(), compressionMode, 7));
+        Assert.AreEqual(0, dbpf.Count);
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.CallerSuppliedInternal)]
+    [DataRow(CompressionMode.CallerSuppliedStreamable)]
+    [DataRow(CompressionMode.CallerSuppliedZLib)]
+    public void SetRawStoresContentAsSupplied(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
+        var content = CreateCompressibleContent();
+        var raw = CompressAsCallerSupplied(content, compressionMode).ToArray();
+        using var dbpf = new DataBasePackedFile();
+        dbpf.SetRaw(key, raw, compressionMode, content.Length);
+        CollectionAssert.AreEqual(raw, dbpf.GetRaw(key).ToArray());
+        CollectionAssert.AreEqual(content, dbpf.Get(key).ToArray());
+        Assert.AreEqual(content.Length, dbpf.GetSize(key));
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        using var reopened = new DataBasePackedFile(new MemoryStream(copy.ToArray()));
+        CollectionAssert.AreEqual(raw, reopened.GetRaw(key).ToArray());
+        CollectionAssert.AreEqual(content, reopened.Get(key).ToArray());
+        Assert.AreEqual(content.Length, reopened.GetSize(key));
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.CallerSuppliedInternal)]
+    [DataRow(CompressionMode.CallerSuppliedStreamable)]
+    [DataRow(CompressionMode.CallerSuppliedZLib)]
     public void SetRejectsCallerSuppliedCompression(CompressionMode compressionMode)
     {
         var key = new ResourceKey(ResourceType.SaveSpecificRelationalDataStorage, 0x80000000, 1);
@@ -371,6 +468,16 @@ public class DataBasePackedFileTests :
         using var dbpf = new DataBasePackedFile();
         dbpf.Set(key, content);
         CollectionAssert.AreEqual(content, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public async Task SetXmlAsyncRoundTrips()
+    {
+        var key = new ResourceKey(ResourceType.SnippetTuning, 0x80000000, 1);
+        await using var dbpf = new DataBasePackedFile();
+        await dbpf.SetXmlAsync(key, "<I c=\"Snippet\" i=\"snippet\" m=\"snippets\" n=\"LlamaLogicPackageTests:Async\" s=\"1\" />");
+        Assert.AreEqual("LlamaLogicPackageTests:Async", (await dbpf.GetXmlAsync(key)).Root!.Attribute("n")!.Value);
+        Assert.AreEqual("LlamaLogicPackageTests:Async", await dbpf.GetNameByKeyAsync(key));
     }
 
     [TestMethod]
@@ -540,6 +647,35 @@ public class DataBasePackedFileTests :
         Assert.IsFalse(reopened.ContainsKey(ts2DirectoryKey));
         CollectionAssert.AreEqual(content, reopened.GetRaw(key).ToArray());
         Assert.AreEqual(CompressionMode.ForceOff, reopened.GetExplicitCompressionMode(key));
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.CallerSuppliedStreamable)]
+    [DataRow(CompressionMode.CallerSuppliedZLib)]
+    public void TS2SetRawRejectsUnsupportedCompression(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x80);
+        var original = "original"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.BuildVersion1([(key, original)], 1)));
+        var content = CreateCompressibleContent();
+        Assert.ThrowsExactly<NotSupportedException>(() => dbpf.SetRaw(key, CompressAsCallerSupplied(content, compressionMode), compressionMode, content.Length));
+        CollectionAssert.AreEqual(original, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void TS2SetRawStoresContentAsSupplied()
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x80);
+        var content = CreateCompressibleContent();
+        var stored = RawPackageBuilder.BuildVersion1Compressed(content);
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.BuildVersion1([(key, "original"u8.ToArray())], 1)));
+        dbpf.SetRaw(key, stored, CompressionMode.CallerSuppliedInternal, content.Length);
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        using var reopened = new DataBasePackedFile(new MemoryStream(copy.ToArray()));
+        CollectionAssert.AreEqual(stored, reopened.GetRaw(key).ToArray());
+        CollectionAssert.AreEqual(content, reopened.Get(key).ToArray());
+        CollectionAssert.AreEqual(RawPackageBuilder.BuildVersion1Directory([(key, content.Length)], 1), reopened.GetRaw(ts2DirectoryKey).ToArray());
     }
 
     [TestMethod]

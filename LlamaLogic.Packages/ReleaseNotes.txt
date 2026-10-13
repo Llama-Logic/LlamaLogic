@@ -1,3 +1,4 @@
-DataBasePackedFile now reads and writes DBPF 1.x packages (The Sims 2) in the 1.x format: it reads the 1.x index, decompresses the resources the DIR resource lists as compressed, writes the 1.x header and index, and keeps the DIR resource up to date when writing (removing it when nothing is compressed).
-DataBasePackedFile Set and SetAsync methods compress the resources of DBPF 1.x packages only with Maxis' internal algorithm, and throw NotSupportedException for compression modes other than Auto, ForceInternal, and ForceOff.
-Setting DataBasePackedFile.FileVersion between 1.x and any other version now throws InvalidOperationException while the package contains compressed or deleted resources, because their stored forms differ between the two.
+DataBasePackedFile has new SetRaw and SetRawAsync methods, which store content the caller has already compressed exactly as supplied, marked with the caller-supplied compression mode and the decompressed size the caller states, so the index records the correct decompressed size.
+Breaking: DataBasePackedFile Set, SetAsync, SetXml, and SetXmlAsync methods now throw ArgumentException for the caller-supplied compression modes (use SetRaw or SetRawAsync instead).
+Setting content with a caller-supplied compression mode now causes resource names to be rebuilt from the decompressed content instead of being read from the compressed bytes.
+DataBasePackedFile SetAsync for XDocument content and SetXmlAsync no longer always throw InvalidOperationException.

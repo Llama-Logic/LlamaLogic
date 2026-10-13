@@ -264,7 +264,6 @@ public sealed class DataBasePackedFile :
     {
         if (!isVersion1)
             return InternalDecompress(stored);
-        // DBPF 1.x stores compressed content behind a four-byte little-endian prefix holding the stored size
         if (stored.Length < 4)
             throw new InvalidDataException("The compressed resource is too short to hold its size prefix");
         return InternalDecompress(stored[4..]);
@@ -1093,6 +1092,9 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Gets the <see cref="CompressionMode"/> value to pass to Set methods to ensure they will compress the content of the resource specified by <paramref name="key"/> in the same way it is currently compressed in the package
     /// </summary>
+    /// <remarks>
+    /// For a resource compressed using Maxis' streamable method, which this library cannot produce, this returns <see cref="CompressionMode.CallerSuppliedStreamable"/>, which must be passed with the resource's raw content to <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> rather than to Set methods.
+    /// </remarks>
     public CompressionMode GetExplicitCompressionMode(ResourceKey key)
     {
         RequireNotDisposed();
@@ -1536,7 +1538,6 @@ public sealed class DataBasePackedFile :
 
     uint GetVersion1IndexMinorVersion()
     {
-        // index minor version 2 adds the high 32 bits of the instance to each index entry
         if (keysInIndexOrder.Any(key => key.InstanceEx is not 0))
             return 2;
         var indexMinorVersion = MemoryMarshal.Read<uint>(unused4.Span);
@@ -1800,6 +1801,8 @@ public sealed class DataBasePackedFile :
 
     bool InternalSet(ResourceKey key, ReadOnlyMemory<byte> memory, CompressionMode compressionMode)
     {
+        if (compressionMode is CompressionMode.CallerSuppliedInternal or CompressionMode.CallerSuppliedStreamable or CompressionMode.CallerSuppliedZLib)
+            throw new ArgumentException($"Content set with a caller-supplied compression mode must come with its decompressed size; use {nameof(SetRaw)} or {nameof(SetRawAsync)} instead", nameof(compressionMode));
         CompressionTypeMethodNumber compressionMethod;
         ReadOnlyMemory<byte> memoryToStore;
         if (FileVersion.Major is 1)
@@ -1811,17 +1814,13 @@ public sealed class DataBasePackedFile :
                 CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
                 CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
                 CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
-                CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
-                CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
-                CompressionMode.ForceZLib or CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
+                CompressionMode.ForceInternal => CompressionTypeMethodNumber.Internal_compression,
+                CompressionMode.ForceZLib => CompressionTypeMethodNumber.ZLIB,
                 _ => throw new NotSupportedException($"the compression mode {compressionMode} is not supported")
             };
             if (compressionMethod is CompressionTypeMethodNumber.Uncompressed
                 || compressionMode is CompressionMode.ForceOff
-                or CompressionMode.SetDeletedFlag
-                or CompressionMode.CallerSuppliedInternal
-                or CompressionMode.CallerSuppliedStreamable
-                or CompressionMode.CallerSuppliedZLib)
+                or CompressionMode.SetDeletedFlag)
                 memoryToStore = memory;
             else if (compressionMethod is CompressionTypeMethodNumber.Internal_compression)
             {
@@ -1845,8 +1844,7 @@ public sealed class DataBasePackedFile :
         }
         if (AreNamesIndexed())
         {
-            if (compressionMode is not CompressionMode.SetDeletedFlag
-                or CompressionMode.CallerSuppliedStreamable)
+            if (compressionMode is not CompressionMode.SetDeletedFlag)
             {
                 resourceNameByKey.TryGetValue(key, out var previousName);
                 string? newName = null;
@@ -1877,16 +1875,15 @@ public sealed class DataBasePackedFile :
         Store(key, memoryToStore, compressionMethod, memory.Length);
         return
             compressionMode is not (CompressionMode.ForceOff
-            or CompressionMode.SetDeletedFlag
-            or CompressionMode.CallerSuppliedInternal
-            or CompressionMode.CallerSuppliedStreamable
-            or CompressionMode.CallerSuppliedZLib)
+            or CompressionMode.SetDeletedFlag)
             && compressionMethod is CompressionTypeMethodNumber.Internal_compression
             or CompressionTypeMethodNumber.ZLIB;
     }
 
     async Task<bool> InternalSetAsync(ResourceKey key, ReadOnlyMemory<byte> memory, CompressionMode compressionMode, CancellationToken cancellationToken)
     {
+        if (compressionMode is CompressionMode.CallerSuppliedInternal or CompressionMode.CallerSuppliedStreamable or CompressionMode.CallerSuppliedZLib)
+            throw new ArgumentException($"Content set with a caller-supplied compression mode must come with its decompressed size; use {nameof(SetRaw)} or {nameof(SetRawAsync)} instead", nameof(compressionMode));
         CompressionTypeMethodNumber compressionMethod;
         ReadOnlyMemory<byte> memoryToStore;
         if (FileVersion.Major is 1)
@@ -1898,17 +1895,13 @@ public sealed class DataBasePackedFile :
                 CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
                 CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
                 CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
-                CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
-                CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
-                CompressionMode.ForceZLib or CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
+                CompressionMode.ForceInternal => CompressionTypeMethodNumber.Internal_compression,
+                CompressionMode.ForceZLib => CompressionTypeMethodNumber.ZLIB,
                 _ => throw new NotSupportedException($"the compression mode {compressionMode} is not supported")
             };
             if (compressionMethod is CompressionTypeMethodNumber.Uncompressed
                 || compressionMode is CompressionMode.ForceOff
-                or CompressionMode.SetDeletedFlag
-                or CompressionMode.CallerSuppliedInternal
-                or CompressionMode.CallerSuppliedStreamable
-                or CompressionMode.CallerSuppliedZLib)
+                or CompressionMode.SetDeletedFlag)
                 memoryToStore = memory;
             else if (compressionMethod is CompressionTypeMethodNumber.Internal_compression)
             {
@@ -1932,8 +1925,7 @@ public sealed class DataBasePackedFile :
         }
         if (AreNamesIndexed())
         {
-            if (compressionMode is not CompressionMode.SetDeletedFlag
-                or CompressionMode.CallerSuppliedStreamable)
+            if (compressionMode is not CompressionMode.SetDeletedFlag)
             {
                 resourceNameByKey.TryGetValue(key, out var previousName);
                 string? newName = null;
@@ -1964,12 +1956,30 @@ public sealed class DataBasePackedFile :
         Store(key, memoryToStore, compressionMethod, memory.Length);
         return
             compressionMode is not (CompressionMode.ForceOff
-            or CompressionMode.SetDeletedFlag
-            or CompressionMode.CallerSuppliedInternal
-            or CompressionMode.CallerSuppliedStreamable
-            or CompressionMode.CallerSuppliedZLib)
+            or CompressionMode.SetDeletedFlag)
             && compressionMethod is CompressionTypeMethodNumber.Internal_compression
             or CompressionTypeMethodNumber.ZLIB;
+    }
+
+    void InternalSetRaw(ResourceKey key, ReadOnlyMemory<byte> rawContent, CompressionMode compressionMode, int sizeDecompressed)
+    {
+        var compressionMethod = compressionMode switch
+        {
+            CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
+            CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
+            CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
+            _ => throw new ArgumentException($"Only caller-supplied compression modes may be used to set raw content; use {nameof(Set)} or {nameof(SetAsync)} for {compressionMode}", nameof(compressionMode))
+        };
+        if (sizeDecompressed < 0)
+            throw new ArgumentOutOfRangeException(nameof(sizeDecompressed), sizeDecompressed, "The decompressed size cannot be negative");
+        if (FileVersion.Major is 1 && compressionMethod is not CompressionTypeMethodNumber.Internal_compression)
+            throw new NotSupportedException($"DBPF 1.x packages support only the {nameof(CompressionMode.CallerSuppliedInternal)} caller-supplied compression mode, not {compressionMode}");
+        if (AreNamesIndexed())
+        {
+            resourceKeysByName = null;
+            resourceNameByKey = null;
+        }
+        Store(key, rawContent, compressionMethod, sizeDecompressed);
     }
 
     /// <summary>
@@ -2257,6 +2267,7 @@ public sealed class DataBasePackedFile :
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public bool Set(ResourceKey key, ReadOnlyMemory<byte> content, CompressionMode compressionMode = CompressionMode.Auto)
     {
         RequireNotDisposed();
@@ -2272,6 +2283,7 @@ public sealed class DataBasePackedFile :
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public bool Set(ResourceKey key, IModel content, CompressionMode compressionMode = CompressionMode.Auto)
     {
         ArgumentNullException.ThrowIfNull(content);
@@ -2284,6 +2296,7 @@ public sealed class DataBasePackedFile :
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public bool Set(ResourceKey key, string content, CompressionMode compressionMode = CompressionMode.Auto)
     {
         ArgumentNullException.ThrowIfNull(content);
@@ -2299,6 +2312,7 @@ public sealed class DataBasePackedFile :
     /// <param name="key">The key of the resource</param>
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public bool Set(ResourceKey key, XDocument content, CompressionMode compressionMode = CompressionMode.Auto)
     {
         ArgumentNullException.ThrowIfNull(content);
@@ -2318,6 +2332,7 @@ public sealed class DataBasePackedFile :
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public async Task<bool> SetAsync(ResourceKey key, ReadOnlyMemory<byte> content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
     {
         RequireNotDisposed();
@@ -2334,6 +2349,7 @@ public sealed class DataBasePackedFile :
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public async Task<bool> SetAsync(ResourceKey key, IModel content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(content);
@@ -2347,6 +2363,7 @@ public sealed class DataBasePackedFile :
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public async Task<bool> SetAsync(ResourceKey key, string content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(content);
@@ -2363,6 +2380,7 @@ public sealed class DataBasePackedFile :
     /// <param name="content">The content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public async Task<bool> SetAsync(ResourceKey key, XDocument content, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(content);
@@ -2370,7 +2388,7 @@ public sealed class DataBasePackedFile :
         using var newMarkupStream = new ArrayBufferWriterOfByteStream();
         using var xmlWriter = XmlWriter.Create(newMarkupStream, TuningUtilities.XmlWriterSettings);
         content.Save(xmlWriter);
-        await xmlWriter.FlushAsync().ConfigureAwait(false);
+        xmlWriter.Flush();
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
         return await InternalSetAsync(key, newMarkupStream.WrittenMemory, compressionMode, cancellationToken).ConfigureAwait(false);
     }
@@ -2410,11 +2428,51 @@ public sealed class DataBasePackedFile :
         await SetAsync(key, await Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpegAsync(pngData, cancellationToken).ConfigureAwait(false), CompressionMode.ForceOff, cancellationToken).ConfigureAwait(false);
 
     /// <summary>
+    /// Sets the raw content of a resource with the specified <paramref name="key"/>, meaning that the library stores <paramref name="rawContent"/> as it is, marked as compressed in the manner of <paramref name="compressionMode"/>, with the decompressed size the caller states
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="rawContent">The content of the resource, already compressed by the caller (for DBPF 1.x packages, including the four-byte size prefix that format requires)</param>
+    /// <param name="compressionMode">The manner in which <paramref name="rawContent"/> is compressed: <see cref="CompressionMode.CallerSuppliedInternal"/>, <see cref="CompressionMode.CallerSuppliedStreamable"/>, or <see cref="CompressionMode.CallerSuppliedZLib"/></param>
+    /// <param name="sizeDecompressed">The size of the content of the resource once decompressed</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is not a caller-supplied compression mode</exception>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="sizeDecompressed"/> is negative</exception>
+    /// <exception cref="NotSupportedException">The package is DBPF 1.x and <paramref name="compressionMode"/> is not <see cref="CompressionMode.CallerSuppliedInternal"/></exception>
+    public void SetRaw(ResourceKey key, ReadOnlyMemory<byte> rawContent, CompressionMode compressionMode, int sizeDecompressed)
+    {
+        RequireNotDisposed();
+        Memory<byte> memory = new byte[rawContent.Length];
+        rawContent.CopyTo(memory);
+        using var heldResourceLock = resourceLock.Lock();
+        InternalSetRaw(key, memory, compressionMode, sizeDecompressed);
+    }
+
+    /// <summary>
+    /// Sets the raw content of a resource with the specified <paramref name="key"/> asynchronously, meaning that the library stores <paramref name="rawContent"/> as it is, marked as compressed in the manner of <paramref name="compressionMode"/>, with the decompressed size the caller states
+    /// </summary>
+    /// <param name="key">The key of the resource</param>
+    /// <param name="rawContent">The content of the resource, already compressed by the caller (for DBPF 1.x packages, including the four-byte size prefix that format requires)</param>
+    /// <param name="compressionMode">The manner in which <paramref name="rawContent"/> is compressed: <see cref="CompressionMode.CallerSuppliedInternal"/>, <see cref="CompressionMode.CallerSuppliedStreamable"/>, or <see cref="CompressionMode.CallerSuppliedZLib"/></param>
+    /// <param name="sizeDecompressed">The size of the content of the resource once decompressed</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is not a caller-supplied compression mode</exception>
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="sizeDecompressed"/> is negative</exception>
+    /// <exception cref="NotSupportedException">The package is DBPF 1.x and <paramref name="compressionMode"/> is not <see cref="CompressionMode.CallerSuppliedInternal"/></exception>
+    public async Task SetRawAsync(ResourceKey key, ReadOnlyMemory<byte> rawContent, CompressionMode compressionMode, int sizeDecompressed, CancellationToken cancellationToken = default)
+    {
+        RequireNotDisposed();
+        Memory<byte> memory = new byte[rawContent.Length];
+        rawContent.CopyTo(memory);
+        using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
+        InternalSetRaw(key, memory, compressionMode, sizeDecompressed);
+    }
+
+    /// <summary>
     /// Sets the <paramref name="xmlContent"/> of a resource with the specified <paramref name="key"/>, returning <see langword="true"/> if the resource was compressed; otherwise, <see langword="false"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>
     /// <param name="xmlContent">The XML content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public bool SetXml(ResourceKey key, string xmlContent, CompressionMode compressionMode = CompressionMode.Auto) =>
         Set(key, XDocument.Parse(xmlContent, TuningUtilities.XDocumentLoadOptions), compressionMode);
 
@@ -2425,6 +2483,7 @@ public sealed class DataBasePackedFile :
     /// <param name="xmlContent">The XML content of the resource</param>
     /// <param name="compressionMode">The compression mode to use for the resource</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="ArgumentException"><paramref name="compressionMode"/> is a caller-supplied compression mode (use <see cref="SetRaw(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int)"/> or <see cref="SetRawAsync(ResourceKey, ReadOnlyMemory{byte}, CompressionMode, int, CancellationToken)"/> instead)</exception>
     public Task<bool> SetXmlAsync(ResourceKey key, string xmlContent, CompressionMode compressionMode = CompressionMode.Auto, CancellationToken cancellationToken = default) =>
         SetAsync(key, XDocument.Parse(xmlContent, TuningUtilities.XDocumentLoadOptions), compressionMode, cancellationToken);
 
@@ -2474,7 +2533,6 @@ public sealed class DataBasePackedFile :
         }
         if (directory is { } existingDirectory && existingDirectory.Length == sizesDecompressed.Count * recordSize)
         {
-            // leave a directory which already lists exactly the compressed resources as it is, whatever its order
             var existingDirectorySpan = existingDirectory.Span;
             var listedKeys = new HashSet<ResourceKey>();
             for (var readPosition = 0; readPosition < existingDirectorySpan.Length;)
@@ -2516,7 +2574,6 @@ public sealed class DataBasePackedFile :
         if (compressionMode is not (CompressionMode.Auto or CompressionMode.ForceInternal or CompressionMode.ForceOff))
             throw new NotSupportedException($"DBPF 1.x packages support only the {nameof(CompressionMode.Auto)}, {nameof(CompressionMode.ForceInternal)}, and {nameof(CompressionMode.ForceOff)} compression modes, not {compressionMode}");
         compressionMethod = CompressionTypeMethodNumber.Uncompressed;
-        // the size field of a DBPF 1.x compressed stream is three bytes
         if (compressionMode is CompressionMode.ForceOff || memory.Length > 0xFFFFFF)
             return memory;
         var compressed = InternalCompress(memory, out var wasCompressed);
@@ -2557,7 +2614,6 @@ public sealed class DataBasePackedFile :
             : 0UL;
         if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
         {
-            // DBPF 1.x: index major version 7, 32-bit index position, no hole table, index minor version
             var mnIndexMajorVersion = 7U;
             MemoryMarshal.Write(header[32..36], ref mnIndexMajorVersion);
             if (mnIndexRecordPosition > uint.MaxValue)
