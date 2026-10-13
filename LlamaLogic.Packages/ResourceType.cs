@@ -127,9 +127,9 @@ public enum ResourceType :
     AudioVocals = 0x01a527db,
 
     /// <summary>
-    /// Automation Tuning
+    /// Automation Tuning (the game's <c>Automation</c>)
     /// </summary>
-    AutomationTuning = 0xdad162b8,
+    AutomationTuning = 0x54bd4618,
 
     /// <summary>
     /// AVI
@@ -212,10 +212,10 @@ public enum ResourceType :
     BuffTuning = 0x6017e896,
 
     /// <summary>
-    /// Build Buy Tuning
+    /// Build Buy Tuning (the game's <c>BuildBuy</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    BuildBuyTuning = 0xae03c339,
+    BuildBuyTuning = 0xe0d75679,
 
     /// <summary>
     /// Business Rule Tuning
@@ -338,6 +338,12 @@ public enum ResourceType :
     CASPreferenceCategoryTuning = 0xce04fc4b,
 
     /// <summary>
+    /// CAS Preference Group Tuning (the game's <c>CAS_PREFERENCE_GROUP</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    CASPreferenceGroupTuning = 0x6690f724,
+
+    /// <summary>
     /// CAS Preference Item Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -378,6 +384,12 @@ public enum ResourceType :
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
     CASTuning = 0xe24b5287,
+
+    /// <summary>
+    /// Cheat Sheet Tuning (the game's <c>CHEAT_SHEET</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    CheatSheetTuning = 0x16b37b7a,
 
     /// <summary>
     /// Clan Tuning
@@ -510,6 +522,12 @@ public enum ResourceType :
     DSTImage = 0x00b2d882,
 
     /// <summary>
+    /// Dynasty Seed Tuning (the game's <c>DYNASTY_SEED</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    DynastySeedTuning = 0x83f9aa6d,
+
+    /// <summary>
     /// Ensemble Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -580,6 +598,17 @@ public enum ResourceType :
     Geometry = 0x015a1849,
 
     /// <summary>
+    /// Getaway Challenge Tuning (the game's <c>GETAWAY_CHALLENGE</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    GetawayChallengeTuning = 0xde64c78b,
+
+    /// <summary>
+    /// GPINI (the game's <c>GPINI</c>)
+    /// </summary>
+    GPINI = 0x8614bed9,
+
+    /// <summary>
     /// Guidance Tip Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -589,6 +618,11 @@ public enum ResourceType :
     /// HalfWall
     /// </summary>
     HalfWall = 0x9151e6bc,
+
+    /// <summary>
+    /// Half Wall Trim (the game's <c>HALFWALL_TRIM</c>)
+    /// </summary>
+    HalfWallTrim = 0xa9fadc5d,
 
     /// <summary>
     /// Headline Tuning
@@ -625,10 +659,10 @@ public enum ResourceType :
     HouseholdTemplate = 0xb3c438f0,
 
     /// <summary>
-    /// Hsv Tweaker Settings Tuning
+    /// Hsv Tweaker Settings Tuning (the game's <c>HsvTweakerSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    HsvTweakerSettingsTuning = 0x23fc90fe,
+    HsvTweakerSettingsTuning = 0xd70dd79e,
 
     /// <summary>
     /// Interaction Tuning
@@ -784,6 +818,11 @@ public enum ResourceType :
     MoodTuning = 0xba7b60b8,
 
     /// <summary>
+    /// MTX Bundle (the game's <c>MTX_BUNDLE</c>)
+    /// </summary>
+    MTXBundle = 0x8db1dd26,
+
+    /// <summary>
     /// MTX Catalog
     /// </summary>
     MTXCatalog = 0x6dff1a66,
@@ -805,22 +844,27 @@ public enum ResourceType :
     NarrativeTuning = 0x3e753c39,
 
     /// <summary>
-    /// Native Build Buy Tuning
+    /// Native Build Buy Tuning (the game's <c>NativeBuildBuy</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    NativeBuildBuyTuning = 0x1a94e9b4,
+    NativeBuildBuyTuning = 0x99cbc754,
 
     /// <summary>
-    /// Native Seasons Weather Tuning
+    /// Native Seasons Weather Tuning (the game's <c>Native_SeasonsWeather</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    NativeSeasonsWeatherTuning = 0xb43a5ad1,
+    NativeSeasonsWeatherTuning = 0xd55aa831,
 
     /// <summary>
     /// Notebook Entry Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
     NotebookEntryTuning = 0x9902fa76,
+
+    /// <summary>
+    /// Object Definition, distinct from <see cref="ObjectDefinition"/> (the game's <c>OBJDEF</c>)
+    /// </summary>
+    ObjDef = 0xd81bddc9,
 
     /// <summary>
     /// Object Catalog
@@ -1003,10 +1047,10 @@ public enum ResourceType :
     RegionMap = 0xac16fbec,
 
     /// <summary>
-    /// Region Sort Tuning
+    /// Region Sort Tuning (the game's <c>RegionSort</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RegionSortTuning = 0x3f57c885,
+    RegionSortTuning = 0x31397645,
 
     /// <summary>
     /// Region Tuning
@@ -1027,52 +1071,52 @@ public enum ResourceType :
     RelationshipLockTuning = 0xae34e673,
 
     /// <summary>
-    /// Renderer Censor Tuning
+    /// Renderer Censor Tuning (the game's <c>Renderer_CensorTuning</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererCensorTuning = 0xe1d6fad2,
+    RendererCensorTuning = 0x457fc032,
 
     /// <summary>
-    /// Renderer Fade Tuning
+    /// Renderer Fade Tuning (the game's <c>Renderer_FadeTuning</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererFadeTuning = 0x041f95da,
+    RendererFadeTuning = 0x0eeb823a,
 
     /// <summary>
-    /// Renderer Global DOF Settings Tuning
+    /// Renderer Global DOF Settings Tuning (the game's <c>Renderer_GlobalDofSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererGlobalDOFSettingsTuning = 0x8d33a0de,
+    RendererGlobalDOFSettingsTuning = 0x4db8251e,
 
     /// <summary>
-    /// Renderer Global Highlight Settings Tuning
+    /// Renderer Global Highlight Settings Tuning (the game's <c>Renderer_GlobalHighlightSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererGlobalHighlightSettingsTuning = 0xbc7e2e95,
+    RendererGlobalHighlightSettingsTuning = 0x2c01bc15,
 
     /// <summary>
-    /// Renderer Global Light Settings Tuning
+    /// Renderer Global Light Settings Tuning (the game's <c>Renderer_GlobalLightSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererGlobalLightSettingsTuning = 0x6ab26065,
+    RendererGlobalLightSettingsTuning = 0x86136aa5,
 
     /// <summary>
-    /// Renderer Global Shadow Settings Tuning
+    /// Renderer Global Shadow Settings Tuning (the game's <c>Renderer_GlobalShadowSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererGlobalShadowSettingsTuning = 0x45295831,
+    RendererGlobalShadowSettingsTuning = 0x37b999f1,
 
     /// <summary>
-    /// Renderer Global SSAO Settings Tuning
+    /// Renderer Global SSAO Settings Tuning (the game's <c>Renderer_GlobalSsaoSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererGlobalSSAOSettingsTuning = 0x2f6ee30f,
+    RendererGlobalSSAOSettingsTuning = 0xf93b40cf,
 
     /// <summary>
-    /// Renderer Global Vol Light Scattering Settings Tuning
+    /// Renderer Global Vol Light Scattering Settings Tuning (the game's <c>Renderer_GlobalVolLightScatteringSettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    RendererGlobalVolLightScatteringSettingsTuning = 0xc5e245de,
+    RendererGlobalVolLightScatteringSettingsTuning = 0xe06ae65e,
 
     /// <summary>
     /// Reward Tuning
@@ -1352,6 +1396,18 @@ public enum ResourceType :
     SlotTypeTuning = 0x69a5daa4,
 
     /// <summary>
+    /// Small Business Binary Tuning (the game's <c>SMALL_BUSINESS_BINARY</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    SmallBusinessBinaryTuning = 0x057424dd,
+
+    /// <summary>
+    /// Small Business Seed Tuning (the game's <c>SMALL_BUSINESS_SEED</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    SmallBusinessSeedTuning = 0xb22ea24d,
+
+    /// <summary>
     /// Snippet Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -1496,16 +1552,16 @@ public enum ResourceType :
     TagTuning = 0xdd057dcc,
 
     /// <summary>
-    /// Telemetry Memory Usage Telemetry Settings Tuning
+    /// Telemetry Memory Usage Telemetry Settings Tuning (the game's <c>Telemetry_MemoryUsageTelemetrySettings</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    TelemetryMemoryUsageTelemetrySettingsTuning = 0x89d65f75,
+    TelemetryMemoryUsageTelemetrySettingsTuning = 0x3a5b3495,
 
     /// <summary>
-    /// Telemetry Tuning
+    /// Telemetry Tuning (the game's <c>Telemetry_Tuning</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    TelemetryTuning = 0xace5d486,
+    TelemetryTuning = 0xc2caa646,
 
     /// <summary>
     /// Template Chooser Tuning
@@ -1593,10 +1649,10 @@ public enum ResourceType :
     ThumbnailExtra2 = 0xb0118c15,
 
     /// <summary>
-    /// Thumbnail Tuning
+    /// Thumbnail Tuning (the game's <c>Thumbnail</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    ThumbnailTuning = 0xe1c27cd7,
+    ThumbnailTuning = 0xd83892b7,
 
     /// <summary>
     /// Timeline Events
@@ -1643,6 +1699,17 @@ public enum ResourceType :
     Tuning = 0x03b33ddf,
 
     /// <summary>
+    /// Tuning Dependencies Cache (the game's <c>TD_CACHE</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.Binary)]
+    TuningDependenciesCache = 0x346cb93e,
+
+    /// <summary>
+    /// Tuning Description (the game's <c>TUNING_DESCRIPTION</c>)
+    /// </summary>
+    TuningDescription = 0x962c5034,
+
+    /// <summary>
     /// Tutorial Tip Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -1678,6 +1745,12 @@ public enum ResourceType :
     UniversityCourseMajorTuning = 0x2758b34b,
 
     /// <summary>
+    /// University Course Schedule Tuning (the game's <c>UNIVERSITY_COURSE_SCHEDULE</c>)
+    /// </summary>
+    [ResourceFileType(ResourceFileType.TuningMarkup)]
+    UniversityCourseScheduleTuning = 0x988c2af5,
+
+    /// <summary>
     /// University Tuning
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
@@ -1711,16 +1784,16 @@ public enum ResourceType :
     VenueTuning = 0xe6bbd7de,
 
     /// <summary>
-    /// Video Global Tuning
+    /// Video Global Tuning (the game's <c>Video_GlobalTuning</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    VideoGlobalTuning = 0x9188116f,
+    VideoGlobalTuning = 0xde6ad3cf,
 
     /// <summary>
-    /// Video Playlist Tuning
+    /// Video Playlist Tuning (the game's <c>Video_Playlist</c>)
     /// </summary>
     [ResourceFileType(ResourceFileType.TuningMarkup)]
-    VideoPlaylistTuning = 0x40bf45cb,
+    VideoPlaylistTuning = 0xe55eeacb,
 
     /// <summary>
     /// Visual Effects
