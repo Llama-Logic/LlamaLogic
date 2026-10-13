@@ -67,6 +67,20 @@ public class CombinedTuningModelTests
     }
 
     [TestMethod]
+    [DataRow("buff", 0x6017e896U)]
+    [DataRow("notebook_entry", 0x9902fa76U)]
+    [DataRow("relbit", 0x0904df10U)]
+    [DataRow("tun", 0x03b33ddfU)]
+    [DataRow("BuildBuy", 0xe0d75679U)]
+    [DataRow("Renderer_GlobalShadowSettings", 0x37b999f1U)]
+    [DataRow("made_up_type", 0x96668845U)]
+    public void GetTuningsDerivesResourceTypes(string typeName, uint resourceType)
+    {
+        var model = CombinedTuningModel.Decode(Encoding.ASCII.GetBytes($"<combined><g s=\"merged\" /><R n=\"{typeName}\"><I n=\"a\" s=\"1\" /></R></combined>"));
+        Assert.AreEqual((ResourceType)resourceType, model.GetTunings().Single().ResourceType);
+    }
+
+    [TestMethod]
     [DataRow("<combined><g s=\"merged\" /><R n=\"buff\"><I n=\"a\" s=\"1\"><r x=\"9\" /></I></R></combined>")]
     [DataRow("<combined><g s=\"merged\"><L x=\"0\"><r x=\"0\" /></L></g><R n=\"buff\"><I n=\"a\" s=\"1\"><r x=\"0\" /></I></R></combined>")]
     [DataRow("<combined><R n=\"buff\"><I n=\"a\" s=\"1\" /></R></combined>")]
