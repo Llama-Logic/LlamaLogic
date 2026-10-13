@@ -6,6 +6,9 @@ namespace LlamaLogic.Packages.Models.ModFileManifest;
 public sealed class ModFileManifestModelRequiredMod :
     IXmlSerializable
 {
+    ImmutableArray<byte> ignoreIfHashAvailable = [];
+    ImmutableArray<byte> ignoreIfHashUnavailable = [];
+
     /// <summary>
     /// Gets the names of the creators of the dependency mod
     /// </summary>
@@ -22,13 +25,21 @@ public sealed class ModFileManifestModelRequiredMod :
     /// Instructs agents to ignore fulfilling this dependency if this hash is present in the player's catalog of mods
     /// </summary>
     [YamlMember(Order = 8, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-    public ImmutableArray<byte> IgnoreIfHashAvailable { get; set; }
+    public ImmutableArray<byte> IgnoreIfHashAvailable
+    {
+        get => ignoreIfHashAvailable;
+        set => ignoreIfHashAvailable = value.IsDefault ? [] : value;
+    }
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if this hash is not present in the player's catalog of mods
     /// </summary>
     [YamlMember(Order = 9, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-    public ImmutableArray<byte> IgnoreIfHashUnavailable { get; set; }
+    public ImmutableArray<byte> IgnoreIfHashUnavailable
+    {
+        get => ignoreIfHashUnavailable;
+        set => ignoreIfHashUnavailable = value.IsDefault ? [] : value;
+    }
 
     /// <summary>
     /// Instructs agents to ignore fulfilling this dependency if the pack identified by this pack code is present (e.g. "EP01" for Get to Work)

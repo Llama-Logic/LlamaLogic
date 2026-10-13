@@ -565,6 +565,8 @@ public sealed partial class ModFileManifestModel :
         return false;
     }
 
+    ImmutableArray<byte> hash = [];
+
     /// <summary>
     /// Gets/sets the email address which can be used to contact this mod's creator
     /// </summary>
@@ -617,7 +619,11 @@ public sealed partial class ModFileManifestModel :
     /// Gets/sets the hash of the mod file
     /// </summary>
     [YamlMember(Order = 13, DefaultValuesHandling = DefaultValuesHandling.OmitEmptyCollections)]
-    public ImmutableArray<byte> Hash { get; set; }
+    public ImmutableArray<byte> Hash
+    {
+        get => hash;
+        set => hash = value.IsDefault ? [] : value;
+    }
 
     /// <summary>
     /// Gets the resource keys for the resources included in the <see cref="Hash"/>

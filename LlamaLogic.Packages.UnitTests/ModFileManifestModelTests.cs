@@ -22,6 +22,30 @@ public class ModFileManifestModelTests :
     }
 
     [TestMethod]
+    public void EncodeOmitsDefaultHashes()
+    {
+        var manifest = new ModFileManifestModel { Name = "Valid", Hash = default };
+        Assert.IsFalse(Encoding.UTF8.GetString(manifest.Encode().Span).Contains("n=\"hash\"", StringComparison.Ordinal));
+        Assert.IsFalse(manifest.ToString().Split('\n').Any(line => line.StartsWith("hash:", StringComparison.Ordinal)));
+    }
+
+    [TestMethod]
+    public void EncodeRoundTripsUnsetHashes()
+    {
+        var manifest = new ModFileManifestModel { Name = "Valid" };
+        manifest.RequiredMods.Add(new ModFileManifestModelRequiredMod { Name = "Required" });
+        var decoded = ModFileManifestModel.Decode(manifest.Encode());
+        Assert.AreEqual("Valid", decoded.Name);
+        Assert.AreEqual("Required", decoded.RequiredMods.Single().Name);
+        Assert.IsFalse(decoded.Hash.IsDefault);
+        Assert.AreEqual(0, decoded.Hash.Length);
+        Assert.IsFalse(decoded.RequiredMods[0].IgnoreIfHashAvailable.IsDefault);
+        Assert.AreEqual(0, decoded.RequiredMods[0].IgnoreIfHashAvailable.Length);
+        Assert.IsFalse(decoded.RequiredMods[0].IgnoreIfHashUnavailable.IsDefault);
+        Assert.AreEqual(0, decoded.RequiredMods[0].IgnoreIfHashUnavailable.Length);
+    }
+
+    [TestMethod]
     [DataRow("<T n=\"url\">not a url</T>")]
     [DataRow("<T n=\"url\"></T>")]
     [DataRow("<L n=\"hash_resource_keys\"><T>not a key</T></L>")]
@@ -45,6 +69,22 @@ public class ModFileManifestModelTests :
         Assert.AreEqual("Valid", (await ModFileManifestModel.GetModFileManifestAndKeyAsync(dbpf)).Item2?.Name);
         Assert.AreEqual("Valid", ModFileManifestModel.GetModFileManifests(dbpf)[manifestKey].Name);
         Assert.AreEqual("Valid", (await ModFileManifestModel.GetModFileManifestsAsync(dbpf))[manifestKey].Name);
+    }
+
+    [TestMethod]
+    public void ToStringRoundTripsUnsetHashes()
+    {
+        var manifest = new ModFileManifestModel { Name = "Valid" };
+        manifest.RequiredMods.Add(new ModFileManifestModelRequiredMod { Name = "Required" });
+        Assert.IsTrue(ModFileManifestModel.TryParse(manifest.ToString(), out var parsed));
+        Assert.AreEqual("Valid", parsed.Name);
+        Assert.AreEqual("Required", parsed.RequiredMods.Single().Name);
+        Assert.IsFalse(parsed.Hash.IsDefault);
+        Assert.AreEqual(0, parsed.Hash.Length);
+        Assert.IsFalse(parsed.RequiredMods[0].IgnoreIfHashAvailable.IsDefault);
+        Assert.AreEqual(0, parsed.RequiredMods[0].IgnoreIfHashAvailable.Length);
+        Assert.IsFalse(parsed.RequiredMods[0].IgnoreIfHashUnavailable.IsDefault);
+        Assert.AreEqual(0, parsed.RequiredMods[0].IgnoreIfHashUnavailable.Length);
     }
 
     [TestMethod]
