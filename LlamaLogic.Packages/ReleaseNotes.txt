@@ -1,4 +1,3 @@
-DataBasePackedFile.CopyTo, SaveAs and SaveAsAsync now write the correct index size when some entries lack extended compression fields, so the packages they write from such sources can be reopened.
-DataBasePackedFile now reads completely from streams that return fewer bytes than requested per read, both when opening packages and when reading resources, on every target framework.
-ZLibDecompress and ZLibDecompressAsync now throw EndOfStreamException when the data decompresses to fewer bytes than requested instead of returning a partly empty result.
-Reading the raw content of a resource marked uncompressed now returns the bytes the index says are stored instead of reading as many bytes as its decompressed size, which could run into the following resource.
+DataBasePackedFile now reads and writes DBPF 1.x packages (The Sims 2) in the 1.x format: it reads the 1.x index, decompresses the resources the DIR resource lists as compressed, writes the 1.x header and index, and keeps the DIR resource up to date when writing (removing it when nothing is compressed).
+DataBasePackedFile Set and SetAsync methods compress the resources of DBPF 1.x packages only with Maxis' internal algorithm, and throw NotSupportedException for compression modes other than Auto, ForceInternal, and ForceOff.
+Setting DataBasePackedFile.FileVersion between 1.x and any other version now throws InvalidOperationException while the package contains compressed or deleted resources, because their stored forms differ between the two.

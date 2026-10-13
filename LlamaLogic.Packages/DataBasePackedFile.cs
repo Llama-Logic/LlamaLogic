@@ -68,6 +68,7 @@ public sealed class DataBasePackedFile :
         .GetValues<ResourceType>()
         .ToImmutableDictionary(resourceType => resourceType, resourceType => typeof(ResourceType).GetMember(resourceType.ToString()).FirstOrDefault()?.GetCustomAttribute<StandardCompressionAttribute>()?.MethodNumber);
     const int unloadedResourceCopyBufferSize = 4096;
+    static readonly ResourceKey version1DirectoryKey = new((ResourceType)0xE86B1EEF, 0xE86B1EEF, 0x286B1F03);
 
     static void AddIndexedResourceName(Dictionary<string, HashSet<ResourceKey>> resourceKeysByName, Dictionary<ResourceKey, string> resourceNameByKey, ResourceKey key, string resourceName)
     {
@@ -79,7 +80,7 @@ public sealed class DataBasePackedFile :
             keys!.Add(key);
     }
 
-    static ReadOnlyMemory<byte> FetchMemory(LoadedResource loadedResource, bool force)
+    static ReadOnlyMemory<byte> FetchMemory(LoadedResource loadedResource, bool force, bool isVersion1)
     {
         var (memory, compressionType, sizeDecompressed) = loadedResource;
         if (compressionType is CompressionTypeMethodNumber.Uncompressed)
@@ -91,13 +92,13 @@ public sealed class DataBasePackedFile :
             return memory;
         }
         if (compressionType is CompressionTypeMethodNumber.Internal_compression or CompressionTypeMethodNumber.Streamable_compression)
-            return InternalDecompress(memory);
+            return InternalDecompressStored(memory, isVersion1);
         if (compressionType is CompressionTypeMethodNumber.ZLIB)
             return ZLibDecompress(memory, sizeDecompressed);
         throw new NotSupportedException($"Compression type {compressionType} not supported");
     }
 
-    static Task<ReadOnlyMemory<byte>> FetchMemoryAsync(LoadedResource loadedResource, bool force, CancellationToken cancellationToken)
+    static Task<ReadOnlyMemory<byte>> FetchMemoryAsync(LoadedResource loadedResource, bool force, bool isVersion1, CancellationToken cancellationToken)
     {
         var (memory, compressionType, sizeDecompressed) = loadedResource;
         if (compressionType is CompressionTypeMethodNumber.Uncompressed)
@@ -109,7 +110,7 @@ public sealed class DataBasePackedFile :
             return Task.FromResult(memory);
         }
         if (compressionType is CompressionTypeMethodNumber.Internal_compression or CompressionTypeMethodNumber.Streamable_compression)
-            return Task.FromResult(InternalDecompress(memory));
+            return Task.FromResult(InternalDecompressStored(memory, isVersion1));
         if (compressionType is CompressionTypeMethodNumber.ZLIB)
             return ZLibDecompressAsync(memory, sizeDecompressed, cancellationToken);
         throw new NotSupportedException($"Compression type {compressionType} not supported");
@@ -259,6 +260,16 @@ public sealed class DataBasePackedFile :
         return Gibbed.RefPack.Decompression.Decompress(compressedStream);
     }
 
+    static ReadOnlyMemory<byte> InternalDecompressStored(ReadOnlyMemory<byte> stored, bool isVersion1)
+    {
+        if (!isVersion1)
+            return InternalDecompress(stored);
+        // DBPF 1.x stores compressed content behind a four-byte little-endian prefix holding the stored size
+        if (stored.Length < 4)
+            throw new InvalidDataException("The compressed resource is too short to hold its size prefix");
+        return InternalDecompress(stored[4..]);
+    }
+
     static void RemoveIndexedResourceName(Dictionary<string, HashSet<ResourceKey>> resourceKeysByName, Dictionary<ResourceKey, string> resourceNameByKey, ResourceKey key)
     {
         if (resourceNameByKey.Remove(key, out var resourceName) && resourceKeysByName.TryGetValue(resourceName, out var keys))
@@ -336,7 +347,7 @@ public sealed class DataBasePackedFile :
         unused4 = defaultUnused4;
         unused5 = defaultUnused5;
         CreationTime = DateTimeOffset.UtcNow;
-        FileVersion = defaultFileVersion;
+        fileVersion = defaultFileVersion;
         UpdatedTime = DateTimeOffset.UtcNow;
         UserVersion = defaultUserVersion;
     }
@@ -407,6 +418,7 @@ public sealed class DataBasePackedFile :
     ~DataBasePackedFile() =>
         Dispose(false);
 
+    Version fileVersion;
     bool isDisposed;
     readonly OrderedHashSet<ResourceKey> keysInIndexOrder;
     readonly Dictionary<ResourceKey, LoadedResource> loadedResources;
@@ -445,8 +457,24 @@ public sealed class DataBasePackedFile :
     /// This class is intended to work with versions of the Maxis DBPF format up to version <c>2.1</c> and going back as far as possible.
     /// While it will permit the caller to specify any version they like, it does not guard against potential negative consequences which may result from such packages actually being used.
     /// The default version for newly created packages is currently <c>2.1</c>.
+    /// Versions <c>1.x</c> (used by The Sims 2) are written with the <c>1.x</c> header and index layouts, compress only with Maxis' internal algorithm, and record which resources are compressed in a directory resource (type, group, and instance <c>E86B1EEF</c>, <c>E86B1EEF</c>, <c>286B1F03</c>) which this class brings up to date whenever it writes the package, removing it when no resources are compressed.
     /// </remarks>
-    public Version FileVersion { get; set; }
+    /// <exception cref="InvalidOperationException">The new value would move the package between version <c>1.x</c> and any other version while it contains a compressed or deleted resource (set those resources with <see cref="CompressionMode.ForceOff"/> first)</exception>
+    public Version FileVersion
+    {
+        get => fileVersion;
+        set
+        {
+            if (value is not null && fileVersion is not null && (value.Major is 1) != (fileVersion.Major is 1))
+            {
+                using var heldResourceLock = resourceLock.Lock();
+                if (unloadedResources.Values.Any(indexEntry => indexEntry.mnCompressionType is not CompressionTypeMethodNumber.Uncompressed)
+                    || loadedResources.Values.Any(loadedResource => loadedResource.CompressionType is not CompressionTypeMethodNumber.Uncompressed))
+                    throw new InvalidOperationException($"The file version cannot be changed from {fileVersion} to {value} while the package contains compressed or deleted resources, because their stored forms differ between DBPF 1.x and later versions (set them with {nameof(CompressionMode)}.{nameof(CompressionMode.ForceOff)} first)");
+            }
+            fileVersion = value!;
+        }
+    }
 
     /// <summary>
     /// Gets a list of keys for all the resources in the package
@@ -568,11 +596,34 @@ public sealed class DataBasePackedFile :
         }
     }
 
+    void ApplyVersion1Directory(ReadOnlySpan<byte> directory)
+    {
+        var recordSize = MemoryMarshal.Read<uint>(unused4.Span) >= 2 ? 20 : 16;
+        for (var readPosition = 0; directory.Length - readPosition >= recordSize;)
+        {
+            var mType = directory.ReadAndAdvancePosition<ResourceType>(ref readPosition);
+            var mGroup = directory.ReadAndAdvancePosition<uint>(ref readPosition);
+            var mInstance = directory.ReadAndAdvancePosition<uint>(ref readPosition);
+            var mInstanceEx = recordSize is 20 ? directory.ReadAndAdvancePosition<uint>(ref readPosition) : 0U;
+            var mnSizeDecompressed = directory.ReadAndAdvancePosition<uint>(ref readPosition);
+            var key = new ResourceKey(mType, mGroup, ((ulong)mInstanceEx << 32) | mInstance);
+            if (key == version1DirectoryKey)
+                continue;
+            ref var indexEntry = ref CollectionsMarshal.GetValueRefOrNullRef(unloadedResources, key);
+            if (!Unsafe.IsNullRef(ref indexEntry))
+                indexEntry = indexEntry with
+                {
+                    mnCompressionType = CompressionTypeMethodNumber.Internal_compression,
+                    mnSizeDecompressed = mnSizeDecompressed
+                };
+        }
+    }
+
     [MemberNotNullWhen(true, nameof(resourceKeysByName), nameof(resourceNameByKey))]
     bool AreNamesIndexed() =>
         resourceKeysByName is not null && resourceNameByKey is not null;
 
-    bool BeginIndex(ResourceKeyOrder resourceKeyOrder, [NotNullWhen(true)] out ArrayBufferWriter<byte>? index, out ImmutableArray<ResourceKey> keys, out IndexFlags indexFlags, out int indexSize)
+    bool BeginIndex(ResourceKeyOrder resourceKeyOrder, uint? version1IndexMinorVersion, [NotNullWhen(true)] out ArrayBufferWriter<byte>? index, out ImmutableArray<ResourceKey> keys, out IndexFlags indexFlags, out int indexSize)
     {
         if (unloadedResources.Count == 0 && loadedResources.Count == 0)
         {
@@ -583,6 +634,13 @@ public sealed class DataBasePackedFile :
             return false;
         }
         keys = InternalGetKeys(resourceKeyOrder);
+        if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
+        {
+            indexFlags = default;
+            indexSize = keys.Length * (nonNullVersion1IndexMinorVersion >= 2 ? 24 : 20);
+            index = new ArrayBufferWriter<byte>(indexSize);
+            return true;
+        }
         var distinctTypes = keys.Select(key => key.Type).Distinct().ToImmutableArray();
         var constantType = distinctTypes.Length == 1 ? (ResourceType?)distinctTypes[0] : null;
         var distinctGroups = keys.Select(key => key.Group).Distinct().ToImmutableArray();
@@ -783,7 +841,7 @@ public sealed class DataBasePackedFile :
             Memory<byte> compressed = new byte[stream.Length];
             if (FillBuffer(stream, compressed.Span) < compressed.Length)
                 throw new EndOfStreamException("The resource could not be fully read");
-            stream = new ReadOnlyMemoryOfByteStream(InternalDecompress(compressed));
+            stream = new ReadOnlyMemoryOfByteStream(InternalDecompressStored(compressed, FileVersion.Major is 1));
         }
         else if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Deleted_record)
         {
@@ -926,7 +984,7 @@ public sealed class DataBasePackedFile :
             return FetchMemory(indexEntry, force);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
-            return FetchMemory(loadedResource, force);
+            return FetchMemory(loadedResource, force, FileVersion.Major is 1);
         throw new KeyNotFoundException($"Key {key} not found");
     }
 
@@ -1368,12 +1426,12 @@ public sealed class DataBasePackedFile :
                 string? resourceName = null;
                 if (resourceFileType is ResourceFileType.TuningMarkup)
                 {
-                    using var tuningMarkupStream = new ReadOnlyMemoryOfByteStream(FetchMemory(loadedResource, false));
+                    using var tuningMarkupStream = new ReadOnlyMemoryOfByteStream(FetchMemory(loadedResource, false, FileVersion.Major is 1));
                     resourceName = GetTuningMarkupResourceName(tuningMarkupStream);
                 }
                 else if (Model.SupportedTypes.Contains(resourceType))
                 {
-                    using var binaryStream = new ReadOnlyMemoryOfByteStream(FetchMemory(loadedResource, false));
+                    using var binaryStream = new ReadOnlyMemoryOfByteStream(FetchMemory(loadedResource, false, FileVersion.Major is 1));
                     resourceName = Model.GetName(resourceType, binaryStream);
                 }
                 if (resourceName is not null)
@@ -1453,14 +1511,14 @@ public sealed class DataBasePackedFile :
                 if (resourceFileType is ResourceFileType.TuningMarkup)
                 {
 #pragma warning disable CS8774 // The way this method is awaited, they won't be null by the time the caller could possibly read them
-                    using var tuningMarkupStream = new ReadOnlyMemoryOfByteStream(await FetchMemoryAsync(loadedResource, false, cancellationToken).ConfigureAwait(false));
+                    using var tuningMarkupStream = new ReadOnlyMemoryOfByteStream(await FetchMemoryAsync(loadedResource, false, FileVersion.Major is 1, cancellationToken).ConfigureAwait(false));
                     resourceName = await GetTuningMarkupResourceNameAsync(tuningMarkupStream).ConfigureAwait(false);
 #pragma warning restore CS8774 // The way this method is awaited, they won't be null by the time the caller could possibly read them
                 }
                 else if (Model.SupportedTypes.Contains(resourceType))
                 {
 #pragma warning disable CS8774 // The way this method is awaited, they won't be null by the time the caller could possibly read them
-                    using var binaryStream = new ReadOnlyMemoryOfByteStream(await FetchMemoryAsync(loadedResource, false, cancellationToken).ConfigureAwait(false));
+                    using var binaryStream = new ReadOnlyMemoryOfByteStream(await FetchMemoryAsync(loadedResource, false, FileVersion.Major is 1, cancellationToken).ConfigureAwait(false));
                     resourceName = await Model.GetNameAsync(resourceType, binaryStream, cancellationToken).ConfigureAwait(false);
 #pragma warning restore CS8774 // The way this method is awaited, they won't be null by the time the caller could possibly read them
                 }
@@ -1474,6 +1532,15 @@ public sealed class DataBasePackedFile :
         }
         this.resourceKeysByName = resourceKeysByName;
         this.resourceNameByKey = resourceNameByKey;
+    }
+
+    uint GetVersion1IndexMinorVersion()
+    {
+        // index minor version 2 adds the high 32 bits of the instance to each index entry
+        if (keysInIndexOrder.Any(key => key.InstanceEx is not 0))
+            return 2;
+        var indexMinorVersion = MemoryMarshal.Read<uint>(unused4.Span);
+        return indexMinorVersion <= 2 ? indexMinorVersion : 1;
     }
 
     void InitializeFromStream()
@@ -1499,6 +1566,8 @@ public sealed class DataBasePackedFile :
                 ArrayPool<byte>.Shared.Return(indexPoolArray);
             }
         }
+        if (FileVersion.Major is 1 && unloadedResources.TryGetValue(version1DirectoryKey, out var directoryIndexEntry))
+            ApplyVersion1Directory(FetchRawMemory(directoryIndexEntry, true).Span);
     }
 
     async ValueTask InitializeFromStreamAsync(CancellationToken cancellationToken)
@@ -1532,6 +1601,8 @@ public sealed class DataBasePackedFile :
         {
             ArrayPool<byte>.Shared.Return(headerPoolArray);
         }
+        if (FileVersion.Major is 1 && unloadedResources.TryGetValue(version1DirectoryKey, out var directoryIndexEntry))
+            ApplyVersion1Directory((await FetchRawMemoryAsync(directoryIndexEntry, true, cancellationToken).ConfigureAwait(false)).Span);
     }
 
     void InternalCopyTo(Stream destination, ResourceKeyOrder resourceKeyOrder)
@@ -1539,9 +1610,20 @@ public sealed class DataBasePackedFile :
         ArgumentNullException.ThrowIfNull(destination);
         if (!destination.CanWrite)
             throw new ArgumentException("Stream must be writable", nameof(destination));
-        var hasIndex = BeginIndex(resourceKeyOrder, out var index, out var keys, out var indexFlags, out var indexSize);
+        uint? version1IndexMinorVersion = null;
+        if (FileVersion.Major is 1)
+        {
+            version1IndexMinorVersion = GetVersion1IndexMinorVersion();
+            ReadOnlyMemory<byte>? directory = null;
+            if (unloadedResources.TryGetValue(version1DirectoryKey, out var directoryIndexEntry))
+                directory = FetchRawMemory(directoryIndexEntry, true);
+            else if (loadedResources.TryGetValue(version1DirectoryKey, out var directoryLoadedResource))
+                directory = directoryLoadedResource.Memory;
+            UpdateVersion1Directory(version1IndexMinorVersion.Value, directory);
+        }
+        var hasIndex = BeginIndex(resourceKeyOrder, version1IndexMinorVersion, out var index, out var keys, out var indexFlags, out var indexSize);
         Span<byte> header = stackalloc byte[96];
-        WriteHeader(header, hasIndex, indexSize);
+        WriteHeader(header, hasIndex, indexSize, version1IndexMinorVersion);
         destination.Write(header);
         var position = 96;
         var bufferPoolArray = ArrayPool<byte>.Shared.Rent(unloadedResourceCopyBufferSize);
@@ -1552,7 +1634,7 @@ public sealed class DataBasePackedFile :
             {
                 if (unloadedResources.TryGetValue(key, out var indexEntry))
                 {
-                    WriteIndexEntry(index!, indexFlags, position, key, indexEntry);
+                    WriteIndexEntry(index!, indexFlags, version1IndexMinorVersion, position, key, indexEntry);
                     stream!.Seek(indexEntry.mnPosition, SeekOrigin.Begin);
                     var resourceSize = (int)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask);
                     for (int bytesRead, totalBytesRead = 0; resourceSize - totalBytesRead > 0;)
@@ -1567,7 +1649,7 @@ public sealed class DataBasePackedFile :
                 }
                 else if (loadedResources.TryGetValue(key, out var loadedResource))
                 {
-                    WriteIndexEntry(index!, indexFlags, position, key, loadedResource);
+                    WriteIndexEntry(index!, indexFlags, version1IndexMinorVersion, position, key, loadedResource);
                     destination.Write(loadedResource.Memory.Span);
                     position += loadedResource.Memory.Length;
                 }
@@ -1589,13 +1671,24 @@ public sealed class DataBasePackedFile :
         ArgumentNullException.ThrowIfNull(destination);
         if (!destination.CanWrite)
             throw new ArgumentException("Stream must be writable", nameof(destination));
-        var hasIndex = BeginIndex(resourceKeyOrder, out var index, out var keys, out var indexFlags, out var indexSize);
+        uint? version1IndexMinorVersion = null;
+        if (FileVersion.Major is 1)
+        {
+            version1IndexMinorVersion = GetVersion1IndexMinorVersion();
+            ReadOnlyMemory<byte>? directory = null;
+            if (unloadedResources.TryGetValue(version1DirectoryKey, out var directoryIndexEntry))
+                directory = await FetchRawMemoryAsync(directoryIndexEntry, true, cancellationToken).ConfigureAwait(false);
+            else if (loadedResources.TryGetValue(version1DirectoryKey, out var directoryLoadedResource))
+                directory = directoryLoadedResource.Memory;
+            UpdateVersion1Directory(version1IndexMinorVersion.Value, directory);
+        }
+        var hasIndex = BeginIndex(resourceKeyOrder, version1IndexMinorVersion, out var index, out var keys, out var indexFlags, out var indexSize);
         var headerPoolArray = ArrayPool<byte>.Shared.Rent(96);
         try
         {
             var header = headerPoolArray.AsMemory()[..96];
             header.Span.Clear();
-            WriteHeader(header.Span, hasIndex, indexSize);
+            WriteHeader(header.Span, hasIndex, indexSize, version1IndexMinorVersion);
             await destination.WriteAsync(header, cancellationToken).ConfigureAwait(false);
             var position = 96;
             var bufferPoolArray = ArrayPool<byte>.Shared.Rent(unloadedResourceCopyBufferSize);
@@ -1606,7 +1699,7 @@ public sealed class DataBasePackedFile :
                 {
                     if (unloadedResources.TryGetValue(key, out var indexEntry))
                     {
-                        WriteIndexEntry(index!, indexFlags, position, key, indexEntry);
+                        WriteIndexEntry(index!, indexFlags, version1IndexMinorVersion, position, key, indexEntry);
                         stream!.Seek(indexEntry.mnPosition, SeekOrigin.Begin);
                         var resourceSize = (int)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask);
                         for (int bytesRead, totalBytesRead = 0; resourceSize - totalBytesRead > 0;)
@@ -1621,7 +1714,7 @@ public sealed class DataBasePackedFile :
                     }
                     else if (loadedResources.TryGetValue(key, out var loadedResource))
                     {
-                        WriteIndexEntry(index!, indexFlags, position, key, loadedResource);
+                        WriteIndexEntry(index!, indexFlags, version1IndexMinorVersion, position, key, loadedResource);
                         await destination.WriteAsync(loadedResource.Memory, cancellationToken).ConfigureAwait(false);
                         position += loadedResource.Memory.Length;
                     }
@@ -1650,7 +1743,7 @@ public sealed class DataBasePackedFile :
             return FetchMemoryAsync(indexEntry, force, cancellationToken);
         ref var loadedResource = ref CollectionsMarshal.GetValueRefOrNullRef(loadedResources, key);
         if (!Unsafe.IsNullRef(ref loadedResource))
-            return FetchMemoryAsync(loadedResource, force, cancellationToken);
+            return FetchMemoryAsync(loadedResource, force, FileVersion.Major is 1, cancellationToken);
         throw new KeyNotFoundException($"Key {key} not found");
     }
 
@@ -1707,43 +1800,49 @@ public sealed class DataBasePackedFile :
 
     bool InternalSet(ResourceKey key, ReadOnlyMemory<byte> memory, CompressionMode compressionMode)
     {
-        var compressionMethod = compressionMode switch
-        {
-            CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
-            CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
-            CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
-            CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
-            CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
-            CompressionMode.ForceZLib or CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
-            _ => throw new NotSupportedException($"the compression mode {compressionMode} is not supported")
-        };
+        CompressionTypeMethodNumber compressionMethod;
         ReadOnlyMemory<byte> memoryToStore;
-        if (compressionMethod is CompressionTypeMethodNumber.Uncompressed
-            || compressionMode is CompressionMode.ForceOff
-            or CompressionMode.SetDeletedFlag
-            or CompressionMode.CallerSuppliedInternal
-            or CompressionMode.CallerSuppliedStreamable
-            or CompressionMode.CallerSuppliedZLib)
-            memoryToStore = memory;
-        else if (compressionMethod is CompressionTypeMethodNumber.Internal_compression)
+        if (FileVersion.Major is 1)
+            memoryToStore = Version1Compress(memory, compressionMode, out compressionMethod);
+        else
         {
-            memoryToStore = InternalCompress(memory, out var wasInternallyCompressed);
-            if (!wasInternallyCompressed)
-                compressionMethod = CompressionTypeMethodNumber.Uncompressed;
-        }
-        else if (compressionMethod is CompressionTypeMethodNumber.ZLIB)
-        {
-            var zlibCompressed = ZLibCompress(memory);
-            if (zlibCompressed.Length >= memory.Length)
+            compressionMethod = compressionMode switch
             {
-                compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+                CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
+                CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
+                CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
+                CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
+                CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
+                CompressionMode.ForceZLib or CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
+                _ => throw new NotSupportedException($"the compression mode {compressionMode} is not supported")
+            };
+            if (compressionMethod is CompressionTypeMethodNumber.Uncompressed
+                || compressionMode is CompressionMode.ForceOff
+                or CompressionMode.SetDeletedFlag
+                or CompressionMode.CallerSuppliedInternal
+                or CompressionMode.CallerSuppliedStreamable
+                or CompressionMode.CallerSuppliedZLib)
                 memoryToStore = memory;
+            else if (compressionMethod is CompressionTypeMethodNumber.Internal_compression)
+            {
+                memoryToStore = InternalCompress(memory, out var wasInternallyCompressed);
+                if (!wasInternallyCompressed)
+                    compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+            }
+            else if (compressionMethod is CompressionTypeMethodNumber.ZLIB)
+            {
+                var zlibCompressed = ZLibCompress(memory);
+                if (zlibCompressed.Length >= memory.Length)
+                {
+                    compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+                    memoryToStore = memory;
+                }
+                else
+                    memoryToStore = zlibCompressed;
             }
             else
-                memoryToStore = zlibCompressed;
+                throw new NotSupportedException($"the compression method {compressionMethod} is not supported");
         }
-        else
-            throw new NotSupportedException($"the compression method {compressionMethod} is not supported");
         if (AreNamesIndexed())
         {
             if (compressionMode is not CompressionMode.SetDeletedFlag
@@ -1788,43 +1887,49 @@ public sealed class DataBasePackedFile :
 
     async Task<bool> InternalSetAsync(ResourceKey key, ReadOnlyMemory<byte> memory, CompressionMode compressionMode, CancellationToken cancellationToken)
     {
-        var compressionMethod = compressionMode switch
-        {
-            CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
-            CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
-            CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
-            CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
-            CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
-            CompressionMode.ForceZLib or CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
-            _ => throw new NotSupportedException($"the compression mode {compressionMode} is not supported")
-        };
+        CompressionTypeMethodNumber compressionMethod;
         ReadOnlyMemory<byte> memoryToStore;
-        if (compressionMethod is CompressionTypeMethodNumber.Uncompressed
-            || compressionMode is CompressionMode.ForceOff
-            or CompressionMode.SetDeletedFlag
-            or CompressionMode.CallerSuppliedInternal
-            or CompressionMode.CallerSuppliedStreamable
-            or CompressionMode.CallerSuppliedZLib)
-            memoryToStore = memory;
-        else if (compressionMethod is CompressionTypeMethodNumber.Internal_compression)
+        if (FileVersion.Major is 1)
+            memoryToStore = Version1Compress(memory, compressionMode, out compressionMethod);
+        else
         {
-            memoryToStore = InternalCompress(memory, out var wasInternallyCompressed);
-            if (!wasInternallyCompressed)
-                compressionMethod = CompressionTypeMethodNumber.Uncompressed;
-        }
-        else if (compressionMethod is CompressionTypeMethodNumber.ZLIB)
-        {
-            var zlibCompressed = await ZLibCompressAsync(memory).ConfigureAwait(false);
-            if (zlibCompressed.Length >= memory.Length)
+            compressionMethod = compressionMode switch
             {
-                compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+                CompressionMode.Auto => GetStandardCompression(key.Type) ?? CompressionTypeMethodNumber.ZLIB,
+                CompressionMode.ForceOff => CompressionTypeMethodNumber.Uncompressed,
+                CompressionMode.SetDeletedFlag => CompressionTypeMethodNumber.Deleted_record,
+                CompressionMode.ForceInternal or CompressionMode.CallerSuppliedInternal => CompressionTypeMethodNumber.Internal_compression,
+                CompressionMode.CallerSuppliedStreamable => CompressionTypeMethodNumber.Streamable_compression,
+                CompressionMode.ForceZLib or CompressionMode.CallerSuppliedZLib => CompressionTypeMethodNumber.ZLIB,
+                _ => throw new NotSupportedException($"the compression mode {compressionMode} is not supported")
+            };
+            if (compressionMethod is CompressionTypeMethodNumber.Uncompressed
+                || compressionMode is CompressionMode.ForceOff
+                or CompressionMode.SetDeletedFlag
+                or CompressionMode.CallerSuppliedInternal
+                or CompressionMode.CallerSuppliedStreamable
+                or CompressionMode.CallerSuppliedZLib)
                 memoryToStore = memory;
+            else if (compressionMethod is CompressionTypeMethodNumber.Internal_compression)
+            {
+                memoryToStore = InternalCompress(memory, out var wasInternallyCompressed);
+                if (!wasInternallyCompressed)
+                    compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+            }
+            else if (compressionMethod is CompressionTypeMethodNumber.ZLIB)
+            {
+                var zlibCompressed = await ZLibCompressAsync(memory).ConfigureAwait(false);
+                if (zlibCompressed.Length >= memory.Length)
+                {
+                    compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+                    memoryToStore = memory;
+                }
+                else
+                    memoryToStore = zlibCompressed;
             }
             else
-                memoryToStore = zlibCompressed;
+                throw new NotSupportedException($"the compression method {compressionMethod} is not supported");
         }
-        else
-            throw new NotSupportedException($"the compression method {compressionMethod} is not supported");
         if (AreNamesIndexed())
         {
             if (compressionMode is not CompressionMode.SetDeletedFlag
@@ -1921,7 +2026,7 @@ public sealed class DataBasePackedFile :
             throw new NotSupportedException($"File identifier \"{Encoding.ASCII.GetString(mnFileIdentifier)}\" is invalid");
         var mnFileVersion_major = MemoryMarshal.Read<uint>(header[4..8]);
         var mnFileVersion_minor = MemoryMarshal.Read<uint>(header[8..12]);
-        FileVersion = new Version((int)mnFileVersion_major, (int)mnFileVersion_minor);
+        fileVersion = new Version((int)mnFileVersion_major, (int)mnFileVersion_minor);
         var mnUserVersion_major = MemoryMarshal.Read<uint>(header[12..16]);
         var mnUserVersion_minor = MemoryMarshal.Read<uint>(header[16..20]);
         UserVersion = new Version((int)mnUserVersion_major, (int)mnUserVersion_minor);
@@ -1945,6 +2050,11 @@ public sealed class DataBasePackedFile :
 
     void ParseIndex(ReadOnlySpan<byte> index, int indexEntryCount)
     {
+        if (FileVersion.Major is 1)
+        {
+            ParseVersion1Index(index, indexEntryCount);
+            return;
+        }
         var readPosition = 0;
         IndexFlags indexFlags = default;
         try
@@ -1989,6 +2099,33 @@ public sealed class DataBasePackedFile :
         catch (Exception ex)
         {
             throw new InvalidDataException($"Index corruption found at position {readPosition} (flags: {indexFlags})", ex);
+        }
+    }
+
+    void ParseVersion1Index(ReadOnlySpan<byte> index, int indexEntryCount)
+    {
+        var hasInstanceEx = MemoryMarshal.Read<uint>(unused4.Span) >= 2;
+        var readPosition = 0;
+        try
+        {
+            for (var i = 0; i < indexEntryCount; ++i)
+            {
+                var mType = index.ReadAndAdvancePosition<ResourceType>(ref readPosition);
+                var mGroup = index.ReadAndAdvancePosition<uint>(ref readPosition);
+                var mInstance = index.ReadAndAdvancePosition<uint>(ref readPosition);
+                var mInstanceEx = hasInstanceEx ? index.ReadAndAdvancePosition<uint>(ref readPosition) : 0U;
+                var key = new ResourceKey(mType, mGroup, ((ulong)mInstanceEx << 32) | mInstance);
+                var mnPosition = index.ReadAndAdvancePosition<uint>(ref readPosition);
+                var mnSize = index.ReadAndAdvancePosition<uint>(ref readPosition);
+                keysInIndexOrder.Add(key);
+                ref var entryRef = ref CollectionsMarshal.GetValueRefOrAddDefault(unloadedResources, key, out var exists);
+                if (!exists)
+                    entryRef = new IndexEntry(mnPosition, (CompressionTypeMethodBitmask)mnSize, mnSize, CompressionTypeMethodNumber.Uncompressed, default);
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidDataException($"Index corruption found at position {readPosition} (DBPF {FileVersion})", ex);
         }
     }
 
@@ -2300,7 +2437,99 @@ public sealed class DataBasePackedFile :
         loadedResource = newLoadedResource;
     }
 
-    void WriteHeader(Span<byte> header, bool hasIndex, int indexSize)
+    void UpdateVersion1Directory(uint indexMinorVersion, ReadOnlyMemory<byte>? directory)
+    {
+        var recordSize = indexMinorVersion >= 2 ? 20 : 16;
+        var compressedKeys = new List<ResourceKey>();
+        var sizesDecompressed = new Dictionary<ResourceKey, uint>();
+        foreach (var key in keysInIndexOrder)
+        {
+            if (key == version1DirectoryKey)
+                continue;
+            if (unloadedResources.TryGetValue(key, out var indexEntry))
+            {
+                if (indexEntry.mnCompressionType is CompressionTypeMethodNumber.Internal_compression)
+                {
+                    compressedKeys.Add(key);
+                    sizesDecompressed.Add(key, indexEntry.mnSizeDecompressed);
+                }
+            }
+            else if (loadedResources.TryGetValue(key, out var loadedResource) && loadedResource.CompressionType is CompressionTypeMethodNumber.Internal_compression)
+            {
+                compressedKeys.Add(key);
+                sizesDecompressed.Add(key, (uint)loadedResource.SizeDecompressed);
+            }
+        }
+        if (sizesDecompressed.Count is 0)
+        {
+            if (directory is not null)
+            {
+                unloadedResources.Remove(version1DirectoryKey);
+                loadedResources.Remove(version1DirectoryKey);
+                keysInIndexOrder.Remove(version1DirectoryKey);
+                if (AreNamesIndexed())
+                    RemoveIndexedResourceName(resourceKeysByName, resourceNameByKey, version1DirectoryKey);
+            }
+            return;
+        }
+        if (directory is { } existingDirectory && existingDirectory.Length == sizesDecompressed.Count * recordSize)
+        {
+            // leave a directory which already lists exactly the compressed resources as it is, whatever its order
+            var existingDirectorySpan = existingDirectory.Span;
+            var listedKeys = new HashSet<ResourceKey>();
+            for (var readPosition = 0; readPosition < existingDirectorySpan.Length;)
+            {
+                var mType = existingDirectorySpan.ReadAndAdvancePosition<ResourceType>(ref readPosition);
+                var mGroup = existingDirectorySpan.ReadAndAdvancePosition<uint>(ref readPosition);
+                var mInstance = existingDirectorySpan.ReadAndAdvancePosition<uint>(ref readPosition);
+                var mInstanceEx = recordSize is 20 ? existingDirectorySpan.ReadAndAdvancePosition<uint>(ref readPosition) : 0U;
+                var mnSizeDecompressed = existingDirectorySpan.ReadAndAdvancePosition<uint>(ref readPosition);
+                var key = new ResourceKey(mType, mGroup, ((ulong)mInstanceEx << 32) | mInstance);
+                if (!sizesDecompressed.TryGetValue(key, out var sizeDecompressed) || sizeDecompressed != mnSizeDecompressed || !listedKeys.Add(key))
+                    break;
+            }
+            if (listedKeys.Count == sizesDecompressed.Count)
+                return;
+        }
+        var newDirectory = new ArrayBufferWriter<byte>(sizesDecompressed.Count * recordSize);
+        foreach (var key in compressedKeys)
+        {
+            var mType = key.Type;
+            newDirectory.Write(ref mType);
+            var mGroup = key.Group;
+            newDirectory.Write(ref mGroup);
+            var mInstance = key.Instance;
+            newDirectory.Write(ref mInstance);
+            if (recordSize is 20)
+            {
+                var mInstanceEx = key.InstanceEx;
+                newDirectory.Write(ref mInstanceEx);
+            }
+            var mnSizeDecompressed = sizesDecompressed[key];
+            newDirectory.Write(ref mnSizeDecompressed);
+        }
+        Store(version1DirectoryKey, newDirectory.WrittenMemory, CompressionTypeMethodNumber.Uncompressed, newDirectory.WrittenCount);
+    }
+
+    static ReadOnlyMemory<byte> Version1Compress(ReadOnlyMemory<byte> memory, CompressionMode compressionMode, out CompressionTypeMethodNumber compressionMethod)
+    {
+        if (compressionMode is not (CompressionMode.Auto or CompressionMode.ForceInternal or CompressionMode.ForceOff))
+            throw new NotSupportedException($"DBPF 1.x packages support only the {nameof(CompressionMode.Auto)}, {nameof(CompressionMode.ForceInternal)}, and {nameof(CompressionMode.ForceOff)} compression modes, not {compressionMode}");
+        compressionMethod = CompressionTypeMethodNumber.Uncompressed;
+        // the size field of a DBPF 1.x compressed stream is three bytes
+        if (compressionMode is CompressionMode.ForceOff || memory.Length > 0xFFFFFF)
+            return memory;
+        var compressed = InternalCompress(memory, out var wasCompressed);
+        if (!wasCompressed || compressed.Length + 4 >= memory.Length)
+            return memory;
+        var stored = new byte[compressed.Length + 4];
+        BinaryPrimitives.WriteUInt32LittleEndian(stored, (uint)stored.Length);
+        compressed.Span.CopyTo(stored.AsSpan(4));
+        compressionMethod = CompressionTypeMethodNumber.Internal_compression;
+        return stored;
+    }
+
+    void WriteHeader(Span<byte> header, bool hasIndex, int indexSize, uint? version1IndexMinorVersion)
     {
         expectedFileIdentifier.Span.CopyTo(header[0..4]);
         var mnFileVersion_major = (uint)FileVersion.Major;
@@ -2321,14 +2550,31 @@ public sealed class DataBasePackedFile :
         MemoryMarshal.Write(header[36..40], ref mnIndexRecordEntryCount);
         var mnIndexRecordSize = (uint)indexSize;
         MemoryMarshal.Write(header[44..48], ref mnIndexRecordSize);
-        unused3.Span.CopyTo(header[48..60]);
-        unused4.Span.CopyTo(header[60..64]);
-        if (hasIndex)
-        {
-            var mnIndexRecordPosition = 96UL
+        var mnIndexRecordPosition = hasIndex
+            ? 96UL
                 + (ulong)unloadedResources.Values.Sum(entry => (uint)(entry.mnSize & CompressionTypeMethodBitmask.mnSizeMask))
-                + (ulong)loadedResources.Values.Sum(loadedResource => (uint)loadedResource.Memory.Length);
-            MemoryMarshal.Write(header[64..72], ref mnIndexRecordPosition);
+                + (ulong)loadedResources.Values.Sum(loadedResource => (uint)loadedResource.Memory.Length)
+            : 0UL;
+        if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
+        {
+            // DBPF 1.x: index major version 7, 32-bit index position, no hole table, index minor version
+            var mnIndexMajorVersion = 7U;
+            MemoryMarshal.Write(header[32..36], ref mnIndexMajorVersion);
+            if (mnIndexRecordPosition > uint.MaxValue)
+                throw new InvalidOperationException("DBPF 1.x packages cannot exceed 4 GiB");
+            var mnIndexRecordPositionLow = (uint)mnIndexRecordPosition;
+            MemoryMarshal.Write(header[40..44], ref mnIndexRecordPositionLow);
+            header[48..60].Clear();
+            var mnIndexMinorVersion = nonNullVersion1IndexMinorVersion;
+            MemoryMarshal.Write(header[60..64], ref mnIndexMinorVersion);
+            header[64..72].Clear();
+        }
+        else
+        {
+            unused3.Span.CopyTo(header[48..60]);
+            unused4.Span.CopyTo(header[60..64]);
+            if (hasIndex)
+                MemoryMarshal.Write(header[64..72], ref mnIndexRecordPosition);
         }
         unused5.Span.CopyTo(header[72..96]);
     }
@@ -2363,19 +2609,47 @@ public sealed class DataBasePackedFile :
         }
     }
 
-    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, int position, ResourceKey key, IndexEntry indexEntry) =>
-        WriteIndexEntry(index, indexFlags, position, key, indexEntry.mnSize, indexEntry.mnSizeDecompressed, indexEntry.mnCompressionType, indexEntry.mnCommitted);
+    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, uint? version1IndexMinorVersion, int position, ResourceKey key, IndexEntry indexEntry)
+    {
+        if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
+            WriteVersion1IndexEntry(index, nonNullVersion1IndexMinorVersion, position, key, (uint)(indexEntry.mnSize & CompressionTypeMethodBitmask.mnSizeMask));
+        else
+            WriteIndexEntry(index, indexFlags, position, key, indexEntry.mnSize, indexEntry.mnSizeDecompressed, indexEntry.mnCompressionType, indexEntry.mnCommitted);
+    }
 
-    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, int position, ResourceKey key, LoadedResource loadedResource) =>
-        WriteIndexEntry
-        (
-            index,
-            indexFlags,
-            position,
-            key,
-            (CompressionTypeMethodBitmask)loadedResource.Memory.Length | CompressionTypeMethodBitmask.mbExtendedCompressionType,
-            (uint)loadedResource.SizeDecompressed,
-            loadedResource.CompressionType,
-            defaultMnCommitted
-        );
+    static void WriteIndexEntry(ArrayBufferWriter<byte> index, IndexFlags indexFlags, uint? version1IndexMinorVersion, int position, ResourceKey key, LoadedResource loadedResource)
+    {
+        if (version1IndexMinorVersion is { } nonNullVersion1IndexMinorVersion)
+            WriteVersion1IndexEntry(index, nonNullVersion1IndexMinorVersion, position, key, (uint)loadedResource.Memory.Length);
+        else
+            WriteIndexEntry
+            (
+                index,
+                indexFlags,
+                position,
+                key,
+                (CompressionTypeMethodBitmask)loadedResource.Memory.Length | CompressionTypeMethodBitmask.mbExtendedCompressionType,
+                (uint)loadedResource.SizeDecompressed,
+                loadedResource.CompressionType,
+                defaultMnCommitted
+            );
+    }
+
+    static void WriteVersion1IndexEntry(ArrayBufferWriter<byte> index, uint indexMinorVersion, int position, ResourceKey key, uint mnSize)
+    {
+        var type = key.Type;
+        index.Write(ref type);
+        var group = key.Group;
+        index.Write(ref group);
+        var instance = key.Instance;
+        index.Write(ref instance);
+        if (indexMinorVersion >= 2)
+        {
+            var instanceEx = key.InstanceEx;
+            index.Write(ref instanceEx);
+        }
+        var mnPosition = (uint)position;
+        index.Write(ref mnPosition);
+        index.Write(ref mnSize);
+    }
 }

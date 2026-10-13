@@ -52,6 +52,7 @@ public class PackageCorpusTests
             {
                 CompressionMode.ForceOff => raw,
                 CompressionMode.ForceZLib => Inflate(raw),
+                _ when package.FileVersion.Major is 1 => DataBasePackedFile.InternalDecompress(raw[4..]), // DBPF 1.x prefixes compressed content with its stored size
                 _ => DataBasePackedFile.InternalDecompress(raw)
             };
             if (decompressed.Length != size)

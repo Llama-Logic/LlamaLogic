@@ -85,6 +85,11 @@ public class DataBasePackedFileTests :
 
     #endregion MonitoredDisposeFileStream
 
+    static readonly ResourceKey ts2DirectoryKey = new((ResourceType)0xe86b1eef, 0xe86b1eef, 0x286b1f03);
+
+    static byte[] CreateCompressibleContent() =>
+        [.. Enumerable.Repeat("compressible content "u8.ToArray(), 20).SelectMany(bytes => bytes)];
+
     static byte[] EncodeTiff(int width, int height)
     {
         using var image = new Image<L8>(width, height);
@@ -389,6 +394,102 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    [DataRow(1U)]
+    [DataRow(2U)]
+    public void TS2CompressedPackageRoundTrips(uint indexMinorVersion)
+    {
+        var uncompressedKey = new ResourceKey((ResourceType)0x54544173, 0xffffffff, 0x80);
+        var uncompressed = "uncompressed"u8.ToArray();
+        var compressedKey = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, indexMinorVersion >= 2 ? 0x100000080UL : 0x80UL);
+        var content = CreateCompressibleContent();
+        var stored = RawPackageBuilder.BuildVersion1Compressed(content);
+        var packageBytes = RawPackageBuilder.BuildVersion1([(uncompressedKey, uncompressed), (compressedKey, stored), (ts2DirectoryKey, RawPackageBuilder.BuildVersion1Directory([(compressedKey, content.Length)], indexMinorVersion))], indexMinorVersion);
+        using var dbpf = new DataBasePackedFile(new MemoryStream(packageBytes));
+        CollectionAssert.AreEqual(content, dbpf.Get(compressedKey).ToArray());
+        Assert.AreEqual(content.Length, dbpf.GetSize(compressedKey));
+        CollectionAssert.AreEqual(stored, dbpf.GetRaw(compressedKey).ToArray());
+        Assert.AreEqual(CompressionMode.ForceInternal, dbpf.GetExplicitCompressionMode(compressedKey));
+        CollectionAssert.AreEqual(uncompressed, dbpf.Get(uncompressedKey).ToArray());
+        Assert.AreEqual(CompressionMode.ForceOff, dbpf.GetExplicitCompressionMode(uncompressedKey));
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        CollectionAssert.AreEqual(packageBytes, copy.ToArray());
+    }
+
+    [TestMethod]
+    [DataRow(1U)]
+    [DataRow(2U)]
+    public async Task TS2CompressedPackageRoundTripsAsync(uint indexMinorVersion)
+    {
+        var uncompressedKey = new ResourceKey((ResourceType)0x54544173, 0xffffffff, 0x80);
+        var uncompressed = "uncompressed"u8.ToArray();
+        var compressedKey = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, indexMinorVersion >= 2 ? 0x100000080UL : 0x80UL);
+        var content = CreateCompressibleContent();
+        var stored = RawPackageBuilder.BuildVersion1Compressed(content);
+        var packageBytes = RawPackageBuilder.BuildVersion1([(uncompressedKey, uncompressed), (compressedKey, stored), (ts2DirectoryKey, RawPackageBuilder.BuildVersion1Directory([(compressedKey, content.Length)], indexMinorVersion))], indexMinorVersion);
+        await using var dbpf = await DataBasePackedFile.FromStreamAsync(new MemoryStream(packageBytes));
+        CollectionAssert.AreEqual(content, (await dbpf.GetAsync(compressedKey)).ToArray());
+        Assert.AreEqual(content.Length, await dbpf.GetSizeAsync(compressedKey));
+        CollectionAssert.AreEqual(stored, (await dbpf.GetRawAsync(compressedKey)).ToArray());
+        var copy = new MemoryStream();
+        await dbpf.CopyToAsync(copy);
+        CollectionAssert.AreEqual(packageBytes, copy.ToArray());
+        Assert.IsTrue(await dbpf.SetAsync(uncompressedKey, content));
+        var editedCopy = new MemoryStream();
+        await dbpf.CopyToAsync(editedCopy);
+        editedCopy.Position = 0;
+        await using var reopened = await DataBasePackedFile.FromStreamAsync(editedCopy);
+        CollectionAssert.AreEqual(content, (await reopened.GetAsync(uncompressedKey)).ToArray());
+        Assert.AreEqual(CompressionMode.ForceInternal, reopened.GetExplicitCompressionMode(uncompressedKey));
+        CollectionAssert.AreEqual(content, (await reopened.GetAsync(compressedKey)).ToArray());
+    }
+
+    [TestMethod]
+    public void TS2FileVersionChangeRejectsCompressedResources()
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x80);
+        var content = CreateCompressibleContent();
+        using var version1 = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.BuildVersion1([(key, RawPackageBuilder.BuildVersion1Compressed(content)), (ts2DirectoryKey, RawPackageBuilder.BuildVersion1Directory([(key, content.Length)], 1))], 1)));
+        Assert.ThrowsExactly<InvalidOperationException>(() => version1.FileVersion = new Version(2, 1));
+        Assert.AreEqual(new Version(1, 1), version1.FileVersion);
+        version1.Set(key, content, CompressionMode.ForceOff);
+        version1.FileVersion = new Version(2, 1);
+        Assert.AreEqual(new Version(2, 1), version1.FileVersion);
+        using var version2 = new DataBasePackedFile();
+        version2.Set(key, content, CompressionMode.ForceZLib);
+        Assert.ThrowsExactly<InvalidOperationException>(() => version2.FileVersion = new Version(1, 1));
+        Assert.AreEqual(new Version(2, 1), version2.FileVersion);
+    }
+
+    [TestMethod]
+    public void TS2NewPackageIsWritable()
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x100000080UL);
+        var content = CreateCompressibleContent();
+        using var dbpf = new DataBasePackedFile { FileVersion = new Version(1, 1) };
+        Assert.IsTrue(dbpf.Set(key, content));
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        var packageBytes = copy.ToArray();
+        Assert.AreEqual(7U, BitConverter.ToUInt32(packageBytes, 0x20));
+        Assert.AreEqual(2U, BitConverter.ToUInt32(packageBytes, 0x3c));
+        using var reopened = new DataBasePackedFile(new MemoryStream(packageBytes));
+        Assert.AreEqual(new Version(1, 1), reopened.FileVersion);
+        CollectionAssert.AreEqual(content, reopened.Get(key).ToArray());
+        Assert.AreEqual(CompressionMode.ForceInternal, reopened.GetExplicitCompressionMode(key));
+    }
+
+    [TestMethod]
+    public void TS2PackageCopiesUnchanged()
+    {
+        var packageBytes = File.ReadAllBytes(tempTS2PackagePath);
+        using var dbpf = new DataBasePackedFile(new MemoryStream(packageBytes));
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        CollectionAssert.AreEqual(packageBytes, copy.ToArray());
+    }
+
+    [TestMethod]
     public void TS2PackageIndexIsReadable()
     {
         var packageBytes = File.ReadAllBytes(tempTS2PackagePath);
@@ -406,6 +507,51 @@ public class DataBasePackedFileTests :
         using var dbpf = new DataBasePackedFile(tempTS2PackagePath);
         Assert.AreEqual(1, dbpf.FileVersion.Major);
         Assert.AreEqual(1, dbpf.FileVersion.Minor);
+    }
+
+    [TestMethod]
+    public void TS2SetCompressesInternally()
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x80);
+        var content = CreateCompressibleContent();
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.BuildVersion1([(key, content)], 1)));
+        Assert.IsTrue(dbpf.Set(key, content));
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        using var reopened = new DataBasePackedFile(new MemoryStream(copy.ToArray()));
+        CollectionAssert.AreEqual(content, reopened.Get(key).ToArray());
+        Assert.AreEqual(CompressionMode.ForceInternal, reopened.GetExplicitCompressionMode(key));
+        var stored = reopened.GetRaw(key).ToArray();
+        Assert.AreEqual((uint)stored.Length, BitConverter.ToUInt32(stored, 0));
+        CollectionAssert.AreEqual(new byte[] { 0x10, 0xfb }, stored[4..6]);
+        CollectionAssert.AreEqual(RawPackageBuilder.BuildVersion1Directory([(key, content.Length)], 1), reopened.GetRaw(ts2DirectoryKey).ToArray());
+    }
+
+    [TestMethod]
+    public void TS2SetForceOffRemovesDirectory()
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x80);
+        var content = CreateCompressibleContent();
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.BuildVersion1([(key, RawPackageBuilder.BuildVersion1Compressed(content)), (ts2DirectoryKey, RawPackageBuilder.BuildVersion1Directory([(key, content.Length)], 1))], 1)));
+        Assert.IsFalse(dbpf.Set(key, content, CompressionMode.ForceOff));
+        var copy = new MemoryStream();
+        dbpf.CopyTo(copy);
+        using var reopened = new DataBasePackedFile(new MemoryStream(copy.ToArray()));
+        Assert.IsFalse(reopened.ContainsKey(ts2DirectoryKey));
+        CollectionAssert.AreEqual(content, reopened.GetRaw(key).ToArray());
+        Assert.AreEqual(CompressionMode.ForceOff, reopened.GetExplicitCompressionMode(key));
+    }
+
+    [TestMethod]
+    [DataRow(CompressionMode.ForceZLib)]
+    [DataRow(CompressionMode.SetDeletedFlag)]
+    public void TS2SetRejectsUnsupportedCompression(CompressionMode compressionMode)
+    {
+        var key = new ResourceKey((ResourceType)0x53545223, 0x7fd46cd0, 0x80);
+        var original = "original"u8.ToArray();
+        using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.BuildVersion1([(key, original)], 1)));
+        Assert.ThrowsExactly<NotSupportedException>(() => dbpf.Set(key, CreateCompressibleContent(), compressionMode));
+        CollectionAssert.AreEqual(original, dbpf.Get(key).ToArray());
     }
 
     [TestMethod]
