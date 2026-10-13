@@ -5,13 +5,15 @@ namespace LlamaLogic.Packages.Formats;
 /// </summary>
 public static class Ts4TranslucentJointPhotographicExpertsGroupImage
 {
+    const int maximumAlphaDataLength = ushort.MaxValue - 10;
+
     static readonly ReadOnlyMemory<byte> jpegApp0Marker = new byte[] { 0xff, 0xe0 };
 
     /// <summary>
     /// Converts the data for a PNG the data for a Maxis Translucent JPEG
     /// </summary>
     /// <param name="pngData">The data for a PNG</param>
-    /// <exception cref="InvalidDataException"><paramref name="pngData"/> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels</exception>
+    /// <exception cref="InvalidDataException"><paramref name="pngData"/> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels, or its alpha channel compresses to more than 65,525 bytes</exception>
     public static ReadOnlyMemory<byte> ConvertPngToTranslucentJpeg(ReadOnlyMemory<byte> pngData)
     {
         var combined = ImageDecoding.DecodePngAsRgba(pngData, out var width, out var height);
@@ -28,6 +30,8 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
         }
         var jpegData = ImageEncoding.EncodeRgbJpeg(jpegPixels, width, height);
         var alphaData = ImageEncoding.EncodeGreyPng(alphaPixels, width, height);
+        if (alphaData.Length > maximumAlphaDataLength)
+            throw new InvalidDataException($"The alpha channel compresses to {alphaData.Length} bytes; a translucent JPEG can hold at most {maximumAlphaDataLength}");
         var writer = new ArrayBufferWriter<byte>();
         var firstMarkerSzSection = MemoryMarshal.Read<ushort>(jpegData.Span[4..6]);
         firstMarkerSzSection = BinaryPrimitives.ReverseEndianness(firstMarkerSzSection);
@@ -51,7 +55,7 @@ public static class Ts4TranslucentJointPhotographicExpertsGroupImage
     /// </summary>
     /// <param name="pngData">The data for a PNG</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
-    /// <exception cref="InvalidDataException"><paramref name="pngData"/> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels</exception>
+    /// <exception cref="InvalidDataException"><paramref name="pngData"/> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels, or its alpha channel compresses to more than 65,525 bytes</exception>
     public static Task<ReadOnlyMemory<byte>> ConvertPngToTranslucentJpegAsync(ReadOnlyMemory<byte> pngData, CancellationToken cancellationToken) =>
         Task.Run(() => ConvertPngToTranslucentJpeg(pngData), cancellationToken);
 

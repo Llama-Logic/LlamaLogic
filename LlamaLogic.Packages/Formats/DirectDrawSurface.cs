@@ -8,14 +8,16 @@ namespace LlamaLogic.Packages.Formats;
 /// </remarks>
 public static class DirectDrawSurface
 {
+    const uint maximumMipMapCount = 32;
+
     /// <summary>
     /// Convert a DirectDraw Surface to a Portable Network Graphic
     /// </summary>
     /// <param name="ddsData">The data of a DirectDraw Surface</param>
-    /// <exception cref="InvalidDataException">The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels</exception>
+    /// <exception cref="InvalidDataException">The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels, or declares more than 32 mipmap levels</exception>
     public static ReadOnlyMemory<byte> GetPngDataFromDdsData(ReadOnlyMemory<byte> ddsData)
     {
-        RequireSupportedSize(ddsData.Span);
+        RequireSupportedHeader(ddsData.Span);
         ddsData = Swizzle(ddsData, false);
         using var ddsDataStream = new ReadOnlyMemoryOfByteStream(ddsData);
         var decoder = new BcDecoder();
@@ -27,10 +29,10 @@ public static class DirectDrawSurface
     /// </summary>
     /// <param name="ddsData">The data of a DirectDraw Surface</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
-    /// <exception cref="InvalidDataException">The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels</exception>
+    /// <exception cref="InvalidDataException">The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels, or declares more than 32 mipmap levels</exception>
     public static async Task<ReadOnlyMemory<byte>> GetPngDataFromDdsDataAsync(ReadOnlyMemory<byte> ddsData, CancellationToken cancellationToken = default)
     {
-        RequireSupportedSize(ddsData.Span);
+        RequireSupportedHeader(ddsData.Span);
         ddsData = Swizzle(ddsData, false);
         using var ddsDataStream = new ReadOnlyMemoryOfByteStream(ddsData);
         var decoder = new BcDecoder();
@@ -79,10 +81,15 @@ public static class DirectDrawSurface
         return ImageEncoding.EncodeRgbaPng(rgba, pixels.Width, pixels.Height);
     }
 
-    static void RequireSupportedSize(ReadOnlySpan<byte> ddsData)
+    static void RequireSupportedHeader(ReadOnlySpan<byte> ddsData)
     {
-        if (ddsData.Length >= 20 && ddsData[..4].SequenceEqual("DDS "u8))
-            ImageDecoding.RequireSupportedSize(BinaryPrimitives.ReadUInt32LittleEndian(ddsData[16..20]), BinaryPrimitives.ReadUInt32LittleEndian(ddsData[12..16]));
+        if (ddsData.Length < 20 || !ddsData[..4].SequenceEqual("DDS "u8))
+            return;
+        ImageDecoding.RequireSupportedSize(BinaryPrimitives.ReadUInt32LittleEndian(ddsData[16..20]), BinaryPrimitives.ReadUInt32LittleEndian(ddsData[12..16]));
+        if (ddsData.Length >= 112
+            && (BinaryPrimitives.ReadUInt32LittleEndian(ddsData[108..112]) & 0x400000) is not 0
+            && BinaryPrimitives.ReadUInt32LittleEndian(ddsData[28..32]) is var mipMapCount and > maximumMipMapCount)
+            throw new InvalidDataException($"The surface declares {mipMapCount} mipmap levels; at most {maximumMipMapCount} are supported");
     }
 
     static ReadOnlyMemory<byte> Swizzle(ReadOnlyMemory<byte> ddsData, bool shouldSwizzle)

@@ -1084,7 +1084,7 @@ public sealed class DataBasePackedFile :
         if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
             && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
             key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
-        return await DirectDrawSurface.GetPngDataFromDdsDataAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false)).ConfigureAwait(false);
+        return await DirectDrawSurface.GetPngDataFromDdsDataAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>

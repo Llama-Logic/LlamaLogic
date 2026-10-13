@@ -114,6 +114,22 @@ public class DataBasePackedFileTests :
     static byte[] CreateCompressibleContent() =>
         [.. Enumerable.Repeat("compressible content "u8.ToArray(), 20).SelectMany(bytes => bytes)];
 
+    static byte[] CreateDdsWithMipMapCount(uint mipMapCount)
+    {
+        var dds = new byte[144];
+        "DDS "u8.CopyTo(dds);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(4), 124);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(8), 0x21007);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(12), 4);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(16), 4);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(28), mipMapCount);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(76), 32);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(80), 4);
+        "DXT5"u8.CopyTo(dds.AsSpan(84));
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(108), 0x401008);
+        return dds;
+    }
+
     static byte[] CreateOversizedDds()
     {
         var dds = new byte[192];
@@ -150,6 +166,18 @@ public class DataBasePackedFileTests :
         var pixels = new Rgba32[image.Width * image.Height];
         image.CopyPixelDataTo(pixels);
         return pixels;
+    }
+
+    static byte[] EncodeNoiseAlphaPng(int size)
+    {
+        var random = new Random(1);
+        using var image = new Image<Rgba32>(size, size);
+        for (var y = 0; y < size; ++y)
+            for (var x = 0; x < size; ++x)
+                image[x, y] = new Rgba32(255, 255, 255, (byte)random.Next(256));
+        using var stream = new MemoryStream();
+        image.SaveAsPng(stream);
+        return stream.ToArray();
     }
 
     static byte[] EncodeQuadrantsPng(int size)
@@ -269,6 +297,15 @@ public class DataBasePackedFileTests :
         using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.Build([(key, first, true), (key, "second"u8.ToArray(), true)])));
         Assert.AreEqual(1, dbpf.Count);
         CollectionAssert.AreEqual(first, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void GetDdsAsPngRejectsExcessiveMipMapCounts()
+    {
+        var key = new ResourceKey(ResourceType.DSTImage, 0, 1);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, CreateDdsWithMipMapCount(int.MaxValue), CompressionMode.ForceOff);
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.GetDdsAsPng(key));
     }
 
     [TestMethod]
@@ -546,6 +583,15 @@ public class DataBasePackedFileTests :
     {
         using var dbpf = new DataBasePackedFile();
         Assert.ThrowsExactly<InvalidDataException>(() => dbpf.SetPngAsTranslucentJpeg(new ResourceKey(ResourceType.CASPartThumbnail, 0, 1), EncodeTiff(4, 4)));
+    }
+
+    [TestMethod]
+    public void SetPngAsTranslucentJpegRejectsOversizedAlpha()
+    {
+        var key = new ResourceKey(ResourceType.CASPartThumbnail, 0, 1);
+        using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.SetPngAsTranslucentJpeg(key, EncodeNoiseAlphaPng(512)));
+        Assert.AreEqual(0, dbpf.Count);
     }
 
     [TestMethod]
