@@ -1034,6 +1034,18 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="CombinedTuningModel"/>
+    /// </summary>
+    public CombinedTuningModel GetCombinedTuning(ResourceKey key, bool force = false) =>
+        GetModel<CombinedTuningModel>(key, force);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="CombinedTuningModel"/> asynchronously
+    /// </summary>
+    public Task<CombinedTuningModel> GetCombinedTuningAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
+        GetModelAsync<CombinedTuningModel>(key, force, cancellationToken);
+
+    /// <summary>
     /// Gets the number of resources
     /// </summary>
     public int GetCount()

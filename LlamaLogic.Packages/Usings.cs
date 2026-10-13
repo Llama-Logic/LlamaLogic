@@ -9,6 +9,7 @@ global using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 global using LlamaLogic.Packages;
 global using LlamaLogic.Packages.Cryptography;
 global using LlamaLogic.Packages.Models;
+global using LlamaLogic.Packages.Models.CombinedTuning;
 global using LlamaLogic.Packages.Models.Data;
 global using LlamaLogic.Packages.Models.ModFileManifest;
 global using Nito.AsyncEx;

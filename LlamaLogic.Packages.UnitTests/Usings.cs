@@ -1,6 +1,7 @@
 global using LlamaLogic.Packages.Cryptography;
 global using LlamaLogic.Packages.Formats;
 global using LlamaLogic.Packages.Models;
+global using LlamaLogic.Packages.Models.CombinedTuning;
 global using LlamaLogic.Packages.Models.Data;
 global using LlamaLogic.Packages.Models.ModFileManifest;
 global using Microsoft.Win32.SafeHandles;
