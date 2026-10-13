@@ -1,1 +1,2 @@
-New SimDataModel.ToXml and SimDataModel.FromXml convert SimData resources to and from the XML representation Sims 4 Studio exports and imports; a null string is written as an empty element so it survives the round trip.
+New Model.GetModelType and Model.Decode find and use the model that decodes every resource of a type (CombinedTuning, SimData and StringTable), returning null or throwing NotSupportedException for types no model decodes, including undefined ones.
+New DataBasePackedFile.GetModel and GetModelAsync overloads without a type argument decode a resource with the model for its type.

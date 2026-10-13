@@ -1159,6 +1159,26 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as the model <see cref="Model.GetModelType(ResourceType)"/> gives for its type
+    /// </summary>
+    /// <exception cref="ArgumentException">No model decodes resources of the type specified by <paramref name="key"/></exception>
+    public Model GetModel(ResourceKey key, bool force = false) =>
+        Model.GetModelType(key.Type) is not null
+        ? Model.Decode(key.Type, Get(key, force))
+        : throw new ArgumentException($"Resource type {key.Type} is not supported by any model", nameof(key));
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as the model <see cref="Model.GetModelType(ResourceType)"/> gives for its type asynchronously
+    /// </summary>
+    /// <exception cref="ArgumentException">No model decodes resources of the type specified by <paramref name="key"/></exception>
+    public async Task<Model> GetModelAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    {
+        if (Model.GetModelType(key.Type) is null)
+            throw new ArgumentException($"Resource type {key.Type} is not supported by any model", nameof(key));
+        return await Task.Run(async () => Model.Decode(key.Type, await GetAsync(key, force, cancellationToken).ConfigureAwait(false))).ConfigureAwait(false);
+    }
+
+    /// <summary>
     /// Gets the content of a resource with the specified <paramref name="key"/> as a <typeparamref name="TModel"/>
     /// </summary>
     /// <typeparam name="TModel">A model used to browse and modify certain types of resources</typeparam>
