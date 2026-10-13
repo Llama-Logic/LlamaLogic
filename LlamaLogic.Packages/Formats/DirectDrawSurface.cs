@@ -1,7 +1,3 @@
-using BCnEncoder.Encoder;
-using BCnEncoder.Shared;
-using BCnEncoder.Shared.ImageFiles;
-
 namespace LlamaLogic.Packages.Formats;
 
 /// <summary>
@@ -16,15 +12,14 @@ public static class DirectDrawSurface
     /// Convert a DirectDraw Surface to a Portable Network Graphic
     /// </summary>
     /// <param name="ddsData">The data of a DirectDraw Surface</param>
+    /// <exception cref="InvalidDataException">The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels</exception>
     public static ReadOnlyMemory<byte> GetPngDataFromDdsData(ReadOnlyMemory<byte> ddsData)
     {
+        RequireSupportedSize(ddsData.Span);
         ddsData = Swizzle(ddsData, false);
         using var ddsDataStream = new ReadOnlyMemoryOfByteStream(ddsData);
         var decoder = new BcDecoder();
-        using var ddsImage = decoder.DecodeToImageRgba32(ddsDataStream);
-        using var pngDataStream = new ArrayBufferWriterOfByteStream();
-        ddsImage.SaveAsPng(pngDataStream);
-        return pngDataStream.WrittenMemory;
+        return EncodePng(decoder.Decode2D(ddsDataStream));
     }
 
     /// <summary>
@@ -32,31 +27,27 @@ public static class DirectDrawSurface
     /// </summary>
     /// <param name="ddsData">The data of a DirectDraw Surface</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="InvalidDataException">The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels</exception>
     public static async Task<ReadOnlyMemory<byte>> GetPngDataFromDdsDataAsync(ReadOnlyMemory<byte> ddsData, CancellationToken cancellationToken = default)
     {
+        RequireSupportedSize(ddsData.Span);
         ddsData = Swizzle(ddsData, false);
         using var ddsDataStream = new ReadOnlyMemoryOfByteStream(ddsData);
         var decoder = new BcDecoder();
-        using var ddsImage = await decoder.DecodeToImageRgba32Async(ddsDataStream, token: cancellationToken).ConfigureAwait(false);
-        using var pngDataStream = new ArrayBufferWriterOfByteStream();
-        await ddsImage.SaveAsPngAsync(pngDataStream, cancellationToken: cancellationToken).ConfigureAwait(false);
-        return pngDataStream.WrittenMemory;
+        return EncodePng(await decoder.Decode2DAsync(ddsDataStream, cancellationToken).ConfigureAwait(false));
     }
 
     /// <summary>
     /// Convert a Portable Network Graphic to a shuffled DirectDraw Surface compatible with The Sims 4
     /// </summary>
     /// <param name="pngData">The data of the Portable Network Graphic</param>
+    /// <exception cref="InvalidDataException"><paramref name="pngData"/> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels</exception>
     public static ReadOnlyMemory<byte> GetDstDataFromPngData(ReadOnlyMemory<byte> pngData)
     {
+        var pixels = ImageDecoding.DecodePngAsRgba(pngData, out var width, out var height);
         var encoder = new BcEncoder();
-        DdsFile ddsImage;
-        using (var pngDataStream = new ReadOnlyMemoryOfByteStream(pngData))
-        using (var pngImage = Image.Load<Rgba32>(ImageDecoding.Options, pngDataStream))
-        {
-            encoder.OutputOptions.Format = CompressionFormat.Bc3;
-            ddsImage = encoder.EncodeToDds(pngImage);
-        }
+        encoder.OutputOptions.Format = CompressionFormat.Bc3;
+        var ddsImage = encoder.EncodeToDds(pixels, width, height, PixelFormat.Rgba32);
         using var ddsDataStream = new ArrayBufferWriterOfByteStream();
         ddsImage.Write(ddsDataStream);
         return Swizzle(ddsDataStream.WrittenMemory[..(int)ddsDataStream.Length], true);
@@ -67,19 +58,31 @@ public static class DirectDrawSurface
     /// </summary>
     /// <param name="pngData">The data of the Portable Network Graphic</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
+    /// <exception cref="InvalidDataException"><paramref name="pngData"/> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels</exception>
     public static async Task<ReadOnlyMemory<byte>> GetDstDataFromPngDataAsync(ReadOnlyMemory<byte> pngData, CancellationToken cancellationToken = default)
     {
+        var pixels = ImageDecoding.DecodePngAsRgba(pngData, out var width, out var height);
         var encoder = new BcEncoder();
-        DdsFile ddsImage;
-        using (var pngDataStream = new ReadOnlyMemoryOfByteStream(pngData))
-        using (var pngImage = await Image.LoadAsync<Rgba32>(ImageDecoding.Options, pngDataStream, cancellationToken).ConfigureAwait(false))
-        {
-            encoder.OutputOptions.Format = CompressionFormat.Bc3;
-            ddsImage = await encoder.EncodeToDdsAsync(pngImage, token: cancellationToken).ConfigureAwait(false);
-        }
+        encoder.OutputOptions.Format = CompressionFormat.Bc3;
+        var ddsImage = await encoder.EncodeToDdsAsync(pixels, width, height, PixelFormat.Rgba32, cancellationToken).ConfigureAwait(false);
         using var ddsDataStream = new ArrayBufferWriterOfByteStream();
         ddsImage.Write(ddsDataStream);
         return Swizzle(ddsDataStream.WrittenMemory[..(int)ddsDataStream.Length], true);
+    }
+
+    static ReadOnlyMemory<byte> EncodePng(Memory2D<ColorRgba32> pixels)
+    {
+        var rgba = new byte[pixels.Width * pixels.Height * 4];
+        var rgbaColors = MemoryMarshal.Cast<byte, ColorRgba32>(rgba.AsSpan());
+        for (var y = 0; y < pixels.Height; ++y)
+            pixels.Span.GetRowSpan(y).CopyTo(rgbaColors.Slice(y * pixels.Width, pixels.Width));
+        return ImageEncoding.EncodeRgbaPng(rgba, pixels.Width, pixels.Height);
+    }
+
+    static void RequireSupportedSize(ReadOnlySpan<byte> ddsData)
+    {
+        if (ddsData.Length >= 20 && ddsData[..4].SequenceEqual("DDS "u8))
+            ImageDecoding.RequireSupportedSize(BinaryPrimitives.ReadUInt32LittleEndian(ddsData[16..20]), BinaryPrimitives.ReadUInt32LittleEndian(ddsData[12..16]));
     }
 
     static ReadOnlyMemory<byte> Swizzle(ReadOnlyMemory<byte> ddsData, bool shouldSwizzle)

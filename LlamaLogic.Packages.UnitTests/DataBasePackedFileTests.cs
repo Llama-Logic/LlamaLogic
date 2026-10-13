@@ -85,7 +85,22 @@ public class DataBasePackedFileTests :
 
     #endregion MonitoredDisposeFileStream
 
+    static readonly Rgba32[] quadrantColors = [new(255, 0, 0, 255), new(0, 255, 0, 128), new(0, 0, 255, 0), new(255, 255, 255, 255)];
     static readonly ResourceKey ts2DirectoryKey = new((ResourceType)0xe86b1eef, 0xe86b1eef, 0x286b1f03);
+
+    static void AssertTranslucentJpegQuadrants(Rgba32[] pixels, int size)
+    {
+        Rgba32[] expected = [new(255, 0, 0, 255), new(127, 255, 127, 128), new(255, 255, 255, 0), new(255, 255, 255, 255)];
+        Assert.AreEqual(size * size, pixels.Length);
+        for (var y = 0; y < size; ++y)
+            for (var x = 0; x < size; ++x)
+            {
+                var actual = pixels[(y * size) + x];
+                var expectedPixel = expected[(y >= size / 2 ? 2 : 0) + (x >= size / 2 ? 1 : 0)];
+                Assert.AreEqual(expectedPixel.A, actual.A);
+                Assert.IsTrue(Math.Abs(expectedPixel.R - actual.R) <= 4 && Math.Abs(expectedPixel.G - actual.G) <= 4 && Math.Abs(expectedPixel.B - actual.B) <= 4, $"({x}, {y}): expected {expectedPixel}, actual {actual}");
+            }
+    }
 
     static ReadOnlyMemory<byte> CompressAsCallerSupplied(ReadOnlyMemory<byte> content, CompressionMode compressionMode)
     {
@@ -98,6 +113,55 @@ public class DataBasePackedFileTests :
 
     static byte[] CreateCompressibleContent() =>
         [.. Enumerable.Repeat("compressible content "u8.ToArray(), 20).SelectMany(bytes => bytes)];
+
+    static byte[] CreateOversizedDds()
+    {
+        var dds = new byte[192];
+        "DDS "u8.CopyTo(dds);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(4), 124);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(8), 0x1007);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(12), 100000);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(16), 100000);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(76), 32);
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(80), 4);
+        "DXT5"u8.CopyTo(dds.AsSpan(84));
+        BinaryPrimitives.WriteUInt32LittleEndian(dds.AsSpan(108), 0x1000);
+        return dds;
+    }
+
+    static byte[] CreateOversizedPng()
+    {
+        using var stream = new MemoryStream();
+        stream.Write([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+        var header = new byte[13];
+        BinaryPrimitives.WriteUInt32BigEndian(header, 100000);
+        BinaryPrimitives.WriteUInt32BigEndian(header.AsSpan(4), 100000);
+        header[8] = 8;
+        header[9] = 6;
+        WritePngChunk(stream, "IHDR", header);
+        WritePngChunk(stream, "IDAT", [0x78, 0x9c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x01]);
+        WritePngChunk(stream, "IEND", []);
+        return stream.ToArray();
+    }
+
+    static Rgba32[] DecodeRgba(ReadOnlyMemory<byte> pngData)
+    {
+        using var image = Image.Load<Rgba32>(pngData.Span);
+        var pixels = new Rgba32[image.Width * image.Height];
+        image.CopyPixelDataTo(pixels);
+        return pixels;
+    }
+
+    static byte[] EncodeQuadrantsPng(int size)
+    {
+        using var image = new Image<Rgba32>(size, size);
+        for (var y = 0; y < size; ++y)
+            for (var x = 0; x < size; ++x)
+                image[x, y] = quadrantColors[(y >= size / 2 ? 2 : 0) + (x >= size / 2 ? 1 : 0)];
+        using var stream = new MemoryStream();
+        image.SaveAsPng(stream);
+        return stream.ToArray();
+    }
 
     static byte[] EncodeTiff(int width, int height)
     {
@@ -123,6 +187,28 @@ public class DataBasePackedFileTests :
         stream.Write(alphaData);
         stream.Write(jpegData, insertionIndex, jpegData.Length - insertionIndex);
         return stream.ToArray();
+    }
+
+    static uint GetCrc32(ReadOnlySpan<byte> data)
+    {
+        var crc = 0xffffffffU;
+        foreach (var b in data)
+        {
+            crc ^= b;
+            for (var bit = 0; bit < 8; ++bit)
+                crc = (crc & 1) is not 0 ? (crc >> 1) ^ 0xedb88320U : crc >> 1;
+        }
+        return ~crc;
+    }
+
+    static void WritePngChunk(Stream stream, string type, byte[] data)
+    {
+        var chunk = new byte[data.Length + 12];
+        BinaryPrimitives.WriteUInt32BigEndian(chunk, (uint)data.Length);
+        Encoding.ASCII.GetBytes(type).CopyTo(chunk, 4);
+        data.CopyTo(chunk, 8);
+        BinaryPrimitives.WriteUInt32BigEndian(chunk.AsSpan(data.Length + 8), GetCrc32(chunk.AsSpan(4, data.Length + 4)));
+        stream.Write(chunk);
     }
 
     [TestMethod]
@@ -183,6 +269,15 @@ public class DataBasePackedFileTests :
         using var dbpf = new DataBasePackedFile(new MemoryStream(RawPackageBuilder.Build([(key, first, true), (key, "second"u8.ToArray(), true)])));
         Assert.AreEqual(1, dbpf.Count);
         CollectionAssert.AreEqual(first, dbpf.Get(key).ToArray());
+    }
+
+    [TestMethod]
+    public void GetDdsAsPngRejectsOversizedImages()
+    {
+        var key = new ResourceKey(ResourceType.DSTImage, 0, 1);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, CreateOversizedDds(), CompressionMode.ForceOff);
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.GetDdsAsPng(key));
     }
 
     [TestMethod]
@@ -251,7 +346,7 @@ public class DataBasePackedFileTests :
         var key = new ResourceKey(ResourceType.CASPartThumbnail, 0, 1);
         using var dbpf = new DataBasePackedFile();
         dbpf.Set(key, EncodeTranslucentJpeg(EncodeTiff(4, 4), 4, 4), CompressionMode.ForceOff);
-        Assert.Throws<ImageFormatException>(() => dbpf.GetTranslucentJpegAsPng(key));
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.GetTranslucentJpegAsPng(key));
     }
 
     [TestMethod]
@@ -404,17 +499,69 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    public async Task SetPngAsDdsAsyncRoundTrips()
+    {
+        var key = new ResourceKey(ResourceType.DSTImage, 0, 1);
+        var pngData = EncodeQuadrantsPng(8);
+        await using var dbpf = new DataBasePackedFile();
+        await dbpf.SetPngAsDdsAsync(key, pngData);
+        CollectionAssert.AreEqual(DecodeRgba(pngData), DecodeRgba(await dbpf.GetDdsAsPngAsync(key)));
+    }
+
+    [TestMethod]
     public void SetPngAsDdsRejectsOtherImageFormats()
     {
         using var dbpf = new DataBasePackedFile();
-        Assert.Throws<ImageFormatException>(() => dbpf.SetPngAsDds(new ResourceKey(ResourceType.DSTImage, 0, 1), EncodeTiff(4, 4)));
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.SetPngAsDds(new ResourceKey(ResourceType.DSTImage, 0, 1), EncodeTiff(4, 4)));
+    }
+
+    [TestMethod]
+    public void SetPngAsDdsRejectsOversizedImages()
+    {
+        using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.SetPngAsDds(new ResourceKey(ResourceType.DSTImage, 0, 1), CreateOversizedPng()));
+    }
+
+    [TestMethod]
+    public void SetPngAsDdsRoundTrips()
+    {
+        var key = new ResourceKey(ResourceType.DSTImage, 0, 1);
+        var pngData = EncodeQuadrantsPng(8);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.SetPngAsDds(key, pngData);
+        CollectionAssert.AreEqual(DecodeRgba(pngData), DecodeRgba(dbpf.GetDdsAsPng(key)));
+    }
+
+    [TestMethod]
+    public async Task SetPngAsTranslucentJpegAsyncRoundTrips()
+    {
+        var key = new ResourceKey(ResourceType.CASPartThumbnail, 0, 1);
+        await using var dbpf = new DataBasePackedFile();
+        await dbpf.SetPngAsTranslucentJpegAsync(key, EncodeQuadrantsPng(32));
+        AssertTranslucentJpegQuadrants(DecodeRgba(await dbpf.GetTranslucentJpegAsPngAsync(key)), 32);
     }
 
     [TestMethod]
     public void SetPngAsTranslucentJpegRejectsOtherImageFormats()
     {
         using var dbpf = new DataBasePackedFile();
-        Assert.Throws<ImageFormatException>(() => dbpf.SetPngAsTranslucentJpeg(new ResourceKey(ResourceType.CASPartThumbnail, 0, 1), EncodeTiff(4, 4)));
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.SetPngAsTranslucentJpeg(new ResourceKey(ResourceType.CASPartThumbnail, 0, 1), EncodeTiff(4, 4)));
+    }
+
+    [TestMethod]
+    public void SetPngAsTranslucentJpegRejectsOversizedImages()
+    {
+        using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<InvalidDataException>(() => dbpf.SetPngAsTranslucentJpeg(new ResourceKey(ResourceType.CASPartThumbnail, 0, 1), CreateOversizedPng()));
+    }
+
+    [TestMethod]
+    public void SetPngAsTranslucentJpegRoundTrips()
+    {
+        var key = new ResourceKey(ResourceType.CASPartThumbnail, 0, 1);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.SetPngAsTranslucentJpeg(key, EncodeQuadrantsPng(32));
+        AssertTranslucentJpegQuadrants(DecodeRgba(dbpf.GetTranslucentJpegAsPng(key)), 32);
     }
 
     [TestMethod]
