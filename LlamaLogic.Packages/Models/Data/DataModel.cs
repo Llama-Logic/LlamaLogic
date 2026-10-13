@@ -275,7 +275,7 @@ public sealed class DataModel :
     {
         ArgumentNullException.ThrowIfNull(stream);
         Span<byte> buffer = stackalloc byte[28];
-        if (stream.Read(buffer) != 28)
+        if (DataBasePackedFile.FillBuffer(stream, buffer) != 28)
             return null;
         ReadOnlySpan<byte> headerSpan = buffer;
         var mnFileIdentifier = headerSpan[0..4];
@@ -289,16 +289,17 @@ public sealed class DataModel :
         if (maybeNull_nTableHeaderPos is not { } nTableHeaderPos)
             return null;
         var mnNumTables = headerSpan.ReadAndAdvancePosition<int>(ref readPosition);
-        stream.Seek(nTableHeaderPos, SeekOrigin.Begin);
         Span<byte> stringByte = stackalloc byte[1];
         for (var i = 0; i < mnNumTables; ++i)
         {
-            if (stream.Read(buffer) != 28)
+            var nTableInfoPos = nTableHeaderPos + (long)i * 28;
+            stream.Seek(nTableInfoPos, SeekOrigin.Begin);
+            if (DataBasePackedFile.FillBuffer(stream, buffer) != 28)
                 return null;
             ReadOnlySpan<byte> tableInfoSpan = buffer;
-            if (tableInfoSpan.ReadOffset(0) is { } nNamePos)
+            if (tableInfoSpan.ReadOffsetAsLongPosition(0) is { } nNameOffset)
             {
-                stream.Seek(nNamePos, SeekOrigin.Begin);
+                stream.Seek(nTableInfoPos + nNameOffset, SeekOrigin.Begin);
                 var stringBuffer = new ArrayBufferWriter<byte>();
                 var amountRead = stream.Read(stringByte);
                 while (amountRead > 0 && stringByte[0] != 0)
@@ -320,7 +321,7 @@ public sealed class DataModel :
         try
         {
             var buffer = bufferArray.AsMemory()[..28];
-            if (await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false) != 28)
+            if (await DataBasePackedFile.FillBufferAsync(stream, buffer, cancellationToken).ConfigureAwait(false) != 28)
                 return null;
             ReadOnlyMemory<byte> headerMemory = buffer;
             var mnFileIdentifier = headerMemory[0..4];
@@ -334,19 +335,20 @@ public sealed class DataModel :
             if (maybeNull_nTableHeaderPos is not { } nTableHeaderPos)
                 return null;
             var mnNumTables = headerMemory.ReadAndAdvancePosition<int>(ref readPosition);
-            stream.Seek(nTableHeaderPos, SeekOrigin.Begin);
             var stringByteArray = ArrayPool<byte>.Shared.Rent(1);
             try
             {
                 var stringByte = stringByteArray.AsMemory()[..1];
                 for (var i = 0; i < mnNumTables; ++i)
                 {
-                    if (await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false) != 28)
+                    var nTableInfoPos = nTableHeaderPos + (long)i * 28;
+                    stream.Seek(nTableInfoPos, SeekOrigin.Begin);
+                    if (await DataBasePackedFile.FillBufferAsync(stream, buffer, cancellationToken).ConfigureAwait(false) != 28)
                         return null;
                     ReadOnlyMemory<byte> tableInfoSpan = buffer;
-                    if (tableInfoSpan.ReadOffset(0) is { } nNamePos)
+                    if (tableInfoSpan.Span.ReadOffsetAsLongPosition(0) is { } nNameOffset)
                     {
-                        stream.Seek(nNamePos, SeekOrigin.Begin);
+                        stream.Seek(nTableInfoPos + nNameOffset, SeekOrigin.Begin);
                         var stringBuffer = new ArrayBufferWriter<byte>();
                         var amountRead = await stream.ReadAsync(stringByte, cancellationToken).ConfigureAwait(false);
                         while (amountRead > 0 && stringByte.Span[0] != 0)

@@ -4,6 +4,120 @@ namespace LlamaLogic.Packages.UnitTests;
 public class DataModelTests :
     TestPackageTests
 {
+    static byte[] BuildData(params string?[] tableNames)
+    {
+        var tableCount = tableNames.Length;
+        var tableHeaderPosition = 32;
+        var rowsPosition = (tableHeaderPosition + (tableCount * 28) + 15) & ~15;
+        var namesPosition = (rowsPosition + (tableCount * 4) + 15) & ~15;
+        using var stream = new MemoryStream();
+        using var writer = new BinaryWriter(stream);
+        writer.Write("DATA"u8);
+        writer.Write(0x101U);
+        writer.Write(tableHeaderPosition - 8);
+        writer.Write(tableCount);
+        writer.Write(namesPosition - 16);
+        writer.Write(0);
+        writer.Write(0U);
+        var namePosition = namesPosition;
+        for (var i = 0; i < tableCount; ++i)
+        {
+            var fieldPosition = tableHeaderPosition + (i * 28);
+            stream.Position = fieldPosition;
+            if (tableNames[i] is { } tableName)
+            {
+                writer.Write(namePosition - fieldPosition);
+                writer.Write(Fnv32.GetHash(tableName));
+                var nameBytes = Encoding.ASCII.GetBytes(tableName);
+                var tableInfoPosition = stream.Position;
+                stream.Position = namePosition;
+                writer.Write(nameBytes);
+                writer.Write((byte)0);
+                namePosition += nameBytes.Length + 1;
+                stream.Position = tableInfoPosition;
+            }
+            else
+            {
+                writer.Write(int.MinValue);
+                writer.Write(Fnv32.EmptyStringHash);
+            }
+            writer.Write(int.MinValue);
+            writer.Write((uint)DataModelType.UINT32);
+            writer.Write(4U);
+            writer.Write(rowsPosition + (i * 4) - (fieldPosition + 20));
+            writer.Write(1U);
+            stream.Position = rowsPosition + (i * 4);
+            writer.Write((uint)i);
+        }
+        if (stream.Length < namesPosition)
+            stream.SetLength(namesPosition);
+        writer.Flush();
+        return stream.ToArray();
+    }
+
+    [TestMethod]
+    [DataRow(0)]
+    [DataRow(1)]
+    [DataRow(2)]
+    public async Task GetNameAsyncReadsFirstNamedTable(int unnamedTables)
+    {
+        var data = BuildData([.. Enumerable.Repeat<string?>(null, unnamedTables), "First", "Second"]);
+        Assert.AreEqual("First", DataModel.Decode(data).ResourceName);
+        using var stream = new MemoryStream(data);
+        Assert.AreEqual("First", await DataModel.GetNameAsync(stream));
+    }
+
+    [TestMethod]
+    public async Task GetNameAsyncToleratesShortReads()
+    {
+        var data = BuildData(null, "First", "Second");
+        using var stream = new ShortReadStream(new MemoryStream(data), 3);
+        Assert.AreEqual("First", await DataModel.GetNameAsync(stream));
+    }
+
+    [TestMethod]
+    public async Task GetNameByKeyAsyncReadsSimDataName()
+    {
+        await using var dbpf = await DataBasePackedFile.FromPathAsync(tempPackagePath);
+        Assert.AreEqual("LlamaLogicPackageTests:NonsenseRelationshipBit", await dbpf.GetNameByKeyAsync("545AC67A:004DFB84:00000000D1D56A53"));
+    }
+
+    [TestMethod]
+    public void GetNameByKeyReadsSimDataName()
+    {
+        using var dbpf = new DataBasePackedFile(tempPackagePath);
+        Assert.AreEqual("LlamaLogicPackageTests:NonsenseRelationshipBit", dbpf.GetNameByKey("545AC67A:004DFB84:00000000D1D56A53"));
+    }
+
+    [TestMethod]
+    [DataRow(0)]
+    [DataRow(1)]
+    [DataRow(2)]
+    public void GetNameReadsFirstNamedTable(int unnamedTables)
+    {
+        var data = BuildData([.. Enumerable.Repeat<string?>(null, unnamedTables), "First", "Second"]);
+        Assert.AreEqual("First", DataModel.Decode(data).ResourceName);
+        using var stream = new MemoryStream(data);
+        Assert.AreEqual("First", DataModel.GetName(stream));
+    }
+
+    [TestMethod]
+    public void GetNameReturnsNullWithoutNamedTables()
+    {
+        var data = BuildData(null, null);
+        Assert.IsNull(DataModel.Decode(data).ResourceName);
+        using var stream = new MemoryStream(data);
+        Assert.IsNull(DataModel.GetName(stream));
+    }
+
+    [TestMethod]
+    public void GetNameToleratesShortReads()
+    {
+        var data = BuildData(null, "First", "Second");
+        using var stream = new ShortReadStream(new MemoryStream(data), 3);
+        Assert.AreEqual("First", DataModel.GetName(stream));
+    }
+
     [TestMethod]
     public void GetNonsenseRelationshipBitSimData()
     {

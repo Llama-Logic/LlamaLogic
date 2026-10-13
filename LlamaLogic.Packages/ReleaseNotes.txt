@@ -1,3 +1,1 @@
-SetPngAsTranslucentJpeg, SetPngAsTranslucentJpegAsync, ConvertPngToTranslucentJpeg, and ConvertPngToTranslucentJpegAsync now throw InvalidDataException when the image's alpha channel compresses to more than 65,525 bytes, which a translucent JPEG cannot hold, instead of silently writing a corrupt JPEG.
-GetDdsAsPng, GetDdsAsPngAsync, GetPngDataFromDdsData, and GetPngDataFromDdsDataAsync now throw InvalidDataException for a DirectDraw Surface that declares more than 32 mipmap levels, instead of running out of memory.
-GetDdsAsPngAsync now passes its cancellation token to the conversion.
+GetNames, GetNamesAsync, GetKeysByName, GetKeysByNameAsync, GetNameByKey, GetNameByKeyAsync, LoadNames, LoadNamesAsync, DataModel.GetName, and DataModel.GetNameAsync now return the correct names of SimData and CombinedTuning resources (previously read from the wrong position), and DataModel.GetName and DataModel.GetNameAsync now tolerate streams that return fewer bytes than requested.

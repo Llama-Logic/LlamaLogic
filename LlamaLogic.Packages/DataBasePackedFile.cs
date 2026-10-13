@@ -124,7 +124,7 @@ public sealed class DataBasePackedFile :
         return memory;
     }
 
-    static int FillBuffer(Stream stream, Span<byte> buffer)
+    internal static int FillBuffer(Stream stream, Span<byte> buffer)
     {
         var totalBytesRead = 0;
         int bytesRead;
@@ -133,7 +133,7 @@ public sealed class DataBasePackedFile :
         return totalBytesRead;
     }
 
-    static async ValueTask<int> FillBufferAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken)
+    internal static async ValueTask<int> FillBufferAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken)
     {
         var totalBytesRead = 0;
         int bytesRead;

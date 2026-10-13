@@ -1,3 +1,4 @@
+global using LlamaLogic.Packages.Cryptography;
 global using LlamaLogic.Packages.Formats;
 global using LlamaLogic.Packages.Models;
 global using LlamaLogic.Packages.Models.Data;
