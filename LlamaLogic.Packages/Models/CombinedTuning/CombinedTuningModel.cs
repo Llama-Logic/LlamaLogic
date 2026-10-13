@@ -103,7 +103,7 @@ public sealed class CombinedTuningModel :
         var documentTable = getSchemaTable("PackedXmlDocument");
         var nodeTable = getSchemaTable("PackedXmlNode");
         var attributeTable = getSchemaTable("PackedXmlAttribute");
-        var stringReferenceTables = tables.Where(table => table.SchemaPosition < 0 && table.DataType is (uint)DataModelType.STRING8).ToList();
+        var stringReferenceTables = tables.Where(table => table.SchemaPosition < 0 && table.DataType is (uint)SimDataType.STRING8).ToList();
         if (stringReferenceTables.Count != 1 || documentTable.RowCount < 1)
             throw new InvalidDataException("The data is not a packed XML document");
         var stringReferenceTable = stringReferenceTables[0];

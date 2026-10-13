@@ -95,11 +95,11 @@ static class PackedXmlBuilder
         var stringReferencesPosition = align(attributeReferencesPosition + (attributeReferences.Count * 4));
         var charactersPosition = align(stringReferencesPosition + (strings.Count * 4));
         var schemaPosition = align(charactersPosition + characters.Count);
-        (string name, (string name, DataModelType type, int offset)[] columns)[] schemas =
+        (string name, (string name, SimDataType type, int offset)[] columns)[] schemas =
         [
-            ("PackedXmlDocument", [("element_count", DataModelType.UINT32, 8), ("first_element", DataModelType.OBJECT, 0), ("top_element", DataModelType.OBJECT, 4), ("string_table", DataModelType.VECTOR, 12)]),
-            ("PackedXmlNode", [("children", DataModelType.OBJECT, 8), ("text", DataModelType.UINT32, 0), ("attrs", DataModelType.OBJECT, 4)]),
-            ("PackedXmlAttribute", [("value", DataModelType.UINT32, 4), ("name", DataModelType.UINT32, 0)])
+            ("PackedXmlDocument", [("element_count", SimDataType.UINT32, 8), ("first_element", SimDataType.OBJECT, 0), ("top_element", SimDataType.OBJECT, 4), ("string_table", SimDataType.VECTOR, 12)]),
+            ("PackedXmlNode", [("children", SimDataType.OBJECT, 8), ("text", SimDataType.UINT32, 0), ("attrs", SimDataType.OBJECT, 4)]),
+            ("PackedXmlAttribute", [("value", SimDataType.UINT32, 4), ("name", SimDataType.UINT32, 0)])
         ];
         var columnPosition = schemaPosition + (schemas.Length * 24);
         var namesPosition = columnPosition + (schemas.Sum(schema => schema.columns.Length) * 20);
@@ -143,15 +143,15 @@ static class PackedXmlBuilder
                 columnPosition += 20;
             }
         }
-        (int schema, DataModelType type, int rowSize, int position, int count)[] tables =
+        (int schema, SimDataType type, int rowSize, int position, int count)[] tables =
         [
-            (0, DataModelType.OBJECT, 20, documentPosition, 1),
-            (1, DataModelType.OBJECT, 12, nodesPosition, nodes.Count),
-            (2, DataModelType.OBJECT, 8, attributesPosition, attributes.Count),
-            (-1, DataModelType.OBJECT, 4, nodeReferencesPosition, nodeReferences.Count),
-            (-1, DataModelType.OBJECT, 4, attributeReferencesPosition, attributeReferences.Count),
-            (-1, DataModelType.STRING8, 4, stringReferencesPosition, strings.Count),
-            (-1, DataModelType.CHAR8, 1, charactersPosition, characters.Count)
+            (0, SimDataType.OBJECT, 20, documentPosition, 1),
+            (1, SimDataType.OBJECT, 12, nodesPosition, nodes.Count),
+            (2, SimDataType.OBJECT, 8, attributesPosition, attributes.Count),
+            (-1, SimDataType.OBJECT, 4, nodeReferencesPosition, nodeReferences.Count),
+            (-1, SimDataType.OBJECT, 4, attributeReferencesPosition, attributeReferences.Count),
+            (-1, SimDataType.STRING8, 4, stringReferencesPosition, strings.Count),
+            (-1, SimDataType.CHAR8, 1, charactersPosition, characters.Count)
         ];
         for (var t = 0; t < tables.Length; ++t)
         {

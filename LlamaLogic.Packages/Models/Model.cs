@@ -8,7 +8,7 @@ public abstract class Model :
 {
     /// <inheritdoc />
     public static ISet<ResourceType> SupportedTypes =>
-        DataModel.SupportedTypes;
+        SimDataModel.SupportedTypes;
 
     /// <inheritdoc />
     public static string? GetName(Stream stream) =>
@@ -24,7 +24,7 @@ public abstract class Model :
     public static string? GetName(ResourceType type, Stream stream) =>
         type switch
         {
-            ResourceType dataResourceType when DataModel.SupportedTypes.Contains(dataResourceType) => DataModel.GetName(stream),
+            ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.GetName(stream),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.GetName(stream),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")
         };
@@ -35,7 +35,7 @@ public abstract class Model :
     public static Task<string?> GetNameAsync(ResourceType type, Stream stream, CancellationToken cancellationToken = default) =>
         type switch
         {
-            ResourceType dataResourceType when DataModel.SupportedTypes.Contains(dataResourceType) => DataModel.GetNameAsync(stream, cancellationToken),
+            ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.GetNameAsync(stream, cancellationToken),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.GetNameAsync(stream),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")
         };

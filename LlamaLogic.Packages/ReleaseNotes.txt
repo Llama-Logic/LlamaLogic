@@ -1,2 +1,4 @@
-New CombinedTuningModel reads CombinedTuning resources in both the binary and the XML encoding Maxis ships, exposes the merged document as XML, encodes it as XML the way Maxis writes it, and produces the individual tuning documents it contains with GetTunings.
-New GetCombinedTuning and GetCombinedTuningAsync get a resource as a CombinedTuningModel.
+Breaking: DataModel and its types are removed, along with GetData and GetDataAsync; SimDataType and SimDataVersion replace DataModelType and DataModelVersion.
+New SimDataModel reads SimData resources as named instances of objects described by schemas, with vectors and variants as SimDataVector and SimDataVariant, validates values as they are set, and encodes resources the way Maxis does, reproducing the game's own SimData byte for byte.
+New GetSimData and GetSimDataAsync get a resource as a SimDataModel.
+Binary CombinedTuning resources are no longer given the name "documents" when resource names are indexed.

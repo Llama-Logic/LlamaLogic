@@ -1066,18 +1066,6 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
-    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="DataModel"/>
-    /// </summary>
-    public DataModel GetData(ResourceKey key, bool force = false) =>
-        GetModel<DataModel>(key, force);
-
-    /// <summary>
-    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="DataModel"/> asynchronously
-    /// </summary>
-    public Task<DataModel> GetDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
-        GetModelAsync<DataModel>(key, force, cancellationToken);
-
-    /// <summary>
     /// Gets the content of a resource that is a DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG
     /// </summary>
     public ReadOnlyMemory<byte> GetDdsAsPng(ResourceKey key, bool force = false)
@@ -1276,6 +1264,18 @@ public sealed class DataBasePackedFile :
         using var heldResourceLock = await resourceLock.LockAsync(cancellationToken).ConfigureAwait(false);
         return await InternalGetRawAsync(key, force, cancellationToken).ConfigureAwait(false);
     }
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="SimDataModel"/>
+    /// </summary>
+    public SimDataModel GetSimData(ResourceKey key, bool force = false) =>
+        GetModel<SimDataModel>(key, force);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="SimDataModel"/> asynchronously
+    /// </summary>
+    public Task<SimDataModel> GetSimDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
+        GetModelAsync<SimDataModel>(key, force, cancellationToken);
 
     /// <summary>
     /// Gets the size of the content of the resource with the specified <paramref name="key"/>
