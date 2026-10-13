@@ -1,29 +1,44 @@
 namespace LlamaLogic.Packages;
 
-sealed class ArrayBufferWriterOfByteStream(int? initialCapacity = null) :
+/// <summary>
+/// Represents a write-only <see cref="Stream"/> that collects what is written to it in memory (🔓)
+/// </summary>
+/// <param name="initialCapacity">The number of bytes to allocate initially, or <see langword="null"/> for the default</param>
+/// <remarks>
+/// <see cref="SetLength(long)"/> changes the length the stream reports: <see cref="WrittenMemory"/> and <see cref="WrittenSpan"/> are then truncated to it, or extended to it with zeros.
+/// </remarks>
+public sealed class ArrayBufferWriterOfByteStream(int? initialCapacity = null) :
     Stream
 {
     readonly ArrayBufferWriter<byte> writer = initialCapacity is { } specifiedInitialCapacity ? new(specifiedInitialCapacity) : new();
     long? setLength;
 
+    /// <inheritdoc/>
     public override bool CanRead =>
         false;
 
+    /// <inheritdoc/>
     public override bool CanSeek =>
         false;
 
+    /// <inheritdoc/>
     public override bool CanWrite =>
         true;
 
+    /// <inheritdoc/>
     public override long Length =>
         setLength is { } nonNullSetLength ? nonNullSetLength : writer.WrittenCount;
 
+    /// <inheritdoc/>
     public override long Position
     {
         get => setLength is { } nonNullSetLength && nonNullSetLength < writer.WrittenCount ? nonNullSetLength : writer.WrittenCount;
         set => throw new NotSupportedException();
     }
 
+    /// <summary>
+    /// Gets the bytes written to the stream
+    /// </summary>
     public ReadOnlyMemory<byte> WrittenMemory
     {
         get
@@ -38,6 +53,9 @@ sealed class ArrayBufferWriterOfByteStream(int? initialCapacity = null) :
         }
     }
 
+    /// <summary>
+    /// Gets the bytes written to the stream
+    /// </summary>
     public ReadOnlySpan<byte> WrittenSpan
     {
         get
@@ -52,20 +70,25 @@ sealed class ArrayBufferWriterOfByteStream(int? initialCapacity = null) :
         }
     }
 
+    /// <inheritdoc/>
     public override void Flush()
     {
         // no op
     }
 
+    /// <inheritdoc/>
     public override int Read(byte[] buffer, int offset, int count) =>
         throw new NotSupportedException();
 
+    /// <inheritdoc/>
     public override long Seek(long offset, SeekOrigin origin) =>
         throw new NotSupportedException();
 
+    /// <inheritdoc/>
     public override void SetLength(long value) =>
         setLength = value;
 
+    /// <inheritdoc/>
     public override void Write(byte[] buffer, int offset, int count)
     {
         ArgumentNullException.ThrowIfNull(buffer);
