@@ -3,6 +3,35 @@ namespace LlamaLogic.Packages.Models.SimData;
 static class SimDataUtilities
 {
     public const uint EmptyNameHash = 0x811c9dc5;
+    static readonly ImmutableArray<string> studioNames =
+    [
+        "Boolean",
+        "Char",
+        "SByte",
+        "Byte",
+        "Int16",
+        "UInt16",
+        "Int32",
+        "UInt32",
+        "Int64",
+        "UInt64",
+        "Single",
+        "String",
+        "HashedString",
+        "Object",
+        "Vector",
+        "Float2",
+        "Float3",
+        "Float4",
+        "TableSetReference",
+        "ResourceKey",
+        "LocalizationKey",
+        "Variant"
+    ];
+    static readonly ImmutableDictionary<string, SimDataType> typesByStudioName = studioNames
+        .Select((name, index) => (name, type: (SimDataType)index))
+        .Concat([(name: "Int8", type: SimDataType.INT8), (name: "UInt8", type: SimDataType.UINT8)])
+        .ToImmutableDictionary(t => t.name, t => t.type, StringComparer.OrdinalIgnoreCase);
 
     public static uint GetAlignment(this SimDataType type) =>
         type switch
@@ -38,6 +67,9 @@ static class SimDataUtilities
             SimDataType.FLOAT4 or SimDataType.RESOURCEKEY => 16,
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, "Not a SimData type")
         };
+
+    public static string GetStudioName(this SimDataType type) =>
+        studioNames[(int)type];
 
     public static bool IsDefined(this SimDataType type) =>
         type is >= SimDataType.BOOL and <= SimDataType.VARIANT;
@@ -85,6 +117,9 @@ static class SimDataUtilities
             (SimDataType.VARIANT, null or SimDataVariant) => value,
             _ => throw new ArgumentException($"A {type} value must be {GetValueTypeDescription(type)}, not {value?.GetType().Name ?? "null"}", paramName)
         };
+
+    public static bool TryParseStudioName(string? name, out SimDataType type) =>
+        typesByStudioName.TryGetValue(name ?? string.Empty, out type);
 
     static string GetValueTypeDescription(SimDataType type) =>
         type switch

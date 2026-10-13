@@ -300,6 +300,91 @@ public sealed class SimDataModel :
         return model;
     }
 
+    static string? FormatXmlPrimitive(SimDataType type, object? value) =>
+        type switch
+        {
+            SimDataType.BOOL => (bool)value! ? "1" : "0",
+            SimDataType.CHAR8 => ((char)(byte)value!).ToString(),
+            SimDataType.FLOAT2 => FormatXmlSingles([((Vector2)value!).X, ((Vector2)value!).Y]),
+            SimDataType.FLOAT3 => FormatXmlSingles([((Vector3)value!).X, ((Vector3)value!).Y, ((Vector3)value!).Z]),
+            SimDataType.FLOAT4 => FormatXmlSingles([((Vector4)value!).X, ((Vector4)value!).Y, ((Vector4)value!).Z, ((Vector4)value!).W]),
+            SimDataType.LOCKEY => string.Create(CultureInfo.InvariantCulture, $"0x{(uint)value!:X8}"),
+            SimDataType.RESOURCEKEY => string.Create(CultureInfo.InvariantCulture, $"{(uint)((ResourceKey)value!).Type:X8}-{((ResourceKey)value!).Group:X8}-{((ResourceKey)value!).FullInstance:X16}"),
+            SimDataType.STRING8 or SimDataType.HASHEDSTRING8 => value is string text ? RequireXmlCharacters(text) : null,
+            _ => Convert.ToString(value, CultureInfo.InvariantCulture)!
+        };
+
+    static string FormatXmlSingles(float[] values) =>
+        string.Join(",", values.Select(value => value.ToString(CultureInfo.InvariantCulture)));
+
+    /// <summary>
+    /// Creates a <see cref="SimDataModel"/> from the XML representation of a <see cref="ResourceType.SimData"/> resource that Sims 4 Studio exports and imports
+    /// </summary>
+    /// <remarks>
+    /// Fields are matched to columns by exact name, and every column of an object must have exactly one field.
+    /// A string field written as an empty element (<c>&lt;T name="..." /&gt;</c>) is read as <see langword="null"/>.
+    /// Type names written by Sims4Toolkit (<c>Int8</c> and <c>UInt8</c>) are accepted along with Sims 4 Studio's.
+    /// </remarks>
+    /// <exception cref="InvalidDataException"><paramref name="document"/> is not a valid representation of a <see cref="ResourceType.SimData"/> resource</exception>
+    public static SimDataModel FromXml(XDocument document)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        try
+        {
+            return ReadXml(document);
+        }
+        catch (Exception ex) when (ex is ArgumentException or FormatException or InsufficientExecutionStackException or OverflowException)
+        {
+            throw new InvalidDataException("The document is not a valid representation of a SimData resource", ex);
+        }
+    }
+
+    static XElement GetXmlElement(SimDataType type, object? value, string? name, bool includeType)
+    {
+        var element = new XElement(type switch
+        {
+            SimDataType.OBJECT => "U",
+            SimDataType.VECTOR => "L",
+            SimDataType.VARIANT => "V",
+            _ => "T"
+        });
+        if (includeType)
+            element.Add(new XAttribute("type", type.GetStudioName()));
+        if (name is not null)
+            element.Add(new XAttribute("name", RequireXmlCharacters(name)));
+        switch (value)
+        {
+            case SimDataObject @object:
+                element.Add(new XAttribute("schema", @object.Schema.Name), GetXmlFields(@object));
+                break;
+            case SimDataVector vector:
+                element.Add(vector.Select(vectorElement => GetXmlElement(vector.ElementType, vectorElement, null, true)));
+                break;
+            case SimDataVariant variant:
+                element.Add(new XAttribute("variant", string.Create(CultureInfo.InvariantCulture, $"0x{variant.TypeHash:X8}")));
+                if (variant.Value is SimDataObject variantObject)
+                    element.Add(new XAttribute("schema", variantObject.Schema.Name), GetXmlFields(variantObject));
+                else if (variant.Type is { } variantType)
+                    element.Add(GetXmlElement(variantType, variant.Value, null, true));
+                break;
+            default:
+                if (type is not (SimDataType.OBJECT or SimDataType.VECTOR or SimDataType.VARIANT) && FormatXmlPrimitive(type, value) is { } text)
+                    element.Value = text;
+                break;
+        }
+        return element;
+    }
+
+    static SimDataType GetXmlElementType(XElement element) =>
+        element.Attribute("type") is { } typeAttribute
+        ? SimDataUtilities.TryParseStudioName(typeAttribute.Value, out var type) ? type : throw new InvalidDataException($"{typeAttribute.Value} is not a SimData type")
+        : element.Attribute("schema") is not null
+        ? SimDataType.OBJECT
+        : throw new InvalidDataException($"A {element.Name.LocalName} element has neither a type nor a schema");
+
+    static IEnumerable<XElement> GetXmlFields(SimDataObject @object) =>
+        @object.Schema.Columns.Select((column, index) => GetXmlElement(column.Type, @object[index], column.Name, false));
+
     /// <inheritdoc/>
     public static new string? GetName(Stream stream)
     {
@@ -358,6 +443,66 @@ public sealed class SimDataModel :
             return Encoding.UTF8.GetString(nameBytes.WrittenSpan);
         }
         return null;
+    }
+
+    static uint ParseXmlHex(string text)
+    {
+        var digits = text.Trim();
+        if (digits.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+            digits = digits[2..];
+        return uint.Parse(digits, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture);
+    }
+
+    static object? ParseXmlPrimitive(SimDataType type, string text)
+    {
+        float[] parseSingles(int count)
+        {
+            var values = text.Split(',').Select(value => float.Parse(value, CultureInfo.InvariantCulture)).ToArray();
+            return values.Length == count ? values : throw new FormatException($"{type} values have {count} components separated by commas");
+        }
+        switch (type)
+        {
+            case SimDataType.BOOL:
+                return byte.Parse(text, CultureInfo.InvariantCulture) is not 0;
+            case SimDataType.CHAR8:
+                return text is [var character] && character <= byte.MaxValue ? (byte)character : throw new FormatException("A CHAR8 value is one character");
+            case SimDataType.INT8:
+                return sbyte.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.UINT8:
+                return byte.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.INT16:
+                return short.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.UINT16:
+                return ushort.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.INT32:
+                return int.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.UINT32:
+                return uint.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.INT64:
+                return long.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.UINT64 or SimDataType.TABLESETREFERENCE:
+                return ulong.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.FLOAT:
+                return float.Parse(text, CultureInfo.InvariantCulture);
+            case SimDataType.FLOAT2:
+                var float2 = parseSingles(2);
+                return new Vector2(float2[0], float2[1]);
+            case SimDataType.FLOAT3:
+                var float3 = parseSingles(3);
+                return new Vector3(float3[0], float3[1], float3[2]);
+            case SimDataType.FLOAT4:
+                var float4 = parseSingles(4);
+                return new Vector4(float4[0], float4[1], float4[2], float4[3]);
+            case SimDataType.LOCKEY:
+                return ParseXmlHex(text);
+            case SimDataType.RESOURCEKEY:
+                var parts = text.Split('-');
+                if (parts.Length != 3)
+                    throw new FormatException("A RESOURCEKEY value is a type, group and instance in hexadecimal separated by hyphens");
+                return new ResourceKey((ResourceType)ParseXmlHex(parts[0]), ParseXmlHex(parts[1]), ulong.Parse(parts[2].Trim(), NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture));
+            default:
+                throw new InvalidDataException($"Type {type} is not a primitive");
+        }
     }
 
     static byte ReadByte(ReadOnlySpan<byte> data, int position) =>
@@ -425,6 +570,120 @@ public sealed class SimDataModel :
         ? BinaryPrimitives.ReadUInt64LittleEndian(data[position..])
         : throw new InvalidDataException($"Position {position} is outside the data");
 
+    static SimDataModel ReadXml(XDocument document)
+    {
+        if (document.Root is not { Name.LocalName: "SimData" } root)
+            throw new InvalidDataException("The document's root element is not SimData");
+        var version = root.Attribute("version") is { } versionAttribute ? ParseXmlHex(versionAttribute.Value) : (uint)SimDataVersion.VariantSupport;
+        if (version is not ((uint)SimDataVersion.SmartSimOriginalEdition or (uint)SimDataVersion.VariantSupport))
+            throw new InvalidDataException($"Version {version:x} is not supported");
+        var model = new SimDataModel
+        {
+            Version = (SimDataVersion)version,
+            Unused = root.Attribute("u") is { } unusedAttribute ? ParseXmlHex(unusedAttribute.Value) : 0
+        };
+        var schemas = new Dictionary<string, SimDataSchema>();
+        foreach (var schemaElement in root.Elements("Schemas").Elements("Schema"))
+        {
+            var name = RequireXmlAttribute(schemaElement, "name");
+            var columns = schemaElement.Elements("Columns").Elements("Column").Select(columnElement =>
+            {
+                var columnName = RequireXmlAttribute(columnElement, "name");
+                if (!SimDataUtilities.TryParseStudioName(columnElement.Attribute("type")?.Value, out var type))
+                    throw new InvalidDataException($"Column {columnName} of schema {name} does not have a SimData type");
+                if (type is SimDataType.VARIANT && model.Version is SimDataVersion.SmartSimOriginalEdition)
+                    throw new InvalidDataException($"Column {columnName} of schema {name} is a {SimDataType.VARIANT}, which version {model.Version} does not support");
+                return new SimDataColumn(columnName, type, columnElement.Attribute("flags") is { } flagsAttribute ? checked((ushort)ParseXmlHex(flagsAttribute.Value)) : (ushort)0);
+            }).ToList();
+            if (!schemas.TryAdd(name, new SimDataSchema(name, schemaElement.Attribute("schema_hash") is { } hashAttribute ? ParseXmlHex(hashAttribute.Value) : 0, columns)))
+                throw new InvalidDataException($"There are two schemas named {name}");
+        }
+        foreach (var instanceElement in root.Elements("Instances").Elements("I"))
+            model.Instances.Add(new SimDataInstance(RequireXmlAttribute(instanceElement, "name"), ReadXmlObject(instanceElement, schemas)));
+        try
+        {
+            model.RequireEncodableLayout();
+        }
+        catch (InvalidOperationException ex)
+        {
+            throw new InvalidDataException($"The document describes a resource that cannot be encoded: {ex.Message}", ex);
+        }
+        return model;
+    }
+
+    static SimDataObject ReadXmlObject(XElement element, Dictionary<string, SimDataSchema> schemas)
+    {
+        var schemaName = RequireXmlAttribute(element, "schema");
+        if (!schemas.TryGetValue(schemaName, out var schema))
+            throw new InvalidDataException($"Schema {schemaName} is not defined");
+        var @object = new SimDataObject(schema);
+        var columnsRead = new HashSet<int>();
+        foreach (var fieldElement in element.Elements())
+        {
+            var fieldName = RequireXmlAttribute(fieldElement, "name");
+            if (schema.GetColumnIndex(fieldName) is not { } columnIndex)
+                throw new InvalidDataException($"Schema {schemaName} has no column named {fieldName}");
+            if (!columnsRead.Add(columnIndex))
+                throw new InvalidDataException($"An object of schema {schemaName} has two fields named {fieldName}");
+            @object[columnIndex] = ReadXmlValue(schema.Columns[columnIndex].Type, fieldElement, schemas);
+        }
+        if (columnsRead.Count != schema.Columns.Count)
+            throw new InvalidDataException($"An object of schema {schemaName} has no field named {schema.Columns.Where((_, index) => !columnsRead.Contains(index)).First().Name}");
+        return @object;
+    }
+
+    static object? ReadXmlValue(SimDataType type, XElement element, Dictionary<string, SimDataSchema> schemas)
+    {
+        RuntimeHelpers.EnsureSufficientExecutionStack();
+        switch (type)
+        {
+            case SimDataType.OBJECT:
+                return element.HasElements ? ReadXmlObject(element, schemas) : null;
+            case SimDataType.VECTOR:
+                if (!element.HasElements)
+                    return null;
+                var elementType = GetXmlElementType(element.Elements().First());
+                var vector = new SimDataVector(elementType);
+                foreach (var vectorElement in element.Elements())
+                {
+                    if (GetXmlElementType(vectorElement) != elementType)
+                        throw new InvalidDataException($"A vector of {elementType} has an element of another type");
+                    vector.Add(ReadXmlValue(elementType, vectorElement, schemas));
+                }
+                return vector;
+            case SimDataType.VARIANT:
+                var typeHash = element.Attribute("variant") is { } variantAttribute ? ParseXmlHex(variantAttribute.Value) : 0;
+                if (element.Attribute("schema") is not null)
+                    return new SimDataVariant(typeHash, SimDataType.OBJECT, ReadXmlObject(element, schemas));
+                var variantElements = element.Elements().ToList();
+                if (variantElements.Count is 0)
+                    return new SimDataVariant(typeHash);
+                if (variantElements.Count is not 1)
+                    throw new InvalidDataException("A variant has more than one value");
+                var variantType = GetXmlElementType(variantElements[0]);
+                return new SimDataVariant(typeHash, variantType, ReadXmlValue(variantType, variantElements[0], schemas));
+            case SimDataType.STRING8 or SimDataType.HASHEDSTRING8:
+                return element.IsEmpty ? null : element.Value;
+            default:
+                return ParseXmlPrimitive(type, element.Value);
+        }
+    }
+
+    static string RequireXmlAttribute(XElement element, string name) =>
+        element.Attribute(name)?.Value ?? throw new InvalidDataException($"A {element.Name.LocalName} element has no {name} attribute");
+
+    static string RequireXmlCharacters(string text)
+    {
+        try
+        {
+            return XmlConvert.VerifyXmlChars(text);
+        }
+        catch (XmlException ex)
+        {
+            throw new InvalidOperationException($"\"{text}\" contains characters XML cannot represent", ex);
+        }
+    }
+
     /// <summary>
     /// Gets the named, top-level objects of the resource
     /// </summary>
@@ -455,12 +714,8 @@ public sealed class SimDataModel :
     /// <exception cref="InvalidOperationException">The resource cannot be encoded: <see cref="Version"/> is not supported or does not support a value used, two different schemas have the same hash, two instances of the same schema have different names, or an object or vector contains itself</exception>
     public override ReadOnlyMemory<byte> Encode()
     {
-        if (Version is not (SimDataVersion.SmartSimOriginalEdition or SimDataVersion.VariantSupport))
-            throw new InvalidOperationException($"Version {Version} is not supported");
-        var (tables, characters) = Layout();
+        var (tables, characters) = RequireEncodableLayout();
         var schemas = tables.Where(table => table.Schema is not null).Select(table => table.Schema!).ToList();
-        if (Version is SimDataVersion.SmartSimOriginalEdition && (schemas.Any(schema => schema.Columns.Any(column => column.Type is SimDataType.VARIANT)) || tables.Any(table => table.Schema is null && table.Type is SimDataType.VARIANT)))
-            throw new InvalidOperationException($"Version {Version} does not support {SimDataType.VARIANT} values");
         static int align(int position, int mask) =>
             position + (-position & mask);
         int getRowCount(EncodingTable table) =>
@@ -781,5 +1036,61 @@ public sealed class SimDataModel :
             visitRow(table, allocate(table, [instance.Object]));
         }
         return ([.. schemaTables, .. rawTables], characters);
+    }
+
+    (List<EncodingTable> tables, ArrayBufferWriter<byte> characters) RequireEncodableLayout()
+    {
+        if (Version is not (SimDataVersion.SmartSimOriginalEdition or SimDataVersion.VariantSupport))
+            throw new InvalidOperationException($"Version {Version} is not supported");
+        var (tables, characters) = Layout();
+        if (Version is SimDataVersion.SmartSimOriginalEdition && tables.Any(table => table.Type is SimDataType.VARIANT || table.Schema is { } schema && schema.Columns.Any(column => column.Type is SimDataType.VARIANT)))
+            throw new InvalidOperationException($"Version {Version} does not support {SimDataType.VARIANT} values");
+        return (tables, characters);
+    }
+
+    /// <summary>
+    /// Gets the XML representation of the resource that Sims 4 Studio exports and imports
+    /// </summary>
+    /// <remarks>
+    /// A <see langword="null"/> string is written as an empty element (<c>&lt;T name="..." /&gt;</c>) and an empty string as an element with empty content (<c>&lt;T name="..."&gt;&lt;/T&gt;</c>), which <see cref="FromXml(XDocument)"/> tells apart (Sims 4 Studio reads both as empty strings).
+    /// An empty vector is written the same way as a <see langword="null"/> one, which <see cref="Encode"/> also writes the same way.
+    /// </remarks>
+    /// <exception cref="InvalidOperationException">Two different schemas have the same hash or the same name, a name or string contains characters XML cannot represent, or an object or vector contains itself</exception>
+    public XDocument ToXml()
+    {
+        var schemas = Schemas;
+        if (schemas.GroupBy(schema => schema.Name).FirstOrDefault(group => group.Count() > 1) is { } duplicateName)
+            throw new InvalidOperationException($"Two different schemas are named {duplicateName.Key}");
+        return new XDocument
+        (
+            new XDeclaration("1.0", "utf-8", null),
+            new XElement
+            (
+                "SimData",
+                new XAttribute("version", string.Create(CultureInfo.InvariantCulture, $"0x{(uint)Version:X8}")),
+                new XAttribute("u", string.Create(CultureInfo.InvariantCulture, $"0x{Unused:X8}")),
+                new XElement("Instances", Instances.Select(instance => new XElement
+                (
+                    "I",
+                    new XAttribute("name", RequireXmlCharacters(instance.Name)),
+                    new XAttribute("schema", instance.Object.Schema.Name),
+                    new XAttribute("type", SimDataType.OBJECT.GetStudioName()),
+                    GetXmlFields(instance.Object)
+                ))),
+                new XElement("Schemas", schemas.Select(schema => new XElement
+                (
+                    "Schema",
+                    new XAttribute("name", RequireXmlCharacters(schema.Name)),
+                    new XAttribute("schema_hash", string.Create(CultureInfo.InvariantCulture, $"0x{schema.Hash:X8}")),
+                    new XElement("Columns", schema.Columns.Select(column => new XElement
+                    (
+                        "Column",
+                        new XAttribute("name", RequireXmlCharacters(column.Name)),
+                        new XAttribute("type", column.Type.GetStudioName()),
+                        new XAttribute("flags", string.Create(CultureInfo.InvariantCulture, $"0x{column.Flags:X8}"))
+                    )))
+                )))
+            )
+        );
     }
 }

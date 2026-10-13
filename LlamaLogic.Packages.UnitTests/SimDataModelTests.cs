@@ -5,6 +5,103 @@ public class SimDataModelTests :
     TestPackageTests
 {
     const string nestedModelHex = "44415441010100001800000003000000b000000002000000000000000000000046010000376c7be1980000000d000000100000004c0000000100000000000080c59d1c81940000000d00000004000000400000000300000000000080c59d1c81000000800100000001000000340000001500000000000000000000000000000010000000100000000200000023000000100000001100000012000000000000004465616e004269746500536f6d65004f7474657200000000000000000000000095000000eeff6e0a7b8ffa7c1000000020000000030000008800000053fa066ac3ad4e0d04000000440000000100000056000000e817bc990e00000004000000000000804b0000007d7a86e10b0000000c0000000000008028000000955af7ff0d00000000000000000000802f000000f43b8b2f0b00000000000000000000806368696c64006368696c6472656e006c6162656c004f75746572006e616d6500496e6e6572004f75746572496e7374616e636500";
+    const string nonsenseRelationshipBitXml =
+        """
+        <SimData version="0x00000101" u="0x00000000">
+          <Instances>
+            <I name="LlamaLogicPackageTests:NonsenseRelationshipBit" schema="RelationshipBit" type="Object">
+              <T name="bit_description">0xDB5AC988</T>
+              <L name="collection_ids">
+                <T type="Int64">64</T>
+                <T type="Int64">65</T>
+                <T type="Int64">66</T>
+                <T type="Int64">67</T>
+              </L>
+              <T name="directionality">1</T>
+              <T name="display_name">0xD4FC0137</T>
+              <T name="display_priority">2</T>
+              <T name="group_id">2</T>
+              <T name="icon">00B2D882-00000000-297CB1FD39511EF4</T>
+              <V name="sim_profile_background" variant="0xF8CBBF4C">
+                <T type="ResourceKey">00B2D882-00000000-DE8E092788735948</T>
+              </V>
+              <V name="small_icon" variant="0xF8CBBF4C">
+                <T type="ResourceKey">00B2D882-00000000-573597DDCDBAD0EA</T>
+              </V>
+              <T name="visible">0</T>
+            </I>
+          </Instances>
+          <Schemas>
+            <Schema name="RelationshipBit" schema_hash="0xF94B8FE1">
+              <Columns>
+                <Column name="bit_description" type="LocalizationKey" flags="0x00000000" />
+                <Column name="collection_ids" type="Vector" flags="0x00000000" />
+                <Column name="directionality" type="UInt32" flags="0x00000000" />
+                <Column name="display_name" type="LocalizationKey" flags="0x00000000" />
+                <Column name="display_priority" type="Int32" flags="0x00000000" />
+                <Column name="group_id" type="UInt32" flags="0x00000000" />
+                <Column name="icon" type="ResourceKey" flags="0x00000000" />
+                <Column name="sim_profile_background" type="Variant" flags="0x00000000" />
+                <Column name="small_icon" type="Variant" flags="0x00000000" />
+                <Column name="visible" type="Boolean" flags="0x00000000" />
+              </Columns>
+            </Schema>
+          </Schemas>
+        </SimData>
+        """;
+    const string nestedXml =
+        """
+        <SimData version="0x00000101" u="0x00000000">
+          <Instances>
+            <I name="Holder" schema="Holder" type="Object">
+              <U name="child" schema="Child">
+                <T name="label">Dean</T>
+              </U>
+              <U name="missing" />
+              <L name="children">
+                <U type="Object" schema="Child">
+                  <T name="label"></T>
+                </U>
+                <U type="Object" schema="Child">
+                  <T name="label" />
+                </U>
+              </L>
+              <L name="nothing" />
+              <V name="object_variant" variant="0x12345678" schema="Child">
+                <T name="label">Bite</T>
+              </V>
+              <V name="vector_variant" variant="0x9ABCDEF0">
+                <L type="Vector">
+                  <T type="Single">1.5</T>
+                </L>
+              </V>
+              <V name="valueless_variant" variant="0x0000002A" />
+              <T name="position">1,-2.25</T>
+              <T name="flag">1</T>
+            </I>
+          </Instances>
+          <Schemas>
+            <Schema name="Holder" schema_hash="0x00000001">
+              <Columns>
+                <Column name="child" type="Object" flags="0x00000000" />
+                <Column name="missing" type="Object" flags="0x00000000" />
+                <Column name="children" type="Vector" flags="0x00000000" />
+                <Column name="nothing" type="Vector" flags="0x00000000" />
+                <Column name="object_variant" type="Variant" flags="0x00000000" />
+                <Column name="vector_variant" type="Variant" flags="0x00000000" />
+                <Column name="valueless_variant" type="Variant" flags="0x00000000" />
+                <Column name="position" type="Float2" flags="0x00000000" />
+                <Column name="flag" type="Boolean" flags="0x00000000" />
+              </Columns>
+            </Schema>
+            <Schema name="Child" schema_hash="0x00000002">
+              <Columns>
+                <Column name="label" type="String" flags="0x00000000" />
+              </Columns>
+            </Schema>
+          </Schemas>
+        </SimData>
+        """;
     static readonly ResourceKey nonsenseRelationshipBitKey = new(ResourceType.SimData, 0x004dfb84, 0x00000000d1d56a53);
 
     static void AssertNonsenseRelationshipBit(SimDataModel simData)
@@ -407,6 +504,79 @@ public class SimDataModelTests :
     }
 
     [TestMethod]
+    public void FromXmlAcceptsSims4ToolkitTypeNames()
+    {
+        var model = SimDataModel.FromXml(XDocument.Parse("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\"><T name=\"signed\">-8</T><T name=\"unsigned\">8</T></I></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"signed\" type=\"Int8\" flags=\"0x00000000\" /><Column name=\"unsigned\" type=\"UInt8\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>"));
+        Assert.AreEqual((sbyte)-8, model.Instances[0].Object["signed"]);
+        Assert.AreEqual((byte)8, model.Instances[0].Object["unsigned"]);
+    }
+
+    [TestMethod]
+    public void FromXmlReadsNestedValues()
+    {
+        var holder = SimDataModel.FromXml(XDocument.Parse(nestedXml)).Instances[0].Object;
+        Assert.AreEqual("Dean", ((SimDataObject)holder["child"]!)["label"]);
+        Assert.IsNull(holder["missing"]);
+        var children = (SimDataVector)holder["children"]!;
+        Assert.AreEqual(SimDataType.OBJECT, children.ElementType);
+        Assert.AreEqual(string.Empty, ((SimDataObject)children[0]!)["label"]);
+        Assert.IsNull(((SimDataObject)children[1]!)["label"]);
+        Assert.IsNull(holder["nothing"]);
+        var objectVariant = (SimDataVariant)holder["object_variant"]!;
+        Assert.AreEqual(0x12345678U, objectVariant.TypeHash);
+        Assert.AreEqual(SimDataType.OBJECT, objectVariant.Type);
+        Assert.AreEqual("Bite", ((SimDataObject)objectVariant.Value!)["label"]);
+        var vectorVariant = (SimDataVariant)holder["vector_variant"]!;
+        Assert.AreEqual(SimDataType.VECTOR, vectorVariant.Type);
+        CollectionAssert.AreEqual(new object[] { 1.5F }, ((SimDataVector)vectorVariant.Value!).ToArray());
+        var valuelessVariant = (SimDataVariant)holder["valueless_variant"]!;
+        Assert.AreEqual(0x2AU, valuelessVariant.TypeHash);
+        Assert.IsNull(valuelessVariant.Type);
+        Assert.AreEqual(new Vector2(1, -2.25F), holder["position"]);
+        Assert.AreEqual(true, holder["flag"]);
+    }
+
+    [TestMethod]
+    public void FromXmlReadsNonsenseRelationshipBit()
+    {
+        using var dbpf = new DataBasePackedFile(tempPackagePath);
+        var model = SimDataModel.FromXml(XDocument.Parse(nonsenseRelationshipBitXml));
+        AssertNonsenseRelationshipBit(model);
+        CollectionAssert.AreEqual(dbpf.Get(nonsenseRelationshipBitKey).ToArray(), model.Encode().ToArray());
+    }
+
+    [TestMethod]
+    [DataRow("<NotSimData />")]
+    [DataRow("<SimData version=\"0x00000102\" u=\"0x00000000\" />")]
+    [DataRow("<SimData version=\"0x00000100\" u=\"0x00000000\"><Instances /><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Variant\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances /><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Imaginary\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances /><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema><Schema name=\"A\" schema_hash=\"0x00000002\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"B\" type=\"Object\" /></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\" /></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\"><T name=\"v\">1</T><T name=\"w\">2</T></I></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\"><T name=\"v\">1</T><T name=\"v\">2</T></I></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\"><T name=\"v\">one</T></I></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\"><L name=\"v\"><T type=\"Int32\">1</T><T type=\"UInt32\">2</T></L></I></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Vector\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    [DataRow("<SimData version=\"0x00000101\" u=\"0x00000000\"><Instances><I name=\"A\" schema=\"A\" type=\"Object\"><T name=\"v\">1</T></I><I name=\"B\" schema=\"A\" type=\"Object\"><T name=\"v\">2</T></I></Instances><Schemas><Schema name=\"A\" schema_hash=\"0x00000001\"><Columns><Column name=\"v\" type=\"Int32\" flags=\"0x00000000\" /></Columns></Schema></Schemas></SimData>")]
+    public void FromXmlRejectsInvalidDocuments(string xml) =>
+        Assert.ThrowsExactly<InvalidDataException>(() => SimDataModel.FromXml(XDocument.Parse(xml)));
+
+    [TestMethod]
+    public void FromXmlRoundTripsEveryType()
+    {
+        var model = BuildModelWithEveryType();
+        var imported = SimDataModel.FromXml(XDocument.Parse(model.ToXml().ToString()));
+        Assert.AreEqual(model.Unused, imported.Unused);
+        Assert.AreEqual(model.Instances.Count, imported.Instances.Count);
+        for (var i = 0; i < model.Instances.Count; ++i)
+        {
+            Assert.AreEqual(model.Instances[i].Name, imported.Instances[i].Name);
+            AssertValuesEqual(model.Instances[i].Object, imported.Instances[i].Object, model.Instances[i].Name);
+        }
+        CollectionAssert.AreEqual(model.Encode().ToArray(), imported.Encode().ToArray());
+    }
+
+    [TestMethod]
     public async Task GetNameAsyncToleratesShortReads()
     {
         var data = BuildData(null, "First", "Second");
@@ -513,6 +683,37 @@ public class SimDataModelTests :
     [TestMethod]
     public void SchemaRejectsNoColumns() =>
         Assert.ThrowsExactly<ArgumentException>(() => new SimDataSchema("Thing", 1, []));
+
+    [TestMethod]
+    public void ToXmlRejectsCharactersXmlCannotRepresent()
+    {
+        var @object = new SimDataObject(new SimDataSchema("A", 1, [new("text", SimDataType.STRING8)]));
+        @object["text"] = "\u0001";
+        var model = new SimDataModel();
+        model.Instances.Add(new("A", @object));
+        Assert.ThrowsExactly<InvalidOperationException>(() => model.ToXml());
+    }
+
+    [TestMethod]
+    public void ToXmlRejectsDifferentSchemasWithTheSameName()
+    {
+        var model = new SimDataModel();
+        model.Instances.Add(new("A", new SimDataObject(new SimDataSchema("Same", 1, [new("value", SimDataType.INT32)]))));
+        model.Instances.Add(new("B", new SimDataObject(new SimDataSchema("Same", 2, [new("value", SimDataType.INT32)]))));
+        Assert.ThrowsExactly<InvalidOperationException>(() => model.ToXml());
+    }
+
+    [TestMethod]
+    public void ToXmlWritesNestedValues() =>
+        Assert.IsTrue(XNode.DeepEquals(XDocument.Parse(nestedXml).Root, SimDataModel.FromXml(XDocument.Parse(nestedXml)).ToXml().Root));
+
+    [TestMethod]
+    public void ToXmlWritesNonsenseRelationshipBit()
+    {
+        using var dbpf = new DataBasePackedFile(tempPackagePath);
+        var xml = dbpf.GetSimData(nonsenseRelationshipBitKey).ToXml();
+        Assert.IsTrue(XNode.DeepEquals(XDocument.Parse(nonsenseRelationshipBitXml).Root, xml.Root), xml.ToString());
+    }
 
     [TestMethod]
     public void VariantRejectsNullObjects() =>
