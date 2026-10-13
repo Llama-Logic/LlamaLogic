@@ -48,6 +48,8 @@ items:
   - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.StringTableModel}
   - LlamaLogic.Packages.Models.IModel
   inheritedMembers:
+  - LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
   - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
   - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
   - System.Object.Equals(System.Object)
@@ -75,7 +77,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SupportedTypes
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -108,7 +110,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Decode
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 21
+    startLine: 23
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -123,6 +125,10 @@ items:
       type: LlamaLogic.Packages.Models.StringTableModel
     content.vb: Public Shared Function Decode(data As ReadOnlyMemory(Of Byte)) As StringTableModel
   overload: LlamaLogic.Packages.Models.StringTableModel.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: 'The data is not a well-formed string table: its file identifier or version is not the expected one, its entries do not fill it exactly, its total string length disagrees with its entries, or a string is not valid UTF-8'
   implements:
   - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.StringTableModel}.Decode(System.ReadOnlyMemory{System.Byte})
   nameWithType.vb: StringTableModel.Decode(ReadOnlyMemory(Of Byte))
@@ -146,7 +152,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetName
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 55
+    startLine: 78
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -181,7 +187,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameAsync
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 59
+    startLine: 82
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -218,7 +224,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Count
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 69
+    startLine: 99
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -249,7 +255,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: KeyHashes
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 81
+    startLine: 111
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -280,7 +286,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 91
+    startLine: 121
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -314,7 +320,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: this[]
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 97
+    startLine: 129
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -329,6 +335,13 @@ items:
       type: System.String
     content.vb: Public Default Property this[](keyHash As UInteger) As String
   overload: LlamaLogic.Packages.Models.StringTableModel.Item*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: The value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: The value is longer than 65,535 bytes in UTF-8
   nameWithType.vb: StringTableModel.this[](UInteger)
   fullName.vb: LlamaLogic.Packages.Models.StringTableModel.this[](UInteger)
   name.vb: this[](UInteger)
@@ -350,7 +363,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: AddNew
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 107
+    startLine: 140
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -366,9 +379,12 @@ items:
     content.vb: Public Function AddNew([string] As String) As UInteger
   overload: LlamaLogic.Packages.Models.StringTableModel.AddNew*
   exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code class="paramref">string</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: The key hash generated for <code class="paramref">string</code> already existed in the string table
+    description: <code class="paramref">string</code> is longer than 65,535 bytes in UTF-8, or the key hash generated for it already existed in the string table
   nameWithType.vb: StringTableModel.AddNew(String)
   fullName.vb: LlamaLogic.Packages.Models.StringTableModel.AddNew(String)
   name.vb: AddNew(String)
@@ -390,7 +406,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Delete
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 123
+    startLine: 156
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -426,7 +442,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 131
+    startLine: 164
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -459,7 +475,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Get
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 163
+    startLine: 196
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -495,7 +511,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/Models/StringTableModel.cs
-    startLine: 175
+    startLine: 210
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -512,6 +528,13 @@ items:
       type: System.Boolean
     content.vb: Public Function [Set](keyHash As UInteger, [string] As String) As Boolean
   overload: LlamaLogic.Packages.Models.StringTableModel.Set*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: <code class="paramref">string</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">string</code> is longer than 65,535 bytes in UTF-8
   nameWithType.vb: StringTableModel.Set(UInteger, String)
   fullName.vb: LlamaLogic.Packages.Models.StringTableModel.Set(UInteger, String)
   name.vb: Set(UInteger, String)
@@ -601,6 +624,86 @@ references:
   name: IModel
   nameWithType: IModel
   fullName: LlamaLogic.Packages.Models.IModel
+- uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ResourceType, ReadOnlyMemory<byte>)
+  nameWithType: Model.Decode(ResourceType, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory<byte>)
+  nameWithType.vb: Model.Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
 - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
   commentId: M:LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
   parent: LlamaLogic.Packages.Models.Model
@@ -1051,6 +1154,13 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
 - uid: LlamaLogic.Packages.Models.StringTableModel.Decode*
   commentId: Overload:LlamaLogic.Packages.Models.StringTableModel.Decode
   href: LlamaLogic.Packages.Models.StringTableModel.html#LlamaLogic_Packages_Models_StringTableModel_Decode_System_ReadOnlyMemory_System_Byte__
@@ -1583,6 +1693,20 @@ references:
   name: ResourceName
   nameWithType: IModel.ResourceName
   fullName: LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentnullexception
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: LlamaLogic.Packages.Models.StringTableModel.Item*
   commentId: Overload:LlamaLogic.Packages.Models.StringTableModel.Item
   href: LlamaLogic.Packages.Models.StringTableModel.html#LlamaLogic_Packages_Models_StringTableModel_Item_System_UInt32_
@@ -1603,13 +1727,6 @@ references:
   nameWithType.vb: UInteger
   fullName.vb: UInteger
   name.vb: UInteger
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
-  name: ArgumentException
-  nameWithType: ArgumentException
-  fullName: System.ArgumentException
 - uid: LlamaLogic.Packages.Models.StringTableModel.AddNew*
   commentId: Overload:LlamaLogic.Packages.Models.StringTableModel.AddNew
   href: LlamaLogic.Packages.Models.StringTableModel.html#LlamaLogic_Packages_Models_StringTableModel_AddNew_System_String_

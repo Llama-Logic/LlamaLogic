@@ -1,0 +1,1991 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataModel
+  id: SimDataModel
+  parent: LlamaLogic.Packages.Models.SimData
+  children:
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.GetName(System.IO.Stream)
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  langs:
+  - csharp
+  - vb
+  name: SimDataModel
+  nameWithType: SimDataModel
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimDataModel
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Represents a <xref href=\"LlamaLogic.Packages.ResourceType.SimData\" data-throw-if-not-resolved=\"false\"></xref> resource (\U0001F513)"
+  remarks: >-
+    A SimData resource is a set of named <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Instances" data-throw-if-not-resolved="false"></xref>, each an object described by a <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema" data-throw-if-not-resolved="false"></xref> whose values may refer to further objects, strings, vectors and variants.
+
+    <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory%7bSystem.Byte%7d)" data-throw-if-not-resolved="false"></xref> reads any well-formed layout, including those written by community tools, and reads a reference whose offset is zero (which could only refer to itself, and which some community tools write) as <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+
+    It rejects a resource in which a row is referred to more than once, which Maxis never writes and which the model, being a tree, cannot represent.
+
+    <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Encode" data-throw-if-not-resolved="false"></xref> always lays the resource out the way Maxis does, so decoding and encoding a resource Maxis wrote reproduces it byte for byte.
+  example: []
+  syntax:
+    content: 'public sealed class SimDataModel : Model, IModel<SimDataModel>, IModel'
+    content.vb: Public NotInheritable Class SimDataModel Inherits Model Implements IModel(Of SimDataModel), IModel
+  inheritance:
+  - System.Object
+  - LlamaLogic.Packages.Models.Model
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}
+  - LlamaLogic.Packages.Models.IModel
+  inheritedMembers:
+  - LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
+  id: SupportedTypes
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: SupportedTypes
+  nameWithType: SimDataModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SupportedTypes
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 53
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets a list of resource types that this model supports
+  example: []
+  syntax:
+    content: public static ISet<ResourceType> SupportedTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+    content.vb: Public Shared ReadOnly Property SupportedTypes As ISet(Of ResourceType)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+  id: Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: SimDataModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 58
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Decodes the resource in raw format to produce an operable model (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public static SimDataModel Decode(ReadOnlyMemory<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataModel
+    content.vb: Public Shared Function Decode(data As ReadOnlyMemory(Of Byte)) As SimDataModel
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The data is not a well-formed SimData resource
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  nameWithType.vb: SimDataModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  id: FromXml(System.Xml.Linq.XDocument)
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: FromXml(XDocument)
+  nameWithType: SimDataModel.FromXml(XDocument)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FromXml
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 328
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Creates a <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel" data-throw-if-not-resolved="false"></xref> from the XML representation of a <xref href="LlamaLogic.Packages.ResourceType.SimData" data-throw-if-not-resolved="false"></xref> resource that Sims 4 Studio exports and imports
+  remarks: >-
+    Fields are matched to columns by exact name, and every column of an object must have exactly one field.
+
+    A string field written as an empty element (<code>&lt;T name="..." /&gt;</code>) is read as <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+
+    Type names written by Sims4Toolkit (<code>Int8</code> and <code>UInt8</code>) are accepted along with Sims 4 Studio's.
+  example: []
+  syntax:
+    content: public static SimDataModel FromXml(XDocument document)
+    parameters:
+    - id: document
+      type: System.Xml.Linq.XDocument
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataModel
+    content.vb: Public Shared Function FromXml(document As XDocument) As SimDataModel
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: <code class="paramref">document</code> is not a valid representation of a <xref href="LlamaLogic.Packages.ResourceType.SimData" data-throw-if-not-resolved="false"></xref> resource
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.GetName(System.IO.Stream)
+  id: GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: GetName(Stream)
+  nameWithType: SimDataModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.GetName(System.IO.Stream)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetName
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 388
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Gets the name of a resource from its raw data, if it has one (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static string? GetName(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetName(stream As Stream) As String
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.GetName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  id: GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: SimDataModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetNameAsync
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 418
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Gets the name of a resource from its raw data, if it has one, asynchronously (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static Task<string?> GetNameAsync(Stream stream, CancellationToken cancellationToken = default)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+    content.vb: Public Shared Function GetNameAsync(stream As Stream, cancellationToken As CancellationToken = Nothing) As Task(Of String)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  id: Instances
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: Instances
+  nameWithType: SimDataModel.Instances
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Instances
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 689
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the named, top-level objects of the resource
+  example: []
+  syntax:
+    content: public Collection<SimDataInstance> Instances { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.SimData.SimDataInstance}
+    content.vb: Public ReadOnly Property Instances As Collection(Of SimDataInstance)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
+  id: ResourceName
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceName
+  nameWithType: SimDataModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceName
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 692
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the name of this resource if it has one
+  example: []
+  syntax:
+    content: public override string? ResourceName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overrides ReadOnly Property ResourceName As String
+  overridden: LlamaLogic.Packages.Models.Model.ResourceName
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
+  id: Schemas
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: Schemas
+  nameWithType: SimDataModel.Schemas
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Schemas
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 699
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the schemas of the objects in the resource, in the order <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Encode" data-throw-if-not-resolved="false"></xref> writes them
+  example: []
+  syntax:
+    content: public IReadOnlyList<SimDataSchema> Schemas { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.Models.SimData.SimDataSchema}
+    content.vb: Public ReadOnly Property Schemas As IReadOnlyList(Of SimDataSchema)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Two different schemas have the same hash, or an object contains itself
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+  id: Unused
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: Unused
+  nameWithType: SimDataModel.Unused
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unused
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 705
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets/sets the value of the <code>mUnused</code> field of the resource's header (Maxis always writes <code>0</code>; ignored for <xref href="LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public uint Unused { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Unused As UInteger
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  id: Version
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: SimDataModel.Version
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 710
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets/sets the version of the format of the resource
+  example: []
+  syntax:
+    content: public SimDataVersion Version { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataVersion
+    content.vb: Public Property Version As SimDataVersion
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Version*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+  id: Encode
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: Encode()
+  nameWithType: SimDataModel.Encode()
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Encode
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 714
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Encodes the resource model into raw format (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public override ReadOnlyMemory<byte> Encode()
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Overrides Function Encode() As ReadOnlyMemory(Of Byte)
+  overridden: LlamaLogic.Packages.Models.Model.Encode
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: 'The resource cannot be encoded: <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Version" data-throw-if-not-resolved="false"></xref> is not supported or does not support a value used, two different schemas have the same hash, two instances of the same schema have different names, or an object or vector contains itself'
+  implements:
+  - LlamaLogic.Packages.Models.IModel.Encode
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml
+  id: ToXml
+  parent: LlamaLogic.Packages.Models.SimData.SimDataModel
+  langs:
+  - csharp
+  - vb
+  name: ToXml()
+  nameWithType: SimDataModel.ToXml()
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ToXml
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
+    startLine: 1058
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the XML representation of the resource that Sims 4 Studio exports and imports
+  remarks: >-
+    A <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> string is written as an empty element (<code>&lt;T name="..." /&gt;</code>) and an empty string as an element with empty content (<code>&lt;T name="..."&gt;&lt;/T&gt;</code>), which <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)" data-throw-if-not-resolved="false"></xref> tells apart (Sims 4 Studio reads both as empty strings).
+
+    An empty vector is written the same way as a <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> one, which <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Encode" data-throw-if-not-resolved="false"></xref> also writes the same way.
+  example: []
+  syntax:
+    content: public XDocument ToXml()
+    return:
+      type: System.Xml.Linq.XDocument
+    content.vb: Public Function ToXml() As XDocument
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Two different schemas have the same hash or the same name, a name or string contains characters XML cannot represent, or an object or vector contains itself
+references:
+- uid: LlamaLogic.Packages.ResourceType.SimData
+  commentId: F:LlamaLogic.Packages.ResourceType.SimData
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SimData
+  name: SimData
+  nameWithType: ResourceType.SimData
+  fullName: LlamaLogic.Packages.ResourceType.SimData
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Instances
+  name: Instances
+  nameWithType: SimDataModel.Instances
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataSchema
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html
+  name: SimDataSchema
+  nameWithType: SimDataSchema
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: SimDataModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: SimDataModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Encode
+  name: Encode()
+  nameWithType: SimDataModel.Encode()
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData
+  commentId: N:LlamaLogic.Packages.Models.SimData
+  name: LlamaLogic.Packages.Models.SimData
+  nameWithType: LlamaLogic.Packages.Models.SimData
+  fullName: LlamaLogic.Packages.Models.SimData
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Packages.Models.Model
+  commentId: T:LlamaLogic.Packages.Models.Model
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.Model.html
+  name: Model
+  nameWithType: Model
+  fullName: LlamaLogic.Packages.Models.Model
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}
+  commentId: T:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}
+  parent: LlamaLogic.Packages.Models
+  definition: LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<SimDataModel>
+  nameWithType: IModel<SimDataModel>
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.SimData.SimDataModel>
+  nameWithType.vb: IModel(Of SimDataModel)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.SimData.SimDataModel)
+  name.vb: IModel(Of SimDataModel)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+    name: SimDataModel
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+    name: SimDataModel
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.IModel
+  commentId: T:LlamaLogic.Packages.Models.IModel
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.IModel.html
+  name: IModel
+  nameWithType: IModel
+  fullName: LlamaLogic.Packages.Models.IModel
+- uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ResourceType, ReadOnlyMemory<byte>)
+  nameWithType: Model.Decode(ResourceType, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory<byte>)
+  nameWithType.vb: Model.Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  name: GetName(ResourceType, Stream)
+  nameWithType: Model.GetName(ResourceType, Stream)
+  fullName: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType, System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(ResourceType, Stream, CancellationToken)
+  nameWithType: Model.GetNameAsync(ResourceType, Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType, System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models
+  commentId: N:LlamaLogic.Packages.Models
+  name: LlamaLogic.Packages.Models
+  nameWithType: LlamaLogic.Packages.Models
+  fullName: LlamaLogic.Packages.Models
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+- uid: LlamaLogic.Packages.Models.IModel`1
+  commentId: T:LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<TSelf>
+  nameWithType: IModel<TSelf>
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>
+  nameWithType.vb: IModel(Of TSelf)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf)
+  name.vb: IModel(Of TSelf)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: SimDataModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.IModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.IModel.SupportedTypes
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: IModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  commentId: T:System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<ResourceType>
+  nameWithType: ISet<ResourceType>
+  fullName: System.Collections.Generic.ISet<LlamaLogic.Packages.ResourceType>
+  nameWithType.vb: ISet(Of ResourceType)
+  fullName.vb: System.Collections.Generic.ISet(Of LlamaLogic.Packages.ResourceType)
+  name.vb: ISet(Of ResourceType)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Decode
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: SimDataModel.Decode
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Decode
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}
+  definition: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<SimDataModel>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.SimData.SimDataModel>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of SimDataModel).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.SimData.SimDataModel).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.SimData.SimDataModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataModel
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html
+  name: SimDataModel
+  nameWithType: SimDataModel
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel
+- uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<TSelf>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of TSelf).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_FromXml_System_Xml_Linq_XDocument_
+  name: FromXml
+  nameWithType: SimDataModel.FromXml
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml
+- uid: System.Xml.Linq.XDocument
+  commentId: T:System.Xml.Linq.XDocument
+  parent: System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  name: XDocument
+  nameWithType: XDocument
+  fullName: System.Xml.Linq.XDocument
+- uid: System.Xml.Linq
+  commentId: N:System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Linq
+  nameWithType: System.Xml.Linq
+  fullName: System.Xml.Linq
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.GetName*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.GetName
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_GetName_System_IO_Stream_
+  name: GetName
+  nameWithType: SimDataModel.GetName
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.GetName
+- uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  name: GetName(Stream)
+  nameWithType: IModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync
+  nameWithType: SimDataModel.GetNameAsync
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync
+- uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: IModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Instances
+  name: Instances
+  nameWithType: SimDataModel.Instances
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.SimData.SimDataInstance}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.SimData.SimDataInstance}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<SimDataInstance>
+  nameWithType: Collection<SimDataInstance>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.SimData.SimDataInstance>
+  nameWithType.vb: Collection(Of SimDataInstance)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.SimData.SimDataInstance)
+  name.vb: Collection(Of SimDataInstance)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataInstance
+    name: SimDataInstance
+    href: LlamaLogic.Packages.Models.SimData.SimDataInstance.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataInstance
+    name: SimDataInstance
+    href: LlamaLogic.Packages.Models.SimData.SimDataInstance.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Packages.Models.Model.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_ResourceName
+  name: ResourceName
+  nameWithType: Model.ResourceName
+  fullName: LlamaLogic.Packages.Models.Model.ResourceName
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_ResourceName
+  name: ResourceName
+  nameWithType: SimDataModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
+- uid: LlamaLogic.Packages.Models.IModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.IModel.ResourceName
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_ResourceName
+  name: ResourceName
+  nameWithType: IModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Schemas
+  name: Schemas
+  nameWithType: SimDataModel.Schemas
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.Models.SimData.SimDataSchema}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.Models.SimData.SimDataSchema}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<SimDataSchema>
+  nameWithType: IReadOnlyList<SimDataSchema>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.Packages.Models.SimData.SimDataSchema>
+  nameWithType.vb: IReadOnlyList(Of SimDataSchema)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.Packages.Models.SimData.SimDataSchema)
+  name.vb: IReadOnlyList(Of SimDataSchema)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataSchema
+    name: SimDataSchema
+    href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataSchema
+    name: SimDataSchema
+    href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+  href: LlamaLogic.Packages.Models.SimData.SimDataVersion.html#LlamaLogic_Packages_Models_SimData_SimDataVersion_SmartSimOriginalEdition
+  name: SmartSimOriginalEdition
+  nameWithType: SimDataVersion.SmartSimOriginalEdition
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Unused
+  name: Unused
+  nameWithType: SimDataModel.Unused
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Version*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Version
+  name: Version
+  nameWithType: SimDataModel.Version
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVersion
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVersion
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataVersion.html
+  name: SimDataVersion
+  nameWithType: SimDataVersion
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Version
+  name: Version
+  nameWithType: SimDataModel.Version
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Version
+- uid: LlamaLogic.Packages.Models.Model.Encode
+  commentId: M:LlamaLogic.Packages.Models.Model.Encode
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  name: Encode()
+  nameWithType: Model.Encode()
+  fullName: LlamaLogic.Packages.Models.Model.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Encode
+  name: Encode
+  nameWithType: SimDataModel.Encode
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Encode
+- uid: LlamaLogic.Packages.Models.IModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.IModel.Encode
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  name: Encode()
+  nameWithType: IModel.Encode()
+  fullName: LlamaLogic.Packages.Models.IModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  isExternal: true
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_FromXml_System_Xml_Linq_XDocument_
+  name: FromXml(XDocument)
+  nameWithType: SimDataModel.FromXml(XDocument)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+    name: FromXml
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_FromXml_System_Xml_Linq_XDocument_
+  - name: (
+  - uid: System.Xml.Linq.XDocument
+    name: XDocument
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.FromXml(System.Xml.Linq.XDocument)
+    name: FromXml
+    href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_FromXml_System_Xml_Linq_XDocument_
+  - name: (
+  - uid: System.Xml.Linq.XDocument
+    name: XDocument
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_ToXml
+  name: ToXml
+  nameWithType: SimDataModel.ToXml
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml

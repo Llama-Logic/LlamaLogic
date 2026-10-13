@@ -23,7 +23,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: DirectDrawSurface
     path: ../LlamaLogic.Packages/Formats/DirectDrawSurface.cs
-    startLine: 12
+    startLine: 8
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -61,7 +61,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetPngDataFromDdsData
     path: ../LlamaLogic.Packages/Formats/DirectDrawSurface.cs
-    startLine: 18
+    startLine: 17
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -77,6 +77,10 @@ items:
       type: System.ReadOnlyMemory{System.Byte}
     content.vb: Public Shared Function GetPngDataFromDdsData(ddsData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
   overload: LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsData*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels, or declares more than 32 mipmap levels
   nameWithType.vb: DirectDrawSurface.GetPngDataFromDdsData(ReadOnlyMemory(Of Byte))
   fullName.vb: LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsData(System.ReadOnlyMemory(Of Byte))
   name.vb: GetPngDataFromDdsData(ReadOnlyMemory(Of Byte))
@@ -98,7 +102,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetPngDataFromDdsDataAsync
     path: ../LlamaLogic.Packages/Formats/DirectDrawSurface.cs
-    startLine: 34
+    startLine: 32
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -117,6 +121,10 @@ items:
       type: System.Threading.Tasks.Task{System.ReadOnlyMemory{System.Byte}}
     content.vb: Public Shared Function GetPngDataFromDdsDataAsync(ddsData As ReadOnlyMemory(Of Byte), cancellationToken As CancellationToken = Nothing) As Task(Of ReadOnlyMemory(Of Byte))
   overload: LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsDataAsync*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels, or declares more than 32 mipmap levels
   nameWithType.vb: DirectDrawSurface.GetPngDataFromDdsDataAsync(ReadOnlyMemory(Of Byte), CancellationToken)
   fullName.vb: LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsDataAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
   name.vb: GetPngDataFromDdsDataAsync(ReadOnlyMemory(Of Byte), CancellationToken)
@@ -138,7 +146,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDstDataFromPngData
     path: ../LlamaLogic.Packages/Formats/DirectDrawSurface.cs
-    startLine: 49
+    startLine: 46
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -154,6 +162,10 @@ items:
       type: System.ReadOnlyMemory{System.Byte}
     content.vb: Public Shared Function GetDstDataFromPngData(pngData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
   overload: LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngData*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: <code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels
   nameWithType.vb: DirectDrawSurface.GetDstDataFromPngData(ReadOnlyMemory(Of Byte))
   fullName.vb: LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngData(System.ReadOnlyMemory(Of Byte))
   name.vb: GetDstDataFromPngData(ReadOnlyMemory(Of Byte))
@@ -175,7 +187,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDstDataFromPngDataAsync
     path: ../LlamaLogic.Packages/Formats/DirectDrawSurface.cs
-    startLine: 69
+    startLine: 63
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -194,6 +206,10 @@ items:
       type: System.Threading.Tasks.Task{System.ReadOnlyMemory{System.Byte}}
     content.vb: Public Shared Function GetDstDataFromPngDataAsync(pngData As ReadOnlyMemory(Of Byte), cancellationToken As CancellationToken = Nothing) As Task(Of ReadOnlyMemory(Of Byte))
   overload: LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngDataAsync*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: <code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels
   nameWithType.vb: DirectDrawSurface.GetDstDataFromPngDataAsync(ReadOnlyMemory(Of Byte), CancellationToken)
   fullName.vb: LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngDataAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
   name.vb: GetDstDataFromPngDataAsync(ReadOnlyMemory(Of Byte), CancellationToken)
@@ -458,6 +474,13 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
 - uid: LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsData*
   commentId: Overload:LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsData
   href: LlamaLogic.Packages.Formats.DirectDrawSurface.html#LlamaLogic_Packages_Formats_DirectDrawSurface_GetPngDataFromDdsData_System_ReadOnlyMemory_System_Byte__

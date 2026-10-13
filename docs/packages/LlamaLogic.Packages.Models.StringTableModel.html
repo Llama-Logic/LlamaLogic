@@ -130,6 +130,12 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
     <dt>Inherited Members</dt>
     <dd>
     <div>
+      <a class="xref" href="LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__">Model.Decode(ResourceType, ReadOnlyMemory&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_">Model.GetModelType(ResourceType)</a>
+    </div>
+    <div>
       <a class="xref" href="LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_">Model.GetName(ResourceType, Stream)</a>
     </div>
     <div>
@@ -171,7 +177,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Count" data-uid="LlamaLogic.Packages.Models.StringTableModel.Count">
   Count
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of entries in the string table</p>
@@ -203,7 +209,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Item_System_UInt32_" data-uid="LlamaLogic.Packages.Models.StringTableModel.Item(System.UInt32)">
   this[uint]
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets/sets the string associated with a <code class="paramref">keyHash</code></p>
@@ -233,6 +239,15 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>The value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>The value is longer than 65,535 bytes in UTF-8</p>
+</dd>
+  </dl>
 
 
 
@@ -240,7 +255,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_KeyHashes" data-uid="LlamaLogic.Packages.Models.StringTableModel.KeyHashes">
   KeyHashes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the key hashes in the string table</p>
@@ -272,7 +287,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_ResourceName" data-uid="LlamaLogic.Packages.Models.StringTableModel.ResourceName">
   ResourceName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the name of this resource if it has one</p>
@@ -304,7 +319,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_SupportedTypes" data-uid="LlamaLogic.Packages.Models.StringTableModel.SupportedTypes">
   SupportedTypes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets a list of resource types that this model supports</p>
@@ -340,7 +355,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_AddNew_System_String_" data-uid="LlamaLogic.Packages.Models.StringTableModel.AddNew(System.String)">
   AddNew(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds <code class="paramref">string</code> to the string table, returning its key hash</p>
@@ -372,8 +387,11 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">string</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd><p>The key hash generated for <code class="paramref">string</code> already existed in the string table</p>
+    <dd><p><code class="paramref">string</code> is longer than 65,535 bytes in UTF-8, or the key hash generated for it already existed in the string table</p>
 </dd>
   </dl>
 
@@ -383,7 +401,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Decode_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Packages.Models.StringTableModel.Decode(System.ReadOnlyMemory{System.Byte})">
   Decode(ReadOnlyMemory&lt;byte&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Decodes the resource in raw format to produce an operable model (🔄️🏃)</p>
@@ -413,6 +431,12 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The data is not a well-formed string table: its file identifier or version is not the expected one, its entries do not fill it exactly, its total string length disagrees with its entries, or a string is not valid UTF-8</p>
+</dd>
+  </dl>
 
 
 
@@ -420,7 +444,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Delete_System_UInt32_" data-uid="LlamaLogic.Packages.Models.StringTableModel.Delete(System.UInt32)">
   Delete(uint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Deletes the string associated with a <code class="paramref">keyHash</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the key hash existed in the string table</p>
@@ -457,7 +481,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Encode" data-uid="LlamaLogic.Packages.Models.StringTableModel.Encode">
   Encode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L165"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Encodes the resource model into raw format (🔄️🏃)</p>
@@ -489,7 +513,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Get_System_UInt32_" data-uid="LlamaLogic.Packages.Models.StringTableModel.Get(System.UInt32)">
   Get(uint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L197"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the string associated with a <code class="paramref">keyHash</code></p>
@@ -526,7 +550,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_GetName_System_IO_Stream_" data-uid="LlamaLogic.Packages.Models.StringTableModel.GetName(System.IO.Stream)">
   GetName(Stream)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the name of a resource from its raw data, if it has one (🔄️💤)</p>
@@ -563,7 +587,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.Models.StringTableModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)">
   GetNameAsync(Stream, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the name of a resource from its raw data, if it has one, asynchronously (🔄️💤)</p>
@@ -602,7 +626,7 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="LlamaLogic_Packages_Models_StringTableModel_Set_System_UInt32_System_String_" data-uid="LlamaLogic.Packages.Models.StringTableModel.Set(System.UInt32,System.String)">
   Set(uint, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/StringTableModel.cs/#L211"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the <code class="paramref">string</code> associated with a <code class="paramref">keyHash</code>, returning <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the key hash did not already exist in the string table</p>
@@ -634,6 +658,15 @@ Class StringTableModel  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">string</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p><code class="paramref">string</code> is longer than 65,535 bytes in UTF-8</p>
+</dd>
+  </dl>
 
 
 

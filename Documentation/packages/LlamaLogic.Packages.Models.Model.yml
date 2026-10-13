@@ -5,7 +5,9 @@ items:
   id: Model
   parent: LlamaLogic.Packages.Models
   children:
+  - LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
   - LlamaLogic.Packages.Models.Model.Encode
+  - LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
   - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
   - LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
   - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
@@ -38,9 +40,10 @@ items:
   inheritance:
   - System.Object
   derivedClasses:
-  - LlamaLogic.Packages.Models.Data.DataModel
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
   - LlamaLogic.Packages.Models.GlobalManifest.GlobalModsManifestModel
   - LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  - LlamaLogic.Packages.Models.SimData.SimDataModel
   - LlamaLogic.Packages.Models.StringTableModel
   implements:
   - LlamaLogic.Packages.Models.IModel
@@ -85,6 +88,82 @@ items:
   overload: LlamaLogic.Packages.Models.Model.SupportedTypes*
   implements:
   - LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  id: Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.Model
+  langs:
+  - csharp
+  - vb
+  name: Decode(ResourceType, ReadOnlyMemory<byte>)
+  nameWithType: Model.Decode(ResourceType, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/Model.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Packages/Models/Model.cs
+    startLine: 16
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models
+  summary: Decodes a resource of the specified <code class="paramref">type</code> with the model <xref href="LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)" data-throw-if-not-resolved="false"></xref> gives for it
+  example: []
+  syntax:
+    content: public static Model Decode(ResourceType type, ReadOnlyMemory<byte> data)
+    parameters:
+    - id: type
+      type: LlamaLogic.Packages.ResourceType
+    - id: data
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Packages.Models.Model
+    content.vb: Public Shared Function Decode(type As ResourceType, data As ReadOnlyMemory(Of Byte)) As Model
+  overload: LlamaLogic.Packages.Models.Model.Decode*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: No model decodes resources of the specified <code class="paramref">type</code>
+  nameWithType.vb: Model.Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ResourceType, ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  id: GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  langs:
+  - csharp
+  - vb
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/Model.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetModelType
+    path: ../LlamaLogic.Packages/Models/Model.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models
+  summary: Gets the model that decodes every resource of the specified <code class="paramref">type</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if there is none
+  remarks: Models that apply only to some resources of a type, such as <xref href="LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel" data-throw-if-not-resolved="false"></xref> for <xref href="LlamaLogic.Packages.ResourceType.SnippetTuning" data-throw-if-not-resolved="false"></xref>, are not given.
+  example: []
+  syntax:
+    content: public static Type? GetModelType(ResourceType type)
+    parameters:
+    - id: type
+      type: LlamaLogic.Packages.ResourceType
+    return:
+      type: System.Type
+    content.vb: Public Shared Function GetModelType(type As ResourceType) As Type
+  overload: LlamaLogic.Packages.Models.Model.GetModelType*
 - uid: LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
   commentId: M:LlamaLogic.Packages.Models.Model.GetName(System.IO.Stream)
   id: GetName(System.IO.Stream)
@@ -103,7 +182,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetName
     path: ../LlamaLogic.Packages/Models/Model.cs
-    startLine: 13
+    startLine: 41
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -138,7 +217,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameAsync
     path: ../LlamaLogic.Packages/Models/Model.cs
-    startLine: 17
+    startLine: 45
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -175,7 +254,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetName
     path: ../LlamaLogic.Packages/Models/Model.cs
-    startLine: 23
+    startLine: 51
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -210,7 +289,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameAsync
     path: ../LlamaLogic.Packages/Models/Model.cs
-    startLine: 34
+    startLine: 62
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -247,7 +326,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ResourceName
     path: ../LlamaLogic.Packages/Models/Model.cs
-    startLine: 43
+    startLine: 71
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -280,7 +359,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/Model.cs
-    startLine: 46
+    startLine: 74
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models
@@ -673,6 +752,194 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.notsupportedexception
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: LlamaLogic.Packages.Models.Model.Decode*
+  commentId: Overload:LlamaLogic.Packages.Models.Model.Decode
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: Model.Decode
+  fullName: LlamaLogic.Packages.Models.Model.Decode
+- uid: LlamaLogic.Packages.ResourceType
+  commentId: T:LlamaLogic.Packages.ResourceType
+  parent: LlamaLogic.Packages
+  href: LlamaLogic.Packages.ResourceType.html
+  name: ResourceType
+  nameWithType: ResourceType
+  fullName: LlamaLogic.Packages.ResourceType
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model
+  commentId: T:LlamaLogic.Packages.Models.Model
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.Model.html
+  name: Model
+  nameWithType: Model
+  fullName: LlamaLogic.Packages.Models.Model
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  commentId: T:LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+  parent: LlamaLogic.Packages.Models.ModFileManifest
+  href: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel.html
+  name: ModFileManifestModel
+  nameWithType: ModFileManifestModel
+  fullName: LlamaLogic.Packages.Models.ModFileManifest.ModFileManifestModel
+- uid: LlamaLogic.Packages.ResourceType.SnippetTuning
+  commentId: F:LlamaLogic.Packages.ResourceType.SnippetTuning
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SnippetTuning
+  name: SnippetTuning
+  nameWithType: ResourceType.SnippetTuning
+  fullName: LlamaLogic.Packages.ResourceType.SnippetTuning
+- uid: LlamaLogic.Packages.Models.Model.GetModelType*
+  commentId: Overload:LlamaLogic.Packages.Models.Model.GetModelType
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  name: GetModelType
+  nameWithType: Model.GetModelType
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: LlamaLogic.Packages.Models.ModFileManifest
+  commentId: N:LlamaLogic.Packages.Models.ModFileManifest
+  name: LlamaLogic.Packages.Models.ModFileManifest
+  nameWithType: LlamaLogic.Packages.Models.ModFileManifest
+  fullName: LlamaLogic.Packages.Models.ModFileManifest
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.ModFileManifest
+    name: ModFileManifest
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.ModFileManifest
+    name: ModFileManifest
 - uid: LlamaLogic.Packages.Models.Model.GetName*
   commentId: Overload:LlamaLogic.Packages.Models.Model.GetName
   href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_System_IO_Stream_
@@ -934,30 +1201,6 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
-- uid: LlamaLogic.Packages.ResourceType
-  commentId: T:LlamaLogic.Packages.ResourceType
-  parent: LlamaLogic.Packages
-  href: LlamaLogic.Packages.ResourceType.html
-  name: ResourceType
-  nameWithType: ResourceType
-  fullName: LlamaLogic.Packages.ResourceType
-- uid: LlamaLogic.Packages
-  commentId: N:LlamaLogic.Packages
-  name: LlamaLogic.Packages
-  nameWithType: LlamaLogic.Packages
-  fullName: LlamaLogic.Packages
-  spec.csharp:
-  - uid: LlamaLogic
-    name: LlamaLogic
-  - name: .
-  - uid: LlamaLogic.Packages
-    name: Packages
-  spec.vb:
-  - uid: LlamaLogic
-    name: LlamaLogic
-  - name: .
-  - uid: LlamaLogic.Packages
-    name: Packages
 - uid: LlamaLogic.Packages.Models.Model.ResourceName*
   commentId: Overload:LlamaLogic.Packages.Models.Model.ResourceName
   href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_ResourceName
@@ -995,67 +1238,4 @@ references:
     name: Encode
     href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
   - name: (
-  - name: )
-- uid: System.ReadOnlyMemory{System.Byte}
-  commentId: T:System.ReadOnlyMemory{System.Byte}
-  parent: System
-  definition: System.ReadOnlyMemory`1
-  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  name: ReadOnlyMemory<byte>
-  nameWithType: ReadOnlyMemory<byte>
-  fullName: System.ReadOnlyMemory<byte>
-  nameWithType.vb: ReadOnlyMemory(Of Byte)
-  fullName.vb: System.ReadOnlyMemory(Of Byte)
-  name.vb: ReadOnlyMemory(Of Byte)
-  spec.csharp:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: <
-  - uid: System.Byte
-    name: byte
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '>'
-  spec.vb:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: System.Byte
-    name: Byte
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: )
-- uid: System.ReadOnlyMemory`1
-  commentId: T:System.ReadOnlyMemory`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  name: ReadOnlyMemory<T>
-  nameWithType: ReadOnlyMemory<T>
-  fullName: System.ReadOnlyMemory<T>
-  nameWithType.vb: ReadOnlyMemory(Of T)
-  fullName.vb: System.ReadOnlyMemory(Of T)
-  name.vb: ReadOnlyMemory(Of T)
-  spec.csharp:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.ReadOnlyMemory`1
-    name: ReadOnlyMemory
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )

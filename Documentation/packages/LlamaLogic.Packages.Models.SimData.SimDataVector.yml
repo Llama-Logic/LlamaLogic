@@ -1,0 +1,1891 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVector
+  id: SimDataVector
+  parent: LlamaLogic.Packages.Models.SimData
+  children:
+  - LlamaLogic.Packages.Models.SimData.SimDataVector.#ctor(LlamaLogic.Packages.Models.SimData.SimDataType,System.Collections.Generic.IEnumerable{System.Object})
+  - LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  - LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem(System.Int32,System.Object)
+  - LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem(System.Int32,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: SimDataVector
+  nameWithType: SimDataVector
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimDataVector
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Represents a <xref href=\"LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR\" data-throw-if-not-resolved=\"false\"></xref> value: a sequence of elements of one <xref href=\"LlamaLogic.Packages.Models.SimData.SimDataType\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F513)"
+  remarks: Elements are of the .NET type <xref href="LlamaLogic.Packages.Models.SimData.SimDataObject" data-throw-if-not-resolved="false"></xref> describes for <xref href="LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType" data-throw-if-not-resolved="false"></xref>, except that elements of a vector of <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT" data-throw-if-not-resolved="false"></xref> cannot be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> and must all have the same <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public sealed class SimDataVector : Collection<object?>, IList<object?>, ICollection<object?>, IReadOnlyList<object?>, IReadOnlyCollection<object?>, IEnumerable<object?>, IList, ICollection, IEnumerable'
+    content.vb: Public NotInheritable Class SimDataVector Inherits Collection(Of Object) Implements IList(Of Object), ICollection(Of Object), IReadOnlyList(Of Object), IReadOnlyCollection(Of Object), IEnumerable(Of Object), IList, ICollection, IEnumerable
+  inheritance:
+  - System.Object
+  - System.Collections.ObjectModel.Collection{System.Object}
+  implements:
+  - System.Collections.Generic.IList{System.Object}
+  - System.Collections.Generic.ICollection{System.Object}
+  - System.Collections.Generic.IReadOnlyList{System.Object}
+  - System.Collections.Generic.IReadOnlyCollection{System.Object}
+  - System.Collections.Generic.IEnumerable{System.Object}
+  - System.Collections.IList
+  - System.Collections.ICollection
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Collections.ObjectModel.Collection{System.Object}.Add(System.Object)
+  - System.Collections.ObjectModel.Collection{System.Object}.Clear
+  - System.Collections.ObjectModel.Collection{System.Object}.Contains(System.Object)
+  - System.Collections.ObjectModel.Collection{System.Object}.CopyTo(System.Object[],System.Int32)
+  - System.Collections.ObjectModel.Collection{System.Object}.GetEnumerator
+  - System.Collections.ObjectModel.Collection{System.Object}.IndexOf(System.Object)
+  - System.Collections.ObjectModel.Collection{System.Object}.Insert(System.Int32,System.Object)
+  - System.Collections.ObjectModel.Collection{System.Object}.Remove(System.Object)
+  - System.Collections.ObjectModel.Collection{System.Object}.RemoveAt(System.Int32)
+  - System.Collections.ObjectModel.Collection{System.Object}.Count
+  - System.Collections.ObjectModel.Collection{System.Object}.Item(System.Int32)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.#ctor(LlamaLogic.Packages.Models.SimData.SimDataType,System.Collections.Generic.IEnumerable{System.Object})
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataVector.#ctor(LlamaLogic.Packages.Models.SimData.SimDataType,System.Collections.Generic.IEnumerable{System.Object})
+  id: '#ctor(LlamaLogic.Packages.Models.SimData.SimDataType,System.Collections.Generic.IEnumerable{System.Object})'
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVector
+  langs:
+  - csharp
+  - vb
+  name: SimDataVector(SimDataType, IEnumerable<object?>?)
+  nameWithType: SimDataVector.SimDataVector(SimDataType, IEnumerable<object?>?)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.SimDataVector(LlamaLogic.Packages.Models.SimData.SimDataType, System.Collections.Generic.IEnumerable<object?>?)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+    startLine: 16
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Initializes a new <xref href="LlamaLogic.Packages.Models.SimData.SimDataVector" data-throw-if-not-resolved="false"></xref> with the specified <code class="paramref">elementType</code> and optional initial <code class="paramref">elements</code>
+  example: []
+  syntax:
+    content: public SimDataVector(SimDataType elementType, IEnumerable<object?>? elements = null)
+    parameters:
+    - id: elementType
+      type: LlamaLogic.Packages.Models.SimData.SimDataType
+    - id: elements
+      type: System.Collections.Generic.IEnumerable{System.Object}
+    content.vb: Public Sub New(elementType As SimDataType, elements As IEnumerable(Of Object) = Nothing)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVector.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">elementType</code> is not a defined <xref href="LlamaLogic.Packages.Models.SimData.SimDataType" data-throw-if-not-resolved="false"></xref>
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: An element is not valid for <code class="paramref">elementType</code>
+  nameWithType.vb: SimDataVector.New(SimDataType, IEnumerable(Of Object))
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVector.New(LlamaLogic.Packages.Models.SimData.SimDataType, System.Collections.Generic.IEnumerable(Of Object))
+  name.vb: New(SimDataType, IEnumerable(Of Object))
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  id: ElementType
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVector
+  langs:
+  - csharp
+  - vb
+  name: ElementType
+  nameWithType: SimDataVector.ElementType
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ElementType
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the type of the vector's elements
+  example: []
+  syntax:
+    content: public SimDataType ElementType { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataType
+    content.vb: Public ReadOnly Property ElementType As SimDataType
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem(System.Int32,System.Object)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem(System.Int32,System.Object)
+  id: InsertItem(System.Int32,System.Object)
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVector
+  langs:
+  - csharp
+  - vb
+  name: InsertItem(int, object?)
+  nameWithType: SimDataVector.InsertItem(int, object?)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem(int, object?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: InsertItem
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+    startLine: 32
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Inserts an element into the <xref href="System.Collections.ObjectModel.Collection%601" data-throw-if-not-resolved="false"></xref> at the specified index.
+  example: []
+  syntax:
+    content: protected override void InsertItem(int index, object? item)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The zero-based index at which <code class="paramref">item</code> should be inserted.
+    - id: item
+      type: System.Object
+      description: The object to insert. The value can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> for reference types.
+    content.vb: Protected Overrides Sub InsertItem(index As Integer, item As Object)
+  overridden: System.Collections.ObjectModel.Collection{System.Object}.InsertItem(System.Int32,System.Object)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code class="paramref">index</code> is less than zero.  
+
+
+      -or-  
+
+
+      <code class="paramref">index</code> is greater than <xref href="System.Collections.ObjectModel.Collection%601.Count" data-throw-if-not-resolved="false"></xref>.
+  nameWithType.vb: SimDataVector.InsertItem(Integer, Object)
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem(Integer, Object)
+  name.vb: InsertItem(Integer, Object)
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem(System.Int32,System.Object)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem(System.Int32,System.Object)
+  id: SetItem(System.Int32,System.Object)
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVector
+  langs:
+  - csharp
+  - vb
+  name: SetItem(int, object?)
+  nameWithType: SimDataVector.SetItem(int, object?)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem(int, object?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SetItem
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVector.cs
+    startLine: 50
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Replaces the element at the specified index.
+  example: []
+  syntax:
+    content: protected override void SetItem(int index, object? item)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The zero-based index of the element to replace.
+    - id: item
+      type: System.Object
+      description: The new value for the element at the specified index. The value can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> for reference types.
+    content.vb: Protected Overrides Sub SetItem(index As Integer, item As Object)
+  overridden: System.Collections.ObjectModel.Collection{System.Object}.SetItem(System.Int32,System.Object)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: >-
+      <code class="paramref">index</code> is less than zero.  
+
+
+      -or-  
+
+
+      <code class="paramref">index</code> is greater than <xref href="System.Collections.ObjectModel.Collection%601.Count" data-throw-if-not-resolved="false"></xref>.
+  nameWithType.vb: SimDataVector.SetItem(Integer, Object)
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem(Integer, Object)
+  name.vb: SetItem(Integer, Object)
+references:
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_VECTOR
+  name: VECTOR
+  nameWithType: SimDataType.VECTOR
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataType
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html
+  name: SimDataType
+  nameWithType: SimDataType
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType
+- uid: LlamaLogic.Packages.Models.SimData.SimDataObject
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataObject
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataObject.html
+  name: SimDataObject
+  nameWithType: SimDataObject
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataObject
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  href: LlamaLogic.Packages.Models.SimData.SimDataVector.html#LlamaLogic_Packages_Models_SimData_SimDataVector_ElementType
+  name: ElementType
+  nameWithType: SimDataVector.ElementType
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_OBJECT
+  name: OBJECT
+  nameWithType: SimDataType.OBJECT
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataSchema
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html
+  name: SimDataSchema
+  nameWithType: SimDataSchema
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema
+- uid: LlamaLogic.Packages.Models.SimData
+  commentId: N:LlamaLogic.Packages.Models.SimData
+  name: LlamaLogic.Packages.Models.SimData
+  nameWithType: LlamaLogic.Packages.Models.SimData
+  fullName: LlamaLogic.Packages.Models.SimData
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.ObjectModel.Collection{System.Object}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Object}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<object>
+  nameWithType: Collection<object>
+  fullName: System.Collections.ObjectModel.Collection<object>
+  nameWithType.vb: Collection(Of Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object)
+  name.vb: Collection(Of Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.IList{System.Object}
+  commentId: T:System.Collections.Generic.IList{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<object>
+  nameWithType: IList<object>
+  fullName: System.Collections.Generic.IList<object>
+  nameWithType.vb: IList(Of Object)
+  fullName.vb: System.Collections.Generic.IList(Of Object)
+  name.vb: IList(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.ICollection{System.Object}
+  commentId: T:System.Collections.Generic.ICollection{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<object>
+  nameWithType: ICollection<object>
+  fullName: System.Collections.Generic.ICollection<object>
+  nameWithType.vb: ICollection(Of Object)
+  fullName.vb: System.Collections.Generic.ICollection(Of Object)
+  name.vb: ICollection(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{System.Object}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<object>
+  nameWithType: IReadOnlyList<object>
+  fullName: System.Collections.Generic.IReadOnlyList<object>
+  nameWithType.vb: IReadOnlyList(Of Object)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Object)
+  name.vb: IReadOnlyList(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection{System.Object}
+  commentId: T:System.Collections.Generic.IReadOnlyCollection{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<object>
+  nameWithType: IReadOnlyCollection<object>
+  fullName: System.Collections.Generic.IReadOnlyCollection<object>
+  nameWithType.vb: IReadOnlyCollection(Of Object)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of Object)
+  name.vb: IReadOnlyCollection(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{System.Object}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<object>
+  nameWithType: IEnumerable<object>
+  fullName: System.Collections.Generic.IEnumerable<object>
+  nameWithType.vb: IEnumerable(Of Object)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Object)
+  name.vb: IEnumerable(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.IList
+  commentId: T:System.Collections.IList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist
+  name: IList
+  nameWithType: IList
+  fullName: System.Collections.IList
+- uid: System.Collections.ICollection
+  commentId: T:System.Collections.ICollection
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection
+  name: ICollection
+  nameWithType: ICollection
+  fullName: System.Collections.ICollection
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Add(System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.Add(System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Add(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.add
+  name: Add(object)
+  nameWithType: Collection<object>.Add(object)
+  fullName: System.Collections.ObjectModel.Collection<object>.Add(object)
+  nameWithType.vb: Collection(Of Object).Add(Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).Add(Object)
+  name.vb: Add(Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Add(System.Object)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.add
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Add(System.Object)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.add
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Clear
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.Clear
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Clear
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.clear
+  name: Clear()
+  nameWithType: Collection<object>.Clear()
+  fullName: System.Collections.ObjectModel.Collection<object>.Clear()
+  nameWithType.vb: Collection(Of Object).Clear()
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).Clear()
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.clear
+  - name: (
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Contains(System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.Contains(System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Contains(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.contains
+  name: Contains(object)
+  nameWithType: Collection<object>.Contains(object)
+  fullName: System.Collections.ObjectModel.Collection<object>.Contains(object)
+  nameWithType.vb: Collection(Of Object).Contains(Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).Contains(Object)
+  name.vb: Contains(Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Contains(System.Object)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.contains
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Contains(System.Object)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.contains
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.CopyTo(System.Object[],System.Int32)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.CopyTo(System.Object[],System.Int32)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.copyto
+  name: CopyTo(object[], int)
+  nameWithType: Collection<object>.CopyTo(object[], int)
+  fullName: System.Collections.ObjectModel.Collection<object>.CopyTo(object[], int)
+  nameWithType.vb: Collection(Of Object).CopyTo(Object(), Integer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).CopyTo(Object(), Integer)
+  name.vb: CopyTo(Object(), Integer)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.CopyTo(System.Object[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.copyto
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.CopyTo(System.Object[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.copyto
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.GetEnumerator
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.GetEnumerator
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: Collection<object>.GetEnumerator()
+  fullName: System.Collections.ObjectModel.Collection<object>.GetEnumerator()
+  nameWithType.vb: Collection(Of Object).GetEnumerator()
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.IndexOf(System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.IndexOf(System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.IndexOf(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.indexof
+  name: IndexOf(object)
+  nameWithType: Collection<object>.IndexOf(object)
+  fullName: System.Collections.ObjectModel.Collection<object>.IndexOf(object)
+  nameWithType.vb: Collection(Of Object).IndexOf(Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).IndexOf(Object)
+  name.vb: IndexOf(Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.IndexOf(System.Object)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.indexof
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.IndexOf(System.Object)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.indexof
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Insert(System.Int32,System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.Insert(System.Int32,System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insert
+  name: Insert(int, object)
+  nameWithType: Collection<object>.Insert(int, object)
+  fullName: System.Collections.ObjectModel.Collection<object>.Insert(int, object)
+  nameWithType.vb: Collection(Of Object).Insert(Integer, Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).Insert(Integer, Object)
+  name.vb: Insert(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Insert(System.Int32,System.Object)
+    name: Insert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insert
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Insert(System.Int32,System.Object)
+    name: Insert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insert
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Remove(System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.Remove(System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Remove(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.remove
+  name: Remove(object)
+  nameWithType: Collection<object>.Remove(object)
+  fullName: System.Collections.ObjectModel.Collection<object>.Remove(object)
+  nameWithType.vb: Collection(Of Object).Remove(Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).Remove(Object)
+  name.vb: Remove(Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Remove(System.Object)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.remove
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Remove(System.Object)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.remove
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.RemoveAt(System.Int32)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.RemoveAt(System.Int32)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.removeat
+  name: RemoveAt(int)
+  nameWithType: Collection<object>.RemoveAt(int)
+  fullName: System.Collections.ObjectModel.Collection<object>.RemoveAt(int)
+  nameWithType.vb: Collection(Of Object).RemoveAt(Integer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Count
+  commentId: P:System.Collections.ObjectModel.Collection{System.Object}.Count
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Count
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.count
+  name: Count
+  nameWithType: Collection<object>.Count
+  fullName: System.Collections.ObjectModel.Collection<object>.Count
+  nameWithType.vb: Collection(Of Object).Count
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).Count
+- uid: System.Collections.ObjectModel.Collection{System.Object}.Item(System.Int32)
+  commentId: P:System.Collections.ObjectModel.Collection{System.Object}.Item(System.Int32)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.Item(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int]
+  nameWithType: Collection<object>.this[int]
+  fullName: System.Collections.ObjectModel.Collection<object>.this[int]
+  nameWithType.vb: Collection(Of Object).this[](Integer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).this[](Integer)
+  name.vb: this[](Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.Item(System.Int32)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.item
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection`1
+  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<T>
+  nameWithType: IReadOnlyCollection<T>
+  fullName: System.Collections.Generic.IReadOnlyCollection<T>
+  nameWithType.vb: IReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
+  name.vb: IReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: System.Collections.ObjectModel.Collection`1.Add(`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.Add(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.add
+  name: Add(T)
+  nameWithType: Collection<T>.Add(T)
+  fullName: System.Collections.ObjectModel.Collection<T>.Add(T)
+  nameWithType.vb: Collection(Of T).Add(T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).Add(T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.add
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.add
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.Clear
+  commentId: M:System.Collections.ObjectModel.Collection`1.Clear
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.clear
+  name: Clear()
+  nameWithType: Collection<T>.Clear()
+  fullName: System.Collections.ObjectModel.Collection<T>.Clear()
+  nameWithType.vb: Collection(Of T).Clear()
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).Clear()
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.clear
+  - name: (
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.Contains(`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.Contains(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.contains
+  name: Contains(T)
+  nameWithType: Collection<T>.Contains(T)
+  fullName: System.Collections.ObjectModel.Collection<T>.Contains(T)
+  nameWithType.vb: Collection(Of T).Contains(T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).Contains(T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.contains
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.contains
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)
+  commentId: M:System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.copyto
+  name: CopyTo(T[], int)
+  nameWithType: Collection<T>.CopyTo(T[], int)
+  fullName: System.Collections.ObjectModel.Collection<T>.CopyTo(T[], int)
+  nameWithType.vb: Collection(Of T).CopyTo(T(), Integer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).CopyTo(T(), Integer)
+  name.vb: CopyTo(T(), Integer)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.copyto
+  - name: (
+  - name: T
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.copyto
+  - name: (
+  - name: T
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.GetEnumerator
+  commentId: M:System.Collections.ObjectModel.Collection`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: Collection<T>.GetEnumerator()
+  fullName: System.Collections.ObjectModel.Collection<T>.GetEnumerator()
+  nameWithType.vb: Collection(Of T).GetEnumerator()
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.IndexOf(`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.IndexOf(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.indexof
+  name: IndexOf(T)
+  nameWithType: Collection<T>.IndexOf(T)
+  fullName: System.Collections.ObjectModel.Collection<T>.IndexOf(T)
+  nameWithType.vb: Collection(Of T).IndexOf(T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).IndexOf(T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.IndexOf(`0)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.indexof
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.IndexOf(`0)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.indexof
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insert
+  name: Insert(int, T)
+  nameWithType: Collection<T>.Insert(int, T)
+  fullName: System.Collections.ObjectModel.Collection<T>.Insert(int, T)
+  nameWithType.vb: Collection(Of T).Insert(Integer, T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).Insert(Integer, T)
+  name.vb: Insert(Integer, T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)
+    name: Insert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insert
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)
+    name: Insert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insert
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.Remove(`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.Remove(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.remove
+  name: Remove(T)
+  nameWithType: Collection<T>.Remove(T)
+  fullName: System.Collections.ObjectModel.Collection<T>.Remove(T)
+  nameWithType.vb: Collection(Of T).Remove(T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).Remove(T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.remove
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.remove
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)
+  commentId: M:System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.removeat
+  name: RemoveAt(int)
+  nameWithType: Collection<T>.RemoveAt(int)
+  fullName: System.Collections.ObjectModel.Collection<T>.RemoveAt(int)
+  nameWithType.vb: Collection(Of T).RemoveAt(Integer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1.Count
+  commentId: P:System.Collections.ObjectModel.Collection`1.Count
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.count
+  name: Count
+  nameWithType: Collection<T>.Count
+  fullName: System.Collections.ObjectModel.Collection<T>.Count
+  nameWithType.vb: Collection(Of T).Count
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).Count
+- uid: System.Collections.ObjectModel.Collection`1.Item(System.Int32)
+  commentId: P:System.Collections.ObjectModel.Collection`1.Item(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int]
+  nameWithType: Collection<T>.this[int]
+  fullName: System.Collections.ObjectModel.Collection<T>.this[int]
+  nameWithType.vb: Collection(Of T).this[](Integer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).this[](Integer)
+  name.vb: this[](Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.Item(System.Int32)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.item
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVector
+  href: LlamaLogic.Packages.Models.SimData.SimDataVector.html
+  name: SimDataVector
+  nameWithType: SimDataVector
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.#ctor*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVector.#ctor
+  href: LlamaLogic.Packages.Models.SimData.SimDataVector.html#LlamaLogic_Packages_Models_SimData_SimDataVector__ctor_LlamaLogic_Packages_Models_SimData_SimDataType_System_Collections_Generic_IEnumerable_System_Object__
+  name: SimDataVector
+  nameWithType: SimDataVector.SimDataVector
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.SimDataVector
+  nameWithType.vb: SimDataVector.New
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVector.New
+  name.vb: New
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+  href: LlamaLogic.Packages.Models.SimData.SimDataVector.html#LlamaLogic_Packages_Models_SimData_SimDataVector_ElementType
+  name: ElementType
+  nameWithType: SimDataVector.ElementType
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.ElementType
+- uid: System.Collections.ObjectModel.Collection{System.Object}.InsertItem(System.Int32,System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.InsertItem(System.Int32,System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.InsertItem(System.Int32,`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insertitem
+  name: InsertItem(int, object)
+  nameWithType: Collection<object>.InsertItem(int, object)
+  fullName: System.Collections.ObjectModel.Collection<object>.InsertItem(int, object)
+  nameWithType.vb: Collection(Of Object).InsertItem(Integer, Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).InsertItem(Integer, Object)
+  name.vb: InsertItem(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.InsertItem(System.Int32,System.Object)
+    name: InsertItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insertitem
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.InsertItem(System.Int32,System.Object)
+    name: InsertItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insertitem
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem
+  href: LlamaLogic.Packages.Models.SimData.SimDataVector.html#LlamaLogic_Packages_Models_SimData_SimDataVector_InsertItem_System_Int32_System_Object_
+  name: InsertItem
+  nameWithType: SimDataVector.InsertItem
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.InsertItem
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.ObjectModel.Collection`1.InsertItem(System.Int32,`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.InsertItem(System.Int32,`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insertitem
+  name: InsertItem(int, T)
+  nameWithType: Collection<T>.InsertItem(int, T)
+  fullName: System.Collections.ObjectModel.Collection<T>.InsertItem(int, T)
+  nameWithType.vb: Collection(Of T).InsertItem(Integer, T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).InsertItem(Integer, T)
+  name.vb: InsertItem(Integer, T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.InsertItem(System.Int32,`0)
+    name: InsertItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insertitem
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.InsertItem(System.Int32,`0)
+    name: InsertItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.insertitem
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel.Collection{System.Object}.SetItem(System.Int32,System.Object)
+  commentId: M:System.Collections.ObjectModel.Collection{System.Object}.SetItem(System.Int32,System.Object)
+  parent: System.Collections.ObjectModel.Collection{System.Object}
+  definition: System.Collections.ObjectModel.Collection`1.SetItem(System.Int32,`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.setitem
+  name: SetItem(int, object)
+  nameWithType: Collection<object>.SetItem(int, object)
+  fullName: System.Collections.ObjectModel.Collection<object>.SetItem(int, object)
+  nameWithType.vb: Collection(Of Object).SetItem(Integer, Object)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of Object).SetItem(Integer, Object)
+  name.vb: SetItem(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.SetItem(System.Int32,System.Object)
+    name: SetItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.setitem
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection{System.Object}.SetItem(System.Int32,System.Object)
+    name: SetItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.setitem
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem
+  href: LlamaLogic.Packages.Models.SimData.SimDataVector.html#LlamaLogic_Packages_Models_SimData_SimDataVector_SetItem_System_Int32_System_Object_
+  name: SetItem
+  nameWithType: SimDataVector.SetItem
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVector.SetItem
+- uid: System.Collections.ObjectModel.Collection`1.SetItem(System.Int32,`0)
+  commentId: M:System.Collections.ObjectModel.Collection`1.SetItem(System.Int32,`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.setitem
+  name: SetItem(int, T)
+  nameWithType: Collection<T>.SetItem(int, T)
+  fullName: System.Collections.ObjectModel.Collection<T>.SetItem(int, T)
+  nameWithType.vb: Collection(Of T).SetItem(Integer, T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T).SetItem(Integer, T)
+  name.vb: SetItem(Integer, T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1.SetItem(System.Int32,`0)
+    name: SetItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.setitem
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1.SetItem(System.Int32,`0)
+    name: SetItem
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1.setitem
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )

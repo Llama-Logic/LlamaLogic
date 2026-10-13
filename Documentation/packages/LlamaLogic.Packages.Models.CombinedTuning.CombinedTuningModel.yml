@@ -1,0 +1,1724 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  commentId: T:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  id: CombinedTuningModel
+  parent: LlamaLogic.Packages.Models.CombinedTuning
+  children:
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.#ctor(System.Xml.Linq.XDocument)
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName(System.IO.Stream)
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName
+  - LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes
+  langs:
+  - csharp
+  - vb
+  name: CombinedTuningModel
+  nameWithType: CombinedTuningModel
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CombinedTuningModel
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: "Represents a <xref href=\"LlamaLogic.Packages.ResourceType.CombinedTuning\" data-throw-if-not-resolved=\"false\"></xref> resource (\U0001F513)"
+  remarks: >-
+    Maxis ships the game's tuning merged into resources of this type, encoded either as a binary packed XML document (a <code>DATA</code> file) or as XML text.
+
+    <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory%7bSystem.Byte%7d)" data-throw-if-not-resolved="false"></xref> accepts both and presents the merged document as <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document" data-throw-if-not-resolved="false"></xref>.
+
+    <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode" data-throw-if-not-resolved="false"></xref> always produces XML text, written the way Maxis writes it.
+
+    <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings" data-throw-if-not-resolved="false"></xref> produces the individual tuning documents the merged document contains.
+  example: []
+  syntax:
+    content: 'public sealed class CombinedTuningModel : Model, IModel<CombinedTuningModel>, IModel'
+    content.vb: Public NotInheritable Class CombinedTuningModel Inherits Model Implements IModel(Of CombinedTuningModel), IModel
+  inheritance:
+  - System.Object
+  - LlamaLogic.Packages.Models.Model
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}
+  - LlamaLogic.Packages.Models.IModel
+  inheritedMembers:
+  - LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes
+  id: SupportedTypes
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: SupportedTypes
+  nameWithType: CombinedTuningModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SupportedTypes
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 32
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: Gets a list of resource types that this model supports
+  example: []
+  syntax:
+    content: public static ISet<ResourceType> SupportedTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+    content.vb: Public Shared ReadOnly Property SupportedTypes As ISet(Of ResourceType)
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+  id: Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: CombinedTuningModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 37
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: "Decodes the resource in raw format to produce an operable model (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public static CombinedTuningModel Decode(ReadOnlyMemory<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+    content.vb: Public Shared Function Decode(data As ReadOnlyMemory(Of Byte)) As CombinedTuningModel
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The data is neither a well-formed binary nor a well-formed XML combined tuning document
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  nameWithType.vb: CombinedTuningModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName(System.IO.Stream)
+  id: GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: GetName(Stream)
+  nameWithType: CombinedTuningModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName(System.IO.Stream)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetName
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 191
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: "Gets the name of a resource from its raw data, if it has one (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static string? GetName(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetName(stream As Stream) As String
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  id: GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: CombinedTuningModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetNameAsync
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 195
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: "Gets the name of a resource from its raw data, if it has one, asynchronously (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static Task<string?> GetNameAsync(Stream stream, CancellationToken cancellationToken = default)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+    content.vb: Public Shared Function GetNameAsync(stream As Stream, cancellationToken As CancellationToken = Nothing) As Task(Of String)
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.#ctor(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.#ctor(System.Xml.Linq.XDocument)
+  id: '#ctor(System.Xml.Linq.XDocument)'
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: CombinedTuningModel(XDocument)
+  nameWithType: CombinedTuningModel.CombinedTuningModel(XDocument)
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.CombinedTuningModel(System.Xml.Linq.XDocument)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 322
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: Initializes a new <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel" data-throw-if-not-resolved="false"></xref> for the specified <code class="paramref">document</code>
+  example: []
+  syntax:
+    content: public CombinedTuningModel(XDocument document)
+    parameters:
+    - id: document
+      type: System.Xml.Linq.XDocument
+      description: The merged document, the root element of which is <code>&lt;combined&gt;</code>
+    content.vb: Public Sub New(document As XDocument)
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.#ctor*
+  nameWithType.vb: CombinedTuningModel.New(XDocument)
+  fullName.vb: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.New(System.Xml.Linq.XDocument)
+  name.vb: New(XDocument)
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  commentId: P:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  id: Document
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: Document
+  nameWithType: CombinedTuningModel.Document
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Document
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 331
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: Gets the merged document, the root element of which is <code>&lt;combined&gt;</code>
+  example: []
+  syntax:
+    content: public XDocument Document { get; }
+    parameters: []
+    return:
+      type: System.Xml.Linq.XDocument
+    content.vb: Public ReadOnly Property Document As XDocument
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document*
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName
+  id: ResourceName
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceName
+  nameWithType: CombinedTuningModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceName
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 334
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: Gets the name of this resource if it has one
+  example: []
+  syntax:
+    content: public override string? ResourceName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overrides ReadOnly Property ResourceName As String
+  overridden: LlamaLogic.Packages.Models.Model.ResourceName
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+  id: Encode
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: Encode()
+  nameWithType: CombinedTuningModel.Encode()
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Encode
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 339
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: "Encodes the resource model into raw format (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public override ReadOnlyMemory<byte> Encode()
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Overrides Function Encode() As ReadOnlyMemory(Of Byte)
+  overridden: LlamaLogic.Packages.Models.Model.Encode
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document" data-throw-if-not-resolved="false"></xref> has no root element or contains a node that XML combined tuning cannot express
+  implements:
+  - LlamaLogic.Packages.Models.IModel.Encode
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+  id: GetTunings
+  parent: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  langs:
+  - csharp
+  - vb
+  name: GetTunings()
+  nameWithType: CombinedTuningModel.GetTunings()
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetTunings
+    path: ../LlamaLogic.Packages/Models/CombinedTuning/CombinedTuningModel.cs
+    startLine: 356
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.CombinedTuning
+  summary: "Gets the individual tuning documents in <xref href=\"LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document\" data-throw-if-not-resolved=\"false\"></xref>, in document order, with each reference to a shared node (<code>&lt;r x=\"…\"&gt;</code>) replaced by a copy of that node (\U0001F4A4)"
+  remarks: >-
+    The documents are produced as the sequence is enumerated, and are independent of <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document" data-throw-if-not-resolved="false"></xref> and of each other.
+
+    Modifying <xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document" data-throw-if-not-resolved="false"></xref> while enumerating has undefined results.
+  example: []
+  syntax:
+    content: public IEnumerable<CombinedTuningModelTuning> GetTunings()
+    return:
+      type: System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning}
+    content.vb: Public Function GetTunings() As IEnumerable(Of CombinedTuningModelTuning)
+  overload: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: '<xref href="LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document" data-throw-if-not-resolved="false"></xref> is not a well-formed merged document: it lacks the shared node group, a reference names a node that does not exist or contains itself, or a tuning document lacks a valid instance'
+references:
+- uid: LlamaLogic.Packages.ResourceType.CombinedTuning
+  commentId: F:LlamaLogic.Packages.ResourceType.CombinedTuning
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_CombinedTuning
+  name: CombinedTuning
+  nameWithType: ResourceType.CombinedTuning
+  fullName: LlamaLogic.Packages.ResourceType.CombinedTuning
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: CombinedTuningModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: CombinedTuningModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  commentId: P:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Document
+  name: Document
+  nameWithType: CombinedTuningModel.Document
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Encode
+  name: Encode()
+  nameWithType: CombinedTuningModel.Encode()
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+  commentId: M:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_GetTunings
+  name: GetTunings()
+  nameWithType: CombinedTuningModel.GetTunings()
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+    name: GetTunings
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_GetTunings
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+    name: GetTunings
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_GetTunings
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning
+  commentId: N:LlamaLogic.Packages.Models.CombinedTuning
+  name: LlamaLogic.Packages.Models.CombinedTuning
+  nameWithType: LlamaLogic.Packages.Models.CombinedTuning
+  fullName: LlamaLogic.Packages.Models.CombinedTuning
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.CombinedTuning
+    name: CombinedTuning
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.CombinedTuning
+    name: CombinedTuning
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Packages.Models.Model
+  commentId: T:LlamaLogic.Packages.Models.Model
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.Model.html
+  name: Model
+  nameWithType: Model
+  fullName: LlamaLogic.Packages.Models.Model
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}
+  commentId: T:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}
+  parent: LlamaLogic.Packages.Models
+  definition: LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<CombinedTuningModel>
+  nameWithType: IModel<CombinedTuningModel>
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel>
+  nameWithType.vb: IModel(Of CombinedTuningModel)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  name.vb: IModel(Of CombinedTuningModel)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+    name: CombinedTuningModel
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+    name: CombinedTuningModel
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.IModel
+  commentId: T:LlamaLogic.Packages.Models.IModel
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.IModel.html
+  name: IModel
+  nameWithType: IModel
+  fullName: LlamaLogic.Packages.Models.IModel
+- uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ResourceType, ReadOnlyMemory<byte>)
+  nameWithType: Model.Decode(ResourceType, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory<byte>)
+  nameWithType.vb: Model.Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  name: GetName(ResourceType, Stream)
+  nameWithType: Model.GetName(ResourceType, Stream)
+  fullName: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType, System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(ResourceType, Stream, CancellationToken)
+  nameWithType: Model.GetNameAsync(ResourceType, Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType, System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models
+  commentId: N:LlamaLogic.Packages.Models
+  name: LlamaLogic.Packages.Models
+  nameWithType: LlamaLogic.Packages.Models
+  fullName: LlamaLogic.Packages.Models
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+- uid: LlamaLogic.Packages.Models.IModel`1
+  commentId: T:LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<TSelf>
+  nameWithType: IModel<TSelf>
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>
+  nameWithType.vb: IModel(Of TSelf)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf)
+  name.vb: IModel(Of TSelf)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: CombinedTuningModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.IModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.IModel.SupportedTypes
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: IModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  commentId: T:System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<ResourceType>
+  nameWithType: ISet<ResourceType>
+  fullName: System.Collections.Generic.ISet<LlamaLogic.Packages.ResourceType>
+  nameWithType.vb: ISet(Of ResourceType)
+  fullName.vb: System.Collections.Generic.ISet(Of LlamaLogic.Packages.ResourceType)
+  name.vb: ISet(Of ResourceType)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: CombinedTuningModel.Decode
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Decode
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}
+  definition: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<CombinedTuningModel>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of CombinedTuningModel).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  commentId: T:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  parent: LlamaLogic.Packages.Models.CombinedTuning
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html
+  name: CombinedTuningModel
+  nameWithType: CombinedTuningModel
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+- uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<TSelf>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of TSelf).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_GetName_System_IO_Stream_
+  name: GetName
+  nameWithType: CombinedTuningModel.GetName
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetName
+- uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  name: GetName(Stream)
+  nameWithType: IModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync
+  nameWithType: CombinedTuningModel.GetNameAsync
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetNameAsync
+- uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: IModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.#ctor*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.#ctor
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel__ctor_System_Xml_Linq_XDocument_
+  name: CombinedTuningModel
+  nameWithType: CombinedTuningModel.CombinedTuningModel
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.CombinedTuningModel
+  nameWithType.vb: CombinedTuningModel.New
+  fullName.vb: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.New
+  name.vb: New
+- uid: System.Xml.Linq.XDocument
+  commentId: T:System.Xml.Linq.XDocument
+  parent: System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  name: XDocument
+  nameWithType: XDocument
+  fullName: System.Xml.Linq.XDocument
+- uid: System.Xml.Linq
+  commentId: N:System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Linq
+  nameWithType: System.Xml.Linq
+  fullName: System.Xml.Linq
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Document
+  name: Document
+  nameWithType: CombinedTuningModel.Document
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Document
+- uid: LlamaLogic.Packages.Models.Model.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_ResourceName
+  name: ResourceName
+  nameWithType: Model.ResourceName
+  fullName: LlamaLogic.Packages.Models.Model.ResourceName
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_ResourceName
+  name: ResourceName
+  nameWithType: CombinedTuningModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.ResourceName
+- uid: LlamaLogic.Packages.Models.IModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.IModel.ResourceName
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_ResourceName
+  name: ResourceName
+  nameWithType: IModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.Packages.Models.Model.Encode
+  commentId: M:LlamaLogic.Packages.Models.Model.Encode
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  name: Encode()
+  nameWithType: Model.Encode()
+  fullName: LlamaLogic.Packages.Models.Model.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_Encode
+  name: Encode
+  nameWithType: CombinedTuningModel.Encode
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.Encode
+- uid: LlamaLogic.Packages.Models.IModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.IModel.Encode
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  name: Encode()
+  nameWithType: IModel.Encode()
+  fullName: LlamaLogic.Packages.Models.IModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings*
+  commentId: Overload:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+  href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.html#LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_GetTunings
+  name: GetTunings
+  nameWithType: CombinedTuningModel.GetTunings
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel.GetTunings
+- uid: System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning}
+  commentId: T:System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<CombinedTuningModelTuning>
+  nameWithType: IEnumerable<CombinedTuningModelTuning>
+  fullName: System.Collections.Generic.IEnumerable<LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning>
+  nameWithType.vb: IEnumerable(Of CombinedTuningModelTuning)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning)
+  name.vb: IEnumerable(Of CombinedTuningModelTuning)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning
+    name: CombinedTuningModelTuning
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning
+    name: CombinedTuningModelTuning
+    href: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModelTuning.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

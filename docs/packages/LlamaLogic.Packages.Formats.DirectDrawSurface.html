@@ -89,7 +89,7 @@
 
 
   <h1 id="LlamaLogic_Packages_Formats_DirectDrawSurface" data-uid="LlamaLogic.Packages.Formats.DirectDrawSurface" class="text-break">
-Class DirectDrawSurface  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L13"><i class="bi bi-code-slash"></i></a>
+Class DirectDrawSurface  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -160,7 +160,7 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
   <h3 id="LlamaLogic_Packages_Formats_DirectDrawSurface_GetDstDataFromPngData_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngData(System.ReadOnlyMemory{System.Byte})">
   GetDstDataFromPngData(ReadOnlyMemory&lt;byte&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Convert a Portable Network Graphic to a shuffled DirectDraw Surface compatible with The Sims 4</p>
@@ -191,6 +191,12 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p><code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels</p>
+</dd>
+  </dl>
 
 
 
@@ -198,7 +204,7 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
   <h3 id="LlamaLogic_Packages_Formats_DirectDrawSurface_GetDstDataFromPngDataAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngDataAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
   GetDstDataFromPngDataAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Convert a Portable Network Graphic to a shuffled DirectDraw Surface compatible with The Sims 4, asynchronously</p>
@@ -232,6 +238,12 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p><code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels</p>
+</dd>
+  </dl>
 
 
 
@@ -239,7 +251,7 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
   <h3 id="LlamaLogic_Packages_Formats_DirectDrawSurface_GetPngDataFromDdsData_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsData(System.ReadOnlyMemory{System.Byte})">
   GetPngDataFromDdsData(ReadOnlyMemory&lt;byte&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Convert a DirectDraw Surface to a Portable Network Graphic</p>
@@ -270,6 +282,12 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels, or declares more than 32 mipmap levels</p>
+</dd>
+  </dl>
 
 
 
@@ -277,7 +295,7 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
   <h3 id="LlamaLogic_Packages_Formats_DirectDrawSurface_GetPngDataFromDdsDataAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsDataAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
   GetPngDataFromDdsDataAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Convert a DirectDraw Surface to a Portable Network Graphic, asynchronously</p>
@@ -311,6 +329,12 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The surface has no pixels or more than 67,108,864 (8,192 by 8,192) pixels, or declares more than 32 mipmap levels</p>
+</dd>
+  </dl>
 
 
 
@@ -318,7 +342,7 @@ Class DirectDrawSurface  <a class="header-action link-secondary" title="View sou
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L13" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/DirectDrawSurface.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

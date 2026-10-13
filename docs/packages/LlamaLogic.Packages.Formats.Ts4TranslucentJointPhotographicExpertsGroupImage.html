@@ -157,7 +157,7 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
   <h3 id="LlamaLogic_Packages_Formats_Ts4TranslucentJointPhotographicExpertsGroupImage_ConvertPngToTranslucentJpeg_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory{System.Byte})">
   ConvertPngToTranslucentJpeg(ReadOnlyMemory&lt;byte&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Converts the data for a PNG the data for a Maxis Translucent JPEG</p>
@@ -188,6 +188,12 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p><code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels, or its alpha channel compresses to more than 65,525 bytes</p>
+</dd>
+  </dl>
 
 
 
@@ -195,7 +201,7 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
   <h3 id="LlamaLogic_Packages_Formats_Ts4TranslucentJointPhotographicExpertsGroupImage_ConvertPngToTranslucentJpegAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
   ConvertPngToTranslucentJpegAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Converts the data for a PNG the data for a Maxis Translucent JPEG asynhronously</p>
@@ -229,6 +235,12 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p><code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels, or its alpha channel compresses to more than 65,525 bytes</p>
+</dd>
+  </dl>
 
 
 
@@ -236,7 +248,7 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
   <h3 id="LlamaLogic_Packages_Formats_Ts4TranslucentJointPhotographicExpertsGroupImage_ConvertTranslucentJpegToPng_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPng(System.ReadOnlyMemory{System.Byte})">
   ConvertTranslucentJpegToPng(ReadOnlyMemory&lt;byte&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Converts the data for a Maxis Translucent JPEG the data for a PNG</p>
@@ -267,6 +279,15 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.formatexception">FormatException</a></dt>
+    <dd><p><code class="paramref">translucentJpegData</code> is not a JPEG</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The ALFA PNG APP0 marker is missing or malformed, the JPEG or the PNG could not be decoded or has more than 67,108,864 (8,192 by 8,192) pixels, or their dimensions differ</p>
+</dd>
+  </dl>
 
 
 
@@ -274,7 +295,7 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
   <h3 id="LlamaLogic_Packages_Formats_Ts4TranslucentJointPhotographicExpertsGroupImage_ConvertTranslucentJpegToPngAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
   ConvertTranslucentJpegToPngAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs/#L114"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Converts the data for a Maxis Translucent JPEG the data for a PNG asynhronously</p>
@@ -308,6 +329,15 @@ Class Ts4TranslucentJointPhotographicExpertsGroupImage  <a class="header-action 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.formatexception">FormatException</a></dt>
+    <dd><p><code class="paramref">translucentJpegData</code> is not a JPEG</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The ALFA PNG APP0 marker is missing or malformed, the JPEG or the PNG could not be decoded or has more than 67,108,864 (8,192 by 8,192) pixels, or their dimensions differ</p>
+</dd>
+  </dl>
 
 
 

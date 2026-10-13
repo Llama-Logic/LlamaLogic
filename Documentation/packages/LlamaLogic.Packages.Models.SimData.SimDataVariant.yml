@@ -1,0 +1,622 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVariant
+  id: SimDataVariant
+  parent: LlamaLogic.Packages.Models.SimData
+  children:
+  - LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor(System.UInt32)
+  - LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor(System.UInt32,LlamaLogic.Packages.Models.SimData.SimDataType,System.Object)
+  - LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  - LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash
+  - LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  langs:
+  - csharp
+  - vb
+  name: SimDataVariant
+  nameWithType: SimDataVariant
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimDataVariant
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: "Represents a <xref href=\"LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT\" data-throw-if-not-resolved=\"false\"></xref> value: a type hash and an optional value of any <xref href=\"LlamaLogic.Packages.Models.SimData.SimDataType\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F512)"
+  example: []
+  syntax:
+    content: public sealed class SimDataVariant
+    content.vb: Public NotInheritable Class SimDataVariant
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor(System.UInt32)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor(System.UInt32)
+  id: '#ctor(System.UInt32)'
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  langs:
+  - csharp
+  - vb
+  name: SimDataVariant(uint)
+  nameWithType: SimDataVariant.SimDataVariant(uint)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.SimDataVariant(uint)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Initializes a new <xref href="LlamaLogic.Packages.Models.SimData.SimDataVariant" data-throw-if-not-resolved="false"></xref> with the specified <code class="paramref">typeHash</code> and no value
+  example: []
+  syntax:
+    content: public SimDataVariant(uint typeHash)
+    parameters:
+    - id: typeHash
+      type: System.UInt32
+    content.vb: Public Sub New(typeHash As UInteger)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor*
+  nameWithType.vb: SimDataVariant.New(UInteger)
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVariant.New(UInteger)
+  name.vb: New(UInteger)
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor(System.UInt32,LlamaLogic.Packages.Models.SimData.SimDataType,System.Object)
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor(System.UInt32,LlamaLogic.Packages.Models.SimData.SimDataType,System.Object)
+  id: '#ctor(System.UInt32,LlamaLogic.Packages.Models.SimData.SimDataType,System.Object)'
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  langs:
+  - csharp
+  - vb
+  name: SimDataVariant(uint, SimDataType, object?)
+  nameWithType: SimDataVariant.SimDataVariant(uint, SimDataType, object?)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.SimDataVariant(uint, LlamaLogic.Packages.Models.SimData.SimDataType, object?)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Initializes a new <xref href="LlamaLogic.Packages.Models.SimData.SimDataVariant" data-throw-if-not-resolved="false"></xref> with the specified <code class="paramref">typeHash</code> and a <code class="paramref">value</code> of the specified <code class="paramref">type</code>
+  example: []
+  syntax:
+    content: public SimDataVariant(uint typeHash, SimDataType type, object? value)
+    parameters:
+    - id: typeHash
+      type: System.UInt32
+      description: The type hash of the variant
+    - id: type
+      type: LlamaLogic.Packages.Models.SimData.SimDataType
+      description: The type of <code class="paramref">value</code>
+    - id: value
+      type: System.Object
+      description: The value, which may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> only for <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.STRING8" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.HASHEDSTRING8" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Sub New(typeHash As UInteger, type As SimDataType, value As Object)
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">type</code> is not a defined <xref href="LlamaLogic.Packages.Models.SimData.SimDataType" data-throw-if-not-resolved="false"></xref>
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">value</code> is not of the .NET type <xref href="LlamaLogic.Packages.Models.SimData.SimDataObject" data-throw-if-not-resolved="false"></xref> describes for <code class="paramref">type</code>, or is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> for <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT" data-throw-if-not-resolved="false"></xref>
+  nameWithType.vb: SimDataVariant.New(UInteger, SimDataType, Object)
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVariant.New(UInteger, LlamaLogic.Packages.Models.SimData.SimDataType, Object)
+  name.vb: New(UInteger, SimDataType, Object)
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  id: Type
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: SimDataVariant.Type
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Type
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+    startLine: 37
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the type of <xref href="LlamaLogic.Packages.Models.SimData.SimDataVariant.Value" data-throw-if-not-resolved="false"></xref>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the variant has no value
+  example: []
+  syntax:
+    content: public SimDataType? Type { get; }
+    parameters: []
+    return:
+      type: System.Nullable{LlamaLogic.Packages.Models.SimData.SimDataType}
+    content.vb: Public ReadOnly Property Type As SimDataType?
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash
+  id: TypeHash
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  langs:
+  - csharp
+  - vb
+  name: TypeHash
+  nameWithType: SimDataVariant.TypeHash
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TypeHash
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+    startLine: 42
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the type hash of the variant
+  example: []
+  syntax:
+    content: public uint TypeHash { get; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public ReadOnly Property TypeHash As UInteger
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  id: Value
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: SimDataVariant.Value
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Value
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVariant.cs
+    startLine: 47
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the value of the variant (<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> when <xref href="LlamaLogic.Packages.Models.SimData.SimDataVariant.Type" data-throw-if-not-resolved="false"></xref> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, and possibly when it is a type that admits <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>)
+  example: []
+  syntax:
+    content: public object? Value { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public ReadOnly Property Value As Object
+  overload: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value*
+references:
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_VARIANT
+  name: VARIANT
+  nameWithType: SimDataType.VARIANT
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataType
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html
+  name: SimDataType
+  nameWithType: SimDataType
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType
+- uid: LlamaLogic.Packages.Models.SimData
+  commentId: N:LlamaLogic.Packages.Models.SimData
+  name: LlamaLogic.Packages.Models.SimData
+  nameWithType: LlamaLogic.Packages.Models.SimData
+  fullName: LlamaLogic.Packages.Models.SimData
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVariant
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html
+  name: SimDataVariant
+  nameWithType: SimDataVariant
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVariant.#ctor
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html#LlamaLogic_Packages_Models_SimData_SimDataVariant__ctor_System_UInt32_
+  name: SimDataVariant
+  nameWithType: SimDataVariant.SimDataVariant
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.SimDataVariant
+  nameWithType.vb: SimDataVariant.New
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataVariant.New
+  name.vb: New
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.STRING8
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.STRING8
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_STRING8
+  name: STRING8
+  nameWithType: SimDataType.STRING8
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.STRING8
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.HASHEDSTRING8
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.HASHEDSTRING8
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_HASHEDSTRING8
+  name: HASHEDSTRING8
+  nameWithType: SimDataType.HASHEDSTRING8
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.HASHEDSTRING8
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_VECTOR
+  name: VECTOR
+  nameWithType: SimDataType.VECTOR
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.VECTOR
+- uid: LlamaLogic.Packages.Models.SimData.SimDataObject
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataObject
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataObject.html
+  name: SimDataObject
+  nameWithType: SimDataObject
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataObject
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_OBJECT
+  name: OBJECT
+  nameWithType: SimDataType.OBJECT
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.OBJECT
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html#LlamaLogic_Packages_Models_SimData_SimDataVariant_Value
+  name: Value
+  nameWithType: SimDataVariant.Value
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html#LlamaLogic_Packages_Models_SimData_SimDataVariant_Type
+  name: Type
+  nameWithType: SimDataVariant.Type
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+- uid: System.Nullable{LlamaLogic.Packages.Models.SimData.SimDataType}
+  commentId: T:System.Nullable{LlamaLogic.Packages.Models.SimData.SimDataType}
+  parent: System
+  definition: System.Nullable`1
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html
+  name: SimDataType?
+  nameWithType: SimDataType?
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType?
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataType
+    name: SimDataType
+    href: LlamaLogic.Packages.Models.SimData.SimDataType.html
+  - name: '?'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataType
+    name: SimDataType
+    href: LlamaLogic.Packages.Models.SimData.SimDataType.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html#LlamaLogic_Packages_Models_SimData_SimDataVariant_TypeHash
+  name: TypeHash
+  nameWithType: SimDataVariant.TypeHash
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.TypeHash
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html#LlamaLogic_Packages_Models_SimData_SimDataVariant_Type
+  name: Type
+  nameWithType: SimDataVariant.Type
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.Type
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataVariant.Value
+  href: LlamaLogic.Packages.Models.SimData.SimDataVariant.html#LlamaLogic_Packages_Models_SimData_SimDataVariant_Value
+  name: Value
+  nameWithType: SimDataVariant.Value
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVariant.Value

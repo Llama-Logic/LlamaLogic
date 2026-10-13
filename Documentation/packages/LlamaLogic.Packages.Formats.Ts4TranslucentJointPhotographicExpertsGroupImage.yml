@@ -60,7 +60,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ConvertPngToTranslucentJpeg
     path: ../LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -76,6 +76,10 @@ items:
       type: System.ReadOnlyMemory{System.Byte}
     content.vb: Public Shared Function ConvertPngToTranslucentJpeg(pngData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
   overload: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpeg*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: <code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels, or its alpha channel compresses to more than 65,525 bytes
   nameWithType.vb: Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpeg(ReadOnlyMemory(Of Byte))
   fullName.vb: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpeg(System.ReadOnlyMemory(Of Byte))
   name.vb: ConvertPngToTranslucentJpeg(ReadOnlyMemory(Of Byte))
@@ -97,7 +101,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ConvertPngToTranslucentJpegAsync
     path: ../LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs
-    startLine: 71
+    startLine: 58
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -116,6 +120,10 @@ items:
       type: System.Threading.Tasks.Task{System.ReadOnlyMemory{System.Byte}}
     content.vb: Public Shared Function ConvertPngToTranslucentJpegAsync(pngData As ReadOnlyMemory(Of Byte), cancellationToken As CancellationToken) As Task(Of ReadOnlyMemory(Of Byte))
   overload: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpegAsync*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: <code class="paramref">pngData</code> is not a PNG, could not be decoded, or has more than 67,108,864 (8,192 by 8,192) pixels, or its alpha channel compresses to more than 65,525 bytes
   nameWithType.vb: Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpegAsync(ReadOnlyMemory(Of Byte), CancellationToken)
   fullName.vb: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpegAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
   name.vb: ConvertPngToTranslucentJpegAsync(ReadOnlyMemory(Of Byte), CancellationToken)
@@ -137,7 +145,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ConvertTranslucentJpegToPng
     path: ../LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs
-    startLine: 128
+    startLine: 67
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -153,6 +161,13 @@ items:
       type: System.ReadOnlyMemory{System.Byte}
     content.vb: Public Shared Function ConvertTranslucentJpegToPng(translucentJpegData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
   overload: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPng*
+  exceptions:
+  - type: System.FormatException
+    commentId: T:System.FormatException
+    description: <code class="paramref">translucentJpegData</code> is not a JPEG
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The ALFA PNG APP0 marker is missing or malformed, the JPEG or the PNG could not be decoded or has more than 67,108,864 (8,192 by 8,192) pixels, or their dimensions differ
   nameWithType.vb: Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPng(ReadOnlyMemory(Of Byte))
   fullName.vb: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPng(System.ReadOnlyMemory(Of Byte))
   name.vb: ConvertTranslucentJpegToPng(ReadOnlyMemory(Of Byte))
@@ -174,7 +189,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ConvertTranslucentJpegToPngAsync
     path: ../LlamaLogic.Packages/Formats/Ts4TranslucentJointPhotographicExpertsGroupImage.cs
-    startLine: 176
+    startLine: 113
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Formats
@@ -193,6 +208,13 @@ items:
       type: System.Threading.Tasks.Task{System.ReadOnlyMemory{System.Byte}}
     content.vb: Public Shared Function ConvertTranslucentJpegToPngAsync(translucentJpegData As ReadOnlyMemory(Of Byte), cancellationToken As CancellationToken = Nothing) As Task(Of ReadOnlyMemory(Of Byte))
   overload: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPngAsync*
+  exceptions:
+  - type: System.FormatException
+    commentId: T:System.FormatException
+    description: <code class="paramref">translucentJpegData</code> is not a JPEG
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The ALFA PNG APP0 marker is missing or malformed, the JPEG or the PNG could not be decoded or has more than 67,108,864 (8,192 by 8,192) pixels, or their dimensions differ
   nameWithType.vb: Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPngAsync(ReadOnlyMemory(Of Byte), CancellationToken)
   fullName.vb: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPngAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
   name.vb: ConvertTranslucentJpegToPngAsync(ReadOnlyMemory(Of Byte), CancellationToken)
@@ -457,6 +479,13 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
 - uid: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpeg*
   commentId: Overload:LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertPngToTranslucentJpeg
   href: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.html#LlamaLogic_Packages_Formats_Ts4TranslucentJointPhotographicExpertsGroupImage_ConvertPngToTranslucentJpeg_System_ReadOnlyMemory_System_Byte__
@@ -681,6 +710,13 @@ references:
     name: Tasks
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: System.FormatException
+  commentId: T:System.FormatException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.formatexception
+  name: FormatException
+  nameWithType: FormatException
+  fullName: System.FormatException
 - uid: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPng*
   commentId: Overload:LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPng
   href: LlamaLogic.Packages.Formats.Ts4TranslucentJointPhotographicExpertsGroupImage.html#LlamaLogic_Packages_Formats_Ts4TranslucentJointPhotographicExpertsGroupImage_ConvertTranslucentJpegToPng_System_ReadOnlyMemory_System_Byte__

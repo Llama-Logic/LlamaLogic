@@ -1,0 +1,176 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVersion
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVersion
+  id: SimDataVersion
+  parent: LlamaLogic.Packages.Models.SimData
+  children:
+  - LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+  - LlamaLogic.Packages.Models.SimData.SimDataVersion.VariantSupport
+  langs:
+  - csharp
+  - vb
+  name: SimDataVersion
+  nameWithType: SimDataVersion
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVersion.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimDataVersion
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVersion.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Known versions of the format for <xref href="LlamaLogic.Packages.ResourceType.SimData" data-throw-if-not-resolved="false"></xref> resources
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1008: Enums should have zero value", Justification = "We do not know what the proper name of such a value would be.")]
+
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.")]
+
+      public enum SimDataVersion : uint
+    content.vb: >-
+      <SuppressMessage("Design", "CA1008: Enums should have zero value", Justification:="We do not know what the proper name of such a value would be.")>
+
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.")>
+
+      Public Enum SimDataVersion As UInteger
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1008: Enums should have zero value'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: We do not know what the proper name of such a value would be.
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+  id: SmartSimOriginalEdition
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVersion
+  langs:
+  - csharp
+  - vb
+  name: SmartSimOriginalEdition
+  nameWithType: SimDataVersion.SmartSimOriginalEdition
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVersion.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SmartSimOriginalEdition
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVersion.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: The edition of the format which shipped with the original release of The Sims 4 on September 2, 2014
+  example: []
+  syntax:
+    content: SmartSimOriginalEdition = 256
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataVersion
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVersion.VariantSupport
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataVersion.VariantSupport
+  id: VariantSupport
+  parent: LlamaLogic.Packages.Models.SimData.SimDataVersion
+  langs:
+  - csharp
+  - vb
+  name: VariantSupport
+  nameWithType: SimDataVersion.VariantSupport
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion.VariantSupport
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataVersion.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VariantSupport
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataVersion.cs
+    startLine: 18
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: The edition of the format which shipped with The Sims 4 (v1.5.139) on February 17, 2015, introducing support for <xref href="LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT" data-throw-if-not-resolved="false"></xref> and allowing the creation of <xref href="LlamaLogic.Packages.ResourceType.CombinedTuning" data-throw-if-not-resolved="false"></xref> resources
+  example: []
+  syntax:
+    content: VariantSupport = 257
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataVersion
+references:
+- uid: LlamaLogic.Packages.ResourceType.SimData
+  commentId: F:LlamaLogic.Packages.ResourceType.SimData
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SimData
+  name: SimData
+  nameWithType: ResourceType.SimData
+  fullName: LlamaLogic.Packages.ResourceType.SimData
+- uid: LlamaLogic.Packages.Models.SimData
+  commentId: N:LlamaLogic.Packages.Models.SimData
+  name: LlamaLogic.Packages.Models.SimData
+  nameWithType: LlamaLogic.Packages.Models.SimData
+  fullName: LlamaLogic.Packages.Models.SimData
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+- uid: LlamaLogic.Packages.Models.SimData.SimDataVersion
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataVersion
+  parent: LlamaLogic.Packages.Models.SimData
+  href: LlamaLogic.Packages.Models.SimData.SimDataVersion.html
+  name: SimDataVersion
+  nameWithType: SimDataVersion
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion
+- uid: LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT
+  commentId: F:LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT
+  href: LlamaLogic.Packages.Models.SimData.SimDataType.html#LlamaLogic_Packages_Models_SimData_SimDataType_VARIANT
+  name: VARIANT
+  nameWithType: SimDataType.VARIANT
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataType.VARIANT
+- uid: LlamaLogic.Packages.ResourceType.CombinedTuning
+  commentId: F:LlamaLogic.Packages.ResourceType.CombinedTuning
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_CombinedTuning
+  name: CombinedTuning
+  nameWithType: ResourceType.CombinedTuning
+  fullName: LlamaLogic.Packages.ResourceType.CombinedTuning
