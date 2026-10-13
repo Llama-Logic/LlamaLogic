@@ -547,10 +547,19 @@ public sealed partial class ModFileManifestModel :
     /// <param name="result">When this method returns, contains the result of successfully parsing <paramref name="s"/> or an undefined value on failure</param>
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out ModFileManifestModel result)
     {
-        if (s is not null && CreateYamlDeserializer().Deserialize<ModFileManifestModel>(s) is { } modFileManifest)
+        if (s is not null)
         {
-            result = modFileManifest;
-            return true;
+            try
+            {
+                if (CreateYamlDeserializer().Deserialize<ModFileManifestModel>(s) is { } modFileManifest)
+                {
+                    result = modFileManifest;
+                    return true;
+                }
+            }
+            catch (YamlDotNet.Core.YamlException)
+            {
+            }
         }
         result = default;
         return false;
@@ -763,7 +772,7 @@ public sealed partial class ModFileManifestModel :
                 else if (tunableName == "excluded_entries")
                     ExcludedEntries.AddRangeImmediately(childReader.ReadTunableList());
                 else if (tunableName == "hash_resource_keys")
-                    HashResourceKeys.AddRangeImmediately(childReader.ReadTunableList().Select(ResourceKey.Parse));
+                    HashResourceKeys.AddRangeImmediately(childReader.ReadTunableList().Select(resourceKeyString => (isValid: ResourceKey.TryParse(resourceKeyString, out var resourceKey), resourceKey)).Where(parsed => parsed.isValid).Select(parsed => parsed.resourceKey));
                 else if (tunableName == "incompatible_packs")
                     IncompatiblePacks.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "recommended_packs")
@@ -775,7 +784,7 @@ public sealed partial class ModFileManifestModel :
                 else if (tunableName == "required_packs")
                     RequiredPacks.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "subsumed_hashes")
-                    SubsumedHashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                    SubsumedHashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => (isValid: hex.TryToByteSequence(out var subsumedHash), subsumedHash)).Where(parsed => parsed.isValid).Select(parsed => parsed.subsumedHash));
                 else if (tunableName == "translators")
                     Translators.AddRange(childReader.ReadTunableTupleList<ModFileManifestModelTranslator>());
             }
@@ -785,23 +794,23 @@ public sealed partial class ModFileManifestModel :
                 if (tunableName == "contact_email")
                     ContactEmail = tunableValue;
                 else if (tunableName == "contact_url")
-                    ContactUrl = new Uri(tunableValue, UriKind.Absolute);
+                    ContactUrl = Uri.TryCreate(tunableValue, UriKind.Absolute, out var contactUrl) ? contactUrl : null;
                 else if (tunableName == "description")
                     Description = tunableValue;
                 else if (tunableName == "ea_promo_code")
                     ElectronicArtsPromoCode = tunableValue;
                 else if (tunableName == "funding_url")
-                    FundingUrl = new Uri(tunableValue, UriKind.Absolute);
+                    FundingUrl = Uri.TryCreate(tunableValue, UriKind.Absolute, out var fundingUrl) ? fundingUrl : null;
                 else if (tunableName == "message_to_translators")
                     MessageToTranslators = tunableValue;
                 else if (tunableName == "name")
                     Name = tunableValue;
                 else if (tunableName == "hash")
-                    Hash = [..tunableValue.ToByteSequence()];
+                    Hash = tunableValue.TryToByteSequence(out var hash) ? hash : default;
                 else if (tunableName == "translation_submission_url")
-                    TranslationSubmissionUrl = new Uri(tunableValue, UriKind.Absolute);
+                    TranslationSubmissionUrl = Uri.TryCreate(tunableValue, UriKind.Absolute, out var translationSubmissionUrl) ? translationSubmissionUrl : null;
                 else if (tunableName == "url")
-                    Url = new Uri(tunableValue, UriKind.Absolute);
+                    Url = Uri.TryCreate(tunableValue, UriKind.Absolute, out var url) ? url : null;
                 else if (tunableName == "version")
                     Version = tunableValue;
             }

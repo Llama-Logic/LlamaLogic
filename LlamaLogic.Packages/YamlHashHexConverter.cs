@@ -24,9 +24,9 @@ sealed class YamlHashHexConverter :
                 || hashHexString.StartsWith("\"", StringComparison.OrdinalIgnoreCase)
                 && hashHexString.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
                 hashHexString = hashHexString[1..^1];
-            return hashHexString.Length > 0
-                ? hashHexString.ToByteSequence().ToImmutableArray()
-                : [];
+            return hashHexString.TryToByteSequence(out var hash)
+                ? hash
+                : null;
         }
         finally
         {

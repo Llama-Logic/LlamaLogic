@@ -1,2 +1,3 @@
-DataBasePackedFile now reads resources stored at or beyond 2 GiB into a package instead of throwing ArgumentOutOfRangeException.
-DataBasePackedFile now throws InvalidOperationException before writing anything when a resource would begin beyond 4 GiB in the written package, which its index entry cannot record.
+ModFileManifestModel now treats a manifest field whose value cannot be parsed (a URL, a hash, or a resource key, including those of required mods) as absent and skips such list entries, instead of throwing out of GetModFileManifest, GetModFileManifestAndKey, GetModFileManifests, and their asynchronous counterparts.
+ModFileManifestModel.TryParse now returns false for malformed YAML instead of throwing YamlException, and a YAML hash that is not valid hexadecimal is treated as absent.
+ModFileManifestModel now reads every entry of a manifest list written without whitespace between its entries (previously it kept every other entry, or rejected the manifest when the list had one entry), and accepts empty lists.

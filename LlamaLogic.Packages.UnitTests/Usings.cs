@@ -1,6 +1,7 @@
 global using LlamaLogic.Packages.Formats;
 global using LlamaLogic.Packages.Models;
 global using LlamaLogic.Packages.Models.Data;
+global using LlamaLogic.Packages.Models.ModFileManifest;
 global using Microsoft.Win32.SafeHandles;
 global using SixLabors.ImageSharp;
 global using SixLabors.ImageSharp.PixelFormats;
@@ -11,6 +12,7 @@ global using System.Globalization;
 global using System.IO;
 global using System.Linq;
 global using System.Reflection;
+global using System.Text;
 global using System.Threading.Tasks;
 global using System.Xml.Linq;
 global using System.Xml.XPath;

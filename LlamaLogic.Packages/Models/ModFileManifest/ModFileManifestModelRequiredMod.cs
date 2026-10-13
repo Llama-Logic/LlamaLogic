@@ -93,7 +93,7 @@ public sealed class ModFileManifestModelRequiredMod :
                 if (tunableName == "creators")
                     Creators.AddRange(childReader.ReadTunableList());
                 else if (tunableName == "hashes")
-                    Hashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => hex.ToByteSequence().ToImmutableArray()));
+                    Hashes.AddRangeImmediately(childReader.ReadTunableList().Select(hex => (isValid: hex.TryToByteSequence(out var hash), hash)).Where(parsed => parsed.isValid).Select(parsed => parsed.hash));
                 else if (tunableName == "required_features")
                     RequiredFeatures.AddRange(childReader.ReadTunableList());
             }
@@ -101,9 +101,9 @@ public sealed class ModFileManifestModelRequiredMod :
             {
                 var tunableValue = child.Value;
                 if (tunableName == "ignore_if_hash_available")
-                    IgnoreIfHashAvailable = [..tunableValue.ToByteSequence()];
+                    IgnoreIfHashAvailable = tunableValue.TryToByteSequence(out var ignoreIfHashAvailable) ? ignoreIfHashAvailable : default;
                 else if (tunableName == "ignore_if_hash_unavailable")
-                    IgnoreIfHashUnavailable = [..tunableValue.ToByteSequence()];
+                    IgnoreIfHashUnavailable = tunableValue.TryToByteSequence(out var ignoreIfHashUnavailable) ? ignoreIfHashUnavailable : default;
                 else if (tunableName == "ignore_if_pack_available")
                     IgnoreIfPackAvailable = tunableValue;
                 else if (tunableName is "ignore_if_pack_unavailable" or "ignore_if_pash_unavailable" /* preserve due to historical error */)
@@ -113,7 +113,7 @@ public sealed class ModFileManifestModelRequiredMod :
                 else if (tunableName == "requirement_identifier")
                     RequirementIdentifier = tunableValue;
                 else if (tunableName == "url")
-                    Url = new Uri(tunableValue, UriKind.Absolute);
+                    Url = Uri.TryCreate(tunableValue, UriKind.Absolute, out var url) ? url : null;
                 else if (tunableName == "version")
                     Version = tunableValue;
             }

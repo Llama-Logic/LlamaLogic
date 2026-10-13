@@ -29,10 +29,18 @@ static class TuningUtilities
         ArgumentNullException.ThrowIfNull(reader);
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "L")
             throw new XmlException("Expected a tunable list element");
-        while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
+        if (reader.IsEmptyElement)
+        {
+            reader.Read();
+            yield break;
+        }
+        reader.Read();
+        while (reader.NodeType is not (XmlNodeType.EndElement or XmlNodeType.None))
         {
             if (reader.NodeType is XmlNodeType.Element && reader.Name == "T")
                 yield return reader.ReadElementContentAsString();
+            else
+                reader.Skip();
         }
         reader.ReadEndElement();
     }
@@ -43,6 +51,11 @@ static class TuningUtilities
         ArgumentNullException.ThrowIfNull(reader);
         if (reader.NodeType is not XmlNodeType.Element || reader.Name != "L")
             throw new XmlException("Expected a tunable list element");
+        if (reader.IsEmptyElement)
+        {
+            reader.Read();
+            yield break;
+        }
         while (reader.Read() && reader.NodeType is not XmlNodeType.EndElement)
             if (reader.NodeType is XmlNodeType.Element && reader.Name == "U")
             {
@@ -66,6 +79,23 @@ static class TuningUtilities
 
     public static string ToHexString(this IEnumerable<byte> bytes) =>
         string.Join(string.Empty, bytes.Select(b => b.ToString("x2")));
+
+    public static bool TryToByteSequence(this string hex, out ImmutableArray<byte> bytes)
+    {
+        ArgumentNullException.ThrowIfNull(hex);
+        bytes = default;
+        if (hex.Length % 2 != 0)
+            return false;
+        var builder = ImmutableArray.CreateBuilder<byte>(hex.Length / 2);
+        for (var byteIndex = 0; byteIndex < hex.Length / 2; ++byteIndex)
+        {
+            if (!byte.TryParse(hex.AsSpan(byteIndex * 2, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var parsedByte))
+                return false;
+            builder.Add(parsedByte);
+        }
+        bytes = builder.MoveToImmutable();
+        return true;
+    }
 
     public static void WriteTunable<T>(this XmlWriter writer, string? name, T value)
     {
