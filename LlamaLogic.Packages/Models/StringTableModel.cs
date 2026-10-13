@@ -9,6 +9,7 @@ public class StringTableModel :
 {
     static readonly Memory<byte> expectedFileIdentifier = "STBL"u8.ToArray();
     const ushort expectedVersion = 5;
+    static readonly UTF8Encoding strictUtf8 = new(false, true);
     static readonly ImmutableHashSet<ResourceType> supportedTypes =
     [
         ResourceType.StringTable
@@ -19,36 +20,58 @@ public class StringTableModel :
         supportedTypes;
 
     /// <inheritdoc/>
+    /// <exception cref="InvalidDataException">The data is not a well-formed string table: its file identifier or version is not the expected one, its entries do not fill it exactly, its total string length disagrees with its entries, or a string is not valid UTF-8</exception>
     public static StringTableModel Decode(ReadOnlyMemory<byte> data)
     {
         var dataSpan = data.Span;
+        if (dataSpan.Length < 21)
+            throw new InvalidDataException($"{dataSpan.Length} bytes are too few for a string table");
         var mnFileIdentifier = dataSpan[0..4];
         if (!mnFileIdentifier.SequenceEqual(expectedFileIdentifier.Span))
-            throw new NotSupportedException($"File identifier \"{Encoding.ASCII.GetString(mnFileIdentifier)}\" is invalid");
+            throw new InvalidDataException($"File identifier \"{Encoding.ASCII.GetString(mnFileIdentifier)}\" is invalid");
         var readPosition = 4U;
         var mnVersion = dataSpan.ReadAndAdvancePosition<ushort>(ref readPosition);
         if (mnVersion != expectedVersion)
-            throw new NotSupportedException($"Version {mnVersion} is not supported, expected {expectedVersion}");
+            throw new InvalidDataException($"Version {mnVersion} is not supported, expected {expectedVersion}");
         ++readPosition; // mbCompressed
         var mnNumEntries = dataSpan.ReadAndAdvancePosition<ulong>(ref readPosition);
-        readPosition += 6; // mReserved[2] & mnStringLength
+        readPosition += 2; // mReserved[2]
+        var mnStringLength = dataSpan.ReadAndAdvancePosition<uint>(ref readPosition);
+        var stringLength = 0UL;
         var stringTableModel = new StringTableModel();
         var orderedKeyHashes = stringTableModel.orderedKeyHashes;
         var entries = stringTableModel.entries;
         for (ulong i = 0; i < mnNumEntries; ++i)
         {
+            if (dataSpan.Length - readPosition < 7)
+                throw new InvalidDataException($"Entry {i} of {mnNumEntries} extends beyond the data");
             var mnKeyHash = dataSpan.ReadAndAdvancePosition<uint>(ref readPosition);
             ++readPosition; // mnFlags
             var mnLength = dataSpan.ReadAndAdvancePosition<ushort>(ref readPosition);
-            var @string = mnLength > 0
-                ? Encoding.UTF8.GetString(dataSpan[(int)readPosition..(int)(readPosition += mnLength)])
-                : string.Empty;
+            if (dataSpan.Length - readPosition < mnLength)
+                throw new InvalidDataException($"The string of entry {i} of {mnNumEntries} extends beyond the data");
+            string @string;
+            try
+            {
+                @string = mnLength > 0
+                    ? strictUtf8.GetString(dataSpan[(int)readPosition..(int)(readPosition += mnLength)])
+                    : string.Empty;
+            }
+            catch (DecoderFallbackException ex)
+            {
+                throw new InvalidDataException($"The string of entry {i} of {mnNumEntries} is not valid UTF-8", ex);
+            }
+            stringLength += mnLength + 1UL;
             ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(entries, mnKeyHash, out var exists);
             if (exists)
                 continue;
             value = @string;
             orderedKeyHashes.Add(mnKeyHash);
         }
+        if (readPosition != dataSpan.Length)
+            throw new InvalidDataException($"{dataSpan.Length - readPosition} bytes follow the last entry");
+        if (stringLength != mnStringLength)
+            throw new InvalidDataException($"The total string length is {mnStringLength}, but the entries' strings total {stringLength}");
         return stringTableModel;
     }
 

@@ -1,2 +1,1 @@
-New Model.GetModelType and Model.Decode find and use the model that decodes every resource of a type (CombinedTuning, SimData and StringTable), returning null or throwing NotSupportedException for types no model decodes, including undefined ones.
-New DataBasePackedFile.GetModel and GetModelAsync overloads without a type argument decode a resource with the model for its type.
+StringTableModel.Decode now throws InvalidDataException for any malformed string table (wrong identifier or version, truncation, bytes after the last entry, a total string length that disagrees with the entries, invalid UTF-8) instead of NotSupportedException, ArgumentOutOfRangeException or silently accepting it.
