@@ -10,6 +10,15 @@ public class SimDataGeneratorTests
         @object.Schema.Columns.Select(column => (column.Name, column.Type));
 
     [TestMethod]
+    public void AddTuningIgnoresInstancesThatAreNotDecimalNumbers()
+    {
+        using var set = SimDataGeneratorFixtures.CreateSet();
+        var generator = new SimDataGenerator(set);
+        generator.AddTuning(XDocument.Parse("""<I c="Widget" i="widget" m="widgets.widget" n="widget_Hexadecimal" s="75C8803F5E42E398" />"""));
+        Assert.ThrowsExactly<SimDataGenerationException>(() => generator.Generate(SimDataGeneratorFixtures.Widget("""<T n="other_widget">widget_Hexadecimal</T>""")));
+    }
+
+    [TestMethod]
     public void ColumnsAreTheExportedMembersOrderedByName()
     {
         using var set = SimDataGeneratorFixtures.CreateSet();
@@ -223,14 +232,25 @@ public class SimDataGeneratorTests
     }
 
     [TestMethod]
-    public void ResourceKeysAreConvertedOnlyWhenAConversionIsAdded()
+    [DataRow("2f7d0004:00000000:00000000000000ab", 0x00B2D882U, 0U)]
+    [DataRow("39b2aa4a:00000000:00000000000000ab", 0xFD04E3BEU, 0x001407ECU)]
+    [DataRow("00b2d882:00000000:00000000000000ab", 0x00B2D882U, 0U)]
+    public void ResourceKeysAreConvertedAsMaxisBuildConvertsThem(string key, uint expectedType, uint expectedGroup)
+    {
+        using var set = SimDataGeneratorFixtures.CreateSet();
+        Assert.AreEqual(new ResourceKey((ResourceType)expectedType, expectedGroup, 0xAB), GenerateObject(new SimDataGenerator(set), SimDataGeneratorFixtures.Widget($"""<T n="icon">{key}</T>"""))["icon"]);
+    }
+
+    [TestMethod]
+    public void ResourceKeyConversionsCanBeRemovedAndAdded()
     {
         using var set = SimDataGeneratorFixtures.CreateSet();
         var generator = new SimDataGenerator(set);
         var tuning = SimDataGeneratorFixtures.Widget("""<T n="icon">2f7d0004:00000000:00000000000000ab</T>""");
-        Assert.AreEqual(new ResourceKey((ResourceType)0x2F7D0004, 0, 0xAB), GenerateObject(generator, tuning)["icon"]);
-        generator.AddResourceKeyConversion((ResourceType)0x2F7D0004, 0, (ResourceType)0x00B2D882, 0);
-        Assert.AreEqual(new ResourceKey((ResourceType)0x00B2D882, 0, 0xAB), GenerateObject(generator, tuning)["icon"]);
+        generator.RemoveResourceKeyConversion(ResourceType.PNGImage, 0);
+        Assert.AreEqual(new ResourceKey(ResourceType.PNGImage, 0, 0xAB), GenerateObject(generator, tuning)["icon"]);
+        generator.AddResourceKeyConversion(ResourceType.PNGImage, 0, ResourceType.DSTImage, 7);
+        Assert.AreEqual(new ResourceKey(ResourceType.DSTImage, 7, 0xAB), GenerateObject(generator, tuning)["icon"]);
     }
 
     [TestMethod]
@@ -248,6 +268,9 @@ public class SimDataGeneratorTests
     [DataRow("""<I c="Widget" n="widget_Test" s="1"><E n="age">ANCIENT</E></I>""")]
     [DataRow("""<I c="Widget" n="widget_Test" s="1"><V n="option" t="sometimes" /></I>""")]
     [DataRow("""<M n="missing.module" s="1" />""")]
+    [DataRow("""<I c="OrderBase" n="order_Test" s="1" />""")]
+    [DataRow("""<I c="Widget" n="widget_Test" s="1"><T n="zeta_int">three</T></I>""")]
+    [DataRow("""<I c="Widget" n="widget_Test" s="1"><T n="zeta_int">99999999999</T></I>""")]
     public void UngeneratableTuningIsRejected(string tuning)
     {
         using var set = SimDataGeneratorFixtures.CreateSet();

@@ -14,8 +14,6 @@ public class SimDataGenerationCorpusTests
     {
         using var set = TuningDescriptionSet.FromZip(GameCorpus.TuningDescriptionsPath!);
         var generator = new SimDataGenerator(set);
-        generator.AddResourceKeyConversion((ResourceType)0x2F7D0004, 0, (ResourceType)0x00B2D882, 0);
-        generator.AddResourceKeyConversion((ResourceType)0x39B2AA4A, 0, (ResourceType)0xFD04E3BE, 0x001407EC);
         var packId = (uint)(set.GetEnum("sims4-common.Pack")?.GetEnumValue(pack) ?? throw new InvalidOperationException($"The tuning descriptions do not have pack {pack}"));
         await using (var basePackage = await DataBasePackedFile.FromPathAsync(GameCorpus.BasePackagePath).ConfigureAwait(false))
             foreach (var key in await basePackage.GetKeysAsync().ConfigureAwait(false))

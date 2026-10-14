@@ -9,8 +9,8 @@ namespace LlamaLogic.TuningDescriptions;
 /// <list type="bullet">
 /// <item><see cref="AddTuning(XDocument)"/> and <see cref="AddTuning(CombinedTuningModel)"/> learn the entries of dynamic enumerations (such as tags defined by module tuning) and the instances of tuning that is referenced by name</item>
 /// <item><see cref="AddLayouts(SimDataModel)"/> learns the column order of schemas the game reads with a layout of its own (such as <c>Client_*</c> and <c>Renderer.*</c> schemas), whose columns are otherwise ordered by name</item>
-/// <item><see cref="AddResourceKeyConversion(ResourceType, uint, ResourceType, uint)"/> learns resource key conversions (Maxis' build converts the keys of resources it also converts, such as PNG images, which tuning written for mods should not have converted)</item>
 /// </list>
+/// <para>Maxis' build also converts some resource keys: a <see cref="ResourceType.PNGImage"/> key in tuning is written to SimData as a <see cref="ResourceType.DSTImage"/> key, and an <see cref="ResourceType.AudioConfigurationReference"/> key as an <see cref="ResourceType.AudioConfiguration"/> key in group <c>0x001407EC</c>. The generator does the same unless <see cref="RemoveResourceKeyConversion(ResourceType, uint)"/> says otherwise, and <see cref="AddResourceKeyConversion(ResourceType, uint, ResourceType, uint)"/> adds conversions.</para>
 /// <para>For the game's own SimData, the game's combined tuning and SimData are the sources of what the generator needs to learn.</para>
 /// </remarks>
 public sealed class SimDataGenerator
@@ -119,6 +119,8 @@ public sealed class SimDataGenerator
     {
         ArgumentNullException.ThrowIfNull(descriptions);
         Descriptions = descriptions;
+        resourceKeyConversions[(ResourceType.PNGImage, 0)] = (ResourceType.DSTImage, 0);
+        resourceKeyConversions[(ResourceType.AudioConfigurationReference, 0)] = (ResourceType.AudioConfiguration, 0x001407EC);
     }
 
     readonly ConcurrentDictionary<string, ConcurrentDictionary<string, long>> dynamicEnumEntries = new(StringComparer.Ordinal);
@@ -175,15 +177,17 @@ public sealed class SimDataGenerator
     /// <summary>
     /// Learns the entries of dynamic enumerations the specified <paramref name="tuning"/> defines (if it is module tuning) and the name of its instance
     /// </summary>
-    /// <exception cref="FormatException">The instance of <paramref name="tuning"/> is not a number</exception>
+    /// <remarks>
+    /// An instance or enumeration value that is not a decimal number (such as one a modding tool wrote in hexadecimal) is not learned.
+    /// </remarks>
     public void AddTuning(XDocument tuning)
     {
         ArgumentNullException.ThrowIfNull(tuning);
         if (tuning.Root is not { } root)
             return;
         var name = GetAttribute(root, "n");
-        if (name is not null && GetAttribute(root, "s") is { } instance)
-            instancesByName[name] = ulong.Parse(instance, NumberStyles.None, CultureInfo.InvariantCulture);
+        if (name is not null && ulong.TryParse(GetAttribute(root, "s"), NumberStyles.None, CultureInfo.InvariantCulture, out var instance))
+            instancesByName[name] = instance;
         if (root.Name.LocalName != "M" || name is null)
             return;
         void addClasses(XElement parent, string path)
@@ -197,8 +201,8 @@ public sealed class SimDataGenerator
                 {
                     var entries = dynamicEnumEntries.GetOrAdd($"{classPath}._elements", _ => new(StringComparer.Ordinal));
                     foreach (var entry in elements.Elements())
-                        if (GetAttribute(entry, "ev") is { } value && GetText(entry) is { } entryName)
-                            entries[entryName] = long.Parse(value, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture);
+                        if (long.TryParse(GetAttribute(entry, "ev"), NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out var value) && GetText(entry) is { } entryName)
+                            entries[entryName] = value;
                 }
                 addClasses(@class, classPath);
             }
@@ -243,19 +247,26 @@ public sealed class SimDataGenerator
         ArgumentNullException.ThrowIfNull(tuning);
         var root = tuning.Root ?? throw new SimDataGenerationException("The tuning has no root element");
         var model = new SimDataModel();
-        switch (root.Name.LocalName)
+        try
         {
-            case "I":
-                model.Instances.Add(GenerateInstance(root));
-                break;
-            case "M":
-                foreach (var instance in GenerateModule(root))
-                    model.Instances.Add(instance);
-                if (model.Instances.Count == 0)
-                    throw new SimDataGenerationException($"Module {GetAttribute(root, "n")} has no exported tunables");
-                break;
-            default:
-                throw new SimDataGenerationException($"The root element of the tuning is {root.Name.LocalName}, not I or M");
+            switch (root.Name.LocalName)
+            {
+                case "I":
+                    model.Instances.Add(GenerateInstance(root));
+                    break;
+                case "M":
+                    foreach (var instance in GenerateModule(root))
+                        model.Instances.Add(instance);
+                    if (model.Instances.Count == 0)
+                        throw new SimDataGenerationException($"Module {GetAttribute(root, "n")} has no exported tunables");
+                    break;
+                default:
+                    throw new SimDataGenerationException($"The root element of the tuning is {root.Name.LocalName}, not I or M");
+            }
+        }
+        catch (Exception ex) when (ex is FormatException or OverflowException)
+        {
+            throw new SimDataGenerationException($"A value in the tuning cannot be read: {ex.Message}", ex);
         }
         return model;
     }
@@ -466,6 +477,11 @@ public sealed class SimDataGenerator
         throw new SimDataGenerationException($"No tuning named {text} has been added to the generator");
     }
 
+    SimDataSchema GetSchema(string name, IReadOnlyList<(string Name, SimDataType Type)> columnTypes) =>
+        columnTypes.Count == 0
+        ? throw new SimDataGenerationException($"{name} has no exported tunables")
+        : schemas.GetOrAdd((name, string.Join("\0", columnTypes.Select(columnType => $"{columnType.Name}\0{(int)columnType.Type}"))), _ => new SimDataSchema(name, columnTypes.Select(columnType => new SimDataColumn(columnType.Name, columnType.Type))));
+
     SimDataType? GetSimDataType(XElement description)
     {
         var className = GetAttribute(description, "class");
@@ -496,9 +512,6 @@ public sealed class SimDataGenerator
         };
     }
 
-    SimDataSchema GetSchema(string name, IReadOnlyList<(string Name, SimDataType Type)> columnTypes) =>
-        schemas.GetOrAdd((name, string.Join("\0", columnTypes.Select(columnType => $"{columnType.Name}\0{(int)columnType.Type}"))), _ => new SimDataSchema(name, columnTypes.Select(columnType => new SimDataColumn(columnType.Name, columnType.Type))));
-
     IReadOnlyList<(string Name, XElement Description)> GetTupleColumns(XElement description, bool full) =>
         Arrange(GetAttribute(description, "class"), (full ? fullTupleColumns : partialTupleColumns).GetValue(description, tuple =>
         {
@@ -512,6 +525,12 @@ public sealed class SimDataGenerator
 
     bool IsExported(XElement description) =>
         GetAttribute(description, "_force") == "1" || exportedDescriptions.GetValue(description, element => new(element.DescendantsAndSelf().Any(IsClientBinary))).Value!;
+
+    /// <summary>
+    /// Stops converting resource keys of the specified <paramref name="fromType"/> and <paramref name="fromGroup"/> in tuning, so that they are written to SimData as they are
+    /// </summary>
+    public void RemoveResourceKeyConversion(ResourceType fromType, uint fromGroup) =>
+        resourceKeyConversions.TryRemove((fromType, fromGroup), out _);
 
     XElement Resolve(XElement description)
     {
