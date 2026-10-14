@@ -1,0 +1,589 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningDescriptions.VariantTunableDescription
+  commentId: T:LlamaLogic.TuningDescriptions.VariantTunableDescription
+  id: VariantTunableDescription
+  parent: LlamaLogic.TuningDescriptions
+  children:
+  - LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption(System.String)
+  - LlamaLogic.TuningDescriptions.VariantTunableDescription.Options
+  langs:
+  - csharp
+  - vb
+  name: VariantTunableDescription
+  nameWithType: VariantTunableDescription
+  fullName: LlamaLogic.TuningDescriptions.VariantTunableDescription
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/VariantTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VariantTunableDescription
+    path: ../LlamaLogic.TuningDescriptions/VariantTunableDescription.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: "Represents the description of a tunable whose value is one of several named options (a <code>TunableVariant</code> element) (\U0001F512)"
+  remarks: <xref href="LlamaLogic.TuningDescriptions.TunableDescription.Default" data-throw-if-not-resolved="false"></xref> is the name of the option tuning gets when it does not choose one.
+  example: []
+  syntax:
+    content: 'public sealed class VariantTunableDescription : TunableDescription'
+    content.vb: Public NotInheritable Class VariantTunableDescription Inherits TunableDescription
+  inheritance:
+  - System.Object
+  - LlamaLogic.TuningDescriptions.TunableDescription
+  inheritedMembers:
+  - LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+  - LlamaLogic.TuningDescriptions.TunableDescription.Class
+  - LlamaLogic.TuningDescriptions.TunableDescription.Default
+  - LlamaLogic.TuningDescriptions.TunableDescription.Description
+  - LlamaLogic.TuningDescriptions.TunableDescription.Display
+  - LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+  - LlamaLogic.TuningDescriptions.TunableDescription.Group
+  - LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+  - LlamaLogic.TuningDescriptions.TunableDescription.Members
+  - LlamaLogic.TuningDescriptions.TunableDescription.Muid
+  - LlamaLogic.TuningDescriptions.TunableDescription.Name
+  - LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningDescriptions.VariantTunableDescription.Options
+  commentId: P:LlamaLogic.TuningDescriptions.VariantTunableDescription.Options
+  id: Options
+  parent: LlamaLogic.TuningDescriptions.VariantTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: VariantTunableDescription.Options
+  fullName: LlamaLogic.TuningDescriptions.VariantTunableDescription.Options
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/VariantTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Options
+    path: ../LlamaLogic.TuningDescriptions/VariantTunableDescription.cs
+    startLine: 19
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the options of the variant, in document order
+  example: []
+  syntax:
+    content: public IReadOnlyList<TunableDescription> Options { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription}
+    content.vb: Public ReadOnly Property Options As IReadOnlyList(Of TunableDescription)
+  overload: LlamaLogic.TuningDescriptions.VariantTunableDescription.Options*
+- uid: LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption(System.String)
+  commentId: M:LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption(System.String)
+  id: GetOption(System.String)
+  parent: LlamaLogic.TuningDescriptions.VariantTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: GetOption(string)
+  nameWithType: VariantTunableDescription.GetOption(string)
+  fullName: LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption(string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/VariantTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetOption
+    path: ../LlamaLogic.TuningDescriptions/VariantTunableDescription.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the option with the specified <code class="paramref">name</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if there is none
+  example: []
+  syntax:
+    content: public TunableDescription? GetOption(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: LlamaLogic.TuningDescriptions.TunableDescription
+    content.vb: Public Function GetOption(name As String) As TunableDescription
+  overload: LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption*
+  nameWithType.vb: VariantTunableDescription.GetOption(String)
+  fullName.vb: LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption(String)
+  name.vb: GetOption(String)
+references:
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Default
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Default
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Default
+  name: Default
+  nameWithType: TunableDescription.Default
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Default
+- uid: LlamaLogic.TuningDescriptions
+  commentId: N:LlamaLogic.TuningDescriptions
+  name: LlamaLogic.TuningDescriptions
+  nameWithType: LlamaLogic.TuningDescriptions
+  fullName: LlamaLogic.TuningDescriptions
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.TuningDescriptions.TunableDescription
+  commentId: T:LlamaLogic.TuningDescriptions.TunableDescription
+  parent: LlamaLogic.TuningDescriptions
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html
+  name: TunableDescription
+  nameWithType: TunableDescription
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Attributes
+  name: Attributes
+  nameWithType: TunableDescription.Attributes
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Class
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Class
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Class
+  name: Class
+  nameWithType: TunableDescription.Class
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Class
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Description
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Description
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Description
+  name: Description
+  nameWithType: TunableDescription.Description
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Description
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Display
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Display
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Display
+  name: Display
+  nameWithType: TunableDescription.Display
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Display
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_ExportModes
+  name: ExportModes
+  nameWithType: TunableDescription.ExportModes
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Group
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Group
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Group
+  name: Group
+  nameWithType: TunableDescription.Group
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Group
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_IsDeprecated
+  name: IsDeprecated
+  nameWithType: TunableDescription.IsDeprecated
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Members
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Members
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Members
+  name: Members
+  nameWithType: TunableDescription.Members
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Members
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Muid
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Muid
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Muid
+  name: Muid
+  nameWithType: TunableDescription.Muid
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Muid
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Name
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Name
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Name
+  name: Name
+  nameWithType: TunableDescription.Name
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Name
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+  commentId: M:LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  isExternal: true
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_GetMember_System_String_
+  name: GetMember(string)
+  nameWithType: TunableDescription.GetMember(string)
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(string)
+  nameWithType.vb: TunableDescription.GetMember(String)
+  fullName.vb: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(String)
+  name.vb: GetMember(String)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+    name: GetMember
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_GetMember_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+    name: GetMember
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_GetMember_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningDescriptions.VariantTunableDescription.Options*
+  commentId: Overload:LlamaLogic.TuningDescriptions.VariantTunableDescription.Options
+  href: LlamaLogic.TuningDescriptions.VariantTunableDescription.html#LlamaLogic_TuningDescriptions_VariantTunableDescription_Options
+  name: Options
+  nameWithType: VariantTunableDescription.Options
+  fullName: LlamaLogic.TuningDescriptions.VariantTunableDescription.Options
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TunableDescription>
+  nameWithType: IReadOnlyList<TunableDescription>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningDescriptions.TunableDescription>
+  nameWithType.vb: IReadOnlyList(Of TunableDescription)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningDescriptions.TunableDescription)
+  name.vb: IReadOnlyList(Of TunableDescription)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription
+    name: TunableDescription
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription
+    name: TunableDescription
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption*
+  commentId: Overload:LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption
+  href: LlamaLogic.TuningDescriptions.VariantTunableDescription.html#LlamaLogic_TuningDescriptions_VariantTunableDescription_GetOption_System_String_
+  name: GetOption
+  nameWithType: VariantTunableDescription.GetOption
+  fullName: LlamaLogic.TuningDescriptions.VariantTunableDescription.GetOption
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

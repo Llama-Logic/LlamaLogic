@@ -5,8 +5,10 @@ items:
   id: SimDataSchema
   parent: LlamaLogic.Packages.Models.SimData
   children:
+  - LlamaLogic.Packages.Models.SimData.SimDataSchema.#ctor(System.String,System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.SimData.SimDataColumn})
   - LlamaLogic.Packages.Models.SimData.SimDataSchema.#ctor(System.String,System.UInt32,System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.SimData.SimDataColumn})
   - LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns
+  - LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
   - LlamaLogic.Packages.Models.SimData.SimDataSchema.GetColumnIndex(System.String)
   - LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
   - LlamaLogic.Packages.Models.SimData.SimDataSchema.Name
@@ -24,7 +26,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SimDataSchema
     path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
-    startLine: 9
+    startLine: 10
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -33,6 +35,8 @@ items:
     The order of <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns" data-throw-if-not-resolved="false"></xref> is the order in which the columns' values are laid out in each row.
 
     For schemas the game reads with a fixed layout (e.g. <code>Client_*</code> and <code>Renderer.*</code> schemas), this order must match the game's, which is why <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Decode(System.ReadOnlyMemory%7bSystem.Byte%7d)" data-throw-if-not-resolved="false"></xref> preserves it.
+
+    The game derives a schema's hash from its name and layout (see <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash" data-throw-if-not-resolved="false"></xref>), so changing the columns or their order changes the hash the game expects.
   example: []
   syntax:
     content: public sealed class SimDataSchema
@@ -64,7 +68,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: .ctor
     path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -91,6 +95,48 @@ items:
   nameWithType.vb: SimDataSchema.New(String, UInteger, IEnumerable(Of SimDataColumn))
   fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataSchema.New(String, UInteger, System.Collections.Generic.IEnumerable(Of LlamaLogic.Packages.Models.SimData.SimDataColumn))
   name.vb: New(String, UInteger, IEnumerable(Of SimDataColumn))
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.#ctor(System.String,System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.SimData.SimDataColumn})
+  commentId: M:LlamaLogic.Packages.Models.SimData.SimDataSchema.#ctor(System.String,System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.SimData.SimDataColumn})
+  id: '#ctor(System.String,System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.SimData.SimDataColumn})'
+  parent: LlamaLogic.Packages.Models.SimData.SimDataSchema
+  langs:
+  - csharp
+  - vb
+  name: SimDataSchema(string, IEnumerable<SimDataColumn>)
+  nameWithType: SimDataSchema.SimDataSchema(string, IEnumerable<SimDataColumn>)
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema.SimDataSchema(string, System.Collections.Generic.IEnumerable<LlamaLogic.Packages.Models.SimData.SimDataColumn>)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
+    startLine: 61
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Initializes a new <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema" data-throw-if-not-resolved="false"></xref> whose <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash" data-throw-if-not-resolved="false"></xref> is its <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public SimDataSchema(string name, IEnumerable<SimDataColumn> columns)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the schema
+    - id: columns
+      type: System.Collections.Generic.IEnumerable{LlamaLogic.Packages.Models.SimData.SimDataColumn}
+      description: The columns of the schema, in layout order
+    content.vb: Public Sub New(name As String, columns As IEnumerable(Of SimDataColumn))
+  overload: LlamaLogic.Packages.Models.SimData.SimDataSchema.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">columns</code> is empty, contains <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, or contains two columns with the same name
+  nameWithType.vb: SimDataSchema.New(String, IEnumerable(Of SimDataColumn))
+  fullName.vb: LlamaLogic.Packages.Models.SimData.SimDataSchema.New(String, System.Collections.Generic.IEnumerable(Of LlamaLogic.Packages.Models.SimData.SimDataColumn))
+  name.vb: New(String, IEnumerable(Of SimDataColumn))
 - uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns
   commentId: P:LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns
   id: Columns
@@ -109,7 +155,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Columns
     path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
-    startLine: 55
+    startLine: 70
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -122,6 +168,41 @@ items:
       type: System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.Models.SimData.SimDataColumn}
     content.vb: Public ReadOnly Property Columns As IReadOnlyList(Of SimDataColumn)
   overload: LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns*
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+  id: ComputedHash
+  parent: LlamaLogic.Packages.Models.SimData.SimDataSchema
+  langs:
+  - csharp
+  - vb
+  name: ComputedHash
+  nameWithType: SimDataSchema.ComputedHash
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ComputedHash
+    path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
+    startLine: 79
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.SimData
+  summary: Gets the hash the game derives from the schema's <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema.Name" data-throw-if-not-resolved="false"></xref> and the layout of its <xref href="LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns" data-throw-if-not-resolved="false"></xref>
+  remarks: >-
+    The game computes this as the sum of the <xref href="LlamaLogic.Packages.Cryptography.Fnv32" data-throw-if-not-resolved="false"></xref> hash of the lowercased name, the row size shifted left 16 bits, the number of columns, and, for each column, the <xref href="LlamaLogic.Packages.Cryptography.Fnv32" data-throw-if-not-resolved="false"></xref> hash of its lowercased name XOR its type shifted left 16 bits XOR its offset in the row shifted left 8 bits.
+
+    Column flags do not contribute.
+  example: []
+  syntax:
+    content: public uint ComputedHash { get; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public ReadOnly Property ComputedHash As UInteger
+  overload: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash*
 - uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
   commentId: P:LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
   id: Hash
@@ -140,7 +221,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Hash
     path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
-    startLine: 60
+    startLine: 84
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -171,7 +252,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Name
     path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
-    startLine: 65
+    startLine: 89
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -202,7 +283,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetColumnIndex
     path: ../LlamaLogic.Packages/Models/SimData/SimDataSchema.cs
-    startLine: 81
+    startLine: 105
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -278,6 +359,12 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.byte
   - name: )
   - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+  href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html#LlamaLogic_Packages_Models_SimData_SimDataSchema_ComputedHash
+  name: ComputedHash
+  nameWithType: SimDataSchema.ComputedHash
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
 - uid: LlamaLogic.Packages.Models.SimData
   commentId: N:LlamaLogic.Packages.Models.SimData
   name: LlamaLogic.Packages.Models.SimData
@@ -663,6 +750,12 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
+  href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html#LlamaLogic_Packages_Models_SimData_SimDataSchema_Hash
+  name: Hash
+  nameWithType: SimDataSchema.Hash
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
 - uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns*
   commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataSchema.Columns
   href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html#LlamaLogic_Packages_Models_SimData_SimDataSchema_Columns
@@ -730,6 +823,48 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.Name
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataSchema.Name
+  href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html#LlamaLogic_Packages_Models_SimData_SimDataSchema_Name
+  name: Name
+  nameWithType: SimDataSchema.Name
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema.Name
+- uid: LlamaLogic.Packages.Cryptography.Fnv32
+  commentId: T:LlamaLogic.Packages.Cryptography.Fnv32
+  parent: LlamaLogic.Packages.Cryptography
+  href: LlamaLogic.Packages.Cryptography.Fnv32.html
+  name: Fnv32
+  nameWithType: Fnv32
+  fullName: LlamaLogic.Packages.Cryptography.Fnv32
+- uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+  href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html#LlamaLogic_Packages_Models_SimData_SimDataSchema_ComputedHash
+  name: ComputedHash
+  nameWithType: SimDataSchema.ComputedHash
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataSchema.ComputedHash
+- uid: LlamaLogic.Packages.Cryptography
+  commentId: N:LlamaLogic.Packages.Cryptography
+  name: LlamaLogic.Packages.Cryptography
+  nameWithType: LlamaLogic.Packages.Cryptography
+  fullName: LlamaLogic.Packages.Cryptography
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Cryptography
+    name: Cryptography
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Cryptography
+    name: Cryptography
 - uid: LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash*
   commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataSchema.Hash
   href: LlamaLogic.Packages.Models.SimData.SimDataSchema.html#LlamaLogic_Packages_Models_SimData_SimDataSchema_Hash

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum DataModelVersion | Llama Logic </title>
+      <title>Enum TuningDescriptionExportModes | Llama Logic </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum DataModelVersion | Llama Logic ">
+      <meta name="title" content="Enum TuningDescriptionExportModes | Llama Logic ">
       
-      <meta name="description" content="Known versions of the format for  and  resources">
+      <meta name="description" content="The destinations to which the game&#39;s build exports a tunable (its export_modes attribute)">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Packages_Models_Data_DataModelVersion.md&amp;value=---%0Auid%3A%20LlamaLogic.Packages.Models.Data.DataModelVersion%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_TuningDescriptions_TuningDescriptionExportModes.md&amp;value=---%0Auid%3A%20LlamaLogic.TuningDescriptions.TuningDescriptionExportModes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,28 +84,27 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="LlamaLogic.Packages.Models.Data.DataModelVersion">
+        <article data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionExportModes">
 
 
 
 
-  <h1 id="LlamaLogic_Packages_Models_Data_DataModelVersion" data-uid="LlamaLogic.Packages.Models.Data.DataModelVersion" class="text-break">
-Enum DataModelVersion  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/Data/DataModelVersion.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <h1 id="LlamaLogic_TuningDescriptions_TuningDescriptionExportModes" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionExportModes" class="text-break">
+Enum TuningDescriptionExportModes  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionExportModes.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Packages.html">Packages</a>.<a class="xref" href="LlamaLogic.Packages.Models.html">Models</a>.<a class="xref" href="LlamaLogic.Packages.Models.Data.html">Data</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>LlamaLogic.Packages.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.TuningDescriptions.html">TuningDescriptions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.TuningDescriptions.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Known versions of the format for <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_SimData">SimData</a> and <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_CombinedTuning">CombinedTuning</a> resources</p>
+  <div class="markdown summary"><p>The destinations to which the game's build exports a tunable (its <code>export_modes</code> attribute)</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;Design&quot;, &quot;CA1008: Enums should have zero value&quot;, Justification = &quot;We do not know what the proper name of such a value would be.&quot;)]
-[SuppressMessage(&quot;Design&quot;, &quot;CA1028: Enum Storage should be Int32&quot;, Justification = &quot;This is determined by the binary format created by Maxis. So sorry to clearly agitate you so much.&quot;)]
-public enum DataModelVersion : uint</code></pre>
+    <pre><code class="lang-csharp hljs">[Flags]
+public enum TuningDescriptionExportModes</code></pre>
   </div>
 
 
@@ -119,13 +118,21 @@ public enum DataModelVersion : uint</code></pre>
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="LlamaLogic_Packages_Models_Data_DataModelVersion_SmartSimOriginalEdition"><code>SmartSimOriginalEdition = 256</code></dt>
+    <dt id="LlamaLogic_TuningDescriptions_TuningDescriptionExportModes_ClientBinary"><code>ClientBinary = 1</code></dt>
   
-  <dd><p>The edition of the format which shipped with the original release of The Sims 4 on September 2, 2014</p>
+  <dd><p>The tunable is exported to <code>SimData</code> resources (<code>client_binary</code>)</p>
 </dd>
-    <dt id="LlamaLogic_Packages_Models_Data_DataModelVersion_VariantSupport"><code>VariantSupport = 257</code></dt>
+    <dt id="LlamaLogic_TuningDescriptions_TuningDescriptionExportModes_None"><code>None = 0</code></dt>
   
-  <dd><p>The edition of the format which shipped with The Sims 4 (v1.5.139) on February 17, 2015, introducing support for <a class="xref" href="LlamaLogic.Packages.Models.Data.DataModelType.html#LlamaLogic_Packages_Models_Data_DataModelType_VARIANT">VARIANT</a> and allowing the creation of <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_CombinedTuning">CombinedTuning</a> resources</p>
+  <dd><p>No destinations</p>
+</dd>
+    <dt id="LlamaLogic_TuningDescriptions_TuningDescriptionExportModes_ServerBinary"><code>ServerBinary = 2</code></dt>
+  
+  <dd><p>The tunable is exported to the binary combined tuning (<code>server_binary</code>)</p>
+</dd>
+    <dt id="LlamaLogic_TuningDescriptions_TuningDescriptionExportModes_ServerXml"><code>ServerXml = 4</code></dt>
+  
+  <dd><p>The tunable is exported to tuning XML (<code>server_xml</code>)</p>
 </dd>
   </dl>
 
@@ -134,7 +141,7 @@ public enum DataModelVersion : uint</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Models/Data/DataModelVersion.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionExportModes.cs/#L6" class="edit-link">Edit this page</a>
         </div>
 
 

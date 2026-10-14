@@ -1,0 +1,663 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription
+  commentId: T:LlamaLogic.TuningDescriptions.ListTunableDescription
+  id: ListTunableDescription
+  parent: LlamaLogic.TuningDescriptions
+  children:
+  - LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique
+  - LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping
+  - LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  - LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass
+  - LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  - LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  langs:
+  - csharp
+  - vb
+  name: ListTunableDescription
+  nameWithType: ListTunableDescription
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ListTunableDescription
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: "Represents the description of a tunable that is a sequence of values described by <xref href=\"LlamaLogic.TuningDescriptions.ListTunableDescription.Item\" data-throw-if-not-resolved=\"false\"></xref> (a <code>TunableList</code> element), including sets and mappings (\U0001F512)"
+  example: []
+  syntax:
+    content: 'public sealed class ListTunableDescription : TunableDescription'
+    content.vb: Public NotInheritable Class ListTunableDescription Inherits TunableDescription
+  inheritance:
+  - System.Object
+  - LlamaLogic.TuningDescriptions.TunableDescription
+  inheritedMembers:
+  - LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+  - LlamaLogic.TuningDescriptions.TunableDescription.Class
+  - LlamaLogic.TuningDescriptions.TunableDescription.Default
+  - LlamaLogic.TuningDescriptions.TunableDescription.Description
+  - LlamaLogic.TuningDescriptions.TunableDescription.Display
+  - LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+  - LlamaLogic.TuningDescriptions.TunableDescription.Group
+  - LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+  - LlamaLogic.TuningDescriptions.TunableDescription.Members
+  - LlamaLogic.TuningDescriptions.TunableDescription.Muid
+  - LlamaLogic.TuningDescriptions.TunableDescription.Name
+  - LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique
+  id: AreEntriesUnique
+  parent: LlamaLogic.TuningDescriptions.ListTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: AreEntriesUnique
+  nameWithType: ListTunableDescription.AreEntriesUnique
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AreEntriesUnique
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 16
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets whether tuning may not repeat an entry (its <code>unique_entries</code> attribute)
+  example: []
+  syntax:
+    content: public bool AreEntriesUnique { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property AreEntriesUnique As Boolean
+  overload: LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique*
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping
+  id: IsMapping
+  parent: LlamaLogic.TuningDescriptions.ListTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: IsMapping
+  nameWithType: ListTunableDescription.IsMapping
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IsMapping
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 22
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets whether the list is a mapping, the items of which are pairs of the members named by <xref href="LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public bool IsMapping { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsMapping As Boolean
+  overload: LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping*
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  id: Item
+  parent: LlamaLogic.TuningDescriptions.ListTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: Item
+  nameWithType: ListTunableDescription.Item
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Item
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 28
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the description of the list's items, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the description has none
+  example: []
+  syntax:
+    content: public TunableDescription? Item { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningDescriptions.TunableDescription
+    content.vb: Public ReadOnly Property Item As TunableDescription
+  overload: LlamaLogic.TuningDescriptions.ListTunableDescription.Item*
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass
+  id: MappingClass
+  parent: LlamaLogic.TuningDescriptions.ListTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: MappingClass
+  nameWithType: ListTunableDescription.MappingClass
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MappingClass
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 34
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the name of the class of the mapping's pairs (its <code>mapping_class</code> attribute)
+  example: []
+  syntax:
+    content: public string? MappingClass { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property MappingClass As String
+  overload: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass*
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  id: MappingKey
+  parent: LlamaLogic.TuningDescriptions.ListTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: MappingKey
+  nameWithType: ListTunableDescription.MappingKey
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MappingKey
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the name of the member of <xref href="LlamaLogic.TuningDescriptions.ListTunableDescription.Item" data-throw-if-not-resolved="false"></xref> that is the key of each pair (its <code>mapping_key</code> attribute)
+  example: []
+  syntax:
+    content: public string? MappingKey { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property MappingKey As String
+  overload: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey*
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  id: MappingValue
+  parent: LlamaLogic.TuningDescriptions.ListTunableDescription
+  langs:
+  - csharp
+  - vb
+  name: MappingValue
+  nameWithType: ListTunableDescription.MappingValue
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MappingValue
+    path: ../LlamaLogic.TuningDescriptions/ListTunableDescription.cs
+    startLine: 46
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the name of the member of <xref href="LlamaLogic.TuningDescriptions.ListTunableDescription.Item" data-throw-if-not-resolved="false"></xref> that is the value of each pair (its <code>mapping_value</code> attribute)
+  example: []
+  syntax:
+    content: public string? MappingValue { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property MappingValue As String
+  overload: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue*
+references:
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  isExternal: true
+- uid: LlamaLogic.TuningDescriptions
+  commentId: N:LlamaLogic.TuningDescriptions
+  name: LlamaLogic.TuningDescriptions
+  nameWithType: LlamaLogic.TuningDescriptions
+  fullName: LlamaLogic.TuningDescriptions
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.TuningDescriptions.TunableDescription
+  commentId: T:LlamaLogic.TuningDescriptions.TunableDescription
+  parent: LlamaLogic.TuningDescriptions
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html
+  name: TunableDescription
+  nameWithType: TunableDescription
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Attributes
+  name: Attributes
+  nameWithType: TunableDescription.Attributes
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Attributes
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Class
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Class
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Class
+  name: Class
+  nameWithType: TunableDescription.Class
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Class
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Default
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Default
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Default
+  name: Default
+  nameWithType: TunableDescription.Default
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Default
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Description
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Description
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Description
+  name: Description
+  nameWithType: TunableDescription.Description
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Description
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Display
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Display
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Display
+  name: Display
+  nameWithType: TunableDescription.Display
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Display
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_ExportModes
+  name: ExportModes
+  nameWithType: TunableDescription.ExportModes
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.ExportModes
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Group
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Group
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Group
+  name: Group
+  nameWithType: TunableDescription.Group
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Group
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_IsDeprecated
+  name: IsDeprecated
+  nameWithType: TunableDescription.IsDeprecated
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.IsDeprecated
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Members
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Members
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Members
+  name: Members
+  nameWithType: TunableDescription.Members
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Members
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Muid
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Muid
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Muid
+  name: Muid
+  nameWithType: TunableDescription.Muid
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Muid
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.Name
+  commentId: P:LlamaLogic.TuningDescriptions.TunableDescription.Name
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_Name
+  name: Name
+  nameWithType: TunableDescription.Name
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.Name
+- uid: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+  commentId: M:LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+  parent: LlamaLogic.TuningDescriptions.TunableDescription
+  isExternal: true
+  href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_GetMember_System_String_
+  name: GetMember(string)
+  nameWithType: TunableDescription.GetMember(string)
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(string)
+  nameWithType.vb: TunableDescription.GetMember(String)
+  fullName.vb: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(String)
+  name.vb: GetMember(String)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+    name: GetMember
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_GetMember_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription.GetMember(System.String)
+    name: GetMember
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html#LlamaLogic_TuningDescriptions_TunableDescription_GetMember_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique*
+  commentId: Overload:LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_AreEntriesUnique
+  name: AreEntriesUnique
+  nameWithType: ListTunableDescription.AreEntriesUnique
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.AreEntriesUnique
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_MappingKey
+  name: MappingKey
+  nameWithType: ListTunableDescription.MappingKey
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  commentId: P:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_MappingValue
+  name: MappingValue
+  nameWithType: ListTunableDescription.MappingValue
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping*
+  commentId: Overload:LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_IsMapping
+  name: IsMapping
+  nameWithType: ListTunableDescription.IsMapping
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.IsMapping
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.Item*
+  commentId: Overload:LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_Item
+  name: Item
+  nameWithType: ListTunableDescription.Item
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.Item
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass*
+  commentId: Overload:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_MappingClass
+  name: MappingClass
+  nameWithType: ListTunableDescription.MappingClass
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingClass
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey*
+  commentId: Overload:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_MappingKey
+  name: MappingKey
+  nameWithType: ListTunableDescription.MappingKey
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingKey
+- uid: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue*
+  commentId: Overload:LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
+  href: LlamaLogic.TuningDescriptions.ListTunableDescription.html#LlamaLogic_TuningDescriptions_ListTunableDescription_MappingValue
+  name: MappingValue
+  nameWithType: ListTunableDescription.MappingValue
+  fullName: LlamaLogic.TuningDescriptions.ListTunableDescription.MappingValue
