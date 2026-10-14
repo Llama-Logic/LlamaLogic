@@ -169,7 +169,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_FragmentClasses" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.FragmentClasses">
   FragmentClasses
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L167"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the names of the classes of the set's fragments</p>
@@ -201,7 +201,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_GameVersion" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.GameVersion">
   GameVersion
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L173"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the version of the game the set describes, if it was opened from a file named as Maxis names them</p>
@@ -233,7 +233,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_InstanceClasses" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceClasses">
   InstanceClasses
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L178"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the names of the classes of the set's instances</p>
@@ -261,11 +261,52 @@ A set's members are safe to use from multiple threads.
 
 
 
+  <a id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_InstanceTypes_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes*"></a>
+
+  <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_InstanceTypes" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes">
+  InstanceTypes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the types of instance tuning the set's instances are (their <code>instance_type</code> attributes), such as <code>buff</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyCollection&lt;string&gt; InstanceTypes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_InstanceTypes_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The types are read from the beginning of each instance's document, which is much faster than reading every instance.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>An instance's document is malformed</p>
+</dd>
+  </dl>
+
+
+
   <a id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_ModuleNames_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames*"></a>
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_ModuleNames" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames">
   ModuleNames
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L200"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the names of the set's modules</p>
@@ -301,7 +342,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_Dispose" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L203"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -371,7 +412,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_FromZip_System_IO_Stream_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.FromZip(System.IO.Stream)">
   FromZip(Stream)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Opens the ZIP archive of tuning descriptions in the specified <code class="paramref">stream</code>, which must remain open and seekable until the set is disposed (🗑️)</p>
@@ -408,7 +449,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_FromZip_System_String_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.FromZip(System.String)">
   FromZip(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Opens the ZIP archive of tuning descriptions at the specified <code class="paramref">path</code> (🗑️)</p>
@@ -448,7 +489,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_GetEnum_System_String_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetEnum(System.String)">
   GetEnum(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L213"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the enumeration to which an <a class="xref" href="LlamaLogic.TuningDescriptions.EnumTunableDescription.html#LlamaLogic_TuningDescriptions_EnumTunableDescription_StaticEntries">StaticEntries</a> attribute refers, such as <code>sims-sim_info_types.Age</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the set does not describe it</p>
@@ -491,7 +532,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_GetFragment_System_String_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetFragment(System.String)">
   GetFragment(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L230"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the fragment with the specified <code class="paramref">className</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the set does not have it</p>
@@ -534,7 +575,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_GetInstance_System_String_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetInstance(System.String)">
   GetInstance(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L243"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the instance with the specified <code class="paramref">className</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the set does not have it</p>
@@ -577,7 +618,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_GetModule_System_String_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetModule(System.String)">
   GetModule(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L256"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the module with the specified <code class="paramref">name</code>, such as <code>sims.sim_info_types</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the set does not have it</p>
@@ -620,7 +661,7 @@ A set's members are safe to use from multiple threads.
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionSet_Resolve_LlamaLogic_TuningDescriptions_TunableDescription_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionSet.Resolve(LlamaLogic.TuningDescriptions.TunableDescription)">
   Resolve(TunableDescription)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs/#L269"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the description the specified <code class="paramref">description</code> stands for: the description of the fragment it refers to if it is a <a class="xref" href="LlamaLogic.TuningDescriptions.FragmentReferenceTunableDescription.html">FragmentReferenceTunableDescription</a>, and otherwise itself</p>

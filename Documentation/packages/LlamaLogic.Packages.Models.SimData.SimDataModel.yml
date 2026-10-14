@@ -11,11 +11,11 @@ items:
   - LlamaLogic.Packages.Models.SimData.SimDataModel.GetName(System.IO.Stream)
   - LlamaLogic.Packages.Models.SimData.SimDataModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
   - LlamaLogic.Packages.Models.SimData.SimDataModel.Instances
+  - LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
   - LlamaLogic.Packages.Models.SimData.SimDataModel.ResourceName
   - LlamaLogic.Packages.Models.SimData.SimDataModel.Schemas
   - LlamaLogic.Packages.Models.SimData.SimDataModel.SupportedTypes
   - LlamaLogic.Packages.Models.SimData.SimDataModel.ToXml
-  - LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
   - LlamaLogic.Packages.Models.SimData.SimDataModel.Version
   langs:
   - csharp
@@ -357,37 +357,38 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: Two different schemas have the same hash, or an object contains itself
-- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
-  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
-  id: Unused
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
+  id: Pack
   parent: LlamaLogic.Packages.Models.SimData.SimDataModel
   langs:
   - csharp
   - vb
-  name: Unused
-  nameWithType: SimDataModel.Unused
-  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+  name: Pack
+  nameWithType: SimDataModel.Pack
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
   type: Property
   source:
     remote:
       path: LlamaLogic.Packages/Models/SimData/SimDataModel.cs
       branch: main
       repo: https://github.com/Llama-Logic/LlamaLogic.git
-    id: Unused
+    id: Pack
     path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
-    startLine: 706
+    startLine: 709
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
-  summary: Gets/sets the value of the <code>mUnused</code> field of the resource's header (Maxis always writes <code>0</code>; ignored for <xref href="LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition" data-throw-if-not-resolved="false"></xref>)
+  summary: Gets/sets the pack to which the resource belongs, which is the <code>mUnused</code> field of the resource's header (ignored for <xref href="LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition" data-throw-if-not-resolved="false"></xref>)
+  remarks: The value is that of the game's <code>sims4.common.Pack</code> enumeration, such as <code>0</code> for the base game and <code>3</code> for EP01.
   example: []
   syntax:
-    content: public uint Unused { get; set; }
+    content: public uint Pack { get; set; }
     parameters: []
     return:
       type: System.UInt32
-    content.vb: Public Property Unused As UInteger
-  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused*
+    content.vb: Public Property Pack As UInteger
+  overload: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack*
 - uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Version
   commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Version
   id: Version
@@ -406,7 +407,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Version
     path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
-    startLine: 711
+    startLine: 714
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -437,7 +438,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Encode
     path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
-    startLine: 715
+    startLine: 718
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -474,7 +475,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ToXml
     path: ../LlamaLogic.Packages/Models/SimData/SimDataModel.cs
-    startLine: 1059
+    startLine: 1062
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages.Models.SimData
@@ -1884,12 +1885,12 @@ references:
   name: SmartSimOriginalEdition
   nameWithType: SimDataVersion.SmartSimOriginalEdition
   fullName: LlamaLogic.Packages.Models.SimData.SimDataVersion.SmartSimOriginalEdition
-- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused*
-  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
-  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Unused
-  name: Unused
-  nameWithType: SimDataModel.Unused
-  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Unused
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack*
+  commentId: Overload:LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
+  href: LlamaLogic.Packages.Models.SimData.SimDataModel.html#LlamaLogic_Packages_Models_SimData_SimDataModel_Pack
+  name: Pack
+  nameWithType: SimDataModel.Pack
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
 - uid: System.UInt32
   commentId: T:System.UInt32
   parent: System

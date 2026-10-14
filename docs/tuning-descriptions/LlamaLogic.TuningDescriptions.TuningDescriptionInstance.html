@@ -459,7 +459,7 @@ Class TuningDescriptionInstance  <a class="header-action link-secondary" title="
 
   <h4 class="section" id="LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetEffectiveMembers_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Each tunable is the description from the first class in <a class="xref" href="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html#LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetMethodResolutionOrder">GetMethodResolutionOrder()</a> that declares or deletes it, as in Python.
-The tunables are ordered by where they first appear, from the most basic class to this one.</p>
+The tunables are in the order the game collects them: walking from the most basic class to this one, each class first removes the tunables it deletes and then adds or replaces those it declares, a newly added tunable going to the end.</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
@@ -475,7 +475,7 @@ The tunables are ordered by where they first appear, from the most basic class t
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetMember_System_String_" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetMember(System.String)">
   GetMember(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionInstance.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionInstance.cs/#L108"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the tunable the class declares with the specified <code class="paramref">name</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if it declares none</p>
@@ -512,7 +512,7 @@ The tunables are ordered by where they first appear, from the most basic class t
 
   <h3 id="LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetMethodResolutionOrder" data-uid="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetMethodResolutionOrder">
   GetMethodResolutionOrder()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionInstance.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/TuningDescriptionInstance.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets this class followed by the classes from which it inherits, in the order Python searches them (the C3 linearization of <a class="xref" href="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html#LlamaLogic_TuningDescriptions_TuningDescriptionInstance_Parents">Parents</a>)</p>

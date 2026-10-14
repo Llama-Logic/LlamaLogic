@@ -16,6 +16,7 @@ items:
   - LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetInstance(System.String)
   - LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetModule(System.String)
   - LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceClasses
+  - LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes
   - LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames
   - LlamaLogic.TuningDescriptions.TuningDescriptionSet.Resolve(LlamaLogic.TuningDescriptions.TunableDescription)
   langs:
@@ -124,7 +125,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FromZip
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 40
+    startLine: 47
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -161,7 +162,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FromZip
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 63
+    startLine: 70
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -194,7 +195,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: FragmentClasses
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 137
+    startLine: 166
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -225,7 +226,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GameVersion
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 143
+    startLine: 172
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -256,7 +257,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: InstanceClasses
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 148
+    startLine: 177
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -269,6 +270,42 @@ items:
       type: System.Collections.Generic.IReadOnlyCollection{System.String}
     content.vb: Public ReadOnly Property InstanceClasses As IReadOnlyCollection(Of String)
   overload: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceClasses*
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes
+  commentId: P:LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes
+  id: InstanceTypes
+  parent: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  langs:
+  - csharp
+  - vb
+  name: InstanceTypes
+  nameWithType: TuningDescriptionSet.InstanceTypes
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: InstanceTypes
+    path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
+    startLine: 187
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the types of instance tuning the set's instances are (their <code>instance_type</code> attributes), such as <code>buff</code>
+  remarks: The types are read from the beginning of each instance's document, which is much faster than reading every instance.
+  example: []
+  syntax:
+    content: public IReadOnlyCollection<string> InstanceTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyCollection{System.String}
+    content.vb: Public ReadOnly Property InstanceTypes As IReadOnlyCollection(Of String)
+  overload: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: An instance's document is malformed
 - uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames
   commentId: P:LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames
   id: ModuleNames
@@ -287,7 +324,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: ModuleNames
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 154
+    startLine: 199
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -318,7 +355,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Dispose
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 157
+    startLine: 202
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -348,7 +385,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetEnum
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 167
+    startLine: 212
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -388,7 +425,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetFragment
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 184
+    startLine: 229
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -428,7 +465,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetInstance
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 197
+    startLine: 242
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -468,7 +505,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModule
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 210
+    startLine: 255
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -508,7 +545,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Resolve
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionSet.cs
-    startLine: 223
+    startLine: 268
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -970,6 +1007,19 @@ references:
   name: InstanceClasses
   nameWithType: TuningDescriptionSet.InstanceClasses
   fullName: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceClasses
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes*
+  commentId: Overload:LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes
+  href: LlamaLogic.TuningDescriptions.TuningDescriptionSet.html#LlamaLogic_TuningDescriptions_TuningDescriptionSet_InstanceTypes
+  name: InstanceTypes
+  nameWithType: TuningDescriptionSet.InstanceTypes
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionSet.InstanceTypes
 - uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames*
   commentId: Overload:LlamaLogic.TuningDescriptions.TuningDescriptionSet.ModuleNames
   href: LlamaLogic.TuningDescriptions.TuningDescriptionSet.html#LlamaLogic_TuningDescriptions_TuningDescriptionSet_ModuleNames
@@ -1010,13 +1060,6 @@ references:
   name: StaticEntries
   nameWithType: EnumTunableDescription.StaticEntries
   fullName: LlamaLogic.TuningDescriptions.EnumTunableDescription.StaticEntries
-- uid: System.IO.InvalidDataException
-  commentId: T:System.IO.InvalidDataException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
-  name: InvalidDataException
-  nameWithType: InvalidDataException
-  fullName: System.IO.InvalidDataException
 - uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetEnum*
   commentId: Overload:LlamaLogic.TuningDescriptions.TuningDescriptionSet.GetEnum
   href: LlamaLogic.TuningDescriptions.TuningDescriptionSet.html#LlamaLogic_TuningDescriptions_TuningDescriptionSet_GetEnum_System_String_

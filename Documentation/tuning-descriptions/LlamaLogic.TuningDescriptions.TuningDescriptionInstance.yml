@@ -329,7 +329,7 @@ items:
   remarks: >-
     Each tunable is the description from the first class in <xref href="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetMethodResolutionOrder" data-throw-if-not-resolved="false"></xref> that declares or deletes it, as in Python.
 
-    The tunables are ordered by where they first appear, from the most basic class to this one.
+    The tunables are in the order the game collects them: walking from the most basic class to this one, each class first removes the tunables it deletes and then adds or replaces those it declares, a newly added tunable going to the end.
   example: []
   syntax:
     content: public IReadOnlyList<TunableDescription> GetEffectiveMembers()
@@ -359,7 +359,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetMember
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionInstance.cs
-    startLine: 106
+    startLine: 107
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -395,7 +395,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetMethodResolutionOrder
     path: ../LlamaLogic.TuningDescriptions/TuningDescriptionInstance.cs
-    startLine: 116
+    startLine: 117
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions

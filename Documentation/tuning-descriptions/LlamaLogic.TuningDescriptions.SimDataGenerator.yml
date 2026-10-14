@@ -1,0 +1,888 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator
+  commentId: T:LlamaLogic.TuningDescriptions.SimDataGenerator
+  id: SimDataGenerator
+  parent: LlamaLogic.TuningDescriptions
+  children:
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  langs:
+  - csharp
+  - vb
+  name: SimDataGenerator
+  nameWithType: SimDataGenerator
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimDataGenerator
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 15
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: "Generates <xref href=\"LlamaLogic.Packages.ResourceType.SimData\" data-throw-if-not-resolved=\"false\"></xref> resources from tuning the way Maxis' build does, using the tuning descriptions of the game version for which they are generated (\U0001F512)"
+  remarks: >-
+    <p>Which tunables become columns, the columns' types, and the values written for tuning that omits a tunable all come from <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p>Some of what Maxis' build knows is not in tuning descriptions, so the generator learns it:</p>
+
+    <ul><li><xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)" data-throw-if-not-resolved="false"></xref> learn the entries of dynamic enumerations (such as tags defined by module tuning) and the instances of tuning that is referenced by name</li><li><xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)" data-throw-if-not-resolved="false"></xref> learns the column order of schemas the game reads with a layout of its own (such as <code>Client_*</code> and <code>Renderer.*</code> schemas), whose columns are otherwise ordered by name</li><li><xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType%2cSystem.UInt32%2cLlamaLogic.Packages.ResourceType%2cSystem.UInt32)" data-throw-if-not-resolved="false"></xref> learns resource key conversions (Maxis' build converts the keys of resources it also converts, such as PNG images, which tuning written for mods should not have converted)</li></ul>
+
+    <p>For the game's own SimData, the game's combined tuning and SimData are the sources of what the generator needs to learn.</p>
+  example: []
+  syntax:
+    content: public sealed class SimDataGenerator
+    content.vb: Public NotInheritable Class SimDataGenerator
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  id: '#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)'
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: SimDataGenerator(TuningDescriptionSet)
+  nameWithType: SimDataGenerator.SimDataGenerator(TuningDescriptionSet)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.SimDataGenerator(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 117
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Initializes a new <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public SimDataGenerator(TuningDescriptionSet descriptions)
+    parameters:
+    - id: descriptions
+      type: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+      description: The tuning descriptions of the game version for which SimData will be generated
+    content.vb: Public Sub New(descriptions As TuningDescriptionSet)
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.#ctor*
+  nameWithType.vb: SimDataGenerator.New(TuningDescriptionSet)
+  fullName.vb: LlamaLogic.TuningDescriptions.SimDataGenerator.New(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  name.vb: New(TuningDescriptionSet)
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  commentId: P:LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  id: Descriptions
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: Descriptions
+  nameWithType: SimDataGenerator.Descriptions
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Descriptions
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 139
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets the tuning descriptions of the game version for which SimData is generated
+  example: []
+  syntax:
+    content: public TuningDescriptionSet Descriptions { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+    content.vb: Public ReadOnly Property Descriptions As TuningDescriptionSet
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions*
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  id: AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: AddLayouts(SimDataModel)
+  nameWithType: SimDataGenerator.AddLayouts(SimDataModel)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AddLayouts
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 147
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Learns the column order of each schema in the specified <code class="paramref">simData</code> whose columns are not ordered by name
+  remarks: When generating an object of a schema with the same name and the same columns, the generator orders the columns as they are ordered in <code class="paramref">simData</code>.
+  example: []
+  syntax:
+    content: public void AddLayouts(SimDataModel simData)
+    parameters:
+    - id: simData
+      type: LlamaLogic.Packages.Models.SimData.SimDataModel
+    content.vb: Public Sub AddLayouts(simData As SimDataModel)
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts*
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+  id: AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: AddResourceKeyConversion(ResourceType, uint, ResourceType, uint)
+  nameWithType: SimDataGenerator.AddResourceKeyConversion(ResourceType, uint, ResourceType, uint)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType, uint, LlamaLogic.Packages.ResourceType, uint)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AddResourceKeyConversion
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 161
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Learns that resource keys of the specified <code class="paramref">fromType</code> and <code class="paramref">fromGroup</code> in tuning are written to SimData with the specified <code class="paramref">toType</code> and <code class="paramref">toGroup</code>
+  example: []
+  syntax:
+    content: public void AddResourceKeyConversion(ResourceType fromType, uint fromGroup, ResourceType toType, uint toGroup)
+    parameters:
+    - id: fromType
+      type: LlamaLogic.Packages.ResourceType
+    - id: fromGroup
+      type: System.UInt32
+    - id: toType
+      type: LlamaLogic.Packages.ResourceType
+    - id: toGroup
+      type: System.UInt32
+    content.vb: Public Sub AddResourceKeyConversion(fromType As ResourceType, fromGroup As UInteger, toType As ResourceType, toGroup As UInteger)
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion*
+  nameWithType.vb: SimDataGenerator.AddResourceKeyConversion(ResourceType, UInteger, ResourceType, UInteger)
+  fullName.vb: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType, UInteger, LlamaLogic.Packages.ResourceType, UInteger)
+  name.vb: AddResourceKeyConversion(ResourceType, UInteger, ResourceType, UInteger)
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  id: AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: AddTuning(CombinedTuningModel)
+  nameWithType: SimDataGenerator.AddTuning(CombinedTuningModel)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AddTuning
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 167
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Learns the entries of dynamic enumerations and the names of instances from each tuning in the specified <code class="paramref">combinedTuning</code>
+  example: []
+  syntax:
+    content: public void AddTuning(CombinedTuningModel combinedTuning)
+    parameters:
+    - id: combinedTuning
+      type: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+    content.vb: Public Sub AddTuning(combinedTuning As CombinedTuningModel)
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning*
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  id: AddTuning(System.Xml.Linq.XDocument)
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: AddTuning(XDocument)
+  nameWithType: SimDataGenerator.AddTuning(XDocument)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AddTuning
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 178
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Learns the entries of dynamic enumerations the specified <code class="paramref">tuning</code> defines (if it is module tuning) and the name of its instance
+  example: []
+  syntax:
+    content: public void AddTuning(XDocument tuning)
+    parameters:
+    - id: tuning
+      type: System.Xml.Linq.XDocument
+    content.vb: Public Sub AddTuning(tuning As XDocument)
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning*
+  exceptions:
+  - type: System.FormatException
+    commentId: T:System.FormatException
+    description: The instance of <code class="paramref">tuning</code> is not a number
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  id: Generate(System.Xml.Linq.XDocument)
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: Generate(XDocument)
+  nameWithType: SimDataGenerator.Generate(XDocument)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Generate
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 240
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Generates the SimData for the specified <code class="paramref">tuning</code>
+  remarks: The <xref href="LlamaLogic.Packages.Models.SimData.SimDataModel.Pack" data-throw-if-not-resolved="false"></xref> of the SimData is <code>0</code>, the base game's; set it for SimData that belongs to a pack.
+  example: []
+  syntax:
+    content: public SimDataModel Generate(XDocument tuning)
+    parameters:
+    - id: tuning
+      type: System.Xml.Linq.XDocument
+      description: Instance tuning (an <code>I</code> element) or module tuning (an <code>M</code> element)
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataModel
+      description: The SimData, with one instance for instance tuning or one instance for each class of module tuning that has exported tunables
+    content.vb: Public Function Generate(tuning As XDocument) As SimDataModel
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate*
+  exceptions:
+  - type: LlamaLogic.TuningDescriptions.SimDataGenerationException
+    commentId: T:LlamaLogic.TuningDescriptions.SimDataGenerationException
+    description: <code class="paramref">tuning</code> cannot be generated with <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions" data-throw-if-not-resolved="false"></xref> and what the generator has learned
+references:
+- uid: LlamaLogic.Packages.ResourceType.SimData
+  commentId: F:LlamaLogic.Packages.ResourceType.SimData
+  name: SimData
+  nameWithType: ResourceType.SimData
+  fullName: LlamaLogic.Packages.ResourceType.SimData
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  commentId: P:LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Descriptions
+  name: Descriptions
+  nameWithType: SimDataGenerator.Descriptions
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  isExternal: true
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_System_Xml_Linq_XDocument_
+  name: AddTuning(XDocument)
+  nameWithType: SimDataGenerator.AddTuning(XDocument)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+    name: AddTuning
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_System_Xml_Linq_XDocument_
+  - name: (
+  - uid: System.Xml.Linq.XDocument
+    name: XDocument
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
+    name: AddTuning
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_System_Xml_Linq_XDocument_
+  - name: (
+  - uid: System.Xml.Linq.XDocument
+    name: XDocument
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  - name: )
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_
+  name: AddTuning(CombinedTuningModel)
+  nameWithType: SimDataGenerator.AddTuning(CombinedTuningModel)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+    name: AddTuning
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_
+  - name: (
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+    name: CombinedTuningModel
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel)
+    name: AddTuning
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_
+  - name: (
+  - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+    name: CombinedTuningModel
+  - name: )
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddLayouts_LlamaLogic_Packages_Models_SimData_SimDataModel_
+  name: AddLayouts(SimDataModel)
+  nameWithType: SimDataGenerator.AddLayouts(SimDataModel)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+    name: AddLayouts
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddLayouts_LlamaLogic_Packages_Models_SimData_SimDataModel_
+  - name: (
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+    name: SimDataModel
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts(LlamaLogic.Packages.Models.SimData.SimDataModel)
+    name: AddLayouts
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddLayouts_LlamaLogic_Packages_Models_SimData_SimDataModel_
+  - name: (
+  - uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+    name: SimDataModel
+  - name: )
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+  isExternal: true
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddResourceKeyConversion_LlamaLogic_Packages_ResourceType_System_UInt32_LlamaLogic_Packages_ResourceType_System_UInt32_
+  name: AddResourceKeyConversion(ResourceType, uint, ResourceType, uint)
+  nameWithType: SimDataGenerator.AddResourceKeyConversion(ResourceType, uint, ResourceType, uint)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType, uint, LlamaLogic.Packages.ResourceType, uint)
+  nameWithType.vb: SimDataGenerator.AddResourceKeyConversion(ResourceType, UInteger, ResourceType, UInteger)
+  fullName.vb: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType, UInteger, LlamaLogic.Packages.ResourceType, UInteger)
+  name.vb: AddResourceKeyConversion(ResourceType, UInteger, ResourceType, UInteger)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+    name: AddResourceKeyConversion
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddResourceKeyConversion_LlamaLogic_Packages_ResourceType_System_UInt32_LlamaLogic_Packages_ResourceType_System_UInt32_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32,LlamaLogic.Packages.ResourceType,System.UInt32)
+    name: AddResourceKeyConversion
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddResourceKeyConversion_LlamaLogic_Packages_ResourceType_System_UInt32_LlamaLogic_Packages_ResourceType_System_UInt32_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+- uid: LlamaLogic.TuningDescriptions
+  commentId: N:LlamaLogic.TuningDescriptions
+  name: LlamaLogic.TuningDescriptions
+  nameWithType: LlamaLogic.TuningDescriptions
+  fullName: LlamaLogic.TuningDescriptions
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator
+  commentId: T:LlamaLogic.TuningDescriptions.SimDataGenerator
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html
+  name: SimDataGenerator
+  nameWithType: SimDataGenerator
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.#ctor*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.#ctor
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator__ctor_LlamaLogic_TuningDescriptions_TuningDescriptionSet_
+  name: SimDataGenerator
+  nameWithType: SimDataGenerator.SimDataGenerator
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.SimDataGenerator
+  nameWithType.vb: SimDataGenerator.New
+  fullName.vb: LlamaLogic.TuningDescriptions.SimDataGenerator.New
+  name.vb: New
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  commentId: T:LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  parent: LlamaLogic.TuningDescriptions
+  href: LlamaLogic.TuningDescriptions.TuningDescriptionSet.html
+  name: TuningDescriptionSet
+  nameWithType: TuningDescriptionSet
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Descriptions
+  name: Descriptions
+  nameWithType: SimDataGenerator.Descriptions
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddLayouts_LlamaLogic_Packages_Models_SimData_SimDataModel_
+  name: AddLayouts
+  nameWithType: SimDataGenerator.AddLayouts
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddLayouts
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataModel
+  parent: LlamaLogic.Packages.Models.SimData
+  name: SimDataModel
+  nameWithType: SimDataModel
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel
+- uid: LlamaLogic.Packages.Models.SimData
+  commentId: N:LlamaLogic.Packages.Models.SimData
+  name: LlamaLogic.Packages.Models.SimData
+  nameWithType: LlamaLogic.Packages.Models.SimData
+  fullName: LlamaLogic.Packages.Models.SimData
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddResourceKeyConversion_LlamaLogic_Packages_ResourceType_System_UInt32_LlamaLogic_Packages_ResourceType_System_UInt32_
+  name: AddResourceKeyConversion
+  nameWithType: SimDataGenerator.AddResourceKeyConversion
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddResourceKeyConversion
+- uid: LlamaLogic.Packages.ResourceType
+  commentId: T:LlamaLogic.Packages.ResourceType
+  parent: LlamaLogic.Packages
+  name: ResourceType
+  nameWithType: ResourceType
+  fullName: LlamaLogic.Packages.ResourceType
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_AddTuning_LlamaLogic_Packages_Models_CombinedTuning_CombinedTuningModel_
+  name: AddTuning
+  nameWithType: SimDataGenerator.AddTuning
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning
+- uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  commentId: T:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+  parent: LlamaLogic.Packages.Models.CombinedTuning
+  name: CombinedTuningModel
+  nameWithType: CombinedTuningModel
+  fullName: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
+- uid: LlamaLogic.Packages.Models.CombinedTuning
+  commentId: N:LlamaLogic.Packages.Models.CombinedTuning
+  name: LlamaLogic.Packages.Models.CombinedTuning
+  nameWithType: LlamaLogic.Packages.Models.CombinedTuning
+  fullName: LlamaLogic.Packages.Models.CombinedTuning
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.CombinedTuning
+    name: CombinedTuning
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.CombinedTuning
+    name: CombinedTuning
+- uid: System.FormatException
+  commentId: T:System.FormatException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.formatexception
+  name: FormatException
+  nameWithType: FormatException
+  fullName: System.FormatException
+- uid: System.Xml.Linq.XDocument
+  commentId: T:System.Xml.Linq.XDocument
+  parent: System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  name: XDocument
+  nameWithType: XDocument
+  fullName: System.Xml.Linq.XDocument
+- uid: System.Xml.Linq
+  commentId: N:System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Linq
+  nameWithType: System.Xml.Linq
+  fullName: System.Xml.Linq
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
+  commentId: P:LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
+  name: Pack
+  nameWithType: SimDataModel.Pack
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel.Pack
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerationException
+  commentId: T:LlamaLogic.TuningDescriptions.SimDataGenerationException
+  href: LlamaLogic.TuningDescriptions.SimDataGenerationException.html
+  name: SimDataGenerationException
+  nameWithType: SimDataGenerationException
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerationException
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.Generate
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Generate_System_Xml_Linq_XDocument_
+  name: Generate
+  nameWithType: SimDataGenerator.Generate
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate
