@@ -1,6 +1,14 @@
+global using LlamaLogic.Packages;
+global using LlamaLogic.Packages.Models.CombinedTuning;
+global using LlamaLogic.Packages.Models.SimData;
 global using SharpCompress.Archives.Zip;
 global using System.Collections.Concurrent;
 global using System.Collections.Immutable;
+global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
+global using System.Numerics;
+global using System.Runtime.CompilerServices;
+global using System.Text;
 global using System.Text.RegularExpressions;
+global using System.Xml;
 global using System.Xml.Linq;

@@ -67,7 +67,7 @@ public sealed class SimDataModel :
         var model = new SimDataModel
         {
             Version = (SimDataVersion)version,
-            Unused = version >= (uint)SimDataVersion.VariantSupport ? ReadUInt32(span, 24) : 0
+            Pack = version >= (uint)SimDataVersion.VariantSupport ? ReadUInt32(span, 24) : 0
         };
         var tableCount = ReadCount(span, 12, 28);
         var tableHeaderPosition = tableCount > 0 ? ReadRequiredOffset(span, 8) : 0;
@@ -581,7 +581,7 @@ public sealed class SimDataModel :
         var model = new SimDataModel
         {
             Version = (SimDataVersion)version,
-            Unused = root.Attribute("u") is { } unusedAttribute ? ParseXmlHex(unusedAttribute.Value) : 0
+            Pack = root.Attribute("u") is { } packAttribute ? ParseXmlHex(packAttribute.Value) : 0
         };
         var schemas = new Dictionary<string, SimDataSchema>();
         foreach (var schemaElement in root.Elements("Schemas").Elements("Schema"))
@@ -702,9 +702,12 @@ public sealed class SimDataModel :
         [.. Layout().tables.Where(table => table.Schema is not null).Select(table => table.Schema!)];
 
     /// <summary>
-    /// Gets/sets the value of the <c>mUnused</c> field of the resource's header (Maxis always writes <c>0</c>; ignored for <see cref="SimDataVersion.SmartSimOriginalEdition"/>)
+    /// Gets/sets the pack to which the resource belongs, which is the <c>mUnused</c> field of the resource's header (ignored for <see cref="SimDataVersion.SmartSimOriginalEdition"/>)
     /// </summary>
-    public uint Unused { get; set; }
+    /// <remarks>
+    /// The value is that of the game's <c>sims4.common.Pack</c> enumeration, such as <c>0</c> for the base game and <c>3</c> for EP01.
+    /// </remarks>
+    public uint Pack { get; set; }
 
     /// <summary>
     /// Gets/sets the version of the format of the resource
@@ -768,7 +771,7 @@ public sealed class SimDataModel :
         writeOffset(span, 16, schemaPosition);
         BinaryPrimitives.WriteInt32LittleEndian(span[20..], schemas.Count);
         if (Version is SimDataVersion.VariantSupport)
-            BinaryPrimitives.WriteUInt32LittleEndian(span[24..], Unused);
+            BinaryPrimitives.WriteUInt32LittleEndian(span[24..], Pack);
         for (var t = 0; t < tables.Count; ++t)
         {
             var table = tables[t];
@@ -1069,7 +1072,7 @@ public sealed class SimDataModel :
             (
                 "SimData",
                 new XAttribute("version", string.Create(CultureInfo.InvariantCulture, $"0x{(uint)Version:X8}")),
-                new XAttribute("u", string.Create(CultureInfo.InvariantCulture, $"0x{Unused:X8}")),
+                new XAttribute("u", string.Create(CultureInfo.InvariantCulture, $"0x{Pack:X8}")),
                 new XElement("Instances", Instances.Select(instance => new XElement
                 (
                     "I",

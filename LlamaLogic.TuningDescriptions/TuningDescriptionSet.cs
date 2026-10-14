@@ -29,7 +29,14 @@ public sealed class TuningDescriptionSet :
             throw new DirectoryNotFoundException($"There is no directory at {path}");
         var documentPaths = root.EnumerateFiles("*", SearchOption.AllDirectories)
             .Select(file => System.IO.Path.GetRelativePath(root.FullName, file.FullName).Replace(System.IO.Path.DirectorySeparatorChar, '/'));
-        return new(documentPaths, documentPath => File.ReadAllBytes(System.IO.Path.Combine(root.FullName, documentPath.Replace('/', System.IO.Path.DirectorySeparatorChar))), null, null);
+        string getFilePath(string documentPath) =>
+            System.IO.Path.Combine(root.FullName, documentPath.Replace('/', System.IO.Path.DirectorySeparatorChar));
+        byte[] readHead(string documentPath, int maximumLength)
+        {
+            using var stream = File.OpenRead(getFilePath(documentPath));
+            return ReadHead(stream, maximumLength);
+        }
+        return new(documentPaths, documentPath => File.ReadAllBytes(getFilePath(documentPath)), readHead, null, null);
     }
 
     /// <summary>
@@ -86,7 +93,15 @@ public sealed class TuningDescriptionSet :
                     return buffer.ToArray();
                 }
             }
-            return new(entries.Keys, read, gameVersion, () =>
+            byte[] readHead(string documentPath, int maximumLength)
+            {
+                lock (archiveLock)
+                {
+                    using var entryStream = entries[documentPath].OpenEntryStream();
+                    return ReadHead(entryStream, maximumLength);
+                }
+            }
+            return new(entries.Keys, read, readHead, gameVersion, () =>
             {
                 archive.Dispose();
                 ownedStream?.Dispose();
@@ -99,9 +114,21 @@ public sealed class TuningDescriptionSet :
         }
     }
 
-    TuningDescriptionSet(IEnumerable<string> documentPaths, Func<string, byte[]> read, Version? gameVersion, Action? dispose)
+    static byte[] ReadHead(Stream stream, int maximumLength)
+    {
+        var head = new byte[maximumLength];
+        var length = 0;
+        int read;
+        while (length < maximumLength && (read = stream.Read(head, length, maximumLength - length)) > 0)
+            length += read;
+        return head[..length];
+    }
+
+    TuningDescriptionSet(IEnumerable<string> documentPaths, Func<string, byte[]> read, Func<string, int, byte[]> readHead, Version? gameVersion, Action? dispose)
     {
         this.read = read;
+        this.readHead = readHead;
+        instanceTypes = new(ReadInstanceTypes);
         this.dispose = dispose;
         GameVersion = gameVersion;
         var instancePaths = new Dictionary<string, string>(StringComparer.Ordinal);
@@ -129,7 +156,9 @@ public sealed class TuningDescriptionSet :
     readonly Dictionary<string, string> fragmentPaths;
     readonly Dictionary<string, string> instancePaths;
     readonly Dictionary<string, string> modulePaths;
+    readonly Lazy<IReadOnlyCollection<string>> instanceTypes;
     readonly Func<string, byte[]> read;
+    readonly Func<string, int, byte[]> readHead;
     int isDisposed;
 
     /// <summary>
@@ -148,6 +177,22 @@ public sealed class TuningDescriptionSet :
     /// </summary>
     public IReadOnlyCollection<string> InstanceClasses =>
         instancePaths.Keys;
+
+    /// <summary>
+    /// Gets the types of instance tuning the set's instances are (their <c>instance_type</c> attributes), such as <c>buff</c>
+    /// </summary>
+    /// <remarks>
+    /// The types are read from the beginning of each instance's document, which is much faster than reading every instance.
+    /// </remarks>
+    /// <exception cref="InvalidDataException">An instance's document is malformed</exception>
+    public IReadOnlyCollection<string> InstanceTypes
+    {
+        get
+        {
+            ThrowIfDisposed();
+            return instanceTypes.Value;
+        }
+    }
 
     /// <summary>
     /// Gets the names of the set's modules
@@ -259,6 +304,35 @@ public sealed class TuningDescriptionSet :
         var typed = validate(document as TDocument ?? throw new InvalidDataException($"{path} is a {document.GetType().Name}, not a {typeof(TDocument).Name}"));
         documents[path] = new(typed);
         return typed;
+    }
+
+    IReadOnlyCollection<string> ReadInstanceTypes()
+    {
+        var instanceTypes = ImmutableHashSet.CreateBuilder<string>(StringComparer.Ordinal);
+        foreach (var (className, path) in instancePaths)
+        {
+            string? instanceType = null;
+            var isRead = false;
+            try
+            {
+                using var reader = XmlReader.Create(new MemoryStream(readHead(path, 4096)), new XmlReaderSettings { DtdProcessing = DtdProcessing.Prohibit });
+                while (reader.Read())
+                    if (reader.NodeType is XmlNodeType.Element && reader.LocalName == "Instance")
+                    {
+                        instanceType = reader.GetAttribute("instance_type");
+                        isRead = true;
+                        break;
+                    }
+            }
+            catch (XmlException)
+            {
+            }
+            if (!isRead)
+                instanceType = GetInstance(className)?.InstanceType;
+            if (instanceType is not null)
+                instanceTypes.Add(instanceType);
+        }
+        return instanceTypes.ToImmutable();
     }
 
     void ThrowIfDisposed()

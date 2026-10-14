@@ -224,6 +224,29 @@ public class TuningDescriptionSetTests
     }
 
     [TestMethod]
+    public void InstanceTypesAreReadFromEachInstance()
+    {
+        using var set = OpenFixtures();
+        CollectionAssert.AreEquivalent(new[] { "buff", "trait" }, set.InstanceTypes.ToArray());
+    }
+
+    [TestMethod]
+    public void InstanceTypesBeyondTheBeginningOfAnInstanceAreRead()
+    {
+        var longDescription = new string('x', 8192);
+        using var set = TuningDescriptionSet.FromZip(new MemoryStream(TuningDescriptionFixtures.BuildZip(CompressionType.LZMA, WithDocument(TuningDescriptionFixtures.TraitPath,
+            $"""
+            <?xml version="1.0" encoding="iso-8859-1"?>
+
+            <TuningRoot>
+                <Instance description="{longDescription}" instance_type="trait" class="Trait" module="traits.traits" muid="9F0C39A1D1E2B3C4" path="Traits\Descriptions">
+                </Instance>
+            </TuningRoot>
+            """))));
+        CollectionAssert.AreEquivalent(new[] { "buff", "trait" }, set.InstanceTypes.ToArray());
+    }
+
+    [TestMethod]
     public void MissingParentsAreRejected()
     {
         var documents = new Dictionary<string, string>(TuningDescriptionFixtures.Documents);

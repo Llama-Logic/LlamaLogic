@@ -1,6 +1,10 @@
+global using LlamaLogic.Packages;
+global using LlamaLogic.Packages.Models.CombinedTuning;
+global using LlamaLogic.Packages.Models.SimData;
 global using System;
 global using System.Collections.Generic;
 global using System.IO;
 global using System.Linq;
 global using System.Reflection;
 global using System.Text;
+global using System.Threading.Tasks;

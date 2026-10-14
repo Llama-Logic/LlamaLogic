@@ -19,7 +19,7 @@ public sealed class TuningDescriptionInstance :
     }
 
     IReadOnlyList<TuningDescriptionInstance>? methodResolutionOrder;
-    IReadOnlyList<TunableDescription>? effectiveMembers;
+    IReadOnlyList<(TunableDescription Member, TuningDescriptionInstance Declarer)>? effectiveMembers;
 
     /// <summary>
     /// Gets the Python class of the instance tuning (its <c>class</c> attribute)
@@ -70,33 +70,34 @@ public sealed class TuningDescriptionInstance :
     /// </summary>
     /// <remarks>
     /// Each tunable is the description from the first class in <see cref="GetMethodResolutionOrder()"/> that declares or deletes it, as in Python.
-    /// The tunables are ordered by where they first appear, from the most basic class to this one.
+    /// The tunables are in the order the game collects them: walking from the most basic class to this one, each class first removes the tunables it deletes and then adds or replaces those it declares, a newly added tunable going to the end.
     /// </remarks>
     /// <exception cref="InvalidDataException">The class's inheritance cannot be resolved (see <see cref="GetMethodResolutionOrder()"/>)</exception>
-    public IReadOnlyList<TunableDescription> GetEffectiveMembers()
+    public IReadOnlyList<TunableDescription> GetEffectiveMembers() =>
+        [.. GetEffectiveMembersAndDeclarers().Select(memberAndDeclarer => memberAndDeclarer.Member)];
+
+    internal IReadOnlyList<(TunableDescription Member, TuningDescriptionInstance Declarer)> GetEffectiveMembersAndDeclarers()
     {
         if (effectiveMembers is { } cached)
             return cached;
         var order = GetMethodResolutionOrder();
         var names = new List<string>();
-        var seen = new HashSet<string>(StringComparer.Ordinal);
+        var members = new Dictionary<string, (TunableDescription Member, TuningDescriptionInstance Declarer)>(StringComparer.Ordinal);
         for (var i = order.Count - 1; i >= 0; --i)
-            foreach (var element in order[i].Source.Elements())
-                if (element.Attribute("name")?.Value is { } name && element.Name.LocalName is not ("Class" or "EnumItem") && seen.Add(name))
-                    names.Add(name);
-        var resolved = ImmutableArray.CreateBuilder<TunableDescription>();
-        foreach (var name in names)
-            foreach (var instance in order)
-            {
-                if (instance.DeletedMembers.Contains(name))
-                    break;
-                if (instance.GetMember(name) is { } member)
+        {
+            var instance = order[i];
+            foreach (var deleted in instance.DeletedMembers)
+                if (members.Remove(deleted))
+                    names.Remove(deleted);
+            foreach (var member in instance.Members)
+                if (member.Name is { } name)
                 {
-                    resolved.Add(member);
-                    break;
+                    if (!members.ContainsKey(name))
+                        names.Add(name);
+                    members[name] = (member, instance);
                 }
-            }
-        IReadOnlyList<TunableDescription> result = resolved.ToImmutable();
+        }
+        IReadOnlyList<(TunableDescription Member, TuningDescriptionInstance Declarer)> result = [.. names.Select(name => members[name])];
         effectiveMembers = result;
         return result;
     }

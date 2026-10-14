@@ -315,7 +315,7 @@ public class SimDataModelTests :
         everything["character_vector"] = new SimDataVector(SimDataType.CHAR8, [(byte)'h', (byte)'i']);
         everything["string_variant"] = new SimDataVariant(0x5f9b2c1d, SimDataType.STRING8, "variant");
         var other = inner("other instance", -1F);
-        var model = new SimDataModel { Unused = 7 };
+        var model = new SimDataModel { Pack = 7 };
         model.Instances.Add(new("Everything:Instance", everything));
         model.Instances.Add(new("Inner:Instance", other));
         return model;
@@ -347,13 +347,13 @@ public class SimDataModelTests :
         [.. columns.Split(',').Select(column => column.Split(':')).Select(parts => new SimDataColumn(parts[0], Enum.Parse<SimDataType>(parts[1])))];
 
     [TestMethod]
-    public void DecodeKeepsVersionAndUnused()
+    public void DecodeKeepsVersionAndPack()
     {
         var model = BuildNestedModel();
         model.Version = SimDataVersion.SmartSimOriginalEdition;
         var decoded = SimDataModel.Decode(model.Encode());
         Assert.AreEqual(SimDataVersion.SmartSimOriginalEdition, decoded.Version);
-        Assert.AreEqual(7U, SimDataModel.Decode(BuildModelWithEveryType().Encode()).Unused);
+        Assert.AreEqual(7U, SimDataModel.Decode(BuildModelWithEveryType().Encode()).Pack);
     }
 
     [TestMethod]
@@ -580,7 +580,7 @@ public class SimDataModelTests :
     {
         var model = BuildModelWithEveryType();
         var imported = SimDataModel.FromXml(XDocument.Parse(model.ToXml().ToString()));
-        Assert.AreEqual(model.Unused, imported.Unused);
+        Assert.AreEqual(model.Pack, imported.Pack);
         Assert.AreEqual(model.Instances.Count, imported.Instances.Count);
         for (var i = 0; i < model.Instances.Count; ++i)
         {

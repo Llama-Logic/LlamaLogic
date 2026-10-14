@@ -44,10 +44,13 @@ public class TuningDescriptionCorpusTests
         if (set.GameVersion is null)
             problems.Add("game version", Path.GetFileName(path));
         TestContext.WriteLine($"{set.InstanceClasses.Count} instances, {set.ModuleNames.Count} modules, {set.FragmentClasses.Count} fragments");
+        var instanceTypes = new HashSet<string>(StringComparer.Ordinal);
         foreach (var className in set.InstanceClasses.OrderBy(name => name, StringComparer.Ordinal))
             try
             {
                 var instance = set.GetInstance(className)!;
+                if (instance.InstanceType is { } instanceType)
+                    instanceTypes.Add(instanceType);
                 instance.GetEffectiveMembers();
                 foreach (var member in instance.Members)
                     CheckDescription(set, member, $"{className}/{member.Name}", problems);
@@ -56,6 +59,8 @@ public class TuningDescriptionCorpusTests
             {
                 problems.Add("instance", $"{className}: {ex.GetType().Name}: {ex.Message}");
             }
+        if (!instanceTypes.SetEquals(set.InstanceTypes))
+            problems.Add("instance types", $"{string.Join(", ", set.InstanceTypes.Except(instanceTypes))} vs {string.Join(", ", instanceTypes.Except(set.InstanceTypes))}");
         foreach (var moduleName in set.ModuleNames.OrderBy(name => name, StringComparer.Ordinal))
             try
             {
