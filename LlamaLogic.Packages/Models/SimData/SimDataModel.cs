@@ -324,6 +324,7 @@ public sealed class SimDataModel :
     /// Fields are matched to columns by exact name, and every column of an object must have exactly one field.
     /// A string field written as an empty element (<c>&lt;T name="..." /&gt;</c>) is read as <see langword="null"/>.
     /// Type names written by Sims4Toolkit (<c>Int8</c> and <c>UInt8</c>) are accepted along with Sims 4 Studio's.
+    /// A schema without a <c>schema_hash</c> attribute gets its <see cref="SimDataSchema.ComputedHash"/>.
     /// </remarks>
     /// <exception cref="InvalidDataException"><paramref name="document"/> is not a valid representation of a <see cref="ResourceType.SimData"/> resource</exception>
     public static SimDataModel FromXml(XDocument document)
@@ -595,7 +596,7 @@ public sealed class SimDataModel :
                     throw new InvalidDataException($"Column {columnName} of schema {name} is a {SimDataType.VARIANT}, which version {model.Version} does not support");
                 return new SimDataColumn(columnName, type, columnElement.Attribute("flags") is { } flagsAttribute ? checked((ushort)ParseXmlHex(flagsAttribute.Value)) : (ushort)0);
             }).ToList();
-            if (!schemas.TryAdd(name, new SimDataSchema(name, schemaElement.Attribute("schema_hash") is { } hashAttribute ? ParseXmlHex(hashAttribute.Value) : 0, columns)))
+            if (!schemas.TryAdd(name, schemaElement.Attribute("schema_hash") is { } hashAttribute ? new SimDataSchema(name, ParseXmlHex(hashAttribute.Value), columns) : new SimDataSchema(name, columns)))
                 throw new InvalidDataException($"There are two schemas named {name}");
         }
         foreach (var instanceElement in root.Elements("Instances").Elements("I"))

@@ -343,6 +343,9 @@ public class SimDataModelTests :
     static int GetRowPosition(byte[] data, int table) =>
         32 + (table * 28) + 20 + BinaryPrimitives.ReadInt32LittleEndian(data.AsSpan(32 + (table * 28) + 20));
 
+    static SimDataColumn[] ParseColumns(string columns) =>
+        [.. columns.Split(',').Select(column => column.Split(':')).Select(parts => new SimDataColumn(parts[0], Enum.Parse<SimDataType>(parts[1])))];
+
     [TestMethod]
     public void DecodeKeepsVersionAndUnused()
     {
@@ -512,6 +515,17 @@ public class SimDataModelTests :
     }
 
     [TestMethod]
+    public void FromXmlComputesMissingSchemaHashes()
+    {
+        using var dbpf = new DataBasePackedFile(tempPackagePath);
+        var xml = nonsenseRelationshipBitXml.Replace(" schema_hash=\"0xF94B8FE1\"", string.Empty, StringComparison.Ordinal);
+        Assert.AreNotEqual(nonsenseRelationshipBitXml, xml);
+        var model = SimDataModel.FromXml(XDocument.Parse(xml));
+        AssertNonsenseRelationshipBit(model);
+        CollectionAssert.AreEqual(dbpf.Get(nonsenseRelationshipBitKey).ToArray(), model.Encode().ToArray());
+    }
+
+    [TestMethod]
     public void FromXmlReadsNestedValues()
     {
         var holder = SimDataModel.FromXml(XDocument.Parse(nestedXml)).Instances[0].Object;
@@ -644,6 +658,14 @@ public class SimDataModelTests :
     }
 
     [TestMethod]
+    public void GetSimDataReadsComputedSchemaHash()
+    {
+        using var dbpf = new DataBasePackedFile(tempPackagePath);
+        var schema = dbpf.GetSimData(nonsenseRelationshipBitKey).Instances[0].Object.Schema;
+        Assert.AreEqual(schema.ComputedHash, schema.Hash);
+    }
+
+    [TestMethod]
     public void GetSimDataReadsNonsenseRelationshipBit()
     {
         using var dbpf = new DataBasePackedFile(tempPackagePath);
@@ -677,12 +699,42 @@ public class SimDataModelTests :
     }
 
     [TestMethod]
+    public void SchemaComputedHashDependsOnLayout() =>
+        Assert.AreNotEqual(0x5c3d3343U, new SimDataSchema("Client_CASThumbnailCamera", 0, ParseColumns("CameraFOV:INT32,CameraPosition:FLOAT3,TargetPosition:FLOAT3")).ComputedHash);
+
+    [TestMethod]
+    public void SchemaComputedHashIgnoresColumnFlags() =>
+        Assert.AreEqual(0x4a938d09U, new SimDataSchema("TunableColorRGBA", 0, ParseColumns("a:INT32,b:INT32,g:INT32,r:INT32").Select(column => new SimDataColumn(column.Name, column.Type, 0xffff))).ComputedHash);
+
+    [TestMethod]
+    [DataRow("Buff", "audio_sting_on_add:RESOURCEKEY,audio_sting_on_remove:RESOURCEKEY,buff_description:LOCKEY,buff_name:LOCKEY,cas_vfx:STRING8,icon:RESOURCEKEY,mood_type:TABLESETREFERENCE,mood_weight:INT32,plumbob_vfx:STRING8,timeout_string:LOCKEY,timeout_string_no_next_buff:LOCKEY,ui_sort_order:INT32", 0xdce584d3U)]
+    [DataRow("Buff", "audio_sting_on_add:RESOURCEKEY,audio_sting_on_remove:RESOURCEKEY,buff_description:LOCKEY,buff_name:LOCKEY,icon:RESOURCEKEY,icon_highlight:RESOURCEKEY,mood_type:TABLESETREFERENCE,mood_weight:INT32,timeout_string:LOCKEY,ui_sort_order:INT32", 0x83a7824aU)]
+    [DataRow("Client_CASThumbnailCamera", "CameraPosition:FLOAT3,TargetPosition:FLOAT3,CameraFOV:INT32", 0x5c3d3343U)]
+    [DataRow("LootActions", "loot_actions:VECTOR", 0xf774b23cU)]
+    [DataRow("RelationshipBit", "bit_description:LOCKEY,collection_ids:VECTOR,directionality:UINT32,display_name:LOCKEY,display_priority:INT32,group_id:UINT32,icon:RESOURCEKEY,sim_profile_background:VARIANT,small_icon:VARIANT,visible:BOOL", 0xf94b8fe1U)]
+    [DataRow("TunableColorRGBA", "a:INT32,b:INT32,g:INT32,r:INT32", 0x4a938d09U)]
+    public void SchemaComputesTheGamesHash(string name, string columns, uint hash) =>
+        Assert.AreEqual(hash, new SimDataSchema(name, 0, ParseColumns(columns)).ComputedHash);
+
+    [TestMethod]
+    public void SchemaKeepsTheGivenHash()
+    {
+        var schema = new SimDataSchema("LootActions", 1, ParseColumns("loot_actions:VECTOR"));
+        Assert.AreEqual(1U, schema.Hash);
+        Assert.AreEqual(0xf774b23cU, schema.ComputedHash);
+    }
+
+    [TestMethod]
     public void SchemaRejectsDuplicateColumns() =>
         Assert.ThrowsExactly<ArgumentException>(() => new SimDataSchema("Thing", 1, [new("value", SimDataType.INT32), new("value", SimDataType.UINT32)]));
 
     [TestMethod]
     public void SchemaRejectsNoColumns() =>
         Assert.ThrowsExactly<ArgumentException>(() => new SimDataSchema("Thing", 1, []));
+
+    [TestMethod]
+    public void SchemaWithoutAHashUsesTheComputedHash() =>
+        Assert.AreEqual(0xf94b8fe1U, new SimDataSchema("RelationshipBit", ParseColumns("bit_description:LOCKEY,collection_ids:VECTOR,directionality:UINT32,display_name:LOCKEY,display_priority:INT32,group_id:UINT32,icon:RESOURCEKEY,sim_profile_background:VARIANT,small_icon:VARIANT,visible:BOOL")).Hash);
 
     [TestMethod]
     public void ToXmlRejectsCharactersXmlCannotRepresent()
