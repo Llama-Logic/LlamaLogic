@@ -63,6 +63,12 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.GetTextAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetTranslucentJpegAsPng(LlamaLogic.Packages.ResourceKey,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.GetTranslucentJpegAsPngAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetWorldData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  - LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  - LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  - LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetXml(LlamaLogic.Packages.ResourceKey,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.GetXmlAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.InternalCompress(System.ReadOnlyMemory{System.Byte},System.Boolean@)
@@ -2884,6 +2890,240 @@ items:
   nameWithType.vb: DataBasePackedFile.GetTranslucentJpegAsPngAsync(ResourceKey, Boolean, CancellationToken)
   fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetTranslucentJpegAsPngAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
   name.vb: GetTranslucentJpegAsPngAsync(ResourceKey, Boolean, CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetWorldData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  id: GetWorldData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetWorldData(ResourceKey, bool)
+  nameWithType: DataBasePackedFile.GetWorldData(ResourceKey, bool)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldData(LlamaLogic.Packages.ResourceKey, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWorldData
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1382
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as a <xref href="LlamaLogic.Packages.Models.World.WorldDataModel" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public WorldDataModel GetWorldData(ResourceKey key, bool force = false)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    return:
+      type: LlamaLogic.Packages.Models.World.WorldDataModel
+    content.vb: Public Function GetWorldData(key As ResourceKey, force As Boolean = False) As WorldDataModel
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetWorldData*
+  nameWithType.vb: DataBasePackedFile.GetWorldData(ResourceKey, Boolean)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetWorldData(LlamaLogic.Packages.ResourceKey, Boolean)
+  name.vb: GetWorldData(ResourceKey, Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  id: GetWorldDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetWorldDataAsync(ResourceKey, bool, CancellationToken)
+  nameWithType: DataBasePackedFile.GetWorldDataAsync(ResourceKey, bool, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync(LlamaLogic.Packages.ResourceKey, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWorldDataAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1388
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as a <xref href="LlamaLogic.Packages.Models.World.WorldDataModel" data-throw-if-not-resolved="false"></xref> asynchronously
+  example: []
+  syntax:
+    content: public Task<WorldDataModel> GetWorldDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldDataModel}
+    content.vb: Public Function GetWorldDataAsync(key As ResourceKey, force As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of WorldDataModel)
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync*
+  nameWithType.vb: DataBasePackedFile.GetWorldDataAsync(ResourceKey, Boolean, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
+  name.vb: GetWorldDataAsync(ResourceKey, Boolean, CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  id: GetWorldLotArchitecture(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetWorldLotArchitecture(ResourceKey, bool)
+  nameWithType: DataBasePackedFile.GetWorldLotArchitecture(ResourceKey, bool)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture(LlamaLogic.Packages.ResourceKey, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWorldLotArchitecture
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1394
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as a <xref href="LlamaLogic.Packages.Models.World.WorldLotArchitectureModel" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public WorldLotArchitectureModel GetWorldLotArchitecture(ResourceKey key, bool force = false)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    return:
+      type: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel
+    content.vb: Public Function GetWorldLotArchitecture(key As ResourceKey, force As Boolean = False) As WorldLotArchitectureModel
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture*
+  nameWithType.vb: DataBasePackedFile.GetWorldLotArchitecture(ResourceKey, Boolean)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture(LlamaLogic.Packages.ResourceKey, Boolean)
+  name.vb: GetWorldLotArchitecture(ResourceKey, Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  id: GetWorldLotArchitectureAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetWorldLotArchitectureAsync(ResourceKey, bool, CancellationToken)
+  nameWithType: DataBasePackedFile.GetWorldLotArchitectureAsync(ResourceKey, bool, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync(LlamaLogic.Packages.ResourceKey, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWorldLotArchitectureAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1400
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as a <xref href="LlamaLogic.Packages.Models.World.WorldLotArchitectureModel" data-throw-if-not-resolved="false"></xref> asynchronously
+  example: []
+  syntax:
+    content: public Task<WorldLotArchitectureModel> GetWorldLotArchitectureAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldLotArchitectureModel}
+    content.vb: Public Function GetWorldLotArchitectureAsync(key As ResourceKey, force As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of WorldLotArchitectureModel)
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync*
+  nameWithType.vb: DataBasePackedFile.GetWorldLotArchitectureAsync(ResourceKey, Boolean, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
+  name.vb: GetWorldLotArchitectureAsync(ResourceKey, Boolean, CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  id: GetWorldObjectData(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetWorldObjectData(ResourceKey, bool)
+  nameWithType: DataBasePackedFile.GetWorldObjectData(ResourceKey, bool)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData(LlamaLogic.Packages.ResourceKey, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWorldObjectData
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1406
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as a <xref href="LlamaLogic.Packages.Models.World.WorldObjectDataModel" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public WorldObjectDataModel GetWorldObjectData(ResourceKey key, bool force = false)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    return:
+      type: LlamaLogic.Packages.Models.World.WorldObjectDataModel
+    content.vb: Public Function GetWorldObjectData(key As ResourceKey, force As Boolean = False) As WorldObjectDataModel
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData*
+  nameWithType.vb: DataBasePackedFile.GetWorldObjectData(ResourceKey, Boolean)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData(LlamaLogic.Packages.ResourceKey, Boolean)
+  name.vb: GetWorldObjectData(ResourceKey, Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  id: GetWorldObjectDataAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetWorldObjectDataAsync(ResourceKey, bool, CancellationToken)
+  nameWithType: DataBasePackedFile.GetWorldObjectDataAsync(ResourceKey, bool, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync(LlamaLogic.Packages.ResourceKey, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWorldObjectDataAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1412
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as a <xref href="LlamaLogic.Packages.Models.World.WorldObjectDataModel" data-throw-if-not-resolved="false"></xref> asynchronously
+  example: []
+  syntax:
+    content: public Task<WorldObjectDataModel> GetWorldObjectDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldObjectDataModel}
+    content.vb: Public Function GetWorldObjectDataAsync(key As ResourceKey, force As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of WorldObjectDataModel)
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync*
+  nameWithType.vb: DataBasePackedFile.GetWorldObjectDataAsync(ResourceKey, Boolean, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
+  name.vb: GetWorldObjectDataAsync(ResourceKey, Boolean, CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetXml(LlamaLogic.Packages.ResourceKey,System.Boolean)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetXml(LlamaLogic.Packages.ResourceKey,System.Boolean)
   id: GetXml(LlamaLogic.Packages.ResourceKey,System.Boolean)
@@ -2902,7 +3142,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1384
+    startLine: 1420
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2942,7 +3182,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1396
+    startLine: 1432
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2985,7 +3225,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAll
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2021
+    startLine: 2057
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3023,7 +3263,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2031
+    startLine: 2067
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3051,7 +3291,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2041
+    startLine: 2077
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3084,7 +3324,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAllAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2054
+    startLine: 2090
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3127,7 +3367,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Save
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2222
+    startLine: 2258
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3175,7 +3415,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAs
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2243
+    startLine: 2279
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3211,7 +3451,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2270
+    startLine: 2306
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3263,7 +3503,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2291
+    startLine: 2327
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3303,7 +3543,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2315
+    startLine: 2351
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3350,7 +3590,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2331
+    startLine: 2367
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3394,7 +3634,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2344
+    startLine: 2380
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3441,7 +3681,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2360
+    startLine: 2396
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3485,7 +3725,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2380
+    startLine: 2416
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3535,7 +3775,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2397
+    startLine: 2433
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3582,7 +3822,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2411
+    startLine: 2447
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3632,7 +3872,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2428
+    startLine: 2464
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3679,7 +3919,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsDds
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2445
+    startLine: 2481
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3717,7 +3957,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsDdsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2454
+    startLine: 2490
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3760,7 +4000,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsTranslucentJpeg
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2462
+    startLine: 2498
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3798,7 +4038,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsTranslucentJpegAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2471
+    startLine: 2507
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3841,7 +4081,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetRaw
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2484
+    startLine: 2520
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3895,7 +4135,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetRawAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2504
+    startLine: 2540
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3954,7 +4194,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2520
+    startLine: 2556
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4001,7 +4241,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2531
+    startLine: 2567
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -6667,6 +6907,191 @@ references:
   name: GetTranslucentJpegAsPngAsync
   nameWithType: DataBasePackedFile.GetTranslucentJpegAsPngAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.GetTranslucentJpegAsPngAsync
+- uid: LlamaLogic.Packages.Models.World.WorldDataModel
+  commentId: T:LlamaLogic.Packages.Models.World.WorldDataModel
+  parent: LlamaLogic.Packages.Models.World
+  href: LlamaLogic.Packages.Models.World.WorldDataModel.html
+  name: WorldDataModel
+  nameWithType: WorldDataModel
+  fullName: LlamaLogic.Packages.Models.World.WorldDataModel
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldData*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetWorldData
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetWorldData_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: GetWorldData
+  nameWithType: DataBasePackedFile.GetWorldData
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldData
+- uid: LlamaLogic.Packages.Models.World
+  commentId: N:LlamaLogic.Packages.Models.World
+  name: LlamaLogic.Packages.Models.World
+  nameWithType: LlamaLogic.Packages.Models.World
+  fullName: LlamaLogic.Packages.Models.World
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.World
+    name: World
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.World
+    name: World
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetWorldDataAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_
+  name: GetWorldDataAsync
+  nameWithType: DataBasePackedFile.GetWorldDataAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldDataAsync
+- uid: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldDataModel}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldDataModel}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<WorldDataModel>
+  nameWithType: Task<WorldDataModel>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.Packages.Models.World.WorldDataModel>
+  nameWithType.vb: Task(Of WorldDataModel)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.Packages.Models.World.WorldDataModel)
+  name.vb: Task(Of WorldDataModel)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.World.WorldDataModel
+    name: WorldDataModel
+    href: LlamaLogic.Packages.Models.World.WorldDataModel.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.World.WorldDataModel
+    name: WorldDataModel
+    href: LlamaLogic.Packages.Models.World.WorldDataModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel
+  commentId: T:LlamaLogic.Packages.Models.World.WorldLotArchitectureModel
+  parent: LlamaLogic.Packages.Models.World
+  href: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.html
+  name: WorldLotArchitectureModel
+  nameWithType: WorldLotArchitectureModel
+  fullName: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetWorldLotArchitecture_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: GetWorldLotArchitecture
+  nameWithType: DataBasePackedFile.GetWorldLotArchitecture
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitecture
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetWorldLotArchitectureAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_
+  name: GetWorldLotArchitectureAsync
+  nameWithType: DataBasePackedFile.GetWorldLotArchitectureAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldLotArchitectureAsync
+- uid: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldLotArchitectureModel}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldLotArchitectureModel}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<WorldLotArchitectureModel>
+  nameWithType: Task<WorldLotArchitectureModel>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.Packages.Models.World.WorldLotArchitectureModel>
+  nameWithType.vb: Task(Of WorldLotArchitectureModel)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.Packages.Models.World.WorldLotArchitectureModel)
+  name.vb: Task(Of WorldLotArchitectureModel)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel
+    name: WorldLotArchitectureModel
+    href: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel
+    name: WorldLotArchitectureModel
+    href: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataModel
+  commentId: T:LlamaLogic.Packages.Models.World.WorldObjectDataModel
+  parent: LlamaLogic.Packages.Models.World
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataModel.html
+  name: WorldObjectDataModel
+  nameWithType: WorldObjectDataModel
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataModel
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetWorldObjectData_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: GetWorldObjectData
+  nameWithType: DataBasePackedFile.GetWorldObjectData
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectData
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetWorldObjectDataAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_
+  name: GetWorldObjectDataAsync
+  nameWithType: DataBasePackedFile.GetWorldObjectDataAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetWorldObjectDataAsync
+- uid: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldObjectDataModel}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.Packages.Models.World.WorldObjectDataModel}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<WorldObjectDataModel>
+  nameWithType: Task<WorldObjectDataModel>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.Packages.Models.World.WorldObjectDataModel>
+  nameWithType.vb: Task(Of WorldObjectDataModel)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.Packages.Models.World.WorldObjectDataModel)
+  name.vb: Task(Of WorldObjectDataModel)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataModel
+    name: WorldObjectDataModel
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataModel.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataModel
+    name: WorldObjectDataModel
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataModel.html
+  - name: )
 - uid: System.Xml.Linq.XDocument
   commentId: T:System.Xml.Linq.XDocument
   parent: System.Xml.Linq

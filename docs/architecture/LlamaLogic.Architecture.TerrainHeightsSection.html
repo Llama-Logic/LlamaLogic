@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TerrainHeightsSection | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TerrainHeightsSection | Llama Logic ">
+      
+      <meta name="description" content="Represents the  section: the lot&#39;s terrain height grid, a second vertex grid of unknown role and a water level per tile quarter (&#128275;)">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Architecture_TerrainHeightsSection.md&amp;value=---%0Auid%3A%20LlamaLogic.Architecture.TerrainHeightsSection%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Architecture.TerrainHeightsSection">
+
+
+
+  <h1 id="LlamaLogic_Architecture_TerrainHeightsSection" data-uid="LlamaLogic.Architecture.TerrainHeightsSection" class="text-break">
+Class TerrainHeightsSection  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Architecture.html">Architecture</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Architecture.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents the <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_TerrainHeights">TerrainHeights</a> section: the lot's terrain height grid, a second vertex grid of unknown role and a water level per tile quarter (🔓)</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class TerrainHeightsSection : LotArchitectureSection</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="LlamaLogic.Architecture.LotArchitectureSection.html">LotArchitectureSection</a></div>
+      <div><span class="xref">TerrainHeightsSection</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type">LotArchitectureSection.Type</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_Architecture_TerrainHeightsSection_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The layout depends on the lot's <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a>; the section has no version of its own.
+First come <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_VertexGridCount">VertexGridCount</a> grids of (<a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX">SizeX</a> + 1) × (<a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ">SizeZ</a> + 1) 32-bit floats, one per tile corner, stored as <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX">SizeX</a> + 1 rows of <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ">SizeZ</a> + 1 values.
+Then, when <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels">HasWaterLevels</a>, four 32-bit integers per tile, one per <a class="xref" href="LlamaLogic.Architecture.FloorQuarter.html">FloorQuarter</a>, the tiles stored as <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX">SizeX</a> rows of <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ">SizeZ</a>.</p>
+<p>When the lot's <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a> is less than 10 there is one vertex grid per level, indexed by level − <a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_LowestLevel">LowestLevel</a>, and the game skips all but the ground level's grid, which holds the terrain height.
+From version 10 there are two: grid 0 is the terrain height (the game's terrain height getter and setter use it, and in-game tests show that sculpting the terrain changes only this grid) and grid 1 is a second per-corner grid whose role is unknown; in-game tests with the raise, flatten and smooth tools changed only grid 0 and left grid 1 unchanged.
+The water levels are present from version 12; before it the game fills them with −400, which means no water.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection__ctor_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.#ctor*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection__ctor_System_Int32_System_Int32_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32)">
+  TerrainHeightsSection(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html">TerrainHeightsSection</a> class in the layout of a lot whose <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a> is 12 or more, with two vertex grids and water levels, every vertex value 0 and every water level −400 (no water)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TerrainHeightsSection(int sizeX, int sizeZ)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sizeX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of tiles along the lot's local X axis</p>
+</dd>
+    <dt><code>sizeZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of tiles along the lot's local Z axis</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p><code class="paramref">sizeX</code> or <code class="paramref">sizeZ</code> is not 0 through 255</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection__ctor_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.#ctor*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection__ctor_System_Int32_System_Int32_System_Int32_System_Boolean_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)">
+  TerrainHeightsSection(int, int, int, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html">TerrainHeightsSection</a> class with every vertex value 0 and every water level −400 (no water)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TerrainHeightsSection(int sizeX, int sizeZ, int vertexGridCount, bool hasWaterLevels)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sizeX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of tiles along the lot's local X axis</p>
+</dd>
+    <dt><code>sizeZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of tiles along the lot's local Z axis</p>
+</dd>
+    <dt><code>vertexGridCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of vertex grids: the lot's level count if the lot's <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a> is less than 10, otherwise 2</p>
+</dd>
+    <dt><code>hasWaterLevels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether there are water levels, which there are if the lot's <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a> is 12 or more</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p><code class="paramref">sizeX</code>, <code class="paramref">sizeZ</code> or <code class="paramref">vertexGridCount</code> is not 0 through 255</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels">
+  HasWaterLevels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the section holds a water level per tile quarter, which it does when the lot's <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a> is 12 or more</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasWaterLevels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_SizeX_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SizeX*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_SizeX" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SizeX">
+  SizeX
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of tiles along the lot's local X axis</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SizeX { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_SizeZ_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_SizeZ" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ">
+  SizeZ
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of tiles along the lot's local Z axis</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SizeZ { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_VertexGridCount_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_VertexGridCount" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount">
+  VertexGridCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of vertex grids</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int VertexGridCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_System_Int32_System_Int32_System_Int32_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)">
+  GetVertexValue(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the value of a tile corner in a vertex grid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetVertexValue(int gridIndex, int x, int z)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gridIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The vertex grid: 0 for the terrain height when the lot's <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version">Version</a> is 10 or more, otherwise the level − <a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_LowestLevel">LowestLevel</a></p>
+</dd>
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The corner's index along the lot's local X axis, 0 through <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX">SizeX</a></p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The corner's index along the lot's local Z axis, 0 through <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ">SizeZ</a></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>A coordinate is outside the grid</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)">
+  GetWaterLevel(int, int, FloorQuarter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the water level of a quarter of a tile, in steps of 0.25 m</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetWaterLevel(int x, int z, FloorQuarter quarter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tile's index along the lot's local X axis</p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tile's index along the lot's local Z axis</p>
+</dd>
+    <dt><code>quarter</code> <a class="xref" href="LlamaLogic.Architecture.FloorQuarter.html">FloorQuarter</a></dt>
+    <dd><p>The quarter of the tile</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>−400 (the game's default) means no water, and the value is −400 almost everywhere.
+The game multiplies it by 0.25 and uses the result minus the floor or terrain height as a water depth.
+In the lots examined it differs from −400 on every quarter of every pond and then equals the pond's <a class="xref" href="LlamaLogic.Architecture.Pond.html#LlamaLogic_Architecture_Pond_WaterLevel">WaterLevel</a>; raising a pond's water level one step in game changed it from −3 to −2 on every quarter of the pond together with <a class="xref" href="LlamaLogic.Architecture.Pond.html#LlamaLogic_Architecture_Pond_WaterLevel">WaterLevel</a> (in-game test).</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p><a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels">HasWaterLevels</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>A coordinate is outside the grid, or <code class="paramref">quarter</code> is not a <a class="xref" href="LlamaLogic.Architecture.FloorQuarter.html">FloorQuarter</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_SetVertexValue_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_SetVertexValue_System_Int32_System_Int32_System_Int32_System_Single_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue(System.Int32,System.Int32,System.Int32,System.Single)">
+  SetVertexValue(int, int, int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value of a tile corner in a vertex grid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetVertexValue(int gridIndex, int x, int z, float value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gridIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The vertex grid (see <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_System_Int32_System_Int32_System_Int32_">GetVertexValue(int, int, int)</a>)</p>
+</dd>
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The corner's index along the lot's local X axis, 0 through <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX">SizeX</a></p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The corner's index along the lot's local Z axis, 0 through <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ">SizeZ</a></p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The value</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>A coordinate is outside the grid</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_TerrainHeightsSection_SetWaterLevel_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel*"></a>
+
+  <h3 id="LlamaLogic_Architecture_TerrainHeightsSection_SetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_System_Int32_" data-uid="LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter,System.Int32)">
+  SetWaterLevel(int, int, FloorQuarter, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the water level of a quarter of a tile, in steps of 0.25 m</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetWaterLevel(int x, int z, FloorQuarter quarter, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tile's index along the lot's local X axis</p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tile's index along the lot's local Z axis</p>
+</dd>
+    <dt><code>quarter</code> <a class="xref" href="LlamaLogic.Architecture.FloorQuarter.html">FloorQuarter</a></dt>
+    <dd><p>The quarter of the tile</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The water level, or −400 for no water (see <a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_">GetWaterLevel(int, int, FloorQuarter)</a>)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p><a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels">HasWaterLevels</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>A coordinate is outside the grid, or <code class="paramref">quarter</code> is not a <a class="xref" href="LlamaLogic.Architecture.FloorQuarter.html">FloorQuarter</a></p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

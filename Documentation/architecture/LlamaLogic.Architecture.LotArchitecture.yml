@@ -1,0 +1,2865 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.LotArchitecture
+  commentId: T:LlamaLogic.Architecture.LotArchitecture
+  id: LotArchitecture
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations
+  - LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  - LlamaLogic.Architecture.LotArchitecture.CeilingRotations
+  - LlamaLogic.Architecture.LotArchitecture.Ceilings
+  - LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  - LlamaLogic.Architecture.LotArchitecture.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Architecture.LotArchitecture.Encode
+  - LlamaLogic.Architecture.LotArchitecture.FloorFeatures
+  - LlamaLogic.Architecture.LotArchitecture.FloorKeys
+  - LlamaLogic.Architecture.LotArchitecture.FloorRotations
+  - LlamaLogic.Architecture.LotArchitecture.Floors
+  - LlamaLogic.Architecture.LotArchitecture.GetManifestKeys
+  - LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints
+  - LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph
+  - LlamaLogic.Architecture.LotArchitecture.LotInfo
+  - LlamaLogic.Architecture.LotArchitecture.LotObjects
+  - LlamaLogic.Architecture.LotArchitecture.LotSize
+  - LlamaLogic.Architecture.LotArchitecture.ModularPieces
+  - LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks
+  - LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds
+  - LlamaLogic.Architecture.LotArchitecture.PendingPlacement
+  - LlamaLogic.Architecture.LotArchitecture.PlexGroups
+  - LlamaLogic.Architecture.LotArchitecture.Plexes
+  - LlamaLogic.Architecture.LotArchitecture.PondBottoms
+  - LlamaLogic.Architecture.LotArchitecture.Ponds
+  - LlamaLogic.Architecture.LotArchitecture.PoolSurfaces
+  - LlamaLogic.Architecture.LotArchitecture.Reserved1
+  - LlamaLogic.Architecture.LotArchitecture.Reserved2
+  - LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  - LlamaLogic.Architecture.LotArchitecture.Revision
+  - LlamaLogic.Architecture.LotArchitecture.Roofs
+  - LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations
+  - LlamaLogic.Architecture.LotArchitecture.SecondaryFloors
+  - LlamaLogic.Architecture.LotArchitecture.SectionInstance
+  - LlamaLogic.Architecture.LotArchitecture.Sections
+  - LlamaLogic.Architecture.LotArchitecture.Stairs
+  - LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations
+  - LlamaLogic.Architecture.LotArchitecture.TerrainFloors
+  - LlamaLogic.Architecture.LotArchitecture.TerrainHeights
+  - LlamaLogic.Architecture.LotArchitecture.TerrainPaint
+  - LlamaLogic.Architecture.LotArchitecture.ToRecordBundle
+  - LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  - LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5
+  - LlamaLogic.Architecture.LotArchitecture.UnknownC9106475
+  - LlamaLogic.Architecture.LotArchitecture.Venue
+  - LlamaLogic.Architecture.LotArchitecture.VertexGraphs
+  - LlamaLogic.Architecture.LotArchitecture.WallBlocks
+  - LlamaLogic.Architecture.LotArchitecture.WallEdges
+  - LlamaLogic.Architecture.LotArchitecture.Weather
+  langs:
+  - csharp
+  - vb
+  name: LotArchitecture
+  nameWithType: LotArchitecture
+  fullName: LlamaLogic.Architecture.LotArchitecture
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotArchitecture
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the architecture of a lot: its walls, floors, roofs, stairs, terrain and the rest of its build, as typed sections (\U0001F513)"
+  remarks: >-
+    <p>The game stores a lot's architecture as a <xref href="LlamaLogic.Packages.Formats.RecordBundle" data-throw-if-not-resolved="false"></xref> in three places: the <xref href="LlamaLogic.Packages.ResourceType.WorldLotArchitecture" data-throw-if-not-resolved="false"></xref> resources of world files, the architecture data of each lot in a save game (see <xref href="LlamaLogic.Architecture.ZoneArchitecture" data-throw-if-not-resolved="false"></xref>) and tray blueprints (see <xref href="LlamaLogic.Architecture.Blueprint" data-throw-if-not-resolved="false"></xref>).
+
+    Each record of the bundle is one section, keyed by its <xref href="LlamaLogic.Architecture.LotArchitectureSectionType" data-throw-if-not-resolved="false"></xref>, group 0 and instance 1.</p>
+
+    <p>Many sections can only be read with the lot's dimensions, which the <xref href="LlamaLogic.Architecture.LotArchitecture.LotSize" data-throw-if-not-resolved="false"></xref> section gives, so the bundle, not the section, is the unit of decoding.
+
+    Records <xref href="LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)" data-throw-if-not-resolved="false"></xref> cannot turn into sections are kept, unchanged, in <xref href="LlamaLogic.Architecture.LotArchitecture.UndecodedRecords" data-throw-if-not-resolved="false"></xref>: those of types this library does not know, those with another group or instance, those with a version (of the section or of an element of it) or a floor feature layer type this library does not support, and those that need dimensions an older <xref href="LlamaLogic.Architecture.LotArchitecture.LotSize" data-throw-if-not-resolved="false"></xref> section does not give (the game itself discards those).</p>
+
+    <p><xref href="LlamaLogic.Architecture.LotArchitecture.Encode" data-throw-if-not-resolved="false"></xref> writes the sections in the layout of their versions, so decoding and encoding the architecture of any lot the game wrote reproduces it byte for byte.</p>
+
+    <p>Where the documentation of the sections speaks of the lots, sections or entries examined, it means the 2,919 lot architectures examined while developing this library, at the game's patch level as of October 2026: those of the lots of the game's installed world files (of which twelve base-game worlds had been replaced by a community lot-replacement mod), the 179 lots of the Maxis originals of those twelve worlds, the lots of four save games and 73 tray blueprints.</p>
+  example: []
+  syntax:
+    content: public sealed class LotArchitecture
+    content.vb: Public NotInheritable Class LotArchitecture
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.LotArchitecture.SectionInstance
+  commentId: F:LlamaLogic.Architecture.LotArchitecture.SectionInstance
+  id: SectionInstance
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: SectionInstance
+  nameWithType: LotArchitecture.SectionInstance
+  fullName: LlamaLogic.Architecture.LotArchitecture.SectionInstance
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SectionInstance
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 18
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the instance of the record of every section
+  example: []
+  syntax:
+    content: public const ulong SectionInstance = 1
+    return:
+      type: System.UInt64
+    content.vb: Public Const SectionInstance As ULong = 1
+- uid: LlamaLogic.Architecture.LotArchitecture.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.Decode(System.ReadOnlyMemory{System.Byte})
+  id: Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: LotArchitecture.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Architecture.LotArchitecture.Decode(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Decodes the architecture of a lot from the content of a record bundle
+  example: []
+  syntax:
+    content: public static LotArchitecture Decode(ReadOnlyMemory<byte> bundleData)
+    parameters:
+    - id: bundleData
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Architecture.LotArchitecture
+    content.vb: Public Shared Function Decode(bundleData As ReadOnlyMemory(Of Byte)) As LotArchitecture
+  overload: LlamaLogic.Architecture.LotArchitecture.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The data is not a well-formed record bundle, or one of its sections is not well-formed
+  nameWithType.vb: LotArchitecture.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Architecture.LotArchitecture.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  id: Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Decode(RecordBundle)
+  nameWithType: LotArchitecture.Decode(RecordBundle)
+  fullName: LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 62
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Decodes the architecture of a lot from a record bundle
+  example: []
+  syntax:
+    content: public static LotArchitecture Decode(RecordBundle bundle)
+    parameters:
+    - id: bundle
+      type: LlamaLogic.Packages.Formats.RecordBundle
+    return:
+      type: LlamaLogic.Architecture.LotArchitecture
+    content.vb: Public Shared Function Decode(bundle As RecordBundle) As LotArchitecture
+  overload: LlamaLogic.Architecture.LotArchitecture.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: One of the bundle's sections is not well-formed
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations
+  id: CeilingPaintRotations
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: CeilingPaintRotations
+  nameWithType: LotArchitecture.CeilingPaintRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingPaintRotations
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 99
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the rotation of the ceiling paint of each level (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorRotationGridSection? CeilingPaintRotations { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorRotationGridSection
+    content.vb: Public Property CeilingPaintRotations As FloorRotationGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations*
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  id: CeilingPaints
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: CeilingPaints
+  nameWithType: LotArchitecture.CeilingPaints
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingPaints
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 108
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the ceiling paint of each level (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorIdGridSection? CeilingPaints { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property CeilingPaints As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.CeilingPaints*
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingRotations
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.CeilingRotations
+  id: CeilingRotations
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: CeilingRotations
+  nameWithType: LotArchitecture.CeilingRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingRotations
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingRotations
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 120
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the rotation of the ceiling of each level (\U0001F513)"
+  remarks: It is paired with <xref href="LlamaLogic.Architecture.LotArchitecture.Ceilings" data-throw-if-not-resolved="false"></xref>, whose role in-game tests and the game's code show.
+  example: []
+  syntax:
+    content: public FloorRotationGridSection? CeilingRotations { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorRotationGridSection
+    content.vb: Public Property CeilingRotations As FloorRotationGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.CeilingRotations*
+- uid: LlamaLogic.Architecture.LotArchitecture.Ceilings
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Ceilings
+  id: Ceilings
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Ceilings
+  nameWithType: LotArchitecture.Ceilings
+  fullName: LlamaLogic.Architecture.LotArchitecture.Ceilings
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Ceilings
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 132
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the ceiling of each level (\U0001F513)"
+  remarks: In-game tests show that building a room fills this grid at the level above the room over exactly the room's tiles, and that painting the ceiling changes only <xref href="LlamaLogic.Architecture.LotArchitecture.CeilingPaints" data-throw-if-not-resolved="false"></xref>; the game's code assigns the grid to the room on the level below.
+  example: []
+  syntax:
+    content: public FloorIdGridSection? Ceilings { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property Ceilings As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Ceilings*
+- uid: LlamaLogic.Architecture.LotArchitecture.FloorFeatures
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.FloorFeatures
+  id: FloorFeatures
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: FloorFeatures
+  nameWithType: LotArchitecture.FloorFeatures
+  fullName: LlamaLogic.Architecture.LotArchitecture.FloorFeatures
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorFeatures
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 141
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the floor feature layers (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorFeaturesSection? FloorFeatures { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorFeaturesSection
+    content.vb: Public Property FloorFeatures As FloorFeaturesSection
+  overload: LlamaLogic.Architecture.LotArchitecture.FloorFeatures*
+- uid: LlamaLogic.Architecture.LotArchitecture.FloorKeys
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.FloorKeys
+  id: FloorKeys
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: FloorKeys
+  nameWithType: LotArchitecture.FloorKeys
+  fullName: LlamaLogic.Architecture.LotArchitecture.FloorKeys
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorKeys
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 150
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the floor keys the floor id grids refer to (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorKeysSection? FloorKeys { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorKeysSection
+    content.vb: Public Property FloorKeys As FloorKeysSection
+  overload: LlamaLogic.Architecture.LotArchitecture.FloorKeys*
+- uid: LlamaLogic.Architecture.LotArchitecture.FloorRotations
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.FloorRotations
+  id: FloorRotations
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: FloorRotations
+  nameWithType: LotArchitecture.FloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.FloorRotations
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorRotations
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 159
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the rotation of the floor pattern of each level (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorRotationGridSection? FloorRotations { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorRotationGridSection
+    content.vb: Public Property FloorRotations As FloorRotationGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.FloorRotations*
+- uid: LlamaLogic.Architecture.LotArchitecture.Floors
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Floors
+  id: Floors
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Floors
+  nameWithType: LotArchitecture.Floors
+  fullName: LlamaLogic.Architecture.LotArchitecture.Floors
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Floors
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 168
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the floor pattern of each level (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorIdGridSection? Floors { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property Floors As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Floors*
+- uid: LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints
+  id: LegacyFencePoints
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: LegacyFencePoints
+  nameWithType: LotArchitecture.LegacyFencePoints
+  fullName: LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyFencePoints
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 180
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the points with fence and ceiling rail keys of older world files (\U0001F513)"
+  remarks: The name reflects the catalog key types the data holds; the section appears only in older world files.
+  example: []
+  syntax:
+    content: public LegacyFencePointsSection? LegacyFencePoints { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.LegacyFencePointsSection
+    content.vb: Public Property LegacyFencePoints As LegacyFencePointsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints*
+- uid: LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph
+  id: LegacyWallGraph
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: LegacyWallGraph
+  nameWithType: LotArchitecture.LegacyWallGraph
+  fullName: LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyWallGraph
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 192
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the graph of edges with wall pattern and product keys of older world files (\U0001F513)"
+  remarks: The name reflects the catalog key types the data holds; the section appears only in older world files.
+  example: []
+  syntax:
+    content: public LegacyWallGraphSection? LegacyWallGraph { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.LegacyWallGraphSection
+    content.vb: Public Property LegacyWallGraph As LegacyWallGraphSection
+  overload: LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph*
+- uid: LlamaLogic.Architecture.LotArchitecture.LotInfo
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.LotInfo
+  id: LotInfo
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: LotInfo
+  nameWithType: LotArchitecture.LotInfo
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotInfo
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotInfo
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 201
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the lot's levels, style and creators (\U0001F513)"
+  example: []
+  syntax:
+    content: public LotInfoSection? LotInfo { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.LotInfoSection
+    content.vb: Public Property LotInfo As LotInfoSection
+  overload: LlamaLogic.Architecture.LotArchitecture.LotInfo*
+- uid: LlamaLogic.Architecture.LotArchitecture.LotObjects
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.LotObjects
+  id: LotObjects
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: LotObjects
+  nameWithType: LotArchitecture.LotObjects
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotObjects
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotObjects
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 210
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the objects stored with the architecture (\U0001F513)"
+  example: []
+  syntax:
+    content: public LotObjectsSection? LotObjects { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.LotObjectsSection
+    content.vb: Public Property LotObjects As LotObjectsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.LotObjects*
+- uid: LlamaLogic.Architecture.LotArchitecture.LotSize
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.LotSize
+  id: LotSize
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: LotSize
+  nameWithType: LotArchitecture.LotSize
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotSize
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotSize
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 219
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the lot's dimensions (\U0001F513)"
+  example: []
+  syntax:
+    content: public LotSizeSection? LotSize { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.LotSizeSection
+    content.vb: Public Property LotSize As LotSizeSection
+  overload: LlamaLogic.Architecture.LotArchitecture.LotSize*
+- uid: LlamaLogic.Architecture.LotArchitecture.ModularPieces
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.ModularPieces
+  id: ModularPieces
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: ModularPieces
+  nameWithType: LotArchitecture.ModularPieces
+  fullName: LlamaLogic.Architecture.LotArchitecture.ModularPieces
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModularPieces
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 228
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the modular pieces (\U0001F513)"
+  example: []
+  syntax:
+    content: public ModularPiecesSection? ModularPieces { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ModularPiecesSection
+    content.vb: Public Property ModularPieces As ModularPiecesSection
+  overload: LlamaLogic.Architecture.LotArchitecture.ModularPieces*
+- uid: LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks
+  id: ObjectFallbacks
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: ObjectFallbacks
+  nameWithType: LotArchitecture.ObjectFallbacks
+  fullName: LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ObjectFallbacks
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 237
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the objects the game falls back to placing when others are unavailable (\U0001F513)"
+  example: []
+  syntax:
+    content: public ObjectFallbacksSection? ObjectFallbacks { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ObjectFallbacksSection
+    content.vb: Public Property ObjectFallbacks As ObjectFallbacksSection
+  overload: LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks*
+- uid: LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds
+  id: ObjectTileBounds
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: ObjectTileBounds
+  nameWithType: LotArchitecture.ObjectTileBounds
+  fullName: LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ObjectTileBounds
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 246
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the tiles each object covers (\U0001F513)"
+  example: []
+  syntax:
+    content: public ObjectTileBoundsSection? ObjectTileBounds { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ObjectTileBoundsSection
+    content.vb: Public Property ObjectTileBounds As ObjectTileBoundsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds*
+- uid: LlamaLogic.Architecture.LotArchitecture.PendingPlacement
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.PendingPlacement
+  id: PendingPlacement
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: PendingPlacement
+  nameWithType: LotArchitecture.PendingPlacement
+  fullName: LlamaLogic.Architecture.LotArchitecture.PendingPlacement
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PendingPlacement
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 258
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the pending placement (\U0001F513)"
+  remarks: When its state is 1, the game centers a footprint of the stored width, depth and rotation on the lot and builds a placement operation with the lot's <xref href="LlamaLogic.Architecture.LotInfoSection.BlueprintInstance" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public PendingPlacementSection? PendingPlacement { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.PendingPlacementSection
+    content.vb: Public Property PendingPlacement As PendingPlacementSection
+  overload: LlamaLogic.Architecture.LotArchitecture.PendingPlacement*
+- uid: LlamaLogic.Architecture.LotArchitecture.Plexes
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Plexes
+  id: Plexes
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Plexes
+  nameWithType: LotArchitecture.Plexes
+  fullName: LlamaLogic.Architecture.LotArchitecture.Plexes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Plexes
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 267
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the plexes (units) of the lot (\U0001F513)"
+  example: []
+  syntax:
+    content: public PlexesSection? Plexes { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.PlexesSection
+    content.vb: Public Property Plexes As PlexesSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Plexes*
+- uid: LlamaLogic.Architecture.LotArchitecture.PlexGroups
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.PlexGroups
+  id: PlexGroups
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: PlexGroups
+  nameWithType: LotArchitecture.PlexGroups
+  fullName: LlamaLogic.Architecture.LotArchitecture.PlexGroups
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PlexGroups
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 279
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the groups of values the <xref href=\"LlamaLogic.Architecture.LotArchitecture.Plexes\" data-throw-if-not-resolved=\"false\"></xref> section refers to by id (\U0001F513)"
+  remarks: That the values are block ids is a hypothesis.
+  example: []
+  syntax:
+    content: public PlexGroupsSection? PlexGroups { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.PlexGroupsSection
+    content.vb: Public Property PlexGroups As PlexGroupsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.PlexGroups*
+- uid: LlamaLogic.Architecture.LotArchitecture.PondBottoms
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.PondBottoms
+  id: PondBottoms
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: PondBottoms
+  nameWithType: LotArchitecture.PondBottoms
+  fullName: LlamaLogic.Architecture.LotArchitecture.PondBottoms
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PondBottoms
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 288
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the pond bottom pattern (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorIdGridSection? PondBottoms { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property PondBottoms As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.PondBottoms*
+- uid: LlamaLogic.Architecture.LotArchitecture.Ponds
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Ponds
+  id: Ponds
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Ponds
+  nameWithType: LotArchitecture.Ponds
+  fullName: LlamaLogic.Architecture.LotArchitecture.Ponds
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Ponds
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 297
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the ponds (\U0001F513)"
+  example: []
+  syntax:
+    content: public PondsSection? Ponds { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.PondsSection
+    content.vb: Public Property Ponds As PondsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Ponds*
+- uid: LlamaLogic.Architecture.LotArchitecture.PoolSurfaces
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.PoolSurfaces
+  id: PoolSurfaces
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: PoolSurfaces
+  nameWithType: LotArchitecture.PoolSurfaces
+  fullName: LlamaLogic.Architecture.LotArchitecture.PoolSurfaces
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PoolSurfaces
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 309
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the pool surface pattern of each level (\U0001F513)"
+  remarks: In-game tests show that building a pool fills this grid over exactly the pool's tiles at the level above the pool's block; the game's code assigns the grid to the room on the level below.
+  example: []
+  syntax:
+    content: public FloorIdGridSection? PoolSurfaces { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property PoolSurfaces As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.PoolSurfaces*
+- uid: LlamaLogic.Architecture.LotArchitecture.Reserved1
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Reserved1
+  id: Reserved1
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Reserved1
+  nameWithType: LotArchitecture.Reserved1
+  fullName: LlamaLogic.Architecture.LotArchitecture.Reserved1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Reserved1
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 318
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the first reserved header value of the record bundle, which no code in the game's simulation library reads (other parts of the game were not examined)
+  example: []
+  syntax:
+    content: public uint Reserved1 { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Reserved1 As UInteger
+  overload: LlamaLogic.Architecture.LotArchitecture.Reserved1*
+- uid: LlamaLogic.Architecture.LotArchitecture.Reserved2
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Reserved2
+  id: Reserved2
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Reserved2
+  nameWithType: LotArchitecture.Reserved2
+  fullName: LlamaLogic.Architecture.LotArchitecture.Reserved2
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Reserved2
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 323
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the second reserved header value of the record bundle, which no code in the game's simulation library reads (other parts of the game were not examined)
+  example: []
+  syntax:
+    content: public uint Reserved2 { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Reserved2 As UInteger
+  overload: LlamaLogic.Architecture.LotArchitecture.Reserved2*
+- uid: LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  id: ResourceManifest
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: ResourceManifest
+  nameWithType: LotArchitecture.ResourceManifest
+  fullName: LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceManifest
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 328
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the keys of the catalog resources the other sections reference (\U0001F513)"
+  example: []
+  syntax:
+    content: public ResourceManifestSection? ResourceManifest { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ResourceManifestSection
+    content.vb: Public Property ResourceManifest As ResourceManifestSection
+  overload: LlamaLogic.Architecture.LotArchitecture.ResourceManifest*
+- uid: LlamaLogic.Architecture.LotArchitecture.Revision
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Revision
+  id: Revision
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Revision
+  nameWithType: LotArchitecture.Revision
+  fullName: LlamaLogic.Architecture.LotArchitecture.Revision
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Revision
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 337
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the lot's revision counter (\U0001F513)"
+  example: []
+  syntax:
+    content: public RevisionSection? Revision { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.RevisionSection
+    content.vb: Public Property Revision As RevisionSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Revision*
+- uid: LlamaLogic.Architecture.LotArchitecture.Roofs
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Roofs
+  id: Roofs
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Roofs
+  nameWithType: LotArchitecture.Roofs
+  fullName: LlamaLogic.Architecture.LotArchitecture.Roofs
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Roofs
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 346
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the roofs (\U0001F513)"
+  example: []
+  syntax:
+    content: public RoofsSection? Roofs { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.RoofsSection
+    content.vb: Public Property Roofs As RoofsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Roofs*
+- uid: LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations
+  id: SecondaryFloorRotations
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: SecondaryFloorRotations
+  nameWithType: LotArchitecture.SecondaryFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SecondaryFloorRotations
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 355
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the rotation of the second floor layer of each level (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorRotationGridSection? SecondaryFloorRotations { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorRotationGridSection
+    content.vb: Public Property SecondaryFloorRotations As FloorRotationGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations*
+- uid: LlamaLogic.Architecture.LotArchitecture.SecondaryFloors
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.SecondaryFloors
+  id: SecondaryFloors
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: SecondaryFloors
+  nameWithType: LotArchitecture.SecondaryFloors
+  fullName: LlamaLogic.Architecture.LotArchitecture.SecondaryFloors
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SecondaryFloors
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 367
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the second floor layer of each level (\U0001F513)"
+  remarks: In-game tests show that building a room or a platform fills this grid over its tiles with the lot's default floor key, and that painting a floor or a platform's top changes only <xref href="LlamaLogic.Architecture.LotArchitecture.Floors" data-throw-if-not-resolved="false"></xref>; the grid's role is unknown.
+  example: []
+  syntax:
+    content: public FloorIdGridSection? SecondaryFloors { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property SecondaryFloors As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.SecondaryFloors*
+- uid: LlamaLogic.Architecture.LotArchitecture.Sections
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Sections
+  id: Sections
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Sections
+  nameWithType: LotArchitecture.Sections
+  fullName: LlamaLogic.Architecture.LotArchitecture.Sections
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Sections
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 376
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the decoded sections, in ascending order of type
+  example: []
+  syntax:
+    content: public IReadOnlyList<LotArchitectureSection> Sections { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.Architecture.LotArchitectureSection}
+    content.vb: Public ReadOnly Property Sections As IReadOnlyList(Of LotArchitectureSection)
+  overload: LlamaLogic.Architecture.LotArchitecture.Sections*
+- uid: LlamaLogic.Architecture.LotArchitecture.Stairs
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Stairs
+  id: Stairs
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Stairs
+  nameWithType: LotArchitecture.Stairs
+  fullName: LlamaLogic.Architecture.LotArchitecture.Stairs
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Stairs
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 382
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the stairs and ladders (\U0001F513)"
+  example: []
+  syntax:
+    content: public StairsSection? Stairs { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.StairsSection
+    content.vb: Public Property Stairs As StairsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Stairs*
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations
+  id: TerrainFloorRotations
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: TerrainFloorRotations
+  nameWithType: LotArchitecture.TerrainFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainFloorRotations
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 391
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the rotation of the floor pattern painted on the terrain (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorRotationGridSection? TerrainFloorRotations { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorRotationGridSection
+    content.vb: Public Property TerrainFloorRotations As FloorRotationGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations*
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainFloors
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.TerrainFloors
+  id: TerrainFloors
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: TerrainFloors
+  nameWithType: LotArchitecture.TerrainFloors
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainFloors
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainFloors
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 400
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the floor pattern painted on the terrain (\U0001F513)"
+  example: []
+  syntax:
+    content: public FloorIdGridSection? TerrainFloors { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.FloorIdGridSection
+    content.vb: Public Property TerrainFloors As FloorIdGridSection
+  overload: LlamaLogic.Architecture.LotArchitecture.TerrainFloors*
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainHeights
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.TerrainHeights
+  id: TerrainHeights
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: TerrainHeights
+  nameWithType: LotArchitecture.TerrainHeights
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainHeights
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainHeights
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 409
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the terrain heights (\U0001F513)"
+  example: []
+  syntax:
+    content: public TerrainHeightsSection? TerrainHeights { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.TerrainHeightsSection
+    content.vb: Public Property TerrainHeights As TerrainHeightsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.TerrainHeights*
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainPaint
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.TerrainPaint
+  id: TerrainPaint
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: TerrainPaint
+  nameWithType: LotArchitecture.TerrainPaint
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainPaint
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainPaint
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 418
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the terrain paint layers (\U0001F513)"
+  example: []
+  syntax:
+    content: public TerrainPaintSection? TerrainPaint { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.TerrainPaintSection
+    content.vb: Public Property TerrainPaint As TerrainPaintSection
+  overload: LlamaLogic.Architecture.LotArchitecture.TerrainPaint*
+- uid: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  id: UndecodedRecords
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: UndecodedRecords
+  nameWithType: LotArchitecture.UndecodedRecords
+  fullName: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UndecodedRecords
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 427
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the records that were not decoded into sections, which <xref href="LlamaLogic.Architecture.LotArchitecture.Encode" data-throw-if-not-resolved="false"></xref> writes back unchanged
+  example: []
+  syntax:
+    content: public Collection<RecordBundleRecord> UndecodedRecords { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Formats.RecordBundleRecord}
+    content.vb: Public ReadOnly Property UndecodedRecords As Collection(Of RecordBundleRecord)
+  overload: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords*
+- uid: LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5
+  id: Unknown7B33C1F5
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Unknown7B33C1F5
+  nameWithType: LotArchitecture.Unknown7B33C1F5
+  fullName: LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown7B33C1F5
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 432
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the section of unknown purpose of type <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F513)"
+  example: []
+  syntax:
+    content: public Unknown7B33C1F5Section? Unknown7B33C1F5 { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.Unknown7B33C1F5Section
+    content.vb: Public Property Unknown7B33C1F5 As Unknown7B33C1F5Section
+  overload: LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5*
+- uid: LlamaLogic.Architecture.LotArchitecture.UnknownC9106475
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.UnknownC9106475
+  id: UnknownC9106475
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: UnknownC9106475
+  nameWithType: LotArchitecture.UnknownC9106475
+  fullName: LlamaLogic.Architecture.LotArchitecture.UnknownC9106475
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UnknownC9106475
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 441
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the section of unknown purpose of type <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F513)"
+  example: []
+  syntax:
+    content: public UnknownC9106475Section? UnknownC9106475 { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.UnknownC9106475Section
+    content.vb: Public Property UnknownC9106475 As UnknownC9106475Section
+  overload: LlamaLogic.Architecture.LotArchitecture.UnknownC9106475*
+- uid: LlamaLogic.Architecture.LotArchitecture.Venue
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Venue
+  id: Venue
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Venue
+  nameWithType: LotArchitecture.Venue
+  fullName: LlamaLogic.Architecture.LotArchitecture.Venue
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Venue
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 450
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the lot's venue (\U0001F513)"
+  example: []
+  syntax:
+    content: public VenueSection? Venue { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.VenueSection
+    content.vb: Public Property Venue As VenueSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Venue*
+- uid: LlamaLogic.Architecture.LotArchitecture.VertexGraphs
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.VertexGraphs
+  id: VertexGraphs
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: VertexGraphs
+  nameWithType: LotArchitecture.VertexGraphs
+  fullName: LlamaLogic.Architecture.LotArchitecture.VertexGraphs
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VertexGraphs
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 462
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the graphs of vertices and edges whose version decides the layout of <xref href=\"LlamaLogic.Architecture.LotArchitecture.WallEdges\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F513)"
+  remarks: The game reads only the section's version; what the graphs describe is not established. Sims 4 Studio calls this section WallCutout.
+  example: []
+  syntax:
+    content: public VertexGraphsSection? VertexGraphs { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.VertexGraphsSection
+    content.vb: Public Property VertexGraphs As VertexGraphsSection
+  overload: LlamaLogic.Architecture.LotArchitecture.VertexGraphs*
+- uid: LlamaLogic.Architecture.LotArchitecture.WallBlocks
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.WallBlocks
+  id: WallBlocks
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: WallBlocks
+  nameWithType: LotArchitecture.WallBlocks
+  fullName: LlamaLogic.Architecture.LotArchitecture.WallBlocks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallBlocks
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 471
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the blocks: rooms, wall lines, fences, pools and fountains (\U0001F513)"
+  example: []
+  syntax:
+    content: public WallBlocksSection? WallBlocks { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.WallBlocksSection
+    content.vb: Public Property WallBlocks As WallBlocksSection
+  overload: LlamaLogic.Architecture.LotArchitecture.WallBlocks*
+- uid: LlamaLogic.Architecture.LotArchitecture.WallEdges
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.WallEdges
+  id: WallEdges
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: WallEdges
+  nameWithType: LotArchitecture.WallEdges
+  fullName: LlamaLogic.Architecture.LotArchitecture.WallEdges
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallEdges
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 480
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the wall patterns and products along wall edges (\U0001F513)"
+  example: []
+  syntax:
+    content: public WallEdgesSection? WallEdges { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.WallEdgesSection
+    content.vb: Public Property WallEdges As WallEdgesSection
+  overload: LlamaLogic.Architecture.LotArchitecture.WallEdges*
+- uid: LlamaLogic.Architecture.LotArchitecture.Weather
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Weather
+  id: Weather
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Weather
+  nameWithType: LotArchitecture.Weather
+  fullName: LlamaLogic.Architecture.LotArchitecture.Weather
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Weather
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 489
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the lot's seasonal weather interpolation value (\U0001F513)"
+  example: []
+  syntax:
+    content: public WeatherSection? Weather { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.WeatherSection
+    content.vb: Public Property Weather As WeatherSection
+  overload: LlamaLogic.Architecture.LotArchitecture.Weather*
+- uid: LlamaLogic.Architecture.LotArchitecture.Encode
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.Encode
+  id: Encode
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: Encode()
+  nameWithType: LotArchitecture.Encode()
+  fullName: LlamaLogic.Architecture.LotArchitecture.Encode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Encode
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 521
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Encodes the architecture as the content of a record bundle
+  example: []
+  syntax:
+    content: public ReadOnlyMemory<byte> Encode()
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Function Encode() As ReadOnlyMemory(Of Byte)
+  overload: LlamaLogic.Architecture.LotArchitecture.Encode*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: A section cannot be encoded as it is, or a section and an undecoded record have the same key
+- uid: LlamaLogic.Architecture.LotArchitecture.GetManifestKeys
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.GetManifestKeys
+  id: GetManifestKeys
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: GetManifestKeys()
+  nameWithType: LotArchitecture.GetManifestKeys()
+  fullName: LlamaLogic.Architecture.LotArchitecture.GetManifestKeys()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetManifestKeys
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 538
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the keys the sections reference, in the order the game's saver would collect them into the <xref href="LlamaLogic.Architecture.LotArchitecture.ResourceManifest" data-throw-if-not-resolved="false"></xref>
+  remarks: >-
+    The game builds the manifest by recording every key it writes while saving the sections that precede the manifest, in its fixed save order, skipping repeats.
+
+    This method does the same with the current sections, so assigning the result to a new <xref href="LlamaLogic.Architecture.ResourceManifestSection" data-throw-if-not-resolved="false"></xref> keeps the manifest consistent after edits.
+
+    No code in the game's simulation library reads the manifest back (other parts of the game were not examined).
+
+    For 2,907 of 2,912 lots in the game's world files, save games and tray blueprints examined, the result equals the stored manifest; the exceptions are lots of older world files whose blocks hold inline keys, which the current game no longer writes, and one saved lot whose stored manifest lacks two keys its sections reference.
+  example: []
+  syntax:
+    content: public IReadOnlyList<ResourceKey> GetManifestKeys()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.ResourceKey}
+    content.vb: Public Function GetManifestKeys() As IReadOnlyList(Of ResourceKey)
+  overload: LlamaLogic.Architecture.LotArchitecture.GetManifestKeys*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: A section cannot be encoded as it is
+- uid: LlamaLogic.Architecture.LotArchitecture.ToRecordBundle
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.ToRecordBundle
+  id: ToRecordBundle
+  parent: LlamaLogic.Architecture.LotArchitecture
+  langs:
+  - csharp
+  - vb
+  name: ToRecordBundle()
+  nameWithType: LotArchitecture.ToRecordBundle()
+  fullName: LlamaLogic.Architecture.LotArchitecture.ToRecordBundle()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitecture.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ToRecordBundle
+    path: ../LlamaLogic.Architecture/LotArchitecture.cs
+    startLine: 572
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Creates a record bundle holding the architecture
+  example: []
+  syntax:
+    content: public RecordBundle ToRecordBundle()
+    return:
+      type: LlamaLogic.Packages.Formats.RecordBundle
+    content.vb: Public Function ToRecordBundle() As RecordBundle
+  overload: LlamaLogic.Architecture.LotArchitecture.ToRecordBundle*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: A section cannot be encoded as it is, or a section and an undecoded record have the same key
+references:
+- uid: LlamaLogic.Packages.Formats.RecordBundle
+  commentId: T:LlamaLogic.Packages.Formats.RecordBundle
+  parent: LlamaLogic.Packages.Formats
+  name: RecordBundle
+  nameWithType: RecordBundle
+  fullName: LlamaLogic.Packages.Formats.RecordBundle
+- uid: LlamaLogic.Packages.ResourceType.WorldLotArchitecture
+  commentId: F:LlamaLogic.Packages.ResourceType.WorldLotArchitecture
+  name: WorldLotArchitecture
+  nameWithType: ResourceType.WorldLotArchitecture
+  fullName: LlamaLogic.Packages.ResourceType.WorldLotArchitecture
+- uid: LlamaLogic.Architecture.ZoneArchitecture
+  commentId: T:LlamaLogic.Architecture.ZoneArchitecture
+  href: LlamaLogic.Architecture.ZoneArchitecture.html
+  name: ZoneArchitecture
+  nameWithType: ZoneArchitecture
+  fullName: LlamaLogic.Architecture.ZoneArchitecture
+- uid: LlamaLogic.Architecture.Blueprint
+  commentId: T:LlamaLogic.Architecture.Blueprint
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.Blueprint.html
+  name: Blueprint
+  nameWithType: Blueprint
+  fullName: LlamaLogic.Architecture.Blueprint
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSectionType
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html
+  name: LotArchitectureSectionType
+  nameWithType: LotArchitectureSectionType
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitecture.LotSize
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.LotSize
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LotSize
+  name: LotSize
+  nameWithType: LotArchitecture.LotSize
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotSize
+- uid: LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Decode_LlamaLogic_Packages_Formats_RecordBundle_
+  name: Decode(RecordBundle)
+  nameWithType: LotArchitecture.Decode(RecordBundle)
+  fullName: LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+    name: Decode
+    href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Decode_LlamaLogic_Packages_Formats_RecordBundle_
+  - name: (
+  - uid: LlamaLogic.Packages.Formats.RecordBundle
+    name: RecordBundle
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)
+    name: Decode
+    href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Decode_LlamaLogic_Packages_Formats_RecordBundle_
+  - name: (
+  - uid: LlamaLogic.Packages.Formats.RecordBundle
+    name: RecordBundle
+  - name: )
+- uid: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_UndecodedRecords
+  name: UndecodedRecords
+  nameWithType: LotArchitecture.UndecodedRecords
+  fullName: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+- uid: LlamaLogic.Architecture.LotArchitecture.Encode
+  commentId: M:LlamaLogic.Architecture.LotArchitecture.Encode
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Encode
+  name: Encode()
+  nameWithType: LotArchitecture.Encode()
+  fullName: LlamaLogic.Architecture.LotArchitecture.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.LotArchitecture.Encode
+    name: Encode
+    href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.LotArchitecture.Encode
+    name: Encode
+    href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Formats
+  commentId: N:LlamaLogic.Packages.Formats
+  name: LlamaLogic.Packages.Formats
+  nameWithType: LlamaLogic.Packages.Formats
+  fullName: LlamaLogic.Packages.Formats
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.Architecture.LotArchitecture.Decode*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Decode
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: LotArchitecture.Decode
+  fullName: LlamaLogic.Architecture.LotArchitecture.Decode
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Architecture.LotArchitecture
+  commentId: T:LlamaLogic.Architecture.LotArchitecture
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitecture.html
+  name: LotArchitecture
+  nameWithType: LotArchitecture
+  fullName: LlamaLogic.Architecture.LotArchitecture
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_CeilingPaintRotations
+  name: CeilingPaintRotations
+  nameWithType: LotArchitecture.CeilingPaintRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations
+- uid: LlamaLogic.Architecture.FloorRotationGridSection
+  commentId: T:LlamaLogic.Architecture.FloorRotationGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html
+  name: FloorRotationGridSection
+  nameWithType: FloorRotationGridSection
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingPaints*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_CeilingPaints
+  name: CeilingPaints
+  nameWithType: LotArchitecture.CeilingPaints
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+- uid: LlamaLogic.Architecture.FloorIdGridSection
+  commentId: T:LlamaLogic.Architecture.FloorIdGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorIdGridSection.html
+  name: FloorIdGridSection
+  nameWithType: FloorIdGridSection
+  fullName: LlamaLogic.Architecture.FloorIdGridSection
+- uid: LlamaLogic.Architecture.LotArchitecture.Ceilings
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Ceilings
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Ceilings
+  name: Ceilings
+  nameWithType: LotArchitecture.Ceilings
+  fullName: LlamaLogic.Architecture.LotArchitecture.Ceilings
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingRotations*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.CeilingRotations
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_CeilingRotations
+  name: CeilingRotations
+  nameWithType: LotArchitecture.CeilingRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingRotations
+- uid: LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_CeilingPaints
+  name: CeilingPaints
+  nameWithType: LotArchitecture.CeilingPaints
+  fullName: LlamaLogic.Architecture.LotArchitecture.CeilingPaints
+- uid: LlamaLogic.Architecture.LotArchitecture.Ceilings*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Ceilings
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Ceilings
+  name: Ceilings
+  nameWithType: LotArchitecture.Ceilings
+  fullName: LlamaLogic.Architecture.LotArchitecture.Ceilings
+- uid: LlamaLogic.Architecture.LotArchitecture.FloorFeatures*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.FloorFeatures
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_FloorFeatures
+  name: FloorFeatures
+  nameWithType: LotArchitecture.FloorFeatures
+  fullName: LlamaLogic.Architecture.LotArchitecture.FloorFeatures
+- uid: LlamaLogic.Architecture.FloorFeaturesSection
+  commentId: T:LlamaLogic.Architecture.FloorFeaturesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorFeaturesSection.html
+  name: FloorFeaturesSection
+  nameWithType: FloorFeaturesSection
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection
+- uid: LlamaLogic.Architecture.LotArchitecture.FloorKeys*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.FloorKeys
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_FloorKeys
+  name: FloorKeys
+  nameWithType: LotArchitecture.FloorKeys
+  fullName: LlamaLogic.Architecture.LotArchitecture.FloorKeys
+- uid: LlamaLogic.Architecture.FloorKeysSection
+  commentId: T:LlamaLogic.Architecture.FloorKeysSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorKeysSection.html
+  name: FloorKeysSection
+  nameWithType: FloorKeysSection
+  fullName: LlamaLogic.Architecture.FloorKeysSection
+- uid: LlamaLogic.Architecture.LotArchitecture.FloorRotations*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.FloorRotations
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_FloorRotations
+  name: FloorRotations
+  nameWithType: LotArchitecture.FloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.FloorRotations
+- uid: LlamaLogic.Architecture.LotArchitecture.Floors*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Floors
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Floors
+  name: Floors
+  nameWithType: LotArchitecture.Floors
+  fullName: LlamaLogic.Architecture.LotArchitecture.Floors
+- uid: LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LegacyFencePoints
+  name: LegacyFencePoints
+  nameWithType: LotArchitecture.LegacyFencePoints
+  fullName: LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints
+- uid: LlamaLogic.Architecture.LegacyFencePointsSection
+  commentId: T:LlamaLogic.Architecture.LegacyFencePointsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LegacyFencePointsSection.html
+  name: LegacyFencePointsSection
+  nameWithType: LegacyFencePointsSection
+  fullName: LlamaLogic.Architecture.LegacyFencePointsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LegacyWallGraph
+  name: LegacyWallGraph
+  nameWithType: LotArchitecture.LegacyWallGraph
+  fullName: LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph
+- uid: LlamaLogic.Architecture.LegacyWallGraphSection
+  commentId: T:LlamaLogic.Architecture.LegacyWallGraphSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LegacyWallGraphSection.html
+  name: LegacyWallGraphSection
+  nameWithType: LegacyWallGraphSection
+  fullName: LlamaLogic.Architecture.LegacyWallGraphSection
+- uid: LlamaLogic.Architecture.LotArchitecture.LotInfo*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.LotInfo
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LotInfo
+  name: LotInfo
+  nameWithType: LotArchitecture.LotInfo
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotInfo
+- uid: LlamaLogic.Architecture.LotInfoSection
+  commentId: T:LlamaLogic.Architecture.LotInfoSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotInfoSection.html
+  name: LotInfoSection
+  nameWithType: LotInfoSection
+  fullName: LlamaLogic.Architecture.LotInfoSection
+- uid: LlamaLogic.Architecture.LotArchitecture.LotObjects*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.LotObjects
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LotObjects
+  name: LotObjects
+  nameWithType: LotArchitecture.LotObjects
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotObjects
+- uid: LlamaLogic.Architecture.LotObjectsSection
+  commentId: T:LlamaLogic.Architecture.LotObjectsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotObjectsSection.html
+  name: LotObjectsSection
+  nameWithType: LotObjectsSection
+  fullName: LlamaLogic.Architecture.LotObjectsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.LotSize*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.LotSize
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LotSize
+  name: LotSize
+  nameWithType: LotArchitecture.LotSize
+  fullName: LlamaLogic.Architecture.LotArchitecture.LotSize
+- uid: LlamaLogic.Architecture.LotSizeSection
+  commentId: T:LlamaLogic.Architecture.LotSizeSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotSizeSection.html
+  name: LotSizeSection
+  nameWithType: LotSizeSection
+  fullName: LlamaLogic.Architecture.LotSizeSection
+- uid: LlamaLogic.Architecture.LotArchitecture.ModularPieces*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.ModularPieces
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ModularPieces
+  name: ModularPieces
+  nameWithType: LotArchitecture.ModularPieces
+  fullName: LlamaLogic.Architecture.LotArchitecture.ModularPieces
+- uid: LlamaLogic.Architecture.ModularPiecesSection
+  commentId: T:LlamaLogic.Architecture.ModularPiecesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ModularPiecesSection.html
+  name: ModularPiecesSection
+  nameWithType: ModularPiecesSection
+  fullName: LlamaLogic.Architecture.ModularPiecesSection
+- uid: LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ObjectFallbacks
+  name: ObjectFallbacks
+  nameWithType: LotArchitecture.ObjectFallbacks
+  fullName: LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks
+- uid: LlamaLogic.Architecture.ObjectFallbacksSection
+  commentId: T:LlamaLogic.Architecture.ObjectFallbacksSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ObjectFallbacksSection.html
+  name: ObjectFallbacksSection
+  nameWithType: ObjectFallbacksSection
+  fullName: LlamaLogic.Architecture.ObjectFallbacksSection
+- uid: LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ObjectTileBounds
+  name: ObjectTileBounds
+  nameWithType: LotArchitecture.ObjectTileBounds
+  fullName: LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds
+- uid: LlamaLogic.Architecture.ObjectTileBoundsSection
+  commentId: T:LlamaLogic.Architecture.ObjectTileBoundsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ObjectTileBoundsSection.html
+  name: ObjectTileBoundsSection
+  nameWithType: ObjectTileBoundsSection
+  fullName: LlamaLogic.Architecture.ObjectTileBoundsSection
+- uid: LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_BlueprintInstance
+  name: BlueprintInstance
+  nameWithType: LotInfoSection.BlueprintInstance
+  fullName: LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+- uid: LlamaLogic.Architecture.LotArchitecture.PendingPlacement*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.PendingPlacement
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_PendingPlacement
+  name: PendingPlacement
+  nameWithType: LotArchitecture.PendingPlacement
+  fullName: LlamaLogic.Architecture.LotArchitecture.PendingPlacement
+- uid: LlamaLogic.Architecture.PendingPlacementSection
+  commentId: T:LlamaLogic.Architecture.PendingPlacementSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PendingPlacementSection.html
+  name: PendingPlacementSection
+  nameWithType: PendingPlacementSection
+  fullName: LlamaLogic.Architecture.PendingPlacementSection
+- uid: LlamaLogic.Architecture.LotArchitecture.Plexes*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Plexes
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Plexes
+  name: Plexes
+  nameWithType: LotArchitecture.Plexes
+  fullName: LlamaLogic.Architecture.LotArchitecture.Plexes
+- uid: LlamaLogic.Architecture.PlexesSection
+  commentId: T:LlamaLogic.Architecture.PlexesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PlexesSection.html
+  name: PlexesSection
+  nameWithType: PlexesSection
+  fullName: LlamaLogic.Architecture.PlexesSection
+- uid: LlamaLogic.Architecture.LotArchitecture.Plexes
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Plexes
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Plexes
+  name: Plexes
+  nameWithType: LotArchitecture.Plexes
+  fullName: LlamaLogic.Architecture.LotArchitecture.Plexes
+- uid: LlamaLogic.Architecture.LotArchitecture.PlexGroups*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.PlexGroups
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_PlexGroups
+  name: PlexGroups
+  nameWithType: LotArchitecture.PlexGroups
+  fullName: LlamaLogic.Architecture.LotArchitecture.PlexGroups
+- uid: LlamaLogic.Architecture.PlexGroupsSection
+  commentId: T:LlamaLogic.Architecture.PlexGroupsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PlexGroupsSection.html
+  name: PlexGroupsSection
+  nameWithType: PlexGroupsSection
+  fullName: LlamaLogic.Architecture.PlexGroupsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.PondBottoms*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.PondBottoms
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_PondBottoms
+  name: PondBottoms
+  nameWithType: LotArchitecture.PondBottoms
+  fullName: LlamaLogic.Architecture.LotArchitecture.PondBottoms
+- uid: LlamaLogic.Architecture.LotArchitecture.Ponds*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Ponds
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Ponds
+  name: Ponds
+  nameWithType: LotArchitecture.Ponds
+  fullName: LlamaLogic.Architecture.LotArchitecture.Ponds
+- uid: LlamaLogic.Architecture.PondsSection
+  commentId: T:LlamaLogic.Architecture.PondsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PondsSection.html
+  name: PondsSection
+  nameWithType: PondsSection
+  fullName: LlamaLogic.Architecture.PondsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.PoolSurfaces*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.PoolSurfaces
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_PoolSurfaces
+  name: PoolSurfaces
+  nameWithType: LotArchitecture.PoolSurfaces
+  fullName: LlamaLogic.Architecture.LotArchitecture.PoolSurfaces
+- uid: LlamaLogic.Architecture.LotArchitecture.Reserved1*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Reserved1
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Reserved1
+  name: Reserved1
+  nameWithType: LotArchitecture.Reserved1
+  fullName: LlamaLogic.Architecture.LotArchitecture.Reserved1
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.LotArchitecture.Reserved2*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Reserved2
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Reserved2
+  name: Reserved2
+  nameWithType: LotArchitecture.Reserved2
+  fullName: LlamaLogic.Architecture.LotArchitecture.Reserved2
+- uid: LlamaLogic.Architecture.LotArchitecture.ResourceManifest*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ResourceManifest
+  name: ResourceManifest
+  nameWithType: LotArchitecture.ResourceManifest
+  fullName: LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+- uid: LlamaLogic.Architecture.ResourceManifestSection
+  commentId: T:LlamaLogic.Architecture.ResourceManifestSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ResourceManifestSection.html
+  name: ResourceManifestSection
+  nameWithType: ResourceManifestSection
+  fullName: LlamaLogic.Architecture.ResourceManifestSection
+- uid: LlamaLogic.Architecture.LotArchitecture.Revision*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Revision
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Revision
+  name: Revision
+  nameWithType: LotArchitecture.Revision
+  fullName: LlamaLogic.Architecture.LotArchitecture.Revision
+- uid: LlamaLogic.Architecture.RevisionSection
+  commentId: T:LlamaLogic.Architecture.RevisionSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.RevisionSection.html
+  name: RevisionSection
+  nameWithType: RevisionSection
+  fullName: LlamaLogic.Architecture.RevisionSection
+- uid: LlamaLogic.Architecture.LotArchitecture.Roofs*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Roofs
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Roofs
+  name: Roofs
+  nameWithType: LotArchitecture.Roofs
+  fullName: LlamaLogic.Architecture.LotArchitecture.Roofs
+- uid: LlamaLogic.Architecture.RoofsSection
+  commentId: T:LlamaLogic.Architecture.RoofsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.RoofsSection.html
+  name: RoofsSection
+  nameWithType: RoofsSection
+  fullName: LlamaLogic.Architecture.RoofsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_SecondaryFloorRotations
+  name: SecondaryFloorRotations
+  nameWithType: LotArchitecture.SecondaryFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations
+- uid: LlamaLogic.Architecture.LotArchitecture.Floors
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.Floors
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Floors
+  name: Floors
+  nameWithType: LotArchitecture.Floors
+  fullName: LlamaLogic.Architecture.LotArchitecture.Floors
+- uid: LlamaLogic.Architecture.LotArchitecture.SecondaryFloors*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.SecondaryFloors
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_SecondaryFloors
+  name: SecondaryFloors
+  nameWithType: LotArchitecture.SecondaryFloors
+  fullName: LlamaLogic.Architecture.LotArchitecture.SecondaryFloors
+- uid: LlamaLogic.Architecture.LotArchitecture.Sections*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Sections
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Sections
+  name: Sections
+  nameWithType: LotArchitecture.Sections
+  fullName: LlamaLogic.Architecture.LotArchitecture.Sections
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.Architecture.LotArchitectureSection}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.Architecture.LotArchitectureSection}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<LotArchitectureSection>
+  nameWithType: IReadOnlyList<LotArchitectureSection>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.Architecture.LotArchitectureSection>
+  nameWithType.vb: IReadOnlyList(Of LotArchitectureSection)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.Architecture.LotArchitectureSection)
+  name.vb: IReadOnlyList(Of LotArchitectureSection)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.Architecture.LotArchitectureSection
+    name: LotArchitectureSection
+    href: LlamaLogic.Architecture.LotArchitectureSection.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.LotArchitectureSection
+    name: LotArchitectureSection
+    href: LlamaLogic.Architecture.LotArchitectureSection.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.Architecture.LotArchitecture.Stairs*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Stairs
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Stairs
+  name: Stairs
+  nameWithType: LotArchitecture.Stairs
+  fullName: LlamaLogic.Architecture.LotArchitecture.Stairs
+- uid: LlamaLogic.Architecture.StairsSection
+  commentId: T:LlamaLogic.Architecture.StairsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.StairsSection.html
+  name: StairsSection
+  nameWithType: StairsSection
+  fullName: LlamaLogic.Architecture.StairsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_TerrainFloorRotations
+  name: TerrainFloorRotations
+  nameWithType: LotArchitecture.TerrainFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainFloors*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.TerrainFloors
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_TerrainFloors
+  name: TerrainFloors
+  nameWithType: LotArchitecture.TerrainFloors
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainFloors
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainHeights*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.TerrainHeights
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_TerrainHeights
+  name: TerrainHeights
+  nameWithType: LotArchitecture.TerrainHeights
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainHeights
+- uid: LlamaLogic.Architecture.TerrainHeightsSection
+  commentId: T:LlamaLogic.Architecture.TerrainHeightsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html
+  name: TerrainHeightsSection
+  nameWithType: TerrainHeightsSection
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.TerrainPaint*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.TerrainPaint
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_TerrainPaint
+  name: TerrainPaint
+  nameWithType: LotArchitecture.TerrainPaint
+  fullName: LlamaLogic.Architecture.LotArchitecture.TerrainPaint
+- uid: LlamaLogic.Architecture.TerrainPaintSection
+  commentId: T:LlamaLogic.Architecture.TerrainPaintSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.TerrainPaintSection.html
+  name: TerrainPaintSection
+  nameWithType: TerrainPaintSection
+  fullName: LlamaLogic.Architecture.TerrainPaintSection
+- uid: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_UndecodedRecords
+  name: UndecodedRecords
+  nameWithType: LotArchitecture.UndecodedRecords
+  fullName: LlamaLogic.Architecture.LotArchitecture.UndecodedRecords
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Formats.RecordBundleRecord}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Formats.RecordBundleRecord}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<RecordBundleRecord>
+  nameWithType: Collection<RecordBundleRecord>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Formats.RecordBundleRecord>
+  nameWithType.vb: Collection(Of RecordBundleRecord)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Formats.RecordBundleRecord)
+  name.vb: Collection(Of RecordBundleRecord)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Formats.RecordBundleRecord
+    name: RecordBundleRecord
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Formats.RecordBundleRecord
+    name: RecordBundleRecord
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Unknown7B33C1F5
+  name: Unknown7B33C1F5
+  nameWithType: LotArchitectureSectionType.Unknown7B33C1F5
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+- uid: LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Unknown7B33C1F5
+  name: Unknown7B33C1F5
+  nameWithType: LotArchitecture.Unknown7B33C1F5
+  fullName: LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5
+- uid: LlamaLogic.Architecture.Unknown7B33C1F5Section
+  commentId: T:LlamaLogic.Architecture.Unknown7B33C1F5Section
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.Unknown7B33C1F5Section.html
+  name: Unknown7B33C1F5Section
+  nameWithType: Unknown7B33C1F5Section
+  fullName: LlamaLogic.Architecture.Unknown7B33C1F5Section
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_UnknownC9106475
+  name: UnknownC9106475
+  nameWithType: LotArchitectureSectionType.UnknownC9106475
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+- uid: LlamaLogic.Architecture.LotArchitecture.UnknownC9106475*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.UnknownC9106475
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_UnknownC9106475
+  name: UnknownC9106475
+  nameWithType: LotArchitecture.UnknownC9106475
+  fullName: LlamaLogic.Architecture.LotArchitecture.UnknownC9106475
+- uid: LlamaLogic.Architecture.UnknownC9106475Section
+  commentId: T:LlamaLogic.Architecture.UnknownC9106475Section
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.UnknownC9106475Section.html
+  name: UnknownC9106475Section
+  nameWithType: UnknownC9106475Section
+  fullName: LlamaLogic.Architecture.UnknownC9106475Section
+- uid: LlamaLogic.Architecture.LotArchitecture.Venue*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Venue
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Venue
+  name: Venue
+  nameWithType: LotArchitecture.Venue
+  fullName: LlamaLogic.Architecture.LotArchitecture.Venue
+- uid: LlamaLogic.Architecture.VenueSection
+  commentId: T:LlamaLogic.Architecture.VenueSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.VenueSection.html
+  name: VenueSection
+  nameWithType: VenueSection
+  fullName: LlamaLogic.Architecture.VenueSection
+- uid: LlamaLogic.Architecture.LotArchitecture.WallEdges
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.WallEdges
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_WallEdges
+  name: WallEdges
+  nameWithType: LotArchitecture.WallEdges
+  fullName: LlamaLogic.Architecture.LotArchitecture.WallEdges
+- uid: LlamaLogic.Architecture.LotArchitecture.VertexGraphs*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.VertexGraphs
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_VertexGraphs
+  name: VertexGraphs
+  nameWithType: LotArchitecture.VertexGraphs
+  fullName: LlamaLogic.Architecture.LotArchitecture.VertexGraphs
+- uid: LlamaLogic.Architecture.VertexGraphsSection
+  commentId: T:LlamaLogic.Architecture.VertexGraphsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.VertexGraphsSection.html
+  name: VertexGraphsSection
+  nameWithType: VertexGraphsSection
+  fullName: LlamaLogic.Architecture.VertexGraphsSection
+- uid: LlamaLogic.Architecture.LotArchitecture.WallBlocks*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.WallBlocks
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_WallBlocks
+  name: WallBlocks
+  nameWithType: LotArchitecture.WallBlocks
+  fullName: LlamaLogic.Architecture.LotArchitecture.WallBlocks
+- uid: LlamaLogic.Architecture.WallBlocksSection
+  commentId: T:LlamaLogic.Architecture.WallBlocksSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlocksSection.html
+  name: WallBlocksSection
+  nameWithType: WallBlocksSection
+  fullName: LlamaLogic.Architecture.WallBlocksSection
+- uid: LlamaLogic.Architecture.LotArchitecture.WallEdges*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.WallEdges
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_WallEdges
+  name: WallEdges
+  nameWithType: LotArchitecture.WallEdges
+  fullName: LlamaLogic.Architecture.LotArchitecture.WallEdges
+- uid: LlamaLogic.Architecture.WallEdgesSection
+  commentId: T:LlamaLogic.Architecture.WallEdgesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallEdgesSection.html
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection
+- uid: LlamaLogic.Architecture.LotArchitecture.Weather*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Weather
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Weather
+  name: Weather
+  nameWithType: LotArchitecture.Weather
+  fullName: LlamaLogic.Architecture.LotArchitecture.Weather
+- uid: LlamaLogic.Architecture.WeatherSection
+  commentId: T:LlamaLogic.Architecture.WeatherSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WeatherSection.html
+  name: WeatherSection
+  nameWithType: WeatherSection
+  fullName: LlamaLogic.Architecture.WeatherSection
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.Architecture.LotArchitecture.Encode*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.Encode
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Encode
+  name: Encode
+  nameWithType: LotArchitecture.Encode
+  fullName: LlamaLogic.Architecture.LotArchitecture.Encode
+- uid: LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  commentId: P:LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ResourceManifest
+  name: ResourceManifest
+  nameWithType: LotArchitecture.ResourceManifest
+  fullName: LlamaLogic.Architecture.LotArchitecture.ResourceManifest
+- uid: LlamaLogic.Architecture.LotArchitecture.GetManifestKeys*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.GetManifestKeys
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_GetManifestKeys
+  name: GetManifestKeys
+  nameWithType: LotArchitecture.GetManifestKeys
+  fullName: LlamaLogic.Architecture.LotArchitecture.GetManifestKeys
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.ResourceKey}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.Packages.ResourceKey}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<ResourceKey>
+  nameWithType: IReadOnlyList<ResourceKey>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.Packages.ResourceKey>
+  nameWithType.vb: IReadOnlyList(Of ResourceKey)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.Packages.ResourceKey)
+  name.vb: IReadOnlyList(Of ResourceKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: )
+- uid: LlamaLogic.Architecture.LotArchitecture.ToRecordBundle*
+  commentId: Overload:LlamaLogic.Architecture.LotArchitecture.ToRecordBundle
+  href: LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ToRecordBundle
+  name: ToRecordBundle
+  nameWithType: LotArchitecture.ToRecordBundle
+  fullName: LlamaLogic.Architecture.LotArchitecture.ToRecordBundle

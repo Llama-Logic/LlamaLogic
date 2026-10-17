@@ -1,0 +1,1654 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel
+  commentId: T:LlamaLogic.Architecture.WorldLotObjectsModel
+  id: WorldLotObjectsModel
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WorldLotObjectsModel.#ctor
+  - LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+  - LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+  - LlamaLogic.Architecture.WorldLotObjectsModel.GetName(System.IO.Stream)
+  - LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  - LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName
+  - LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes
+  langs:
+  - csharp
+  - vb
+  name: WorldLotObjectsModel
+  nameWithType: WorldLotObjectsModel
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WorldLotObjectsModel
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents a <xref href=\"LlamaLogic.Packages.ResourceType.WorldLotObjects\" data-throw-if-not-resolved=\"false\"></xref> resource: the objects of a lot template in a world file, as a <code>LotObjectList</code> protobuf message in protobuf text format (\U0001F513)"
+  remarks: >-
+    <p>The game names the resource after the lot template it belongs to; see <xref href="LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)" data-throw-if-not-resolved="false"></xref>.
+
+    Its <xref href="LlamaLogic.Packages.ResourceType.WorldLotArchitecture" data-throw-if-not-resolved="false"></xref> counterpart holds the lot template's architecture.</p>
+
+    <p>Maxis writes the text with fields in field-number order, two-space indentation, CRLF line endings and floats in .NET Framework's round-trip format; <xref href="LlamaLogic.Architecture.WorldLotObjectsModel.Encode" data-throw-if-not-resolved="false"></xref> writes the same, so it reproduces every resource Maxis wrote byte for byte.
+
+    <xref href="LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory%7bSystem.Byte%7d)" data-throw-if-not-resolved="false"></xref> also reads text written otherwise (community tools add commas, reorder fields or write hexadecimal integers), and <xref href="LlamaLogic.Architecture.WorldLotObjectsModel.Encode" data-throw-if-not-resolved="false"></xref> returns the decoded bytes unchanged as long as <xref href="LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects" data-throw-if-not-resolved="false"></xref> is unchanged.</p>
+  example: []
+  syntax:
+    content: 'public sealed class WorldLotObjectsModel : Model, IModel<WorldLotObjectsModel>, IModel'
+    content.vb: Public NotInheritable Class WorldLotObjectsModel Inherits Model Implements IModel(Of WorldLotObjectsModel), IModel
+  inheritance:
+  - System.Object
+  - LlamaLogic.Packages.Models.Model
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}
+  - LlamaLogic.Packages.Models.IModel
+  inheritedMembers:
+  - LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes
+  commentId: P:LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes
+  id: SupportedTypes
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: SupportedTypes
+  nameWithType: WorldLotObjectsModel.SupportedTypes
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SupportedTypes
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets a list of resource types that this model supports
+  example: []
+  syntax:
+    content: public static ISet<ResourceType> SupportedTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+    content.vb: Public Shared ReadOnly Property SupportedTypes As ISet(Of ResourceType)
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+  id: Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: WorldLotObjectsModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 26
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Decodes the resource in raw format to produce an operable model (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public static WorldLotObjectsModel Decode(ReadOnlyMemory<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Architecture.WorldLotObjectsModel
+    content.vb: Public Shared Function Decode(data As ReadOnlyMemory(Of Byte)) As WorldLotObjectsModel
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The data is not protobuf text format of a <code>LotObjectList</code> message
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  nameWithType.vb: WorldLotObjectsModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+  id: GetKey(System.UInt32)
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: GetKey(uint)
+  nameWithType: WorldLotObjectsModel.GetKey(uint)
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(uint)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetKey
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 51
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the key of the <xref href="LlamaLogic.Packages.ResourceType.WorldLotObjects" data-throw-if-not-resolved="false"></xref> resource of the lot template with the specified <code class="paramref">lotTemplateId</code>
+  remarks: The instance is that of the lot template's <xref href="LlamaLogic.Packages.ResourceType.WorldLotArchitecture" data-throw-if-not-resolved="false"></xref> resource (see <xref href="LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(System.UInt32)" data-throw-if-not-resolved="false"></xref>), and the type is the FNV-1 32-bit hash of the extension <code>lottemp</code>.
+  example: []
+  syntax:
+    content: public static ResourceKey GetKey(uint lotTemplateId)
+    parameters:
+    - id: lotTemplateId
+      type: System.UInt32
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Shared Function GetKey(lotTemplateId As UInteger) As ResourceKey
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey*
+  nameWithType.vb: WorldLotObjectsModel.GetKey(UInteger)
+  fullName.vb: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(UInteger)
+  name.vb: GetKey(UInteger)
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.GetName(System.IO.Stream)
+  id: GetName(System.IO.Stream)
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: GetName(Stream)
+  nameWithType: WorldLotObjectsModel.GetName(Stream)
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetName(System.IO.Stream)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetName
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets the name of a resource from its raw data, if it has one (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static string? GetName(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetName(stream As Stream) As String
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.GetName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  id: GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: WorldLotObjectsModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetNameAsync
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 59
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets the name of a resource from its raw data, if it has one, asynchronously (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static Task<string?> GetNameAsync(Stream stream, CancellationToken cancellationToken = default)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+    content.vb: Public Shared Function GetNameAsync(stream As Stream, cancellationToken As CancellationToken = Nothing) As Task(Of String)
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.#ctor
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: WorldLotObjectsModel()
+  nameWithType: WorldLotObjectsModel.WorldLotObjectsModel()
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.WorldLotObjectsModel()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 72
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.WorldLotObjectsModel" data-throw-if-not-resolved="false"></xref> class with no objects
+  example: []
+  syntax:
+    content: public WorldLotObjectsModel()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.#ctor*
+  nameWithType.vb: WorldLotObjectsModel.New()
+  fullName.vb: LlamaLogic.Architecture.WorldLotObjectsModel.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  commentId: P:LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  id: LotObjects
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: LotObjects
+  nameWithType: WorldLotObjectsModel.LotObjects
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotObjects
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 86
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the lot template's objects
+  example: []
+  syntax:
+    content: public LotObjectList LotObjects { get; set; }
+    parameters: []
+    return:
+      type: EA.Sims4.Network.LotObjectList
+    content.vb: Public Property LotObjects As LotObjectList
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects*
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName
+  commentId: P:LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName
+  id: ResourceName
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceName
+  nameWithType: WorldLotObjectsModel.ResourceName
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceName
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 89
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the name of this resource if it has one
+  example: []
+  syntax:
+    content: public override string? ResourceName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overrides ReadOnly Property ResourceName As String
+  overridden: LlamaLogic.Packages.Models.Model.ResourceName
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+  id: Encode
+  parent: LlamaLogic.Architecture.WorldLotObjectsModel
+  langs:
+  - csharp
+  - vb
+  name: Encode()
+  nameWithType: WorldLotObjectsModel.Encode()
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.Encode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/WorldLotObjectsModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Encode
+    path: ../LlamaLogic.Architecture/WorldLotObjectsModel.cs
+    startLine: 93
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Encodes the resource model into raw format (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public override ReadOnlyMemory<byte> Encode()
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Overrides Function Encode() As ReadOnlyMemory(Of Byte)
+  overridden: LlamaLogic.Packages.Models.Model.Encode
+  overload: LlamaLogic.Architecture.WorldLotObjectsModel.Encode*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.Encode
+references:
+- uid: LlamaLogic.Packages.ResourceType.WorldLotObjects
+  commentId: F:LlamaLogic.Packages.ResourceType.WorldLotObjects
+  name: WorldLotObjects
+  nameWithType: ResourceType.WorldLotObjects
+  fullName: LlamaLogic.Packages.ResourceType.WorldLotObjects
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+  isExternal: true
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_GetKey_System_UInt32_
+  name: GetKey(uint)
+  nameWithType: WorldLotObjectsModel.GetKey(uint)
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(uint)
+  nameWithType.vb: WorldLotObjectsModel.GetKey(UInteger)
+  fullName.vb: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(UInteger)
+  name.vb: GetKey(UInteger)
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+    name: GetKey
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_GetKey_System_UInt32_
+  - name: (
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey(System.UInt32)
+    name: GetKey
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_GetKey_System_UInt32_
+  - name: (
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+- uid: LlamaLogic.Packages.ResourceType.WorldLotArchitecture
+  commentId: F:LlamaLogic.Packages.ResourceType.WorldLotArchitecture
+  name: WorldLotArchitecture
+  nameWithType: ResourceType.WorldLotArchitecture
+  fullName: LlamaLogic.Packages.ResourceType.WorldLotArchitecture
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Encode
+  name: Encode()
+  nameWithType: WorldLotObjectsModel.Encode()
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+    name: Encode
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+    name: Encode
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: WorldLotObjectsModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: WorldLotObjectsModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  commentId: P:LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_LotObjects
+  name: LotObjects
+  nameWithType: WorldLotObjectsModel.LotObjects
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Packages.Models.Model
+  commentId: T:LlamaLogic.Packages.Models.Model
+  parent: LlamaLogic.Packages.Models
+  name: Model
+  nameWithType: Model
+  fullName: LlamaLogic.Packages.Models.Model
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}
+  commentId: T:LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}
+  parent: LlamaLogic.Packages.Models
+  definition: LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html
+  name: IModel<WorldLotObjectsModel>
+  nameWithType: IModel<WorldLotObjectsModel>
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Architecture.WorldLotObjectsModel>
+  nameWithType.vb: IModel(Of WorldLotObjectsModel)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Architecture.WorldLotObjectsModel)
+  name.vb: IModel(Of WorldLotObjectsModel)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+  - name: <
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel
+    name: WorldLotObjectsModel
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.WorldLotObjectsModel
+    name: WorldLotObjectsModel
+    href: LlamaLogic.Architecture.WorldLotObjectsModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.IModel
+  commentId: T:LlamaLogic.Packages.Models.IModel
+  parent: LlamaLogic.Packages.Models
+  name: IModel
+  nameWithType: IModel
+  fullName: LlamaLogic.Packages.Models.IModel
+- uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: Decode(ResourceType, ReadOnlyMemory<byte>)
+  nameWithType: Model.Decode(ResourceType, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory<byte>)
+  nameWithType.vb: Model.Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: GetName(ResourceType, Stream)
+  nameWithType: Model.GetName(ResourceType, Stream)
+  fullName: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType, System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: GetNameAsync(ResourceType, Stream, CancellationToken)
+  nameWithType: Model.GetNameAsync(ResourceType, Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType, System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models
+  commentId: N:LlamaLogic.Packages.Models
+  name: LlamaLogic.Packages.Models
+  nameWithType: LlamaLogic.Packages.Models
+  fullName: LlamaLogic.Packages.Models
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+- uid: LlamaLogic.Packages.Models.IModel`1
+  commentId: T:LlamaLogic.Packages.Models.IModel`1
+  name: IModel<TSelf>
+  nameWithType: IModel<TSelf>
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>
+  nameWithType.vb: IModel(Of TSelf)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf)
+  name.vb: IModel(Of TSelf)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: WorldLotObjectsModel.SupportedTypes
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.IModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.IModel.SupportedTypes
+  parent: LlamaLogic.Packages.Models.IModel
+  name: SupportedTypes
+  nameWithType: IModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  commentId: T:System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<ResourceType>
+  nameWithType: ISet<ResourceType>
+  fullName: System.Collections.Generic.ISet<LlamaLogic.Packages.ResourceType>
+  nameWithType.vb: ISet(Of ResourceType)
+  fullName.vb: System.Collections.Generic.ISet(Of LlamaLogic.Packages.ResourceType)
+  name.vb: ISet(Of ResourceType)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+  - name: )
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.Decode*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.Decode
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: WorldLotObjectsModel.Decode
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.Decode
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}
+  definition: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<WorldLotObjectsModel>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Architecture.WorldLotObjectsModel>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of WorldLotObjectsModel).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Architecture.WorldLotObjectsModel).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Architecture.WorldLotObjectsModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel
+  commentId: T:LlamaLogic.Architecture.WorldLotObjectsModel
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html
+  name: WorldLotObjectsModel
+  nameWithType: WorldLotObjectsModel
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel
+- uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<TSelf>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of TSelf).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(System.UInt32)
+  commentId: M:LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(System.UInt32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: GetLotTemplateInstance(uint)
+  nameWithType: WorldLotArchitectureModel.GetLotTemplateInstance(uint)
+  fullName: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(uint)
+  nameWithType.vb: WorldLotArchitectureModel.GetLotTemplateInstance(UInteger)
+  fullName.vb: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(UInteger)
+  name.vb: GetLotTemplateInstance(UInteger)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(System.UInt32)
+    name: GetLotTemplateInstance
+  - name: (
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.World.WorldLotArchitectureModel.GetLotTemplateInstance(System.UInt32)
+    name: GetLotTemplateInstance
+  - name: (
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.GetKey
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_GetKey_System_UInt32_
+  name: GetKey
+  nameWithType: WorldLotObjectsModel.GetKey
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetKey
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetName*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.GetName
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_GetName_System_IO_Stream_
+  name: GetName
+  nameWithType: WorldLotObjectsModel.GetName
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetName
+- uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: GetName(Stream)
+  nameWithType: IModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync
+  nameWithType: WorldLotObjectsModel.GetNameAsync
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.GetNameAsync
+- uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: IModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.#ctor
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel__ctor
+  name: WorldLotObjectsModel
+  nameWithType: WorldLotObjectsModel.WorldLotObjectsModel
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.WorldLotObjectsModel
+  nameWithType.vb: WorldLotObjectsModel.New
+  fullName.vb: LlamaLogic.Architecture.WorldLotObjectsModel.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_LotObjects
+  name: LotObjects
+  nameWithType: WorldLotObjectsModel.LotObjects
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.LotObjects
+- uid: EA.Sims4.Network.LotObjectList
+  commentId: T:EA.Sims4.Network.LotObjectList
+  parent: EA.Sims4.Network
+  name: LotObjectList
+  nameWithType: LotObjectList
+  fullName: EA.Sims4.Network.LotObjectList
+- uid: EA.Sims4.Network
+  commentId: N:EA.Sims4.Network
+  name: EA.Sims4.Network
+  nameWithType: EA.Sims4.Network
+  fullName: EA.Sims4.Network
+  spec.csharp:
+  - uid: EA
+    name: EA
+  - name: .
+  - uid: EA.Sims4
+    name: Sims4
+  - name: .
+  - uid: EA.Sims4.Network
+    name: Network
+  spec.vb:
+  - uid: EA
+    name: EA
+  - name: .
+  - uid: EA.Sims4
+    name: Sims4
+  - name: .
+  - uid: EA.Sims4.Network
+    name: Network
+- uid: LlamaLogic.Packages.Models.Model.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
+  parent: LlamaLogic.Packages.Models.Model
+  name: ResourceName
+  nameWithType: Model.ResourceName
+  fullName: LlamaLogic.Packages.Models.Model.ResourceName
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_ResourceName
+  name: ResourceName
+  nameWithType: WorldLotObjectsModel.ResourceName
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.ResourceName
+- uid: LlamaLogic.Packages.Models.IModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.IModel.ResourceName
+  parent: LlamaLogic.Packages.Models.IModel
+  name: ResourceName
+  nameWithType: IModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Packages.Models.Model.Encode
+  commentId: M:LlamaLogic.Packages.Models.Model.Encode
+  parent: LlamaLogic.Packages.Models.Model
+  name: Encode()
+  nameWithType: Model.Encode()
+  fullName: LlamaLogic.Packages.Models.Model.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Architecture.WorldLotObjectsModel.Encode*
+  commentId: Overload:LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+  href: LlamaLogic.Architecture.WorldLotObjectsModel.html#LlamaLogic_Architecture_WorldLotObjectsModel_Encode
+  name: Encode
+  nameWithType: WorldLotObjectsModel.Encode
+  fullName: LlamaLogic.Architecture.WorldLotObjectsModel.Encode
+- uid: LlamaLogic.Packages.Models.IModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.IModel.Encode
+  parent: LlamaLogic.Packages.Models.IModel
+  name: Encode()
+  nameWithType: IModel.Encode()
+  fullName: LlamaLogic.Packages.Models.IModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+  - name: (
+  - name: )

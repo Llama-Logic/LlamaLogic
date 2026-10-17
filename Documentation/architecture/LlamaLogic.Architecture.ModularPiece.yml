@@ -1,0 +1,875 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.ModularPiece
+  commentId: T:LlamaLogic.Architecture.ModularPiece
+  id: ModularPiece
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.ModularPiece.CeilingRailKey
+  - LlamaLogic.Architecture.ModularPiece.FenceKey
+  - LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey
+  - LlamaLogic.Architecture.ModularPiece.FloorPatternKey
+  - LlamaLogic.Architecture.ModularPiece.Level
+  - LlamaLogic.Architecture.ModularPiece.ModularPieceKey
+  - LlamaLogic.Architecture.ModularPiece.Position
+  - LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey
+  - LlamaLogic.Architecture.ModularPiece.Unknown1
+  - LlamaLogic.Architecture.ModularPiece.Unknown2
+  - LlamaLogic.Architecture.ModularPiece.Unknown3
+  - LlamaLogic.Architecture.ModularPiece.X
+  - LlamaLogic.Architecture.ModularPiece.Z
+  langs:
+  - csharp
+  - vb
+  name: ModularPiece
+  nameWithType: ModularPiece
+  fullName: LlamaLogic.Architecture.ModularPiece
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModularPiece
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Represents a modular piece of the <xref href="LlamaLogic.Architecture.ModularPiecesSection" data-throw-if-not-resolved="false"></xref>
+  remarks: The key types below are those of every nonzero key in the lots examined.
+  example: []
+  syntax:
+    content: public sealed class ModularPiece
+    content.vb: Public NotInheritable Class ModularPiece
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.ModularPiece.CeilingRailKey
+  commentId: P:LlamaLogic.Architecture.ModularPiece.CeilingRailKey
+  id: CeilingRailKey
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: CeilingRailKey
+  nameWithType: ModularPiece.CeilingRailKey
+  fullName: LlamaLogic.Architecture.ModularPiece.CeilingRailKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingRailKey
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the key of the piece's ceiling rail, a CTProductCeilingRail (0x3F0C529A), or the null key
+  example: []
+  syntax:
+    content: public ResourceKey CeilingRailKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property CeilingRailKey As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.CeilingRailKey*
+- uid: LlamaLogic.Architecture.ModularPiece.FenceKey
+  commentId: P:LlamaLogic.Architecture.ModularPiece.FenceKey
+  id: FenceKey
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: FenceKey
+  nameWithType: ModularPiece.FenceKey
+  fullName: LlamaLogic.Architecture.ModularPiece.FenceKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FenceKey
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the key of the piece's fence, a CTProductFence (0x0418FE2A) or CTProductWall (0x9151E6BC), or the null key
+  remarks: The game checks its type against CTProductWall.
+  example: []
+  syntax:
+    content: public ResourceKey FenceKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property FenceKey As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.FenceKey*
+- uid: LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey
+  commentId: P:LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey
+  id: FirstWallPatternKey
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: FirstWallPatternKey
+  nameWithType: ModularPiece.FirstWallPatternKey
+  fullName: LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FirstWallPatternKey
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the first wall pattern key of the piece, a CTProductWallPattern (0xD5F0F921), or the null key, written from version 5
+  remarks: Both wall pattern keys are set or both are null in every lot examined; they differ in 218 of the 278 pieces that have them.
+  example: []
+  syntax:
+    content: public ResourceKey FirstWallPatternKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property FirstWallPatternKey As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey*
+- uid: LlamaLogic.Architecture.ModularPiece.FloorPatternKey
+  commentId: P:LlamaLogic.Architecture.ModularPiece.FloorPatternKey
+  id: FloorPatternKey
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: FloorPatternKey
+  nameWithType: ModularPiece.FloorPatternKey
+  fullName: LlamaLogic.Architecture.ModularPiece.FloorPatternKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorPatternKey
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 37
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the key of the piece's floor pattern, a CTProductFloorPattern (0xB4F762C9), or the null key
+  remarks: When it reads a version before 3, the game replaces a key of any other type with a default.
+  example: []
+  syntax:
+    content: public ResourceKey FloorPatternKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property FloorPatternKey As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.FloorPatternKey*
+- uid: LlamaLogic.Architecture.ModularPiece.Level
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Level
+  id: Level
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: ModularPiece.Level
+  fullName: LlamaLogic.Architecture.ModularPiece.Level
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Level
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 42
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the piece's level, the high byte of <xref href="LlamaLogic.Architecture.ModularPiece.Position" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public sbyte Level { get; set; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property Level As SByte
+  overload: LlamaLogic.Architecture.ModularPiece.Level*
+- uid: LlamaLogic.Architecture.ModularPiece.ModularPieceKey
+  commentId: P:LlamaLogic.Architecture.ModularPiece.ModularPieceKey
+  id: ModularPieceKey
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: ModularPieceKey
+  nameWithType: ModularPiece.ModularPieceKey
+  fullName: LlamaLogic.Architecture.ModularPiece.ModularPieceKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModularPieceKey
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 51
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the key of the piece, a CTProductModularPiece (0xA0451CBD)
+  example: []
+  syntax:
+    content: public ResourceKey ModularPieceKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property ModularPieceKey As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.ModularPieceKey*
+- uid: LlamaLogic.Architecture.ModularPiece.Position
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Position
+  id: Position
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: ModularPiece.Position
+  fullName: LlamaLogic.Architecture.ModularPiece.Position
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Position
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 59
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the piece's position, which the game reads as one 32-bit value and also uses as the piece's key
+  remarks: The low byte is 0 in the lots examined; the other three are <xref href="LlamaLogic.Architecture.ModularPiece.X" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.ModularPiece.Z" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.ModularPiece.Level" data-throw-if-not-resolved="false"></xref>, from low to high.
+  example: []
+  syntax:
+    content: public uint Position { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Position As UInteger
+  overload: LlamaLogic.Architecture.ModularPiece.Position*
+- uid: LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey
+  commentId: P:LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey
+  id: SecondWallPatternKey
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: SecondWallPatternKey
+  nameWithType: ModularPiece.SecondWallPatternKey
+  fullName: LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SecondWallPatternKey
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 64
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the second wall pattern key of the piece, a CTProductWallPattern (0xD5F0F921), or the null key, written from version 5
+  example: []
+  syntax:
+    content: public ResourceKey SecondWallPatternKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property SecondWallPatternKey As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey*
+- uid: LlamaLogic.Architecture.ModularPiece.Unknown1
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Unknown1
+  id: Unknown1
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: Unknown1
+  nameWithType: ModularPiece.Unknown1
+  fullName: LlamaLogic.Architecture.ModularPiece.Unknown1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown1
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 72
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a key of unknown role
+  remarks: The null key in every lot examined.
+  example: []
+  syntax:
+    content: public ResourceKey Unknown1 { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property Unknown1 As ResourceKey
+  overload: LlamaLogic.Architecture.ModularPiece.Unknown1*
+- uid: LlamaLogic.Architecture.ModularPiece.Unknown2
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Unknown2
+  id: Unknown2
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: Unknown2
+  nameWithType: ModularPiece.Unknown2
+  fullName: LlamaLogic.Architecture.ModularPiece.Unknown2
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown2
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 81
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a value of unknown meaning
+  remarks: >-
+    0, 2, 4 or 6 in the lots examined; the game passes it to its footprint routine.
+
+    Hypothesis: the piece's orientation, in eighths of a turn.
+  example: []
+  syntax:
+    content: public byte Unknown2 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown2 As Byte
+  overload: LlamaLogic.Architecture.ModularPiece.Unknown2*
+- uid: LlamaLogic.Architecture.ModularPiece.Unknown3
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Unknown3
+  id: Unknown3
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: Unknown3
+  nameWithType: ModularPiece.Unknown3
+  fullName: LlamaLogic.Architecture.ModularPiece.Unknown3
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown3
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 89
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a value of unknown meaning, written from version 6
+  remarks: 0 in 1,254 of the 1,317 version 6 pieces examined, otherwise 8 through 92.
+  example: []
+  syntax:
+    content: public ushort Unknown3 { get; set; }
+    parameters: []
+    return:
+      type: System.UInt16
+    content.vb: Public Property Unknown3 As UShort
+  overload: LlamaLogic.Architecture.ModularPiece.Unknown3*
+- uid: LlamaLogic.Architecture.ModularPiece.X
+  commentId: P:LlamaLogic.Architecture.ModularPiece.X
+  id: X
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: X
+  nameWithType: ModularPiece.X
+  fullName: LlamaLogic.Architecture.ModularPiece.X
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: X
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 97
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the piece's position along the lot's local X axis, in half tiles: the second byte of <xref href=\"LlamaLogic.Architecture.ModularPiece.Position\" data-throw-if-not-resolved=\"false\"></xref>"
+  remarks: The game multiplies it, as a signed byte, by 0.5.
+  example: []
+  syntax:
+    content: public sbyte X { get; set; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property X As SByte
+  overload: LlamaLogic.Architecture.ModularPiece.X*
+- uid: LlamaLogic.Architecture.ModularPiece.Z
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Z
+  id: Z
+  parent: LlamaLogic.Architecture.ModularPiece
+  langs:
+  - csharp
+  - vb
+  name: Z
+  nameWithType: ModularPiece.Z
+  fullName: LlamaLogic.Architecture.ModularPiece.Z
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ModularPiece.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Z
+    path: ../LlamaLogic.Architecture/Sections/ModularPiece.cs
+    startLine: 109
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Gets/sets the piece's position along the lot's local Z axis, in half tiles: the third byte of <xref href=\"LlamaLogic.Architecture.ModularPiece.Position\" data-throw-if-not-resolved=\"false\"></xref>"
+  remarks: The game multiplies it, as a signed byte, by 0.5.
+  example: []
+  syntax:
+    content: public sbyte Z { get; set; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property Z As SByte
+  overload: LlamaLogic.Architecture.ModularPiece.Z*
+references:
+- uid: LlamaLogic.Architecture.ModularPiecesSection
+  commentId: T:LlamaLogic.Architecture.ModularPiecesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ModularPiecesSection.html
+  name: ModularPiecesSection
+  nameWithType: ModularPiecesSection
+  fullName: LlamaLogic.Architecture.ModularPiecesSection
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.ModularPiece.CeilingRailKey*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.CeilingRailKey
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_CeilingRailKey
+  name: CeilingRailKey
+  nameWithType: ModularPiece.CeilingRailKey
+  fullName: LlamaLogic.Architecture.ModularPiece.CeilingRailKey
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.Architecture.ModularPiece.FenceKey*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.FenceKey
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_FenceKey
+  name: FenceKey
+  nameWithType: ModularPiece.FenceKey
+  fullName: LlamaLogic.Architecture.ModularPiece.FenceKey
+- uid: LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_FirstWallPatternKey
+  name: FirstWallPatternKey
+  nameWithType: ModularPiece.FirstWallPatternKey
+  fullName: LlamaLogic.Architecture.ModularPiece.FirstWallPatternKey
+- uid: LlamaLogic.Architecture.ModularPiece.FloorPatternKey*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.FloorPatternKey
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_FloorPatternKey
+  name: FloorPatternKey
+  nameWithType: ModularPiece.FloorPatternKey
+  fullName: LlamaLogic.Architecture.ModularPiece.FloorPatternKey
+- uid: LlamaLogic.Architecture.ModularPiece.Position
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Position
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Position
+  name: Position
+  nameWithType: ModularPiece.Position
+  fullName: LlamaLogic.Architecture.ModularPiece.Position
+- uid: LlamaLogic.Architecture.ModularPiece.Level*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.Level
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Level
+  name: Level
+  nameWithType: ModularPiece.Level
+  fullName: LlamaLogic.Architecture.ModularPiece.Level
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: LlamaLogic.Architecture.ModularPiece.ModularPieceKey*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.ModularPieceKey
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_ModularPieceKey
+  name: ModularPieceKey
+  nameWithType: ModularPiece.ModularPieceKey
+  fullName: LlamaLogic.Architecture.ModularPiece.ModularPieceKey
+- uid: LlamaLogic.Architecture.ModularPiece.X
+  commentId: P:LlamaLogic.Architecture.ModularPiece.X
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_X
+  name: X
+  nameWithType: ModularPiece.X
+  fullName: LlamaLogic.Architecture.ModularPiece.X
+- uid: LlamaLogic.Architecture.ModularPiece.Z
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Z
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Z
+  name: Z
+  nameWithType: ModularPiece.Z
+  fullName: LlamaLogic.Architecture.ModularPiece.Z
+- uid: LlamaLogic.Architecture.ModularPiece.Level
+  commentId: P:LlamaLogic.Architecture.ModularPiece.Level
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Level
+  name: Level
+  nameWithType: ModularPiece.Level
+  fullName: LlamaLogic.Architecture.ModularPiece.Level
+- uid: LlamaLogic.Architecture.ModularPiece.Position*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.Position
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Position
+  name: Position
+  nameWithType: ModularPiece.Position
+  fullName: LlamaLogic.Architecture.ModularPiece.Position
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_SecondWallPatternKey
+  name: SecondWallPatternKey
+  nameWithType: ModularPiece.SecondWallPatternKey
+  fullName: LlamaLogic.Architecture.ModularPiece.SecondWallPatternKey
+- uid: LlamaLogic.Architecture.ModularPiece.Unknown1*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.Unknown1
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Unknown1
+  name: Unknown1
+  nameWithType: ModularPiece.Unknown1
+  fullName: LlamaLogic.Architecture.ModularPiece.Unknown1
+- uid: LlamaLogic.Architecture.ModularPiece.Unknown2*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.Unknown2
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Unknown2
+  name: Unknown2
+  nameWithType: ModularPiece.Unknown2
+  fullName: LlamaLogic.Architecture.ModularPiece.Unknown2
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.ModularPiece.Unknown3*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.Unknown3
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Unknown3
+  name: Unknown3
+  nameWithType: ModularPiece.Unknown3
+  fullName: LlamaLogic.Architecture.ModularPiece.Unknown3
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint16
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort
+- uid: LlamaLogic.Architecture.ModularPiece.X*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.X
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_X
+  name: X
+  nameWithType: ModularPiece.X
+  fullName: LlamaLogic.Architecture.ModularPiece.X
+- uid: LlamaLogic.Architecture.ModularPiece.Z*
+  commentId: Overload:LlamaLogic.Architecture.ModularPiece.Z
+  href: LlamaLogic.Architecture.ModularPiece.html#LlamaLogic_Architecture_ModularPiece_Z
+  name: Z
+  nameWithType: ModularPiece.Z
+  fullName: LlamaLogic.Architecture.ModularPiece.Z

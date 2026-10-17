@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PendingPlacementSection | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PendingPlacementSection | Llama Logic ">
+      
+      <meta name="description" content="Represents the  section: a footprint the game places on the lot after loading (&#128275;)">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Architecture_PendingPlacementSection.md&amp;value=---%0Auid%3A%20LlamaLogic.Architecture.PendingPlacementSection%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Architecture.PendingPlacementSection">
+
+
+
+  <h1 id="LlamaLogic_Architecture_PendingPlacementSection" data-uid="LlamaLogic.Architecture.PendingPlacementSection" class="text-break">
+Class PendingPlacementSection  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Architecture.html">Architecture</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Architecture.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents the <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_PendingPlacement">PendingPlacement</a> section: a footprint the game places on the lot after loading (🔓)</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class PendingPlacementSection : LotArchitectureSection</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="LlamaLogic.Architecture.LotArchitectureSection.html">LotArchitectureSection</a></div>
+      <div><span class="xref">PendingPlacementSection</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type">LotArchitectureSection.Type</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_Architecture_PendingPlacementSection_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>When <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_State">State</a> is 1, the game centers a footprint of <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Width">Width</a> by <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Depth">Depth</a> tiles, turned by <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Rotation">Rotation</a>, on the lot and builds a placement operation with <a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_BlueprintInstance">BlueprintInstance</a>; that this places a pending lot template or blueprint is a hypothesis.
+Every lot examined holds the defaults (state 0).</p>
+<p>The layout is <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Width">Width</a>, <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Depth">Depth</a>, <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Rotation">Rotation</a> (from version 3 on), <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_State">State</a> (a Boolean in version 1), then from version 2 on <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown1">Unknown1</a>, <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown2">Unknown2</a>, <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown3">Unknown3</a> (from version 4 on) and <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown4">Unknown4</a> (from version 5 on).
+The game reads this section only when <a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_Version">Version</a> is 9 or later.</p>
+<p>Versions 1 through 5 are supported, and the game writes version 5.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection__ctor_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.#ctor*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection__ctor" data-uid="LlamaLogic.Architecture.PendingPlacementSection.#ctor">
+  PendingPlacementSection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html">PendingPlacementSection</a> class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PendingPlacementSection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Depth_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Depth*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Depth" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Depth">
+  Depth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the second dimension of the footprint, in tiles</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Depth { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Rotation_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Rotation*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Rotation" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Rotation">
+  Rotation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the rotation of the footprint relative to the lot, in quarter turns</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Rotation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Rotation_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Present from version 3 on. The game uses it modulo 4.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_State_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.State*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_State" data-uid="LlamaLogic.Architecture.PendingPlacementSection.State">
+  State
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the state of the placement; the game places the footprint only when it is 1</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte State { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_State_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>In version 1 it is stored as a Boolean, so it must be 0 or 1 to be written.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Unknown1_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown1*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Unknown1" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown1">
+  Unknown1
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the first unknown value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unknown1 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Unknown1_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Present from version 2 on. It is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Unknown2_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown2*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Unknown2" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown2">
+  Unknown2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the second unknown value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Unknown2 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Unknown2_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Present from version 2 on. It is 0 in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Unknown3_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown3*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Unknown3" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown3">
+  Unknown3
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the third unknown value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unknown3 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Unknown3_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Present from version 4 on. It is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Unknown4_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown4*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Unknown4" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Unknown4">
+  Unknown4
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the fourth unknown value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unknown4 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Unknown4_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Present from version 5 on. It is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Version_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Version*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Version" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the version of the section, which decides its layout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Version { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Version_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Encoding throws an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> when a field the version lacks holds a value other than its default, or a collection the version lacks is not empty.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>The version is not 1 through 5</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_PendingPlacementSection_Width_" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Width*"></a>
+
+  <h3 id="LlamaLogic_Architecture_PendingPlacementSection_Width" data-uid="LlamaLogic.Architecture.PendingPlacementSection.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the first dimension of the footprint, in tiles</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Width { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_PendingPlacementSection_Width_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Which lot axis each dimension runs along depends on the rotations of the footprint and the lot.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/PendingPlacementSection.cs/#L13" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

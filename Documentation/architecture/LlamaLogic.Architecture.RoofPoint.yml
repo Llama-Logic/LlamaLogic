@@ -1,0 +1,551 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.RoofPoint
+  commentId: T:LlamaLogic.Architecture.RoofPoint
+  id: RoofPoint
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.RoofPoint.Level
+  - LlamaLogic.Architecture.RoofPoint.Reserved
+  - LlamaLogic.Architecture.RoofPoint.X
+  - LlamaLogic.Architecture.RoofPoint.Z
+  langs:
+  - csharp
+  - vb
+  name: RoofPoint
+  nameWithType: RoofPoint
+  fullName: LlamaLogic.Architecture.RoofPoint
+  type: Struct
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/RoofPoint.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RoofPoint
+    path: ../LlamaLogic.Architecture/Sections/RoofPoint.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Represents a lot-local tile position of a <xref href="LlamaLogic.Architecture.Roof" data-throw-if-not-resolved="false"></xref>'s footprint
+  remarks: >-
+    From version 10 of <xref href="LlamaLogic.Architecture.RoofsSection" data-throw-if-not-resolved="false"></xref> on, each point is stored as a 32-bit value: <xref href="LlamaLogic.Architecture.RoofPoint.X" data-throw-if-not-resolved="false"></xref> in the low byte, then <xref href="LlamaLogic.Architecture.RoofPoint.Z" data-throw-if-not-resolved="false"></xref>, then <xref href="LlamaLogic.Architecture.RoofPoint.Level" data-throw-if-not-resolved="false"></xref>, then <xref href="LlamaLogic.Architecture.RoofPoint.Reserved" data-throw-if-not-resolved="false"></xref> in the high byte.
+
+    Before version 10, a point is stored as its three low bytes.
+  example: []
+  syntax:
+    content: 'public readonly record struct RoofPoint : IEquatable<RoofPoint>'
+    content.vb: Public Structure RoofPoint Implements IEquatable(Of RoofPoint)
+  implements:
+  - System.IEquatable{LlamaLogic.Architecture.RoofPoint}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: LlamaLogic.Architecture.RoofPoint.Level
+  commentId: P:LlamaLogic.Architecture.RoofPoint.Level
+  id: Level
+  parent: LlamaLogic.Architecture.RoofPoint
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: RoofPoint.Level
+  fullName: LlamaLogic.Architecture.RoofPoint.Level
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/RoofPoint.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Level
+    path: ../LlamaLogic.Architecture/Sections/RoofPoint.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the signed lot level
+  example: []
+  syntax:
+    content: public sbyte Level { get; init; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property Level As SByte
+  overload: LlamaLogic.Architecture.RoofPoint.Level*
+- uid: LlamaLogic.Architecture.RoofPoint.Reserved
+  commentId: P:LlamaLogic.Architecture.RoofPoint.Reserved
+  id: Reserved
+  parent: LlamaLogic.Architecture.RoofPoint
+  langs:
+  - csharp
+  - vb
+  name: Reserved
+  nameWithType: RoofPoint.Reserved
+  fullName: LlamaLogic.Architecture.RoofPoint.Reserved
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/RoofPoint.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Reserved
+    path: ../LlamaLogic.Architecture/Sections/RoofPoint.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the high byte of the stored value
+  remarks: The game's reader discards it and its writer writes 0; it is 0 in every lot examined.
+  example: []
+  syntax:
+    content: public byte Reserved { get; init; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Reserved As Byte
+  overload: LlamaLogic.Architecture.RoofPoint.Reserved*
+- uid: LlamaLogic.Architecture.RoofPoint.X
+  commentId: P:LlamaLogic.Architecture.RoofPoint.X
+  id: X
+  parent: LlamaLogic.Architecture.RoofPoint
+  langs:
+  - csharp
+  - vb
+  name: X
+  nameWithType: RoofPoint.X
+  fullName: LlamaLogic.Architecture.RoofPoint.X
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/RoofPoint.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: X
+    path: ../LlamaLogic.Architecture/Sections/RoofPoint.cs
+    startLine: 36
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the tile position along the lot's local X axis
+  example: []
+  syntax:
+    content: public byte X { get; init; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property X As Byte
+  overload: LlamaLogic.Architecture.RoofPoint.X*
+- uid: LlamaLogic.Architecture.RoofPoint.Z
+  commentId: P:LlamaLogic.Architecture.RoofPoint.Z
+  id: Z
+  parent: LlamaLogic.Architecture.RoofPoint
+  langs:
+  - csharp
+  - vb
+  name: Z
+  nameWithType: RoofPoint.Z
+  fullName: LlamaLogic.Architecture.RoofPoint.Z
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/RoofPoint.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Z
+    path: ../LlamaLogic.Architecture/Sections/RoofPoint.cs
+    startLine: 41
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the tile position along the lot's local Z axis
+  example: []
+  syntax:
+    content: public byte Z { get; init; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Z As Byte
+  overload: LlamaLogic.Architecture.RoofPoint.Z*
+references:
+- uid: LlamaLogic.Architecture.Roof
+  commentId: T:LlamaLogic.Architecture.Roof
+  href: LlamaLogic.Architecture.Roof.html
+  name: Roof
+  nameWithType: Roof
+  fullName: LlamaLogic.Architecture.Roof
+- uid: LlamaLogic.Architecture.RoofsSection
+  commentId: T:LlamaLogic.Architecture.RoofsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.RoofsSection.html
+  name: RoofsSection
+  nameWithType: RoofsSection
+  fullName: LlamaLogic.Architecture.RoofsSection
+- uid: LlamaLogic.Architecture.RoofPoint.X
+  commentId: P:LlamaLogic.Architecture.RoofPoint.X
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_X
+  name: X
+  nameWithType: RoofPoint.X
+  fullName: LlamaLogic.Architecture.RoofPoint.X
+- uid: LlamaLogic.Architecture.RoofPoint.Z
+  commentId: P:LlamaLogic.Architecture.RoofPoint.Z
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_Z
+  name: Z
+  nameWithType: RoofPoint.Z
+  fullName: LlamaLogic.Architecture.RoofPoint.Z
+- uid: LlamaLogic.Architecture.RoofPoint.Level
+  commentId: P:LlamaLogic.Architecture.RoofPoint.Level
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_Level
+  name: Level
+  nameWithType: RoofPoint.Level
+  fullName: LlamaLogic.Architecture.RoofPoint.Level
+- uid: LlamaLogic.Architecture.RoofPoint.Reserved
+  commentId: P:LlamaLogic.Architecture.RoofPoint.Reserved
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_Reserved
+  name: Reserved
+  nameWithType: RoofPoint.Reserved
+  fullName: LlamaLogic.Architecture.RoofPoint.Reserved
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.IEquatable{LlamaLogic.Architecture.RoofPoint}
+  commentId: T:System.IEquatable{LlamaLogic.Architecture.RoofPoint}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<RoofPoint>
+  nameWithType: IEquatable<RoofPoint>
+  fullName: System.IEquatable<LlamaLogic.Architecture.RoofPoint>
+  nameWithType.vb: IEquatable(Of RoofPoint)
+  fullName.vb: System.IEquatable(Of LlamaLogic.Architecture.RoofPoint)
+  name.vb: IEquatable(Of RoofPoint)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.Architecture.RoofPoint
+    name: RoofPoint
+    href: LlamaLogic.Architecture.RoofPoint.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.RoofPoint
+    name: RoofPoint
+    href: LlamaLogic.Architecture.RoofPoint.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.RoofPoint.Level*
+  commentId: Overload:LlamaLogic.Architecture.RoofPoint.Level
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_Level
+  name: Level
+  nameWithType: RoofPoint.Level
+  fullName: LlamaLogic.Architecture.RoofPoint.Level
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: LlamaLogic.Architecture.RoofPoint.Reserved*
+  commentId: Overload:LlamaLogic.Architecture.RoofPoint.Reserved
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_Reserved
+  name: Reserved
+  nameWithType: RoofPoint.Reserved
+  fullName: LlamaLogic.Architecture.RoofPoint.Reserved
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.RoofPoint.X*
+  commentId: Overload:LlamaLogic.Architecture.RoofPoint.X
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_X
+  name: X
+  nameWithType: RoofPoint.X
+  fullName: LlamaLogic.Architecture.RoofPoint.X
+- uid: LlamaLogic.Architecture.RoofPoint.Z*
+  commentId: Overload:LlamaLogic.Architecture.RoofPoint.Z
+  href: LlamaLogic.Architecture.RoofPoint.html#LlamaLogic_Architecture_RoofPoint_Z
+  name: Z
+  nameWithType: RoofPoint.Z
+  fullName: LlamaLogic.Architecture.RoofPoint.Z

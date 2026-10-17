@@ -1,0 +1,190 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.FloorQuarter
+  commentId: T:LlamaLogic.Architecture.FloorQuarter
+  id: FloorQuarter
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.FloorQuarter.NegativeX
+  - LlamaLogic.Architecture.FloorQuarter.NegativeZ
+  - LlamaLogic.Architecture.FloorQuarter.PositiveX
+  - LlamaLogic.Architecture.FloorQuarter.PositiveZ
+  langs:
+  - csharp
+  - vb
+  name: FloorQuarter
+  nameWithType: FloorQuarter
+  fullName: LlamaLogic.Architecture.FloorQuarter
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorQuarter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorQuarter
+    path: ../LlamaLogic.Architecture/Sections/FloorQuarter.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The four triangular quarters of a tile, named by the side of the tile each one touches, in the order the game stores them
+  remarks: The game places each quarter at a centroid offset of a third of a tile from the tile's center toward its side.
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "A quarter is stored as a 2-bit index.")]
+
+      public enum FloorQuarter : byte
+    content.vb: >-
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="A quarter is stored as a 2-bit index.")>
+
+      Public Enum FloorQuarter As Byte
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: A quarter is stored as a 2-bit index.
+- uid: LlamaLogic.Architecture.FloorQuarter.NegativeZ
+  commentId: F:LlamaLogic.Architecture.FloorQuarter.NegativeZ
+  id: NegativeZ
+  parent: LlamaLogic.Architecture.FloorQuarter
+  langs:
+  - csharp
+  - vb
+  name: NegativeZ
+  nameWithType: FloorQuarter.NegativeZ
+  fullName: LlamaLogic.Architecture.FloorQuarter.NegativeZ
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorQuarter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: NegativeZ
+    path: ../LlamaLogic.Architecture/Sections/FloorQuarter.cs
+    startLine: 15
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The quarter on the tile's side toward negative Z
+  example: []
+  syntax:
+    content: NegativeZ = 0
+    return:
+      type: LlamaLogic.Architecture.FloorQuarter
+- uid: LlamaLogic.Architecture.FloorQuarter.PositiveX
+  commentId: F:LlamaLogic.Architecture.FloorQuarter.PositiveX
+  id: PositiveX
+  parent: LlamaLogic.Architecture.FloorQuarter
+  langs:
+  - csharp
+  - vb
+  name: PositiveX
+  nameWithType: FloorQuarter.PositiveX
+  fullName: LlamaLogic.Architecture.FloorQuarter.PositiveX
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorQuarter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PositiveX
+    path: ../LlamaLogic.Architecture/Sections/FloorQuarter.cs
+    startLine: 20
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The quarter on the tile's side toward positive X
+  example: []
+  syntax:
+    content: PositiveX = 1
+    return:
+      type: LlamaLogic.Architecture.FloorQuarter
+- uid: LlamaLogic.Architecture.FloorQuarter.PositiveZ
+  commentId: F:LlamaLogic.Architecture.FloorQuarter.PositiveZ
+  id: PositiveZ
+  parent: LlamaLogic.Architecture.FloorQuarter
+  langs:
+  - csharp
+  - vb
+  name: PositiveZ
+  nameWithType: FloorQuarter.PositiveZ
+  fullName: LlamaLogic.Architecture.FloorQuarter.PositiveZ
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorQuarter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PositiveZ
+    path: ../LlamaLogic.Architecture/Sections/FloorQuarter.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The quarter on the tile's side toward positive Z
+  example: []
+  syntax:
+    content: PositiveZ = 2
+    return:
+      type: LlamaLogic.Architecture.FloorQuarter
+- uid: LlamaLogic.Architecture.FloorQuarter.NegativeX
+  commentId: F:LlamaLogic.Architecture.FloorQuarter.NegativeX
+  id: NegativeX
+  parent: LlamaLogic.Architecture.FloorQuarter
+  langs:
+  - csharp
+  - vb
+  name: NegativeX
+  nameWithType: FloorQuarter.NegativeX
+  fullName: LlamaLogic.Architecture.FloorQuarter.NegativeX
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorQuarter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: NegativeX
+    path: ../LlamaLogic.Architecture/Sections/FloorQuarter.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The quarter on the tile's side toward negative X
+  example: []
+  syntax:
+    content: NegativeX = 3
+    return:
+      type: LlamaLogic.Architecture.FloorQuarter
+references:
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: LlamaLogic.Architecture.FloorQuarter
+  commentId: T:LlamaLogic.Architecture.FloorQuarter
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorQuarter.html
+  name: FloorQuarter
+  nameWithType: FloorQuarter
+  fullName: LlamaLogic.Architecture.FloorQuarter

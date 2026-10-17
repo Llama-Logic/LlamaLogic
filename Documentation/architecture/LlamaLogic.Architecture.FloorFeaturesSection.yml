@@ -1,0 +1,545 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.FloorFeaturesSection
+  commentId: T:LlamaLogic.Architecture.FloorFeaturesSection
+  id: FloorFeaturesSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.FloorFeaturesSection.#ctor
+  - LlamaLogic.Architecture.FloorFeaturesSection.Layers
+  - LlamaLogic.Architecture.FloorFeaturesSection.Version
+  langs:
+  - csharp
+  - vb
+  name: FloorFeaturesSection
+  nameWithType: FloorFeaturesSection
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorFeaturesSection
+    path: ../LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures\" data-throw-if-not-resolved=\"false\"></xref> section: the floor feature layers (\U0001F513)"
+  remarks: >-
+    <p>The game's floor feature manager reads and writes the section and exposes it to Python as <code>get_floor_feature</code>, <code>set_floor_feature</code>, <code>has_floor_feature</code>, <code>list_floor_features</code> and <code>scan_floor_features</code>.
+
+    Each layer is stored as its type, the byte length of its payload and the payload; the game skips the payload of a layer type above 2, which this library does not support: a section holding one is kept undecoded.</p>
+
+    <p>Versions 0 and 1 are supported, as the game's reader accepts, and the game writes version 1, the only one in the lots examined.
+
+    The section needs the lot's dimensions.</p>
+  example: []
+  syntax:
+    content: 'public sealed class FloorFeaturesSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class FloorFeaturesSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.FloorFeaturesSection.#ctor
+  commentId: M:LlamaLogic.Architecture.FloorFeaturesSection.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.FloorFeaturesSection
+  langs:
+  - csharp
+  - vb
+  name: FloorFeaturesSection()
+  nameWithType: FloorFeaturesSection.FloorFeaturesSection()
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection.FloorFeaturesSection()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.FloorFeaturesSection" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public FloorFeaturesSection()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.FloorFeaturesSection.#ctor*
+  nameWithType.vb: FloorFeaturesSection.New()
+  fullName.vb: LlamaLogic.Architecture.FloorFeaturesSection.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.FloorFeaturesSection.Layers
+  commentId: P:LlamaLogic.Architecture.FloorFeaturesSection.Layers
+  id: Layers
+  parent: LlamaLogic.Architecture.FloorFeaturesSection
+  langs:
+  - csharp
+  - vb
+  name: Layers
+  nameWithType: FloorFeaturesSection.Layers
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection.Layers
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Layers
+    path: ../LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+    startLine: 68
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the layers
+  remarks: The lots examined hold layer type 0 alone, types 0 and 1, or types 0, 1 and 2, in that order.
+  example: []
+  syntax:
+    content: public Collection<FloorFeatureLayer> Layers { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.FloorFeatureLayer}
+    content.vb: Public ReadOnly Property Layers As Collection(Of FloorFeatureLayer)
+  overload: LlamaLogic.Architecture.FloorFeaturesSection.Layers*
+- uid: LlamaLogic.Architecture.FloorFeaturesSection.Version
+  commentId: P:LlamaLogic.Architecture.FloorFeaturesSection.Version
+  id: Version
+  parent: LlamaLogic.Architecture.FloorFeaturesSection
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: FloorFeaturesSection.Version
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Architecture/Sections/FloorFeaturesSection.cs
+    startLine: 74
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the version of the section
+  example: []
+  syntax:
+    content: public uint Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Version As UInteger
+  overload: LlamaLogic.Architecture.FloorFeaturesSection.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The version is not 0 or 1
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_FloorFeatures
+  name: FloorFeatures
+  nameWithType: LotArchitectureSectionType.FloorFeatures
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.FloorFeaturesSection
+  commentId: T:LlamaLogic.Architecture.FloorFeaturesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorFeaturesSection.html
+  name: FloorFeaturesSection
+  nameWithType: FloorFeaturesSection
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection
+- uid: LlamaLogic.Architecture.FloorFeaturesSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeaturesSection.#ctor
+  href: LlamaLogic.Architecture.FloorFeaturesSection.html#LlamaLogic_Architecture_FloorFeaturesSection__ctor
+  name: FloorFeaturesSection
+  nameWithType: FloorFeaturesSection.FloorFeaturesSection
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection.FloorFeaturesSection
+  nameWithType.vb: FloorFeaturesSection.New
+  fullName.vb: LlamaLogic.Architecture.FloorFeaturesSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.FloorFeaturesSection.Layers*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeaturesSection.Layers
+  href: LlamaLogic.Architecture.FloorFeaturesSection.html#LlamaLogic_Architecture_FloorFeaturesSection_Layers
+  name: Layers
+  nameWithType: FloorFeaturesSection.Layers
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection.Layers
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.FloorFeatureLayer}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.FloorFeatureLayer}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<FloorFeatureLayer>
+  nameWithType: Collection<FloorFeatureLayer>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.FloorFeatureLayer>
+  nameWithType.vb: Collection(Of FloorFeatureLayer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.FloorFeatureLayer)
+  name.vb: Collection(Of FloorFeatureLayer)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.FloorFeatureLayer
+    name: FloorFeatureLayer
+    href: LlamaLogic.Architecture.FloorFeatureLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.FloorFeatureLayer
+    name: FloorFeatureLayer
+    href: LlamaLogic.Architecture.FloorFeatureLayer.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.FloorFeaturesSection.Version*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeaturesSection.Version
+  href: LlamaLogic.Architecture.FloorFeaturesSection.html#LlamaLogic_Architecture_FloorFeaturesSection_Version
+  name: Version
+  nameWithType: FloorFeaturesSection.Version
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection.Version
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger

@@ -1,0 +1,617 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.ObjectTileBounds
+  commentId: T:LlamaLogic.Architecture.ObjectTileBounds
+  id: ObjectTileBounds
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.ObjectTileBounds.#ctor
+  - LlamaLogic.Architecture.ObjectTileBounds.Level
+  - LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  - LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  - LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  - LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  - LlamaLogic.Architecture.ObjectTileBounds.ObjectId
+  langs:
+  - csharp
+  - vb
+  name: ObjectTileBounds
+  nameWithType: ObjectTileBounds
+  fullName: LlamaLogic.Architecture.ObjectTileBounds
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ObjectTileBounds
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: 'Represents one entry of an <xref href="LlamaLogic.Architecture.ObjectTileBoundsSection" data-throw-if-not-resolved="false"></xref>: the tiles an object covers'
+  remarks: >-
+    The game computes the rectangle from the object's world bounds, rounded out to whole tiles and clipped to the lot.
+
+    It is stored as <xref href="LlamaLogic.Architecture.ObjectTileBounds.MinimumZ" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.ObjectTileBounds.MaximumZ" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.ObjectTileBounds.MinimumX" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.ObjectTileBounds.MaximumX" data-throw-if-not-resolved="false"></xref>, in that order; each minimum is at or below its maximum in every lot examined.
+  example: []
+  syntax:
+    content: public sealed class ObjectTileBounds
+    content.vb: Public NotInheritable Class ObjectTileBounds
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.ObjectTileBounds.#ctor
+  commentId: M:LlamaLogic.Architecture.ObjectTileBounds.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: ObjectTileBounds()
+  nameWithType: ObjectTileBounds.ObjectTileBounds()
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.ObjectTileBounds()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 14
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.ObjectTileBounds" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public ObjectTileBounds()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.ObjectTileBounds.#ctor*
+  nameWithType.vb: ObjectTileBounds.New()
+  fullName.vb: LlamaLogic.Architecture.ObjectTileBounds.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.ObjectTileBounds.Level
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.Level
+  id: Level
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: ObjectTileBounds.Level
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.Level
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Level
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the signed level of the object
+  example: []
+  syntax:
+    content: public sbyte Level { get; set; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property Level As SByte
+  overload: LlamaLogic.Architecture.ObjectTileBounds.Level*
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  id: MaximumX
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: MaximumX
+  nameWithType: ObjectTileBounds.MaximumX
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MaximumX
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the highest tile the object covers along the lot's local X axis
+  remarks: Present from version 2 on.
+  example: []
+  syntax:
+    content: public byte MaximumX { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property MaximumX As Byte
+  overload: LlamaLogic.Architecture.ObjectTileBounds.MaximumX*
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  id: MaximumZ
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: MaximumZ
+  nameWithType: ObjectTileBounds.MaximumZ
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MaximumZ
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 37
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the highest tile the object covers along the lot's local Z axis
+  remarks: Present from version 2 on.
+  example: []
+  syntax:
+    content: public byte MaximumZ { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property MaximumZ As Byte
+  overload: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ*
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  id: MinimumX
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: MinimumX
+  nameWithType: ObjectTileBounds.MinimumX
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MinimumX
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the lowest tile the object covers along the lot's local X axis
+  remarks: Present from version 2 on.
+  example: []
+  syntax:
+    content: public byte MinimumX { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property MinimumX As Byte
+  overload: LlamaLogic.Architecture.ObjectTileBounds.MinimumX*
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  id: MinimumZ
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: MinimumZ
+  nameWithType: ObjectTileBounds.MinimumZ
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MinimumZ
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 53
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the lowest tile the object covers along the lot's local Z axis
+  remarks: Present from version 2 on.
+  example: []
+  syntax:
+    content: public byte MinimumZ { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property MinimumZ As Byte
+  overload: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ*
+- uid: LlamaLogic.Architecture.ObjectTileBounds.ObjectId
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.ObjectId
+  id: ObjectId
+  parent: LlamaLogic.Architecture.ObjectTileBounds
+  langs:
+  - csharp
+  - vb
+  name: ObjectId
+  nameWithType: ObjectTileBounds.ObjectId
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.ObjectId
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ObjectId
+    path: ../LlamaLogic.Architecture/Sections/ObjectTileBounds.cs
+    startLine: 58
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the id of the object
+  example: []
+  syntax:
+    content: public ulong ObjectId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property ObjectId As ULong
+  overload: LlamaLogic.Architecture.ObjectTileBounds.ObjectId*
+references:
+- uid: LlamaLogic.Architecture.ObjectTileBoundsSection
+  commentId: T:LlamaLogic.Architecture.ObjectTileBoundsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ObjectTileBoundsSection.html
+  name: ObjectTileBoundsSection
+  nameWithType: ObjectTileBoundsSection
+  fullName: LlamaLogic.Architecture.ObjectTileBoundsSection
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MinimumZ
+  name: MinimumZ
+  nameWithType: ObjectTileBounds.MinimumZ
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MaximumZ
+  name: MaximumZ
+  nameWithType: ObjectTileBounds.MaximumZ
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MinimumX
+  name: MinimumX
+  nameWithType: ObjectTileBounds.MinimumX
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  commentId: P:LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MaximumX
+  name: MaximumX
+  nameWithType: ObjectTileBounds.MaximumX
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.ObjectTileBounds
+  commentId: T:LlamaLogic.Architecture.ObjectTileBounds
+  href: LlamaLogic.Architecture.ObjectTileBounds.html
+  name: ObjectTileBounds
+  nameWithType: ObjectTileBounds
+  fullName: LlamaLogic.Architecture.ObjectTileBounds
+- uid: LlamaLogic.Architecture.ObjectTileBounds.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.#ctor
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds__ctor
+  name: ObjectTileBounds
+  nameWithType: ObjectTileBounds.ObjectTileBounds
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.ObjectTileBounds
+  nameWithType.vb: ObjectTileBounds.New
+  fullName.vb: LlamaLogic.Architecture.ObjectTileBounds.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.ObjectTileBounds.Level*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.Level
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_Level
+  name: Level
+  nameWithType: ObjectTileBounds.Level
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.Level
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MaximumX*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MaximumX
+  name: MaximumX
+  nameWithType: ObjectTileBounds.MaximumX
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MaximumX
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MaximumZ
+  name: MaximumZ
+  nameWithType: ObjectTileBounds.MaximumZ
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MaximumZ
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MinimumX*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MinimumX
+  name: MinimumX
+  nameWithType: ObjectTileBounds.MinimumX
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MinimumX
+- uid: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_MinimumZ
+  name: MinimumZ
+  nameWithType: ObjectTileBounds.MinimumZ
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.MinimumZ
+- uid: LlamaLogic.Architecture.ObjectTileBounds.ObjectId*
+  commentId: Overload:LlamaLogic.Architecture.ObjectTileBounds.ObjectId
+  href: LlamaLogic.Architecture.ObjectTileBounds.html#LlamaLogic_Architecture_ObjectTileBounds_ObjectId
+  name: ObjectId
+  nameWithType: ObjectTileBounds.ObjectId
+  fullName: LlamaLogic.Architecture.ObjectTileBounds.ObjectId
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong

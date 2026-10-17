@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class LotArchitecture | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class LotArchitecture | Llama Logic ">
+      
+      <meta name="description" content="Represents the architecture of a lot: its walls, floors, roofs, stairs, terrain and the rest of its build, as typed sections (&#128275;)">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Architecture_LotArchitecture.md&amp;value=---%0Auid%3A%20LlamaLogic.Architecture.LotArchitecture%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Architecture.LotArchitecture">
+
+
+
+  <h1 id="LlamaLogic_Architecture_LotArchitecture" data-uid="LlamaLogic.Architecture.LotArchitecture" class="text-break">
+Class LotArchitecture  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Architecture.html">Architecture</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Architecture.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents the architecture of a lot: its walls, floors, roofs, stairs, terrain and the rest of its build, as typed sections (🔓)</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class LotArchitecture</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">LotArchitecture</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_Architecture_LotArchitecture_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The game stores a lot's architecture as a <a class="xref" href="../packages/LlamaLogic.Packages.Formats.RecordBundle.html">RecordBundle</a> in three places: the <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_WorldLotArchitecture">WorldLotArchitecture</a> resources of world files, the architecture data of each lot in a save game (see <a class="xref" href="LlamaLogic.Architecture.ZoneArchitecture.html">ZoneArchitecture</a>) and tray blueprints (see <a class="xref" href="LlamaLogic.Architecture.Blueprint.html">Blueprint</a>).
+Each record of the bundle is one section, keyed by its <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html">LotArchitectureSectionType</a>, group 0 and instance 1.</p>
+<p>Many sections can only be read with the lot's dimensions, which the <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LotSize">LotSize</a> section gives, so the bundle, not the section, is the unit of decoding.
+Records <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Decode_LlamaLogic_Packages_Formats_RecordBundle_">Decode(RecordBundle)</a> cannot turn into sections are kept, unchanged, in <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_UndecodedRecords">UndecodedRecords</a>: those of types this library does not know, those with another group or instance, those with a version (of the section or of an element of it) or a floor feature layer type this library does not support, and those that need dimensions an older <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_LotSize">LotSize</a> section does not give (the game itself discards those).</p>
+<p><a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Encode">Encode()</a> writes the sections in the layout of their versions, so decoding and encoding the architecture of any lot the game wrote reproduces it byte for byte.</p>
+<p>Where the documentation of the sections speaks of the lots, sections or entries examined, it means the 2,919 lot architectures examined while developing this library, at the game's patch level as of October 2026: those of the lots of the game's installed world files (of which twelve base-game worlds had been replaced by a community lot-replacement mod), the 179 lots of the Maxis originals of those twelve worlds, the lots of four save games and 73 tray blueprints.</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_SectionInstance" data-uid="LlamaLogic.Architecture.LotArchitecture.SectionInstance">
+  SectionInstance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the instance of the record of every section</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const ulong SectionInstance = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_CeilingPaintRotations_" data-uid="LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_CeilingPaintRotations" data-uid="LlamaLogic.Architecture.LotArchitecture.CeilingPaintRotations">
+  CeilingPaintRotations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the rotation of the ceiling paint of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorRotationGridSection? CeilingPaintRotations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_CeilingPaints_" data-uid="LlamaLogic.Architecture.LotArchitecture.CeilingPaints*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_CeilingPaints" data-uid="LlamaLogic.Architecture.LotArchitecture.CeilingPaints">
+  CeilingPaints
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the ceiling paint of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? CeilingPaints { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_CeilingRotations_" data-uid="LlamaLogic.Architecture.LotArchitecture.CeilingRotations*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_CeilingRotations" data-uid="LlamaLogic.Architecture.LotArchitecture.CeilingRotations">
+  CeilingRotations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the rotation of the ceiling of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorRotationGridSection? CeilingRotations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_CeilingRotations_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It is paired with <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Ceilings">Ceilings</a>, whose role in-game tests and the game's code show.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Ceilings_" data-uid="LlamaLogic.Architecture.LotArchitecture.Ceilings*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Ceilings" data-uid="LlamaLogic.Architecture.LotArchitecture.Ceilings">
+  Ceilings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the ceiling of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? Ceilings { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_Ceilings_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>In-game tests show that building a room fills this grid at the level above the room over exactly the room's tiles, and that painting the ceiling changes only <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_CeilingPaints">CeilingPaints</a>; the game's code assigns the grid to the room on the level below.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_FloorFeatures_" data-uid="LlamaLogic.Architecture.LotArchitecture.FloorFeatures*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_FloorFeatures" data-uid="LlamaLogic.Architecture.LotArchitecture.FloorFeatures">
+  FloorFeatures
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the floor feature layers (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorFeaturesSection? FloorFeatures { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorFeaturesSection.html">FloorFeaturesSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_FloorKeys_" data-uid="LlamaLogic.Architecture.LotArchitecture.FloorKeys*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_FloorKeys" data-uid="LlamaLogic.Architecture.LotArchitecture.FloorKeys">
+  FloorKeys
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the floor keys the floor id grids refer to (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorKeysSection? FloorKeys { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorKeysSection.html">FloorKeysSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_FloorRotations_" data-uid="LlamaLogic.Architecture.LotArchitecture.FloorRotations*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_FloorRotations" data-uid="LlamaLogic.Architecture.LotArchitecture.FloorRotations">
+  FloorRotations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the rotation of the floor pattern of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorRotationGridSection? FloorRotations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Floors_" data-uid="LlamaLogic.Architecture.LotArchitecture.Floors*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Floors" data-uid="LlamaLogic.Architecture.LotArchitecture.Floors">
+  Floors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the floor pattern of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? Floors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_LegacyFencePoints_" data-uid="LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_LegacyFencePoints" data-uid="LlamaLogic.Architecture.LotArchitecture.LegacyFencePoints">
+  LegacyFencePoints
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the points with fence and ceiling rail keys of older world files (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LegacyFencePointsSection? LegacyFencePoints { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LegacyFencePointsSection.html">LegacyFencePointsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_LegacyFencePoints_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The name reflects the catalog key types the data holds; the section appears only in older world files.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_LegacyWallGraph_" data-uid="LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_LegacyWallGraph" data-uid="LlamaLogic.Architecture.LotArchitecture.LegacyWallGraph">
+  LegacyWallGraph
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the graph of edges with wall pattern and product keys of older world files (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LegacyWallGraphSection? LegacyWallGraph { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LegacyWallGraphSection.html">LegacyWallGraphSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_LegacyWallGraph_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The name reflects the catalog key types the data holds; the section appears only in older world files.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_LotInfo_" data-uid="LlamaLogic.Architecture.LotArchitecture.LotInfo*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_LotInfo" data-uid="LlamaLogic.Architecture.LotArchitecture.LotInfo">
+  LotInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's levels, style and creators (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LotInfoSection? LotInfo { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html">LotInfoSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_LotObjects_" data-uid="LlamaLogic.Architecture.LotArchitecture.LotObjects*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_LotObjects" data-uid="LlamaLogic.Architecture.LotArchitecture.LotObjects">
+  LotObjects
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the objects stored with the architecture (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LotObjectsSection? LotObjects { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LotObjectsSection.html">LotObjectsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_LotSize_" data-uid="LlamaLogic.Architecture.LotArchitecture.LotSize*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_LotSize" data-uid="LlamaLogic.Architecture.LotArchitecture.LotSize">
+  LotSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's dimensions (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LotSizeSection? LotSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html">LotSizeSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_ModularPieces_" data-uid="LlamaLogic.Architecture.LotArchitecture.ModularPieces*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_ModularPieces" data-uid="LlamaLogic.Architecture.LotArchitecture.ModularPieces">
+  ModularPieces
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the modular pieces (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ModularPiecesSection? ModularPieces { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.ModularPiecesSection.html">ModularPiecesSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_ObjectFallbacks_" data-uid="LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_ObjectFallbacks" data-uid="LlamaLogic.Architecture.LotArchitecture.ObjectFallbacks">
+  ObjectFallbacks
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L238"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the objects the game falls back to placing when others are unavailable (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectFallbacksSection? ObjectFallbacks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.ObjectFallbacksSection.html">ObjectFallbacksSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_ObjectTileBounds_" data-uid="LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_ObjectTileBounds" data-uid="LlamaLogic.Architecture.LotArchitecture.ObjectTileBounds">
+  ObjectTileBounds
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the tiles each object covers (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectTileBoundsSection? ObjectTileBounds { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.ObjectTileBoundsSection.html">ObjectTileBoundsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_PendingPlacement_" data-uid="LlamaLogic.Architecture.LotArchitecture.PendingPlacement*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_PendingPlacement" data-uid="LlamaLogic.Architecture.LotArchitecture.PendingPlacement">
+  PendingPlacement
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L259"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the pending placement (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PendingPlacementSection? PendingPlacement { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html">PendingPlacementSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_PendingPlacement_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>When its state is 1, the game centers a footprint of the stored width, depth and rotation on the lot and builds a placement operation with the lot's <a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_BlueprintInstance">BlueprintInstance</a>.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_PlexGroups_" data-uid="LlamaLogic.Architecture.LotArchitecture.PlexGroups*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_PlexGroups" data-uid="LlamaLogic.Architecture.LotArchitecture.PlexGroups">
+  PlexGroups
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the groups of values the <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Plexes">Plexes</a> section refers to by id (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlexGroupsSection? PlexGroups { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.PlexGroupsSection.html">PlexGroupsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_PlexGroups_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>That the values are block ids is a hypothesis.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Plexes_" data-uid="LlamaLogic.Architecture.LotArchitecture.Plexes*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Plexes" data-uid="LlamaLogic.Architecture.LotArchitecture.Plexes">
+  Plexes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the plexes (units) of the lot (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlexesSection? Plexes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.PlexesSection.html">PlexesSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_PondBottoms_" data-uid="LlamaLogic.Architecture.LotArchitecture.PondBottoms*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_PondBottoms" data-uid="LlamaLogic.Architecture.LotArchitecture.PondBottoms">
+  PondBottoms
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the pond bottom pattern (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? PondBottoms { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Ponds_" data-uid="LlamaLogic.Architecture.LotArchitecture.Ponds*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Ponds" data-uid="LlamaLogic.Architecture.LotArchitecture.Ponds">
+  Ponds
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L298"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the ponds (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PondsSection? Ponds { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.PondsSection.html">PondsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_PoolSurfaces_" data-uid="LlamaLogic.Architecture.LotArchitecture.PoolSurfaces*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_PoolSurfaces" data-uid="LlamaLogic.Architecture.LotArchitecture.PoolSurfaces">
+  PoolSurfaces
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L310"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the pool surface pattern of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? PoolSurfaces { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_PoolSurfaces_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>In-game tests show that building a pool fills this grid over exactly the pool's tiles at the level above the pool's block; the game's code assigns the grid to the room on the level below.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Reserved1_" data-uid="LlamaLogic.Architecture.LotArchitecture.Reserved1*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Reserved1" data-uid="LlamaLogic.Architecture.LotArchitecture.Reserved1">
+  Reserved1
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the first reserved header value of the record bundle, which no code in the game's simulation library reads (other parts of the game were not examined)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Reserved1 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Reserved2_" data-uid="LlamaLogic.Architecture.LotArchitecture.Reserved2*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Reserved2" data-uid="LlamaLogic.Architecture.LotArchitecture.Reserved2">
+  Reserved2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the second reserved header value of the record bundle, which no code in the game's simulation library reads (other parts of the game were not examined)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Reserved2 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_ResourceManifest_" data-uid="LlamaLogic.Architecture.LotArchitecture.ResourceManifest*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_ResourceManifest" data-uid="LlamaLogic.Architecture.LotArchitecture.ResourceManifest">
+  ResourceManifest
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L329"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the keys of the catalog resources the other sections reference (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ResourceManifestSection? ResourceManifest { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.ResourceManifestSection.html">ResourceManifestSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Revision_" data-uid="LlamaLogic.Architecture.LotArchitecture.Revision*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Revision" data-uid="LlamaLogic.Architecture.LotArchitecture.Revision">
+  Revision
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L338"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's revision counter (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RevisionSection? Revision { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.RevisionSection.html">RevisionSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Roofs_" data-uid="LlamaLogic.Architecture.LotArchitecture.Roofs*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Roofs" data-uid="LlamaLogic.Architecture.LotArchitecture.Roofs">
+  Roofs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L347"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the roofs (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RoofsSection? Roofs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.RoofsSection.html">RoofsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_SecondaryFloorRotations_" data-uid="LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_SecondaryFloorRotations" data-uid="LlamaLogic.Architecture.LotArchitecture.SecondaryFloorRotations">
+  SecondaryFloorRotations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L356"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the rotation of the second floor layer of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorRotationGridSection? SecondaryFloorRotations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_SecondaryFloors_" data-uid="LlamaLogic.Architecture.LotArchitecture.SecondaryFloors*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_SecondaryFloors" data-uid="LlamaLogic.Architecture.LotArchitecture.SecondaryFloors">
+  SecondaryFloors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L368"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the second floor layer of each level (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? SecondaryFloors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_SecondaryFloors_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>In-game tests show that building a room or a platform fills this grid over its tiles with the lot's default floor key, and that painting a floor or a platform's top changes only <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Floors">Floors</a>; the grid's role is unknown.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Sections_" data-uid="LlamaLogic.Architecture.LotArchitecture.Sections*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Sections" data-uid="LlamaLogic.Architecture.LotArchitecture.Sections">
+  Sections
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L377"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the decoded sections, in ascending order of type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;LotArchitectureSection&gt; Sections { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.Architecture.LotArchitectureSection.html">LotArchitectureSection</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Stairs_" data-uid="LlamaLogic.Architecture.LotArchitecture.Stairs*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Stairs" data-uid="LlamaLogic.Architecture.LotArchitecture.Stairs">
+  Stairs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L383"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the stairs and ladders (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StairsSection? Stairs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.StairsSection.html">StairsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_TerrainFloorRotations_" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_TerrainFloorRotations" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainFloorRotations">
+  TerrainFloorRotations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L392"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the rotation of the floor pattern painted on the terrain (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorRotationGridSection? TerrainFloorRotations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_TerrainFloors_" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainFloors*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_TerrainFloors" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainFloors">
+  TerrainFloors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L401"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the floor pattern painted on the terrain (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FloorIdGridSection? TerrainFloors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_TerrainHeights_" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainHeights*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_TerrainHeights" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainHeights">
+  TerrainHeights
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L410"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the terrain heights (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TerrainHeightsSection? TerrainHeights { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html">TerrainHeightsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_TerrainPaint_" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainPaint*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_TerrainPaint" data-uid="LlamaLogic.Architecture.LotArchitecture.TerrainPaint">
+  TerrainPaint
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L419"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the terrain paint layers (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TerrainPaintSection? TerrainPaint { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.TerrainPaintSection.html">TerrainPaintSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_UndecodedRecords_" data-uid="LlamaLogic.Architecture.LotArchitecture.UndecodedRecords*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_UndecodedRecords" data-uid="LlamaLogic.Architecture.LotArchitecture.UndecodedRecords">
+  UndecodedRecords
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L428"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the records that were not decoded into sections, which <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_Encode">Encode()</a> writes back unchanged</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Collection&lt;RecordBundleRecord&gt; UndecodedRecords { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="../packages/LlamaLogic.Packages.Formats.RecordBundleRecord.html">RecordBundleRecord</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Unknown7B33C1F5_" data-uid="LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Unknown7B33C1F5" data-uid="LlamaLogic.Architecture.LotArchitecture.Unknown7B33C1F5">
+  Unknown7B33C1F5
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the section of unknown purpose of type <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Unknown7B33C1F5">Unknown7B33C1F5</a> (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Unknown7B33C1F5Section? Unknown7B33C1F5 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.Unknown7B33C1F5Section.html">Unknown7B33C1F5Section</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_UnknownC9106475_" data-uid="LlamaLogic.Architecture.LotArchitecture.UnknownC9106475*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_UnknownC9106475" data-uid="LlamaLogic.Architecture.LotArchitecture.UnknownC9106475">
+  UnknownC9106475
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L442"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the section of unknown purpose of type <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_UnknownC9106475">UnknownC9106475</a> (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnknownC9106475Section? UnknownC9106475 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.UnknownC9106475Section.html">UnknownC9106475Section</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Venue_" data-uid="LlamaLogic.Architecture.LotArchitecture.Venue*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Venue" data-uid="LlamaLogic.Architecture.LotArchitecture.Venue">
+  Venue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L451"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's venue (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VenueSection? Venue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.VenueSection.html">VenueSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_VertexGraphs_" data-uid="LlamaLogic.Architecture.LotArchitecture.VertexGraphs*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_VertexGraphs" data-uid="LlamaLogic.Architecture.LotArchitecture.VertexGraphs">
+  VertexGraphs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L463"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the graphs of vertices and edges whose version decides the layout of <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_WallEdges">WallEdges</a> (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VertexGraphsSection? VertexGraphs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.VertexGraphsSection.html">VertexGraphsSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_VertexGraphs_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads only the section's version; what the graphs describe is not established. Sims 4 Studio calls this section WallCutout.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_WallBlocks_" data-uid="LlamaLogic.Architecture.LotArchitecture.WallBlocks*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_WallBlocks" data-uid="LlamaLogic.Architecture.LotArchitecture.WallBlocks">
+  WallBlocks
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L472"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the blocks: rooms, wall lines, fences, pools and fountains (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WallBlocksSection? WallBlocks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.WallBlocksSection.html">WallBlocksSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_WallEdges_" data-uid="LlamaLogic.Architecture.LotArchitecture.WallEdges*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_WallEdges" data-uid="LlamaLogic.Architecture.LotArchitecture.WallEdges">
+  WallEdges
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L481"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the wall patterns and products along wall edges (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WallEdgesSection? WallEdges { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.WallEdgesSection.html">WallEdgesSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Weather_" data-uid="LlamaLogic.Architecture.LotArchitecture.Weather*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Weather" data-uid="LlamaLogic.Architecture.LotArchitecture.Weather">
+  Weather
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L490"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's seasonal weather interpolation value (🔓)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WeatherSection? Weather { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.WeatherSection.html">WeatherSection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Decode_" data-uid="LlamaLogic.Architecture.LotArchitecture.Decode*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Decode_LlamaLogic_Packages_Formats_RecordBundle_" data-uid="LlamaLogic.Architecture.LotArchitecture.Decode(LlamaLogic.Packages.Formats.RecordBundle)">
+  Decode(RecordBundle)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decodes the architecture of a lot from a record bundle</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LotArchitecture Decode(RecordBundle bundle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bundle</code> <a class="xref" href="../packages/LlamaLogic.Packages.Formats.RecordBundle.html">RecordBundle</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html">LotArchitecture</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>One of the bundle's sections is not well-formed</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Decode_" data-uid="LlamaLogic.Architecture.LotArchitecture.Decode*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Decode_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Architecture.LotArchitecture.Decode(System.ReadOnlyMemory{System.Byte})">
+  Decode(ReadOnlyMemory&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decodes the architecture of a lot from the content of a record bundle</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LotArchitecture Decode(ReadOnlyMemory&lt;byte&gt; bundleData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bundleData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html">LotArchitecture</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The data is not a well-formed record bundle, or one of its sections is not well-formed</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_Encode_" data-uid="LlamaLogic.Architecture.LotArchitecture.Encode*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_Encode" data-uid="LlamaLogic.Architecture.LotArchitecture.Encode">
+  Encode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L522"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encodes the architecture as the content of a record bundle</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyMemory&lt;byte&gt; Encode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>A section cannot be encoded as it is, or a section and an undecoded record have the same key</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_GetManifestKeys_" data-uid="LlamaLogic.Architecture.LotArchitecture.GetManifestKeys*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_GetManifestKeys" data-uid="LlamaLogic.Architecture.LotArchitecture.GetManifestKeys">
+  GetManifestKeys()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L539"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the keys the sections reference, in the order the game's saver would collect them into the <a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html#LlamaLogic_Architecture_LotArchitecture_ResourceManifest">ResourceManifest</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;ResourceKey&gt; GetManifestKeys()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="../packages/LlamaLogic.Packages.ResourceKey.html">ResourceKey</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_LotArchitecture_GetManifestKeys_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game builds the manifest by recording every key it writes while saving the sections that precede the manifest, in its fixed save order, skipping repeats.
+This method does the same with the current sections, so assigning the result to a new <a class="xref" href="LlamaLogic.Architecture.ResourceManifestSection.html">ResourceManifestSection</a> keeps the manifest consistent after edits.
+No code in the game's simulation library reads the manifest back (other parts of the game were not examined).
+For 2,907 of 2,912 lots in the game's world files, save games and tray blueprints examined, the result equals the stored manifest; the exceptions are lots of older world files whose blocks hold inline keys, which the current game no longer writes, and one saved lot whose stored manifest lacks two keys its sections reference.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>A section cannot be encoded as it is</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_LotArchitecture_ToRecordBundle_" data-uid="LlamaLogic.Architecture.LotArchitecture.ToRecordBundle*"></a>
+
+  <h3 id="LlamaLogic_Architecture_LotArchitecture_ToRecordBundle" data-uid="LlamaLogic.Architecture.LotArchitecture.ToRecordBundle">
+  ToRecordBundle()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L573"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a record bundle holding the architecture</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RecordBundle ToRecordBundle()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../packages/LlamaLogic.Packages.Formats.RecordBundle.html">RecordBundle</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>A section cannot be encoded as it is, or a section and an undecoded record have the same key</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitecture.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

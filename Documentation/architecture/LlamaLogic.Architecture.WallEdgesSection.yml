@@ -1,0 +1,874 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WallEdgesSection
+  commentId: T:LlamaLogic.Architecture.WallEdgesSection
+  id: WallEdgesSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WallEdgesSection.#ctor
+  - LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  - LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  - LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  - LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  - LlamaLogic.Architecture.WallEdgesSection.Products
+  - LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  - LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  langs:
+  - csharp
+  - vb
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallEdgesSection
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 15
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges\" data-throw-if-not-resolved=\"false\"></xref> section: the wall patterns and catalog products along the lot's wall edges (\U0001F513)"
+  remarks: >-
+    <p>The game reads and writes the section right after the <xref href="LlamaLogic.Architecture.VertexGraphsSection" data-throw-if-not-resolved="false"></xref>, whose <xref href="LlamaLogic.Architecture.VertexGraphsSection.Version" data-throw-if-not-resolved="false"></xref> decides the layout; so the section can only be read and written together with that section.
+
+    The section has no version of its own; the game writes it for a <xref href="LlamaLogic.Architecture.VertexGraphsSection" data-throw-if-not-resolved="false"></xref> of version 9.</p>
+
+    <p>Layout: a <xref href="System.UInt32" data-throw-if-not-resolved="false"></xref> count, the <xref href="LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges" data-throw-if-not-resolved="false"></xref> and the <xref href="LlamaLogic.Architecture.WallEdgesSection.WallPatterns" data-throw-if-not-resolved="false"></xref> table;
+
+    if the vertex graphs version is above 1, the <xref href="LlamaLogic.Architecture.WallEdgesSection.Products" data-throw-if-not-resolved="false"></xref> table, a <xref href="System.UInt32" data-throw-if-not-resolved="false"></xref> count and the <xref href="LlamaLogic.Architecture.WallEdgesSection.ProductEdges" data-throw-if-not-resolved="false"></xref>;
+
+    if it is 6, a <xref href="System.UInt32" data-throw-if-not-resolved="false"></xref> count and the <xref href="LlamaLogic.Architecture.WallEdgesSection.LegacyEntries" data-throw-if-not-resolved="false"></xref>;
+
+    if it is above 8, the <xref href="LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts" data-throw-if-not-resolved="false"></xref> table, a <xref href="System.UInt32" data-throw-if-not-resolved="false"></xref> count and the <xref href="LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p>Encoding throws an <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref> when a table or list that the layout of the vertex graphs version lacks is not empty.</p>
+
+    <p>Other tools detect the optional parts by the length that remains; in every lot examined that gives the same split as the version gates.</p>
+  example: []
+  syntax:
+    content: 'public sealed class WallEdgesSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class WallEdgesSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.WallEdgesSection.#ctor
+  commentId: M:LlamaLogic.Architecture.WallEdgesSection.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: WallEdgesSection()
+  nameWithType: WallEdgesSection.WallEdgesSection()
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallEdgesSection()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 66
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.WallEdgesSection" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public WallEdgesSection()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.WallEdgesSection.#ctor*
+  nameWithType.vb: WallEdgesSection.New()
+  fullName.vb: LlamaLogic.Architecture.WallEdgesSection.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  id: AdditionalProductEdges
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: AdditionalProductEdges
+  nameWithType: WallEdgesSection.AdditionalProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AdditionalProductEdges
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 77
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the entries of the third product map
+  remarks: What the map is for is unknown. Stored when the vertex graphs version is above 8.
+  example: []
+  syntax:
+    content: public Collection<WallEdgeProduct> AdditionalProductEdges { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgeProduct}
+    content.vb: Public ReadOnly Property AdditionalProductEdges As Collection(Of WallEdgeProduct)
+  overload: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges*
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  id: AdditionalProducts
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: AdditionalProducts
+  nameWithType: WallEdgesSection.AdditionalProducts
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AdditionalProducts
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 85
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the table of the catalog products <xref href="LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges" data-throw-if-not-resolved="false"></xref> refers to
+  remarks: It holds at most 3 keys, all CTProductWall (0x9151E6BC), in the lots examined. Stored when the vertex graphs version is above 8.
+  example: []
+  syntax:
+    content: public ProductTable AdditionalProducts { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ProductTable
+    content.vb: Public ReadOnly Property AdditionalProducts As ProductTable
+  overload: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts*
+- uid: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  id: LegacyEntries
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: LegacyEntries
+  nameWithType: WallEdgesSection.LegacyEntries
+  fullName: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyEntries
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 93
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the entries of a list the game reads and discards
+  remarks: Stored when the vertex graphs version is 6; two lots examined hold entries (1,284 in all).
+  example: []
+  syntax:
+    content: public Collection<WallEdgesLegacyEntry> LegacyEntries { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgesLegacyEntry}
+    content.vb: Public ReadOnly Property LegacyEntries As Collection(Of WallEdgesLegacyEntry)
+  overload: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries*
+- uid: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  id: ProductEdges
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: ProductEdges
+  nameWithType: WallEdgesSection.ProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ProductEdges
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 101
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the catalog products along the wall edges
+  remarks: Stored when the vertex graphs version is above 1.
+  example: []
+  syntax:
+    content: public Collection<WallEdgeProduct> ProductEdges { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgeProduct}
+    content.vb: Public ReadOnly Property ProductEdges As Collection(Of WallEdgeProduct)
+  overload: LlamaLogic.Architecture.WallEdgesSection.ProductEdges*
+- uid: LlamaLogic.Architecture.WallEdgesSection.Products
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.Products
+  id: Products
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: Products
+  nameWithType: WallEdgesSection.Products
+  fullName: LlamaLogic.Architecture.WallEdgesSection.Products
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Products
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 110
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the table of the catalog products <xref href="LlamaLogic.Architecture.WallEdgesSection.ProductEdges" data-throw-if-not-resolved="false"></xref> refers to
+  remarks: >-
+    In the lots examined it holds CTProductWall (0x9151E6BC), fence (0x0418FE2A), ceiling rail (CTProductCeilingRail 0x3F0C529A) and railing (0x1C1CF1F7) keys.
+
+    Stored when the vertex graphs version is above 1.
+  example: []
+  syntax:
+    content: public ProductTable Products { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ProductTable
+    content.vb: Public ReadOnly Property Products As ProductTable
+  overload: LlamaLogic.Architecture.WallEdgesSection.Products*
+- uid: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  id: WallPatternEdges
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: WallPatternEdges
+  nameWithType: WallEdgesSection.WallPatternEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallPatternEdges
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 115
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the wall patterns of the wall edges
+  example: []
+  syntax:
+    content: public Collection<WallEdgePatterns> WallPatternEdges { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgePatterns}
+    content.vb: Public ReadOnly Property WallPatternEdges As Collection(Of WallEdgePatterns)
+  overload: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges*
+- uid: LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  id: WallPatterns
+  parent: LlamaLogic.Architecture.WallEdgesSection
+  langs:
+  - csharp
+  - vb
+  name: WallPatterns
+  nameWithType: WallEdgesSection.WallPatterns
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallPatterns
+    path: ../LlamaLogic.Architecture/Sections/WallEdgesSection.cs
+    startLine: 120
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the table of the wall patterns (CTProductWallPattern 0xD5F0F921) <xref href="LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges" data-throw-if-not-resolved="false"></xref> refers to
+  example: []
+  syntax:
+    content: public ProductTable WallPatterns { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ProductTable
+    content.vb: Public ReadOnly Property WallPatterns As ProductTable
+  overload: LlamaLogic.Architecture.WallEdgesSection.WallPatterns*
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_WallEdges
+  name: WallEdges
+  nameWithType: LotArchitectureSectionType.WallEdges
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+- uid: LlamaLogic.Architecture.VertexGraphsSection
+  commentId: T:LlamaLogic.Architecture.VertexGraphsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.VertexGraphsSection.html
+  name: VertexGraphsSection
+  nameWithType: VertexGraphsSection
+  fullName: LlamaLogic.Architecture.VertexGraphsSection
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Version
+  commentId: P:LlamaLogic.Architecture.VertexGraphsSection.Version
+  href: LlamaLogic.Architecture.VertexGraphsSection.html#LlamaLogic_Architecture_VertexGraphsSection_Version
+  name: Version
+  nameWithType: VertexGraphsSection.Version
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Version
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_WallPatternEdges
+  name: WallPatternEdges
+  nameWithType: WallEdgesSection.WallPatternEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+- uid: LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_WallPatterns
+  name: WallPatterns
+  nameWithType: WallEdgesSection.WallPatterns
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+- uid: LlamaLogic.Architecture.WallEdgesSection.Products
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.Products
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_Products
+  name: Products
+  nameWithType: WallEdgesSection.Products
+  fullName: LlamaLogic.Architecture.WallEdgesSection.Products
+- uid: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_ProductEdges
+  name: ProductEdges
+  nameWithType: WallEdgesSection.ProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+- uid: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_LegacyEntries
+  name: LegacyEntries
+  nameWithType: WallEdgesSection.LegacyEntries
+  fullName: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_AdditionalProducts
+  name: AdditionalProducts
+  nameWithType: WallEdgesSection.AdditionalProducts
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_AdditionalProductEdges
+  name: AdditionalProductEdges
+  nameWithType: WallEdgesSection.AdditionalProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.WallEdgesSection
+  commentId: T:LlamaLogic.Architecture.WallEdgesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallEdgesSection.html
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection
+- uid: LlamaLogic.Architecture.WallEdgesSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.#ctor
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection__ctor
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection.WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallEdgesSection
+  nameWithType.vb: WallEdgesSection.New
+  fullName.vb: LlamaLogic.Architecture.WallEdgesSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_AdditionalProductEdges
+  name: AdditionalProductEdges
+  nameWithType: WallEdgesSection.AdditionalProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgeProduct}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgeProduct}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WallEdgeProduct>
+  nameWithType: Collection<WallEdgeProduct>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.WallEdgeProduct>
+  nameWithType.vb: Collection(Of WallEdgeProduct)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.WallEdgeProduct)
+  name.vb: Collection(Of WallEdgeProduct)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.WallEdgeProduct
+    name: WallEdgeProduct
+    href: LlamaLogic.Architecture.WallEdgeProduct.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.WallEdgeProduct
+    name: WallEdgeProduct
+    href: LlamaLogic.Architecture.WallEdgeProduct.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_AdditionalProducts
+  name: AdditionalProducts
+  nameWithType: WallEdgesSection.AdditionalProducts
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProducts
+- uid: LlamaLogic.Architecture.ProductTable
+  commentId: T:LlamaLogic.Architecture.ProductTable
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ProductTable.html
+  name: ProductTable
+  nameWithType: ProductTable
+  fullName: LlamaLogic.Architecture.ProductTable
+- uid: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_LegacyEntries
+  name: LegacyEntries
+  nameWithType: WallEdgesSection.LegacyEntries
+  fullName: LlamaLogic.Architecture.WallEdgesSection.LegacyEntries
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgesLegacyEntry}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgesLegacyEntry}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WallEdgesLegacyEntry>
+  nameWithType: Collection<WallEdgesLegacyEntry>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.WallEdgesLegacyEntry>
+  nameWithType.vb: Collection(Of WallEdgesLegacyEntry)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.WallEdgesLegacyEntry)
+  name.vb: Collection(Of WallEdgesLegacyEntry)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.WallEdgesLegacyEntry
+    name: WallEdgesLegacyEntry
+    href: LlamaLogic.Architecture.WallEdgesLegacyEntry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.WallEdgesLegacyEntry
+    name: WallEdgesLegacyEntry
+    href: LlamaLogic.Architecture.WallEdgesLegacyEntry.html
+  - name: )
+- uid: LlamaLogic.Architecture.WallEdgesSection.ProductEdges*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_ProductEdges
+  name: ProductEdges
+  nameWithType: WallEdgesSection.ProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+- uid: LlamaLogic.Architecture.WallEdgesSection.Products*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.Products
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_Products
+  name: Products
+  nameWithType: WallEdgesSection.Products
+  fullName: LlamaLogic.Architecture.WallEdgesSection.Products
+- uid: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_WallPatternEdges
+  name: WallPatternEdges
+  nameWithType: WallEdgesSection.WallPatternEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallPatternEdges
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgePatterns}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallEdgePatterns}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WallEdgePatterns>
+  nameWithType: Collection<WallEdgePatterns>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.WallEdgePatterns>
+  nameWithType.vb: Collection(Of WallEdgePatterns)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.WallEdgePatterns)
+  name.vb: Collection(Of WallEdgePatterns)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.WallEdgePatterns
+    name: WallEdgePatterns
+    href: LlamaLogic.Architecture.WallEdgePatterns.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.WallEdgePatterns
+    name: WallEdgePatterns
+    href: LlamaLogic.Architecture.WallEdgePatterns.html
+  - name: )
+- uid: LlamaLogic.Architecture.WallEdgesSection.WallPatterns*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgesSection.WallPatterns
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_WallPatterns
+  name: WallPatterns
+  nameWithType: WallEdgesSection.WallPatterns
+  fullName: LlamaLogic.Architecture.WallEdgesSection.WallPatterns

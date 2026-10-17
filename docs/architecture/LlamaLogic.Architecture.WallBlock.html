@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class WallBlock | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class WallBlock | Llama Logic ">
+      
+      <meta name="description" content="Represents a block: a room, platform, wall line, fence line, pool or fountain, as loops of segments on one level, with the catalog products along them">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Architecture_WallBlock.md&amp;value=---%0Auid%3A%20LlamaLogic.Architecture.WallBlock%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Architecture.WallBlock">
+
+
+
+  <h1 id="LlamaLogic_Architecture_WallBlock" data-uid="LlamaLogic.Architecture.WallBlock" class="text-break">
+Class WallBlock  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Architecture.html">Architecture</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Architecture.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a block: a room, platform, wall line, fence line, pool or fountain, as loops of segments on one level, with the catalog products along them</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class WallBlock</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">WallBlock</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_Architecture_WallBlock_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This is the game's WallInfo, which <a class="xref" href="LlamaLogic.Architecture.WallBlocksSection.html">WallBlocksSection</a> and <a class="xref" href="LlamaLogic.Architecture.PlexesSection.html">PlexesSection</a> both store; the layout follows the game's reader and writer.
+Versions 17 through 36 are supported, and the game writes version 36. The game reads versions 18 through 36; in the lots examined, version 17 appears only where the <a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html">LotSizeSection</a> is version 2, and its layout is the game's layout for version 18 plus <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown1">Unknown1</a>.
+The lots examined hold versions 17, 22, 29, 31, 32, 33, 35 and 36; the layouts of the other versions follow the game's reader.</p>
+<p>Layout, with version gates: <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Version">Version</a> (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a>), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Id">Id</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Level">Level</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown1">Unknown1</a> (17), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BlockType">BlockType</a> (after 24), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_PlexId">PlexId</a> (after 35), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_HasFloor">HasFloor</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown3">Unknown3</a> (after 27), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation">BaseElevation</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_FloorHeightOffset">FloorHeightOffset</a> (after 33), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown4">Unknown4</a> (31 and 32),
+then before 27: <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown5">Unknown5</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown6">Unknown6</a> (before 22), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a> (type, group, instance), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown7">Unknown7</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown8">Unknown8</a>;
+then a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a> loop count (after 23; one loop before), the <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Loops">Loops</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown9">Unknown9</a> (before 19), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Products">Products</a> (after 19), <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyStamp">LegacyStamp</a> (12 through 25), and before 27 <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown10">Unknown10</a>, <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown11">Unknown11</a> and <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown12">Unknown12</a>.</p>
+<p>Each segment stores these product slots: none before version 20 (the game takes all from <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a>), slots 0 through 3 in versions 20 through 26 (the game takes slots 4 through 8 from <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a>), 0 through 6 in versions 27 and 28, 0 through 7 in versions 29 and 32 through 34, and all nine in versions 30, 31, 35 and 36.</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_BaseElevation_" data-uid="LlamaLogic.Architecture.WallBlock.BaseElevation*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_BaseElevation" data-uid="LlamaLogic.Architecture.WallBlock.BaseElevation">
+  BaseElevation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the elevation of the block's base, in meters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float BaseElevation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_BaseElevation_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game sets it to the elevation of <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Level">Level</a> plus the lot's offset; adding a foundation raised it by 0.25 (in-game test).
+It is −0.375 or −0.125 for fountains in the lots examined, and it was −3 for a new pool (in-game test).</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_BlockType_" data-uid="LlamaLogic.Architecture.WallBlock.BlockType*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_BlockType" data-uid="LlamaLogic.Architecture.WallBlock.BlockType">
+  BlockType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the type of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WallBlockType BlockType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.WallBlockType.html">WallBlockType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_BlockType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Stored from version 25 on; the game treats older blocks as <a class="xref" href="LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Standard">Standard</a>.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_FloorHeightOffset_" data-uid="LlamaLogic.Architecture.WallBlock.FloorHeightOffset*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_FloorHeightOffset" data-uid="LlamaLogic.Architecture.WallBlock.FloorHeightOffset">
+  FloorHeightOffset
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the offset of the floor from <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation">BaseElevation</a>, in meters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float FloorHeightOffset { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_FloorHeightOffset_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game checks it with FloorHeightOffsetOutOfBounds before setting it and takes the block's bottom as the lower of <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation">BaseElevation</a> and <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation">BaseElevation</a> plus this offset.
+Raising a room's floor one step changed it from 0 to 0.25, and a platform had 0.25 when drawn and 0.5 after one raise (in-game tests); the game stores a platform as a block like a room, so a raised room floor and a platform differ in the data only by their segments, which are <a class="xref" href="LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_Open">Open</a> where a platform has no walls.
+Stored from version 34 on.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_HasFloor_" data-uid="LlamaLogic.Architecture.WallBlock.HasFloor*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_HasFloor" data-uid="LlamaLogic.Architecture.WallBlock.HasFloor">
+  HasFloor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets whether the block has a floor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasFloor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_HasFloor_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Deleting the entire floor of a room changed only this value of the room's block, from <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (in-game test).
+The game keeps it at offset 0x80 of the block, sets it to whether the level is at most 0 when it copies blocks into a plex and needs it for <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_FloorHeightOffset">FloorHeightOffset</a>.
+In the lots examined it is 1 for every pool and fountain block, for 36,076 of the 51,425 <a class="xref" href="LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Standard">Standard</a> blocks and for 5,271 of the 11,629 <a class="xref" href="LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Fence">Fence</a> blocks.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Id_" data-uid="LlamaLogic.Architecture.WallBlock.Id*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Id" data-uid="LlamaLogic.Architecture.WallBlock.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the id of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Id_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game keys its blocks by this id and drops a block whose id is 0.
+The game renumbers the blocks when it saves: the same rooms had different ids from one save to the next (in-game test).</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_LegacyKeys_" data-uid="LlamaLogic.Architecture.WallBlock.LegacyKeys*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_LegacyKeys" data-uid="LlamaLogic.Architecture.WallBlock.LegacyKeys">
+  LegacyKeys
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the catalog keys that versions before 27 store for the whole block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Collection&lt;ResourceKey&gt; LegacyKeys { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="../packages/LlamaLogic.Packages.ResourceKey.html">ResourceKey</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_LegacyKeys_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Versions before 21 store 15 keys, versions 21 through 26 store 9.
+Of 15, the game uses positions 1, 2 and 5 for slots 0, 1 and 2, positions 3 and 4 for slot 7 (the later one wins), position 8 for slot 3 and positions 12 through 14 for slots 4 through 6; of 9, it uses positions 6 through 8 for slots 4 through 6.
+It reads the other positions as four <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a> values and discards them; in the lots examined they hold floor, window set and object catalog keys or the null key.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_LegacyStamp_" data-uid="LlamaLogic.Architecture.WallBlock.LegacyStamp*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_LegacyStamp" data-uid="LlamaLogic.Architecture.WallBlock.LegacyStamp">
+  LegacyStamp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the value versions 12 through 25 store once for the whole block in place of each segment's <a class="xref" href="LlamaLogic.Architecture.WallBlockSegment.html#LlamaLogic_Architecture_WallBlockSegment_FenceStamp">FenceStamp</a> and <a class="xref" href="LlamaLogic.Architecture.WallBlockSegment.html#LlamaLogic_Architecture_WallBlockSegment_CeilingRailStamp">CeilingRailStamp</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint LegacyStamp { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_LegacyStamp_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game copies it into both values of every segment.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Level_" data-uid="LlamaLogic.Architecture.WallBlock.Level*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Level" data-uid="LlamaLogic.Architecture.WallBlock.Level">
+  Level
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot level of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sbyte Level { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.sbyte">sbyte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Level_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game restricts the level by <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BlockType">BlockType</a> and takes the block's level height from it.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Loops_" data-uid="LlamaLogic.Architecture.WallBlock.Loops*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Loops" data-uid="LlamaLogic.Architecture.WallBlock.Loops">
+  Loops
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the loops of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Collection&lt;WallBlockLoop&gt; Loops { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="LlamaLogic.Architecture.WallBlockLoop.html">WallBlockLoop</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Loops_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Versions before 24 hold exactly one loop. 1 through 12 in the lots examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_PlexId_" data-uid="LlamaLogic.Architecture.WallBlock.PlexId*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_PlexId" data-uid="LlamaLogic.Architecture.WallBlock.PlexId">
+  PlexId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the id of the plex (unit) the block belongs to</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort PlexId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_PlexId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game's plex manager sets it; 300 is the shared plex.
+The values match the ids of the <a class="xref" href="LlamaLogic.Architecture.PlexesSection.html">PlexesSection</a> plexes.
+Stored from version 36 on.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Products_" data-uid="LlamaLogic.Architecture.WallBlock.Products*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Products" data-uid="LlamaLogic.Architecture.WallBlock.Products">
+  Products
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the table of the catalog products the segments refer to</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProductTable Products { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.ProductTable.html">ProductTable</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Products_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Stored from version 20 on.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown1_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown1*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown1" data-uid="LlamaLogic.Architecture.WallBlock.Unknown1">
+  Unknown1
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte version 17 stores after <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Level">Level</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown1 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown1_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It equals <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Level">Level</a> in every lot examined. The game's reader has no such byte.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown10_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown10*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown10" data-uid="LlamaLogic.Architecture.WallBlock.Unknown10">
+  Unknown10
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a> versions before 27 store at the end of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort Unknown10 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown10_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it and discards it. 4 in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown11_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown11*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown11" data-uid="LlamaLogic.Architecture.WallBlock.Unknown11">
+  Unknown11
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L273"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte versions before 27 store after <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown10">Unknown10</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown11 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown11_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it and discards it. 1 in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown12_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown12*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown12" data-uid="LlamaLogic.Architecture.WallBlock.Unknown12">
+  Unknown12
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L281"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte versions before 27 store after <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown11">Unknown11</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown12 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown12_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it and discards it. 1 in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown3_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown3*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown3" data-uid="LlamaLogic.Architecture.WallBlock.Unknown3">
+  Unknown3
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a Boolean the game keeps at offset 0x81 of the block</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unknown3 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown3_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Hypothesis: whether the block has an automatic ceiling. The game sets it to whether every outer segment has a wall or the level is below 0, and clears it when it copies blocks into a plex.
+In the lots examined it is 0 for every <a class="xref" href="LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Fence">Fence</a> block, 1 for every fountain block, 1 for 466 of the 482 pool blocks and for 22,161 of the 51,182 <a class="xref" href="LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Standard">Standard</a> blocks that store it.
+In in-game tests a new fence block and a platform had 0 and enclosed rooms had 1, which is consistent with the hypothesis.
+Stored from version 28 on.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown4_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown4*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown4" data-uid="LlamaLogic.Architecture.WallBlock.Unknown4">
+  Unknown4
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L217"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte versions 31 and 32 store after <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation">BaseElevation</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown4 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown4_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it and discards it. 0 in every version 31 block examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown5_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown5*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown5" data-uid="LlamaLogic.Architecture.WallBlock.Unknown5">
+  Unknown5
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte versions before 27 store before <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown5 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown5_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it and discards it. 2 in every lot examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown6_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown6*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown6" data-uid="LlamaLogic.Architecture.WallBlock.Unknown6">
+  Unknown6
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte versions before 22 store before <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown6 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown6_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it and discards it. 0 or 2 in the lots examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown7_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown7*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown7" data-uid="LlamaLogic.Architecture.WallBlock.Unknown7">
+  Unknown7
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L241"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the first of two Booleans versions before 27 store after <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unknown7 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown7_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it as a Boolean and discards it.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown8_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown8*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown8" data-uid="LlamaLogic.Architecture.WallBlock.Unknown8">
+  Unknown8
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L249"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the second of two Booleans versions before 27 store after <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys">LegacyKeys</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unknown8 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown8_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game reads it as a Boolean and discards it.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Unknown9_" data-uid="LlamaLogic.Architecture.WallBlock.Unknown9*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Unknown9" data-uid="LlamaLogic.Architecture.WallBlock.Unknown9">
+  Unknown9
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a byte versions before 19 store after the <a class="xref" href="LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Loops">Loops</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Unknown9 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Unknown9_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The game's reader would discard it. 0 through 3 in the lots examined.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_Architecture_WallBlock_Version_" data-uid="LlamaLogic.Architecture.WallBlock.Version*"></a>
+
+  <h3 id="LlamaLogic_Architecture_WallBlock_Version" data-uid="LlamaLogic.Architecture.WallBlock.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the version of the block, which decides its layout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort Version { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Architecture_WallBlock_Version_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Encoding throws an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> when a field the version lacks holds a value other than its default, or a collection the version lacks is not empty.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>The version is not 17 through 36</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Sections/WallBlock.cs/#L15" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

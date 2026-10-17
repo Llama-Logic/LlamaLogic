@@ -1,0 +1,396 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WallEdgeProduct
+  commentId: T:LlamaLogic.Architecture.WallEdgeProduct
+  id: WallEdgeProduct
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  - LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  langs:
+  - csharp
+  - vb
+  name: WallEdgeProduct
+  nameWithType: WallEdgeProduct
+  fullName: LlamaLogic.Architecture.WallEdgeProduct
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgeProduct.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallEdgeProduct
+    path: ../LlamaLogic.Architecture/Sections/WallEdgeProduct.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: 'Represents an entry of <xref href="LlamaLogic.Architecture.WallEdgesSection.ProductEdges" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges" data-throw-if-not-resolved="false"></xref>: the catalog product along a wall edge'
+  remarks: "Layout: <xref href=\"LlamaLogic.Architecture.WallEdgeProduct.MapKey\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"LlamaLogic.Architecture.WallEdgeProduct.ProductId\" data-throw-if-not-resolved=\"false\"></xref>, as the game's reader reads them."
+  example: []
+  syntax:
+    content: public sealed class WallEdgeProduct
+    content.vb: Public NotInheritable Class WallEdgeProduct
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  commentId: P:LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  id: MapKey
+  parent: LlamaLogic.Architecture.WallEdgeProduct
+  langs:
+  - csharp
+  - vb
+  name: MapKey
+  nameWithType: WallEdgeProduct.MapKey
+  fullName: LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgeProduct.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MapKey
+    path: ../LlamaLogic.Architecture/Sections/WallEdgeProduct.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the key under which the game maps the entry
+  remarks: "It is packed like <xref href=\"LlamaLogic.Architecture.WallEdgePatterns.MapKey\" data-throw-if-not-resolved=\"false\"></xref> (hypothesis). In <xref href=\"LlamaLogic.Architecture.WallEdgesSection.ProductEdges\" data-throw-if-not-resolved=\"false\"></xref> the low nibble of byte 0 follows the product's catalog type in the lots examined: 0 for CTProductWall, 1 for ceiling rails, 2 for fences and railings, and 3 for some fences."
+  example: []
+  syntax:
+    content: public uint MapKey { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property MapKey As UInteger
+  overload: LlamaLogic.Architecture.WallEdgeProduct.MapKey*
+- uid: LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  commentId: P:LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  id: ProductId
+  parent: LlamaLogic.Architecture.WallEdgeProduct
+  langs:
+  - csharp
+  - vb
+  name: ProductId
+  nameWithType: WallEdgeProduct.ProductId
+  fullName: LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallEdgeProduct.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ProductId
+    path: ../LlamaLogic.Architecture/Sections/WallEdgeProduct.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the <xref href="LlamaLogic.Architecture.ProductTableEntry.Id" data-throw-if-not-resolved="false"></xref> of the product in the table that goes with the list
+  remarks: In <xref href="LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges" data-throw-if-not-resolved="false"></xref> it is 0 in 99% of the entries examined.
+  example: []
+  syntax:
+    content: public uint ProductId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property ProductId As UInteger
+  overload: LlamaLogic.Architecture.WallEdgeProduct.ProductId*
+references:
+- uid: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_ProductEdges
+  name: ProductEdges
+  nameWithType: WallEdgesSection.ProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.ProductEdges
+- uid: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  commentId: P:LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+  href: LlamaLogic.Architecture.WallEdgesSection.html#LlamaLogic_Architecture_WallEdgesSection_AdditionalProductEdges
+  name: AdditionalProductEdges
+  nameWithType: WallEdgesSection.AdditionalProductEdges
+  fullName: LlamaLogic.Architecture.WallEdgesSection.AdditionalProductEdges
+- uid: LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  commentId: P:LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  href: LlamaLogic.Architecture.WallEdgeProduct.html#LlamaLogic_Architecture_WallEdgeProduct_MapKey
+  name: MapKey
+  nameWithType: WallEdgeProduct.MapKey
+  fullName: LlamaLogic.Architecture.WallEdgeProduct.MapKey
+- uid: LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  commentId: P:LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  href: LlamaLogic.Architecture.WallEdgeProduct.html#LlamaLogic_Architecture_WallEdgeProduct_ProductId
+  name: ProductId
+  nameWithType: WallEdgeProduct.ProductId
+  fullName: LlamaLogic.Architecture.WallEdgeProduct.ProductId
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.WallEdgePatterns.MapKey
+  commentId: P:LlamaLogic.Architecture.WallEdgePatterns.MapKey
+  href: LlamaLogic.Architecture.WallEdgePatterns.html#LlamaLogic_Architecture_WallEdgePatterns_MapKey
+  name: MapKey
+  nameWithType: WallEdgePatterns.MapKey
+  fullName: LlamaLogic.Architecture.WallEdgePatterns.MapKey
+- uid: LlamaLogic.Architecture.WallEdgeProduct.MapKey*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgeProduct.MapKey
+  href: LlamaLogic.Architecture.WallEdgeProduct.html#LlamaLogic_Architecture_WallEdgeProduct_MapKey
+  name: MapKey
+  nameWithType: WallEdgeProduct.MapKey
+  fullName: LlamaLogic.Architecture.WallEdgeProduct.MapKey
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.ProductTableEntry.Id
+  commentId: P:LlamaLogic.Architecture.ProductTableEntry.Id
+  href: LlamaLogic.Architecture.ProductTableEntry.html#LlamaLogic_Architecture_ProductTableEntry_Id
+  name: Id
+  nameWithType: ProductTableEntry.Id
+  fullName: LlamaLogic.Architecture.ProductTableEntry.Id
+- uid: LlamaLogic.Architecture.WallEdgeProduct.ProductId*
+  commentId: Overload:LlamaLogic.Architecture.WallEdgeProduct.ProductId
+  href: LlamaLogic.Architecture.WallEdgeProduct.html#LlamaLogic_Architecture_WallEdgeProduct_ProductId
+  name: ProductId
+  nameWithType: WallEdgeProduct.ProductId
+  fullName: LlamaLogic.Architecture.WallEdgeProduct.ProductId

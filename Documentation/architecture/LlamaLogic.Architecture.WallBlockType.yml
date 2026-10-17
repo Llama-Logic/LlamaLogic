@@ -1,0 +1,250 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WallBlockType
+  commentId: T:LlamaLogic.Architecture.WallBlockType
+  id: WallBlockType
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WallBlockType.Fence
+  - LlamaLogic.Architecture.WallBlockType.Fountain
+  - LlamaLogic.Architecture.WallBlockType.Pool
+  - LlamaLogic.Architecture.WallBlockType.Standard
+  langs:
+  - csharp
+  - vb
+  name: WallBlockType
+  nameWithType: WallBlockType
+  fullName: LlamaLogic.Architecture.WallBlockType
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallBlockType
+    path: ../LlamaLogic.Architecture/Sections/WallBlockType.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Specifies the type of a <xref href="LlamaLogic.Architecture.WallBlock" data-throw-if-not-resolved="false"></xref>
+  remarks: "The game checks each block type against the <xref href=\"LlamaLogic.Architecture.WallBlockSegmentKind\" data-throw-if-not-resolved=\"false\"></xref> of the block's segments with a table: a <xref href=\"LlamaLogic.Architecture.WallBlockType.Fence\" data-throw-if-not-resolved=\"false\"></xref> block allows only <xref href=\"LlamaLogic.Architecture.WallBlockSegmentKind.Open\" data-throw-if-not-resolved=\"false\"></xref>, a <xref href=\"LlamaLogic.Architecture.WallBlockType.Fountain\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"LlamaLogic.Architecture.WallBlockType.Pool\" data-throw-if-not-resolved=\"false\"></xref> block only <xref href=\"LlamaLogic.Architecture.WallBlockSegmentKind.Wall\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall\" data-throw-if-not-resolved=\"false\"></xref> (otherwise BlockTypeIncompatibleWithProduct)."
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "The game stores the value as a byte.")]
+
+      public enum WallBlockType : byte
+    content.vb: >-
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="The game stores the value as a byte.")>
+
+      Public Enum WallBlockType As Byte
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: The game stores the value as a byte.
+- uid: LlamaLogic.Architecture.WallBlockType.Standard
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Standard
+  id: Standard
+  parent: LlamaLogic.Architecture.WallBlockType
+  langs:
+  - csharp
+  - vb
+  name: Standard
+  nameWithType: WallBlockType.Standard
+  fullName: LlamaLogic.Architecture.WallBlockType.Standard
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Standard
+    path: ../LlamaLogic.Architecture/Sections/WallBlockType.cs
+    startLine: 18
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A block that is not a fence, fountain or pool
+  remarks: 'In the lots examined these are rooms and free-standing wall lines, and a platform is a block of this type too: drawing one creates a block whose segments are all <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.Open" data-throw-if-not-resolved="false"></xref> until walls are added, raised by <xref href="LlamaLogic.Architecture.WallBlock.FloorHeightOffset" data-throw-if-not-resolved="false"></xref> just as a room whose floor is raised (in-game tests); that the type covers nothing else is a hypothesis.'
+  example: []
+  syntax:
+    content: Standard = 0
+    return:
+      type: LlamaLogic.Architecture.WallBlockType
+- uid: LlamaLogic.Architecture.WallBlockType.Fence
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Fence
+  id: Fence
+  parent: LlamaLogic.Architecture.WallBlockType
+  langs:
+  - csharp
+  - vb
+  name: Fence
+  nameWithType: WallBlockType.Fence
+  fullName: LlamaLogic.Architecture.WallBlockType.Fence
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Fence
+    path: ../LlamaLogic.Architecture/Sections/WallBlockType.cs
+    startLine: 26
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A fence line
+  remarks: Placing a fence creates a block of this type (in-game test). The game allows it only at level 0 and gives it no elevation.
+  example: []
+  syntax:
+    content: Fence = 1
+    return:
+      type: LlamaLogic.Architecture.WallBlockType
+- uid: LlamaLogic.Architecture.WallBlockType.Fountain
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Fountain
+  id: Fountain
+  parent: LlamaLogic.Architecture.WallBlockType
+  langs:
+  - csharp
+  - vb
+  name: Fountain
+  nameWithType: WallBlockType.Fountain
+  fullName: LlamaLogic.Architecture.WallBlockType.Fountain
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Fountain
+    path: ../LlamaLogic.Architecture/Sections/WallBlockType.cs
+    startLine: 34
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A fountain
+  remarks: The game emits CantPlaceFountainUnderAnything for it, gives it a height of 0.375 and allows it only at level -1.
+  example: []
+  syntax:
+    content: Fountain = 2
+    return:
+      type: LlamaLogic.Architecture.WallBlockType
+- uid: LlamaLogic.Architecture.WallBlockType.Pool
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Pool
+  id: Pool
+  parent: LlamaLogic.Architecture.WallBlockType
+  langs:
+  - csharp
+  - vb
+  name: Pool
+  nameWithType: WallBlockType.Pool
+  fullName: LlamaLogic.Architecture.WallBlockType.Pool
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Pool
+    path: ../LlamaLogic.Architecture/Sections/WallBlockType.cs
+    startLine: 42
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A pool
+  remarks: The game emits CantPlacePoolUnderOtherPool for it; placing a pool creates a block of this type (in-game test).
+  example: []
+  syntax:
+    content: Pool = 3
+    return:
+      type: LlamaLogic.Architecture.WallBlockType
+references:
+- uid: LlamaLogic.Architecture.WallBlock
+  commentId: T:LlamaLogic.Architecture.WallBlock
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlock.html
+  name: WallBlock
+  nameWithType: WallBlock
+  fullName: LlamaLogic.Architecture.WallBlock
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind
+  commentId: T:LlamaLogic.Architecture.WallBlockSegmentKind
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html
+  name: WallBlockSegmentKind
+  nameWithType: WallBlockSegmentKind
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind
+- uid: LlamaLogic.Architecture.WallBlockType.Fence
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Fence
+  href: LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Fence
+  name: Fence
+  nameWithType: WallBlockType.Fence
+  fullName: LlamaLogic.Architecture.WallBlockType.Fence
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_Open
+  name: Open
+  nameWithType: WallBlockSegmentKind.Open
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+- uid: LlamaLogic.Architecture.WallBlockType.Fountain
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Fountain
+  href: LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Fountain
+  name: Fountain
+  nameWithType: WallBlockType.Fountain
+  fullName: LlamaLogic.Architecture.WallBlockType.Fountain
+- uid: LlamaLogic.Architecture.WallBlockType.Pool
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Pool
+  href: LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Pool
+  name: Pool
+  nameWithType: WallBlockType.Pool
+  fullName: LlamaLogic.Architecture.WallBlockType.Pool
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_Wall
+  name: Wall
+  nameWithType: WallBlockSegmentKind.Wall
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_ModularPieceWithWall
+  name: ModularPieceWithWall
+  nameWithType: WallBlockSegmentKind.ModularPieceWithWall
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  commentId: P:LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_FloorHeightOffset
+  name: FloorHeightOffset
+  nameWithType: WallBlock.FloorHeightOffset
+  fullName: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+- uid: LlamaLogic.Architecture.WallBlockType
+  commentId: T:LlamaLogic.Architecture.WallBlockType
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlockType.html
+  name: WallBlockType
+  nameWithType: WallBlockType
+  fullName: LlamaLogic.Architecture.WallBlockType

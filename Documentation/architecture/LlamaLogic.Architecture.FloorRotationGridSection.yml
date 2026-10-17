@@ -1,0 +1,734 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.FloorRotationGridSection
+  commentId: T:LlamaLogic.Architecture.FloorRotationGridSection
+  id: FloorRotationGridSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.FloorRotationGridSection.#ctor(LlamaLogic.Architecture.LotArchitectureSectionType,System.Int32,System.Int32,System.Int32)
+  - LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  - LlamaLogic.Architecture.FloorRotationGridSection.Item(System.Int32,System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  - LlamaLogic.Architecture.FloorRotationGridSection.LevelCount
+  - LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  - LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  langs:
+  - csharp
+  - vb
+  name: FloorRotationGridSection
+  nameWithType: FloorRotationGridSection
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorRotationGridSection
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 12
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents one of the five floor rotation grids: the rotation of the pattern on each quarter of each tile of a <xref href=\"LlamaLogic.Architecture.FloorIdGridSection\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F513)"
+  remarks: >-
+    <p>The grid has <xref href="LlamaLogic.Architecture.FloorRotationGridSection.SizeX" data-throw-if-not-resolved="false"></xref> × <xref href="LlamaLogic.Architecture.FloorRotationGridSection.SizeZ" data-throw-if-not-resolved="false"></xref> tiles per layer and one rotation of 0 through 3 per <xref href="LlamaLogic.Architecture.FloorQuarter" data-throw-if-not-resolved="false"></xref>.
+
+    A rotation is the number of 90° clockwise turns of the pattern, as seen in game: rotating one floor tile by 90° changed all four of its quarters from 0 to 1, and so did turning a terrain floor tile 90° clockwise (in-game tests).
+
+    Each grid is paired with a floor id grid: <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations" data-throw-if-not-resolved="false"></xref> with <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.Floors" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations" data-throw-if-not-resolved="false"></xref> with <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations" data-throw-if-not-resolved="false"></xref> with <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations" data-throw-if-not-resolved="false"></xref> with <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations" data-throw-if-not-resolved="false"></xref> with <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors" data-throw-if-not-resolved="false"></xref>; <xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref> describes the roles of the id grids and the in-game tests and code that show them.</p>
+
+    <p>All types but <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations" data-throw-if-not-resolved="false"></xref> have one layer per level of the lot (<xref href="LlamaLogic.Architecture.FloorRotationGridSection.HasLevels" data-throw-if-not-resolved="false"></xref>), indexed by level − <xref href="LlamaLogic.Architecture.LotInfoSection.LowestLevel" data-throw-if-not-resolved="false"></xref>; <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations" data-throw-if-not-resolved="false"></xref> has a single layer, for ground level.</p>
+
+    <p>The layers are stored one after another, each as <xref href="LlamaLogic.Architecture.FloorRotationGridSection.SizeX" data-throw-if-not-resolved="false"></xref> rows of <xref href="LlamaLogic.Architecture.FloorRotationGridSection.SizeZ" data-throw-if-not-resolved="false"></xref> bytes; each byte holds the four rotations of a tile, two bits each, the <xref href="LlamaLogic.Architecture.FloorQuarter.NegativeZ" data-throw-if-not-resolved="false"></xref> quarter in the lowest bits, as the game's getter and setter read and write them. The section has no version.</p>
+  example: []
+  syntax:
+    content: 'public sealed class FloorRotationGridSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class FloorRotationGridSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.#ctor(LlamaLogic.Architecture.LotArchitectureSectionType,System.Int32,System.Int32,System.Int32)
+  commentId: M:LlamaLogic.Architecture.FloorRotationGridSection.#ctor(LlamaLogic.Architecture.LotArchitectureSectionType,System.Int32,System.Int32,System.Int32)
+  id: '#ctor(LlamaLogic.Architecture.LotArchitectureSectionType,System.Int32,System.Int32,System.Int32)'
+  parent: LlamaLogic.Architecture.FloorRotationGridSection
+  langs:
+  - csharp
+  - vb
+  name: FloorRotationGridSection(LotArchitectureSectionType, int, int, int)
+  nameWithType: FloorRotationGridSection.FloorRotationGridSection(LotArchitectureSectionType, int, int, int)
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.FloorRotationGridSection(LlamaLogic.Architecture.LotArchitectureSectionType, int, int, int)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 48
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.FloorRotationGridSection" data-throw-if-not-resolved="false"></xref> class with every rotation 0
+  example: []
+  syntax:
+    content: public FloorRotationGridSection(LotArchitectureSectionType type, int sizeX, int sizeZ, int levelCount)
+    parameters:
+    - id: type
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+      description: The type of the section, which must be one of the floor rotation grid types
+    - id: sizeX
+      type: System.Int32
+      description: The number of tiles along the lot's local X axis
+    - id: sizeZ
+      type: System.Int32
+      description: The number of tiles along the lot's local Z axis
+    - id: levelCount
+      type: System.Int32
+      description: "The number of layers: the lot's level count, or 1 for a grid with a single layer"
+    content.vb: Public Sub New(type As LotArchitectureSectionType, sizeX As Integer, sizeZ As Integer, levelCount As Integer)
+  overload: LlamaLogic.Architecture.FloorRotationGridSection.#ctor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">type</code> is not a floor rotation grid type
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">sizeX</code>, <code class="paramref">sizeZ</code> or <code class="paramref">levelCount</code> is not 0 through 255, or <code class="paramref">levelCount</code> is not 1 for a type with no levels
+  nameWithType.vb: FloorRotationGridSection.New(LotArchitectureSectionType, Integer, Integer, Integer)
+  fullName.vb: LlamaLogic.Architecture.FloorRotationGridSection.New(LlamaLogic.Architecture.LotArchitectureSectionType, Integer, Integer, Integer)
+  name.vb: New(LotArchitectureSectionType, Integer, Integer, Integer)
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.Item(System.Int32,System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.Item(System.Int32,System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  id: Item(System.Int32,System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  parent: LlamaLogic.Architecture.FloorRotationGridSection
+  langs:
+  - csharp
+  - vb
+  name: this[int, int, int, FloorQuarter]
+  nameWithType: FloorRotationGridSection.this[int, int, int, FloorQuarter]
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.this[int, int, int, LlamaLogic.Architecture.FloorQuarter]
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: this[]
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 78
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the rotation of the pattern on a quarter of a tile, as the number of 90° clockwise turns
+  example: []
+  syntax:
+    content: public byte this[int x, int z, int levelIndex, FloorQuarter quarter] { get; set; }
+    parameters:
+    - id: x
+      type: System.Int32
+      description: The tile's index along the lot's local X axis
+    - id: z
+      type: System.Int32
+      description: The tile's index along the lot's local Z axis
+    - id: levelIndex
+      type: System.Int32
+      description: 'The layer: the level − <xref href="LlamaLogic.Architecture.LotInfoSection.LowestLevel" data-throw-if-not-resolved="false"></xref>, or 0 for a grid with a single layer'
+    - id: quarter
+      type: LlamaLogic.Architecture.FloorQuarter
+      description: The quarter of the tile
+    return:
+      type: System.Byte
+    content.vb: Public Default Property this[](x As Integer, z As Integer, levelIndex As Integer, quarter As FloorQuarter) As Byte
+  overload: LlamaLogic.Architecture.FloorRotationGridSection.Item*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: A coordinate is outside the grid, <code class="paramref">quarter</code> is not a <xref href="LlamaLogic.Architecture.FloorQuarter" data-throw-if-not-resolved="false"></xref>, or the rotation being set is not 0 through 3
+  nameWithType.vb: FloorRotationGridSection.this[](Integer, Integer, Integer, FloorQuarter)
+  fullName.vb: LlamaLogic.Architecture.FloorRotationGridSection.this[](Integer, Integer, Integer, LlamaLogic.Architecture.FloorQuarter)
+  name.vb: this[](Integer, Integer, Integer, FloorQuarter)
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  id: HasLevels
+  parent: LlamaLogic.Architecture.FloorRotationGridSection
+  langs:
+  - csharp
+  - vb
+  name: HasLevels
+  nameWithType: FloorRotationGridSection.HasLevels
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: HasLevels
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 94
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets whether the grid has one layer per level of the lot, which all types but <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations" data-throw-if-not-resolved="false"></xref> do
+  example: []
+  syntax:
+    content: public bool HasLevels { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasLevels As Boolean
+  overload: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels*
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.LevelCount
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.LevelCount
+  id: LevelCount
+  parent: LlamaLogic.Architecture.FloorRotationGridSection
+  langs:
+  - csharp
+  - vb
+  name: LevelCount
+  nameWithType: FloorRotationGridSection.LevelCount
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.LevelCount
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LevelCount
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 100
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of layers of the grid
+  example: []
+  syntax:
+    content: public int LevelCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property LevelCount As Integer
+  overload: LlamaLogic.Architecture.FloorRotationGridSection.LevelCount*
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  id: SizeX
+  parent: LlamaLogic.Architecture.FloorRotationGridSection
+  langs:
+  - csharp
+  - vb
+  name: SizeX
+  nameWithType: FloorRotationGridSection.SizeX
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SizeX
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 105
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of tiles of the grid along the lot's local X axis
+  example: []
+  syntax:
+    content: public int SizeX { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SizeX As Integer
+  overload: LlamaLogic.Architecture.FloorRotationGridSection.SizeX*
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  id: SizeZ
+  parent: LlamaLogic.Architecture.FloorRotationGridSection
+  langs:
+  - csharp
+  - vb
+  name: SizeZ
+  nameWithType: FloorRotationGridSection.SizeZ
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SizeZ
+    path: ../LlamaLogic.Architecture/Sections/FloorRotationGridSection.cs
+    startLine: 110
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of tiles of the grid along the lot's local Z axis
+  example: []
+  syntax:
+    content: public int SizeZ { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SizeZ As Integer
+  overload: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ*
+references:
+- uid: LlamaLogic.Architecture.FloorIdGridSection
+  commentId: T:LlamaLogic.Architecture.FloorIdGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorIdGridSection.html
+  name: FloorIdGridSection
+  nameWithType: FloorIdGridSection
+  fullName: LlamaLogic.Architecture.FloorIdGridSection
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_SizeX
+  name: SizeX
+  nameWithType: FloorRotationGridSection.SizeX
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_SizeZ
+  name: SizeZ
+  nameWithType: FloorRotationGridSection.SizeZ
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+- uid: LlamaLogic.Architecture.FloorQuarter
+  commentId: T:LlamaLogic.Architecture.FloorQuarter
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorQuarter.html
+  name: FloorQuarter
+  nameWithType: FloorQuarter
+  fullName: LlamaLogic.Architecture.FloorQuarter
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_FloorRotations
+  name: FloorRotations
+  nameWithType: LotArchitectureSectionType.FloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Floors
+  name: Floors
+  nameWithType: LotArchitectureSectionType.Floors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_CeilingRotations
+  name: CeilingRotations
+  nameWithType: LotArchitectureSectionType.CeilingRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Ceilings
+  name: Ceilings
+  nameWithType: LotArchitectureSectionType.Ceilings
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_SecondaryFloorRotations
+  name: SecondaryFloorRotations
+  nameWithType: LotArchitectureSectionType.SecondaryFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_SecondaryFloors
+  name: SecondaryFloors
+  nameWithType: LotArchitectureSectionType.SecondaryFloors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_CeilingPaintRotations
+  name: CeilingPaintRotations
+  nameWithType: LotArchitectureSectionType.CeilingPaintRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_CeilingPaints
+  name: CeilingPaints
+  nameWithType: LotArchitectureSectionType.CeilingPaints
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_TerrainFloorRotations
+  name: TerrainFloorRotations
+  nameWithType: LotArchitectureSectionType.TerrainFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_TerrainFloors
+  name: TerrainFloors
+  nameWithType: LotArchitectureSectionType.TerrainFloors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  commentId: P:LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_HasLevels
+  name: HasLevels
+  nameWithType: FloorRotationGridSection.HasLevels
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+- uid: LlamaLogic.Architecture.LotInfoSection.LowestLevel
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.LowestLevel
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_LowestLevel
+  name: LowestLevel
+  nameWithType: LotInfoSection.LowestLevel
+  fullName: LlamaLogic.Architecture.LotInfoSection.LowestLevel
+- uid: LlamaLogic.Architecture.FloorQuarter.NegativeZ
+  commentId: F:LlamaLogic.Architecture.FloorQuarter.NegativeZ
+  href: LlamaLogic.Architecture.FloorQuarter.html#LlamaLogic_Architecture_FloorQuarter_NegativeZ
+  name: NegativeZ
+  nameWithType: FloorQuarter.NegativeZ
+  fullName: LlamaLogic.Architecture.FloorQuarter.NegativeZ
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.FloorRotationGridSection
+  commentId: T:LlamaLogic.Architecture.FloorRotationGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html
+  name: FloorRotationGridSection
+  nameWithType: FloorRotationGridSection
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.FloorRotationGridSection.#ctor
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection__ctor_LlamaLogic_Architecture_LotArchitectureSectionType_System_Int32_System_Int32_System_Int32_
+  name: FloorRotationGridSection
+  nameWithType: FloorRotationGridSection.FloorRotationGridSection
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.FloorRotationGridSection
+  nameWithType.vb: FloorRotationGridSection.New
+  fullName.vb: LlamaLogic.Architecture.FloorRotationGridSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSectionType
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html
+  name: LotArchitectureSectionType
+  nameWithType: LotArchitectureSectionType
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.Item*
+  commentId: Overload:LlamaLogic.Architecture.FloorRotationGridSection.Item
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_Item_System_Int32_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_
+  name: this
+  nameWithType: FloorRotationGridSection.this
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.this
+  nameWithType.vb: FloorRotationGridSection.this[]
+  fullName.vb: LlamaLogic.Architecture.FloorRotationGridSection.this[]
+  name.vb: this[]
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels*
+  commentId: Overload:LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_HasLevels
+  name: HasLevels
+  nameWithType: FloorRotationGridSection.HasLevels
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.HasLevels
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.LevelCount*
+  commentId: Overload:LlamaLogic.Architecture.FloorRotationGridSection.LevelCount
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_LevelCount
+  name: LevelCount
+  nameWithType: FloorRotationGridSection.LevelCount
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.LevelCount
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.SizeX*
+  commentId: Overload:LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_SizeX
+  name: SizeX
+  nameWithType: FloorRotationGridSection.SizeX
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.SizeX
+- uid: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ*
+  commentId: Overload:LlamaLogic.Architecture.FloorRotationGridSection.SizeZ
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html#LlamaLogic_Architecture_FloorRotationGridSection_SizeZ
+  name: SizeZ
+  nameWithType: FloorRotationGridSection.SizeZ
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection.SizeZ

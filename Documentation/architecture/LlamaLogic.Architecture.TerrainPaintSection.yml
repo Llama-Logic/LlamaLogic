@@ -1,0 +1,783 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.TerrainPaintSection
+  commentId: T:LlamaLogic.Architecture.TerrainPaintSection
+  id: TerrainPaintSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.TerrainPaintSection.#ctor
+  - LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  - LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  - LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  - LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  - LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  - LlamaLogic.Architecture.TerrainPaintSection.Version
+  langs:
+  - csharp
+  - vb
+  name: TerrainPaintSection
+  nameWithType: TerrainPaintSection
+  fullName: LlamaLogic.Architecture.TerrainPaintSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainPaintSection
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint\" data-throw-if-not-resolved=\"false\"></xref> section: the terrain paint layers, each a paint and a mask of where it is applied (\U0001F513)"
+  remarks: >-
+    <p>The game's reader and writer keep two sets of layers, <xref href="LlamaLogic.Architecture.TerrainPaintSection.LayerSet0" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.TerrainPaintSection.LayerSet1" data-throw-if-not-resolved="false"></xref>; what distinguishes them has not been established.
+
+    The headers of the layers (key and use count) come first, set by set, then <xref href="LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ" data-throw-if-not-resolved="false"></xref>, then the masks, in the same order.</p>
+
+    <p>Versions 2 through 4 are supported, and the game writes version 4; the lots examined hold versions 2 and 4.
+
+    Version 2 has only <xref href="LlamaLogic.Architecture.TerrainPaintSection.LayerSet1" data-throw-if-not-resolved="false"></xref>, followed by <xref href="LlamaLogic.Architecture.TerrainPaintSection.Unknown1" data-throw-if-not-resolved="false"></xref>, and its layers have no <xref href="LlamaLogic.Architecture.TerrainPaintLayer.HasMask" data-throw-if-not-resolved="false"></xref>.
+
+    Version 3 stores <xref href="LlamaLogic.Architecture.TerrainPaintSection.LayerSet1" data-throw-if-not-resolved="false"></xref> before <xref href="LlamaLogic.Architecture.TerrainPaintSection.LayerSet0" data-throw-if-not-resolved="false"></xref>; version 4 stores <xref href="LlamaLogic.Architecture.TerrainPaintSection.LayerSet0" data-throw-if-not-resolved="false"></xref> first.</p>
+
+    <p>The game writes no keys of this section into the <xref href="LlamaLogic.Architecture.ResourceManifestSection" data-throw-if-not-resolved="false"></xref>, which it saves earlier.</p>
+  example: []
+  syntax:
+    content: 'public sealed class TerrainPaintSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class TerrainPaintSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.TerrainPaintSection.#ctor
+  commentId: M:LlamaLogic.Architecture.TerrainPaintSection.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: TerrainPaintSection()
+  nameWithType: TerrainPaintSection.TerrainPaintSection()
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.TerrainPaintSection()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.TerrainPaintSection" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public TerrainPaintSection()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.TerrainPaintSection.#ctor*
+  nameWithType.vb: TerrainPaintSection.New()
+  fullName.vb: LlamaLogic.Architecture.TerrainPaintSection.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  id: LayerSet0
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: LayerSet0
+  nameWithType: TerrainPaintSection.LayerSet0
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LayerSet0
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 70
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the first set of layers, which version 2 does not have
+  remarks: >-
+    When its caller passes a flag of unknown meaning, the game's reader replaces the key of this set's first layer with default key 0x1E of the lot's style.
+
+    It holds 0 or 1 layers in the lots examined.
+
+    Sculpting the terrain with the raise tool in game added a layer to this set (in-game test).
+  example: []
+  syntax:
+    content: public Collection<TerrainPaintLayer> LayerSet0 { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.TerrainPaintLayer}
+    content.vb: Public ReadOnly Property LayerSet0 As Collection(Of TerrainPaintLayer)
+  overload: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0*
+- uid: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  id: LayerSet1
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: LayerSet1
+  nameWithType: TerrainPaintSection.LayerSet1
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LayerSet1
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 75
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the second set of layers, the only one in version 2
+  example: []
+  syntax:
+    content: public Collection<TerrainPaintLayer> LayerSet1 { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.TerrainPaintLayer}
+    content.vb: Public ReadOnly Property LayerSet1 As Collection(Of TerrainPaintLayer)
+  overload: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1*
+- uid: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  id: MaskSizeX
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: MaskSizeX
+  nameWithType: TerrainPaintSection.MaskSizeX
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MaskSizeX
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 83
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the number of mask values along the lot's local X axis
+  remarks: 4 × <xref href="LlamaLogic.Architecture.LotSizeSection.SizeX" data-throw-if-not-resolved="false"></xref> + 1 in every lot examined, which this library requires, on decoding and on encoding, when it knows the lot's dimensions; the game itself reads only what fits its own mask.
+  example: []
+  syntax:
+    content: public int MaskSizeX { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaskSizeX As Integer
+  overload: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX*
+- uid: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  id: MaskSizeZ
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: MaskSizeZ
+  nameWithType: TerrainPaintSection.MaskSizeZ
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MaskSizeZ
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 91
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the number of mask values along the lot's local Z axis
+  remarks: 4 × <xref href="LlamaLogic.Architecture.LotSizeSection.SizeZ" data-throw-if-not-resolved="false"></xref> + 1 in every lot examined, which this library requires, on decoding and on encoding, when it knows the lot's dimensions.
+  example: []
+  syntax:
+    content: public int MaskSizeZ { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MaskSizeZ As Integer
+  overload: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ*
+- uid: LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  id: Unknown1
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: Unknown1
+  nameWithType: TerrainPaintSection.Unknown1
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown1
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 99
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a value of unknown meaning, written in version 2 only
+  remarks: The game reads and discards it; it equals the number of layers in every lot examined.
+  example: []
+  syntax:
+    content: public uint Unknown1 { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Unknown1 As UInteger
+  overload: LlamaLogic.Architecture.TerrainPaintSection.Unknown1*
+- uid: LlamaLogic.Architecture.TerrainPaintSection.Version
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.Version
+  id: Version
+  parent: LlamaLogic.Architecture.TerrainPaintSection
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: TerrainPaintSection.Version
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Architecture/Sections/TerrainPaintSection.cs
+    startLine: 108
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the version of the section, which decides its layout
+  remarks: Encoding throws an <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref> when a field the version lacks holds a value other than its default, or a collection the version lacks is not empty.
+  example: []
+  syntax:
+    content: public uint Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Version As UInteger
+  overload: LlamaLogic.Architecture.TerrainPaintSection.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The version is not 2 through 4
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_TerrainPaint
+  name: TerrainPaint
+  nameWithType: LotArchitectureSectionType.TerrainPaint
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+- uid: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_LayerSet0
+  name: LayerSet0
+  nameWithType: TerrainPaintSection.LayerSet0
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+- uid: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_LayerSet1
+  name: LayerSet1
+  nameWithType: TerrainPaintSection.LayerSet1
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+- uid: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_MaskSizeX
+  name: MaskSizeX
+  nameWithType: TerrainPaintSection.MaskSizeX
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+- uid: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_MaskSizeZ
+  name: MaskSizeZ
+  nameWithType: TerrainPaintSection.MaskSizeZ
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+- uid: LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  commentId: P:LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_Unknown1
+  name: Unknown1
+  nameWithType: TerrainPaintSection.Unknown1
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+- uid: LlamaLogic.Architecture.TerrainPaintLayer.HasMask
+  commentId: P:LlamaLogic.Architecture.TerrainPaintLayer.HasMask
+  href: LlamaLogic.Architecture.TerrainPaintLayer.html#LlamaLogic_Architecture_TerrainPaintLayer_HasMask
+  name: HasMask
+  nameWithType: TerrainPaintLayer.HasMask
+  fullName: LlamaLogic.Architecture.TerrainPaintLayer.HasMask
+- uid: LlamaLogic.Architecture.ResourceManifestSection
+  commentId: T:LlamaLogic.Architecture.ResourceManifestSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ResourceManifestSection.html
+  name: ResourceManifestSection
+  nameWithType: ResourceManifestSection
+  fullName: LlamaLogic.Architecture.ResourceManifestSection
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.TerrainPaintSection
+  commentId: T:LlamaLogic.Architecture.TerrainPaintSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.TerrainPaintSection.html
+  name: TerrainPaintSection
+  nameWithType: TerrainPaintSection
+  fullName: LlamaLogic.Architecture.TerrainPaintSection
+- uid: LlamaLogic.Architecture.TerrainPaintSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.#ctor
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection__ctor
+  name: TerrainPaintSection
+  nameWithType: TerrainPaintSection.TerrainPaintSection
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.TerrainPaintSection
+  nameWithType.vb: TerrainPaintSection.New
+  fullName.vb: LlamaLogic.Architecture.TerrainPaintSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_LayerSet0
+  name: LayerSet0
+  nameWithType: TerrainPaintSection.LayerSet0
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.LayerSet0
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.TerrainPaintLayer}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.TerrainPaintLayer}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<TerrainPaintLayer>
+  nameWithType: Collection<TerrainPaintLayer>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.TerrainPaintLayer>
+  nameWithType.vb: Collection(Of TerrainPaintLayer)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.TerrainPaintLayer)
+  name.vb: Collection(Of TerrainPaintLayer)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.TerrainPaintLayer
+    name: TerrainPaintLayer
+    href: LlamaLogic.Architecture.TerrainPaintLayer.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.TerrainPaintLayer
+    name: TerrainPaintLayer
+    href: LlamaLogic.Architecture.TerrainPaintLayer.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_LayerSet1
+  name: LayerSet1
+  nameWithType: TerrainPaintSection.LayerSet1
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.LayerSet1
+- uid: LlamaLogic.Architecture.LotSizeSection.SizeX
+  commentId: P:LlamaLogic.Architecture.LotSizeSection.SizeX
+  href: LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_SizeX
+  name: SizeX
+  nameWithType: LotSizeSection.SizeX
+  fullName: LlamaLogic.Architecture.LotSizeSection.SizeX
+- uid: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_MaskSizeX
+  name: MaskSizeX
+  nameWithType: TerrainPaintSection.MaskSizeX
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeX
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.Architecture.LotSizeSection.SizeZ
+  commentId: P:LlamaLogic.Architecture.LotSizeSection.SizeZ
+  href: LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_SizeZ
+  name: SizeZ
+  nameWithType: LotSizeSection.SizeZ
+  fullName: LlamaLogic.Architecture.LotSizeSection.SizeZ
+- uid: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_MaskSizeZ
+  name: MaskSizeZ
+  nameWithType: TerrainPaintSection.MaskSizeZ
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.MaskSizeZ
+- uid: LlamaLogic.Architecture.TerrainPaintSection.Unknown1*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_Unknown1
+  name: Unknown1
+  nameWithType: TerrainPaintSection.Unknown1
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.Unknown1
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.TerrainPaintSection.Version*
+  commentId: Overload:LlamaLogic.Architecture.TerrainPaintSection.Version
+  href: LlamaLogic.Architecture.TerrainPaintSection.html#LlamaLogic_Architecture_TerrainPaintSection_Version
+  name: Version
+  nameWithType: TerrainPaintSection.Version
+  fullName: LlamaLogic.Architecture.TerrainPaintSection.Version

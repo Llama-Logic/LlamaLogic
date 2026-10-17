@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Blueprint | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Blueprint | Llama Logic ">
+      
+      <meta name="description" content="Represents a tray blueprint (a .blueprint file): a lot&#39;s objects and architecture (&#128275;)">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Architecture_Blueprint.md&amp;value=---%0Auid%3A%20LlamaLogic.Architecture.Blueprint%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Architecture.Blueprint">
+
+
+
+  <h1 id="LlamaLogic_Architecture_Blueprint" data-uid="LlamaLogic.Architecture.Blueprint" class="text-break">
+Class Blueprint  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Architecture.html">Architecture</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Architecture.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a tray blueprint (a <code>.blueprint</code> file): a lot's objects and architecture (🔓)</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class Blueprint</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Blueprint</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_Architecture_Blueprint_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The file is a 32-bit version and the length of its content, followed by the content compressed with Snappy (the raw block format).
+The content is a header, the <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_LotObjects">LotObjects</a> as a protobuf message, <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_ObjectDefinitionMappings">ObjectDefinitionMappings</a>, <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_Images">Images</a> and finally the <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_Architecture">Architecture</a> as a record bundle.
+Blueprints without the header (<a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_HasHeader">HasHeader</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>) hold only the objects and the architecture; Sims 4 Studio reads them, but none has been observed.</p>
+<p>Snappy compressors differ in their output, so <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_Encode">Encode()</a> reuses the compressed bytes it decoded when the content it would write is unchanged, and otherwise compresses the content anew.
+Decoding and encoding a blueprint the game wrote therefore reproduces it byte for byte.</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_Architecture_" data-uid="LlamaLogic.Architecture.Blueprint.Architecture*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_Architecture" data-uid="LlamaLogic.Architecture.Blueprint.Architecture">
+  Architecture
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's architecture</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LotArchitecture Architecture { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.LotArchitecture.html">LotArchitecture</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_ContentVersion_" data-uid="LlamaLogic.Architecture.Blueprint.ContentVersion*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_ContentVersion" data-uid="LlamaLogic.Architecture.Blueprint.ContentVersion">
+  ContentVersion
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the version of the content's header, which is 2 in every blueprint observed and decides whether the content holds <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_Images">Images</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ContentVersion { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_HasHeader_" data-uid="LlamaLogic.Architecture.Blueprint.HasHeader*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_HasHeader" data-uid="LlamaLogic.Architecture.Blueprint.HasHeader">
+  HasHeader
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets whether the content begins with a header, which every blueprint observed does</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasHeader { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_Images_" data-uid="LlamaLogic.Architecture.Blueprint.Images*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_Images" data-uid="LlamaLogic.Architecture.Blueprint.Images">
+  Images
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the images, which only content version 2 holds</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Collection&lt;BlueprintImage&gt; Images { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="LlamaLogic.Architecture.BlueprintImage.html">BlueprintImage</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_LotObjects_" data-uid="LlamaLogic.Architecture.Blueprint.LotObjects*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_LotObjects" data-uid="LlamaLogic.Architecture.Blueprint.LotObjects">
+  LotObjects
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the lot's objects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LotObjectList LotObjects { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">LotObjectList</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_ObjectDefinitionMappings_" data-uid="LlamaLogic.Architecture.Blueprint.ObjectDefinitionMappings*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_ObjectDefinitionMappings" data-uid="LlamaLogic.Architecture.Blueprint.ObjectDefinitionMappings">
+  ObjectDefinitionMappings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the pairs of object definition ids, which only blueprints with a header hold</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Collection&lt;BlueprintObjectDefinitionMapping&gt; ObjectDefinitionMappings { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1">Collection</a>&lt;<a class="xref" href="LlamaLogic.Architecture.BlueprintObjectDefinitionMapping.html">BlueprintObjectDefinitionMapping</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_Unknown1_" data-uid="LlamaLogic.Architecture.Blueprint.Unknown1*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_Unknown1" data-uid="LlamaLogic.Architecture.Blueprint.Unknown1">
+  Unknown1
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L152"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets a value of the header that follows the objects, which is 1 in every blueprint observed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Unknown1 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_Version_" data-uid="LlamaLogic.Architecture.Blueprint.Version*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_Version" data-uid="LlamaLogic.Architecture.Blueprint.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets/sets the version of the file, which is 1 in every blueprint observed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Version { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_Decode_" data-uid="LlamaLogic.Architecture.Blueprint.Decode*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_Decode_System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Architecture.Blueprint.Decode(System.ReadOnlyMemory{System.Byte})">
+  Decode(ReadOnlyMemory&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decodes a blueprint from the content of its file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Blueprint Decode(ReadOnlyMemory&lt;byte&gt; data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Architecture.Blueprint.html">Blueprint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The data is not a well-formed blueprint, or its architecture cannot be decoded</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Architecture_Blueprint_Encode_" data-uid="LlamaLogic.Architecture.Blueprint.Encode*"></a>
+
+  <h3 id="LlamaLogic_Architecture_Blueprint_Encode" data-uid="LlamaLogic.Architecture.Blueprint.Encode">
+  Encode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encodes the blueprint as the content of its file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyMemory&lt;byte&gt; Encode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p><a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_Architecture">Architecture</a> or <a class="xref" href="LlamaLogic.Architecture.Blueprint.html#LlamaLogic_Architecture_Blueprint_LotObjects">LotObjects</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the architecture cannot be encoded as it is, or the content is too large for the format</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/Blueprint.cs/#L13" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

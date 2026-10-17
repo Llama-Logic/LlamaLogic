@@ -1,0 +1,822 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.PendingPlacementSection
+  commentId: T:LlamaLogic.Architecture.PendingPlacementSection
+  id: PendingPlacementSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.PendingPlacementSection.#ctor
+  - LlamaLogic.Architecture.PendingPlacementSection.Depth
+  - LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  - LlamaLogic.Architecture.PendingPlacementSection.State
+  - LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  - LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  - LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  - LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  - LlamaLogic.Architecture.PendingPlacementSection.Version
+  - LlamaLogic.Architecture.PendingPlacementSection.Width
+  langs:
+  - csharp
+  - vb
+  name: PendingPlacementSection
+  nameWithType: PendingPlacementSection
+  fullName: LlamaLogic.Architecture.PendingPlacementSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PendingPlacementSection
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 12
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement\" data-throw-if-not-resolved=\"false\"></xref> section: a footprint the game places on the lot after loading (\U0001F513)"
+  remarks: >-
+    <p>When <xref href="LlamaLogic.Architecture.PendingPlacementSection.State" data-throw-if-not-resolved="false"></xref> is 1, the game centers a footprint of <xref href="LlamaLogic.Architecture.PendingPlacementSection.Width" data-throw-if-not-resolved="false"></xref> by <xref href="LlamaLogic.Architecture.PendingPlacementSection.Depth" data-throw-if-not-resolved="false"></xref> tiles, turned by <xref href="LlamaLogic.Architecture.PendingPlacementSection.Rotation" data-throw-if-not-resolved="false"></xref>, on the lot and builds a placement operation with <xref href="LlamaLogic.Architecture.LotInfoSection.BlueprintInstance" data-throw-if-not-resolved="false"></xref>; that this places a pending lot template or blueprint is a hypothesis.
+
+    Every lot examined holds the defaults (state 0).</p>
+
+    <p>The layout is <xref href="LlamaLogic.Architecture.PendingPlacementSection.Width" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.PendingPlacementSection.Depth" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.PendingPlacementSection.Rotation" data-throw-if-not-resolved="false"></xref> (from version 3 on), <xref href="LlamaLogic.Architecture.PendingPlacementSection.State" data-throw-if-not-resolved="false"></xref> (a Boolean in version 1), then from version 2 on <xref href="LlamaLogic.Architecture.PendingPlacementSection.Unknown1" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.PendingPlacementSection.Unknown2" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.PendingPlacementSection.Unknown3" data-throw-if-not-resolved="false"></xref> (from version 4 on) and <xref href="LlamaLogic.Architecture.PendingPlacementSection.Unknown4" data-throw-if-not-resolved="false"></xref> (from version 5 on).
+
+    The game reads this section only when <xref href="LlamaLogic.Architecture.LotInfoSection.Version" data-throw-if-not-resolved="false"></xref> is 9 or later.</p>
+
+    <p>Versions 1 through 5 are supported, and the game writes version 5.</p>
+  example: []
+  syntax:
+    content: 'public sealed class PendingPlacementSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class PendingPlacementSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.PendingPlacementSection.#ctor
+  commentId: M:LlamaLogic.Architecture.PendingPlacementSection.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: PendingPlacementSection()
+  nameWithType: PendingPlacementSection.PendingPlacementSection()
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.PendingPlacementSection()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 44
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.PendingPlacementSection" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public PendingPlacementSection()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.PendingPlacementSection.#ctor*
+  nameWithType.vb: PendingPlacementSection.New()
+  fullName.vb: LlamaLogic.Architecture.PendingPlacementSection.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Depth
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Depth
+  id: Depth
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Depth
+  nameWithType: PendingPlacementSection.Depth
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Depth
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Depth
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 54
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the second dimension of the footprint, in tiles
+  example: []
+  syntax:
+    content: public byte Depth { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Depth As Byte
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Depth*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  id: Rotation
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Rotation
+  nameWithType: PendingPlacementSection.Rotation
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Rotation
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 62
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the rotation of the footprint relative to the lot, in quarter turns
+  remarks: Present from version 3 on. The game uses it modulo 4.
+  example: []
+  syntax:
+    content: public byte Rotation { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Rotation As Byte
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Rotation*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.State
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.State
+  id: State
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: PendingPlacementSection.State
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.State
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: State
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 70
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the state of the placement; the game places the footprint only when it is 1
+  remarks: In version 1 it is stored as a Boolean, so it must be 0 or 1 to be written.
+  example: []
+  syntax:
+    content: public byte State { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property State As Byte
+  overload: LlamaLogic.Architecture.PendingPlacementSection.State*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  id: Unknown1
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Unknown1
+  nameWithType: PendingPlacementSection.Unknown1
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown1
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 78
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the first unknown value
+  remarks: Present from version 2 on. It is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> in every lot examined.
+  example: []
+  syntax:
+    content: public bool Unknown1 { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unknown1 As Boolean
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Unknown1*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  id: Unknown2
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Unknown2
+  nameWithType: PendingPlacementSection.Unknown2
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown2
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 86
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the second unknown value
+  remarks: Present from version 2 on. It is 0 in every lot examined.
+  example: []
+  syntax:
+    content: public ulong Unknown2 { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Unknown2 As ULong
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Unknown2*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  id: Unknown3
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Unknown3
+  nameWithType: PendingPlacementSection.Unknown3
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown3
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 94
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the third unknown value
+  remarks: Present from version 4 on. It is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> in every lot examined.
+  example: []
+  syntax:
+    content: public bool Unknown3 { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unknown3 As Boolean
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Unknown3*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  id: Unknown4
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Unknown4
+  nameWithType: PendingPlacementSection.Unknown4
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown4
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 102
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the fourth unknown value
+  remarks: Present from version 5 on. It is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> in every lot examined.
+  example: []
+  syntax:
+    content: public bool Unknown4 { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unknown4 As Boolean
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Unknown4*
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Version
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Version
+  id: Version
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: PendingPlacementSection.Version
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 111
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the version of the section, which decides its layout
+  remarks: Encoding throws an <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref> when a field the version lacks holds a value other than its default, or a collection the version lacks is not empty.
+  example: []
+  syntax:
+    content: public uint Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Version As UInteger
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The version is not 1 through 5
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Width
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Width
+  id: Width
+  parent: LlamaLogic.Architecture.PendingPlacementSection
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: PendingPlacementSection.Width
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Width
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Width
+    path: ../LlamaLogic.Architecture/Sections/PendingPlacementSection.cs
+    startLine: 128
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the first dimension of the footprint, in tiles
+  remarks: Which lot axis each dimension runs along depends on the rotations of the footprint and the lot.
+  example: []
+  syntax:
+    content: public byte Width { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Width As Byte
+  overload: LlamaLogic.Architecture.PendingPlacementSection.Width*
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_PendingPlacement
+  name: PendingPlacement
+  nameWithType: LotArchitectureSectionType.PendingPlacement
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+- uid: LlamaLogic.Architecture.PendingPlacementSection.State
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.State
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_State
+  name: State
+  nameWithType: PendingPlacementSection.State
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.State
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Width
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Width
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Width
+  name: Width
+  nameWithType: PendingPlacementSection.Width
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Width
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Depth
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Depth
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Depth
+  name: Depth
+  nameWithType: PendingPlacementSection.Depth
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Depth
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Rotation
+  name: Rotation
+  nameWithType: PendingPlacementSection.Rotation
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Rotation
+- uid: LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_BlueprintInstance
+  name: BlueprintInstance
+  nameWithType: LotInfoSection.BlueprintInstance
+  fullName: LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown1
+  name: Unknown1
+  nameWithType: PendingPlacementSection.Unknown1
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown2
+  name: Unknown2
+  nameWithType: PendingPlacementSection.Unknown2
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown3
+  name: Unknown3
+  nameWithType: PendingPlacementSection.Unknown3
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  commentId: P:LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown4
+  name: Unknown4
+  nameWithType: PendingPlacementSection.Unknown4
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+- uid: LlamaLogic.Architecture.LotInfoSection.Version
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.Version
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_Version
+  name: Version
+  nameWithType: LotInfoSection.Version
+  fullName: LlamaLogic.Architecture.LotInfoSection.Version
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.PendingPlacementSection
+  commentId: T:LlamaLogic.Architecture.PendingPlacementSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PendingPlacementSection.html
+  name: PendingPlacementSection
+  nameWithType: PendingPlacementSection
+  fullName: LlamaLogic.Architecture.PendingPlacementSection
+- uid: LlamaLogic.Architecture.PendingPlacementSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.#ctor
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection__ctor
+  name: PendingPlacementSection
+  nameWithType: PendingPlacementSection.PendingPlacementSection
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.PendingPlacementSection
+  nameWithType.vb: PendingPlacementSection.New
+  fullName.vb: LlamaLogic.Architecture.PendingPlacementSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Depth*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Depth
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Depth
+  name: Depth
+  nameWithType: PendingPlacementSection.Depth
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Depth
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Rotation*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Rotation
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Rotation
+  name: Rotation
+  nameWithType: PendingPlacementSection.Rotation
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Rotation
+- uid: LlamaLogic.Architecture.PendingPlacementSection.State*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.State
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_State
+  name: State
+  nameWithType: PendingPlacementSection.State
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.State
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown1*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown1
+  name: Unknown1
+  nameWithType: PendingPlacementSection.Unknown1
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown1
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown2*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown2
+  name: Unknown2
+  nameWithType: PendingPlacementSection.Unknown2
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown2
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown3*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown3
+  name: Unknown3
+  nameWithType: PendingPlacementSection.Unknown3
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown3
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Unknown4*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Unknown4
+  name: Unknown4
+  nameWithType: PendingPlacementSection.Unknown4
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Unknown4
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Version*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Version
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Version
+  name: Version
+  nameWithType: PendingPlacementSection.Version
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Version
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.PendingPlacementSection.Width*
+  commentId: Overload:LlamaLogic.Architecture.PendingPlacementSection.Width
+  href: LlamaLogic.Architecture.PendingPlacementSection.html#LlamaLogic_Architecture_PendingPlacementSection_Width
+  name: Width
+  nameWithType: PendingPlacementSection.Width
+  fullName: LlamaLogic.Architecture.PendingPlacementSection.Width

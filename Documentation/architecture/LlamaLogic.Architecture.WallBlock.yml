@@ -1,0 +1,1630 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WallBlock
+  commentId: T:LlamaLogic.Architecture.WallBlock
+  id: WallBlock
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WallBlock.BaseElevation
+  - LlamaLogic.Architecture.WallBlock.BlockType
+  - LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  - LlamaLogic.Architecture.WallBlock.HasFloor
+  - LlamaLogic.Architecture.WallBlock.Id
+  - LlamaLogic.Architecture.WallBlock.LegacyKeys
+  - LlamaLogic.Architecture.WallBlock.LegacyStamp
+  - LlamaLogic.Architecture.WallBlock.Level
+  - LlamaLogic.Architecture.WallBlock.Loops
+  - LlamaLogic.Architecture.WallBlock.PlexId
+  - LlamaLogic.Architecture.WallBlock.Products
+  - LlamaLogic.Architecture.WallBlock.Unknown1
+  - LlamaLogic.Architecture.WallBlock.Unknown10
+  - LlamaLogic.Architecture.WallBlock.Unknown11
+  - LlamaLogic.Architecture.WallBlock.Unknown12
+  - LlamaLogic.Architecture.WallBlock.Unknown3
+  - LlamaLogic.Architecture.WallBlock.Unknown4
+  - LlamaLogic.Architecture.WallBlock.Unknown5
+  - LlamaLogic.Architecture.WallBlock.Unknown6
+  - LlamaLogic.Architecture.WallBlock.Unknown7
+  - LlamaLogic.Architecture.WallBlock.Unknown8
+  - LlamaLogic.Architecture.WallBlock.Unknown9
+  - LlamaLogic.Architecture.WallBlock.Version
+  langs:
+  - csharp
+  - vb
+  name: WallBlock
+  nameWithType: WallBlock
+  fullName: LlamaLogic.Architecture.WallBlock
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallBlock
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 14
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: 'Represents a block: a room, platform, wall line, fence line, pool or fountain, as loops of segments on one level, with the catalog products along them'
+  remarks: >-
+    <p>This is the game's WallInfo, which <xref href="LlamaLogic.Architecture.WallBlocksSection" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.PlexesSection" data-throw-if-not-resolved="false"></xref> both store; the layout follows the game's reader and writer.
+
+    Versions 17 through 36 are supported, and the game writes version 36. The game reads versions 18 through 36; in the lots examined, version 17 appears only where the <xref href="LlamaLogic.Architecture.LotSizeSection" data-throw-if-not-resolved="false"></xref> is version 2, and its layout is the game's layout for version 18 plus <xref href="LlamaLogic.Architecture.WallBlock.Unknown1" data-throw-if-not-resolved="false"></xref>.
+
+    The lots examined hold versions 17, 22, 29, 31, 32, 33, 35 and 36; the layouts of the other versions follow the game's reader.</p>
+
+    <p>Layout, with version gates: <xref href="LlamaLogic.Architecture.WallBlock.Version" data-throw-if-not-resolved="false"></xref> (<xref href="System.UInt16" data-throw-if-not-resolved="false"></xref>), <xref href="LlamaLogic.Architecture.WallBlock.Id" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Level" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Unknown1" data-throw-if-not-resolved="false"></xref> (17), <xref href="LlamaLogic.Architecture.WallBlock.BlockType" data-throw-if-not-resolved="false"></xref> (after 24), <xref href="LlamaLogic.Architecture.WallBlock.PlexId" data-throw-if-not-resolved="false"></xref> (after 35), <xref href="LlamaLogic.Architecture.WallBlock.HasFloor" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Unknown3" data-throw-if-not-resolved="false"></xref> (after 27), <xref href="LlamaLogic.Architecture.WallBlock.BaseElevation" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.FloorHeightOffset" data-throw-if-not-resolved="false"></xref> (after 33), <xref href="LlamaLogic.Architecture.WallBlock.Unknown4" data-throw-if-not-resolved="false"></xref> (31 and 32),
+
+    then before 27: <xref href="LlamaLogic.Architecture.WallBlock.Unknown5" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Unknown6" data-throw-if-not-resolved="false"></xref> (before 22), <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref> (type, group, instance), <xref href="LlamaLogic.Architecture.WallBlock.Unknown7" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Unknown8" data-throw-if-not-resolved="false"></xref>;
+
+    then a <xref href="System.UInt16" data-throw-if-not-resolved="false"></xref> loop count (after 23; one loop before), the <xref href="LlamaLogic.Architecture.WallBlock.Loops" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Unknown9" data-throw-if-not-resolved="false"></xref> (before 19), <xref href="LlamaLogic.Architecture.WallBlock.Products" data-throw-if-not-resolved="false"></xref> (after 19), <xref href="LlamaLogic.Architecture.WallBlock.LegacyStamp" data-throw-if-not-resolved="false"></xref> (12 through 25), and before 27 <xref href="LlamaLogic.Architecture.WallBlock.Unknown10" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlock.Unknown11" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.WallBlock.Unknown12" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p>Each segment stores these product slots: none before version 20 (the game takes all from <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref>), slots 0 through 3 in versions 20 through 26 (the game takes slots 4 through 8 from <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref>), 0 through 6 in versions 27 and 28, 0 through 7 in versions 29 and 32 through 34, and all nine in versions 30, 31, 35 and 36.</p>
+  example: []
+  syntax:
+    content: public sealed class WallBlock
+    content.vb: Public NotInheritable Class WallBlock
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.WallBlock.BaseElevation
+  commentId: P:LlamaLogic.Architecture.WallBlock.BaseElevation
+  id: BaseElevation
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: BaseElevation
+  nameWithType: WallBlock.BaseElevation
+  fullName: LlamaLogic.Architecture.WallBlock.BaseElevation
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseElevation
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 100
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the elevation of the block's base, in meters
+  remarks: >-
+    The game sets it to the elevation of <xref href="LlamaLogic.Architecture.WallBlock.Level" data-throw-if-not-resolved="false"></xref> plus the lot's offset; adding a foundation raised it by 0.25 (in-game test).
+
+    It is −0.375 or −0.125 for fountains in the lots examined, and it was −3 for a new pool (in-game test).
+  example: []
+  syntax:
+    content: public float BaseElevation { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property BaseElevation As Single
+  overload: LlamaLogic.Architecture.WallBlock.BaseElevation*
+- uid: LlamaLogic.Architecture.WallBlock.BlockType
+  commentId: P:LlamaLogic.Architecture.WallBlock.BlockType
+  id: BlockType
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: BlockType
+  nameWithType: WallBlock.BlockType
+  fullName: LlamaLogic.Architecture.WallBlock.BlockType
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BlockType
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 108
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the type of the block
+  remarks: Stored from version 25 on; the game treats older blocks as <xref href="LlamaLogic.Architecture.WallBlockType.Standard" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public WallBlockType BlockType { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.WallBlockType
+    content.vb: Public Property BlockType As WallBlockType
+  overload: LlamaLogic.Architecture.WallBlock.BlockType*
+- uid: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  commentId: P:LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  id: FloorHeightOffset
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: FloorHeightOffset
+  nameWithType: WallBlock.FloorHeightOffset
+  fullName: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorHeightOffset
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 118
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the offset of the floor from <xref href="LlamaLogic.Architecture.WallBlock.BaseElevation" data-throw-if-not-resolved="false"></xref>, in meters
+  remarks: >-
+    The game checks it with FloorHeightOffsetOutOfBounds before setting it and takes the block's bottom as the lower of <xref href="LlamaLogic.Architecture.WallBlock.BaseElevation" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.WallBlock.BaseElevation" data-throw-if-not-resolved="false"></xref> plus this offset.
+
+    Raising a room's floor one step changed it from 0 to 0.25, and a platform had 0.25 when drawn and 0.5 after one raise (in-game tests); the game stores a platform as a block like a room, so a raised room floor and a platform differ in the data only by their segments, which are <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.Open" data-throw-if-not-resolved="false"></xref> where a platform has no walls.
+
+    Stored from version 34 on.
+  example: []
+  syntax:
+    content: public float FloorHeightOffset { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property FloorHeightOffset As Single
+  overload: LlamaLogic.Architecture.WallBlock.FloorHeightOffset*
+- uid: LlamaLogic.Architecture.WallBlock.HasFloor
+  commentId: P:LlamaLogic.Architecture.WallBlock.HasFloor
+  id: HasFloor
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: HasFloor
+  nameWithType: WallBlock.HasFloor
+  fullName: LlamaLogic.Architecture.WallBlock.HasFloor
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: HasFloor
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 128
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets whether the block has a floor
+  remarks: >-
+    Deleting the entire floor of a room changed only this value of the room's block, from <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> (in-game test).
+
+    The game keeps it at offset 0x80 of the block, sets it to whether the level is at most 0 when it copies blocks into a plex and needs it for <xref href="LlamaLogic.Architecture.WallBlock.FloorHeightOffset" data-throw-if-not-resolved="false"></xref>.
+
+    In the lots examined it is 1 for every pool and fountain block, for 36,076 of the 51,425 <xref href="LlamaLogic.Architecture.WallBlockType.Standard" data-throw-if-not-resolved="false"></xref> blocks and for 5,271 of the 11,629 <xref href="LlamaLogic.Architecture.WallBlockType.Fence" data-throw-if-not-resolved="false"></xref> blocks.
+  example: []
+  syntax:
+    content: public bool HasFloor { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property HasFloor As Boolean
+  overload: LlamaLogic.Architecture.WallBlock.HasFloor*
+- uid: LlamaLogic.Architecture.WallBlock.Id
+  commentId: P:LlamaLogic.Architecture.WallBlock.Id
+  id: Id
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: WallBlock.Id
+  fullName: LlamaLogic.Architecture.WallBlock.Id
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Id
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 137
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the id of the block
+  remarks: >-
+    The game keys its blocks by this id and drops a block whose id is 0.
+
+    The game renumbers the blocks when it saves: the same rooms had different ids from one save to the next (in-game test).
+  example: []
+  syntax:
+    content: public ushort Id { get; set; }
+    parameters: []
+    return:
+      type: System.UInt16
+    content.vb: Public Property Id As UShort
+  overload: LlamaLogic.Architecture.WallBlock.Id*
+- uid: LlamaLogic.Architecture.WallBlock.LegacyKeys
+  commentId: P:LlamaLogic.Architecture.WallBlock.LegacyKeys
+  id: LegacyKeys
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: LegacyKeys
+  nameWithType: WallBlock.LegacyKeys
+  fullName: LlamaLogic.Architecture.WallBlock.LegacyKeys
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyKeys
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 147
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the catalog keys that versions before 27 store for the whole block
+  remarks: >-
+    <p>Versions before 21 store 15 keys, versions 21 through 26 store 9.
+
+    Of 15, the game uses positions 1, 2 and 5 for slots 0, 1 and 2, positions 3 and 4 for slot 7 (the later one wins), position 8 for slot 3 and positions 12 through 14 for slots 4 through 6; of 9, it uses positions 6 through 8 for slots 4 through 6.
+
+    It reads the other positions as four <xref href="System.UInt32" data-throw-if-not-resolved="false"></xref> values and discards them; in the lots examined they hold floor, window set and object catalog keys or the null key.</p>
+  example: []
+  syntax:
+    content: public Collection<ResourceKey> LegacyKeys { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.ResourceKey}
+    content.vb: Public ReadOnly Property LegacyKeys As Collection(Of ResourceKey)
+  overload: LlamaLogic.Architecture.WallBlock.LegacyKeys*
+- uid: LlamaLogic.Architecture.WallBlock.LegacyStamp
+  commentId: P:LlamaLogic.Architecture.WallBlock.LegacyStamp
+  id: LegacyStamp
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: LegacyStamp
+  nameWithType: WallBlock.LegacyStamp
+  fullName: LlamaLogic.Architecture.WallBlock.LegacyStamp
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyStamp
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 155
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the value versions 12 through 25 store once for the whole block in place of each segment's <xref href="LlamaLogic.Architecture.WallBlockSegment.FenceStamp" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp" data-throw-if-not-resolved="false"></xref>
+  remarks: The game copies it into both values of every segment.
+  example: []
+  syntax:
+    content: public uint LegacyStamp { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property LegacyStamp As UInteger
+  overload: LlamaLogic.Architecture.WallBlock.LegacyStamp*
+- uid: LlamaLogic.Architecture.WallBlock.Level
+  commentId: P:LlamaLogic.Architecture.WallBlock.Level
+  id: Level
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: WallBlock.Level
+  fullName: LlamaLogic.Architecture.WallBlock.Level
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Level
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 163
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the lot level of the block
+  remarks: The game restricts the level by <xref href="LlamaLogic.Architecture.WallBlock.BlockType" data-throw-if-not-resolved="false"></xref> and takes the block's level height from it.
+  example: []
+  syntax:
+    content: public sbyte Level { get; set; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property Level As SByte
+  overload: LlamaLogic.Architecture.WallBlock.Level*
+- uid: LlamaLogic.Architecture.WallBlock.Loops
+  commentId: P:LlamaLogic.Architecture.WallBlock.Loops
+  id: Loops
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Loops
+  nameWithType: WallBlock.Loops
+  fullName: LlamaLogic.Architecture.WallBlock.Loops
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Loops
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 171
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the loops of the block
+  remarks: Versions before 24 hold exactly one loop. 1 through 12 in the lots examined.
+  example: []
+  syntax:
+    content: public Collection<WallBlockLoop> Loops { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallBlockLoop}
+    content.vb: Public ReadOnly Property Loops As Collection(Of WallBlockLoop)
+  overload: LlamaLogic.Architecture.WallBlock.Loops*
+- uid: LlamaLogic.Architecture.WallBlock.PlexId
+  commentId: P:LlamaLogic.Architecture.WallBlock.PlexId
+  id: PlexId
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: PlexId
+  nameWithType: WallBlock.PlexId
+  fullName: LlamaLogic.Architecture.WallBlock.PlexId
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PlexId
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 181
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the id of the plex (unit) the block belongs to
+  remarks: >-
+    The game's plex manager sets it; 300 is the shared plex.
+
+    The values match the ids of the <xref href="LlamaLogic.Architecture.PlexesSection" data-throw-if-not-resolved="false"></xref> plexes.
+
+    Stored from version 36 on.
+  example: []
+  syntax:
+    content: public ushort PlexId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt16
+    content.vb: Public Property PlexId As UShort
+  overload: LlamaLogic.Architecture.WallBlock.PlexId*
+- uid: LlamaLogic.Architecture.WallBlock.Products
+  commentId: P:LlamaLogic.Architecture.WallBlock.Products
+  id: Products
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Products
+  nameWithType: WallBlock.Products
+  fullName: LlamaLogic.Architecture.WallBlock.Products
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Products
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 189
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the table of the catalog products the segments refer to
+  remarks: Stored from version 20 on.
+  example: []
+  syntax:
+    content: public ProductTable Products { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Architecture.ProductTable
+    content.vb: Public ReadOnly Property Products As ProductTable
+  overload: LlamaLogic.Architecture.WallBlock.Products*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown1
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown1
+  id: Unknown1
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown1
+  nameWithType: WallBlock.Unknown1
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown1
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 197
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte version 17 stores after <xref href="LlamaLogic.Architecture.WallBlock.Level" data-throw-if-not-resolved="false"></xref>
+  remarks: It equals <xref href="LlamaLogic.Architecture.WallBlock.Level" data-throw-if-not-resolved="false"></xref> in every lot examined. The game's reader has no such byte.
+  example: []
+  syntax:
+    content: public byte Unknown1 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown1 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown1*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown3
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown3
+  id: Unknown3
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown3
+  nameWithType: WallBlock.Unknown3
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown3
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown3
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 208
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a Boolean the game keeps at offset 0x81 of the block
+  remarks: >-
+    Hypothesis: whether the block has an automatic ceiling. The game sets it to whether every outer segment has a wall or the level is below 0, and clears it when it copies blocks into a plex.
+
+    In the lots examined it is 0 for every <xref href="LlamaLogic.Architecture.WallBlockType.Fence" data-throw-if-not-resolved="false"></xref> block, 1 for every fountain block, 1 for 466 of the 482 pool blocks and for 22,161 of the 51,182 <xref href="LlamaLogic.Architecture.WallBlockType.Standard" data-throw-if-not-resolved="false"></xref> blocks that store it.
+
+    In in-game tests a new fence block and a platform had 0 and enclosed rooms had 1, which is consistent with the hypothesis.
+
+    Stored from version 28 on.
+  example: []
+  syntax:
+    content: public bool Unknown3 { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unknown3 As Boolean
+  overload: LlamaLogic.Architecture.WallBlock.Unknown3*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown4
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown4
+  id: Unknown4
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown4
+  nameWithType: WallBlock.Unknown4
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown4
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown4
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 216
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte versions 31 and 32 store after <xref href="LlamaLogic.Architecture.WallBlock.BaseElevation" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it and discards it. 0 in every version 31 block examined.
+  example: []
+  syntax:
+    content: public byte Unknown4 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown4 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown4*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown5
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown5
+  id: Unknown5
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown5
+  nameWithType: WallBlock.Unknown5
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown5
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown5
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 224
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte versions before 27 store before <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it and discards it. 2 in every lot examined.
+  example: []
+  syntax:
+    content: public byte Unknown5 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown5 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown5*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown6
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown6
+  id: Unknown6
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown6
+  nameWithType: WallBlock.Unknown6
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown6
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown6
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 232
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte versions before 22 store before <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it and discards it. 0 or 2 in the lots examined.
+  example: []
+  syntax:
+    content: public byte Unknown6 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown6 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown6*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown7
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown7
+  id: Unknown7
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown7
+  nameWithType: WallBlock.Unknown7
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown7
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown7
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 240
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the first of two Booleans versions before 27 store after <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it as a Boolean and discards it.
+  example: []
+  syntax:
+    content: public bool Unknown7 { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unknown7 As Boolean
+  overload: LlamaLogic.Architecture.WallBlock.Unknown7*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown8
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown8
+  id: Unknown8
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown8
+  nameWithType: WallBlock.Unknown8
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown8
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown8
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 248
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the second of two Booleans versions before 27 store after <xref href="LlamaLogic.Architecture.WallBlock.LegacyKeys" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it as a Boolean and discards it.
+  example: []
+  syntax:
+    content: public bool Unknown8 { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Unknown8 As Boolean
+  overload: LlamaLogic.Architecture.WallBlock.Unknown8*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown9
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown9
+  id: Unknown9
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown9
+  nameWithType: WallBlock.Unknown9
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown9
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown9
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 256
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte versions before 19 store after the <xref href="LlamaLogic.Architecture.WallBlock.Loops" data-throw-if-not-resolved="false"></xref>
+  remarks: The game's reader would discard it. 0 through 3 in the lots examined.
+  example: []
+  syntax:
+    content: public byte Unknown9 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown9 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown9*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown10
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown10
+  id: Unknown10
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown10
+  nameWithType: WallBlock.Unknown10
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown10
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown10
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 264
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a <xref href="System.UInt16" data-throw-if-not-resolved="false"></xref> versions before 27 store at the end of the block
+  remarks: The game reads it and discards it. 4 in every lot examined.
+  example: []
+  syntax:
+    content: public ushort Unknown10 { get; set; }
+    parameters: []
+    return:
+      type: System.UInt16
+    content.vb: Public Property Unknown10 As UShort
+  overload: LlamaLogic.Architecture.WallBlock.Unknown10*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown11
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown11
+  id: Unknown11
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown11
+  nameWithType: WallBlock.Unknown11
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown11
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown11
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 272
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte versions before 27 store after <xref href="LlamaLogic.Architecture.WallBlock.Unknown10" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it and discards it. 1 in every lot examined.
+  example: []
+  syntax:
+    content: public byte Unknown11 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown11 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown11*
+- uid: LlamaLogic.Architecture.WallBlock.Unknown12
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown12
+  id: Unknown12
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Unknown12
+  nameWithType: WallBlock.Unknown12
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown12
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown12
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 280
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets a byte versions before 27 store after <xref href="LlamaLogic.Architecture.WallBlock.Unknown11" data-throw-if-not-resolved="false"></xref>
+  remarks: The game reads it and discards it. 1 in every lot examined.
+  example: []
+  syntax:
+    content: public byte Unknown12 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property Unknown12 As Byte
+  overload: LlamaLogic.Architecture.WallBlock.Unknown12*
+- uid: LlamaLogic.Architecture.WallBlock.Version
+  commentId: P:LlamaLogic.Architecture.WallBlock.Version
+  id: Version
+  parent: LlamaLogic.Architecture.WallBlock
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: WallBlock.Version
+  fullName: LlamaLogic.Architecture.WallBlock.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlock.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Architecture/Sections/WallBlock.cs
+    startLine: 289
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the version of the block, which decides its layout
+  remarks: Encoding throws an <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref> when a field the version lacks holds a value other than its default, or a collection the version lacks is not empty.
+  example: []
+  syntax:
+    content: public ushort Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt16
+    content.vb: Public Property Version As UShort
+  overload: LlamaLogic.Architecture.WallBlock.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The version is not 17 through 36
+references:
+- uid: LlamaLogic.Architecture.WallBlocksSection
+  commentId: T:LlamaLogic.Architecture.WallBlocksSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlocksSection.html
+  name: WallBlocksSection
+  nameWithType: WallBlocksSection
+  fullName: LlamaLogic.Architecture.WallBlocksSection
+- uid: LlamaLogic.Architecture.PlexesSection
+  commentId: T:LlamaLogic.Architecture.PlexesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PlexesSection.html
+  name: PlexesSection
+  nameWithType: PlexesSection
+  fullName: LlamaLogic.Architecture.PlexesSection
+- uid: LlamaLogic.Architecture.LotSizeSection
+  commentId: T:LlamaLogic.Architecture.LotSizeSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotSizeSection.html
+  name: LotSizeSection
+  nameWithType: LotSizeSection
+  fullName: LlamaLogic.Architecture.LotSizeSection
+- uid: LlamaLogic.Architecture.WallBlock.Unknown1
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown1
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown1
+  name: Unknown1
+  nameWithType: WallBlock.Unknown1
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown1
+- uid: LlamaLogic.Architecture.WallBlock.Version
+  commentId: P:LlamaLogic.Architecture.WallBlock.Version
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Version
+  name: Version
+  nameWithType: WallBlock.Version
+  fullName: LlamaLogic.Architecture.WallBlock.Version
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint16
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort
+- uid: LlamaLogic.Architecture.WallBlock.Id
+  commentId: P:LlamaLogic.Architecture.WallBlock.Id
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Id
+  name: Id
+  nameWithType: WallBlock.Id
+  fullName: LlamaLogic.Architecture.WallBlock.Id
+- uid: LlamaLogic.Architecture.WallBlock.Level
+  commentId: P:LlamaLogic.Architecture.WallBlock.Level
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Level
+  name: Level
+  nameWithType: WallBlock.Level
+  fullName: LlamaLogic.Architecture.WallBlock.Level
+- uid: LlamaLogic.Architecture.WallBlock.BlockType
+  commentId: P:LlamaLogic.Architecture.WallBlock.BlockType
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BlockType
+  name: BlockType
+  nameWithType: WallBlock.BlockType
+  fullName: LlamaLogic.Architecture.WallBlock.BlockType
+- uid: LlamaLogic.Architecture.WallBlock.PlexId
+  commentId: P:LlamaLogic.Architecture.WallBlock.PlexId
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_PlexId
+  name: PlexId
+  nameWithType: WallBlock.PlexId
+  fullName: LlamaLogic.Architecture.WallBlock.PlexId
+- uid: LlamaLogic.Architecture.WallBlock.HasFloor
+  commentId: P:LlamaLogic.Architecture.WallBlock.HasFloor
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_HasFloor
+  name: HasFloor
+  nameWithType: WallBlock.HasFloor
+  fullName: LlamaLogic.Architecture.WallBlock.HasFloor
+- uid: LlamaLogic.Architecture.WallBlock.Unknown3
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown3
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown3
+  name: Unknown3
+  nameWithType: WallBlock.Unknown3
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown3
+- uid: LlamaLogic.Architecture.WallBlock.BaseElevation
+  commentId: P:LlamaLogic.Architecture.WallBlock.BaseElevation
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation
+  name: BaseElevation
+  nameWithType: WallBlock.BaseElevation
+  fullName: LlamaLogic.Architecture.WallBlock.BaseElevation
+- uid: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  commentId: P:LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_FloorHeightOffset
+  name: FloorHeightOffset
+  nameWithType: WallBlock.FloorHeightOffset
+  fullName: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+- uid: LlamaLogic.Architecture.WallBlock.Unknown4
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown4
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown4
+  name: Unknown4
+  nameWithType: WallBlock.Unknown4
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown4
+- uid: LlamaLogic.Architecture.WallBlock.Unknown5
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown5
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown5
+  name: Unknown5
+  nameWithType: WallBlock.Unknown5
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown5
+- uid: LlamaLogic.Architecture.WallBlock.Unknown6
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown6
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown6
+  name: Unknown6
+  nameWithType: WallBlock.Unknown6
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown6
+- uid: LlamaLogic.Architecture.WallBlock.LegacyKeys
+  commentId: P:LlamaLogic.Architecture.WallBlock.LegacyKeys
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys
+  name: LegacyKeys
+  nameWithType: WallBlock.LegacyKeys
+  fullName: LlamaLogic.Architecture.WallBlock.LegacyKeys
+- uid: LlamaLogic.Architecture.WallBlock.Unknown7
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown7
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown7
+  name: Unknown7
+  nameWithType: WallBlock.Unknown7
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown7
+- uid: LlamaLogic.Architecture.WallBlock.Unknown8
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown8
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown8
+  name: Unknown8
+  nameWithType: WallBlock.Unknown8
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown8
+- uid: LlamaLogic.Architecture.WallBlock.Loops
+  commentId: P:LlamaLogic.Architecture.WallBlock.Loops
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Loops
+  name: Loops
+  nameWithType: WallBlock.Loops
+  fullName: LlamaLogic.Architecture.WallBlock.Loops
+- uid: LlamaLogic.Architecture.WallBlock.Unknown9
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown9
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown9
+  name: Unknown9
+  nameWithType: WallBlock.Unknown9
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown9
+- uid: LlamaLogic.Architecture.WallBlock.Products
+  commentId: P:LlamaLogic.Architecture.WallBlock.Products
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Products
+  name: Products
+  nameWithType: WallBlock.Products
+  fullName: LlamaLogic.Architecture.WallBlock.Products
+- uid: LlamaLogic.Architecture.WallBlock.LegacyStamp
+  commentId: P:LlamaLogic.Architecture.WallBlock.LegacyStamp
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyStamp
+  name: LegacyStamp
+  nameWithType: WallBlock.LegacyStamp
+  fullName: LlamaLogic.Architecture.WallBlock.LegacyStamp
+- uid: LlamaLogic.Architecture.WallBlock.Unknown10
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown10
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown10
+  name: Unknown10
+  nameWithType: WallBlock.Unknown10
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown10
+- uid: LlamaLogic.Architecture.WallBlock.Unknown11
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown11
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown11
+  name: Unknown11
+  nameWithType: WallBlock.Unknown11
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown11
+- uid: LlamaLogic.Architecture.WallBlock.Unknown12
+  commentId: P:LlamaLogic.Architecture.WallBlock.Unknown12
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown12
+  name: Unknown12
+  nameWithType: WallBlock.Unknown12
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown12
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.WallBlock.BaseElevation*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.BaseElevation
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BaseElevation
+  name: BaseElevation
+  nameWithType: WallBlock.BaseElevation
+  fullName: LlamaLogic.Architecture.WallBlock.BaseElevation
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: LlamaLogic.Architecture.WallBlockType.Standard
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Standard
+  href: LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Standard
+  name: Standard
+  nameWithType: WallBlockType.Standard
+  fullName: LlamaLogic.Architecture.WallBlockType.Standard
+- uid: LlamaLogic.Architecture.WallBlock.BlockType*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.BlockType
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_BlockType
+  name: BlockType
+  nameWithType: WallBlock.BlockType
+  fullName: LlamaLogic.Architecture.WallBlock.BlockType
+- uid: LlamaLogic.Architecture.WallBlockType
+  commentId: T:LlamaLogic.Architecture.WallBlockType
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlockType.html
+  name: WallBlockType
+  nameWithType: WallBlockType
+  fullName: LlamaLogic.Architecture.WallBlockType
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_Open
+  name: Open
+  nameWithType: WallBlockSegmentKind.Open
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+- uid: LlamaLogic.Architecture.WallBlock.FloorHeightOffset*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_FloorHeightOffset
+  name: FloorHeightOffset
+  nameWithType: WallBlock.FloorHeightOffset
+  fullName: LlamaLogic.Architecture.WallBlock.FloorHeightOffset
+- uid: LlamaLogic.Architecture.WallBlockType.Fence
+  commentId: F:LlamaLogic.Architecture.WallBlockType.Fence
+  href: LlamaLogic.Architecture.WallBlockType.html#LlamaLogic_Architecture_WallBlockType_Fence
+  name: Fence
+  nameWithType: WallBlockType.Fence
+  fullName: LlamaLogic.Architecture.WallBlockType.Fence
+- uid: LlamaLogic.Architecture.WallBlock.HasFloor*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.HasFloor
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_HasFloor
+  name: HasFloor
+  nameWithType: WallBlock.HasFloor
+  fullName: LlamaLogic.Architecture.WallBlock.HasFloor
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.Architecture.WallBlock.Id*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Id
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Id
+  name: Id
+  nameWithType: WallBlock.Id
+  fullName: LlamaLogic.Architecture.WallBlock.Id
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.WallBlock.LegacyKeys*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.LegacyKeys
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyKeys
+  name: LegacyKeys
+  nameWithType: WallBlock.LegacyKeys
+  fullName: LlamaLogic.Architecture.WallBlock.LegacyKeys
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.ResourceKey}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.ResourceKey}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<ResourceKey>
+  nameWithType: Collection<ResourceKey>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.ResourceKey>
+  nameWithType.vb: Collection(Of ResourceKey)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.ResourceKey)
+  name.vb: Collection(Of ResourceKey)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Architecture.WallBlockSegment.FenceStamp
+  commentId: P:LlamaLogic.Architecture.WallBlockSegment.FenceStamp
+  href: LlamaLogic.Architecture.WallBlockSegment.html#LlamaLogic_Architecture_WallBlockSegment_FenceStamp
+  name: FenceStamp
+  nameWithType: WallBlockSegment.FenceStamp
+  fullName: LlamaLogic.Architecture.WallBlockSegment.FenceStamp
+- uid: LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp
+  commentId: P:LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp
+  href: LlamaLogic.Architecture.WallBlockSegment.html#LlamaLogic_Architecture_WallBlockSegment_CeilingRailStamp
+  name: CeilingRailStamp
+  nameWithType: WallBlockSegment.CeilingRailStamp
+  fullName: LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp
+- uid: LlamaLogic.Architecture.WallBlock.LegacyStamp*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.LegacyStamp
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_LegacyStamp
+  name: LegacyStamp
+  nameWithType: WallBlock.LegacyStamp
+  fullName: LlamaLogic.Architecture.WallBlock.LegacyStamp
+- uid: LlamaLogic.Architecture.WallBlock.Level*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Level
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Level
+  name: Level
+  nameWithType: WallBlock.Level
+  fullName: LlamaLogic.Architecture.WallBlock.Level
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: LlamaLogic.Architecture.WallBlock.Loops*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Loops
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Loops
+  name: Loops
+  nameWithType: WallBlock.Loops
+  fullName: LlamaLogic.Architecture.WallBlock.Loops
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallBlockLoop}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallBlockLoop}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WallBlockLoop>
+  nameWithType: Collection<WallBlockLoop>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.WallBlockLoop>
+  nameWithType.vb: Collection(Of WallBlockLoop)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.WallBlockLoop)
+  name.vb: Collection(Of WallBlockLoop)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.WallBlockLoop
+    name: WallBlockLoop
+    href: LlamaLogic.Architecture.WallBlockLoop.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.WallBlockLoop
+    name: WallBlockLoop
+    href: LlamaLogic.Architecture.WallBlockLoop.html
+  - name: )
+- uid: LlamaLogic.Architecture.WallBlock.PlexId*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.PlexId
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_PlexId
+  name: PlexId
+  nameWithType: WallBlock.PlexId
+  fullName: LlamaLogic.Architecture.WallBlock.PlexId
+- uid: LlamaLogic.Architecture.WallBlock.Products*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Products
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Products
+  name: Products
+  nameWithType: WallBlock.Products
+  fullName: LlamaLogic.Architecture.WallBlock.Products
+- uid: LlamaLogic.Architecture.ProductTable
+  commentId: T:LlamaLogic.Architecture.ProductTable
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ProductTable.html
+  name: ProductTable
+  nameWithType: ProductTable
+  fullName: LlamaLogic.Architecture.ProductTable
+- uid: LlamaLogic.Architecture.WallBlock.Unknown1*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown1
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown1
+  name: Unknown1
+  nameWithType: WallBlock.Unknown1
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown1
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.WallBlock.Unknown3*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown3
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown3
+  name: Unknown3
+  nameWithType: WallBlock.Unknown3
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown3
+- uid: LlamaLogic.Architecture.WallBlock.Unknown4*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown4
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown4
+  name: Unknown4
+  nameWithType: WallBlock.Unknown4
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown4
+- uid: LlamaLogic.Architecture.WallBlock.Unknown5*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown5
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown5
+  name: Unknown5
+  nameWithType: WallBlock.Unknown5
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown5
+- uid: LlamaLogic.Architecture.WallBlock.Unknown6*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown6
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown6
+  name: Unknown6
+  nameWithType: WallBlock.Unknown6
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown6
+- uid: LlamaLogic.Architecture.WallBlock.Unknown7*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown7
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown7
+  name: Unknown7
+  nameWithType: WallBlock.Unknown7
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown7
+- uid: LlamaLogic.Architecture.WallBlock.Unknown8*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown8
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown8
+  name: Unknown8
+  nameWithType: WallBlock.Unknown8
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown8
+- uid: LlamaLogic.Architecture.WallBlock.Unknown9*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown9
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown9
+  name: Unknown9
+  nameWithType: WallBlock.Unknown9
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown9
+- uid: LlamaLogic.Architecture.WallBlock.Unknown10*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown10
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown10
+  name: Unknown10
+  nameWithType: WallBlock.Unknown10
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown10
+- uid: LlamaLogic.Architecture.WallBlock.Unknown11*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown11
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown11
+  name: Unknown11
+  nameWithType: WallBlock.Unknown11
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown11
+- uid: LlamaLogic.Architecture.WallBlock.Unknown12*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Unknown12
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Unknown12
+  name: Unknown12
+  nameWithType: WallBlock.Unknown12
+  fullName: LlamaLogic.Architecture.WallBlock.Unknown12
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.WallBlock.Version*
+  commentId: Overload:LlamaLogic.Architecture.WallBlock.Version
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Version
+  name: Version
+  nameWithType: WallBlock.Version
+  fullName: LlamaLogic.Architecture.WallBlock.Version

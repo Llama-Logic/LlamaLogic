@@ -1,0 +1,490 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge
+  commentId: T:LlamaLogic.Architecture.LegacyWallGraphEdge
+  id: LegacyWallGraphEdge
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  - LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  langs:
+  - csharp
+  - vb
+  name: LegacyWallGraphEdge
+  nameWithType: LegacyWallGraphEdge
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/LegacyWallGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyWallGraphEdge
+    path: ../LlamaLogic.Architecture/Sections/LegacyWallGraphEdge.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Represents an edge of <xref href="LlamaLogic.Architecture.LegacyWallGraphSection.Edges" data-throw-if-not-resolved="false"></xref>
+  remarks: 'Layout: <xref href="LlamaLogic.Architecture.LegacyWallGraphEdge.Code" data-throw-if-not-resolved="false"></xref>, an <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> count, then the <xref href="LlamaLogic.Architecture.LegacyWallGraphEdge.Parts" data-throw-if-not-resolved="false"></xref>.'
+  example: []
+  syntax:
+    content: public sealed class LegacyWallGraphEdge
+    content.vb: Public NotInheritable Class LegacyWallGraphEdge
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  commentId: P:LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  id: Code
+  parent: LlamaLogic.Architecture.LegacyWallGraphEdge
+  langs:
+  - csharp
+  - vb
+  name: Code
+  nameWithType: LegacyWallGraphEdge.Code
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/LegacyWallGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Code
+    path: ../LlamaLogic.Architecture/Sections/LegacyWallGraphEdge.cs
+    startLine: 26
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the code of the edge
+  remarks: >-
+    Hypothesis: the edge's two endpoints and level, as 7-bit coordinates in bits 0 through 6, 7 through 13, 14 through 20 and 21 through 27 and the level in bits 28 through 31.
+
+    Bits 6, 13, 20, 27 and 31 are never set in the lots examined, and read that way every edge lies within the lot and joins neighboring points: 2,784 of the 2,824 codes of the lots examined (counting those of the product edges) differ by 1 in one coordinate, the other 40 by 1 in both.
+  example: []
+  syntax:
+    content: public uint Code { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Code As UInteger
+  overload: LlamaLogic.Architecture.LegacyWallGraphEdge.Code*
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  commentId: P:LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  id: Parts
+  parent: LlamaLogic.Architecture.LegacyWallGraphEdge
+  langs:
+  - csharp
+  - vb
+  name: Parts
+  nameWithType: LegacyWallGraphEdge.Parts
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/LegacyWallGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Parts
+    path: ../LlamaLogic.Architecture/Sections/LegacyWallGraphEdge.cs
+    startLine: 34
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the parts of the edge
+  remarks: 1 or 2 in the lots examined.
+  example: []
+  syntax:
+    content: public Collection<LegacyWallGraphEdgePart> Parts { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.LegacyWallGraphEdgePart}
+    content.vb: Public ReadOnly Property Parts As Collection(Of LegacyWallGraphEdgePart)
+  overload: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts*
+references:
+- uid: LlamaLogic.Architecture.LegacyWallGraphSection.Edges
+  commentId: P:LlamaLogic.Architecture.LegacyWallGraphSection.Edges
+  href: LlamaLogic.Architecture.LegacyWallGraphSection.html#LlamaLogic_Architecture_LegacyWallGraphSection_Edges
+  name: Edges
+  nameWithType: LegacyWallGraphSection.Edges
+  fullName: LlamaLogic.Architecture.LegacyWallGraphSection.Edges
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  commentId: P:LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  href: LlamaLogic.Architecture.LegacyWallGraphEdge.html#LlamaLogic_Architecture_LegacyWallGraphEdge_Code
+  name: Code
+  nameWithType: LegacyWallGraphEdge.Code
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  commentId: P:LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  href: LlamaLogic.Architecture.LegacyWallGraphEdge.html#LlamaLogic_Architecture_LegacyWallGraphEdge_Parts
+  name: Parts
+  nameWithType: LegacyWallGraphEdge.Parts
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge.Code*
+  commentId: Overload:LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+  href: LlamaLogic.Architecture.LegacyWallGraphEdge.html#LlamaLogic_Architecture_LegacyWallGraphEdge_Code
+  name: Code
+  nameWithType: LegacyWallGraphEdge.Code
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge.Code
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts*
+  commentId: Overload:LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+  href: LlamaLogic.Architecture.LegacyWallGraphEdge.html#LlamaLogic_Architecture_LegacyWallGraphEdge_Parts
+  name: Parts
+  nameWithType: LegacyWallGraphEdge.Parts
+  fullName: LlamaLogic.Architecture.LegacyWallGraphEdge.Parts
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.LegacyWallGraphEdgePart}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.LegacyWallGraphEdgePart}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<LegacyWallGraphEdgePart>
+  nameWithType: Collection<LegacyWallGraphEdgePart>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.LegacyWallGraphEdgePart>
+  nameWithType.vb: Collection(Of LegacyWallGraphEdgePart)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.LegacyWallGraphEdgePart)
+  name.vb: Collection(Of LegacyWallGraphEdgePart)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.LegacyWallGraphEdgePart
+    name: LegacyWallGraphEdgePart
+    href: LlamaLogic.Architecture.LegacyWallGraphEdgePart.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.LegacyWallGraphEdgePart
+    name: LegacyWallGraphEdgePart
+    href: LlamaLogic.Architecture.LegacyWallGraphEdgePart.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel

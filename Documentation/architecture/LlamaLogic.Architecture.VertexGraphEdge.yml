@@ -1,0 +1,434 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.VertexGraphEdge
+  commentId: T:LlamaLogic.Architecture.VertexGraphEdge
+  id: VertexGraphEdge
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.VertexGraphEdge.Id
+  - LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  - LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  langs:
+  - csharp
+  - vb
+  name: VertexGraphEdge
+  nameWithType: VertexGraphEdge
+  fullName: LlamaLogic.Architecture.VertexGraphEdge
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VertexGraphEdge
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Represents an edge of a <xref href="LlamaLogic.Architecture.VertexGraph" data-throw-if-not-resolved="false"></xref>
+  remarks: "Layout: <xref href=\"LlamaLogic.Architecture.VertexGraphEdge.Id\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id\" data-throw-if-not-resolved=\"false\"></xref>, as the game's writer writes them."
+  example: []
+  syntax:
+    content: public sealed class VertexGraphEdge
+    content.vb: Public NotInheritable Class VertexGraphEdge
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphEdge.Id
+  id: Id
+  parent: LlamaLogic.Architecture.VertexGraphEdge
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: VertexGraphEdge.Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Id
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Id
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+    startLine: 24
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the id of the edge
+  remarks: Its bytes appear to pack a level and kind, a direction and two coordinates (hypothesis); the same packing appears in the <xref href="LlamaLogic.Architecture.WallEdgesSection" data-throw-if-not-resolved="false"></xref> map keys.
+  example: []
+  syntax:
+    content: public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Id As Integer
+  overload: LlamaLogic.Architecture.VertexGraphEdge.Id*
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  id: Vertex1Id
+  parent: LlamaLogic.Architecture.VertexGraphEdge
+  langs:
+  - csharp
+  - vb
+  name: Vertex1Id
+  nameWithType: VertexGraphEdge.Vertex1Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Vertex1Id
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the <xref href="LlamaLogic.Architecture.VertexGraphVertex.Id" data-throw-if-not-resolved="false"></xref> of the edge's first vertex, or -1 for none
+  example: []
+  syntax:
+    content: public int Vertex1Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Vertex1Id As Integer
+  overload: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id*
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  id: Vertex2Id
+  parent: LlamaLogic.Architecture.VertexGraphEdge
+  langs:
+  - csharp
+  - vb
+  name: Vertex2Id
+  nameWithType: VertexGraphEdge.Vertex2Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Vertex2Id
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphEdge.cs
+    startLine: 34
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the <xref href="LlamaLogic.Architecture.VertexGraphVertex.Id" data-throw-if-not-resolved="false"></xref> of the edge's second vertex, or -1 for none
+  example: []
+  syntax:
+    content: public int Vertex2Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Vertex2Id As Integer
+  overload: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id*
+references:
+- uid: LlamaLogic.Architecture.VertexGraph
+  commentId: T:LlamaLogic.Architecture.VertexGraph
+  href: LlamaLogic.Architecture.VertexGraph.html
+  name: VertexGraph
+  nameWithType: VertexGraph
+  fullName: LlamaLogic.Architecture.VertexGraph
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphEdge.Id
+  href: LlamaLogic.Architecture.VertexGraphEdge.html#LlamaLogic_Architecture_VertexGraphEdge_Id
+  name: Id
+  nameWithType: VertexGraphEdge.Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Id
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  href: LlamaLogic.Architecture.VertexGraphEdge.html#LlamaLogic_Architecture_VertexGraphEdge_Vertex1Id
+  name: Vertex1Id
+  nameWithType: VertexGraphEdge.Vertex1Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  href: LlamaLogic.Architecture.VertexGraphEdge.html#LlamaLogic_Architecture_VertexGraphEdge_Vertex2Id
+  name: Vertex2Id
+  nameWithType: VertexGraphEdge.Vertex2Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.WallEdgesSection
+  commentId: T:LlamaLogic.Architecture.WallEdgesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallEdgesSection.html
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Id*
+  commentId: Overload:LlamaLogic.Architecture.VertexGraphEdge.Id
+  href: LlamaLogic.Architecture.VertexGraphEdge.html#LlamaLogic_Architecture_VertexGraphEdge_Id
+  name: Id
+  nameWithType: VertexGraphEdge.Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.Architecture.VertexGraphVertex.Id
+  commentId: P:LlamaLogic.Architecture.VertexGraphVertex.Id
+  href: LlamaLogic.Architecture.VertexGraphVertex.html#LlamaLogic_Architecture_VertexGraphVertex_Id
+  name: Id
+  nameWithType: VertexGraphVertex.Id
+  fullName: LlamaLogic.Architecture.VertexGraphVertex.Id
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id*
+  commentId: Overload:LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+  href: LlamaLogic.Architecture.VertexGraphEdge.html#LlamaLogic_Architecture_VertexGraphEdge_Vertex1Id
+  name: Vertex1Id
+  nameWithType: VertexGraphEdge.Vertex1Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Vertex1Id
+- uid: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id*
+  commentId: Overload:LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id
+  href: LlamaLogic.Architecture.VertexGraphEdge.html#LlamaLogic_Architecture_VertexGraphEdge_Vertex2Id
+  name: Vertex2Id
+  nameWithType: VertexGraphEdge.Vertex2Id
+  fullName: LlamaLogic.Architecture.VertexGraphEdge.Vertex2Id

@@ -1,0 +1,644 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WallBlocksSection
+  commentId: T:LlamaLogic.Architecture.WallBlocksSection
+  id: WallBlocksSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WallBlocksSection.#ctor
+  - LlamaLogic.Architecture.WallBlocksSection.Blocks
+  - LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  - LlamaLogic.Architecture.WallBlocksSection.Version
+  langs:
+  - csharp
+  - vb
+  name: WallBlocksSection
+  nameWithType: WallBlocksSection
+  fullName: LlamaLogic.Architecture.WallBlocksSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallBlocksSection
+    path: ../LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks\" data-throw-if-not-resolved=\"false\"></xref> section: the lot's blocks, which are its rooms, wall lines, fence lines, pools and fountains (\U0001F513)"
+  remarks: >-
+    <p>The layout follows the game's reader and writer.
+
+    Versions 0 through 2 are supported, and the game writes version 2; the lots examined hold only version 2.</p>
+
+    <p>Layout: <xref href="LlamaLogic.Architecture.WallBlocksSection.Version" data-throw-if-not-resolved="false"></xref>, <xref href="LlamaLogic.Architecture.WallBlocksSection.StampCounter" data-throw-if-not-resolved="false"></xref> (after 1), a <xref href="System.UInt16" data-throw-if-not-resolved="false"></xref> block count, then per block its <xref href="LlamaLogic.Architecture.WallBlock.Id" data-throw-if-not-resolved="false"></xref> (<xref href="System.UInt16" data-throw-if-not-resolved="false"></xref>, the key of the game's block map, which the game writes from the block) and the <xref href="LlamaLogic.Architecture.WallBlock" data-throw-if-not-resolved="false"></xref>.</p>
+  example: []
+  syntax:
+    content: 'public sealed class WallBlocksSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class WallBlocksSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.WallBlocksSection.#ctor
+  commentId: M:LlamaLogic.Architecture.WallBlocksSection.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.WallBlocksSection
+  langs:
+  - csharp
+  - vb
+  name: WallBlocksSection()
+  nameWithType: WallBlocksSection.WallBlocksSection()
+  fullName: LlamaLogic.Architecture.WallBlocksSection.WallBlocksSection()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+    startLine: 36
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.WallBlocksSection" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public WallBlocksSection()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.WallBlocksSection.#ctor*
+  nameWithType.vb: WallBlocksSection.New()
+  fullName.vb: LlamaLogic.Architecture.WallBlocksSection.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.WallBlocksSection.Blocks
+  commentId: P:LlamaLogic.Architecture.WallBlocksSection.Blocks
+  id: Blocks
+  parent: LlamaLogic.Architecture.WallBlocksSection
+  langs:
+  - csharp
+  - vb
+  name: Blocks
+  nameWithType: WallBlocksSection.Blocks
+  fullName: LlamaLogic.Architecture.WallBlocksSection.Blocks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Blocks
+    path: ../LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+    startLine: 46
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the blocks
+  example: []
+  syntax:
+    content: public Collection<WallBlock> Blocks { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallBlock}
+    content.vb: Public ReadOnly Property Blocks As Collection(Of WallBlock)
+  overload: LlamaLogic.Architecture.WallBlocksSection.Blocks*
+- uid: LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  commentId: P:LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  id: StampCounter
+  parent: LlamaLogic.Architecture.WallBlocksSection
+  langs:
+  - csharp
+  - vb
+  name: StampCounter
+  nameWithType: WallBlocksSection.StampCounter
+  fullName: LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: StampCounter
+    path: ../LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+    startLine: 57
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the counter from which the game stamps <xref href="LlamaLogic.Architecture.WallBlockSegment.FenceStamp" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp" data-throw-if-not-resolved="false"></xref>
+  remarks: >-
+    The game keeps it at offset 0x58 of its block manager.
+
+    Adding a foundation raised it by 1 and set the stamps of the block's segments to the new value (in-game test).
+
+    It is at least the highest <xref href="LlamaLogic.Architecture.WallBlock.Id" data-throw-if-not-resolved="false"></xref> in every lot examined; of the 653 lots examined without blocks, 450 hold 0 and the rest 1 through 143,271. Whether the game also allocates block ids from it is a hypothesis.
+
+    Stored from version 2 on.
+  example: []
+  syntax:
+    content: public uint StampCounter { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property StampCounter As UInteger
+  overload: LlamaLogic.Architecture.WallBlocksSection.StampCounter*
+- uid: LlamaLogic.Architecture.WallBlocksSection.Version
+  commentId: P:LlamaLogic.Architecture.WallBlocksSection.Version
+  id: Version
+  parent: LlamaLogic.Architecture.WallBlocksSection
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: WallBlocksSection.Version
+  fullName: LlamaLogic.Architecture.WallBlocksSection.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Architecture/Sections/WallBlocksSection.cs
+    startLine: 66
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the version of the section, which decides its layout
+  remarks: Encoding throws an <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref> when a field the version lacks holds a value other than its default, or a collection the version lacks is not empty.
+  example: []
+  syntax:
+    content: public uint Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Version As UInteger
+  overload: LlamaLogic.Architecture.WallBlocksSection.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The version is not 0 through 2
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_WallBlocks
+  name: WallBlocks
+  nameWithType: LotArchitectureSectionType.WallBlocks
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+- uid: LlamaLogic.Architecture.WallBlocksSection.Version
+  commentId: P:LlamaLogic.Architecture.WallBlocksSection.Version
+  href: LlamaLogic.Architecture.WallBlocksSection.html#LlamaLogic_Architecture_WallBlocksSection_Version
+  name: Version
+  nameWithType: WallBlocksSection.Version
+  fullName: LlamaLogic.Architecture.WallBlocksSection.Version
+- uid: LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  commentId: P:LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  href: LlamaLogic.Architecture.WallBlocksSection.html#LlamaLogic_Architecture_WallBlocksSection_StampCounter
+  name: StampCounter
+  nameWithType: WallBlocksSection.StampCounter
+  fullName: LlamaLogic.Architecture.WallBlocksSection.StampCounter
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint16
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort
+- uid: LlamaLogic.Architecture.WallBlock.Id
+  commentId: P:LlamaLogic.Architecture.WallBlock.Id
+  href: LlamaLogic.Architecture.WallBlock.html#LlamaLogic_Architecture_WallBlock_Id
+  name: Id
+  nameWithType: WallBlock.Id
+  fullName: LlamaLogic.Architecture.WallBlock.Id
+- uid: LlamaLogic.Architecture.WallBlock
+  commentId: T:LlamaLogic.Architecture.WallBlock
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlock.html
+  name: WallBlock
+  nameWithType: WallBlock
+  fullName: LlamaLogic.Architecture.WallBlock
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.WallBlocksSection
+  commentId: T:LlamaLogic.Architecture.WallBlocksSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlocksSection.html
+  name: WallBlocksSection
+  nameWithType: WallBlocksSection
+  fullName: LlamaLogic.Architecture.WallBlocksSection
+- uid: LlamaLogic.Architecture.WallBlocksSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.WallBlocksSection.#ctor
+  href: LlamaLogic.Architecture.WallBlocksSection.html#LlamaLogic_Architecture_WallBlocksSection__ctor
+  name: WallBlocksSection
+  nameWithType: WallBlocksSection.WallBlocksSection
+  fullName: LlamaLogic.Architecture.WallBlocksSection.WallBlocksSection
+  nameWithType.vb: WallBlocksSection.New
+  fullName.vb: LlamaLogic.Architecture.WallBlocksSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.WallBlocksSection.Blocks*
+  commentId: Overload:LlamaLogic.Architecture.WallBlocksSection.Blocks
+  href: LlamaLogic.Architecture.WallBlocksSection.html#LlamaLogic_Architecture_WallBlocksSection_Blocks
+  name: Blocks
+  nameWithType: WallBlocksSection.Blocks
+  fullName: LlamaLogic.Architecture.WallBlocksSection.Blocks
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallBlock}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.WallBlock}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WallBlock>
+  nameWithType: Collection<WallBlock>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.WallBlock>
+  nameWithType.vb: Collection(Of WallBlock)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.WallBlock)
+  name.vb: Collection(Of WallBlock)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.WallBlock
+    name: WallBlock
+    href: LlamaLogic.Architecture.WallBlock.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.WallBlock
+    name: WallBlock
+    href: LlamaLogic.Architecture.WallBlock.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Architecture.WallBlockSegment.FenceStamp
+  commentId: P:LlamaLogic.Architecture.WallBlockSegment.FenceStamp
+  href: LlamaLogic.Architecture.WallBlockSegment.html#LlamaLogic_Architecture_WallBlockSegment_FenceStamp
+  name: FenceStamp
+  nameWithType: WallBlockSegment.FenceStamp
+  fullName: LlamaLogic.Architecture.WallBlockSegment.FenceStamp
+- uid: LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp
+  commentId: P:LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp
+  href: LlamaLogic.Architecture.WallBlockSegment.html#LlamaLogic_Architecture_WallBlockSegment_CeilingRailStamp
+  name: CeilingRailStamp
+  nameWithType: WallBlockSegment.CeilingRailStamp
+  fullName: LlamaLogic.Architecture.WallBlockSegment.CeilingRailStamp
+- uid: LlamaLogic.Architecture.WallBlocksSection.StampCounter*
+  commentId: Overload:LlamaLogic.Architecture.WallBlocksSection.StampCounter
+  href: LlamaLogic.Architecture.WallBlocksSection.html#LlamaLogic_Architecture_WallBlocksSection_StampCounter
+  name: StampCounter
+  nameWithType: WallBlocksSection.StampCounter
+  fullName: LlamaLogic.Architecture.WallBlocksSection.StampCounter
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.WallBlocksSection.Version*
+  commentId: Overload:LlamaLogic.Architecture.WallBlocksSection.Version
+  href: LlamaLogic.Architecture.WallBlocksSection.html#LlamaLogic_Architecture_WallBlocksSection_Version
+  name: Version
+  nameWithType: WallBlocksSection.Version
+  fullName: LlamaLogic.Architecture.WallBlocksSection.Version

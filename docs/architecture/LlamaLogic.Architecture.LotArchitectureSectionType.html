@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Enum LotArchitectureSectionType | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Enum LotArchitectureSectionType | Llama Logic ">
+      
+      <meta name="description" content="The types of the sections of a lot&#39;s architecture, each of which is one record of the lot&#39;s">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Architecture_LotArchitectureSectionType.md&amp;value=---%0Auid%3A%20LlamaLogic.Architecture.LotArchitectureSectionType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Architecture.LotArchitectureSectionType">
+
+
+
+
+  <h1 id="LlamaLogic_Architecture_LotArchitectureSectionType" data-uid="LlamaLogic.Architecture.LotArchitectureSectionType" class="text-break">
+Enum LotArchitectureSectionType  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitectureSectionType.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Architecture.html">Architecture</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Architecture.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The types of the sections of a lot's architecture, each of which is one record of the lot's <a class="xref" href="../packages/LlamaLogic.Packages.Formats.RecordBundle.html">RecordBundle</a></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SuppressMessage(&quot;Design&quot;, &quot;CA1008: Enums should have zero value&quot;, Justification = &quot;No section has type zero.&quot;)]
+[SuppressMessage(&quot;Design&quot;, &quot;CA1028: Enum Storage should be Int32&quot;, Justification = &quot;Section types are resource types, which are 32-bit unsigned.&quot;)]
+public enum LotArchitectureSectionType : uint</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_CeilingPaintRotations"><code>CeilingPaintRotations = 3534689615</code></dt>
+  
+  <dd><p>The rotation of the ceiling paint of each level (<a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_CeilingPaints"><code>CeilingPaints = 2427045927</code></dt>
+  
+  <dd><p>The ceiling paint of each level, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_CeilingRotations"><code>CeilingRotations = 1703255730</code></dt>
+  
+  <dd><p>The rotation of the ceiling of each level (<a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Ceilings"><code>Ceilings = 501723820</code></dt>
+  <dd><p>The ceiling of each level, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+<p>In-game tests show that building a room fills this grid at the level above the room over exactly the room's tiles, and that painting the ceiling changes only <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_CeilingPaints">CeilingPaints</a>; the game's code assigns the grid to the room on the level below.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_FloorFeatures"><code>FloorFeatures = 4062213290</code></dt>
+  
+  <dd><p>The floor feature layers (<a class="xref" href="LlamaLogic.Architecture.FloorFeaturesSection.html">FloorFeaturesSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_FloorKeys"><code>FloorKeys = 4172807529</code></dt>
+  
+  <dd><p>The floor keys the floor id grids refer to (<a class="xref" href="LlamaLogic.Architecture.FloorKeysSection.html">FloorKeysSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_FloorRotations"><code>FloorRotations = 1123611834</code></dt>
+  
+  <dd><p>The rotation of the floor pattern of each level (<a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Floors"><code>Floors = 622686172</code></dt>
+  
+  <dd><p>The floor pattern of each level, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_LegacyFencePoints"><code>LegacyFencePoints = 1980314405</code></dt>
+  <dd><p>Points with fence and ceiling rail keys (<a class="xref" href="LlamaLogic.Architecture.LegacyFencePointsSection.html">LegacyFencePointsSection</a>)</p>
+<p>The name reflects the catalog key types the data holds; the section appears only in older world files.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_LegacyWallGraph"><code>LegacyWallGraph = 2465065149</code></dt>
+  <dd><p>A graph of edges with wall pattern and product keys (<a class="xref" href="LlamaLogic.Architecture.LegacyWallGraphSection.html">LegacyWallGraphSection</a>)</p>
+<p>The name reflects the catalog key types the data holds; the section appears only in older world files.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_LotInfo"><code>LotInfo = 545371366</code></dt>
+  
+  <dd><p>The lot's levels, style and creators (<a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html">LotInfoSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_LotObjects"><code>LotObjects = 3325813684</code></dt>
+  
+  <dd><p>Objects stored with the architecture (<a class="xref" href="LlamaLogic.Architecture.LotObjectsSection.html">LotObjectsSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_LotSize"><code>LotSize = 1156008438</code></dt>
+  
+  <dd><p>The lot's dimensions (<a class="xref" href="LlamaLogic.Architecture.LotSizeSection.html">LotSizeSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_ModularPieces"><code>ModularPieces = 4208247409</code></dt>
+  
+  <dd><p>The modular pieces (<a class="xref" href="LlamaLogic.Architecture.ModularPiecesSection.html">ModularPiecesSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_ObjectFallbacks"><code>ObjectFallbacks = 1042161</code></dt>
+  
+  <dd><p>The objects the game falls back to placing when others are unavailable (<a class="xref" href="LlamaLogic.Architecture.ObjectFallbacksSection.html">ObjectFallbacksSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_ObjectTileBounds"><code>ObjectTileBounds = 2282844662</code></dt>
+  
+  <dd><p>The tiles each object covers (<a class="xref" href="LlamaLogic.Architecture.ObjectTileBoundsSection.html">ObjectTileBoundsSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_PendingPlacement"><code>PendingPlacement = 2482231023</code></dt>
+  <dd><p>A pending placement (<a class="xref" href="LlamaLogic.Architecture.PendingPlacementSection.html">PendingPlacementSection</a>)</p>
+<p>When its state is 1, the game centers a footprint of the stored width, depth and rotation on the lot and builds a placement operation with the lot's <a class="xref" href="LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_BlueprintInstance">BlueprintInstance</a>.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_PlexGroups"><code>PlexGroups = 1914205540</code></dt>
+  <dd><p>Groups of values the <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Plexes">Plexes</a> section refers to by id (<a class="xref" href="LlamaLogic.Architecture.PlexGroupsSection.html">PlexGroupsSection</a>)</p>
+<p>That the values are block ids is a hypothesis.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Plexes"><code>Plexes = 2434334207</code></dt>
+  
+  <dd><p>The plexes (units) of the lot (<a class="xref" href="LlamaLogic.Architecture.PlexesSection.html">PlexesSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_PondBottoms"><code>PondBottoms = 2725680907</code></dt>
+  
+  <dd><p>The pond bottom pattern, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Ponds"><code>Ponds = 2188151641</code></dt>
+  
+  <dd><p>The ponds (<a class="xref" href="LlamaLogic.Architecture.PondsSection.html">PondsSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_PoolSurfaces"><code>PoolSurfaces = 1040855313</code></dt>
+  <dd><p>The pool surface pattern of each level, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+<p>In-game tests show that building a pool fills this grid over exactly the pool's tiles at the level above the pool's block; the game's code assigns the grid to the room on the level below.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_ResourceManifest"><code>ResourceManifest = 152626801</code></dt>
+  
+  <dd><p>The keys of the catalog resources the other sections reference (<a class="xref" href="LlamaLogic.Architecture.ResourceManifestSection.html">ResourceManifestSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Revision"><code>Revision = 2794582592</code></dt>
+  
+  <dd><p>The lot's revision counter (<a class="xref" href="LlamaLogic.Architecture.RevisionSection.html">RevisionSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Roofs"><code>Roofs = 3285814088</code></dt>
+  
+  <dd><p>The roofs (<a class="xref" href="LlamaLogic.Architecture.RoofsSection.html">RoofsSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_SecondaryFloorRotations"><code>SecondaryFloorRotations = 3862978298</code></dt>
+  
+  <dd><p>The rotation of the second floor layer of each level (<a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_SecondaryFloors"><code>SecondaryFloors = 1704918004</code></dt>
+  <dd><p>A second floor layer of each level, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+<p>In-game tests show that building a room or a platform fills this grid over its tiles with the lot's default floor key, and that painting a floor or a platform's top changes only <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Floors">Floors</a>; the grid's role is unknown.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Stairs"><code>Stairs = 186155609</code></dt>
+  
+  <dd><p>The stairs and ladders (<a class="xref" href="LlamaLogic.Architecture.StairsSection.html">StairsSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_TerrainFloorRotations"><code>TerrainFloorRotations = 3315290771</code></dt>
+  
+  <dd><p>The rotation of the floor pattern painted on the terrain (<a class="xref" href="LlamaLogic.Architecture.FloorRotationGridSection.html">FloorRotationGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_TerrainFloors"><code>TerrainFloors = 2874388677</code></dt>
+  
+  <dd><p>The floor pattern painted on the terrain, as floor key ids (<a class="xref" href="LlamaLogic.Architecture.FloorIdGridSection.html">FloorIdGridSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_TerrainHeights"><code>TerrainHeights = 3782893869</code></dt>
+  
+  <dd><p>The terrain heights (<a class="xref" href="LlamaLogic.Architecture.TerrainHeightsSection.html">TerrainHeightsSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_TerrainPaint"><code>TerrainPaint = 756498313</code></dt>
+  
+  <dd><p>The terrain paint layers (<a class="xref" href="LlamaLogic.Architecture.TerrainPaintSection.html">TerrainPaintSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Unknown7B33C1F5"><code>Unknown7B33C1F5 = 2066989557</code></dt>
+  
+  <dd><p>A section of unknown purpose found in three lots of world files (<a class="xref" href="LlamaLogic.Architecture.Unknown7B33C1F5Section.html">Unknown7B33C1F5Section</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_UnknownC9106475"><code>UnknownC9106475 = 3373294709</code></dt>
+  
+  <dd><p>A section of unknown purpose (<a class="xref" href="LlamaLogic.Architecture.UnknownC9106475Section.html">UnknownC9106475Section</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Venue"><code>Venue = 3871070174</code></dt>
+  
+  <dd><p>The lot's venue (<a class="xref" href="LlamaLogic.Architecture.VenueSection.html">VenueSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_VertexGraphs"><code>VertexGraphs = 2067194067</code></dt>
+  <dd><p>Graphs of vertices and edges whose version decides the layout of the <a class="xref" href="LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_WallEdges">WallEdges</a> section (<a class="xref" href="LlamaLogic.Architecture.VertexGraphsSection.html">VertexGraphsSection</a>)</p>
+<p>The game reads only the section's version; what the graphs describe is not established. Sims 4 Studio calls this section WallCutout.</p>
+</dd>
+  
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_WallBlocks"><code>WallBlocks = 2425094600</code></dt>
+  
+  <dd><p>The blocks: rooms, wall lines, fences, pools and fountains (<a class="xref" href="LlamaLogic.Architecture.WallBlocksSection.html">WallBlocksSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_WallEdges"><code>WallEdges = 1774819204</code></dt>
+  
+  <dd><p>The wall patterns and products along wall edges (<a class="xref" href="LlamaLogic.Architecture.WallEdgesSection.html">WallEdgesSection</a>)</p>
+</dd>
+    <dt id="LlamaLogic_Architecture_LotArchitectureSectionType_Weather"><code>Weather = 1236347683</code></dt>
+  
+  <dd><p>The lot's seasonal weather interpolation value (<a class="xref" href="LlamaLogic.Architecture.WeatherSection.html">WeatherSection</a>)</p>
+</dd>
+  </dl>
+
+
+  <h2 id="LlamaLogic_Architecture_LotArchitectureSectionType_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The game keys every section by its type, group 0 and instance 1.
+Names reflect what the game's code or in-game tests show each section holds; where neither does, the name is the type's hexadecimal value.</p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Architecture/LotArchitectureSectionType.cs/#L10" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

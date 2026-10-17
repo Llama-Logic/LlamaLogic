@@ -1,0 +1,996 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.TerrainHeightsSection
+  commentId: T:LlamaLogic.Architecture.TerrainHeightsSection
+  id: TerrainHeightsSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32)
+  - LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)
+  - LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+  - LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  - LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  - LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue(System.Int32,System.Int32,System.Int32,System.Single)
+  - LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter,System.Int32)
+  - LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  - LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  - LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  langs:
+  - csharp
+  - vb
+  name: TerrainHeightsSection
+  nameWithType: TerrainHeightsSection
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainHeightsSection
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights\" data-throw-if-not-resolved=\"false\"></xref> section: the lot's terrain height grid, a second vertex grid of unknown role and a water level per tile quarter (\U0001F513)"
+  remarks: >-
+    <p>The layout depends on the lot's <xref href="LlamaLogic.Architecture.LotSizeSection.Version" data-throw-if-not-resolved="false"></xref>; the section has no version of its own.
+
+    First come <xref href="LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount" data-throw-if-not-resolved="false"></xref> grids of (<xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeX" data-throw-if-not-resolved="false"></xref> + 1) × (<xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ" data-throw-if-not-resolved="false"></xref> + 1) 32-bit floats, one per tile corner, stored as <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeX" data-throw-if-not-resolved="false"></xref> + 1 rows of <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ" data-throw-if-not-resolved="false"></xref> + 1 values.
+
+    Then, when <xref href="LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels" data-throw-if-not-resolved="false"></xref>, four 32-bit integers per tile, one per <xref href="LlamaLogic.Architecture.FloorQuarter" data-throw-if-not-resolved="false"></xref>, the tiles stored as <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeX" data-throw-if-not-resolved="false"></xref> rows of <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p>When the lot's <xref href="LlamaLogic.Architecture.LotSizeSection.Version" data-throw-if-not-resolved="false"></xref> is less than 10 there is one vertex grid per level, indexed by level − <xref href="LlamaLogic.Architecture.LotInfoSection.LowestLevel" data-throw-if-not-resolved="false"></xref>, and the game skips all but the ground level's grid, which holds the terrain height.
+
+    From version 10 there are two: grid 0 is the terrain height (the game's terrain height getter and setter use it, and in-game tests show that sculpting the terrain changes only this grid) and grid 1 is a second per-corner grid whose role is unknown; in-game tests with the raise, flatten and smooth tools changed only grid 0 and left grid 1 unchanged.
+
+    The water levels are present from version 12; before it the game fills them with −400, which means no water.</p>
+  example: []
+  syntax:
+    content: 'public sealed class TerrainHeightsSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class TerrainHeightsSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: TerrainHeightsSection(int, int)
+  nameWithType: TerrainHeightsSection.TerrainHeightsSection(int, int)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.TerrainHeightsSection(int, int)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.TerrainHeightsSection" data-throw-if-not-resolved="false"></xref> class in the layout of a lot whose <xref href="LlamaLogic.Architecture.LotSizeSection.Version" data-throw-if-not-resolved="false"></xref> is 12 or more, with two vertex grids and water levels, every vertex value 0 and every water level −400 (no water)
+  example: []
+  syntax:
+    content: public TerrainHeightsSection(int sizeX, int sizeZ)
+    parameters:
+    - id: sizeX
+      type: System.Int32
+      description: The number of tiles along the lot's local X axis
+    - id: sizeZ
+      type: System.Int32
+      description: The number of tiles along the lot's local Z axis
+    content.vb: Public Sub New(sizeX As Integer, sizeZ As Integer)
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">sizeX</code> or <code class="paramref">sizeZ</code> is not 0 through 255
+  nameWithType.vb: TerrainHeightsSection.New(Integer, Integer)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)
+  id: '#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)'
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: TerrainHeightsSection(int, int, int, bool)
+  nameWithType: TerrainHeightsSection.TerrainHeightsSection(int, int, int, bool)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.TerrainHeightsSection(int, int, int, bool)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 58
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.TerrainHeightsSection" data-throw-if-not-resolved="false"></xref> class with every vertex value 0 and every water level −400 (no water)
+  example: []
+  syntax:
+    content: public TerrainHeightsSection(int sizeX, int sizeZ, int vertexGridCount, bool hasWaterLevels)
+    parameters:
+    - id: sizeX
+      type: System.Int32
+      description: The number of tiles along the lot's local X axis
+    - id: sizeZ
+      type: System.Int32
+      description: The number of tiles along the lot's local Z axis
+    - id: vertexGridCount
+      type: System.Int32
+      description: "The number of vertex grids: the lot's level count if the lot's <xref href=\"LlamaLogic.Architecture.LotSizeSection.Version\" data-throw-if-not-resolved=\"false\"></xref> is less than 10, otherwise 2"
+    - id: hasWaterLevels
+      type: System.Boolean
+      description: Whether there are water levels, which there are if the lot's <xref href="LlamaLogic.Architecture.LotSizeSection.Version" data-throw-if-not-resolved="false"></xref> is 12 or more
+    content.vb: Public Sub New(sizeX As Integer, sizeZ As Integer, vertexGridCount As Integer, hasWaterLevels As Boolean)
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">sizeX</code>, <code class="paramref">sizeZ</code> or <code class="paramref">vertexGridCount</code> is not 0 through 255
+  nameWithType.vb: TerrainHeightsSection.New(Integer, Integer, Integer, Boolean)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.New(Integer, Integer, Integer, Boolean)
+  name.vb: New(Integer, Integer, Integer, Boolean)
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  id: HasWaterLevels
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: HasWaterLevels
+  nameWithType: TerrainHeightsSection.HasWaterLevels
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: HasWaterLevels
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 91
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets whether the section holds a water level per tile quarter, which it does when the lot's <xref href="LlamaLogic.Architecture.LotSizeSection.Version" data-throw-if-not-resolved="false"></xref> is 12 or more
+  example: []
+  syntax:
+    content: public bool HasWaterLevels { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasWaterLevels As Boolean
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels*
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  id: SizeX
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: SizeX
+  nameWithType: TerrainHeightsSection.SizeX
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SizeX
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 96
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of tiles along the lot's local X axis
+  example: []
+  syntax:
+    content: public int SizeX { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SizeX As Integer
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.SizeX*
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  id: SizeZ
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: SizeZ
+  nameWithType: TerrainHeightsSection.SizeZ
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SizeZ
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 101
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of tiles along the lot's local Z axis
+  example: []
+  syntax:
+    content: public int SizeZ { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SizeZ As Integer
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ*
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  id: VertexGridCount
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: VertexGridCount
+  nameWithType: TerrainHeightsSection.VertexGridCount
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VertexGridCount
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 106
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of vertex grids
+  example: []
+  syntax:
+    content: public int VertexGridCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property VertexGridCount As Integer
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount*
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+  id: GetVertexValue(System.Int32,System.Int32,System.Int32)
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: GetVertexValue(int, int, int)
+  nameWithType: TerrainHeightsSection.GetVertexValue(int, int, int)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(int, int, int)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetVertexValue
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 126
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the value of a tile corner in a vertex grid
+  example: []
+  syntax:
+    content: public float GetVertexValue(int gridIndex, int x, int z)
+    parameters:
+    - id: gridIndex
+      type: System.Int32
+      description: "The vertex grid: 0 for the terrain height when the lot's <xref href=\"LlamaLogic.Architecture.LotSizeSection.Version\" data-throw-if-not-resolved=\"false\"></xref> is 10 or more, otherwise the level − <xref href=\"LlamaLogic.Architecture.LotInfoSection.LowestLevel\" data-throw-if-not-resolved=\"false\"></xref>"
+    - id: x
+      type: System.Int32
+      description: The corner's index along the lot's local X axis, 0 through <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeX" data-throw-if-not-resolved="false"></xref>
+    - id: z
+      type: System.Int32
+      description: The corner's index along the lot's local Z axis, 0 through <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ" data-throw-if-not-resolved="false"></xref>
+    return:
+      type: System.Single
+    content.vb: Public Function GetVertexValue(gridIndex As Integer, x As Integer, z As Integer) As Single
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: A coordinate is outside the grid
+  nameWithType.vb: TerrainHeightsSection.GetVertexValue(Integer, Integer, Integer)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(Integer, Integer, Integer)
+  name.vb: GetVertexValue(Integer, Integer, Integer)
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  id: GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: GetWaterLevel(int, int, FloorQuarter)
+  nameWithType: TerrainHeightsSection.GetWaterLevel(int, int, FloorQuarter)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(int, int, LlamaLogic.Architecture.FloorQuarter)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetWaterLevel
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 142
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the water level of a quarter of a tile, in steps of 0.25 m
+  remarks: >-
+    −400 (the game's default) means no water, and the value is −400 almost everywhere.
+
+    The game multiplies it by 0.25 and uses the result minus the floor or terrain height as a water depth.
+
+    In the lots examined it differs from −400 on every quarter of every pond and then equals the pond's <xref href="LlamaLogic.Architecture.Pond.WaterLevel" data-throw-if-not-resolved="false"></xref>; raising a pond's water level one step in game changed it from −3 to −2 on every quarter of the pond together with <xref href="LlamaLogic.Architecture.Pond.WaterLevel" data-throw-if-not-resolved="false"></xref> (in-game test).
+  example: []
+  syntax:
+    content: public int GetWaterLevel(int x, int z, FloorQuarter quarter)
+    parameters:
+    - id: x
+      type: System.Int32
+      description: The tile's index along the lot's local X axis
+    - id: z
+      type: System.Int32
+      description: The tile's index along the lot's local Z axis
+    - id: quarter
+      type: LlamaLogic.Architecture.FloorQuarter
+      description: The quarter of the tile
+    return:
+      type: System.Int32
+    content.vb: Public Function GetWaterLevel(x As Integer, z As Integer, quarter As FloorQuarter) As Integer
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: <xref href="LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels" data-throw-if-not-resolved="false"></xref> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: A coordinate is outside the grid, or <code class="paramref">quarter</code> is not a <xref href="LlamaLogic.Architecture.FloorQuarter" data-throw-if-not-resolved="false"></xref>
+  nameWithType.vb: TerrainHeightsSection.GetWaterLevel(Integer, Integer, FloorQuarter)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(Integer, Integer, LlamaLogic.Architecture.FloorQuarter)
+  name.vb: GetWaterLevel(Integer, Integer, FloorQuarter)
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue(System.Int32,System.Int32,System.Int32,System.Single)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue(System.Int32,System.Int32,System.Int32,System.Single)
+  id: SetVertexValue(System.Int32,System.Int32,System.Int32,System.Single)
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: SetVertexValue(int, int, int, float)
+  nameWithType: TerrainHeightsSection.SetVertexValue(int, int, int, float)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue(int, int, int, float)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SetVertexValue
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 166
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Sets the value of a tile corner in a vertex grid
+  example: []
+  syntax:
+    content: public void SetVertexValue(int gridIndex, int x, int z, float value)
+    parameters:
+    - id: gridIndex
+      type: System.Int32
+      description: The vertex grid (see <xref href="LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32%2cSystem.Int32%2cSystem.Int32)" data-throw-if-not-resolved="false"></xref>)
+    - id: x
+      type: System.Int32
+      description: The corner's index along the lot's local X axis, 0 through <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeX" data-throw-if-not-resolved="false"></xref>
+    - id: z
+      type: System.Int32
+      description: The corner's index along the lot's local Z axis, 0 through <xref href="LlamaLogic.Architecture.TerrainHeightsSection.SizeZ" data-throw-if-not-resolved="false"></xref>
+    - id: value
+      type: System.Single
+      description: The value
+    content.vb: Public Sub SetVertexValue(gridIndex As Integer, x As Integer, z As Integer, value As Single)
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: A coordinate is outside the grid
+  nameWithType.vb: TerrainHeightsSection.SetVertexValue(Integer, Integer, Integer, Single)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue(Integer, Integer, Integer, Single)
+  name.vb: SetVertexValue(Integer, Integer, Integer, Single)
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter,System.Int32)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter,System.Int32)
+  id: SetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter,System.Int32)
+  parent: LlamaLogic.Architecture.TerrainHeightsSection
+  langs:
+  - csharp
+  - vb
+  name: SetWaterLevel(int, int, FloorQuarter, int)
+  nameWithType: TerrainHeightsSection.SetWaterLevel(int, int, FloorQuarter, int)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel(int, int, LlamaLogic.Architecture.FloorQuarter, int)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SetWaterLevel
+    path: ../LlamaLogic.Architecture/Sections/TerrainHeightsSection.cs
+    startLine: 178
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Sets the water level of a quarter of a tile, in steps of 0.25 m
+  example: []
+  syntax:
+    content: public void SetWaterLevel(int x, int z, FloorQuarter quarter, int value)
+    parameters:
+    - id: x
+      type: System.Int32
+      description: The tile's index along the lot's local X axis
+    - id: z
+      type: System.Int32
+      description: The tile's index along the lot's local Z axis
+    - id: quarter
+      type: LlamaLogic.Architecture.FloorQuarter
+      description: The quarter of the tile
+    - id: value
+      type: System.Int32
+      description: The water level, or −400 for no water (see <xref href="LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32%2cSystem.Int32%2cLlamaLogic.Architecture.FloorQuarter)" data-throw-if-not-resolved="false"></xref>)
+    content.vb: Public Sub SetWaterLevel(x As Integer, z As Integer, quarter As FloorQuarter, value As Integer)
+  overload: LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: <xref href="LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels" data-throw-if-not-resolved="false"></xref> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: A coordinate is outside the grid, or <code class="paramref">quarter</code> is not a <xref href="LlamaLogic.Architecture.FloorQuarter" data-throw-if-not-resolved="false"></xref>
+  nameWithType.vb: TerrainHeightsSection.SetWaterLevel(Integer, Integer, FloorQuarter, Integer)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel(Integer, Integer, LlamaLogic.Architecture.FloorQuarter, Integer)
+  name.vb: SetWaterLevel(Integer, Integer, FloorQuarter, Integer)
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_TerrainHeights
+  name: TerrainHeights
+  nameWithType: LotArchitectureSectionType.TerrainHeights
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+- uid: LlamaLogic.Architecture.LotSizeSection.Version
+  commentId: P:LlamaLogic.Architecture.LotSizeSection.Version
+  href: LlamaLogic.Architecture.LotSizeSection.html#LlamaLogic_Architecture_LotSizeSection_Version
+  name: Version
+  nameWithType: LotSizeSection.Version
+  fullName: LlamaLogic.Architecture.LotSizeSection.Version
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_VertexGridCount
+  name: VertexGridCount
+  nameWithType: TerrainHeightsSection.VertexGridCount
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX
+  name: SizeX
+  nameWithType: TerrainHeightsSection.SizeX
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ
+  name: SizeZ
+  nameWithType: TerrainHeightsSection.SizeZ
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  commentId: P:LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels
+  name: HasWaterLevels
+  nameWithType: TerrainHeightsSection.HasWaterLevels
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+- uid: LlamaLogic.Architecture.FloorQuarter
+  commentId: T:LlamaLogic.Architecture.FloorQuarter
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorQuarter.html
+  name: FloorQuarter
+  nameWithType: FloorQuarter
+  fullName: LlamaLogic.Architecture.FloorQuarter
+- uid: LlamaLogic.Architecture.LotInfoSection.LowestLevel
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.LowestLevel
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_LowestLevel
+  name: LowestLevel
+  nameWithType: LotInfoSection.LowestLevel
+  fullName: LlamaLogic.Architecture.LotInfoSection.LowestLevel
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.TerrainHeightsSection
+  commentId: T:LlamaLogic.Architecture.TerrainHeightsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html
+  name: TerrainHeightsSection
+  nameWithType: TerrainHeightsSection
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.#ctor
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection__ctor_System_Int32_System_Int32_
+  name: TerrainHeightsSection
+  nameWithType: TerrainHeightsSection.TerrainHeightsSection
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.TerrainHeightsSection
+  nameWithType.vb: TerrainHeightsSection.New
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_HasWaterLevels
+  name: HasWaterLevels
+  nameWithType: TerrainHeightsSection.HasWaterLevels
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.HasWaterLevels
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SizeX*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeX
+  name: SizeX
+  nameWithType: TerrainHeightsSection.SizeX
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SizeX
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SizeZ
+  name: SizeZ
+  nameWithType: TerrainHeightsSection.SizeZ
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SizeZ
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_VertexGridCount
+  name: VertexGridCount
+  nameWithType: TerrainHeightsSection.VertexGridCount
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.VertexGridCount
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_System_Int32_System_Int32_System_Int32_
+  name: GetVertexValue
+  nameWithType: TerrainHeightsSection.GetVertexValue
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: LlamaLogic.Architecture.Pond.WaterLevel
+  commentId: P:LlamaLogic.Architecture.Pond.WaterLevel
+  href: LlamaLogic.Architecture.Pond.html#LlamaLogic_Architecture_Pond_WaterLevel
+  name: WaterLevel
+  nameWithType: Pond.WaterLevel
+  fullName: LlamaLogic.Architecture.Pond.WaterLevel
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_
+  name: GetWaterLevel
+  nameWithType: TerrainHeightsSection.GetWaterLevel
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+  isExternal: true
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_System_Int32_System_Int32_System_Int32_
+  name: GetVertexValue(int, int, int)
+  nameWithType: TerrainHeightsSection.GetVertexValue(int, int, int)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(int, int, int)
+  nameWithType.vb: TerrainHeightsSection.GetVertexValue(Integer, Integer, Integer)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(Integer, Integer, Integer)
+  name.vb: GetVertexValue(Integer, Integer, Integer)
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+    name: GetVertexValue
+    href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_System_Int32_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.TerrainHeightsSection.GetVertexValue(System.Int32,System.Int32,System.Int32)
+    name: GetVertexValue
+    href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetVertexValue_System_Int32_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SetVertexValue_System_Int32_System_Int32_System_Int32_System_Single_
+  name: SetVertexValue
+  nameWithType: TerrainHeightsSection.SetVertexValue
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SetVertexValue
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  commentId: M:LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+  isExternal: true
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_
+  name: GetWaterLevel(int, int, FloorQuarter)
+  nameWithType: TerrainHeightsSection.GetWaterLevel(int, int, FloorQuarter)
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(int, int, LlamaLogic.Architecture.FloorQuarter)
+  nameWithType.vb: TerrainHeightsSection.GetWaterLevel(Integer, Integer, FloorQuarter)
+  fullName.vb: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(Integer, Integer, LlamaLogic.Architecture.FloorQuarter)
+  name.vb: GetWaterLevel(Integer, Integer, FloorQuarter)
+  spec.csharp:
+  - uid: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+    name: GetWaterLevel
+    href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Architecture.FloorQuarter
+    name: FloorQuarter
+    href: LlamaLogic.Architecture.FloorQuarter.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Architecture.TerrainHeightsSection.GetWaterLevel(System.Int32,System.Int32,LlamaLogic.Architecture.FloorQuarter)
+    name: GetWaterLevel
+    href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_GetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.Architecture.FloorQuarter
+    name: FloorQuarter
+    href: LlamaLogic.Architecture.FloorQuarter.html
+  - name: )
+- uid: LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel*
+  commentId: Overload:LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html#LlamaLogic_Architecture_TerrainHeightsSection_SetWaterLevel_System_Int32_System_Int32_LlamaLogic_Architecture_FloorQuarter_System_Int32_
+  name: SetWaterLevel
+  nameWithType: TerrainHeightsSection.SetWaterLevel
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection.SetWaterLevel

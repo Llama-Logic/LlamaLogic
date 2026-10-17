@@ -1,0 +1,722 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  commentId: T:LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  id: WorldObjectDataLot
+  parent: LlamaLogic.Packages.Models.World
+  children:
+  - LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey
+  - LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects
+  - LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId
+  - LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects
+  - LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators
+  - LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators
+  langs:
+  - csharp
+  - vb
+  name: WorldObjectDataLot
+  nameWithType: WorldObjectDataLot
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WorldObjectDataLot
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: "Represents the objects and locators of one lot (or, with lot id zero, of the world outside lots) in a <xref href=\"LlamaLogic.Packages.ResourceType.WorldObjectData\" data-throw-if-not-resolved=\"false\"></xref> resource (\U0001F513)"
+  example: []
+  syntax:
+    content: public sealed class WorldObjectDataLot
+    content.vb: Public NotInheritable Class WorldObjectDataLot
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects
+  commentId: P:LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects
+  id: FootprintObjects
+  parent: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  langs:
+  - csharp
+  - vb
+  name: FootprintObjects
+  nameWithType: WorldObjectDataLot.FootprintObjects
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FootprintObjects
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: Gets the objects for which the game creates only a routing footprint
+  example: []
+  syntax:
+    content: public Collection<WorldObjectDataObject> FootprintObjects { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataObject}
+    content.vb: Public ReadOnly Property FootprintObjects As Collection(Of WorldObjectDataObject)
+  overload: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects*
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey
+  commentId: P:LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey
+  id: FootprintKey
+  parent: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  langs:
+  - csharp
+  - vb
+  name: FootprintKey
+  nameWithType: WorldObjectDataLot.FootprintKey
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FootprintKey
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 18
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: Gets/sets the key of a footprint container resource the game loads for the lot, or a key whose type is <code>0xffffffff</code> when there is none
+  remarks: In world files the key's type is <code>0x4f726bbe</code> (<xref href="LlamaLogic.Packages.ResourceType.WorldLandingStrip" data-throw-if-not-resolved="false"></xref>) or <code>0xffffffff</code>; what the resource holds is not established.
+  example: []
+  syntax:
+    content: public ResourceKey FootprintKey { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property FootprintKey As ResourceKey
+  overload: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey*
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId
+  commentId: P:LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId
+  id: LotId
+  parent: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  langs:
+  - csharp
+  - vb
+  name: LotId
+  nameWithType: WorldObjectDataLot.LotId
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotId
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: Gets/sets the id of the lot
+  example: []
+  syntax:
+    content: public uint LotId { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property LotId As UInteger
+  overload: LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId*
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects
+  commentId: P:LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects
+  id: Objects
+  parent: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  langs:
+  - csharp
+  - vb
+  name: Objects
+  nameWithType: WorldObjectDataLot.Objects
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Objects
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 28
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: Gets the objects the game spawns, parents before children
+  example: []
+  syntax:
+    content: public Collection<WorldObjectDataObject> Objects { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataObject}
+    content.vb: Public ReadOnly Property Objects As Collection(Of WorldObjectDataObject)
+  overload: LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects*
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators
+  commentId: P:LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators
+  id: SimLocators
+  parent: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  langs:
+  - csharp
+  - vb
+  name: SimLocators
+  nameWithType: WorldObjectDataLot.SimLocators
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimLocators
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 33
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: Gets the locators the game hands to the simulation as sim locators
+  example: []
+  syntax:
+    content: public Collection<WorldObjectDataLocator> SimLocators { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataLocator}
+    content.vb: Public ReadOnly Property SimLocators As Collection(Of WorldObjectDataLocator)
+  overload: LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators*
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators
+  commentId: P:LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators
+  id: StairLocators
+  parent: LlamaLogic.Packages.Models.World.WorldObjectDataLot
+  langs:
+  - csharp
+  - vb
+  name: StairLocators
+  nameWithType: WorldObjectDataLot.StairLocators
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: StairLocators
+    path: ../LlamaLogic.Packages/Models/World/WorldObjectDataLot.cs
+    startLine: 38
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.World
+  summary: Gets the stair locators
+  example: []
+  syntax:
+    content: public Collection<WorldObjectDataStairLocator> StairLocators { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator}
+    content.vb: Public ReadOnly Property StairLocators As Collection(Of WorldObjectDataStairLocator)
+  overload: LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators*
+references:
+- uid: LlamaLogic.Packages.ResourceType.WorldObjectData
+  commentId: F:LlamaLogic.Packages.ResourceType.WorldObjectData
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_WorldObjectData
+  name: WorldObjectData
+  nameWithType: ResourceType.WorldObjectData
+  fullName: LlamaLogic.Packages.ResourceType.WorldObjectData
+- uid: LlamaLogic.Packages.Models.World
+  commentId: N:LlamaLogic.Packages.Models.World
+  name: LlamaLogic.Packages.Models.World
+  nameWithType: LlamaLogic.Packages.Models.World
+  fullName: LlamaLogic.Packages.Models.World
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.World
+    name: World
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.World
+    name: World
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects*
+  commentId: Overload:LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataLot.html#LlamaLogic_Packages_Models_World_WorldObjectDataLot_FootprintObjects
+  name: FootprintObjects
+  nameWithType: WorldObjectDataLot.FootprintObjects
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintObjects
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataObject}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataObject}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WorldObjectDataObject>
+  nameWithType: Collection<WorldObjectDataObject>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.World.WorldObjectDataObject>
+  nameWithType.vb: Collection(Of WorldObjectDataObject)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.World.WorldObjectDataObject)
+  name.vb: Collection(Of WorldObjectDataObject)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataObject
+    name: WorldObjectDataObject
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataObject.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataObject
+    name: WorldObjectDataObject
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataObject.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Packages.ResourceType.WorldLandingStrip
+  commentId: F:LlamaLogic.Packages.ResourceType.WorldLandingStrip
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_WorldLandingStrip
+  name: WorldLandingStrip
+  nameWithType: ResourceType.WorldLandingStrip
+  fullName: LlamaLogic.Packages.ResourceType.WorldLandingStrip
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey*
+  commentId: Overload:LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataLot.html#LlamaLogic_Packages_Models_World_WorldObjectDataLot_FootprintKey
+  name: FootprintKey
+  nameWithType: WorldObjectDataLot.FootprintKey
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.FootprintKey
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  href: LlamaLogic.Packages.ResourceKey.html
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId*
+  commentId: Overload:LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataLot.html#LlamaLogic_Packages_Models_World_WorldObjectDataLot_LotId
+  name: LotId
+  nameWithType: WorldObjectDataLot.LotId
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.LotId
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects*
+  commentId: Overload:LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataLot.html#LlamaLogic_Packages_Models_World_WorldObjectDataLot_Objects
+  name: Objects
+  nameWithType: WorldObjectDataLot.Objects
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.Objects
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators*
+  commentId: Overload:LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataLot.html#LlamaLogic_Packages_Models_World_WorldObjectDataLot_SimLocators
+  name: SimLocators
+  nameWithType: WorldObjectDataLot.SimLocators
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.SimLocators
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataLocator}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataLocator}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WorldObjectDataLocator>
+  nameWithType: Collection<WorldObjectDataLocator>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.World.WorldObjectDataLocator>
+  nameWithType.vb: Collection(Of WorldObjectDataLocator)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.World.WorldObjectDataLocator)
+  name.vb: Collection(Of WorldObjectDataLocator)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataLocator
+    name: WorldObjectDataLocator
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataLocator.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataLocator
+    name: WorldObjectDataLocator
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataLocator.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators*
+  commentId: Overload:LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators
+  href: LlamaLogic.Packages.Models.World.WorldObjectDataLot.html#LlamaLogic_Packages_Models_World_WorldObjectDataLot_StairLocators
+  name: StairLocators
+  nameWithType: WorldObjectDataLot.StairLocators
+  fullName: LlamaLogic.Packages.Models.World.WorldObjectDataLot.StairLocators
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<WorldObjectDataStairLocator>
+  nameWithType: Collection<WorldObjectDataStairLocator>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator>
+  nameWithType.vb: Collection(Of WorldObjectDataStairLocator)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator)
+  name.vb: Collection(Of WorldObjectDataStairLocator)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator
+    name: WorldObjectDataStairLocator
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator
+    name: WorldObjectDataStairLocator
+    href: LlamaLogic.Packages.Models.World.WorldObjectDataStairLocator.html
+  - name: )

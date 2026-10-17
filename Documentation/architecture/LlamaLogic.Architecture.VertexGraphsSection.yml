@@ -1,0 +1,574 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.VertexGraphsSection
+  commentId: T:LlamaLogic.Architecture.VertexGraphsSection
+  id: VertexGraphsSection
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.VertexGraphsSection.#ctor
+  - LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  - LlamaLogic.Architecture.VertexGraphsSection.Version
+  langs:
+  - csharp
+  - vb
+  name: VertexGraphsSection
+  nameWithType: VertexGraphsSection
+  fullName: LlamaLogic.Architecture.VertexGraphsSection
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VertexGraphsSection
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+    startLine: 12
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: "Represents the <xref href=\"LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs\" data-throw-if-not-resolved=\"false\"></xref> section: graphs of vertices and edges, whose version decides the layout of the <xref href=\"LlamaLogic.Architecture.WallEdgesSection\" data-throw-if-not-resolved=\"false\"></xref> (\U0001F513)"
+  remarks: >-
+    <p>Each graph holds vertices, under the tag "TREV" ("VERT" reversed), and edges, under the tag "TCES". What the graphs describe is not established; Sims 4 Studio calls this section WallCutout.</p>
+
+    <p>In in-game tests the first graph changed whenever walls, roofs, stairs or platforms were added or reshaped (including when a roof was replaced with another shape) and never for paint, trim, terrain or lot type changes; this is an observation only.</p>
+
+    <p>The layout follows the game's writer; on loading, the game reads only the section's version, which decides the layout of the <xref href="LlamaLogic.Architecture.WallEdgesSection" data-throw-if-not-resolved="false"></xref>, and does not read the graphs.
+
+    Versions 5 through 9 are supported, and the game writes version 9; the lots examined hold versions 5 through 9.</p>
+
+    <p>Layout: <xref href="LlamaLogic.Architecture.VertexGraphsSection.Version" data-throw-if-not-resolved="false"></xref>, then the <xref href="LlamaLogic.Architecture.VertexGraphsSection.Graphs" data-throw-if-not-resolved="false"></xref>: three before version 8 and four from version 8 on, the numbers of graph objects the game's reader resets for those versions.</p>
+  example: []
+  syntax:
+    content: 'public sealed class VertexGraphsSection : LotArchitectureSection'
+    content.vb: Public NotInheritable Class VertexGraphsSection Inherits LotArchitectureSection
+  inheritance:
+  - System.Object
+  - LlamaLogic.Architecture.LotArchitectureSection
+  inheritedMembers:
+  - LlamaLogic.Architecture.LotArchitectureSection.Type
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.VertexGraphsSection.#ctor
+  commentId: M:LlamaLogic.Architecture.VertexGraphsSection.#ctor
+  id: '#ctor'
+  parent: LlamaLogic.Architecture.VertexGraphsSection
+  langs:
+  - csharp
+  - vb
+  name: VertexGraphsSection()
+  nameWithType: VertexGraphsSection.VertexGraphsSection()
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.VertexGraphsSection()
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+    startLine: 33
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.VertexGraphsSection" data-throw-if-not-resolved="false"></xref> class
+  example: []
+  syntax:
+    content: public VertexGraphsSection()
+    content.vb: Public Sub New()
+  overload: LlamaLogic.Architecture.VertexGraphsSection.#ctor*
+  nameWithType.vb: VertexGraphsSection.New()
+  fullName.vb: LlamaLogic.Architecture.VertexGraphsSection.New()
+  name.vb: New()
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  commentId: P:LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  id: Graphs
+  parent: LlamaLogic.Architecture.VertexGraphsSection
+  langs:
+  - csharp
+  - vb
+  name: Graphs
+  nameWithType: VertexGraphsSection.Graphs
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Graphs
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+    startLine: 46
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the graphs
+  remarks: 'Their number must match <xref href="LlamaLogic.Architecture.VertexGraphsSection.Version" data-throw-if-not-resolved="false"></xref>: three before version 8, four from version 8 on.'
+  example: []
+  syntax:
+    content: public Collection<VertexGraph> Graphs { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.VertexGraph}
+    content.vb: Public ReadOnly Property Graphs As Collection(Of VertexGraph)
+  overload: LlamaLogic.Architecture.VertexGraphsSection.Graphs*
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Version
+  commentId: P:LlamaLogic.Architecture.VertexGraphsSection.Version
+  id: Version
+  parent: LlamaLogic.Architecture.VertexGraphsSection
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: VertexGraphsSection.Version
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Architecture/Sections/VertexGraphsSection.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the version of the section, which decides its layout and that of the <xref href="LlamaLogic.Architecture.WallEdgesSection" data-throw-if-not-resolved="false"></xref>
+  remarks: Encoding throws an <xref href="System.InvalidOperationException" data-throw-if-not-resolved="false"></xref> when the number of <xref href="LlamaLogic.Architecture.VertexGraphsSection.Graphs" data-throw-if-not-resolved="false"></xref> does not match the version, or when a table or list of the <xref href="LlamaLogic.Architecture.WallEdgesSection" data-throw-if-not-resolved="false"></xref> that the layout of this version lacks is not empty.
+  example: []
+  syntax:
+    content: public uint Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Version As UInteger
+  overload: LlamaLogic.Architecture.VertexGraphsSection.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The version is not 5 through 9
+references:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_VertexGraphs
+  name: VertexGraphs
+  nameWithType: LotArchitectureSectionType.VertexGraphs
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+- uid: LlamaLogic.Architecture.WallEdgesSection
+  commentId: T:LlamaLogic.Architecture.WallEdgesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallEdgesSection.html
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Version
+  commentId: P:LlamaLogic.Architecture.VertexGraphsSection.Version
+  href: LlamaLogic.Architecture.VertexGraphsSection.html#LlamaLogic_Architecture_VertexGraphsSection_Version
+  name: Version
+  nameWithType: VertexGraphsSection.Version
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Version
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  commentId: P:LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  href: LlamaLogic.Architecture.VertexGraphsSection.html#LlamaLogic_Architecture_VertexGraphsSection_Graphs
+  name: Graphs
+  nameWithType: VertexGraphsSection.Graphs
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Graphs
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Architecture.LotArchitectureSection
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSection.html
+  name: LotArchitectureSection
+  nameWithType: LotArchitectureSection
+  fullName: LlamaLogic.Architecture.LotArchitectureSection
+- uid: LlamaLogic.Architecture.LotArchitectureSection.Type
+  commentId: P:LlamaLogic.Architecture.LotArchitectureSection.Type
+  parent: LlamaLogic.Architecture.LotArchitectureSection
+  href: LlamaLogic.Architecture.LotArchitectureSection.html#LlamaLogic_Architecture_LotArchitectureSection_Type
+  name: Type
+  nameWithType: LotArchitectureSection.Type
+  fullName: LlamaLogic.Architecture.LotArchitectureSection.Type
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.VertexGraphsSection
+  commentId: T:LlamaLogic.Architecture.VertexGraphsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.VertexGraphsSection.html
+  name: VertexGraphsSection
+  nameWithType: VertexGraphsSection
+  fullName: LlamaLogic.Architecture.VertexGraphsSection
+- uid: LlamaLogic.Architecture.VertexGraphsSection.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.VertexGraphsSection.#ctor
+  href: LlamaLogic.Architecture.VertexGraphsSection.html#LlamaLogic_Architecture_VertexGraphsSection__ctor
+  name: VertexGraphsSection
+  nameWithType: VertexGraphsSection.VertexGraphsSection
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.VertexGraphsSection
+  nameWithType.vb: VertexGraphsSection.New
+  fullName.vb: LlamaLogic.Architecture.VertexGraphsSection.New
+  name.vb: New
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Graphs*
+  commentId: Overload:LlamaLogic.Architecture.VertexGraphsSection.Graphs
+  href: LlamaLogic.Architecture.VertexGraphsSection.html#LlamaLogic_Architecture_VertexGraphsSection_Graphs
+  name: Graphs
+  nameWithType: VertexGraphsSection.Graphs
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Graphs
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.VertexGraph}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Architecture.VertexGraph}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<VertexGraph>
+  nameWithType: Collection<VertexGraph>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Architecture.VertexGraph>
+  nameWithType.vb: Collection(Of VertexGraph)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Architecture.VertexGraph)
+  name.vb: Collection(Of VertexGraph)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Architecture.VertexGraph
+    name: VertexGraph
+    href: LlamaLogic.Architecture.VertexGraph.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Architecture.VertexGraph
+    name: VertexGraph
+    href: LlamaLogic.Architecture.VertexGraph.html
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.VertexGraphsSection.Version*
+  commentId: Overload:LlamaLogic.Architecture.VertexGraphsSection.Version
+  href: LlamaLogic.Architecture.VertexGraphsSection.html#LlamaLogic_Architecture_VertexGraphsSection_Version
+  name: Version
+  nameWithType: VertexGraphsSection.Version
+  fullName: LlamaLogic.Architecture.VertexGraphsSection.Version
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger

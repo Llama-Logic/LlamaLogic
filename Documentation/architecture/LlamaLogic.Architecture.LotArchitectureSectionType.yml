@@ -1,0 +1,1493 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSectionType
+  id: LotArchitectureSectionType
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+  - LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  - LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+  - LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+  - LlamaLogic.Architecture.LotArchitectureSectionType.FloorKeys
+  - LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  - LlamaLogic.Architecture.LotArchitectureSectionType.LegacyFencePoints
+  - LlamaLogic.Architecture.LotArchitectureSectionType.LegacyWallGraph
+  - LlamaLogic.Architecture.LotArchitectureSectionType.LotInfo
+  - LlamaLogic.Architecture.LotArchitectureSectionType.LotObjects
+  - LlamaLogic.Architecture.LotArchitectureSectionType.LotSize
+  - LlamaLogic.Architecture.LotArchitectureSectionType.ModularPieces
+  - LlamaLogic.Architecture.LotArchitectureSectionType.ObjectFallbacks
+  - LlamaLogic.Architecture.LotArchitectureSectionType.ObjectTileBounds
+  - LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+  - LlamaLogic.Architecture.LotArchitectureSectionType.PlexGroups
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+  - LlamaLogic.Architecture.LotArchitectureSectionType.PondBottoms
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Ponds
+  - LlamaLogic.Architecture.LotArchitectureSectionType.PoolSurfaces
+  - LlamaLogic.Architecture.LotArchitectureSectionType.ResourceManifest
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Revision
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Roofs
+  - LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+  - LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Stairs
+  - LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+  - LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+  - LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+  - LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+  - LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Venue
+  - LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+  - LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+  - LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  - LlamaLogic.Architecture.LotArchitectureSectionType.Weather
+  langs:
+  - csharp
+  - vb
+  name: LotArchitectureSectionType
+  nameWithType: LotArchitectureSectionType
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotArchitectureSectionType
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The types of the sections of a lot's architecture, each of which is one record of the lot's <xref href="LlamaLogic.Packages.Formats.RecordBundle" data-throw-if-not-resolved="false"></xref>
+  remarks: >-
+    The game keys every section by its type, group 0 and instance 1.
+
+    Names reflect what the game's code or in-game tests show each section holds; where neither does, the name is the type's hexadecimal value.
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1008: Enums should have zero value", Justification = "No section has type zero.")]
+
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "Section types are resource types, which are 32-bit unsigned.")]
+
+      public enum LotArchitectureSectionType : uint
+    content.vb: >-
+      <SuppressMessage("Design", "CA1008: Enums should have zero value", Justification:="No section has type zero.")>
+
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="Section types are resource types, which are 32-bit unsigned.")>
+
+      Public Enum LotArchitectureSectionType As UInteger
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1008: Enums should have zero value'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: No section has type zero.
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: Section types are resource types, which are 32-bit unsigned.
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.ObjectFallbacks
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.ObjectFallbacks
+  id: ObjectFallbacks
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: ObjectFallbacks
+  nameWithType: LotArchitectureSectionType.ObjectFallbacks
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.ObjectFallbacks
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ObjectFallbacks
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 17
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The objects the game falls back to placing when others are unavailable (<xref href="LlamaLogic.Architecture.ObjectFallbacksSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ObjectFallbacks = 1042161
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.ResourceManifest
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.ResourceManifest
+  id: ResourceManifest
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: ResourceManifest
+  nameWithType: LotArchitectureSectionType.ResourceManifest
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.ResourceManifest
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceManifest
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 22
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The keys of the catalog resources the other sections reference (<xref href="LlamaLogic.Architecture.ResourceManifestSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ResourceManifest = 152626801
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Stairs
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Stairs
+  id: Stairs
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Stairs
+  nameWithType: LotArchitectureSectionType.Stairs
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Stairs
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Stairs
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 27
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The stairs and ladders (<xref href="LlamaLogic.Architecture.StairsSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Stairs = 186155609
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+  id: Ceilings
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Ceilings
+  nameWithType: LotArchitectureSectionType.Ceilings
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Ceilings
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Ceilings
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 35
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The ceiling of each level, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: In-game tests show that building a room fills this grid at the level above the room over exactly the room's tiles, and that painting the ceiling changes only <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints" data-throw-if-not-resolved="false"></xref>; the game's code assigns the grid to the room on the level below.
+  example: []
+  syntax:
+    content: Ceilings = 501723820
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.LotInfo
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.LotInfo
+  id: LotInfo
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: LotInfo
+  nameWithType: LotArchitectureSectionType.LotInfo
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.LotInfo
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotInfo
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The lot's levels, style and creators (<xref href="LlamaLogic.Architecture.LotInfoSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: LotInfo = 545371366
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  id: Floors
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Floors
+  nameWithType: LotArchitectureSectionType.Floors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Floors
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The floor pattern of each level, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Floors = 622686172
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+  id: TerrainPaint
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: TerrainPaint
+  nameWithType: LotArchitectureSectionType.TerrainPaint
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainPaint
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainPaint
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 50
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The terrain paint layers (<xref href="LlamaLogic.Architecture.TerrainPaintSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: TerrainPaint = 756498313
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.PoolSurfaces
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.PoolSurfaces
+  id: PoolSurfaces
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: PoolSurfaces
+  nameWithType: LotArchitectureSectionType.PoolSurfaces
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.PoolSurfaces
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PoolSurfaces
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 58
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The pool surface pattern of each level, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: In-game tests show that building a pool fills this grid over exactly the pool's tiles at the level above the pool's block; the game's code assigns the grid to the room on the level below.
+  example: []
+  syntax:
+    content: PoolSurfaces = 1040855313
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+  id: FloorRotations
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: FloorRotations
+  nameWithType: LotArchitectureSectionType.FloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.FloorRotations
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorRotations
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 63
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The rotation of the floor pattern of each level (<xref href="LlamaLogic.Architecture.FloorRotationGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: FloorRotations = 1123611834
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.LotSize
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.LotSize
+  id: LotSize
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: LotSize
+  nameWithType: LotArchitectureSectionType.LotSize
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.LotSize
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotSize
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 68
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The lot's dimensions (<xref href="LlamaLogic.Architecture.LotSizeSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: LotSize = 1156008438
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Weather
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Weather
+  id: Weather
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Weather
+  nameWithType: LotArchitectureSectionType.Weather
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Weather
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Weather
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 73
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The lot's seasonal weather interpolation value (<xref href="LlamaLogic.Architecture.WeatherSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Weather = 1236347683
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+  id: CeilingRotations
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: CeilingRotations
+  nameWithType: LotArchitectureSectionType.CeilingRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingRotations
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingRotations
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 78
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The rotation of the ceiling of each level (<xref href="LlamaLogic.Architecture.FloorRotationGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: CeilingRotations = 1703255730
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+  id: SecondaryFloors
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: SecondaryFloors
+  nameWithType: LotArchitectureSectionType.SecondaryFloors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloors
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SecondaryFloors
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 86
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A second floor layer of each level, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: In-game tests show that building a room or a platform fills this grid over its tiles with the lot's default floor key, and that painting a floor or a platform's top changes only <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.Floors" data-throw-if-not-resolved="false"></xref>; the grid's role is unknown.
+  example: []
+  syntax:
+    content: SecondaryFloors = 1704918004
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  id: WallEdges
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: WallEdges
+  nameWithType: LotArchitectureSectionType.WallEdges
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallEdges
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 91
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The wall patterns and products along wall edges (<xref href="LlamaLogic.Architecture.WallEdgesSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: WallEdges = 1774819204
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.PlexGroups
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.PlexGroups
+  id: PlexGroups
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: PlexGroups
+  nameWithType: LotArchitectureSectionType.PlexGroups
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.PlexGroups
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PlexGroups
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 99
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Groups of values the <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.Plexes" data-throw-if-not-resolved="false"></xref> section refers to by id (<xref href="LlamaLogic.Architecture.PlexGroupsSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: That the values are block ids is a hypothesis.
+  example: []
+  syntax:
+    content: PlexGroups = 1914205540
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.LegacyFencePoints
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.LegacyFencePoints
+  id: LegacyFencePoints
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: LegacyFencePoints
+  nameWithType: LotArchitectureSectionType.LegacyFencePoints
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.LegacyFencePoints
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyFencePoints
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 107
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Points with fence and ceiling rail keys (<xref href="LlamaLogic.Architecture.LegacyFencePointsSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: The name reflects the catalog key types the data holds; the section appears only in older world files.
+  example: []
+  syntax:
+    content: LegacyFencePoints = 1980314405
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+  id: Unknown7B33C1F5
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Unknown7B33C1F5
+  nameWithType: LotArchitectureSectionType.Unknown7B33C1F5
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Unknown7B33C1F5
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unknown7B33C1F5
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 112
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A section of unknown purpose found in three lots of world files (<xref href="LlamaLogic.Architecture.Unknown7B33C1F5Section" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Unknown7B33C1F5 = 2066989557
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+  id: VertexGraphs
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: VertexGraphs
+  nameWithType: LotArchitectureSectionType.VertexGraphs
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.VertexGraphs
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VertexGraphs
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 120
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Graphs of vertices and edges whose version decides the layout of the <xref href="LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges" data-throw-if-not-resolved="false"></xref> section (<xref href="LlamaLogic.Architecture.VertexGraphsSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: The game reads only the section's version; what the graphs describe is not established. Sims 4 Studio calls this section WallCutout.
+  example: []
+  syntax:
+    content: VertexGraphs = 2067194067
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Ponds
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Ponds
+  id: Ponds
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Ponds
+  nameWithType: LotArchitectureSectionType.Ponds
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Ponds
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Ponds
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 125
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The ponds (<xref href="LlamaLogic.Architecture.PondsSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Ponds = 2188151641
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.ObjectTileBounds
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.ObjectTileBounds
+  id: ObjectTileBounds
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: ObjectTileBounds
+  nameWithType: LotArchitectureSectionType.ObjectTileBounds
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.ObjectTileBounds
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ObjectTileBounds
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 130
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The tiles each object covers (<xref href="LlamaLogic.Architecture.ObjectTileBoundsSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ObjectTileBounds = 2282844662
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+  id: WallBlocks
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: WallBlocks
+  nameWithType: LotArchitectureSectionType.WallBlocks
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.WallBlocks
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallBlocks
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 135
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: 'The blocks: rooms, wall lines, fences, pools and fountains (<xref href="LlamaLogic.Architecture.WallBlocksSection" data-throw-if-not-resolved="false"></xref>)'
+  example: []
+  syntax:
+    content: WallBlocks = 2425094600
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  id: CeilingPaints
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: CeilingPaints
+  nameWithType: LotArchitectureSectionType.CeilingPaints
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingPaints
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 140
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The ceiling paint of each level, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: CeilingPaints = 2427045927
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+  id: Plexes
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Plexes
+  nameWithType: LotArchitectureSectionType.Plexes
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Plexes
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 145
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The plexes (units) of the lot (<xref href="LlamaLogic.Architecture.PlexesSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Plexes = 2434334207
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.LegacyWallGraph
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.LegacyWallGraph
+  id: LegacyWallGraph
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: LegacyWallGraph
+  nameWithType: LotArchitectureSectionType.LegacyWallGraph
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.LegacyWallGraph
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LegacyWallGraph
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 153
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A graph of edges with wall pattern and product keys (<xref href="LlamaLogic.Architecture.LegacyWallGraphSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: The name reflects the catalog key types the data holds; the section appears only in older world files.
+  example: []
+  syntax:
+    content: LegacyWallGraph = 2465065149
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+  id: PendingPlacement
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: PendingPlacement
+  nameWithType: LotArchitectureSectionType.PendingPlacement
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.PendingPlacement
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PendingPlacement
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 161
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A pending placement (<xref href="LlamaLogic.Architecture.PendingPlacementSection" data-throw-if-not-resolved="false"></xref>)
+  remarks: When its state is 1, the game centers a footprint of the stored width, depth and rotation on the lot and builds a placement operation with the lot's <xref href="LlamaLogic.Architecture.LotInfoSection.BlueprintInstance" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: PendingPlacement = 2482231023
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.PondBottoms
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.PondBottoms
+  id: PondBottoms
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: PondBottoms
+  nameWithType: LotArchitectureSectionType.PondBottoms
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.PondBottoms
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PondBottoms
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 166
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The pond bottom pattern, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: PondBottoms = 2725680907
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Revision
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Revision
+  id: Revision
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Revision
+  nameWithType: LotArchitectureSectionType.Revision
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Revision
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Revision
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 171
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The lot's revision counter (<xref href="LlamaLogic.Architecture.RevisionSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Revision = 2794582592
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+  id: TerrainFloors
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: TerrainFloors
+  nameWithType: LotArchitectureSectionType.TerrainFloors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloors
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainFloors
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 176
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The floor pattern painted on the terrain, as floor key ids (<xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: TerrainFloors = 2874388677
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Roofs
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Roofs
+  id: Roofs
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Roofs
+  nameWithType: LotArchitectureSectionType.Roofs
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Roofs
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Roofs
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 181
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The roofs (<xref href="LlamaLogic.Architecture.RoofsSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Roofs = 3285814088
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+  id: TerrainFloorRotations
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: TerrainFloorRotations
+  nameWithType: LotArchitectureSectionType.TerrainFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainFloorRotations
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainFloorRotations
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 186
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The rotation of the floor pattern painted on the terrain (<xref href="LlamaLogic.Architecture.FloorRotationGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: TerrainFloorRotations = 3315290771
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.LotObjects
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.LotObjects
+  id: LotObjects
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: LotObjects
+  nameWithType: LotArchitectureSectionType.LotObjects
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.LotObjects
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LotObjects
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 191
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Objects stored with the architecture (<xref href="LlamaLogic.Architecture.LotObjectsSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: LotObjects = 3325813684
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+  id: UnknownC9106475
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: UnknownC9106475
+  nameWithType: LotArchitectureSectionType.UnknownC9106475
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.UnknownC9106475
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UnknownC9106475
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 196
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A section of unknown purpose (<xref href="LlamaLogic.Architecture.UnknownC9106475Section" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: UnknownC9106475 = 3373294709
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+  id: CeilingPaintRotations
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: CeilingPaintRotations
+  nameWithType: LotArchitectureSectionType.CeilingPaintRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaintRotations
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CeilingPaintRotations
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 201
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The rotation of the ceiling paint of each level (<xref href="LlamaLogic.Architecture.FloorRotationGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: CeilingPaintRotations = 3534689615
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+  id: TerrainHeights
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: TerrainHeights
+  nameWithType: LotArchitectureSectionType.TerrainHeights
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.TerrainHeights
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TerrainHeights
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 206
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The terrain heights (<xref href="LlamaLogic.Architecture.TerrainHeightsSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: TerrainHeights = 3782893869
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+  id: SecondaryFloorRotations
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: SecondaryFloorRotations
+  nameWithType: LotArchitectureSectionType.SecondaryFloorRotations
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.SecondaryFloorRotations
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SecondaryFloorRotations
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 211
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The rotation of the second floor layer of each level (<xref href="LlamaLogic.Architecture.FloorRotationGridSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: SecondaryFloorRotations = 3862978298
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Venue
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Venue
+  id: Venue
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: Venue
+  nameWithType: LotArchitectureSectionType.Venue
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Venue
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Venue
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 216
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The lot's venue (<xref href="LlamaLogic.Architecture.VenueSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Venue = 3871070174
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+  id: FloorFeatures
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: FloorFeatures
+  nameWithType: LotArchitectureSectionType.FloorFeatures
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.FloorFeatures
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorFeatures
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 221
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The floor feature layers (<xref href="LlamaLogic.Architecture.FloorFeaturesSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: FloorFeatures = 4062213290
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.FloorKeys
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.FloorKeys
+  id: FloorKeys
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: FloorKeys
+  nameWithType: LotArchitectureSectionType.FloorKeys
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.FloorKeys
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorKeys
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 226
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The floor keys the floor id grids refer to (<xref href="LlamaLogic.Architecture.FloorKeysSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: FloorKeys = 4172807529
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.ModularPieces
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.ModularPieces
+  id: ModularPieces
+  parent: LlamaLogic.Architecture.LotArchitectureSectionType
+  langs:
+  - csharp
+  - vb
+  name: ModularPieces
+  nameWithType: LotArchitectureSectionType.ModularPieces
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.ModularPieces
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/LotArchitectureSectionType.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModularPieces
+    path: ../LlamaLogic.Architecture/LotArchitectureSectionType.cs
+    startLine: 231
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: The modular pieces (<xref href="LlamaLogic.Architecture.ModularPiecesSection" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: ModularPieces = 4208247409
+    return:
+      type: LlamaLogic.Architecture.LotArchitectureSectionType
+references:
+- uid: LlamaLogic.Packages.Formats.RecordBundle
+  commentId: T:LlamaLogic.Packages.Formats.RecordBundle
+  parent: LlamaLogic.Packages.Formats
+  name: RecordBundle
+  nameWithType: RecordBundle
+  fullName: LlamaLogic.Packages.Formats.RecordBundle
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: LlamaLogic.Packages.Formats
+  commentId: N:LlamaLogic.Packages.Formats
+  name: LlamaLogic.Packages.Formats
+  nameWithType: LlamaLogic.Packages.Formats
+  fullName: LlamaLogic.Packages.Formats
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+- uid: LlamaLogic.Architecture.ObjectFallbacksSection
+  commentId: T:LlamaLogic.Architecture.ObjectFallbacksSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ObjectFallbacksSection.html
+  name: ObjectFallbacksSection
+  nameWithType: ObjectFallbacksSection
+  fullName: LlamaLogic.Architecture.ObjectFallbacksSection
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType
+  commentId: T:LlamaLogic.Architecture.LotArchitectureSectionType
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html
+  name: LotArchitectureSectionType
+  nameWithType: LotArchitectureSectionType
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType
+- uid: LlamaLogic.Architecture.ResourceManifestSection
+  commentId: T:LlamaLogic.Architecture.ResourceManifestSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ResourceManifestSection.html
+  name: ResourceManifestSection
+  nameWithType: ResourceManifestSection
+  fullName: LlamaLogic.Architecture.ResourceManifestSection
+- uid: LlamaLogic.Architecture.StairsSection
+  commentId: T:LlamaLogic.Architecture.StairsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.StairsSection.html
+  name: StairsSection
+  nameWithType: StairsSection
+  fullName: LlamaLogic.Architecture.StairsSection
+- uid: LlamaLogic.Architecture.FloorIdGridSection
+  commentId: T:LlamaLogic.Architecture.FloorIdGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorIdGridSection.html
+  name: FloorIdGridSection
+  nameWithType: FloorIdGridSection
+  fullName: LlamaLogic.Architecture.FloorIdGridSection
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_CeilingPaints
+  name: CeilingPaints
+  nameWithType: LotArchitectureSectionType.CeilingPaints
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.CeilingPaints
+- uid: LlamaLogic.Architecture.LotInfoSection
+  commentId: T:LlamaLogic.Architecture.LotInfoSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotInfoSection.html
+  name: LotInfoSection
+  nameWithType: LotInfoSection
+  fullName: LlamaLogic.Architecture.LotInfoSection
+- uid: LlamaLogic.Architecture.TerrainPaintSection
+  commentId: T:LlamaLogic.Architecture.TerrainPaintSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.TerrainPaintSection.html
+  name: TerrainPaintSection
+  nameWithType: TerrainPaintSection
+  fullName: LlamaLogic.Architecture.TerrainPaintSection
+- uid: LlamaLogic.Architecture.FloorRotationGridSection
+  commentId: T:LlamaLogic.Architecture.FloorRotationGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorRotationGridSection.html
+  name: FloorRotationGridSection
+  nameWithType: FloorRotationGridSection
+  fullName: LlamaLogic.Architecture.FloorRotationGridSection
+- uid: LlamaLogic.Architecture.LotSizeSection
+  commentId: T:LlamaLogic.Architecture.LotSizeSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotSizeSection.html
+  name: LotSizeSection
+  nameWithType: LotSizeSection
+  fullName: LlamaLogic.Architecture.LotSizeSection
+- uid: LlamaLogic.Architecture.WeatherSection
+  commentId: T:LlamaLogic.Architecture.WeatherSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WeatherSection.html
+  name: WeatherSection
+  nameWithType: WeatherSection
+  fullName: LlamaLogic.Architecture.WeatherSection
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Floors
+  name: Floors
+  nameWithType: LotArchitectureSectionType.Floors
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Floors
+- uid: LlamaLogic.Architecture.WallEdgesSection
+  commentId: T:LlamaLogic.Architecture.WallEdgesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallEdgesSection.html
+  name: WallEdgesSection
+  nameWithType: WallEdgesSection
+  fullName: LlamaLogic.Architecture.WallEdgesSection
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_Plexes
+  name: Plexes
+  nameWithType: LotArchitectureSectionType.Plexes
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.Plexes
+- uid: LlamaLogic.Architecture.PlexGroupsSection
+  commentId: T:LlamaLogic.Architecture.PlexGroupsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PlexGroupsSection.html
+  name: PlexGroupsSection
+  nameWithType: PlexGroupsSection
+  fullName: LlamaLogic.Architecture.PlexGroupsSection
+- uid: LlamaLogic.Architecture.LegacyFencePointsSection
+  commentId: T:LlamaLogic.Architecture.LegacyFencePointsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LegacyFencePointsSection.html
+  name: LegacyFencePointsSection
+  nameWithType: LegacyFencePointsSection
+  fullName: LlamaLogic.Architecture.LegacyFencePointsSection
+- uid: LlamaLogic.Architecture.Unknown7B33C1F5Section
+  commentId: T:LlamaLogic.Architecture.Unknown7B33C1F5Section
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.Unknown7B33C1F5Section.html
+  name: Unknown7B33C1F5Section
+  nameWithType: Unknown7B33C1F5Section
+  fullName: LlamaLogic.Architecture.Unknown7B33C1F5Section
+- uid: LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  commentId: F:LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+  href: LlamaLogic.Architecture.LotArchitectureSectionType.html#LlamaLogic_Architecture_LotArchitectureSectionType_WallEdges
+  name: WallEdges
+  nameWithType: LotArchitectureSectionType.WallEdges
+  fullName: LlamaLogic.Architecture.LotArchitectureSectionType.WallEdges
+- uid: LlamaLogic.Architecture.VertexGraphsSection
+  commentId: T:LlamaLogic.Architecture.VertexGraphsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.VertexGraphsSection.html
+  name: VertexGraphsSection
+  nameWithType: VertexGraphsSection
+  fullName: LlamaLogic.Architecture.VertexGraphsSection
+- uid: LlamaLogic.Architecture.PondsSection
+  commentId: T:LlamaLogic.Architecture.PondsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PondsSection.html
+  name: PondsSection
+  nameWithType: PondsSection
+  fullName: LlamaLogic.Architecture.PondsSection
+- uid: LlamaLogic.Architecture.ObjectTileBoundsSection
+  commentId: T:LlamaLogic.Architecture.ObjectTileBoundsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ObjectTileBoundsSection.html
+  name: ObjectTileBoundsSection
+  nameWithType: ObjectTileBoundsSection
+  fullName: LlamaLogic.Architecture.ObjectTileBoundsSection
+- uid: LlamaLogic.Architecture.WallBlocksSection
+  commentId: T:LlamaLogic.Architecture.WallBlocksSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlocksSection.html
+  name: WallBlocksSection
+  nameWithType: WallBlocksSection
+  fullName: LlamaLogic.Architecture.WallBlocksSection
+- uid: LlamaLogic.Architecture.PlexesSection
+  commentId: T:LlamaLogic.Architecture.PlexesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PlexesSection.html
+  name: PlexesSection
+  nameWithType: PlexesSection
+  fullName: LlamaLogic.Architecture.PlexesSection
+- uid: LlamaLogic.Architecture.LegacyWallGraphSection
+  commentId: T:LlamaLogic.Architecture.LegacyWallGraphSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LegacyWallGraphSection.html
+  name: LegacyWallGraphSection
+  nameWithType: LegacyWallGraphSection
+  fullName: LlamaLogic.Architecture.LegacyWallGraphSection
+- uid: LlamaLogic.Architecture.PendingPlacementSection
+  commentId: T:LlamaLogic.Architecture.PendingPlacementSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.PendingPlacementSection.html
+  name: PendingPlacementSection
+  nameWithType: PendingPlacementSection
+  fullName: LlamaLogic.Architecture.PendingPlacementSection
+- uid: LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_BlueprintInstance
+  name: BlueprintInstance
+  nameWithType: LotInfoSection.BlueprintInstance
+  fullName: LlamaLogic.Architecture.LotInfoSection.BlueprintInstance
+- uid: LlamaLogic.Architecture.RevisionSection
+  commentId: T:LlamaLogic.Architecture.RevisionSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.RevisionSection.html
+  name: RevisionSection
+  nameWithType: RevisionSection
+  fullName: LlamaLogic.Architecture.RevisionSection
+- uid: LlamaLogic.Architecture.RoofsSection
+  commentId: T:LlamaLogic.Architecture.RoofsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.RoofsSection.html
+  name: RoofsSection
+  nameWithType: RoofsSection
+  fullName: LlamaLogic.Architecture.RoofsSection
+- uid: LlamaLogic.Architecture.LotObjectsSection
+  commentId: T:LlamaLogic.Architecture.LotObjectsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.LotObjectsSection.html
+  name: LotObjectsSection
+  nameWithType: LotObjectsSection
+  fullName: LlamaLogic.Architecture.LotObjectsSection
+- uid: LlamaLogic.Architecture.UnknownC9106475Section
+  commentId: T:LlamaLogic.Architecture.UnknownC9106475Section
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.UnknownC9106475Section.html
+  name: UnknownC9106475Section
+  nameWithType: UnknownC9106475Section
+  fullName: LlamaLogic.Architecture.UnknownC9106475Section
+- uid: LlamaLogic.Architecture.TerrainHeightsSection
+  commentId: T:LlamaLogic.Architecture.TerrainHeightsSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.TerrainHeightsSection.html
+  name: TerrainHeightsSection
+  nameWithType: TerrainHeightsSection
+  fullName: LlamaLogic.Architecture.TerrainHeightsSection
+- uid: LlamaLogic.Architecture.VenueSection
+  commentId: T:LlamaLogic.Architecture.VenueSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.VenueSection.html
+  name: VenueSection
+  nameWithType: VenueSection
+  fullName: LlamaLogic.Architecture.VenueSection
+- uid: LlamaLogic.Architecture.FloorFeaturesSection
+  commentId: T:LlamaLogic.Architecture.FloorFeaturesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorFeaturesSection.html
+  name: FloorFeaturesSection
+  nameWithType: FloorFeaturesSection
+  fullName: LlamaLogic.Architecture.FloorFeaturesSection
+- uid: LlamaLogic.Architecture.FloorKeysSection
+  commentId: T:LlamaLogic.Architecture.FloorKeysSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorKeysSection.html
+  name: FloorKeysSection
+  nameWithType: FloorKeysSection
+  fullName: LlamaLogic.Architecture.FloorKeysSection
+- uid: LlamaLogic.Architecture.ModularPiecesSection
+  commentId: T:LlamaLogic.Architecture.ModularPiecesSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.ModularPiecesSection.html
+  name: ModularPiecesSection
+  nameWithType: ModularPiecesSection
+  fullName: LlamaLogic.Architecture.ModularPiecesSection

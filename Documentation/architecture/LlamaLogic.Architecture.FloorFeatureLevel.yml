@@ -1,0 +1,578 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.FloorFeatureLevel
+  commentId: T:LlamaLogic.Architecture.FloorFeatureLevel
+  id: FloorFeatureLevel
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.FloorFeatureLevel.#ctor(System.Int32,System.Int32)
+  - LlamaLogic.Architecture.FloorFeatureLevel.Item(System.Int32,System.Int32)
+  - LlamaLogic.Architecture.FloorFeatureLevel.Level
+  - LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  - LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  langs:
+  - csharp
+  - vb
+  name: FloorFeatureLevel
+  nameWithType: FloorFeatureLevel
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorFeatureLevel
+    path: ../LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Represents the values of a <xref href="LlamaLogic.Architecture.FloorFeatureLayer" data-throw-if-not-resolved="false"></xref> on one level
+  remarks: >-
+    The values are stored as <xref href="LlamaLogic.Architecture.FloorFeatureLevel.SizeZ" data-throw-if-not-resolved="false"></xref> rows of <xref href="LlamaLogic.Architecture.FloorFeatureLevel.SizeX" data-throw-if-not-resolved="false"></xref> bytes, unlike the floor grids.
+
+    The game's <code>get_floor_feature</code> returns a value divided by 255.
+  example: []
+  syntax:
+    content: public sealed class FloorFeatureLevel
+    content.vb: Public NotInheritable Class FloorFeatureLevel
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.#ctor(System.Int32,System.Int32)
+  commentId: M:LlamaLogic.Architecture.FloorFeatureLevel.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: LlamaLogic.Architecture.FloorFeatureLevel
+  langs:
+  - csharp
+  - vb
+  name: FloorFeatureLevel(int, int)
+  nameWithType: FloorFeatureLevel.FloorFeatureLevel(int, int)
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.FloorFeatureLevel(int, int)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+    startLine: 17
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Initializes a new instance of the <xref href="LlamaLogic.Architecture.FloorFeatureLevel" data-throw-if-not-resolved="false"></xref> class with every value 0
+  example: []
+  syntax:
+    content: public FloorFeatureLevel(int sizeX, int sizeZ)
+    parameters:
+    - id: sizeX
+      type: System.Int32
+      description: The number of tiles along the lot's local X axis, or 1 for a layer of type 2
+    - id: sizeZ
+      type: System.Int32
+      description: The number of tiles along the lot's local Z axis, or 1 for a layer of type 2
+    content.vb: Public Sub New(sizeX As Integer, sizeZ As Integer)
+  overload: LlamaLogic.Architecture.FloorFeatureLevel.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: <code class="paramref">sizeX</code> or <code class="paramref">sizeZ</code> is not 0 through 255
+  nameWithType.vb: FloorFeatureLevel.New(Integer, Integer)
+  fullName.vb: LlamaLogic.Architecture.FloorFeatureLevel.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.Item(System.Int32,System.Int32)
+  commentId: P:LlamaLogic.Architecture.FloorFeatureLevel.Item(System.Int32,System.Int32)
+  id: Item(System.Int32,System.Int32)
+  parent: LlamaLogic.Architecture.FloorFeatureLevel
+  langs:
+  - csharp
+  - vb
+  name: this[int, int]
+  nameWithType: FloorFeatureLevel.this[int, int]
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.this[int, int]
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: this[]
+    path: ../LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+    startLine: 41
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the value of a tile
+  example: []
+  syntax:
+    content: public byte this[int x, int z] { get; set; }
+    parameters:
+    - id: x
+      type: System.Int32
+      description: The tile's index along the lot's local X axis, or 0 for a layer of type 2
+    - id: z
+      type: System.Int32
+      description: The tile's index along the lot's local Z axis, or 0 for a layer of type 2
+    return:
+      type: System.Byte
+    content.vb: Public Default Property this[](x As Integer, z As Integer) As Byte
+  overload: LlamaLogic.Architecture.FloorFeatureLevel.Item*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: A coordinate is outside the level
+  nameWithType.vb: FloorFeatureLevel.this[](Integer, Integer)
+  fullName.vb: LlamaLogic.Architecture.FloorFeatureLevel.this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.Level
+  commentId: P:LlamaLogic.Architecture.FloorFeatureLevel.Level
+  id: Level
+  parent: LlamaLogic.Architecture.FloorFeatureLevel
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: FloorFeatureLevel.Level
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.Level
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Level
+    path: ../LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the level, which cannot be −128
+  remarks: >-
+    −4 through 4 in the lots examined, from <xref href="LlamaLogic.Architecture.LotInfoSection.LowestLevel" data-throw-if-not-resolved="false"></xref> through one above <xref href="LlamaLogic.Architecture.LotInfoSection.HighestLevel" data-throw-if-not-resolved="false"></xref>.
+
+    The section ends each layer's list of levels with −128.
+  example: []
+  syntax:
+    content: public sbyte Level { get; set; }
+    parameters: []
+    return:
+      type: System.SByte
+    content.vb: Public Property Level As SByte
+  overload: LlamaLogic.Architecture.FloorFeatureLevel.Level*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The level is −128
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  commentId: P:LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  id: SizeX
+  parent: LlamaLogic.Architecture.FloorFeatureLevel
+  langs:
+  - csharp
+  - vb
+  name: SizeX
+  nameWithType: FloorFeatureLevel.SizeX
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SizeX
+    path: ../LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+    startLine: 69
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of values along the lot's local X axis
+  example: []
+  syntax:
+    content: public int SizeX { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SizeX As Integer
+  overload: LlamaLogic.Architecture.FloorFeatureLevel.SizeX*
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  commentId: P:LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  id: SizeZ
+  parent: LlamaLogic.Architecture.FloorFeatureLevel
+  langs:
+  - csharp
+  - vb
+  name: SizeZ
+  nameWithType: FloorFeatureLevel.SizeZ
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SizeZ
+    path: ../LlamaLogic.Architecture/Sections/FloorFeatureLevel.cs
+    startLine: 74
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets the number of values along the lot's local Z axis
+  example: []
+  syntax:
+    content: public int SizeZ { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SizeZ As Integer
+  overload: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ*
+references:
+- uid: LlamaLogic.Architecture.FloorFeatureLayer
+  commentId: T:LlamaLogic.Architecture.FloorFeatureLayer
+  href: LlamaLogic.Architecture.FloorFeatureLayer.html
+  name: FloorFeatureLayer
+  nameWithType: FloorFeatureLayer
+  fullName: LlamaLogic.Architecture.FloorFeatureLayer
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  commentId: P:LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel_SizeZ
+  name: SizeZ
+  nameWithType: FloorFeatureLevel.SizeZ
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  commentId: P:LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel_SizeX
+  name: SizeX
+  nameWithType: FloorFeatureLevel.SizeX
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.FloorFeatureLevel
+  commentId: T:LlamaLogic.Architecture.FloorFeatureLevel
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html
+  name: FloorFeatureLevel
+  nameWithType: FloorFeatureLevel
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.#ctor*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeatureLevel.#ctor
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel__ctor_System_Int32_System_Int32_
+  name: FloorFeatureLevel
+  nameWithType: FloorFeatureLevel.FloorFeatureLevel
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.FloorFeatureLevel
+  nameWithType.vb: FloorFeatureLevel.New
+  fullName.vb: LlamaLogic.Architecture.FloorFeatureLevel.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.Item*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeatureLevel.Item
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel_Item_System_Int32_System_Int32_
+  name: this
+  nameWithType: FloorFeatureLevel.this
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.this
+  nameWithType.vb: FloorFeatureLevel.this[]
+  fullName.vb: LlamaLogic.Architecture.FloorFeatureLevel.this[]
+  name.vb: this[]
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Architecture.LotInfoSection.LowestLevel
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.LowestLevel
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_LowestLevel
+  name: LowestLevel
+  nameWithType: LotInfoSection.LowestLevel
+  fullName: LlamaLogic.Architecture.LotInfoSection.LowestLevel
+- uid: LlamaLogic.Architecture.LotInfoSection.HighestLevel
+  commentId: P:LlamaLogic.Architecture.LotInfoSection.HighestLevel
+  href: LlamaLogic.Architecture.LotInfoSection.html#LlamaLogic_Architecture_LotInfoSection_HighestLevel
+  name: HighestLevel
+  nameWithType: LotInfoSection.HighestLevel
+  fullName: LlamaLogic.Architecture.LotInfoSection.HighestLevel
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.Level*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeatureLevel.Level
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel_Level
+  name: Level
+  nameWithType: FloorFeatureLevel.Level
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.Level
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.SizeX*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel_SizeX
+  name: SizeX
+  nameWithType: FloorFeatureLevel.SizeX
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.SizeX
+- uid: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ*
+  commentId: Overload:LlamaLogic.Architecture.FloorFeatureLevel.SizeZ
+  href: LlamaLogic.Architecture.FloorFeatureLevel.html#LlamaLogic_Architecture_FloorFeatureLevel_SizeZ
+  name: SizeZ
+  nameWithType: FloorFeatureLevel.SizeZ
+  fullName: LlamaLogic.Architecture.FloorFeatureLevel.SizeZ

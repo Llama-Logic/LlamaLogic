@@ -1,0 +1,225 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind
+  commentId: T:LlamaLogic.Architecture.WallBlockSegmentKind
+  id: WallBlockSegmentKind
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+  - LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  - LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  - LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  langs:
+  - csharp
+  - vb
+  name: WallBlockSegmentKind
+  nameWithType: WallBlockSegmentKind
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WallBlockSegmentKind
+    path: ../LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Specifies the kind of a <xref href="LlamaLogic.Architecture.WallBlockSegment" data-throw-if-not-resolved="false"></xref>
+  remarks: >-
+    The game treats a block as enclosed when none of the segments of its outer loop is <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.Open" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece" data-throw-if-not-resolved="false"></xref>, emits CantPlacePoolUnderWall for a <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.Wall" data-throw-if-not-resolved="false"></xref> segment, and requires <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece" data-throw-if-not-resolved="false"></xref> or <xref href="LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall" data-throw-if-not-resolved="false"></xref> on a diagonal segment flanked by 45° segments of the same kind, otherwise InvalidBlockModularPieceConfiguration.
+
+    That such segments form rounded corners is a hypothesis.
+
+    Before block version 27 the game maps the stored values 0 through 3 to 0, 1, 2 and 1 with a table.
+  example: []
+  syntax:
+    content: >-
+      [SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification = "The game stores the value as a byte.")]
+
+      public enum WallBlockSegmentKind : byte
+    content.vb: >-
+      <SuppressMessage("Design", "CA1028: Enum Storage should be Int32", Justification:="The game stores the value as a byte.")>
+
+      Public Enum WallBlockSegmentKind As Byte
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
+    ctor: System.Diagnostics.CodeAnalysis.SuppressMessageAttribute.#ctor(System.String,System.String)
+    arguments:
+    - type: System.String
+      value: Design
+    - type: System.String
+      value: 'CA1028: Enum Storage should be Int32'
+    namedArguments:
+    - name: Justification
+      type: System.String
+      value: The game stores the value as a byte.
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  id: Wall
+  parent: LlamaLogic.Architecture.WallBlockSegmentKind
+  langs:
+  - csharp
+  - vb
+  name: Wall
+  nameWithType: WallBlockSegmentKind.Wall
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Wall
+    path: ../LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+    startLine: 17
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A segment with a wall
+  example: []
+  syntax:
+    content: Wall = 0
+    return:
+      type: LlamaLogic.Architecture.WallBlockSegmentKind
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  id: Open
+  parent: LlamaLogic.Architecture.WallBlockSegmentKind
+  langs:
+  - csharp
+  - vb
+  name: Open
+  nameWithType: WallBlockSegmentKind.Open
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Open
+    path: ../LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+    startLine: 22
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A segment without a wall
+  example: []
+  syntax:
+    content: Open = 1
+    return:
+      type: LlamaLogic.Architecture.WallBlockSegmentKind
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+  id: ModularPiece
+  parent: LlamaLogic.Architecture.WallBlockSegmentKind
+  langs:
+  - csharp
+  - vb
+  name: ModularPiece
+  nameWithType: WallBlockSegmentKind.ModularPiece
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModularPiece
+    path: ../LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+    startLine: 27
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A segment of a modular piece without a wall
+  example: []
+  syntax:
+    content: ModularPiece = 2
+    return:
+      type: LlamaLogic.Architecture.WallBlockSegmentKind
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  id: ModularPieceWithWall
+  parent: LlamaLogic.Architecture.WallBlockSegmentKind
+  langs:
+  - csharp
+  - vb
+  name: ModularPieceWithWall
+  nameWithType: WallBlockSegmentKind.ModularPieceWithWall
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModularPieceWithWall
+    path: ../LlamaLogic.Architecture/Sections/WallBlockSegmentKind.cs
+    startLine: 32
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: A segment of a modular piece with a wall
+  example: []
+  syntax:
+    content: ModularPieceWithWall = 3
+    return:
+      type: LlamaLogic.Architecture.WallBlockSegmentKind
+references:
+- uid: LlamaLogic.Architecture.WallBlockSegment
+  commentId: T:LlamaLogic.Architecture.WallBlockSegment
+  href: LlamaLogic.Architecture.WallBlockSegment.html
+  name: WallBlockSegment
+  nameWithType: WallBlockSegment
+  fullName: LlamaLogic.Architecture.WallBlockSegment
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Open
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_Open
+  name: Open
+  nameWithType: WallBlockSegmentKind.Open
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Open
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_ModularPiece
+  name: ModularPiece
+  nameWithType: WallBlockSegmentKind.ModularPiece
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPiece
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_Wall
+  name: Wall
+  nameWithType: WallBlockSegmentKind.Wall
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.Wall
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  commentId: F:LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html#LlamaLogic_Architecture_WallBlockSegmentKind_ModularPieceWithWall
+  name: ModularPieceWithWall
+  nameWithType: WallBlockSegmentKind.ModularPieceWithWall
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind.ModularPieceWithWall
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: LlamaLogic.Architecture.WallBlockSegmentKind
+  commentId: T:LlamaLogic.Architecture.WallBlockSegmentKind
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.WallBlockSegmentKind.html
+  name: WallBlockSegmentKind
+  nameWithType: WallBlockSegmentKind
+  fullName: LlamaLogic.Architecture.WallBlockSegmentKind

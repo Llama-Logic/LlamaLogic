@@ -1,0 +1,452 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Architecture.FloorKeyEntry
+  commentId: T:LlamaLogic.Architecture.FloorKeyEntry
+  id: FloorKeyEntry
+  parent: LlamaLogic.Architecture
+  children:
+  - LlamaLogic.Architecture.FloorKeyEntry.Id
+  - LlamaLogic.Architecture.FloorKeyEntry.Key
+  - LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount
+  langs:
+  - csharp
+  - vb
+  name: FloorKeyEntry
+  nameWithType: FloorKeyEntry
+  fullName: LlamaLogic.Architecture.FloorKeyEntry
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FloorKeyEntry
+    path: ../LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: 'Represents an entry of the <xref href="LlamaLogic.Architecture.FloorKeysSection" data-throw-if-not-resolved="false"></xref>: a floor pattern key and the id the floor id grids use for it'
+  example: []
+  syntax:
+    content: public sealed class FloorKeyEntry
+    content.vb: Public NotInheritable Class FloorKeyEntry
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Architecture.FloorKeyEntry.Id
+  commentId: P:LlamaLogic.Architecture.FloorKeyEntry.Id
+  id: Id
+  parent: LlamaLogic.Architecture.FloorKeyEntry
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: FloorKeyEntry.Id
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.Id
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Id
+    path: ../LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the id the <xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref> grids store for <xref href="LlamaLogic.Architecture.FloorKeyEntry.Key" data-throw-if-not-resolved="false"></xref>
+  remarks: Ids are unique within the section and never 0; the game allocates the smallest unused id of 1 or more.
+  example: []
+  syntax:
+    content: public uint Id { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property Id As UInteger
+  overload: LlamaLogic.Architecture.FloorKeyEntry.Id*
+- uid: LlamaLogic.Architecture.FloorKeyEntry.Key
+  commentId: P:LlamaLogic.Architecture.FloorKeyEntry.Key
+  id: Key
+  parent: LlamaLogic.Architecture.FloorKeyEntry
+  langs:
+  - csharp
+  - vb
+  name: Key
+  nameWithType: FloorKeyEntry.Key
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.Key
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Key
+    path: ../LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the key, a CTProductFloorPattern (0xB4F762C9)
+  remarks: It is the null key in 4 of the entries examined.
+  example: []
+  syntax:
+    content: public ResourceKey Key { get; set; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property Key As ResourceKey
+  overload: LlamaLogic.Architecture.FloorKeyEntry.Key*
+- uid: LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount
+  commentId: P:LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount
+  id: ReferenceCount
+  parent: LlamaLogic.Architecture.FloorKeyEntry
+  langs:
+  - csharp
+  - vb
+  name: ReferenceCount
+  nameWithType: FloorKeyEntry.ReferenceCount
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ReferenceCount
+    path: ../LlamaLogic.Architecture/Sections/FloorKeyEntry.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.Architecture
+  namespace: LlamaLogic.Architecture
+  summary: Gets/sets the number of references to the entry, counted in tile quarters
+  remarks: >-
+    The game decrements it as quarters stop using the id and frees the entry at 0; it is never 0 in the lots examined.
+
+    It equals the number of quarters holding <xref href="LlamaLogic.Architecture.FloorKeyEntry.Id" data-throw-if-not-resolved="false"></xref> across the seven <xref href="LlamaLogic.Architecture.FloorIdGridSection" data-throw-if-not-resolved="false"></xref> grids in 18,597 of the 18,773 entries examined in lots whose grids can be read, and is larger in the rest, which suggests other sections also hold references.
+
+    This library does not recompute it.
+  example: []
+  syntax:
+    content: public uint ReferenceCount { get; set; }
+    parameters: []
+    return:
+      type: System.UInt32
+    content.vb: Public Property ReferenceCount As UInteger
+  overload: LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount*
+references:
+- uid: LlamaLogic.Architecture.FloorKeysSection
+  commentId: T:LlamaLogic.Architecture.FloorKeysSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorKeysSection.html
+  name: FloorKeysSection
+  nameWithType: FloorKeysSection
+  fullName: LlamaLogic.Architecture.FloorKeysSection
+- uid: LlamaLogic.Architecture
+  commentId: N:LlamaLogic.Architecture
+  name: LlamaLogic.Architecture
+  nameWithType: LlamaLogic.Architecture
+  fullName: LlamaLogic.Architecture
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Architecture
+    name: Architecture
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Architecture.FloorIdGridSection
+  commentId: T:LlamaLogic.Architecture.FloorIdGridSection
+  parent: LlamaLogic.Architecture
+  href: LlamaLogic.Architecture.FloorIdGridSection.html
+  name: FloorIdGridSection
+  nameWithType: FloorIdGridSection
+  fullName: LlamaLogic.Architecture.FloorIdGridSection
+- uid: LlamaLogic.Architecture.FloorKeyEntry.Key
+  commentId: P:LlamaLogic.Architecture.FloorKeyEntry.Key
+  href: LlamaLogic.Architecture.FloorKeyEntry.html#LlamaLogic_Architecture_FloorKeyEntry_Key
+  name: Key
+  nameWithType: FloorKeyEntry.Key
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.Key
+- uid: LlamaLogic.Architecture.FloorKeyEntry.Id*
+  commentId: Overload:LlamaLogic.Architecture.FloorKeyEntry.Id
+  href: LlamaLogic.Architecture.FloorKeyEntry.html#LlamaLogic_Architecture_FloorKeyEntry_Id
+  name: Id
+  nameWithType: FloorKeyEntry.Id
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.Id
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: LlamaLogic.Architecture.FloorKeyEntry.Key*
+  commentId: Overload:LlamaLogic.Architecture.FloorKeyEntry.Key
+  href: LlamaLogic.Architecture.FloorKeyEntry.html#LlamaLogic_Architecture_FloorKeyEntry_Key
+  name: Key
+  nameWithType: FloorKeyEntry.Key
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.Key
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.Architecture.FloorKeyEntry.Id
+  commentId: P:LlamaLogic.Architecture.FloorKeyEntry.Id
+  href: LlamaLogic.Architecture.FloorKeyEntry.html#LlamaLogic_Architecture_FloorKeyEntry_Id
+  name: Id
+  nameWithType: FloorKeyEntry.Id
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.Id
+- uid: LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount*
+  commentId: Overload:LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount
+  href: LlamaLogic.Architecture.FloorKeyEntry.html#LlamaLogic_Architecture_FloorKeyEntry_ReferenceCount
+  name: ReferenceCount
+  nameWithType: FloorKeyEntry.ReferenceCount
+  fullName: LlamaLogic.Architecture.FloorKeyEntry.ReferenceCount
