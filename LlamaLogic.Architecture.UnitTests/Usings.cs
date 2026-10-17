@@ -1,0 +1,11 @@
+global using LlamaLogic.Architecture;
+global using LlamaLogic.Packages;
+global using LlamaLogic.Packages.Formats;
+global using LotObject = EA.Sims4.Network.LotObject;
+global using LotObjectList = EA.Sims4.Network.LotObjectList;
+global using System;
+global using System.Buffers.Binary;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Text;

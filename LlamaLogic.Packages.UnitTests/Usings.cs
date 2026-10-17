@@ -4,6 +4,7 @@ global using LlamaLogic.Packages.Models;
 global using LlamaLogic.Packages.Models.CombinedTuning;
 global using LlamaLogic.Packages.Models.ModFileManifest;
 global using LlamaLogic.Packages.Models.SimData;
+global using LlamaLogic.Packages.Models.World;
 global using Microsoft.Win32.SafeHandles;
 global using SixLabors.ImageSharp;
 global using SixLabors.ImageSharp.PixelFormats;

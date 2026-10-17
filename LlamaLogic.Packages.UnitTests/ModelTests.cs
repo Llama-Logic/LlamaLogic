@@ -53,6 +53,9 @@ public class ModelTests :
     [DataRow(ResourceType.CombinedTuning, typeof(CombinedTuningModel))]
     [DataRow(ResourceType.SimData, typeof(SimDataModel))]
     [DataRow(ResourceType.StringTable, typeof(StringTableModel))]
+    [DataRow(ResourceType.WorldData, typeof(WorldDataModel))]
+    [DataRow(ResourceType.WorldLotArchitecture, typeof(WorldLotArchitectureModel))]
+    [DataRow(ResourceType.WorldObjectData, typeof(WorldObjectDataModel))]
     public void GetModelTypeGivesTheModelForTheType(ResourceType type, Type modelType) =>
         Assert.AreEqual(modelType, Model.GetModelType(type));
 

@@ -20,6 +20,9 @@ public abstract class Model :
             ResourceType combinedTuningResourceType when CombinedTuningModel.SupportedTypes.Contains(combinedTuningResourceType) => CombinedTuningModel.Decode(data),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.Decode(data),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.Decode(data),
+            ResourceType worldDataResourceType when WorldDataModel.SupportedTypes.Contains(worldDataResourceType) => WorldDataModel.Decode(data),
+            ResourceType worldLotArchitectureResourceType when WorldLotArchitectureModel.SupportedTypes.Contains(worldLotArchitectureResourceType) => WorldLotArchitectureModel.Decode(data),
+            ResourceType worldObjectDataResourceType when WorldObjectDataModel.SupportedTypes.Contains(worldObjectDataResourceType) => WorldObjectDataModel.Decode(data),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")
         };
 
@@ -35,6 +38,9 @@ public abstract class Model :
             ResourceType combinedTuningResourceType when CombinedTuningModel.SupportedTypes.Contains(combinedTuningResourceType) => typeof(CombinedTuningModel),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => typeof(SimDataModel),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => typeof(StringTableModel),
+            ResourceType worldDataResourceType when WorldDataModel.SupportedTypes.Contains(worldDataResourceType) => typeof(WorldDataModel),
+            ResourceType worldLotArchitectureResourceType when WorldLotArchitectureModel.SupportedTypes.Contains(worldLotArchitectureResourceType) => typeof(WorldLotArchitectureModel),
+            ResourceType worldObjectDataResourceType when WorldObjectDataModel.SupportedTypes.Contains(worldObjectDataResourceType) => typeof(WorldObjectDataModel),
             _ => null
         };
 

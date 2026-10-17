@@ -1378,6 +1378,42 @@ public sealed class DataBasePackedFile :
         await Ts4TranslucentJointPhotographicExpertsGroupImage.ConvertTranslucentJpegToPngAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
 
     /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="WorldDataModel"/>
+    /// </summary>
+    public WorldDataModel GetWorldData(ResourceKey key, bool force = false) =>
+        GetModel<WorldDataModel>(key, force);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="WorldDataModel"/> asynchronously
+    /// </summary>
+    public Task<WorldDataModel> GetWorldDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
+        GetModelAsync<WorldDataModel>(key, force, cancellationToken);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="WorldLotArchitectureModel"/>
+    /// </summary>
+    public WorldLotArchitectureModel GetWorldLotArchitecture(ResourceKey key, bool force = false) =>
+        GetModel<WorldLotArchitectureModel>(key, force);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="WorldLotArchitectureModel"/> asynchronously
+    /// </summary>
+    public Task<WorldLotArchitectureModel> GetWorldLotArchitectureAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
+        GetModelAsync<WorldLotArchitectureModel>(key, force, cancellationToken);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="WorldObjectDataModel"/>
+    /// </summary>
+    public WorldObjectDataModel GetWorldObjectData(ResourceKey key, bool force = false) =>
+        GetModel<WorldObjectDataModel>(key, force);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="WorldObjectDataModel"/> asynchronously
+    /// </summary>
+    public Task<WorldObjectDataModel> GetWorldObjectDataAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
+        GetModelAsync<WorldObjectDataModel>(key, force, cancellationToken);
+
+    /// <summary>
     /// Gets the content of a resource with the specified <paramref name="key"/> as an <see cref="XDocument"/>
     /// </summary>
     /// <param name="key">The key of the resource</param>

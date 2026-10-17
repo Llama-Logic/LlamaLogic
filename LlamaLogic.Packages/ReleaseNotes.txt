@@ -1,1 +1,4 @@
-SimDataModel.Unused is now SimDataModel.Pack, because that field of the header is the pack to which the resource belongs (the value of the game's sims4.common.Pack enumeration, such as 0 for the base game and 3 for EP01), not an unused field.
+Added WorldDataModel, WorldLotArchitectureModel and WorldObjectDataModel for the WorldData, WorldLotArchitecture and WorldObjectData resources of world files; each round-trips byte for byte every such resource the installed game ships.
+Added the RecordBundle format (in LlamaLogic.Packages.Formats), the LDNB record bundle in which the game stores lot architecture in world files, save games and tray blueprints.
+Added WorldLotArchitectureModel.GetKey and WorldLotArchitectureModel.GetLotTemplateInstance, which give the keys the game derives from a lot template id, and WorldDataModel.GetKey, which gives the key the game derives from a world file name.
+Added DataBasePackedFile.GetWorldData, GetWorldLotArchitecture and GetWorldObjectData, along with their asynchronous counterparts, and Model.Decode and Model.GetModelType now support the three new resource types.

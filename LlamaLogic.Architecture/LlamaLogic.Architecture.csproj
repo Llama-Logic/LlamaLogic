@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\Common\LibraryProject.props" />
+
+    <PropertyGroup>
+        <Product>LlamaLogic.Architecture</Product>
+        <Version>1.0.0</Version>
+        <Description>Read and write the lot architecture of Maxis' The Sims 4: walls, floors, roofs, stairs, terrain and the rest of a lot's build, in world files, save games and tray blueprints.</Description>
+        <PackageIcon>NuGet.png</PackageIcon>
+        <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="NuGet.png" Pack="True" PackagePath="" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LlamaLogic.Packages\LlamaLogic.Packages.csproj" />
+        <ProjectReference Include="..\LlamaLogic.Protobuf\LlamaLogic.Protobuf.csproj" />
+    </ItemGroup>
+
+</Project>

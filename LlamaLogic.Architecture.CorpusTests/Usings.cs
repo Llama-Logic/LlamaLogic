@@ -1,0 +1,10 @@
+global using LlamaLogic.Architecture;
+global using LlamaLogic.Packages;
+global using LlamaLogic.Packages.Formats;
+global using LlamaLogic.Packages.Models.World;
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Reflection;
+global using System.Text;
