@@ -17,6 +17,7 @@ public abstract class Model :
     public static Model Decode(ResourceType type, ReadOnlyMemory<byte> data) =>
         type switch
         {
+            ResourceType animationStateMachineResourceType when AnimationStateMachineModel.SupportedTypes.Contains(animationStateMachineResourceType) => AnimationStateMachineModel.Decode(data),
             ResourceType combinedTuningResourceType when CombinedTuningModel.SupportedTypes.Contains(combinedTuningResourceType) => CombinedTuningModel.Decode(data),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.Decode(data),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.Decode(data),
@@ -35,6 +36,7 @@ public abstract class Model :
     public static Type? GetModelType(ResourceType type) =>
         type switch
         {
+            ResourceType animationStateMachineResourceType when AnimationStateMachineModel.SupportedTypes.Contains(animationStateMachineResourceType) => typeof(AnimationStateMachineModel),
             ResourceType combinedTuningResourceType when CombinedTuningModel.SupportedTypes.Contains(combinedTuningResourceType) => typeof(CombinedTuningModel),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => typeof(SimDataModel),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => typeof(StringTableModel),
@@ -58,6 +60,7 @@ public abstract class Model :
     public static string? GetName(ResourceType type, Stream stream) =>
         type switch
         {
+            ResourceType animationStateMachineResourceType when AnimationStateMachineModel.SupportedTypes.Contains(animationStateMachineResourceType) => AnimationStateMachineModel.GetName(stream),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.GetName(stream),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.GetName(stream),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")
@@ -69,6 +72,7 @@ public abstract class Model :
     public static Task<string?> GetNameAsync(ResourceType type, Stream stream, CancellationToken cancellationToken = default) =>
         type switch
         {
+            ResourceType animationStateMachineResourceType when AnimationStateMachineModel.SupportedTypes.Contains(animationStateMachineResourceType) => AnimationStateMachineModel.GetNameAsync(stream, cancellationToken),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.GetNameAsync(stream, cancellationToken),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.GetNameAsync(stream),
             _ => throw new NotSupportedException($"Resource type {type} is not supported")

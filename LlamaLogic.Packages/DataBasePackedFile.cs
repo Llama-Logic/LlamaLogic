@@ -1034,6 +1034,18 @@ public sealed class DataBasePackedFile :
     }
 
     /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as an <see cref="AnimationStateMachineModel"/>
+    /// </summary>
+    public AnimationStateMachineModel GetAnimationStateMachine(ResourceKey key, bool force = false) =>
+        GetModel<AnimationStateMachineModel>(key, force);
+
+    /// <summary>
+    /// Gets the content of a resource with the specified <paramref name="key"/> as an <see cref="AnimationStateMachineModel"/> asynchronously
+    /// </summary>
+    public Task<AnimationStateMachineModel> GetAnimationStateMachineAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default) =>
+        GetModelAsync<AnimationStateMachineModel>(key, force, cancellationToken);
+
+    /// <summary>
     /// Gets the content of a resource with the specified <paramref name="key"/> as a <see cref="CombinedTuningModel"/>
     /// </summary>
     public CombinedTuningModel GetCombinedTuning(ResourceKey key, bool force = false) =>
