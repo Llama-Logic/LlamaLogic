@@ -29,6 +29,8 @@ items:
   - LlamaLogic.Packages.DataBasePackedFile.Get(LlamaLogic.Packages.ResourceKey,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.GetAllSizes(System.Predicate{LlamaLogic.Packages.ResourceKey})
   - LlamaLogic.Packages.DataBasePackedFile.GetAllSizesAsync(System.Predicate{LlamaLogic.Packages.ResourceKey},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  - LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
   - LlamaLogic.Packages.DataBasePackedFile.GetCombinedTuning(LlamaLogic.Packages.ResourceKey,System.Boolean)
   - LlamaLogic.Packages.DataBasePackedFile.GetCombinedTuningAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
@@ -1640,6 +1642,84 @@ items:
   nameWithType.vb: DataBasePackedFile.GetAsync(ResourceKey, Boolean, CancellationToken)
   fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
   name.vb: GetAsync(ResourceKey, Boolean, CancellationToken)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  id: GetAnimationStateMachine(LlamaLogic.Packages.ResourceKey,System.Boolean)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetAnimationStateMachine(ResourceKey, bool)
+  nameWithType: DataBasePackedFile.GetAnimationStateMachine(ResourceKey, bool)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine(LlamaLogic.Packages.ResourceKey, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetAnimationStateMachine
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1038
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as an <xref href="LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public AnimationStateMachineModel GetAnimationStateMachine(ResourceKey key, bool force = false)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    return:
+      type: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel
+    content.vb: Public Function GetAnimationStateMachine(key As ResourceKey, force As Boolean = False) As AnimationStateMachineModel
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine*
+  nameWithType.vb: DataBasePackedFile.GetAnimationStateMachine(ResourceKey, Boolean)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine(LlamaLogic.Packages.ResourceKey, Boolean)
+  name.vb: GetAnimationStateMachine(ResourceKey, Boolean)
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  id: GetAnimationStateMachineAsync(LlamaLogic.Packages.ResourceKey,System.Boolean,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.DataBasePackedFile
+  langs:
+  - csharp
+  - vb
+  name: GetAnimationStateMachineAsync(ResourceKey, bool, CancellationToken)
+  nameWithType: DataBasePackedFile.GetAnimationStateMachineAsync(ResourceKey, bool, CancellationToken)
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync(LlamaLogic.Packages.ResourceKey, bool, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/DataBasePackedFile.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetAnimationStateMachineAsync
+    path: ../LlamaLogic.Packages/DataBasePackedFile.cs
+    startLine: 1044
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages
+  summary: Gets the content of a resource with the specified <code class="paramref">key</code> as an <xref href="LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel" data-throw-if-not-resolved="false"></xref> asynchronously
+  example: []
+  syntax:
+    content: public Task<AnimationStateMachineModel> GetAnimationStateMachineAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
+    parameters:
+    - id: key
+      type: LlamaLogic.Packages.ResourceKey
+    - id: force
+      type: System.Boolean
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel}
+    content.vb: Public Function GetAnimationStateMachineAsync(key As ResourceKey, force As Boolean = False, cancellationToken As CancellationToken = Nothing) As Task(Of AnimationStateMachineModel)
+  overload: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync*
+  nameWithType.vb: DataBasePackedFile.GetAnimationStateMachineAsync(ResourceKey, Boolean, CancellationToken)
+  fullName.vb: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync(LlamaLogic.Packages.ResourceKey, Boolean, System.Threading.CancellationToken)
+  name.vb: GetAnimationStateMachineAsync(ResourceKey, Boolean, CancellationToken)
 - uid: LlamaLogic.Packages.DataBasePackedFile.GetCombinedTuning(LlamaLogic.Packages.ResourceKey,System.Boolean)
   commentId: M:LlamaLogic.Packages.DataBasePackedFile.GetCombinedTuning(LlamaLogic.Packages.ResourceKey,System.Boolean)
   id: GetCombinedTuning(LlamaLogic.Packages.ResourceKey,System.Boolean)
@@ -1658,7 +1738,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCombinedTuning
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1038
+    startLine: 1050
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1696,7 +1776,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCombinedTuningAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1044
+    startLine: 1056
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1736,7 +1816,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCount
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1050
+    startLine: 1062
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1766,7 +1846,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetCountAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1060
+    startLine: 1072
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1799,7 +1879,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDdsAsPng
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1070
+    startLine: 1082
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1837,7 +1917,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetDdsAsPngAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1081
+    startLine: 1093
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1877,7 +1957,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetExplicitCompressionMode
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1095
+    startLine: 1107
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1911,7 +1991,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeys
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1121
+    startLine: 1133
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1944,7 +2024,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1131
+    startLine: 1143
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -1979,7 +2059,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByName
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1141
+    startLine: 1153
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2015,7 +2095,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetKeysByNameAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1152
+    startLine: 1164
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2053,7 +2133,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModel
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1164
+    startLine: 1176
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2095,7 +2175,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModelAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1173
+    startLine: 1185
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2139,7 +2219,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModel
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1185
+    startLine: 1197
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2184,7 +2264,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModelAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1198
+    startLine: 1210
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2231,7 +2311,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifest
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1209
+    startLine: 1221
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2269,7 +2349,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetModFileManifestAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1215
+    startLine: 1227
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2309,7 +2389,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKey
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1221
+    startLine: 1233
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2342,7 +2422,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNameByKeyAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1232
+    startLine: 1244
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2377,7 +2457,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1243
+    startLine: 1255
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2407,7 +2487,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1254
+    startLine: 1266
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2440,7 +2520,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRaw
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1267
+    startLine: 1279
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2480,7 +2560,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetRawAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1280
+    startLine: 1292
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2523,7 +2603,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSimData
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1290
+    startLine: 1302
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2561,7 +2641,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSimDataAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1296
+    startLine: 1308
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2601,7 +2681,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSize
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1302
+    startLine: 1314
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2634,7 +2714,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetSizeAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1316
+    startLine: 1328
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2669,7 +2749,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTable
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1330
+    startLine: 1342
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2707,7 +2787,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetStringTableAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1336
+    startLine: 1348
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2747,7 +2827,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetText
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1344
+    startLine: 1356
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2787,7 +2867,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTextAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1356
+    startLine: 1368
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2830,7 +2910,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTranslucentJpegAsPng
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1370
+    startLine: 1382
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2868,7 +2948,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetTranslucentJpegAsPngAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1376
+    startLine: 1388
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2908,7 +2988,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetWorldData
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1382
+    startLine: 1394
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2946,7 +3026,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetWorldDataAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1388
+    startLine: 1400
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -2986,7 +3066,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetWorldLotArchitecture
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1394
+    startLine: 1406
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3024,7 +3104,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetWorldLotArchitectureAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1400
+    startLine: 1412
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3064,7 +3144,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetWorldObjectData
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1406
+    startLine: 1418
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3102,7 +3182,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetWorldObjectDataAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1412
+    startLine: 1424
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3142,7 +3222,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1420
+    startLine: 1432
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3182,7 +3262,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: GetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 1432
+    startLine: 1444
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3225,7 +3305,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAll
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2057
+    startLine: 2069
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3263,7 +3343,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNames
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2067
+    startLine: 2079
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3291,7 +3371,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadNamesAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2077
+    startLine: 2089
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3324,7 +3404,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: LoadAllAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2090
+    startLine: 2102
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3367,7 +3447,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Save
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2258
+    startLine: 2270
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3415,7 +3495,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAs
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2279
+    startLine: 2291
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3451,7 +3531,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2306
+    startLine: 2318
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3503,7 +3583,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SaveAsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2327
+    startLine: 2339
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3543,7 +3623,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2351
+    startLine: 2363
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3590,7 +3670,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2367
+    startLine: 2379
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3634,7 +3714,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2380
+    startLine: 2392
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3681,7 +3761,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: Set
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2396
+    startLine: 2408
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3725,7 +3805,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2416
+    startLine: 2428
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3775,7 +3855,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2433
+    startLine: 2445
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3822,7 +3902,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2447
+    startLine: 2459
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3872,7 +3952,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2464
+    startLine: 2476
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3919,7 +3999,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsDds
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2481
+    startLine: 2493
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -3957,7 +4037,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsDdsAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2490
+    startLine: 2502
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4000,7 +4080,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsTranslucentJpeg
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2498
+    startLine: 2510
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4038,7 +4118,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetPngAsTranslucentJpegAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2507
+    startLine: 2519
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4081,7 +4161,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetRaw
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2520
+    startLine: 2532
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4135,7 +4215,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetRawAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2540
+    startLine: 2552
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4194,7 +4274,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXml
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2556
+    startLine: 2568
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -4241,7 +4321,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: SetXmlAsync
     path: ../LlamaLogic.Packages/DataBasePackedFile.cs
-    startLine: 2567
+    startLine: 2579
   assemblies:
   - LlamaLogic.Packages
   namespace: LlamaLogic.Packages
@@ -5975,6 +6055,87 @@ references:
   name: GetAsync
   nameWithType: DataBasePackedFile.GetAsync
   fullName: LlamaLogic.Packages.DataBasePackedFile.GetAsync
+- uid: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel
+  commentId: T:LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel
+  parent: LlamaLogic.Packages.Models.AnimationStateMachine
+  href: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel.html
+  name: AnimationStateMachineModel
+  nameWithType: AnimationStateMachineModel
+  fullName: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetAnimationStateMachine_LlamaLogic_Packages_ResourceKey_System_Boolean_
+  name: GetAnimationStateMachine
+  nameWithType: DataBasePackedFile.GetAnimationStateMachine
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachine
+- uid: LlamaLogic.Packages.Models.AnimationStateMachine
+  commentId: N:LlamaLogic.Packages.Models.AnimationStateMachine
+  name: LlamaLogic.Packages.Models.AnimationStateMachine
+  nameWithType: LlamaLogic.Packages.Models.AnimationStateMachine
+  fullName: LlamaLogic.Packages.Models.AnimationStateMachine
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.AnimationStateMachine
+    name: AnimationStateMachine
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.AnimationStateMachine
+    name: AnimationStateMachine
+- uid: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync*
+  commentId: Overload:LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync
+  href: LlamaLogic.Packages.DataBasePackedFile.html#LlamaLogic_Packages_DataBasePackedFile_GetAnimationStateMachineAsync_LlamaLogic_Packages_ResourceKey_System_Boolean_System_Threading_CancellationToken_
+  name: GetAnimationStateMachineAsync
+  nameWithType: DataBasePackedFile.GetAnimationStateMachineAsync
+  fullName: LlamaLogic.Packages.DataBasePackedFile.GetAnimationStateMachineAsync
+- uid: System.Threading.Tasks.Task{LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<AnimationStateMachineModel>
+  nameWithType: Task<AnimationStateMachineModel>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel>
+  nameWithType.vb: Task(Of AnimationStateMachineModel)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel)
+  name.vb: Task(Of AnimationStateMachineModel)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel
+    name: AnimationStateMachineModel
+    href: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel
+    name: AnimationStateMachineModel
+    href: LlamaLogic.Packages.Models.AnimationStateMachine.AnimationStateMachineModel.html
+  - name: )
 - uid: LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
   commentId: T:LlamaLogic.Packages.Models.CombinedTuning.CombinedTuningModel
   parent: LlamaLogic.Packages.Models.CombinedTuning
