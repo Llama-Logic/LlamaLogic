@@ -1080,22 +1080,44 @@ public sealed class DataBasePackedFile :
     /// <summary>
     /// Gets the content of a resource that is a DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG
     /// </summary>
+    /// <remarks>
+    /// A key of a type tuning uses to refer to images (such as <see cref="ResourceType.PNGImage"/>) gets the <see cref="ResourceType.DSTImage"/> resource with the same group and instance; when the package has no such resource, it gets the resource with the key itself, which is returned as it is if it is already a PNG.
+    /// </remarks>
     public ReadOnlyMemory<byte> GetDdsAsPng(ResourceKey key, bool force = false)
     {
         if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
             && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
-            key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
+        {
+            var dstKey = new ResourceKey(ResourceType.DSTImage, key.Group, key.FullInstance);
+            if (!ContainsKey(dstKey) && ContainsKey(key))
+            {
+                var content = Get(key, force);
+                return ImageDecoding.IsPng(content.Span) ? content : DirectDrawSurface.GetPngDataFromDdsData(content);
+            }
+            key = dstKey;
+        }
         return DirectDrawSurface.GetPngDataFromDdsData(Get(key, force));
     }
 
     /// <summary>
     /// Gets the content of a resource that is a DirectDraw Surface with the specified <paramref name="key"/>, encoded as a PNG, asynchronously
     /// </summary>
+    /// <remarks>
+    /// A key of a type tuning uses to refer to images (such as <see cref="ResourceType.PNGImage"/>) gets the <see cref="ResourceType.DSTImage"/> resource with the same group and instance; when the package has no such resource, it gets the resource with the key itself, which is returned as it is if it is already a PNG.
+    /// </remarks>
     public async Task<ReadOnlyMemory<byte>> GetDdsAsPngAsync(ResourceKey key, bool force = false, CancellationToken cancellationToken = default)
     {
         if (resourceFileTypeByResourceType.TryGetValue(key.Type, out var resourceFileType)
             && resourceFileType is ResourceFileType.DirectDrawSurfaceAsPortableNetworkGraphic)
-            key = new(ResourceType.DSTImage, key.Group, key.FullInstance);
+        {
+            var dstKey = new ResourceKey(ResourceType.DSTImage, key.Group, key.FullInstance);
+            if (!await ContainsKeyAsync(dstKey, cancellationToken).ConfigureAwait(false) && await ContainsKeyAsync(key, cancellationToken).ConfigureAwait(false))
+            {
+                var content = await GetAsync(key, force, cancellationToken).ConfigureAwait(false);
+                return ImageDecoding.IsPng(content.Span) ? content : await DirectDrawSurface.GetPngDataFromDdsDataAsync(content, cancellationToken).ConfigureAwait(false);
+            }
+            key = dstKey;
+        }
         return await DirectDrawSurface.GetPngDataFromDdsDataAsync(await GetAsync(key, force, cancellationToken).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
     }
 
