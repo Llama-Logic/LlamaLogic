@@ -72,6 +72,18 @@ public static class DirectDrawSurface
         return Swizzle(ddsDataStream.WrittenMemory[..(int)ddsDataStream.Length], true);
     }
 
+    /// <summary>
+    /// Gets a DirectDraw Surface the way other tools expect it, unshuffling it if it is shuffled the way The Sims 4 stores images (<see cref="ResourceType.DSTImage"/>)
+    /// </summary>
+    /// <param name="ddsData">The data of a DirectDraw Surface, shuffled or not</param>
+    /// <exception cref="InvalidDataException"><paramref name="ddsData"/> is not a DirectDraw Surface</exception>
+    public static ReadOnlyMemory<byte> GetUnshuffledDdsData(ReadOnlyMemory<byte> ddsData)
+    {
+        if (ddsData.Length < 0x80 || !ddsData.Span[..4].SequenceEqual("DDS "u8))
+            throw new InvalidDataException("The data is not a DirectDraw Surface");
+        return Swizzle(ddsData, false);
+    }
+
     static ReadOnlyMemory<byte> EncodePng(Memory2D<ColorRgba32> pixels)
     {
         var rgba = new byte[pixels.Width * pixels.Height * 4];
