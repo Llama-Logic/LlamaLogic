@@ -1,0 +1,147 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="ta-editor-host">
+    <StandaloneCodeEditor @ref="editor" Id="@editorId" CssClass="ta-editor" ConstructionOptions="GetOptions" OnDidInit="OnDidInitAsync" />
+</div>
+
+@code {
+    readonly string editorId = $"ta-editor-{Guid.NewGuid():N}";
+    StandaloneCodeEditor? editor;
+    bool initialized;
+    string? appliedText;
+    IReadOnlyList<EditorAnnotation>? appliedAnnotations;
+    bool? appliedDark;
+    int appliedReveal;
+    DotNetObjectReference<MonacoView>? self;
+
+    [Parameter]
+    public EventCallback<int> AnnotationActivated { get; set; }
+
+    [Parameter]
+    public IReadOnlyList<EditorAnnotation>? Annotations { get; set; }
+
+    [Parameter]
+    public EventCallback<int> CursorLineChanged { get; set; }
+
+    [CascadingParameter(Name = "IsDarkMode")]
+    public bool IsDarkMode { get; set; }
+
+    [Parameter]
+    public string Language { get; set; } = "xml";
+
+    [Parameter]
+    public string? ModelUri { get; set; }
+
+    [Parameter]
+    public EventCallback Ready { get; set; }
+
+    [Parameter]
+    public int RevealLine { get; set; }
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public EditorViewState? ViewState { get; set; }
+
+    [Parameter]
+    public string? ViewStateKey { get; set; }
+
+    string? CurrentViewStateKey =>
+        ViewStateKey ?? ModelUri;
+
+    StandaloneEditorConstructionOptions GetOptions(StandaloneCodeEditor _) =>
+        new()
+        {
+            AutomaticLayout = true,
+            FontSize = 13,
+            Language = Language,
+            ReadOnly = true,
+            ScrollBeyondLastLine = false,
+            Theme = IsDarkMode ? "ett-dark" : "ett-light",
+            Value = string.Empty
+        };
+
+    async Task OnDidInitAsync()
+    {
+        initialized = true;
+        self ??= DotNetObjectReference.Create(this);
+        await ApplyAsync();
+        if (ViewState is not null)
+            await JS.InvokeVoidAsync("epicTuningTime.trackViewState", editorId, self);
+        await Ready.InvokeAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (initialized)
+            await ApplyAsync();
+    }
+
+    async Task ApplyAsync()
+    {
+        if (appliedDark != IsDarkMode)
+        {
+            appliedDark = IsDarkMode;
+            await JS.InvokeVoidAsync("epicTuningTime.setTheme", IsDarkMode);
+        }
+        if (!ReferenceEquals(appliedText, Text) || !ReferenceEquals(appliedAnnotations, Annotations))
+        {
+            appliedAnnotations = Annotations;
+            appliedReveal = 0;
+            var textChanged = !ReferenceEquals(appliedText, Text);
+            appliedText = Text;
+            await JS.InvokeAsync<bool>("epicTuningTime.setContent", editorId, Text, Language, ModelUri, Annotations ?? [], self, !textChanged);
+            if (textChanged && ViewState is not null)
+            {
+                if (ViewState.Key == CurrentViewStateKey && ViewState.ViewState is { } viewState)
+                    await JS.InvokeVoidAsync("epicTuningTime.restoreViewState", editorId, viewState);
+                else
+                {
+                    ViewState.Key = CurrentViewStateKey;
+                    ViewState.ViewState = null;
+                }
+            }
+        }
+        if (RevealLine > 0 && RevealLine != appliedReveal)
+        {
+            appliedReveal = RevealLine;
+            await JS.InvokeVoidAsync("epicTuningTime.reveal", editorId, RevealLine);
+        }
+    }
+
+    public async Task<int> FindLineAsync(string pattern) =>
+        initialized ? await JS.InvokeAsync<int>("epicTuningTime.findLine", editorId, pattern) : 0;
+
+    [JSInvokable]
+    public string? GetHover(int index) =>
+        appliedAnnotations is { } annotations && index >= 0 && index < annotations.Count ? annotations[index].Hover?.Invoke() : null;
+
+    [JSInvokable]
+    public Task OnAnnotationActivated(int index) =>
+        AnnotationActivated.InvokeAsync(index);
+
+    [JSInvokable]
+    public Task OnCursorLineChanged(int line) =>
+        CursorLineChanged.InvokeAsync(line);
+
+    [JSInvokable]
+    public void OnViewStateChanged(string viewState)
+    {
+        if (ViewState is not null && ViewState.Key == CurrentViewStateKey)
+            ViewState.ViewState = viewState;
+    }
+
+    public async Task RevealAsync(int line)
+    {
+        if (initialized && line > 0)
+            await JS.InvokeVoidAsync("epicTuningTime.reveal", editorId, line);
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        self?.Dispose();
+        return ValueTask.CompletedTask;
+    }
+}

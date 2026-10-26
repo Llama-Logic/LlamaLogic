@@ -1,0 +1,75 @@
+@inject TuningArchiveSession Session
+
+<MudDialog>
+    <DialogContent>
+        @if (Message is not null)
+        {
+            <MudText Typo="Typo.body2" Class="mb-3">@Message</MudText>
+        }
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+            <MudTextField T="string" @bind-Value="path" Label="@Label" Variant="Variant.Outlined" Immediate="true" FullWidth="true" AutoFocus="true" />
+            @if (Session.Platform.CanPick)
+            {
+                <MudButton Variant="Variant.Outlined" OnClick="BrowseAsync">Browse…</MudButton>
+            }
+        </MudStack>
+        @if (FileName is not null)
+        {
+            <MudTextField T="string" @bind-Value="fileName" Label="File name" Variant="Variant.Outlined" Immediate="true" Class="mt-3" />
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="() => Dialog.Cancel()">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled="string.IsNullOrWhiteSpace(path) || (FileName is not null && string.IsNullOrWhiteSpace(fileName))" OnClick="Confirm">@ConfirmText</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    string? path;
+    string? fileName;
+
+    [CascadingParameter]
+    IMudDialogInstance Dialog { get; set; } = default!;
+
+    [Parameter]
+    public string ConfirmText { get; set; } = "OK";
+
+    [Parameter]
+    public IReadOnlyList<string> Extensions { get; set; } = [];
+
+    [Parameter]
+    public string? FileName { get; set; }
+
+    [Parameter]
+    public string? InitialPath { get; set; }
+
+    [Parameter]
+    public bool IsFolder { get; set; }
+
+    [Parameter]
+    public string Label { get; set; } = "Path";
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    protected override void OnInitialized()
+    {
+        path = InitialPath;
+        fileName = FileName;
+    }
+
+    async Task BrowseAsync()
+    {
+        var picked = IsFolder ? await Session.Platform.PickFolderAsync(Label) : await Session.Platform.PickFileAsync(Label, Extensions);
+        if (picked is not null)
+            path = picked;
+    }
+
+    void Confirm()
+    {
+        var result = path!.Trim().Trim('"');
+        if (FileName is not null)
+            result = Path.Combine(result, fileName!.Trim());
+        Dialog.Close(DialogResult.Ok(result));
+    }
+}

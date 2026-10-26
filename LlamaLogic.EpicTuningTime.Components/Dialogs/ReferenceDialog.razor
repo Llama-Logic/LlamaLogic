@@ -1,0 +1,162 @@
+@inject TuningArchiveSession Session
+
+<MudDialog>
+    <DialogContent>
+        <MudTextField T="string" Value="search" ValueChanged="OnSearchChanged" Label="Search name or instance" Immediate="true" DebounceInterval="150" Variant="Variant.Outlined" Margin="Margin.Dense" AutoFocus="true" Clearable="true" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" OnKeyDown="OnKeyDownAsync" />
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mt-1" Style="min-height: 32px">
+            <MudText Typo="Typo.caption">@Summary</MudText>
+            <MudSpacer />
+            @if (canRestrict)
+            {
+                <MudCheckBox T="bool" Value="restricted" ValueChanged="OnRestrictedChanged" Size="Size.Small" Dense="true" Label="@($"Only {string.Join(", ", Restrict)}")" title="The tuning description restricts this to these classes (and classes based on them, which this hides)" />
+            }
+        </MudStack>
+        <div class="ta-reference-list">
+            @if (typed is null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else if (filtered.Count == 0)
+            {
+                <div class="ta-empty">@(typed.Count == 0 ? $"This snapshot has no {TypeName} tuning to search; enter an instance." : "Nothing matches. Enter an instance to use one that isn't in this snapshot.")</div>
+            }
+            else
+            {
+                <Virtualize Items="filtered" ItemSize="44" OverscanCount="20" Context="entry">
+                    <div class="ta-list-item @(ReferenceEquals(entry, selected) ? "selected" : string.Empty)" @onclick="() => selected = entry" @ondblclick="() => Close(entry.Instance)">
+                        <div class="ta-primary">@(entry.Name ?? "(unnamed)")@(entry.Instance == currentInstance ? " · current" : string.Empty)</div>
+                        <div class="ta-secondary">@entry.Class · @entry.Pack · @entry.Instance</div>
+                    </div>
+                </Virtualize>
+            }
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="() => Dialog.Cancel()">Cancel</MudButton>
+        @if (Custom is { } custom)
+        {
+            <MudButton Variant="Variant.Outlined" OnClick="() => Close(custom)" title="Use this instance even though this snapshot doesn't have it, as for tuning from a mod">Use @custom</MudButton>
+        }
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled="selected is null" OnClick="() => Close(selected!.Instance)">Choose</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    string search = string.Empty;
+    bool canRestrict;
+    bool restricted;
+    ulong? currentInstance;
+    IReadOnlyList<TuningArchiveEntry>? typed;
+    List<TuningArchiveEntry> filtered = [];
+    TuningArchiveEntry? selected;
+
+    [CascadingParameter]
+    IMudDialogInstance Dialog { get; set; } = default!;
+
+    [Parameter]
+    public string? Current { get; set; }
+
+    [Parameter]
+    public IReadOnlyList<string> Restrict { get; set; } = [];
+
+    [Parameter]
+    public TuningArchiveSnapshot Snapshot { get; set; } = default!;
+
+    [Parameter]
+    public ResourceType Type { get; set; }
+
+    [Parameter]
+    public string TypeName { get; set; } = string.Empty;
+
+    ulong? Custom =>
+        ParseInstance(search) is { } instance && typed is not null && !typed.Any(entry => entry.Instance == instance) ? instance : null;
+
+    string Summary =>
+        typed is null
+            ? "Loading…"
+            : filtered.Count == typed.Count
+                ? $"{typed.Count.ToString("N0", CultureInfo.CurrentCulture)} {TypeName} tuning"
+                : $"{filtered.Count.ToString("N0", CultureInfo.CurrentCulture)} of {typed.Count.ToString("N0", CultureInfo.CurrentCulture)} {TypeName} tuning";
+
+    static ulong? ParseInstance(string text)
+    {
+        var term = text.Trim();
+        var isHex = term.StartsWith("0x", StringComparison.OrdinalIgnoreCase);
+        return ulong.TryParse(isHex ? term[2..] : term, isHex ? NumberStyles.AllowHexSpecifier : NumberStyles.None, CultureInfo.InvariantCulture, out var instance) ? instance : null;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentInstance = Current is { } current ? ParseInstance(current) : null;
+        var entries = await Session.GetEntriesAsync(Snapshot);
+        typed = [.. entries.All.Where(entry => entry.Type == Type)];
+        canRestrict = Restrict.Count > 0 && typed.Any(IsAllowed);
+        restricted = canRestrict;
+        ApplyFilter();
+        selected = currentInstance is { } instance ? filtered.FirstOrDefault(entry => entry.Instance == instance) : null;
+    }
+
+    static bool IsWordBoundary(string name, int index) =>
+        index <= 0 || index >= name.Length || !char.IsLetterOrDigit(name[index - 1]) || !char.IsLetterOrDigit(name[index]) || char.IsLower(name[index - 1]) && char.IsUpper(name[index]);
+
+    static bool MatchesWord(string name, string word, bool whole)
+    {
+        for (var index = name.IndexOf(word, StringComparison.OrdinalIgnoreCase); index >= 0; index = name.IndexOf(word, index + 1, StringComparison.OrdinalIgnoreCase))
+            if (IsWordBoundary(name, index) && (!whole || IsWordBoundary(name, index + word.Length)))
+                return true;
+        return false;
+    }
+
+    bool IsAllowed(TuningArchiveEntry entry) =>
+        entry.Class is { } entryClass && Restrict.Contains(entryClass, StringComparer.Ordinal);
+
+    void ApplyFilter()
+    {
+        if (typed is null)
+            return;
+        IEnumerable<TuningArchiveEntry> query = restricted ? typed.Where(IsAllowed) : typed;
+        var term = search.Trim();
+        if (term.Length > 0)
+        {
+            var instance = ParseInstance(term);
+            var words = term.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            query = query
+                .Select(entry => (entry, rank: entry.Instance == instance ? 0 : entry.Name is not { } name ? -1 : !words.All(word => name.Contains(word, StringComparison.OrdinalIgnoreCase)) ? -1 : name.Equals(term, StringComparison.OrdinalIgnoreCase) ? 1 : name.StartsWith(term, StringComparison.OrdinalIgnoreCase) ? 2 : words.All(word => MatchesWord(name, word, true)) ? 3 : words.All(word => MatchesWord(name, word, false)) ? 4 : 5))
+                .Where(ranked => ranked.rank >= 0)
+                .OrderBy(ranked => ranked.rank)
+                .Select(ranked => ranked.entry);
+        }
+        filtered = query.ToList();
+        if (selected is not null && !filtered.Contains(selected))
+            selected = null;
+        if (term.Length > 0)
+            selected ??= filtered.FirstOrDefault();
+    }
+
+    void OnSearchChanged(string? value)
+    {
+        search = value ?? string.Empty;
+        selected = null;
+        ApplyFilter();
+    }
+
+    void OnRestrictedChanged(bool value)
+    {
+        restricted = value;
+        ApplyFilter();
+    }
+
+    async Task OnKeyDownAsync(KeyboardEventArgs args)
+    {
+        if (args.Key != "Enter")
+            return;
+        await Task.Yield();
+        if (selected is not null)
+            Close(selected.Instance);
+        else if (Custom is { } custom)
+            Close(custom);
+    }
+
+    void Close(ulong instance) =>
+        Dialog.Close(DialogResult.Ok(instance.ToString(CultureInfo.InvariantCulture)));
+}

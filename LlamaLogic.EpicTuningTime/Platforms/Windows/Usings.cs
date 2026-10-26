@@ -1,0 +1,11 @@
+global using Microsoft.Maui.LifecycleEvents;
+global using System.Buffers.Binary;
+global using System.Diagnostics;
+global using System.Security.Cryptography;
+global using System.Text.Json;
+global using Windows.Win32;
+global using Windows.Win32.Foundation;
+global using Windows.Win32.Graphics.Gdi;
+global using Windows.Win32.UI.HiDpi;
+global using Windows.Win32.UI.WindowsAndMessaging;
+global using WinRT.Interop;

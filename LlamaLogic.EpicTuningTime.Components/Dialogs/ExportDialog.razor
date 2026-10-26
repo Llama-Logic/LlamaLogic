@@ -1,0 +1,130 @@
+@inject TuningArchiveSession Session
+
+<MudDialog>
+    <DialogContent>
+        <MudStack Spacing="3">
+            <MudText Typo="Typo.body2">
+                Writes the tuning of @Snapshot.DisplayName as files, laid out and named the way Scumbumbo's XML Extractor extracts the game's tuning: a folder for each pack and, in it, a folder for each tuning type.
+            </MudText>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                <MudTextField T="string" @bind-Value="folder" Label="Destination folder" Variant="Variant.Outlined" FullWidth="true" Immediate="true" />
+                @if (Session.Platform.CanPick)
+                {
+                    <MudButton Variant="Variant.Outlined" OnClick="BrowseAsync">Browse…</MudButton>
+                }
+            </MudStack>
+            <MudRadioGroup T="TuningArchiveExportNaming" @bind-Value="naming">
+                <MudText Typo="Typo.subtitle2">File names</MudText>
+                <MudRadio T="TuningArchiveExportNaming" Value="TuningArchiveExportNaming.TypeGroupInstance" Color="Color.Primary">Type, group and instance (s4pe) <span class="ta-mono">S4_E882D22F_00000000_000000000001A2BC.xml</span></MudRadio>
+                <MudRadio T="TuningArchiveExportNaming" Value="TuningArchiveExportNaming.TypeGroupInstanceName" Color="Color.Primary">Type, group, instance and name (s4pe _KEY) <span class="ta-mono">S4_…_object_drink_Cider.xml</span></MudRadio>
+                <MudRadio T="TuningArchiveExportNaming" Value="TuningArchiveExportNaming.Name" Color="Color.Primary">Name only <span class="ta-mono">object_drink_Cider.xml</span></MudRadio>
+                <MudRadio T="TuningArchiveExportNaming" Value="TuningArchiveExportNaming.Native" Color="Color.Primary">The game's naming <span class="ta-mono">0x00000000!0x00000000000029c3.0x2451c101</span></MudRadio>
+                <MudRadio T="TuningArchiveExportNaming" Value="TuningArchiveExportNaming.Sims4Studio" Color="Color.Primary">Sims 4 Studio <span class="ta-mono">b61de6b4!00000001!…c8c5.object_drink_Cider.object.xml</span></MudRadio>
+            </MudRadioGroup>
+            <MudStack Row="true" Spacing="4" Wrap="Wrap.Wrap">
+                <MudStack Spacing="0">
+                    <MudSwitch T="bool" @bind-Value="stringComments" Label="Comment string keys with their text" Color="Color.Primary" />
+                    <MudSwitch T="bool" @bind-Value="referenceComments" Label="Comment references with what they refer to" Color="Color.Primary" />
+                    <MudSwitch T="bool" @bind-Value="useTuningDescriptions" Label="Find them with the tuning descriptions" Color="Color.Primary" Disabled="!hasDescriptions" />
+                </MudStack>
+                <MudStack Spacing="0">
+                    <MudSwitch T="bool" @bind-Value="referenceFiles" Label="Write the reference files (all strings, all names)" Color="Color.Primary" />
+                    <MudSwitch T="bool" @bind-Value="fileIndex" Label="Write the file index (for XML File Finder)" Color="Color.Primary" />
+                    <MudSwitch T="bool" @bind-Value="animationStateMachines" Label="Include ASMs" Color="Color.Primary" Disabled="!Snapshot.Kinds.Contains(TuningArchiveResourceKind.AnimationStateMachine)" />
+                    <MudSwitch T="bool" @bind-Value="simData" Label="Include SimData" Color="Color.Primary" Disabled="!Snapshot.Kinds.Contains(TuningArchiveResourceKind.SimData)" />
+                </MudStack>
+            </MudStack>
+            <MudStack Row="true" Spacing="2">
+                <MudSelect T="TuningArchiveExportAttributeOrder" @bind-Value="attributeOrder" Label="Attribute order" Variant="Variant.Outlined" Dense="true">
+                    <MudSelectItem T="TuningArchiveExportAttributeOrder" Value="TuningArchiveExportAttributeOrder.NameFirst">n, then t</MudSelectItem>
+                    <MudSelectItem T="TuningArchiveExportAttributeOrder" Value="TuningArchiveExportAttributeOrder.TypeFirst">t, then n</MudSelectItem>
+                </MudSelect>
+                <MudSelect T="TuningArchiveExportExistingFiles" @bind-Value="existingFiles" Label="When a file already exists" Variant="Variant.Outlined" Dense="true">
+                    <MudSelectItem T="TuningArchiveExportExistingFiles" Value="TuningArchiveExportExistingFiles.Overwrite">Overwrite it</MudSelectItem>
+                    <MudSelectItem T="TuningArchiveExportExistingFiles" Value="TuningArchiveExportExistingFiles.Rename">Rename it (Copy #)</MudSelectItem>
+                    <MudSelectItem T="TuningArchiveExportExistingFiles" Value="TuningArchiveExportExistingFiles.Skip">Leave it and skip</MudSelectItem>
+                </MudSelect>
+            </MudStack>
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="() => Dialog.Cancel()">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled="string.IsNullOrWhiteSpace(folder)" OnClick="Confirm">Export</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    string? folder;
+    TuningArchiveExportNaming naming;
+    TuningArchiveExportAttributeOrder attributeOrder;
+    TuningArchiveExportExistingFiles existingFiles;
+    bool stringComments = true;
+    bool referenceComments = true;
+    bool useTuningDescriptions = true;
+    bool referenceFiles = true;
+    bool fileIndex = true;
+    bool animationStateMachines;
+    bool simData;
+    bool hasDescriptions;
+
+    [CascadingParameter]
+    IMudDialogInstance Dialog { get; set; } = default!;
+
+    [Parameter]
+    public TuningArchiveSnapshot Snapshot { get; set; } = default!;
+
+    bool GetFlag(string key, bool fallback) =>
+        Session.Platform.GetSetting(key) is { } value ? value == bool.TrueString : fallback;
+
+    protected override void OnInitialized()
+    {
+        folder = Session.Platform.GetSetting("ExportFolder");
+        naming = Enum.TryParse<TuningArchiveExportNaming>(Session.Platform.GetSetting("ExportNaming"), out var savedNaming) ? savedNaming : TuningArchiveExportNaming.TypeGroupInstance;
+        attributeOrder = Enum.TryParse<TuningArchiveExportAttributeOrder>(Session.Platform.GetSetting("ExportAttributeOrder"), out var savedOrder) ? savedOrder : TuningArchiveExportAttributeOrder.NameFirst;
+        existingFiles = Enum.TryParse<TuningArchiveExportExistingFiles>(Session.Platform.GetSetting("ExportExistingFiles"), out var savedExisting) ? savedExisting : TuningArchiveExportExistingFiles.Overwrite;
+        stringComments = GetFlag("ExportStringComments", true);
+        referenceComments = GetFlag("ExportReferenceComments", true);
+        useTuningDescriptions = GetFlag("ExportUseTuningDescriptions", true);
+        referenceFiles = GetFlag("ExportReferenceFiles", true);
+        fileIndex = GetFlag("ExportFileIndex", true);
+        animationStateMachines = GetFlag("ExportAnimationStateMachines", false) && Snapshot.Kinds.Contains(TuningArchiveResourceKind.AnimationStateMachine);
+        simData = GetFlag("ExportSimData", false) && Snapshot.Kinds.Contains(TuningArchiveResourceKind.SimData);
+        hasDescriptions = Session.Archive?.FindTuningDescriptions(Snapshot) is not null;
+    }
+
+    async Task BrowseAsync()
+    {
+        if (await Session.Platform.PickFolderAsync("Destination folder") is { } picked)
+            folder = picked;
+    }
+
+    void Confirm()
+    {
+        var destination = folder!.Trim().Trim('"');
+        var platform = Session.Platform;
+        platform.SetSetting("ExportFolder", destination);
+        platform.SetSetting("ExportNaming", naming.ToString());
+        platform.SetSetting("ExportAttributeOrder", attributeOrder.ToString());
+        platform.SetSetting("ExportExistingFiles", existingFiles.ToString());
+        platform.SetSetting("ExportStringComments", stringComments.ToString());
+        platform.SetSetting("ExportReferenceComments", referenceComments.ToString());
+        platform.SetSetting("ExportUseTuningDescriptions", useTuningDescriptions.ToString());
+        platform.SetSetting("ExportReferenceFiles", referenceFiles.ToString());
+        platform.SetSetting("ExportFileIndex", fileIndex.ToString());
+        platform.SetSetting("ExportAnimationStateMachines", animationStateMachines.ToString());
+        platform.SetSetting("ExportSimData", simData.ToString());
+        Dialog.Close(DialogResult.Ok(new ExportRequest(destination, new TuningArchiveExportOptions
+        {
+            AttributeOrder = attributeOrder,
+            ExistingFiles = existingFiles,
+            IncludeAnimationStateMachines = animationStateMachines,
+            IncludeReferenceComments = referenceComments,
+            IncludeSimData = simData,
+            IncludeStringComments = stringComments,
+            Naming = naming,
+            UseTuningDescriptions = useTuningDescriptions,
+            WriteFileIndex = fileIndex,
+            WriteReferenceFiles = referenceFiles
+        })));
+    }
+}

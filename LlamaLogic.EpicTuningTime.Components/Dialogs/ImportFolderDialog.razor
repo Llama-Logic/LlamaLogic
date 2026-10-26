@@ -1,0 +1,60 @@
+@inject TuningArchiveSession Session
+
+<MudDialog>
+    <DialogContent>
+        <MudStack Spacing="3">
+            <MudText Typo="Typo.body2">
+                Imports tuning another tool extracted (such as Scumbumbo's XML Extractor or Sims 4 Studio) as a snapshot, so older versions of the game can be compared.
+                Files are attributed to the pack a folder in their path names (like <code>EP01</code>); Scumbumbo's <code>Reference - All Strings.txt</code> is imported as strings.
+            </MudText>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                <MudTextField T="string" @bind-Value="folder" Label="Folder" Variant="Variant.Outlined" FullWidth="true" Immediate="true" />
+                @if (Session.Platform.CanPick)
+                {
+                    <MudButton Variant="Variant.Outlined" OnClick="BrowseAsync">Browse…</MudButton>
+                }
+            </MudStack>
+            <MudStack Row="true" Spacing="2">
+                <MudTextField T="string" @bind-Value="gameVersion" Label="Game version" Variant="Variant.Outlined" Required="true" Immediate="true" HelperText="Such as 1.127.41.1030" />
+                <MudTextField T="string" @bind-Value="label" Label="Label (optional)" Variant="Variant.Outlined" />
+            </MudStack>
+            <MudStack Row="true" Spacing="2">
+                <MudTextField T="string" @bind-Value="defaultPack" Label="Pack for files outside pack folders" Variant="Variant.Outlined" />
+                <MudTextField T="string" @bind-Value="locale" Label="Locale of the strings file" Variant="Variant.Outlined" />
+            </MudStack>
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="() => Dialog.Cancel()">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled="string.IsNullOrWhiteSpace(folder) || string.IsNullOrWhiteSpace(gameVersion)" OnClick="Confirm">Import</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    string? folder;
+    string? gameVersion;
+    string? label;
+    string defaultPack = "BG";
+    string locale = "ENG_US";
+
+    [CascadingParameter]
+    IMudDialogInstance Dialog { get; set; } = default!;
+
+    async Task BrowseAsync()
+    {
+        if (await Session.Platform.PickFolderAsync("Folder of extracted tuning") is { } picked)
+        {
+            folder = picked;
+            if (string.IsNullOrWhiteSpace(gameVersion) && System.Text.RegularExpressions.Regex.Match(picked, @"\d+\.\d+\.\d+(\.\d+)?") is { Success: true } match)
+                gameVersion = match.Value;
+        }
+    }
+
+    void Confirm() =>
+        Dialog.Close(DialogResult.Ok(new ImportFolderRequest(folder!.Trim().Trim('"'), gameVersion!.Trim(), new TuningArchiveImportOptions
+        {
+            DefaultPack = string.IsNullOrWhiteSpace(defaultPack) ? "BG" : defaultPack.Trim().ToUpperInvariant(),
+            Label = string.IsNullOrWhiteSpace(label) ? null : label.Trim(),
+            Locale = string.IsNullOrWhiteSpace(locale) ? "ENG_US" : locale.Trim()
+        })));
+}

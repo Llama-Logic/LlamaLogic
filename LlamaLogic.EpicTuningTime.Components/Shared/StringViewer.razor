@@ -1,0 +1,102 @@
+@inject TuningArchiveSession Session
+
+@if (Key is not { } key || Snapshot is null)
+{
+    <div class="ta-empty">Choose a string from the list.</div>
+}
+else
+{
+    <div class="ta-detail-header">
+        <div class="ta-title-row">
+            <MudText Typo="Typo.h6" Class="ta-title" title="@Text">@(Text.Length == 0 ? "(empty)" : Text)</MudText>
+            <span class="ta-title-actions">
+                <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.ContentCopy" OnClick="CopyTextAsync">Copy text</MudButton>
+            </span>
+        </div>
+        <div class="ta-subtitle-row ta-mono">
+            <MudTooltip Text="Copy the key">
+                <span style="cursor: copy" @onclick="CopyKeyAsync">@FormatKey(key)</span>
+            </MudTooltip>
+            <span>@key</span>
+        </div>
+    </div>
+    <div class="ta-string-text">@Text</div>
+    <div class="ta-detail-header">
+        <MudText Typo="Typo.subtitle2">@UsedByTitle</MudText>
+    </div>
+    <ScrollList State="ReferrersScroll" Key="@($"{Snapshot.Id}:{key}")" Ready="referrers is { Count: > 0 }">
+        @if (referrers is null)
+        {
+            <MudProgressLinear Indeterminate="true" />
+        }
+        else if (Session.ReferenceStatus.indexed == 0)
+        {
+            <div class="ta-empty">References haven't been indexed yet. Import tuning descriptions and index references on the Archive page.</div>
+        }
+        else if (referrers.Count == 0)
+        {
+            <div class="ta-empty">No tuning in this snapshot uses this string.</div>
+        }
+        else
+        {
+            <Virtualize Items="referrers" ItemSize="44" Context="referrer">
+                <div class="ta-list-item" @onclick="() => Navigate.InvokeAsync(new TuningNavigation(referrer.Source.Type, referrer.Source.Instance, (ResourceType.StringTable, key)))">
+                    <div class="ta-primary">@(referrer.Source.Name ?? "(unnamed)")</div>
+                    <div class="ta-secondary">@Session.GetTypeName(referrer.Source.Type) · @referrer.Source.Pack · @referrer.Source.Instance</div>
+                </div>
+            </Virtualize>
+        }
+    </ScrollList>
+}
+
+@code {
+    List<TuningArchiveReference>? referrers;
+    (long snapshotId, uint key)? loaded;
+
+    [Inject]
+    IJSRuntime JS { get; set; } = default!;
+
+    [Parameter]
+    public uint? Key { get; set; }
+
+    [Parameter]
+    public EventCallback<TuningNavigation> Navigate { get; set; }
+
+    [Parameter]
+    public ScrollState? ReferrersScroll { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    string UsedByTitle =>
+        referrers is null ? "Used by" : $"Used by ({referrers.Count.ToString("N0", CultureInfo.CurrentCulture)})";
+
+    static string FormatKey(uint key) =>
+        $"0x{key:X8}";
+
+    Task CopyKeyAsync() =>
+        Key is { } key ? JS.InvokeVoidAsync("navigator.clipboard.writeText", FormatKey(key)).AsTask() : Task.CompletedTask;
+
+    Task CopyTextAsync() =>
+        JS.InvokeVoidAsync("navigator.clipboard.writeText", Text).AsTask();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Key is not { } key || Snapshot is not { } snapshot || Session.Archive is not { } archive)
+        {
+            referrers = null;
+            loaded = null;
+            return;
+        }
+        if (loaded == (snapshot.Id, key))
+            return;
+        loaded = (snapshot.Id, key);
+        referrers = null;
+        var found = await Task.Run(() => archive.GetStringReferrers(snapshot, [key]).ToList());
+        if (loaded == (snapshot.Id, key))
+            referrers = found;
+    }
+}

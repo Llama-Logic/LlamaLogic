@@ -1,0 +1,244 @@
+@inject TuningArchiveSession Session
+@inject ISnackbar Snackbar
+
+@if (Entry is null || Snapshot is null)
+{
+    <div class="ta-empty">Choose an item from the list.</div>
+}
+else
+{
+    <div class="ta-detail-header">
+        <div class="ta-title-row">
+            <MudText Typo="Typo.h6" Class="ta-title" title="@MediaContent.GetName(Entry)">@MediaContent.GetName(Entry)</MudText>
+            <MudChip T="string" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">@Session.GetTypeName(Entry.Type)</MudChip>
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">@Entry.Pack</MudChip>
+            <span class="ta-title-actions">
+                <MudMenu Label="Export" StartIcon="@Icons.Material.Filled.Download" Size="Size.Small" Variant="Variant.Text" Dense="true">
+                    @if (Entry.Kind is TuningArchiveResourceKind.Image)
+                    {
+                        <MudMenuItem OnClick="() => ExportAsync(ExportFormat.Png)">As a PNG</MudMenuItem>
+                        <MudMenuItem OnClick="() => ExportAsync(ExportFormat.Dds)">As a DDS</MudMenuItem>
+                    }
+                    @if (Entry.Type is ResourceType.AudioVocals or ResourceType.AudioEffects)
+                    {
+                        <MudMenuItem OnClick="ExportMp3Async">As MP3</MudMenuItem>
+                    }
+                    <MudMenuItem OnClick="() => ExportAsync(ExportFormat.Original)">As the game stores it</MudMenuItem>
+                </MudMenu>
+            </span>
+        </div>
+        <div class="ta-subtitle-row ta-mono">
+            <MudTooltip Text="Copy the resource key">
+                <span style="cursor: copy" @onclick="CopyKeyAsync">@Entry.Key</span>
+            </MudTooltip>
+            @if (Entry.Name is { } name)
+            {
+                <span>@name</span>
+            }
+        </div>
+        @if (history.Count > 1)
+        {
+            <MudText Typo="Typo.caption">@history.Count versions in this archive · this one is in @DescribeSnapshots(current?.Snapshots)</MudText>
+        }
+    </div>
+    <MudTabs @bind-ActivePanelIndex="activeTab" Class="ta-tabs" TabPanelsClass="ta-tabs" Elevation="0" Rounded="false" ApplyEffectsToContainer="true" KeepPanelsAlive="false">
+        <MudTabPanel Text="@(Entry.Kind switch { TuningArchiveResourceKind.Image => "Image", TuningArchiveResourceKind.Sound => "Sound", _ => "Video" })">
+            <MediaPreview Entry="Entry" Snapshot="Snapshot" />
+        </MudTabPanel>
+        <MudTabPanel Text="@ReferrersTitle">
+            <ScrollList State="referrersScroll" Key="@($"{Snapshot.Id}:{Entry.Key}")" Ready="referrers is { Count: > 0 }">
+                @if (referrers is null)
+                {
+                    <MudProgressLinear Indeterminate="true" />
+                }
+                else if (Session.ReferenceStatus.indexed == 0)
+                {
+                    <div class="ta-empty">References haven't been indexed yet. Import tuning descriptions and index references on the Archive page.</div>
+                }
+                else if (referrers.Count == 0)
+                {
+                    <div class="ta-empty">@(Entry.Type is ResourceType.AudioVocals or ResourceType.AudioEffects ? "Tuning refers to sounds through their audio configurations, not to their audio directly." : $"No tuning in this snapshot uses this {MediaContent.GetSingularName(Entry.Kind)}.")</div>
+                }
+                else
+                {
+                    <Virtualize Items="referrers" ItemSize="44" Context="referrer">
+                        <div class="ta-list-item" @onclick="() => Navigate.InvokeAsync(new TuningNavigation(referrer.Source.Type, referrer.Source.Instance, (Entry!.Type, Entry.Instance)))">
+                            <div class="ta-primary">@referrer.Source.Name</div>
+                            <div class="ta-secondary">@Session.GetTypeName(referrer.Source.Type) · @referrer.Source.Pack · @referrer.Source.Instance</div>
+                        </div>
+                    </Virtualize>
+                }
+            </ScrollList>
+        </MudTabPanel>
+        <MudTabPanel Text="@($"History ({history.Count})")">
+            <div class="ta-changes">
+                @foreach (var (item, index) in history.Select((item, index) => (item, index)))
+                {
+                    <div class="ta-change @(index == historyIndex ? "selected" : string.Empty)" style="grid-template-columns: 120px 1fr 140px" @onclick="() => historyIndex = index">
+                        <span>@(index == 0 ? "First seen" : "Changed")</span>
+                        <span>@DescribeSnapshots(item.Snapshots)</span>
+                        <span>@item.Entry.Pack</span>
+                    </div>
+                }
+            </div>
+            @if (historyIndex is { } shown && shown < history.Count)
+            {
+                <div class="ta-media-compare">
+                    <div class="ta-media-side">
+                        <MudText Typo="Typo.caption" Class="px-4 py-1">@(shown == 0 ? "Before: not in this archive" : $"Before: {DescribeSnapshots(history[shown - 1].Snapshots)}")</MudText>
+                        <MediaPreview Entry="@(shown == 0 ? null : history[shown - 1].Entry)" Snapshot="@(shown == 0 ? null : history[shown - 1].Snapshots.LastOrDefault())" EmptyText="This is the first version the archive has." />
+                    </div>
+                    <div class="ta-media-side">
+                        <MudText Typo="Typo.caption" Class="px-4 py-1">After: @DescribeSnapshots(history[shown].Snapshots)</MudText>
+                        <MediaPreview Entry="history[shown].Entry" Snapshot="history[shown].Snapshots.LastOrDefault()" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="ta-empty">Choose a version to see it beside the one before it.</div>
+            }
+        </MudTabPanel>
+    </MudTabs>
+}
+
+@code {
+    enum ExportFormat
+    {
+        Png,
+        Dds,
+        Original
+    }
+
+    TuningArchiveEntry? loadedEntry;
+    TuningArchiveSnapshot? loadedSnapshot;
+    List<TuningArchiveReference>? referrers;
+    IReadOnlyList<TuningArchiveHistoryItem> history = [];
+    TuningArchiveHistoryItem? current;
+    int? historyIndex;
+    int activeTab;
+    readonly ScrollState referrersScroll = new();
+
+    [Inject]
+    IJSRuntime JS { get; set; } = default!;
+
+    [Parameter]
+    public TuningArchiveEntry? Entry { get; set; }
+
+    [Parameter]
+    public EventCallback<TuningNavigation> Navigate { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    string ReferrersTitle =>
+        referrers is null ? "Used by" : $"Used by ({referrers.Count})";
+
+    static string DescribeSnapshots(IReadOnlyList<TuningArchiveSnapshot>? snapshots) =>
+        snapshots is null || snapshots.Count == 0
+            ? "no snapshots"
+            : snapshots.Count == 1
+            ? snapshots[0].DisplayName
+            : $"{snapshots[0].DisplayName} – {snapshots[^1].DisplayName} ({snapshots.Count} snapshots)";
+
+    async Task CopyKeyAsync()
+    {
+        if (Entry is not null)
+            await JS.InvokeVoidAsync("navigator.clipboard.writeText", Entry.Key.ToString());
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Session.Archive is not { } archive || Entry is not { } entry || Snapshot is not { } snapshot)
+            return;
+        if (ReferenceEquals(loadedEntry, entry) && ReferenceEquals(loadedSnapshot, snapshot))
+            return;
+        loadedEntry = entry;
+        loadedSnapshot = snapshot;
+        referrers = null;
+        historyIndex = null;
+        history = await Task.Run(() => archive.GetHistory(entry));
+        if (!ReferenceEquals(loadedEntry, entry))
+            return;
+        current = history.FirstOrDefault(item => item.Snapshots.Any(candidate => candidate.Id == snapshot.Id)) ?? history.LastOrDefault();
+        StateHasChanged();
+        var found = await Task.Run(() => archive.GetMediaReferrers(snapshot, entry).ToList());
+        if (ReferenceEquals(loadedEntry, entry))
+            referrers = found;
+    }
+
+    async Task ExportMp3Async()
+    {
+        if (Session.Archive is not { } archive || Entry is not { } entry || Snapshot is not { } snapshot)
+            return;
+        try
+        {
+            var mp3 = await Task.Run(() => MediaContent.GetMp3(archive, snapshot, entry));
+            var baseName = Path.GetFileNameWithoutExtension(MediaContent.GetName(entry));
+            var parts = new List<(string name, ReadOnlyMemory<byte> data)>();
+            for (var segment = 0; segment < mp3.Segments.Count; ++segment)
+                for (var layer = 0; layer < mp3.Segments[segment].Layers.Count; ++layer)
+                {
+                    var labels = new List<string>();
+                    if (mp3.Segments.Count > 1)
+                        labels.Add(segment == 0 ? "before the loop" : "loop");
+                    if (mp3.Segments[segment].Layers.Count > 1)
+                        labels.Add($"layer {layer + 1}");
+                    parts.Add(($"{baseName}{(labels.Count > 0 ? $" ({string.Join(", ", labels)})" : string.Empty)}.mp3", mp3.Segments[segment].Layers[layer]));
+                }
+            if (parts.Count == 1)
+            {
+                if (await Session.Platform.PickNewFileAsync("Export", parts[0].name) is not { } path)
+                    return;
+                await File.WriteAllBytesAsync(path, parts[0].data.ToArray());
+                Snackbar.Add($"Exported {Path.GetFileName(path)}", Severity.Success);
+                return;
+            }
+            if (await Session.Platform.PickFolderAsync($"Export {parts.Count} MP3s") is not { } folder)
+                return;
+            var existing = parts.Where(part => File.Exists(Path.Combine(folder, part.name))).Select(part => part.name).ToList();
+            if (existing.Count > 0)
+            {
+                Snackbar.Add($"Nothing was exported, because {string.Join(", ", existing)} {(existing.Count == 1 ? "is" : "are")} already in that folder", Severity.Warning);
+                return;
+            }
+            foreach (var (name, data) in parts)
+                await File.WriteAllBytesAsync(Path.Combine(folder, name), data.ToArray());
+            Snackbar.Add($"Exported {parts.Count} MP3s{(mp3.Segments.Count > 1 ? " (the part before the loop and the loop)" : string.Empty)}{(mp3.Segments[0].Layers.Count > 1 ? " (one per layer, to be played together)" : string.Empty)}", Severity.Success);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException or NotSupportedException)
+        {
+            Snackbar.Add($"Couldn't export it: {ex.Message}", Severity.Error);
+        }
+    }
+
+    async Task ExportAsync(ExportFormat format)
+    {
+        if (Session.Archive is not { } archive || Entry is not { } entry)
+            return;
+        try
+        {
+            var content = await Task.Run(() => archive.GetContent(entry));
+            var (data, extension) = format switch
+            {
+                ExportFormat.Png => (await Task.Run(() => MediaContent.DecodeImage(content).png), ".png"),
+                ExportFormat.Dds => (await Task.Run(() => MediaContent.GetDds(content)), ".dds"),
+                _ => (content, MediaContent.GetExtension(entry, content))
+            };
+            if (data is null)
+            {
+                Snackbar.Add("The game stores this image as a PNG, not a DirectDraw Surface; export it as a PNG.", Severity.Info);
+                return;
+            }
+            var baseName = Path.GetFileNameWithoutExtension(MediaContent.GetName(entry));
+            if (await Session.Platform.PickNewFileAsync("Export", $"{baseName}{extension}") is not { } path)
+                return;
+            await File.WriteAllBytesAsync(path, data);
+            Snackbar.Add($"Exported {Path.GetFileName(path)}", Severity.Success);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException)
+        {
+            Snackbar.Add($"Couldn't export it: {ex.Message}", Severity.Error);
+        }
+    }
+}

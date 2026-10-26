@@ -1,0 +1,111 @@
+@page "/problems"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject ProblemsState State
+@inject BrowseState Browse
+@inject NavigationManager Navigation
+
+<div class="ta-page ta-panel">
+    @if (Session.Archive is null)
+    {
+        <div class="ta-empty">Open an archive on the Archive page first.</div>
+    }
+    else if (Session.Snapshots.Count == 0)
+    {
+        <div class="ta-empty">This archive has no snapshots yet.</div>
+    }
+    else
+    {
+        <div class="ta-detail-header">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="3">
+                <div style="width: 320px"><SnapshotSelect Value="State.SnapshotId" ValueChanged="OnSnapshotChangedAsync" /></div>
+                <MudText Typo="Typo.body2">
+                    References to tuning, and to kinds of media the snapshot captured, that aren't in the snapshot. Most point at packs that weren't installed when it was captured; the rest are references the game itself can't resolve.
+                </MudText>
+            </MudStack>
+        </div>
+        <ScrollList State="State.List" Key="@($"{State.SnapshotId}")" Ready="@(!loading && groups.Count > 0)">
+            @if (loading || State.SnapshotId is null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else if (Session.ReferenceStatus.indexed == 0)
+            {
+                <div class="ta-empty">References haven't been indexed yet. Import tuning descriptions and index references on the Archive page.</div>
+            }
+            else if (groups.Count == 0)
+            {
+                <div class="ta-empty">Every indexed reference in this snapshot resolves.</div>
+            }
+            else
+            {
+                <MudText Typo="Typo.caption" Class="px-4 py-1">@broken.Count.ToString("N0", CultureInfo.CurrentCulture) unresolved references in @groups.Count.ToString("N0", CultureInfo.CurrentCulture) tunings</MudText>
+                <Virtualize Items="groups" ItemSize="44" Context="group">
+                    <div class="ta-list-item" @onclick="() => Open(group.first)">
+                        <div class="ta-primary">@group.source.Name</div>
+                        <div class="ta-secondary">@Session.GetTypeName(group.source.Type) · @group.source.Pack · @group.summary</div>
+                    </div>
+                </Virtualize>
+            }
+        </ScrollList>
+    }
+</div>
+
+@code {
+    int loadedGeneration = -1;
+    bool loading;
+    IReadOnlyList<TuningArchiveReference> broken = [];
+    List<(TuningArchiveEntry source, TuningArchiveReference first, string summary)> groups = [];
+
+    protected override void OnInitialized() =>
+        Session.Changed += OnSessionChanged;
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(async () =>
+        {
+            await LoadAsync();
+            StateHasChanged();
+        });
+
+    protected override Task OnParametersSetAsync() =>
+        LoadAsync();
+
+    async Task LoadAsync()
+    {
+        if (loadedGeneration == Session.Generation)
+            return;
+        loadedGeneration = Session.Generation;
+        var id = Session.GetSnapshot(State.SnapshotId)?.Id ?? (Session.Snapshots.Count > 0 ? Session.Snapshots[^1].Id : null);
+        broken = [];
+        groups = [];
+        if (id is not null)
+            await OnSnapshotChangedAsync(id);
+    }
+
+    async Task OnSnapshotChangedAsync(long? id)
+    {
+        if (Session.Archive is not { } archive || Session.GetSnapshot(id) is not { } snapshot)
+            return;
+        State.SnapshotId = id;
+        loading = true;
+        StateHasChanged();
+        broken = await Task.Run(() => archive.GetBrokenReferences(snapshot).Concat(archive.GetBrokenMediaReferences(snapshot)).ToList());
+        groups = broken
+            .GroupBy(reference => reference.Source.VersionKey())
+            .Select(group => (group.First().Source, group.First(), string.Join(", ", group.GroupBy(reference => reference.TargetType).Select(byType => $"{byType.Count()} {Session.GetTypeName(byType.Key)}"))))
+            .OrderBy(group => group.Item1.Name, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        loading = false;
+    }
+
+    void Open(TuningArchiveReference reference)
+    {
+        if (State.SnapshotId is not { } snapshotId)
+            return;
+        Browse.Request(snapshotId, (reference.Source.Type, reference.Source.Instance), (reference.TargetType, reference.TargetInstance));
+        Navigation.NavigateTo("browse");
+    }
+}

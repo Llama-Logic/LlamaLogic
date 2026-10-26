@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>LlamaLogic.EpicTuningTime.Benchmarking.PropertyPanelBenchmarks-20261024-004717</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.2, Windows 11 (10.0.26200.9711)
+Unknown processor
+.NET SDK 10.0.402
+  [Host]     : .NET 9.0.21 (9.0.2126.50404), X64 RyuJIT AVX2
+  Job-SAYKNZ : .NET 9.0.21 (9.0.2126.50404), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>IterationCount=10  LaunchCount=1  RunStrategy=Monitoring  
+WarmupCount=2  
+</code></pre>
+
+<table>
+<thead><tr><th>Method              </th><th>Fixture       </th><th>Mean </th><th>Error </th><th>StdDev</th><th>Gen0</th><th>Gen1</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Analyze</td><td>Group(...)thday [22]</td><td>1,037.9 &mu;s</td><td>93.01 &mu;s</td><td>61.52 &mu;s</td><td>-</td><td>-</td><td>458.3 KB</td>
+</tr><tr><td>BuildAnnotations</td><td>Group(...)thday [22]</td><td>834.1 &mu;s</td><td>137.51 &mu;s</td><td>90.96 &mu;s</td><td>-</td><td>-</td><td>768.03 KB</td>
+</tr><tr><td>BuildPropertyTree</td><td>Group(...)thday [22]</td><td>285.4 &mu;s</td><td>53.40 &mu;s</td><td>35.32 &mu;s</td><td>-</td><td>-</td><td>189.04 KB</td>
+</tr><tr><td>BuildPropertyTreeWithUnset</td><td>Group(...)thday [22]</td><td>992.9 &mu;s</td><td>326.04 &mu;s</td><td>215.65 &mu;s</td><td>-</td><td>-</td><td>423.1 KB</td>
+</tr><tr><td>Analyze</td><td>SimSpawner</td><td>78,880.2 &mu;s</td><td>41,604.36 &mu;s</td><td>27,518.71 &mu;s</td><td>3000.0000</td><td>2000.0000</td><td>60510.44 KB</td>
+</tr><tr><td>BuildAnnotations</td><td>SimSpawner</td><td>74,707.9 &mu;s</td><td>25,640.21 &mu;s</td><td>16,959.41 &mu;s</td><td>8000.0000</td><td>4000.0000</td><td>166318.11 KB</td>
+</tr><tr><td>BuildPropertyTree</td><td>SimSpawner</td><td>26,141.0 &mu;s</td><td>5,386.68 &mu;s</td><td>3,562.95 &mu;s</td><td>1000.0000</td><td>-</td><td>38846.19 KB</td>
+</tr><tr><td>BuildPropertyTreeWithUnset</td><td>SimSpawner</td><td>28,749.0 &mu;s</td><td>7,044.90 &mu;s</td><td>4,659.77 &mu;s</td><td>1000.0000</td><td>-</td><td>40259.68 KB</td>
+</tr><tr><td>Analyze</td><td>TeaSetPourTeaPottery</td><td>21,110.9 &mu;s</td><td>16,503.52 &mu;s</td><td>10,916.06 &mu;s</td><td>-</td><td>-</td><td>16715.32 KB</td>
+</tr><tr><td>BuildAnnotations</td><td>TeaSetPourTeaPottery</td><td>19,043.5 &mu;s</td><td>2,959.55 &mu;s</td><td>1,957.56 &mu;s</td><td>1000.0000</td><td>-</td><td>32261.91 KB</td>
+</tr><tr><td>BuildPropertyTree</td><td>TeaSetPourTeaPottery</td><td>7,618.1 &mu;s</td><td>2,040.05 &mu;s</td><td>1,349.37 &mu;s</td><td>-</td><td>-</td><td>8326.6 KB</td>
+</tr><tr><td>BuildPropertyTreeWithUnset</td><td>TeaSetPourTeaPottery</td><td>14,935.9 &mu;s</td><td>2,497.01 &mu;s</td><td>1,651.61 &mu;s</td><td>-</td><td>-</td><td>14592.46 KB</td>
+</tr><tr><td>Analyze</td><td>UiTuning</td><td>17,782.8 &mu;s</td><td>3,278.91 &mu;s</td><td>2,168.79 &mu;s</td><td>-</td><td>-</td><td>12603.08 KB</td>
+</tr><tr><td>BuildAnnotations</td><td>UiTuning</td><td>11,693.8 &mu;s</td><td>3,780.98 &mu;s</td><td>2,500.89 &mu;s</td><td>-</td><td>-</td><td>16759.25 KB</td>
+</tr><tr><td>BuildPropertyTree</td><td>UiTuning</td><td>5,634.0 &mu;s</td><td>1,211.65 &mu;s</td><td>801.43 &mu;s</td><td>-</td><td>-</td><td>4112.44 KB</td>
+</tr><tr><td>BuildPropertyTreeWithUnset</td><td>UiTuning</td><td>10,368.2 &mu;s</td><td>1,629.47 &mu;s</td><td>1,077.80 &mu;s</td><td>-</td><td>-</td><td>6655.06 KB</td>
+</tr></tbody></table>
+</body>
+</html>

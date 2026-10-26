@@ -1,0 +1,865 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  id: ElectronicArtsAudioCore
+  parent: LlamaLogic.Packages.Formats
+  children:
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3)
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+  langs:
+  - csharp
+  - vb
+  name: ElectronicArtsAudioCore
+  nameWithType: ElectronicArtsAudioCore
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ElectronicArtsAudioCore
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: "Provides methods for dealing with sounds in Electronic Arts' AudioCore format: the <xref href=\"LlamaLogic.Packages.ResourceType.AudioVocals\" data-throw-if-not-resolved=\"false\"></xref> resources of The Sims 4 (a header, followed by its audio if the sound is held in memory) and their <xref href=\"LlamaLogic.Packages.ResourceType.AudioEffects\" data-throw-if-not-resolved=\"false\"></xref> bodies (the audio of a streamed sound)"
+  remarks: The rebuilding of EALayer3 into MP3 is adapted from vgmstream (see <code>Formats/Vgmstream/license.txt</code>); unlike vgmstream, it lays the audio out at a constant bitrate with a bit reservoir and adds a gapless playback tag, so that ordinary MP3 decoders play it sample for sample as the game does
+  example: []
+  syntax:
+    content: public static class ElectronicArtsAudioCore
+    content.vb: Public Module ElectronicArtsAudioCore
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+  id: GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  langs:
+  - csharp
+  - vb
+  name: GetMp3(ReadOnlyMemory<byte>, ReadOnlyMemory<byte>)
+  nameWithType: ElectronicArtsAudioCore.GetMp3(ReadOnlyMemory<byte>, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory<byte>, System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetMp3
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+    startLine: 184
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Rebuilds a sound encoded with <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1" data-throw-if-not-resolved="false"></xref> as MP3, without re-encoding it
+  example: []
+  syntax:
+    content: public static ElectronicArtsAudioCoreMp3 GetMp3(ReadOnlyMemory<byte> headerData, ReadOnlyMemory<byte> streamData = default)
+    parameters:
+    - id: headerData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data of the sound's <xref href="LlamaLogic.Packages.ResourceType.AudioVocals" data-throw-if-not-resolved="false"></xref> resource
+    - id: streamData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data of the sound's <xref href="LlamaLogic.Packages.ResourceType.AudioEffects" data-throw-if-not-resolved="false"></xref> resource, if the sound is streamed
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3
+    content.vb: Public Shared Function GetMp3(headerData As ReadOnlyMemory(Of Byte), streamData As ReadOnlyMemory(Of Byte) = Nothing) As ElectronicArtsAudioCoreMp3
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: The sound is streamed and <code class="paramref">streamData</code> is empty
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The header or the audio is malformed
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: The sound uses another codec or another version of the header (The Sims 4's sounds are version 0), or is stored as a <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Gigasample" data-throw-if-not-resolved="false"></xref>
+  nameWithType.vb: ElectronicArtsAudioCore.GetMp3(ReadOnlyMemory(Of Byte), ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory(Of Byte), System.ReadOnlyMemory(Of Byte))
+  name.vb: GetMp3(ReadOnlyMemory(Of Byte), ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  commentId: M:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  id: CreateFromMp3(System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  langs:
+  - csharp
+  - vb
+  name: CreateFromMp3(ReadOnlyMemory<byte>, ElectronicArtsAudioCoreStorage, bool)
+  nameWithType: ElectronicArtsAudioCore.CreateFromMp3(ReadOnlyMemory<byte>, ElectronicArtsAudioCoreStorage, bool)
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.ReadOnlyMemory<byte>, LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CreateFromMp3
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+    startLine: 256
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Makes a sound for The Sims 4 from an MP3, without re-encoding it
+  remarks: >-
+    The sound's length comes from the MP3's gapless playback tag (as LAME and the tools built on it write); an MP3 without one is taken to end where its last frame does.
+
+    The game's sounds begin with 47 samples stored uncompressed, which this writes as silence, so the first millisecond of the MP3 is not heard.
+  example: []
+  syntax:
+    content: public static ElectronicArtsAudioCoreSound CreateFromMp3(ReadOnlyMemory<byte> mp3Data, ElectronicArtsAudioCoreStorage storage, bool isLooping = false)
+    parameters:
+    - id: mp3Data
+      type: System.ReadOnlyMemory{System.Byte}
+      description: 'The MP3: MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), mono or stereo, constant or variable bitrate (not free format)'
+    - id: storage
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+      description: 'Where the game should find the audio: <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory" data-throw-if-not-resolved="false"></xref> (in the <xref href="LlamaLogic.Packages.ResourceType.AudioVocals" data-throw-if-not-resolved="false"></xref> resource) or <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Stream" data-throw-if-not-resolved="false"></xref> (in an <xref href="LlamaLogic.Packages.ResourceType.AudioEffects" data-throw-if-not-resolved="false"></xref> resource with the same instance)'
+    - id: isLooping
+      type: System.Boolean
+      description: Whether the sound loops from its start
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound
+    content.vb: Public Shared Function CreateFromMp3(mp3Data As ReadOnlyMemory(Of Byte), storage As ElectronicArtsAudioCoreStorage, isLooping As Boolean = False) As ElectronicArtsAudioCoreSound
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The MP3 is malformed, or its tag declares an encoder delay of less than 576 samples
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: The MP3 is not MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), or is free format
+  nameWithType.vb: ElectronicArtsAudioCore.CreateFromMp3(ReadOnlyMemory(Of Byte), ElectronicArtsAudioCoreStorage, Boolean)
+  fullName.vb: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.ReadOnlyMemory(Of Byte), LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage, Boolean)
+  name.vb: CreateFromMp3(ReadOnlyMemory(Of Byte), ElectronicArtsAudioCoreStorage, Boolean)
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3)
+  commentId: M:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3)
+  id: CreateFromMp3(LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3)
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  langs:
+  - csharp
+  - vb
+  name: CreateFromMp3(ElectronicArtsAudioCoreMp3)
+  nameWithType: ElectronicArtsAudioCore.CreateFromMp3(ElectronicArtsAudioCoreMp3)
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CreateFromMp3
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+    startLine: 264
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Makes a sound for The Sims 4 from the MP3s <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory%7bSystem.Byte%7d%2cSystem.ReadOnlyMemory%7bSystem.Byte%7d)" data-throw-if-not-resolved="false"></xref> rebuilt from one, without re-encoding them, stored as the original was
+  example: []
+  syntax:
+    content: public static ElectronicArtsAudioCoreSound CreateFromMp3(ElectronicArtsAudioCoreMp3 mp3)
+    parameters:
+    - id: mp3
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound
+    content.vb: Public Shared Function CreateFromMp3(mp3 As ElectronicArtsAudioCoreMp3) As ElectronicArtsAudioCoreSound
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: An MP3 is malformed
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: The sound is not one this can make
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  commentId: M:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  id: CreateFromMp3(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore
+  langs:
+  - csharp
+  - vb
+  name: CreateFromMp3(IReadOnlyList<IReadOnlyList<ReadOnlyMemory<byte>>>, ElectronicArtsAudioCoreStorage, bool)
+  nameWithType: ElectronicArtsAudioCore.CreateFromMp3(IReadOnlyList<IReadOnlyList<ReadOnlyMemory<byte>>>, ElectronicArtsAudioCoreStorage, bool)
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList<System.ReadOnlyMemory<byte>>>, LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CreateFromMp3
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs
+    startLine: 279
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Makes a sound for The Sims 4 from MP3s, without re-encoding them
+  example: []
+  syntax:
+    content: public static ElectronicArtsAudioCoreSound CreateFromMp3(IReadOnlyList<IReadOnlyList<ReadOnlyMemory<byte>>> segments, ElectronicArtsAudioCoreStorage storage, bool isLooping)
+    parameters:
+    - id: segments
+      type: System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}}
+      description: "The MP3s of the sound: one segment, or, for a sound that loops from somewhere other than its start, the part before the loop and the loop; each segment's MP3s are layers played together (all stereo, except that the last may be mono), with the same number of frames"
+    - id: storage
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+      description: Where the game should find the audio
+    - id: isLooping
+      type: System.Boolean
+      description: Whether the sound loops (from its start, with one segment; from the start of the second segment, with two)
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound
+    content.vb: Public Shared Function CreateFromMp3(segments As IReadOnlyList(Of IReadOnlyList(Of ReadOnlyMemory(Of Byte))), storage As ElectronicArtsAudioCoreStorage, isLooping As Boolean) As ElectronicArtsAudioCoreSound
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">segments</code> is empty, has more than two segments, has two without <code class="paramref">isLooping</code>, or has a segment without MP3s
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: An MP3 is malformed, the MP3s disagree about their sample rate, layout or length, or the sound is too long for <code class="paramref">storage</code>
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: An MP3 is not MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), or <code class="paramref">storage</code> is <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Gigasample" data-throw-if-not-resolved="false"></xref>
+  nameWithType.vb: ElectronicArtsAudioCore.CreateFromMp3(IReadOnlyList(Of IReadOnlyList(Of ReadOnlyMemory(Of Byte))), ElectronicArtsAudioCoreStorage, Boolean)
+  fullName.vb: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.Collections.Generic.IReadOnlyList(Of System.Collections.Generic.IReadOnlyList(Of System.ReadOnlyMemory(Of Byte))), LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage, Boolean)
+  name.vb: CreateFromMp3(IReadOnlyList(Of IReadOnlyList(Of ReadOnlyMemory(Of Byte))), ElectronicArtsAudioCoreStorage, Boolean)
+references:
+- uid: LlamaLogic.Packages.ResourceType.AudioVocals
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioVocals
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioVocals
+  name: AudioVocals
+  nameWithType: ResourceType.AudioVocals
+  fullName: LlamaLogic.Packages.ResourceType.AudioVocals
+- uid: LlamaLogic.Packages.ResourceType.AudioEffects
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioEffects
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioEffects
+  name: AudioEffects
+  nameWithType: ResourceType.AudioEffects
+  fullName: LlamaLogic.Packages.ResourceType.AudioEffects
+- uid: LlamaLogic.Packages.Formats
+  commentId: N:LlamaLogic.Packages.Formats
+  name: LlamaLogic.Packages.Formats
+  nameWithType: LlamaLogic.Packages.Formats
+  fullName: LlamaLogic.Packages.Formats
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1
+  commentId: F:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreCodec_ElectronicArtsLayer3Version1
+  name: ElectronicArtsLayer3Version1
+  nameWithType: ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Gigasample
+  commentId: F:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Gigasample
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Gigasample
+  name: Gigasample
+  nameWithType: ElectronicArtsAudioCoreStorage.Gigasample
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Gigasample
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.notsupportedexception
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_System_ReadOnlyMemory_System_Byte__System_ReadOnlyMemory_System_Byte__
+  name: GetMp3
+  nameWithType: ElectronicArtsAudioCore.GetMp3
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3
+  parent: LlamaLogic.Packages.Formats
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3.html
+  name: ElectronicArtsAudioCoreMp3
+  nameWithType: ElectronicArtsAudioCoreMp3
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory
+  commentId: F:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Memory
+  name: Memory
+  nameWithType: ElectronicArtsAudioCoreStorage.Memory
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Stream
+  commentId: F:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Stream
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Stream
+  name: Stream
+  nameWithType: ElectronicArtsAudioCoreStorage.Stream
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Stream
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_System_Boolean_
+  name: CreateFromMp3
+  nameWithType: ElectronicArtsAudioCore.CreateFromMp3
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+  parent: LlamaLogic.Packages.Formats
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html
+  name: ElectronicArtsAudioCoreStorage
+  nameWithType: ElectronicArtsAudioCoreStorage
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound
+  parent: LlamaLogic.Packages.Formats
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound.html
+  name: ElectronicArtsAudioCoreSound
+  nameWithType: ElectronicArtsAudioCoreSound
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_System_ReadOnlyMemory_System_Byte__System_ReadOnlyMemory_System_Byte__
+  name: GetMp3(ReadOnlyMemory<byte>, ReadOnlyMemory<byte>)
+  nameWithType: ElectronicArtsAudioCore.GetMp3(ReadOnlyMemory<byte>, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory<byte>, System.ReadOnlyMemory<byte>)
+  nameWithType.vb: ElectronicArtsAudioCore.GetMp3(ReadOnlyMemory(Of Byte), ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory(Of Byte), System.ReadOnlyMemory(Of Byte))
+  name.vb: GetMp3(ReadOnlyMemory(Of Byte), ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+    name: GetMp3
+    href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_System_ReadOnlyMemory_System_Byte__System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})
+    name: GetMp3
+    href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_System_ReadOnlyMemory_System_Byte__System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<IReadOnlyList<ReadOnlyMemory<byte>>>
+  nameWithType: IReadOnlyList<IReadOnlyList<ReadOnlyMemory<byte>>>
+  fullName: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList<System.ReadOnlyMemory<byte>>>
+  nameWithType.vb: IReadOnlyList(Of IReadOnlyList(Of ReadOnlyMemory(Of Byte)))
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of System.Collections.Generic.IReadOnlyList(Of System.ReadOnlyMemory(Of Byte)))
+  name.vb: IReadOnlyList(Of IReadOnlyList(Of ReadOnlyMemory(Of Byte)))
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

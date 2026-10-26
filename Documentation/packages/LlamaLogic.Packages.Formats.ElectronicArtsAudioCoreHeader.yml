@@ -1,0 +1,832 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  id: ElectronicArtsAudioCoreHeader
+  parent: LlamaLogic.Packages.Formats
+  children:
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read(System.ReadOnlySpan{System.Byte})
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage
+  - LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version
+  langs:
+  - csharp
+  - vb
+  name: ElectronicArtsAudioCoreHeader
+  nameWithType: ElectronicArtsAudioCoreHeader
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ElectronicArtsAudioCoreHeader
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: "Represents the header of a sound in Electronic Arts' AudioCore format, the content of a <xref href=\"LlamaLogic.Packages.ResourceType.AudioVocals\" data-throw-if-not-resolved=\"false\"></xref> resource up to its audio (\U0001F512)"
+  remarks: Adapted from vgmstream's reading of EAAudioCore headers
+  example: []
+  syntax:
+    content: public sealed class ElectronicArtsAudioCoreHeader
+    content.vb: Public NotInheritable Class ElectronicArtsAudioCoreHeader
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount
+  id: ChannelCount
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: ChannelCount
+  nameWithType: ElectronicArtsAudioCoreHeader.ChannelCount
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ChannelCount
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 28
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the number of channels
+  example: []
+  syntax:
+    content: public int ChannelCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ChannelCount As Integer
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec
+  id: Codec
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: Codec
+  nameWithType: ElectronicArtsAudioCoreHeader.Codec
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Codec
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 33
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the codec of the audio
+  example: []
+  syntax:
+    content: public ElectronicArtsAudioCoreCodec Codec { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec
+    content.vb: Public ReadOnly Property Codec As ElectronicArtsAudioCoreCodec
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset
+  id: LoopOffset
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: LoopOffset
+  nameWithType: ElectronicArtsAudioCoreHeader.LoopOffset
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LoopOffset
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 38
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the offset in the streamed body of the block where the loop starts, if the sound is streamed and loops
+  example: []
+  syntax:
+    content: public int? LoopOffset { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public ReadOnly Property LoopOffset As Integer?
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample
+  id: LoopStartSample
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: LoopStartSample
+  nameWithType: ElectronicArtsAudioCoreHeader.LoopStartSample
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: LoopStartSample
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 43
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the sample at which the loop starts, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the sound does not loop
+  example: []
+  syntax:
+    content: public int? LoopStartSample { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public ReadOnly Property LoopStartSample As Integer?
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount
+  id: SampleCount
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: SampleCount
+  nameWithType: ElectronicArtsAudioCoreHeader.SampleCount
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SampleCount
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 48
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the number of samples per channel
+  example: []
+  syntax:
+    content: public int SampleCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SampleCount As Integer
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate
+  id: SampleRate
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: SampleRate
+  nameWithType: ElectronicArtsAudioCoreHeader.SampleRate
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SampleRate
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 53
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the number of samples per second
+  example: []
+  syntax:
+    content: public int SampleRate { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SampleRate As Integer
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size
+  id: Size
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: ElectronicArtsAudioCoreHeader.Size
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Size
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 58
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the size of the header in bytes (where the audio begins, for a sound stored in <xref href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public int Size { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Size As Integer
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage
+  id: Storage
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: Storage
+  nameWithType: ElectronicArtsAudioCoreHeader.Storage
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Storage
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 63
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets where the audio is stored
+  example: []
+  syntax:
+    content: public ElectronicArtsAudioCoreStorage Storage { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+    content.vb: Public ReadOnly Property Storage As ElectronicArtsAudioCoreStorage
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version
+  commentId: P:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version
+  id: Version
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: ElectronicArtsAudioCoreHeader.Version
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 68
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets the version of the header
+  example: []
+  syntax:
+    content: public int Version { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Version As Integer
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version*
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read(System.ReadOnlySpan{System.Byte})
+  commentId: M:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read(System.ReadOnlySpan{System.Byte})
+  id: Read(System.ReadOnlySpan{System.Byte})
+  parent: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  langs:
+  - csharp
+  - vb
+  name: Read(ReadOnlySpan<byte>)
+  nameWithType: ElectronicArtsAudioCoreHeader.Read(ReadOnlySpan<byte>)
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read(System.ReadOnlySpan<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Read
+    path: ../LlamaLogic.Packages/Formats/ElectronicArtsAudioCoreHeader.cs
+    startLine: 75
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Reads the header of a sound
+  example: []
+  syntax:
+    content: public static ElectronicArtsAudioCoreHeader Read(ReadOnlySpan<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlySpan{System.Byte}
+      description: The data of the sound, beginning with its header
+    return:
+      type: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+    content.vb: Public Shared Function Read(data As ReadOnlySpan(Of Byte)) As ElectronicArtsAudioCoreHeader
+  overload: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The data is too short for the header it declares, or declares an unknown version, storage or sample rate
+  nameWithType.vb: ElectronicArtsAudioCoreHeader.Read(ReadOnlySpan(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read(System.ReadOnlySpan(Of Byte))
+  name.vb: Read(ReadOnlySpan(Of Byte))
+references:
+- uid: LlamaLogic.Packages.ResourceType.AudioVocals
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioVocals
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioVocals
+  name: AudioVocals
+  nameWithType: ResourceType.AudioVocals
+  fullName: LlamaLogic.Packages.ResourceType.AudioVocals
+- uid: LlamaLogic.Packages.Formats
+  commentId: N:LlamaLogic.Packages.Formats
+  name: LlamaLogic.Packages.Formats
+  nameWithType: LlamaLogic.Packages.Formats
+  fullName: LlamaLogic.Packages.Formats
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Formats
+    name: Formats
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_ChannelCount
+  name: ChannelCount
+  nameWithType: ElectronicArtsAudioCoreHeader.ChannelCount
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.ChannelCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_Codec
+  name: Codec
+  nameWithType: ElectronicArtsAudioCoreHeader.Codec
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Codec
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec
+  parent: LlamaLogic.Packages.Formats
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.html
+  name: ElectronicArtsAudioCoreCodec
+  nameWithType: ElectronicArtsAudioCoreCodec
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_LoopOffset
+  name: LoopOffset
+  nameWithType: ElectronicArtsAudioCoreHeader.LoopOffset
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopOffset
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_LoopStartSample
+  name: LoopStartSample
+  nameWithType: ElectronicArtsAudioCoreHeader.LoopStartSample
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.LoopStartSample
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_SampleCount
+  name: SampleCount
+  nameWithType: ElectronicArtsAudioCoreHeader.SampleCount
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleCount
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_SampleRate
+  name: SampleRate
+  nameWithType: ElectronicArtsAudioCoreHeader.SampleRate
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.SampleRate
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory
+  commentId: F:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Memory
+  name: Memory
+  nameWithType: ElectronicArtsAudioCoreStorage.Memory
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.Memory
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_Size
+  name: Size
+  nameWithType: ElectronicArtsAudioCoreHeader.Size
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Size
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_Storage
+  name: Storage
+  nameWithType: ElectronicArtsAudioCoreHeader.Storage
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Storage
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+  parent: LlamaLogic.Packages.Formats
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html
+  name: ElectronicArtsAudioCoreStorage
+  nameWithType: ElectronicArtsAudioCoreStorage
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_Version
+  name: Version
+  nameWithType: ElectronicArtsAudioCoreHeader.Version
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Version
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read*
+  commentId: Overload:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreHeader_Read_System_ReadOnlySpan_System_Byte__
+  name: Read
+  nameWithType: ElectronicArtsAudioCoreHeader.Read
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.Read
+- uid: System.ReadOnlySpan{System.Byte}
+  commentId: T:System.ReadOnlySpan{System.Byte}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<byte>
+  nameWithType: ReadOnlySpan<byte>
+  fullName: System.ReadOnlySpan<byte>
+  nameWithType.vb: ReadOnlySpan(Of Byte)
+  fullName.vb: System.ReadOnlySpan(Of Byte)
+  name.vb: ReadOnlySpan(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  commentId: T:LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+  parent: LlamaLogic.Packages.Formats
+  href: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader.html
+  name: ElectronicArtsAudioCoreHeader
+  nameWithType: ElectronicArtsAudioCoreHeader
+  fullName: LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreHeader
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

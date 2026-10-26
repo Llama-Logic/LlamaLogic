@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\Common\LibraryProject.props" />
+
+    <PropertyGroup>
+        <Product>LlamaLogic.TuningArchive</Product>
+        <Version>1.0.0</Version>
+        <Description>Capture The Sims 4 tuning into a versioned archive, compare versions, and follow references between tunings.</Description>
+        <PackageIcon>NuGet.png</PackageIcon>
+        <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.21" />
+        <PackageReference Include="ZstdSharp.Port" Version="0.8.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="NuGet.png" Pack="True" PackagePath="" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LlamaLogic.Packages\LlamaLogic.Packages.csproj" />
+        <ProjectReference Include="..\LlamaLogic.TuningDescriptions\LlamaLogic.TuningDescriptions.csproj" />
+    </ItemGroup>
+
+</Project>

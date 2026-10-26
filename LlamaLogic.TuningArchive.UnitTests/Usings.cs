@@ -1,0 +1,16 @@
+global using CompressionMode = LlamaLogic.Packages.CompressionMode;
+global using LlamaLogic.Packages;
+global using LlamaLogic.Packages.Cryptography;
+global using LlamaLogic.Packages.Models;
+global using LlamaLogic.Packages.Models.AnimationStateMachine;
+global using LlamaLogic.Packages.Models.SimData;
+global using LlamaLogic.TuningDescriptions;
+global using System;
+global using System.Collections.Generic;
+global using System.Globalization;
+global using System.IO;
+global using System.IO.Compression;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using System.Xml.Linq;

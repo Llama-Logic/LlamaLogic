@@ -1,0 +1,646 @@
+@page "/browse"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject BrowseState State
+@inject NavigationManager Navigation
+
+<div class="ta-page">
+    @if (Session.Archive is null)
+    {
+        <div class="ta-empty">Open an archive on the Archive page first.</div>
+    }
+    else if (Session.Snapshots.Count == 0)
+    {
+        <div class="ta-empty">This archive has no snapshots yet. Capture one on the Archive page.</div>
+    }
+    else
+    {
+        <div class="ta-split">
+            <div class="ta-sidebar">
+                <div class="ta-sidebar-filters">
+                    <SnapshotSelect Value="State.SnapshotId" ValueChanged="OnSnapshotChangedAsync" />
+                    <MudSelect T="BrowseKind" Value="CurrentBrowseKind" ValueChanged="OnBrowseKindChangedAsync" Label="Show" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" ToStringFunc="GetBrowseKindName" MaxHeight="420">
+                        @foreach (var kind in Enum.GetValues<BrowseKind>())
+                        {
+                            <MudSelectItem T="BrowseKind" Value="kind" Disabled="!IsAvailable(kind)">
+                                <span class="ta-kind-item"><MudIcon Icon="@GetBrowseKindIcon(kind)" Size="Size.Small" />@GetBrowseKindName(kind)</span>
+                            </MudSelectItem>
+                        }
+                    </MudSelect>
+                    @if (!State.ShowingStrings && State.Kind is TuningArchiveResourceKind.Tuning or TuningArchiveResourceKind.Sound && entries is not null)
+                    {
+                        <MudSelect T="ResourceType?" Value="State.TypeFilter" ValueChanged="OnTypeChanged" Label="Type" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" Clearable="true">
+                            @foreach (var (type, count) in entries.TypeCounts.OrderBy(pair => Session.GetTypeName(pair.Key), StringComparer.OrdinalIgnoreCase))
+                            {
+                                <MudSelectItem T="ResourceType?" Value="type">@Session.GetTypeName(type) (@count.ToString("N0", CultureInfo.CurrentCulture))</MudSelectItem>
+                            }
+                        </MudSelect>
+                    }
+                    <MudTextField T="string" Value="State.Search" ValueChanged="OnSearchChanged" Label="@SearchLabel" Immediate="true" DebounceInterval="200" Variant="Variant.Outlined" Margin="Margin.Dense" Clearable="true" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+                    <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                        <MudText Typo="Typo.caption">@ShownCaption</MudText>
+                        <span>
+                            <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" Size="Size.Small" Disabled="State.Back.Count == 0" OnClick="GoBackAsync" title="Back" />
+                            <MudIconButton Icon="@Icons.Material.Filled.ArrowForward" Size="Size.Small" Disabled="State.Forward.Count == 0" OnClick="GoForwardAsync" title="Forward" />
+                        </span>
+                    </MudStack>
+                </div>
+                <ScrollList State="@(State.ShowingStrings ? State.StringList : State.List)" Key="@ListKey" Ready="@(State.ShowingStrings ? filteredStrings.Count > 0 : filtered.Count > 0)">
+                    @if (State.ShowingStrings)
+                    {
+                        if (allStrings is null)
+                        {
+                            <MudProgressLinear Indeterminate="true" />
+                        }
+                        else if (allStrings.Count == 0)
+                        {
+                            <div class="ta-empty">This snapshot has no strings.</div>
+                        }
+                        else if (filteredStrings.Count == 0)
+                        {
+                            <div class="ta-empty">Nothing matches.</div>
+                        }
+                        else
+                        {
+                            <Virtualize Items="filteredStrings" ItemSize="44" OverscanCount="20" Context="item">
+                                <div class="ta-list-item @(item.Key == State.SelectedStringKey ? "selected" : string.Empty)" @onclick="() => SelectString(item)">
+                                    <div class="ta-primary">@(item.Value.Length == 0 ? "(empty)" : item.Value)</div>
+                                    <div class="ta-secondary">0x@(item.Key.ToString("X8", CultureInfo.InvariantCulture))</div>
+                                </div>
+                            </Virtualize>
+                        }
+                    }
+                    else if (entries is null)
+                    {
+                        <MudProgressLinear Indeterminate="true" />
+                    }
+                    else if (filtered.Count == 0)
+                    {
+                        <div class="ta-empty">@(entries.All.Count == 0 ? $"This snapshot has no {KindName}." : "Nothing matches.")</div>
+                    }
+                    else
+                    {
+                        <Virtualize Items="filtered" ItemSize="44" OverscanCount="20" Context="entry">
+                            <div class="ta-list-item @(ReferenceEquals(entry, selected) ? "selected" : string.Empty)" @onclick="() => OnListClickAsync(entry)">
+                                <div class="ta-primary">@(IsMedia ? MediaContent.GetName(entry) : entry.Name ?? "(unnamed)")</div>
+                                <div class="ta-secondary">@DescribeEntry(entry)</div>
+                            </div>
+                        </Virtualize>
+                    }
+                </ScrollList>
+            </div>
+            <div class="ta-detail">
+                @if (State.ShowingStrings)
+                {
+                    <StringViewer Key="State.SelectedStringKey" Text="@selectedStringText" Snapshot="snapshot" Navigate="OnNavigateAsync" ReferrersScroll="State.StringReferrers" />
+                }
+                else if (State.Kind is TuningArchiveResourceKind.Tuning || (State.Kind is TuningArchiveResourceKind.AnimationStateMachine && selected is not null))
+                {
+                    <TuningViewer Entry="selected" Snapshot="snapshot" Navigate="OnNavigateAsync" RevealReferenceTo="State.RevealReferenceTo" State="State.Viewer" />
+                }
+                else if (IsMedia)
+                {
+                    <MediaViewer Entry="selected" Snapshot="snapshot" Navigate="OnNavigateAsync" />
+                }
+                else if (selected is null)
+                {
+                    <div class="ta-empty">Choose an item from the list.</div>
+                }
+                else
+                {
+                    <div class="ta-detail-header">
+                        <MudText Typo="Typo.h6">@selected.Name</MudText>
+                        <MudText Typo="Typo.caption" Class="ta-mono">@(State.Kind is TuningArchiveResourceKind.SimData ? selected.Key.ToString() : selected.Module)</MudText>
+                    </div>
+                    <MonacoView Text="@selectedText" Language="@(State.Kind is TuningArchiveResourceKind.PythonModule ? (selected.Name?.EndsWith(".json", StringComparison.OrdinalIgnoreCase) == true ? "json" : "python") : "xml")" ViewState="State.Text" ViewStateKey="@($"{snapshot?.Id}:{selected.Key}")" />
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    const int maxStringSearchKeys = 20000;
+
+    enum BrowseKind
+    {
+        Tuning,
+        SimData,
+        AnimationStateMachines,
+        Python,
+        Strings,
+        Images,
+        Sounds,
+        Videos
+    }
+
+    List<KeyValuePair<uint, string>>? allStrings;
+    long? allStringsSnapshotId;
+    List<KeyValuePair<uint, string>> filteredStrings = [];
+    string selectedStringText = string.Empty;
+    Dictionary<(ResourceType type, ulong instance), string> stringMatches = [];
+    string? stringMatchTerm;
+    bool tooManyStringMatches;
+    int stringSearchVersion;
+    TuningArchiveSnapshot? snapshot;
+    SnapshotEntries? entries;
+    (long snapshotId, TuningArchiveResourceKind kind)? loadedEntries;
+    List<TuningArchiveEntry> filtered = [];
+    TuningArchiveEntry? selected;
+    string selectedText = string.Empty;
+    int loadedGeneration = -1;
+
+    [SupplyParameterFromQuery(Name = "instance")]
+    public string? InstanceParameter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "reveal")]
+    public string? RevealParameter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "snapshot")]
+    public long? SnapshotParameter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "type")]
+    public string? TypeParameter { get; set; }
+
+    BrowseKind CurrentBrowseKind =>
+        State.ShowingStrings
+            ? BrowseKind.Strings
+            : State.Kind switch
+            {
+                TuningArchiveResourceKind.SimData => BrowseKind.SimData,
+                TuningArchiveResourceKind.AnimationStateMachine => BrowseKind.AnimationStateMachines,
+                TuningArchiveResourceKind.PythonModule => BrowseKind.Python,
+                TuningArchiveResourceKind.Image => BrowseKind.Images,
+                TuningArchiveResourceKind.Sound => BrowseKind.Sounds,
+                TuningArchiveResourceKind.Video => BrowseKind.Videos,
+                _ => BrowseKind.Tuning
+            };
+
+    bool IsMedia =>
+        State.Kind is TuningArchiveResourceKind.Image or TuningArchiveResourceKind.Sound or TuningArchiveResourceKind.Video;
+
+    static string GetBrowseKindIcon(BrowseKind kind) =>
+        kind switch
+        {
+            BrowseKind.SimData => Icons.Material.Filled.TableChart,
+            BrowseKind.AnimationStateMachines => Icons.Material.Filled.AccountTree,
+            BrowseKind.Python => Icons.Material.Filled.Code,
+            BrowseKind.Strings => Icons.Material.Filled.TextFields,
+            BrowseKind.Images => Icons.Material.Filled.Image,
+            BrowseKind.Sounds => Icons.Material.Filled.MusicNote,
+            BrowseKind.Videos => Icons.Material.Filled.Movie,
+            _ => Icons.Material.Filled.Tune
+        };
+
+    static string GetBrowseKindName(BrowseKind kind) =>
+        kind switch
+        {
+            BrowseKind.SimData => "SimData",
+            BrowseKind.AnimationStateMachines => "Animation state machines",
+            BrowseKind.Python => "Python",
+            BrowseKind.Strings => "Strings",
+            BrowseKind.Images => "Images",
+            BrowseKind.Sounds => "Sounds",
+            BrowseKind.Videos => "Videos",
+            _ => "Tuning"
+        };
+
+    bool IsAvailable(BrowseKind kind) =>
+        snapshot is not { } shown
+            || kind switch
+            {
+                BrowseKind.Tuning => true,
+                BrowseKind.Strings => shown.Locale is not null,
+                BrowseKind.SimData => shown.Kinds.Contains(TuningArchiveResourceKind.SimData),
+                BrowseKind.AnimationStateMachines => shown.Kinds.Contains(TuningArchiveResourceKind.AnimationStateMachine),
+                BrowseKind.Python => shown.Kinds.Contains(TuningArchiveResourceKind.PythonModule),
+                BrowseKind.Images => shown.Kinds.Contains(TuningArchiveResourceKind.Image),
+                BrowseKind.Sounds => shown.Kinds.Contains(TuningArchiveResourceKind.Sound),
+                _ => shown.Kinds.Contains(TuningArchiveResourceKind.Video)
+            }
+            || kind == CurrentBrowseKind;
+
+    string ListKey =>
+        State.ShowingStrings
+            ? $"strings:{snapshot?.Id}:{State.Search}"
+            : $"{State.Kind}:{snapshot?.Id}:{(uint?)State.TypeFilter}:{State.Search}";
+
+    string SearchLabel =>
+        State.ShowingStrings ? "Search text or key" : State.Kind is TuningArchiveResourceKind.Tuning ? "Search name, instance or string" : IsMedia ? "Search name or instance (hex)" : "Search name or instance";
+
+    string ShownCaption
+    {
+        get
+        {
+            var count = (State.ShowingStrings ? filteredStrings.Count : filtered.Count).ToString("N0", CultureInfo.CurrentCulture);
+            return !State.ShowingStrings && tooManyStringMatches ? $"{count} shown · too many strings match to search them" : $"{count} shown";
+        }
+    }
+
+    string KindName =>
+        State.Kind switch
+        {
+            TuningArchiveResourceKind.SimData => "SimData",
+            TuningArchiveResourceKind.AnimationStateMachine => "animation state machines",
+            TuningArchiveResourceKind.PythonModule => "Python scripts (import them on the Archive page)",
+            TuningArchiveResourceKind.Image or TuningArchiveResourceKind.Sound or TuningArchiveResourceKind.Video => $"{MediaContent.GetPluralName(State.Kind)} (capture them from the game on the Archive page)",
+            _ => "tuning"
+        };
+
+    protected override void OnInitialized() =>
+        Session.Changed += OnSessionChanged;
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(async () =>
+        {
+            if (loadedGeneration != Session.Generation)
+            {
+                loadedEntries = null;
+                allStrings = null;
+                await OnParametersSetAsync();
+            }
+            StateHasChanged();
+        });
+
+    protected override async Task OnParametersSetAsync()
+    {
+        loadedGeneration = Session.Generation;
+        if (Session.Archive is null || Session.Snapshots.Count == 0)
+        {
+            snapshot = null;
+            entries = null;
+            selected = null;
+            loadedEntries = null;
+            return;
+        }
+        if (TypeParameter is not null || SnapshotParameter is not null)
+        {
+            var requestedSnapshot = Session.GetSnapshot(SnapshotParameter) ?? Session.GetSnapshot(State.SnapshotId) ?? Session.Snapshots[^1];
+            (ResourceType type, ulong instance)? target = uint.TryParse(TypeParameter, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var type) && ulong.TryParse(InstanceParameter, NumberStyles.Integer, CultureInfo.InvariantCulture, out var instance) ? ((ResourceType)type, instance) : null;
+            (ResourceType type, ulong instance)? reveal = RevealParameter?.Split(':') is [var revealTypeText, var revealInstanceText]
+                && uint.TryParse(revealTypeText, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var revealType)
+                && ulong.TryParse(revealInstanceText, NumberStyles.Integer, CultureInfo.InvariantCulture, out var revealInstance)
+                ? ((ResourceType)revealType, revealInstance)
+                : null;
+            State.Request(requestedSnapshot.Id, target, reveal);
+            TypeParameter = null;
+            InstanceParameter = null;
+            RevealParameter = null;
+            SnapshotParameter = null;
+            Navigation.NavigateTo("browse", new NavigationOptions { ReplaceHistoryEntry = true });
+        }
+        snapshot = Session.GetSnapshot(State.SnapshotId) ?? Session.Snapshots[^1];
+        State.SnapshotId = snapshot.Id;
+        if (loadedEntries != (snapshot.Id, State.Kind))
+            await LoadEntriesAsync(true);
+        if (State.ShowingStrings)
+            await LoadStringsAsync();
+        if (State.PendingRequest is { } request)
+        {
+            State.PendingRequest = null;
+            if (Session.GetSnapshot(request.SnapshotId) is { } requested)
+            {
+                if (request.Target is { } target)
+                {
+                    State.RevealReferenceTo = request.RevealReferenceTo;
+                    await GoToAsync(requested, target.type, target.instance);
+                }
+                else if (requested.Id != snapshot.Id)
+                    await OnSnapshotChangedAsync(requested.Id);
+            }
+        }
+    }
+
+    async Task LoadEntriesAsync(bool keepSelection)
+    {
+        if (snapshot is not { } target)
+            return;
+        entries = null;
+        selected = null;
+        StateHasChanged();
+        var kind = State.Kind;
+        var loaded = await Session.GetEntriesAsync(target, kind);
+        if (!ReferenceEquals(target, snapshot) || kind != State.Kind)
+            return;
+        entries = loaded;
+        loadedEntries = (target.Id, kind);
+        ApplyFilter();
+        if (keepSelection && State.Selected is { } key && loaded.Find(key.type, key.instance) is { } same)
+            await SelectAsync(same, false);
+        else
+            State.Selected = null;
+        _ = SearchStringsAsync();
+    }
+
+    async Task LoadStringsAsync()
+    {
+        if (snapshot is not { } target)
+            return;
+        if (allStrings is not null && allStringsSnapshotId == target.Id)
+        {
+            ApplyStringFilter();
+            return;
+        }
+        allStrings = null;
+        filteredStrings = [];
+        StateHasChanged();
+        var strings = await Session.GetStringsAsync(target);
+        var sorted = await Task.Run(() => strings.OrderBy(pair => pair.Value, StringComparer.OrdinalIgnoreCase).ThenBy(pair => pair.Key).ToList());
+        if (!ReferenceEquals(target, snapshot))
+            return;
+        allStrings = sorted;
+        allStringsSnapshotId = target.Id;
+        if (State.SelectedStringKey is { } key)
+        {
+            if (strings.TryGetValue(key, out var text))
+                selectedStringText = text;
+            else
+                State.SelectedStringKey = null;
+        }
+        ApplyStringFilter();
+    }
+
+    void ApplyStringFilter()
+    {
+        if (allStrings is null)
+        {
+            filteredStrings = [];
+            return;
+        }
+        var term = State.Search.Trim();
+        if (term.Length == 0)
+        {
+            filteredStrings = allStrings;
+            return;
+        }
+        var hex = term.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? term[2..] : term;
+        uint? key = hex.Length is > 0 and <= 8 && uint.TryParse(hex, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var parsed) ? parsed : null;
+        filteredStrings = allStrings.Where(pair => pair.Key == key || pair.Value.Contains(term, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    async Task SearchStringsAsync()
+    {
+        var version = ++stringSearchVersion;
+        var term = State.Search.Trim();
+        var hadMatches = stringMatchTerm is not null || tooManyStringMatches;
+        stringMatches = [];
+        stringMatchTerm = null;
+        tooManyStringMatches = false;
+        if (hadMatches)
+            ApplyFilter();
+        if (State.Kind is not TuningArchiveResourceKind.Tuning || term.Length < 3 || snapshot is not { } target || Session.Archive is not { } archive || Session.ReferenceStatus.indexed == 0 || target.Locale is null)
+            return;
+        try
+        {
+            var strings = await Session.GetStringsAsync(target);
+            var matches = await Task.Run(() =>
+            {
+                var keys = strings.Where(pair => pair.Value.Contains(term, StringComparison.OrdinalIgnoreCase)).Select(pair => pair.Key).Take(maxStringSearchKeys + 1).ToList();
+                if (keys.Count > maxStringSearchKeys)
+                    return null;
+                var found = new Dictionary<(ResourceType type, ulong instance), string>();
+                if (keys.Count > 0)
+                    foreach (var reference in archive.GetStringReferrers(target, keys))
+                        found.TryAdd((reference.Source.Type, reference.Source.Instance), strings[(uint)reference.TargetInstance]);
+                return found;
+            });
+            if (version != stringSearchVersion)
+                return;
+            if (matches is null)
+                tooManyStringMatches = true;
+            else
+            {
+                stringMatches = matches;
+                stringMatchTerm = term;
+                ApplyFilter();
+            }
+            StateHasChanged();
+        }
+        catch (Exception ex) when (ex is SqliteException or IOException or InvalidOperationException)
+        {
+        }
+    }
+
+    string DescribeEntry(TuningArchiveEntry entry)
+    {
+        if (State.Kind is TuningArchiveResourceKind.PythonModule)
+            return entry.Module ?? string.Empty;
+        if (IsMedia)
+            return $"{Session.GetTypeName(entry.Type)} · {entry.Pack} · {entry.Instance.ToString("X16", CultureInfo.InvariantCulture)}";
+        if (stringMatchTerm is not null && stringMatches.TryGetValue((entry.Type, entry.Instance), out var text) && !(entry.Name?.Contains(stringMatchTerm, StringComparison.OrdinalIgnoreCase) ?? false))
+            return $"{Session.GetTypeName(entry.Type)} · “{text}”";
+        return $"{Session.GetTypeName(entry.Type)} · {entry.Pack} · {entry.Instance}";
+    }
+
+    void SelectString(KeyValuePair<uint, string> item)
+    {
+        State.SelectedStringKey = item.Key;
+        selectedStringText = item.Value;
+    }
+
+    async Task OnBrowseKindChangedAsync(BrowseKind value)
+    {
+        if (value is BrowseKind.Strings)
+        {
+            State.ShowingStrings = true;
+            await LoadStringsAsync();
+            return;
+        }
+        State.ShowingStrings = false;
+        var newKind = value switch
+        {
+            BrowseKind.SimData => TuningArchiveResourceKind.SimData,
+            BrowseKind.AnimationStateMachines => TuningArchiveResourceKind.AnimationStateMachine,
+            BrowseKind.Python => TuningArchiveResourceKind.PythonModule,
+            BrowseKind.Images => TuningArchiveResourceKind.Image,
+            BrowseKind.Sounds => TuningArchiveResourceKind.Sound,
+            BrowseKind.Videos => TuningArchiveResourceKind.Video,
+            _ => TuningArchiveResourceKind.Tuning
+        };
+        if (newKind != State.Kind)
+            await OnKindChangedAsync(newKind);
+        else
+            ApplyFilter();
+    }
+
+    void ApplyFilter()
+    {
+        if (entries is null)
+        {
+            filtered = [];
+            return;
+        }
+        IEnumerable<TuningArchiveEntry> query = entries.All;
+        if (State.TypeFilter is { } type && State.Kind is TuningArchiveResourceKind.Tuning or TuningArchiveResourceKind.Sound)
+            query = query.Where(entry => entry.Type == type);
+        var term = State.Search.Trim();
+        if (term.Length > 0)
+        {
+            var matchesStrings = stringMatchTerm == term && stringMatches.Count > 0;
+            if (ulong.TryParse(term.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? term[2..] : term, term.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? NumberStyles.AllowHexSpecifier : NumberStyles.Integer, CultureInfo.InvariantCulture, out var instance))
+                query = query.Where(entry => entry.Instance == instance || (entry.Name?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) || (matchesStrings && stringMatches.ContainsKey((entry.Type, entry.Instance))));
+            else if (IsMedia && ulong.TryParse(term, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var hexInstance))
+                query = query.Where(entry => entry.Instance == hexInstance || (entry.Name?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false));
+            else
+                query = query.Where(entry => (entry.Name?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) || (matchesStrings && stringMatches.ContainsKey((entry.Type, entry.Instance))));
+        }
+        filtered = query.ToList();
+    }
+
+    async Task OnKindChangedAsync(TuningArchiveResourceKind newKind)
+    {
+        State.Kind = newKind;
+        State.TypeFilter = null;
+        await LoadEntriesAsync(false);
+    }
+
+    async Task OnSnapshotChangedAsync(long? id)
+    {
+        if (Session.GetSnapshot(id) is not { } newSnapshot)
+            return;
+        State.SnapshotId = newSnapshot.Id;
+        snapshot = newSnapshot;
+        await LoadEntriesAsync(true);
+        if (State.ShowingStrings)
+            await LoadStringsAsync();
+    }
+
+    void OnSearchChanged(string? value)
+    {
+        State.Search = value ?? string.Empty;
+        if (State.ShowingStrings)
+        {
+            ApplyStringFilter();
+            return;
+        }
+        ApplyFilter();
+        _ = SearchStringsAsync();
+    }
+
+    void OnTypeChanged(ResourceType? value)
+    {
+        State.TypeFilter = value;
+        ApplyFilter();
+    }
+
+    Task OnListClickAsync(TuningArchiveEntry entry)
+    {
+        State.RevealReferenceTo = null;
+        return SelectAsync(entry, true);
+    }
+
+    async Task SelectAsync(TuningArchiveEntry entry, bool remember)
+    {
+        if (remember && selected is not null && snapshot is not null)
+        {
+            State.Back.Add(new(snapshot.Id, State.Kind, selected.Type, selected.Instance));
+            State.Forward.Clear();
+        }
+        selected = entry;
+        State.Selected = (entry.Type, entry.Instance);
+        if (State.Kind is not (TuningArchiveResourceKind.Tuning or TuningArchiveResourceKind.AnimationStateMachine) && !IsMedia && Session.Archive is { } archive)
+            selectedText = await Task.Run(() => archive.GetText(entry));
+    }
+
+    async Task GoToAsync(TuningArchiveSnapshot targetSnapshot, ResourceType type, ulong instance)
+    {
+        if (selected is not null && snapshot is not null)
+        {
+            State.Back.Add(new(snapshot.Id, State.Kind, selected.Type, selected.Instance));
+            State.Forward.Clear();
+        }
+        if (!ReferenceEquals(targetSnapshot, snapshot))
+        {
+            snapshot = targetSnapshot;
+            State.SnapshotId = targetSnapshot.Id;
+            loadedEntries = null;
+        }
+        await NavigateToAsync(type, instance, false);
+    }
+
+    async Task NavigateToAsync(ResourceType type, ulong instance, bool remember)
+    {
+        if (snapshot is null)
+            return;
+        State.ShowingStrings = false;
+        var kind = TuningArchiveFile.GetMediaKind(type) ?? (type is ResourceType.AnimationStateMachine ? TuningArchiveResourceKind.AnimationStateMachine : TuningArchiveResourceKind.Tuning);
+        BrowseLocation? previous = null;
+        if (State.Kind != kind || loadedEntries != (snapshot.Id, kind))
+        {
+            if (remember && selected is not null)
+                previous = new(snapshot.Id, State.Kind, selected.Type, selected.Instance);
+            State.Kind = kind;
+            await LoadEntriesAsync(false);
+        }
+        if (entries?.Find(type, instance) is not { } target)
+            return;
+        if (previous is not null)
+        {
+            State.Back.Add(previous);
+            State.Forward.Clear();
+        }
+        if (kind is TuningArchiveResourceKind.Tuning or TuningArchiveResourceKind.Sound && State.TypeFilter is { } filterType && filterType != type)
+            State.TypeFilter = type;
+        if (State.Search.Length > 0)
+        {
+            State.Search = string.Empty;
+            ++stringSearchVersion;
+            stringMatches = [];
+            stringMatchTerm = null;
+            tooManyStringMatches = false;
+        }
+        ApplyFilter();
+        await SelectAsync(target, remember);
+    }
+
+    async Task OnNavigateAsync(TuningNavigation navigation)
+    {
+        State.RevealReferenceTo = navigation.RevealReferenceTo;
+        if (navigation.SnapshotId is { } snapshotId && snapshotId != snapshot?.Id && Session.GetSnapshot(snapshotId) is { } targetSnapshot)
+            await GoToAsync(targetSnapshot, navigation.Type, navigation.Instance);
+        else
+            await NavigateToAsync(navigation.Type, navigation.Instance, true);
+    }
+
+    async Task GoBackAsync()
+    {
+        if (State.Back.Count == 0 || snapshot is null)
+            return;
+        var location = State.Back[^1];
+        State.Back.RemoveAt(State.Back.Count - 1);
+        if (selected is not null)
+            State.Forward.Add(new(snapshot.Id, State.Kind, selected.Type, selected.Instance));
+        await RestoreAsync(location);
+    }
+
+    async Task GoForwardAsync()
+    {
+        if (State.Forward.Count == 0 || snapshot is null)
+            return;
+        var location = State.Forward[^1];
+        State.Forward.RemoveAt(State.Forward.Count - 1);
+        if (selected is not null)
+            State.Back.Add(new(snapshot.Id, State.Kind, selected.Type, selected.Instance));
+        await RestoreAsync(location);
+    }
+
+    async Task RestoreAsync(BrowseLocation location)
+    {
+        State.ShowingStrings = false;
+        if (Session.GetSnapshot(location.SnapshotId) is { } targetSnapshot && (!ReferenceEquals(targetSnapshot, snapshot) || location.Kind != State.Kind))
+        {
+            snapshot = targetSnapshot;
+            State.SnapshotId = targetSnapshot.Id;
+            State.Kind = location.Kind;
+            await LoadEntriesAsync(false);
+        }
+        if (entries?.Find(location.Type, location.Instance) is { } target)
+        {
+            ApplyFilter();
+            await SelectAsync(target, false);
+        }
+    }
+}

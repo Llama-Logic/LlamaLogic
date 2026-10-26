@@ -1,0 +1,501 @@
+@page "/update/folder"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject UpdateFolderState State
+@inject UpdateState Single
+@inject NavigationManager Navigation
+@inject IDialogService Dialogs
+@inject ISnackbar Snackbar
+
+<div class="ta-page">
+    @if (Session.Archive is null)
+    {
+        <div class="ta-empty">Open an archive on the Archive page first.</div>
+    }
+    else if (Session.Snapshots.Count == 0)
+    {
+        <div class="ta-empty">Updating mods needs a snapshot of the game. Capture or import one on the Archive page.</div>
+    }
+    else
+    {
+        <div class="ta-split">
+            <div class="ta-sidebar" style="width: 400px">
+                <div class="ta-sidebar-filters">
+                    <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.ArrowBack" Href="update" Style="align-self: flex-start">One package</MudButton>
+                    <SnapshotSelect Label="Update for" Value="State.TargetId" ValueChanged="id => State.TargetId = id" />
+                    <MudSelect T="long?" Value="State.DeclaredBaseId" ValueChanged="id => State.DeclaredBaseId = id" Label="Last updated for" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" FullWidth="true">
+                        <MudSelectItem T="long?" Value="@((long?)null)">I don't know (work it out)</MudSelectItem>
+                        @foreach (var snapshot in Session.Snapshots.Reverse())
+                        {
+                            <MudSelectItem T="long?" Value="snapshot.Id">@snapshot.DisplayName</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.FolderOpen" Disabled="@(Session.Operation is not null)" OnClick="OpenFolderAsync">Review a folder of mods…</MudButton>
+                    @if (State.Update is { } opened)
+                    {
+                        <span class="ta-mono ta-ellipsis" title="@opened.Folder">@opened.Folder</span>
+                        <MudText Typo="Typo.caption">@GetSummary(opened)</MudText>
+                        <MudSwitch T="bool" Value="State.OnlyNeedingCreator" ValueChanged="OnOnlyNeedingCreatorChanged" Label="Only what needs me" Color="Color.Primary" Size="Size.Small" />
+                        <MudTextField T="string" Value="State.Search" ValueChanged="OnSearchChanged" Label="Search" Immediate="true" DebounceInterval="200" Variant="Variant.Outlined" Margin="Margin.Dense" Clearable="true" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+                    }
+                </div>
+                <ScrollList State="State.List" Key="@ListKey" Ready="@(filtered.Count > 0)">
+                    @if (State.Update is not { } update)
+                    {
+                        <div class="ta-empty">Choose a folder of mods, and every package in it and its subfolders that overrides the game's tuning is reviewed for @(Target?.DisplayName ?? "this version"), as is the SimData of the tuning the packages add. If you know which version they were last updated for, say so first: the changes that need no judgment are only made when the version each override was made from is certain.</div>
+                    }
+                    else if (update.Packages.Count == 0)
+                    {
+                        <div class="ta-empty">None of the packages in this folder override the game's tuning or add tuning whose SimData isn't what the tuning descriptions give.</div>
+                    }
+                    else if (filtered.Count == 0)
+                    {
+                        <div class="ta-empty">Nothing to show with these filters.</div>
+                    }
+                    else
+                    {
+                        <Virtualize Items="filtered" ItemSize="44" Context="package">
+                            <div class="ta-list-item @(State.Selected == package.RelativePath ? "selected" : string.Empty)" @onclick="() => Select(package)">
+                                <div class="ta-primary" title="@package.RelativePath">@Path.GetFileNameWithoutExtension(package.RelativePath)</div>
+                                <div class="ta-secondary">@DescribePackage(package)</div>
+                            </div>
+                        </Virtualize>
+                    }
+                </ScrollList>
+                @if (State.Update is { Packages.Count: > 0 })
+                {
+                    <div class="ta-sidebar-filters ta-update-save">
+                        <MudCheckBox T="bool" Value="State.RemoveOverridesThatDoNothing" ValueChanged="value => State.RemoveOverridesThatDoNothing = value" Label="Remove overrides that do nothing" Size="Size.Small" Dense="true" />
+                        <MudCheckBox T="bool" Value="State.AddMissingSimData" ValueChanged="value => State.AddMissingSimData = value" Label="Add missing SimData (changes what players see)" Size="Size.Small" Dense="true" />
+                        <MudSelect T="TuningPackageAddedSimDataFixes" MultiSelection="true" SelectedValues="SelectedFixes" SelectedValuesChanged="OnFixesChanged" MultiSelectionTextFunc="DescribeFixes" ToStringFunc="GetFixLabel" Label="Fix the SimData of the mods' own tuning" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" FullWidth="true">
+                            @foreach (var (fix, label) in fixChoices)
+                            {
+                                <MudSelectItem T="TuningPackageAddedSimDataFixes" Value="fix">@label</MudSelectItem>
+                            }
+                        </MudSelect>
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                            <MudText Typo="Typo.caption" Style="white-space: nowrap">Report as</MudText>
+                            <MudToggleGroup T="bool" Value="State.ExcelReport" ValueChanged="value => State.ExcelReport = value" Size="Size.Small" Color="Color.Primary">
+                                <MudToggleItem Value="false" Text="CSV" />
+                                <MudToggleItem Value="true" Text="Excel" />
+                            </MudToggleGroup>
+                        </MudStack>
+                        <MudText Typo="Typo.caption">@GetPlanSummary()</MudText>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Outlined.Save" Disabled="@(Session.Operation is not null)" OnClick="WriteAsync">Write updated copies and a report…</MudButton>
+                        <MudButton Variant="Variant.Outlined" Size="Size.Small" StartIcon="@Icons.Material.Outlined.Summarize" Disabled="@(Session.Operation is not null)" OnClick="SaveReportAsync">Save just the report…</MudButton>
+                    </div>
+                }
+            </div>
+            <div class="ta-detail">
+                @if (selectedPackage is null)
+                {
+                    <div class="ta-empty">Choose a package to see what the update does to it, and what needs you.</div>
+                }
+                else
+                {
+                    <div class="ta-detail-header">
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Wrap="Wrap.Wrap">
+                            <MudText Typo="Typo.h6" Style="word-break: break-all">@Path.GetFileNameWithoutExtension(selectedPackage.RelativePath)</MudText>
+                            @if (selectedPackage.Update is not null)
+                            {
+                                <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.RateReview" OnClick="ReviewSelected">Review this package</MudButton>
+                            }
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="ta-mono">@selectedPackage.RelativePath</MudText>
+                        @if (selectedPackage.Problem is { } problem)
+                        {
+                            <MudAlert Severity="Severity.Error" Dense="true" Class="mt-1">The package couldn't be read: @problem</MudAlert>
+                        }
+                    </div>
+                    @if (selectedPackage.Update is { } packageUpdate)
+                    {
+                        <div class="ta-scroll">
+                            @foreach (var item in packageUpdate.Overrides.Where(item => !State.OnlyNeedingCreator || TuningFolderUpdate.NeedsCreator(item, State.Options) || DescribeAction(item).Length > 0).OrderByDescending(item => TuningFolderUpdate.NeedsCreator(item, State.Options)).ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                <div class="ta-folder-override">
+                                    <div class="ta-folder-override-title">
+                                        @if (TuningFolderUpdate.NeedsCreator(item, State.Options))
+                                        {
+                                            <MudChip T="string" Size="Size.Small" Color="Color.Warning" Variant="Variant.Outlined">needs you</MudChip>
+                                        }
+                                        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">@GetLabel(item.Outcome)</MudChip>
+                                        <span class="ta-mono ta-ellipsis" title="@item.Name">@(item.Name ?? item.Key.ToString())</span>
+                                        @if (DescribeAction(item) is { Length: > 0 } action)
+                                        {
+                                            <span class="ta-new">@action</span>
+                                        }
+                                    </div>
+                                    <div class="ta-folder-override-message">@item.Message@(item.SimData is not (TuningPackageSimDataState.NotChecked or TuningPackageSimDataState.Current) ? $" SimData: {item.SimDataMessage}" : string.Empty)@GetBaseNote(item)</div>
+                                </div>
+                            }
+                            @foreach (var item in selectedPackage.AddedSimData.Where(item => !State.OnlyNeedingCreator || TuningFolderUpdate.NeedsCreator(item, State.Options) || DescribeAction(item).Length > 0).OrderByDescending(item => TuningFolderUpdate.NeedsCreator(item, State.Options)).ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
+                            {
+                                <div class="ta-folder-override">
+                                    <div class="ta-folder-override-title">
+                                        @if (TuningFolderUpdate.NeedsCreator(item, State.Options))
+                                        {
+                                            <MudChip T="string" Size="Size.Small" Color="Color.Warning" Variant="Variant.Outlined">needs you</MudChip>
+                                        }
+                                        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">Own SimData</MudChip>
+                                        <span class="ta-mono ta-ellipsis" title="@item.Name">@(item.Name ?? item.TuningKey.ToString())</span>
+                                        @if (DescribeAction(item) is { Length: > 0 } action)
+                                        {
+                                            <span class="ta-new">@action</span>
+                                        }
+                                    </div>
+                                    <div class="ta-folder-override-message">@item.Message @item.Plan(State.Options.AddedSimDataFixes).Message</div>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    static readonly (TuningPackageAddedSimDataFixes fix, string label)[] fixChoices =
+    [
+        (TuningPackageAddedSimDataFixes.AddMissingColumns, "Add the columns the new version gives"),
+        (TuningPackageAddedSimDataFixes.CorrectSchemaHashes, "Correct schema hashes"),
+        (TuningPackageAddedSimDataFixes.CorrectColumnTypes, "Correct column types"),
+        (TuningPackageAddedSimDataFixes.RemoveExtraColumns, "Remove columns the new version doesn't give"),
+        (TuningPackageAddedSimDataFixes.MatchTuning, "Rebuild it from its tuning where they disagree"),
+        (TuningPackageAddedSimDataFixes.AmendTuning, "Add values its tuning leaves out to the tuning")
+    ];
+
+    List<TuningFolderUpdatePackage> filtered = [];
+    TuningFolderUpdatePackage? selectedPackage;
+
+    TuningArchiveSnapshot? Target =>
+        Session.GetSnapshot(State.TargetId);
+
+    string ListKey =>
+        $"{State.Update?.Folder}:{State.Update?.Target.Id}:{State.OnlyNeedingCreator}:{State.Search}";
+
+    protected override void OnInitialized() =>
+        Session.Changed += OnSessionChanged;
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(StateHasChanged);
+
+    protected override void OnParametersSet()
+    {
+        if (Session.Snapshots.Count == 0)
+            return;
+        if (Target is null)
+            State.TargetId = Session.Snapshots[^1].Id;
+        ApplyFilter();
+        selectedPackage = State.Update?.Packages.FirstOrDefault(package => package.RelativePath == State.Selected);
+    }
+
+    static string GetLabel(TuningPackageOverrideOutcome outcome) =>
+        outcome switch
+        {
+            TuningPackageOverrideOutcome.Conflicted => "Conflicts",
+            TuningPackageOverrideOutcome.Merged => "Merges",
+            TuningPackageOverrideOutcome.MatchesOlderGame => "Old copy",
+            TuningPackageOverrideOutcome.MatchesGame => "Does nothing",
+            TuningPackageOverrideOutcome.RemovedFromGame => "Gone from game",
+            TuningPackageOverrideOutcome.Unreadable => "Unreadable",
+            _ => "Up to date"
+        };
+
+    IReadOnlyCollection<TuningPackageAddedSimDataFixes> SelectedFixes =>
+        fixChoices.Select(choice => choice.fix).Where(fix => State.AddedSimDataFixes.HasFlag(fix)).ToList();
+
+    void OnFixesChanged(IReadOnlyCollection<TuningPackageAddedSimDataFixes>? fixes)
+    {
+        State.AddedSimDataFixes = (fixes ?? []).Aggregate(TuningPackageAddedSimDataFixes.None, (all, fix) => all | fix);
+        ApplyFilter();
+    }
+
+    static string GetFixLabel(TuningPackageAddedSimDataFixes fix) =>
+        fixChoices.FirstOrDefault(choice => choice.fix == fix).label ?? fix.ToString();
+
+    static string DescribeFixes(IReadOnlyList<string> labels) =>
+        labels.Count switch
+        {
+            0 => "None",
+            1 => labels[0],
+            _ => string.Format(CultureInfo.CurrentCulture, "{0:N0} fixes", labels.Count)
+        };
+
+    string DescribeAction(TuningPackageAddedSimData item)
+    {
+        var plan = item.Plan(State.Options.AddedSimDataFixes);
+        var actions = new List<string>();
+        if (plan.ChangesTuning)
+            actions.Add("amends its tuning");
+        if (plan.ChangesSimData)
+            actions.Add(State.Options.AddedSimDataFixes.HasFlag(TuningPackageAddedSimDataFixes.MatchTuning) && plan.Fixed.HasFlag(TuningPackageAddedSimDataProblems.Values) && !plan.ChangesTuning ? "rebuilds its SimData from its tuning" : "fixes its SimData");
+        return actions.Count == 0 ? string.Empty : $"the update {string.Join(" and ", actions)}";
+    }
+
+    string DescribeAction(TuningPackageOverride item)
+    {
+        var options = State.Options;
+        var actions = new List<string>();
+        if (TuningFolderUpdate.IsAutomatic(item))
+            actions.Add("merges it");
+        else if (options.RemoveOverridesThatDoNothing && item.Outcome is TuningPackageOverrideOutcome.MatchesGame)
+            actions.Add("removes it");
+        switch (item.SimData)
+        {
+            case TuningPackageSimDataState.Stale:
+                actions.Add("replaces its SimData");
+                break;
+            case TuningPackageSimDataState.Unneeded:
+                actions.Add("removes its SimData");
+                break;
+            case TuningPackageSimDataState.Missing when options.SimDataChanges.HasFlag(TuningPackageSimDataChanges.Add):
+                actions.Add("adds its SimData");
+                break;
+        }
+        return actions.Count == 0 ? string.Empty : $"the update {string.Join(" and ", actions)}";
+    }
+
+    static string GetBaseNote(TuningPackageOverride item) =>
+        item.BaseDisagrees ? $" Another version is closer to the override than {item.Base?.DisplayName}, so it may have been made from that one and may be undoing the game's changes since then."
+        : item.Merge is not null && item.BaseIsAmbiguous ? " Another version is as close to the override as the one assumed, so the base is uncertain."
+        : item.Merge is not null && item.BaseMayBeOlder ? " The archive's oldest snapshot already has this version, so the override may have been made from an older one; say which version the package was last updated for to merge it automatically."
+        : string.Empty;
+
+    string DescribePackage(TuningFolderUpdatePackage package)
+    {
+        if (package.Update is not { } update)
+            return "couldn't be read";
+        var options = State.Options;
+        var automatic = update.Overrides.Count(item => DescribeAction(item).Length > 0) + package.AddedSimData.Count(item => DescribeAction(item).Length > 0);
+        var needing = update.Overrides.Count(item => TuningFolderUpdate.NeedsCreator(item, options)) + package.AddedSimData.Count(item => TuningFolderUpdate.NeedsCreator(item, options));
+        var parts = new List<string>();
+        if (update.Overrides.Count > 0)
+            parts.Add($"{update.Overrides.Count:N0} {(update.Overrides.Count == 1 ? "override" : "overrides")}");
+        if (package.AddedSimData.Count > 0)
+            parts.Add($"{package.AddedSimData.Count:N0} own SimData");
+        if (automatic > 0)
+            parts.Add($"{automatic:N0} updated");
+        if (needing > 0)
+            parts.Add($"{needing:N0} {(needing == 1 ? "needs" : "need")} you");
+        return string.Join(" · ", parts);
+    }
+
+    static string GetSummary(TuningFolderUpdate update)
+    {
+        var overrides = update.Packages.Sum(package => package.Update?.Overrides.Count ?? 0);
+        var problems = update.Packages.Count(package => package.Problem is not null);
+        var addedSimData = update.Packages.Sum(package => package.AddedSimData.Count);
+        var addedText = addedSimData > 0 ? string.Format(CultureInfo.CurrentCulture, "; the SimData of {0:N0} of their own tunings isn't what the tuning descriptions give", addedSimData) : string.Empty;
+        var declaredText = update.DeclaredBase is { } declared ? string.Format(CultureInfo.CurrentCulture, ", last updated for {0}", declared.DisplayName) : string.Empty;
+        var problemText = problems > 0 ? string.Format(CultureInfo.CurrentCulture, "; {0:N0} couldn't be read", problems) : string.Empty;
+        return $"{update.Packages.Count(package => package.Update is { Overrides.Count: > 0 }):N0} packages override {overrides:N0} tunings in {update.Target.DisplayName}{declaredText}{addedText}{problemText}.";
+    }
+
+    string GetPlanSummary()
+    {
+        if (State.Update is not { } update)
+            return string.Empty;
+        var options = State.Options;
+        var items = update.Packages.Where(package => package.Update is not null).SelectMany(package => package.Update!.Overrides).ToList();
+        var merged = items.Count(TuningFolderUpdate.IsAutomatic);
+        var removed = options.RemoveOverridesThatDoNothing ? items.Count(item => item.Outcome is TuningPackageOverrideOutcome.MatchesGame) : 0;
+        var simData = items.Count(item => item.SimData is TuningPackageSimDataState.Stale or TuningPackageSimDataState.Unneeded || (item.SimData is TuningPackageSimDataState.Missing && options.SimDataChanges.HasFlag(TuningPackageSimDataChanges.Add)));
+        var added = update.Packages.SelectMany(package => package.AddedSimData).ToList();
+        simData += added.Count(item => item.Plan(options.AddedSimDataFixes) is { ChangesSimData: true } or { ChangesTuning: true });
+        var needing = items.Count(item => TuningFolderUpdate.NeedsCreator(item, options)) + added.Count(item => TuningFolderUpdate.NeedsCreator(item, options)) + update.Packages.Count(package => package.Problem is not null);
+        return $"The update merges {merged:N0}, removes {removed:N0} and fixes the SimData of {simData:N0}; {needing:N0} {(needing == 1 ? "needs" : "need")} you.";
+    }
+
+    void ApplyFilter()
+    {
+        var term = State.Search.Trim();
+        var options = State.Options;
+        filtered = State.Update?.Packages.Where(package =>
+            (!State.OnlyNeedingCreator || package.Problem is not null || package.Update!.Overrides.Any(item => TuningFolderUpdate.NeedsCreator(item, options) || DescribeAction(item).Length > 0) || package.AddedSimData.Any(item => TuningFolderUpdate.NeedsCreator(item, options) || DescribeAction(item).Length > 0))
+            && (term.Length == 0 || package.RelativePath.Contains(term, StringComparison.OrdinalIgnoreCase) || (package.Update?.Overrides.Any(item => item.Name?.Contains(term, StringComparison.OrdinalIgnoreCase) is true) ?? false) || package.AddedSimData.Any(item => item.Name?.Contains(term, StringComparison.OrdinalIgnoreCase) is true))).ToList() ?? [];
+    }
+
+    void OnOnlyNeedingCreatorChanged(bool value)
+    {
+        State.OnlyNeedingCreator = value;
+        ApplyFilter();
+    }
+
+    void OnSearchChanged(string? value)
+    {
+        State.Search = value ?? string.Empty;
+        ApplyFilter();
+    }
+
+    void Select(TuningFolderUpdatePackage package)
+    {
+        selectedPackage = package;
+        State.Selected = package.RelativePath;
+    }
+
+    async Task<string?> AskFolderAsync(string title, string message, string? initialPath, string confirmText)
+    {
+        var parameters = new DialogParameters<PathDialog>
+        {
+            { dialog => dialog.Label, "Folder" },
+            { dialog => dialog.IsFolder, true },
+            { dialog => dialog.ConfirmText, confirmText },
+            { dialog => dialog.Message, message },
+            { dialog => dialog.InitialPath, initialPath }
+        };
+        var reference = await Dialogs.ShowAsync<PathDialog>(title, parameters, new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        return await reference.Result is { Canceled: false, Data: string path } ? path : null;
+    }
+
+    async Task OpenFolderAsync()
+    {
+        var folder = Session.Platform.CanPick
+            ? await Session.Platform.PickFolderAsync("Review a folder of mods")
+            : await AskFolderAsync("Review a folder of mods", "Every package in the folder and its subfolders is reviewed. Nothing in it is changed.", Session.Platform.GetSetting("UpdateFolder"), "Review");
+        if (folder is null || Session.Archive is not { } archive || Target is not { } target)
+            return;
+        var declaredBase = Session.GetSnapshot(State.DeclaredBaseId);
+        if (declaredBase is not null && Session.Snapshots.ToList().IndexOf(declaredBase) > Session.Snapshots.ToList().IndexOf(target))
+        {
+            Snackbar.Add("The version the mods were last updated for can't be newer than the one they're being updated for.", Severity.Warning);
+            return;
+        }
+        TuningFolderUpdate? update;
+        try
+        {
+            update = await Session.RunAsync("Reviewing the folder", async (progress, cancellationToken) =>
+            {
+                var drafter = await Session.GetSimDataDrafterAsync(target);
+                return await TuningFolderUpdate.AnalyzeAsync(archive, target, folder, drafter, declaredBase, progress, cancellationToken);
+            }, false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+        {
+            Snackbar.Add($"The folder couldn't be reviewed: {exception.Message}", Severity.Error);
+            return;
+        }
+        if (update is null)
+            return;
+        Session.Platform.SetSetting("UpdateFolder", folder);
+        State.Update = update;
+        State.Result = null;
+        State.Selected = null;
+        State.List.Key = null;
+        State.List.Top = 0;
+        selectedPackage = null;
+        ApplyFilter();
+        if (filtered.FirstOrDefault() is { } first)
+            Select(first);
+        StateHasChanged();
+    }
+
+    void ReviewSelected()
+    {
+        if (selectedPackage?.Update is not { } update)
+            return;
+        Single.Open(update);
+        Single.TargetId = update.Target.Id;
+        Navigation.NavigateTo("update");
+    }
+
+    static string GetAvailablePath(string path)
+    {
+        var folder = Path.GetDirectoryName(path) ?? string.Empty;
+        var name = Path.GetFileNameWithoutExtension(path);
+        var extension = Path.GetExtension(path);
+        for (var attempt = 2; File.Exists(path); ++attempt)
+            path = Path.Combine(folder, $"{name} ({attempt}){extension}");
+        return path;
+    }
+
+    async Task SaveReportAsync()
+    {
+        if (State.Update is not { } update)
+            return;
+        var parameters = new DialogParameters<PathDialog>
+        {
+            { dialog => dialog.Label, "Folder" },
+            { dialog => dialog.IsFolder, true },
+            { dialog => dialog.ConfirmText, "Save" },
+            { dialog => dialog.Message, State.ExcelReport ? "The report is saved as an Excel workbook. Nothing else is written." : "The report is saved as a CSV file. Nothing else is written." },
+            { dialog => dialog.FileName, $"Update report for {update.Target.GameVersion}" },
+            { dialog => dialog.InitialPath, Session.Platform.GetSetting("UpdateReportFolder") ?? Session.Platform.DefaultArchiveFolder }
+        };
+        var reference = await Dialogs.ShowAsync<PathDialog>("Save just the report", parameters, new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        if (await reference.Result is not { Canceled: false, Data: string chosen })
+            return;
+        var basePath = Path.GetExtension(chosen).ToUpperInvariant() is ".CSV" or ".XLSX" ? Path.ChangeExtension(chosen, null) : chosen;
+        var options = State.Options;
+        var excel = State.ExcelReport;
+        var reportPath = GetAvailablePath($"{basePath}{(excel ? ".xlsx" : ".csv")}");
+        try
+        {
+            await Session.RunAsync("Saving the report", async (_, cancellationToken) =>
+            {
+                if (excel)
+                    await Task.Run(() => UpdateReportWorkbook.Save(reportPath, update, options, null, null), cancellationToken);
+                else
+                    await update.WriteReportAsync(reportPath, options, null, cancellationToken);
+                return true;
+            }, false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+        {
+            Snackbar.Add($"The report couldn't be saved: {exception.Message}", Severity.Error);
+            return;
+        }
+        if (Path.GetDirectoryName(reportPath) is { } savedFolder)
+            Session.Platform.SetSetting("UpdateReportFolder", savedFolder);
+        Snackbar.Add($"Saved {Path.GetFileName(reportPath)}.", Severity.Success, config =>
+        {
+            config.Action = "Show";
+            config.OnClick = _ => Session.Platform.RevealAsync(reportPath);
+        });
+    }
+
+    async Task WriteAsync()
+    {
+        if (State.Update is not { } update)
+            return;
+        var suggested = $"{Path.TrimEndingDirectorySeparator(update.Folder)} (updated for {update.Target.GameVersion})";
+        var output = await AskFolderAsync("Write updated copies and a report", string.Format(CultureInfo.CurrentCulture, "Updated copies of the packages that change are written to the same places in this folder, with a report of everything as {0}. The packages you reviewed are never changed, and the copies can't be written inside their folder, where the game would load both.", State.ExcelReport ? "an Excel workbook" : "a CSV file"), suggested, "Write");
+        if (output is null)
+            return;
+        var options = State.Options;
+        TuningFolderUpdateResult? result;
+        try
+        {
+            var excel = State.ExcelReport;
+            result = await Session.RunAsync("Writing updated packages", async (progress, cancellationToken) =>
+            {
+                var written = await update.WriteAsync(output, options, !excel, progress, cancellationToken);
+                if (!excel)
+                    return written;
+                var workbookPath = GetAvailablePath(Path.Combine(output, $"Update report for {update.Target.GameVersion}.xlsx"));
+                await Task.Run(() => UpdateReportWorkbook.Save(workbookPath, update, options, written, output), cancellationToken);
+                return written with { ReportPath = workbookPath };
+            }, false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException or InvalidDataException)
+        {
+            Snackbar.Add($"The updated copies couldn't be written: {exception.Message}", Severity.Error);
+            return;
+        }
+        if (result is null)
+            return;
+        State.Result = result;
+        var written = result.Packages.Count(write => write.WrittenPath is not null);
+        var skipped = result.Packages.Count(write => write.Skipped is not null);
+        var skippedText = skipped > 0 ? string.Format(CultureInfo.CurrentCulture, "; {0:N0} skipped because a file was already there", skipped) : string.Empty;
+        var reportPath = result.ReportPath;
+        Snackbar.Add($"Wrote {written:N0} updated {(written == 1 ? "package" : "packages")} and the report{skippedText}.", Severity.Success, config =>
+        {
+            config.Action = "Show";
+            config.OnClick = _ => Session.Platform.RevealAsync(reportPath!);
+        });
+    }
+}

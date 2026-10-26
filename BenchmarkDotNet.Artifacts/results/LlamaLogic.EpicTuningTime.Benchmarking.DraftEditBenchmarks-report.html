@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>LlamaLogic.EpicTuningTime.Benchmarking.DraftEditBenchmarks-20261024-043325</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.2, Windows 11 (10.0.26200.9711)
+Unknown processor
+.NET SDK 10.0.402
+  [Host]     : .NET 9.0.21 (9.0.2126.50404), X64 RyuJIT AVX2
+  Job-SNZIMP : .NET 9.0.21 (9.0.2126.50404), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>InvocationCount=1  IterationCount=10  LaunchCount=1  
+RunStrategy=Monitoring  UnrollFactor=1  WarmupCount=2  
+</code></pre>
+
+<table>
+<thead><tr><th>Method                   </th><th>Fixture       </th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen0</th><th>Gen1</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>AddItemToLargestList</td><td>Group(...)thday [22]</td><td>1.655 ms</td><td>0.2278 ms</td><td>0.1507 ms</td><td>1.614 ms</td><td>-</td><td>-</td><td>989.82 KB</td>
+</tr><tr><td>DuplicateFirstItemOfLargestList</td><td>Group(...)thday [22]</td><td>1.672 ms</td><td>0.1903 ms</td><td>0.1259 ms</td><td>1.642 ms</td><td>-</td><td>-</td><td>1047.85 KB</td>
+</tr><tr><td>RemoveFirstItemOfLargestList</td><td>Group(...)thday [22]</td><td>1.662 ms</td><td>0.2131 ms</td><td>0.1409 ms</td><td>1.648 ms</td><td>-</td><td>-</td><td>1016.68 KB</td>
+</tr><tr><td>RevertFirstItemOfLargestList</td><td>Group(...)thday [22]</td><td>1.912 ms</td><td>0.4750 ms</td><td>0.3142 ms</td><td>1.735 ms</td><td>-</td><td>-</td><td>1041.46 KB</td>
+</tr><tr><td>SetDeepestValue</td><td>Group(...)thday [22]</td><td>1.597 ms</td><td>0.2313 ms</td><td>0.1530 ms</td><td>1.545 ms</td><td>-</td><td>-</td><td>1025.24 KB</td>
+</tr><tr><td>AddItemToLargestList</td><td>SimSpawner</td><td>178.672 ms</td><td>74.7095 ms</td><td>49.4157 ms</td><td>162.967 ms</td><td>6000.0000</td><td>4000.0000</td><td>131922.43 KB</td>
+</tr><tr><td>DuplicateFirstItemOfLargestList</td><td>SimSpawner</td><td>174.305 ms</td><td>53.5504 ms</td><td>35.4203 ms</td><td>164.809 ms</td><td>6000.0000</td><td>4000.0000</td><td>134176.39 KB</td>
+</tr><tr><td>RemoveFirstItemOfLargestList</td><td>SimSpawner</td><td>179.011 ms</td><td>57.3917 ms</td><td>37.9611 ms</td><td>165.891 ms</td><td>6000.0000</td><td>4000.0000</td><td>134171.69 KB</td>
+</tr><tr><td>RevertFirstItemOfLargestList</td><td>SimSpawner</td><td>164.408 ms</td><td>20.2215 ms</td><td>13.3753 ms</td><td>165.238 ms</td><td>6000.0000</td><td>4000.0000</td><td>137875.08 KB</td>
+</tr><tr><td>SetDeepestValue</td><td>SimSpawner</td><td>174.940 ms</td><td>53.6769 ms</td><td>35.5039 ms</td><td>166.233 ms</td><td>6000.0000</td><td>4000.0000</td><td>138849.91 KB</td>
+</tr><tr><td>AddItemToLargestList</td><td>TeaSetPourTeaPottery</td><td>44.709 ms</td><td>26.1550 ms</td><td>17.2999 ms</td><td>35.747 ms</td><td>1000.0000</td><td>-</td><td>36877.1 KB</td>
+</tr><tr><td>DuplicateFirstItemOfLargestList</td><td>TeaSetPourTeaPottery</td><td>47.180 ms</td><td>32.1320 ms</td><td>21.2534 ms</td><td>35.119 ms</td><td>1000.0000</td><td>-</td><td>37188.4 KB</td>
+</tr><tr><td>RemoveFirstItemOfLargestList</td><td>TeaSetPourTeaPottery</td><td>45.307 ms</td><td>27.6727 ms</td><td>18.3038 ms</td><td>37.101 ms</td><td>1000.0000</td><td>-</td><td>37174.7 KB</td>
+</tr><tr><td>RevertFirstItemOfLargestList</td><td>TeaSetPourTeaPottery</td><td>53.060 ms</td><td>27.6570 ms</td><td>18.2934 ms</td><td>47.240 ms</td><td>2000.0000</td><td>-</td><td>40286.58 KB</td>
+</tr><tr><td>SetDeepestValue</td><td>TeaSetPourTeaPottery</td><td>41.620 ms</td><td>23.3091 ms</td><td>15.4176 ms</td><td>31.770 ms</td><td>1000.0000</td><td>-</td><td>36562.91 KB</td>
+</tr><tr><td>AddItemToLargestList</td><td>UiTuning</td><td>36.517 ms</td><td>15.9240 ms</td><td>10.5327 ms</td><td>37.108 ms</td><td>1000.0000</td><td>-</td><td>23696.07 KB</td>
+</tr><tr><td>DuplicateFirstItemOfLargestList</td><td>UiTuning</td><td>32.689 ms</td><td>19.8787 ms</td><td>13.1485 ms</td><td>28.982 ms</td><td>1000.0000</td><td>-</td><td>23750.7 KB</td>
+</tr><tr><td>RemoveFirstItemOfLargestList</td><td>UiTuning</td><td>37.843 ms</td><td>21.3162 ms</td><td>14.0994 ms</td><td>40.703 ms</td><td>1000.0000</td><td>-</td><td>23745.1 KB</td>
+</tr><tr><td>RevertFirstItemOfLargestList</td><td>UiTuning</td><td>36.374 ms</td><td>21.0378 ms</td><td>13.9152 ms</td><td>35.993 ms</td><td>1000.0000</td><td>-</td><td>23809.3 KB</td>
+</tr><tr><td>SetDeepestValue</td><td>UiTuning</td><td>39.084 ms</td><td>19.0262 ms</td><td>12.5847 ms</td><td>41.785 ms</td><td>1000.0000</td><td>-</td><td>24831.33 KB</td>
+</tr></tbody></table>
+</body>
+</html>

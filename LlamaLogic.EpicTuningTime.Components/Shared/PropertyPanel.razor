@@ -1,0 +1,529 @@
+@inject IJSRuntime JS
+@inject IDialogService Dialogs
+@inject TuningArchiveSession Session
+
+<div class="ta-props @(IsDarkMode ? "dark" : string.Empty)" @ref="panelElement">
+    <div class="ta-props-toolbar">
+        <MudSwitch T="bool" Value="ShowUnset" ValueChanged="ShowUnsetChanged" Color="Color.Primary" Size="Size.Small" Label="Show unset" />
+        <MudSpacer />
+        <MudToggleIconButton Toggled="grouping" ToggledChanged="OnGroupingChanged" Icon="@Icons.Material.Outlined.Category" ToggledIcon="@Icons.Material.Filled.Category" ToggledColor="Color.Primary" Size="Size.Small" ToggledSize="Size.Small" title="Group by category" />
+        <MudIconButton Icon="@Icons.Material.Filled.UnfoldMore" Size="Size.Small" title="Expand all" OnClick="ExpandAll" />
+        <MudIconButton Icon="@Icons.Material.Filled.UnfoldLess" Size="Size.Small" title="Collapse all" OnClick="CollapseAll" />
+    </div>
+    <div class="ta-props-search">
+        <MudTextField T="string" Value="PanelState.Search" ValueChanged="OnSearchChanged" Placeholder="Search properties" Immediate="true" DebounceInterval="150" Variant="Variant.Outlined" Margin="Margin.Dense" Clearable="true" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+    </div>
+    <ScrollList Class="ta-props-tree" State="PanelState.Scroll" Key="@ScrollKey" Ready="Roots.Count > 0">
+        <Virtualize Items="Rows" ItemSize="24" OverscanCount="20" Context="row">
+            @if (row.Group is { } group)
+            {
+                <div class="ta-prop-group" @onclick="() => ToggleGroup(group.Key)">
+                    <span class="ta-prop-toggle">
+                        <MudIcon Icon="@(currentShown is not null || !collapsedGroups.Contains(group.Key) ? Icons.Material.Filled.ExpandMore : Icons.Material.Filled.ChevronRight)" Size="Size.Small" />
+                    </span>
+                    <span class="ta-prop-group-name">@group.Name</span>
+                    <span class="ta-prop-group-count">@group.Set of @group.Total set</span>
+                </div>
+            }
+            else
+            {
+                var node = row.Node!;
+                var isChanged = ChangedPaths?.Contains(node.Path) ?? false;
+                <div id="@RowId(node)" class="ta-prop-row @(ReferenceEquals(node, Selected) ? "selected" : string.Empty) @(node.IsSet ? string.Empty : "unset") @(isChanged ? "changed" : string.Empty)" style="padding-left: @((node.Depth + row.Indent) * 14 + 4)px" @onclick="() => SelectAsync(node)" @ondblclick="() => BeginEdit(node)">
+                    @if (node.Children.Count > 0)
+                    {
+                        <span class="ta-prop-toggle" @onclick="() => Toggle(node)" @onclick:stopPropagation="true">
+                            <MudIcon Icon="@(IsExpanded(node) ? Icons.Material.Filled.ExpandMore : Icons.Material.Filled.ChevronRight)" Size="Size.Small" />
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="ta-prop-toggle"></span>
+                    }
+                    <span class="ta-prop-name">@node.Label</span>
+                    @if (ReferenceEquals(node, editing) && node.Description is VariantTunableDescription variant)
+                    {
+                        <select class="ta-prop-input" value="@node.Summary" title="Choose an option; it starts with its defaults" @onchange="args => CommitOptionAsync(node, args.Value?.ToString())" @onclick:stopPropagation="true" @onkeydown="args => OnEditKeyDown(args)">
+                            @foreach (var option in GetOptions(variant))
+                            {
+                                <option value="@option">@option</option>
+                            }
+                        </select>
+                    }
+                    else if (ReferenceEquals(node, editing) && node.Source?.Enum is { } enumClass)
+                    {
+                        <select class="ta-prop-input" value="@node.Value" title="Choose a value" @onchange="args => CommitAsync(node, args.Value?.ToString())" @onclick:stopPropagation="true" @onkeydown="args => OnEditKeyDown(args)">
+                            @foreach (var item in enumClass.EnumItems)
+                            {
+                                <option value="@item.Name">@item.Name</option>
+                            }
+                        </select>
+                    }
+                    else if (ReferenceEquals(node, editing))
+                    {
+                        <input @ref="editInput" class="ta-prop-input" value="@node.Value" title="Enter applies, Esc cancels" @onchange="args => CommitAsync(node, args.Value?.ToString())" @onclick:stopPropagation="true" @onkeydown="args => OnEditKeyDown(args)" />
+                    }
+                    else if (node.Value is not null)
+                    {
+                        <span class="ta-prop-value">@node.Value</span>
+                    }
+                    else if (node.Summary is not null)
+                    {
+                        <span class="ta-prop-summary">@node.Summary</span>
+                    }
+                    @if (node.Detail is not null && !ReferenceEquals(node, editing))
+                    {
+                        <span class="@(node.IsMissing ? "ta-prop-detail ta-hint-missing" : "ta-prop-detail")">@node.Detail</span>
+                    }
+                    @if (Statuses?.GetValueOrDefault(node.Path) is { Count: > 0 } statuses)
+                    {
+                        <span class="ta-prop-statuses">
+                            @foreach (var status in statuses)
+                            {
+                                <span class="ta-prop-status @StatusClass(status.Severity)" title="@($"{status.Name}: {status.Message}")">@status.Target</span>
+                            }
+                        </span>
+                    }
+                    @if (Editable)
+                    {
+                        <span class="ta-prop-actions" @onclick:stopPropagation="true">
+                            @if (CanChooseReference(node))
+                            {
+                                <button class="ta-prop-action" title="@($"Search for a {GetReferenceTypeName(node)} (or double-click the row)")" @onclick="() => ChooseReferenceAsync(node)"><MudIcon Icon="@Icons.Material.Filled.ManageSearch" Size="Size.Small" /></button>
+                                <button class="ta-prop-action" title="Type the instance" @onclick="() => BeginInlineEdit(node)"><MudIcon Icon="@Icons.Material.Filled.Edit" Size="Size.Small" /></button>
+                            }
+                            else if (CanEditValue(node))
+                            {
+                                <button class="ta-prop-action" title="Edit the value (or double-click the row)" @onclick="() => BeginEdit(node)"><MudIcon Icon="@Icons.Material.Filled.Edit" Size="Size.Small" /></button>
+                            }
+                            @if (CanChooseOption(node))
+                            {
+                                <button class="ta-prop-action" title="Choose another option (or double-click the row)" @onclick="() => BeginEdit(node)"><MudIcon Icon="@Icons.Material.Filled.AltRoute" Size="Size.Small" /></button>
+                            }
+                            @if (!node.IsSet && node.Description is not null)
+                            {
+                                <button class="ta-prop-action" title="Set it, starting from its default" @onclick="() => EditAsync(PropertyEditKind.Set, node)"><MudIcon Icon="@Icons.Material.Filled.Add" Size="Size.Small" /></button>
+                            }
+                            @if (node.IsSet && node.Description is ListTunableDescription { Item: not null })
+                            {
+                                <button class="ta-prop-action" title="Add a new item to the end" @onclick="() => EditAsync(PropertyEditKind.AddItem, node)"><MudIcon Icon="@Icons.Material.Filled.PlaylistAdd" Size="Size.Small" /></button>
+                            }
+                            @if (node.IsSet && node.Parent?.Description is ListTunableDescription)
+                            {
+                                <button class="ta-prop-action" title="Add a copy of this item after it" @onclick="() => EditAsync(PropertyEditKind.Duplicate, node)"><MudIcon Icon="@Icons.Material.Filled.ContentCopy" Size="Size.Small" /></button>
+                                <button class="ta-prop-action" title="Remove this item" @onclick="() => EditAsync(PropertyEditKind.Remove, node)"><MudIcon Icon="@Icons.Material.Filled.Delete" Size="Size.Small" /></button>
+                            }
+                            else if (node.IsSet && node.Description is not null)
+                            {
+                                <button class="ta-prop-action" title="Reset to its default" @onclick="() => EditAsync(PropertyEditKind.Reset, node)"><MudIcon Icon="@Icons.Material.Filled.RestartAlt" Size="Size.Small" /></button>
+                            }
+                            @if (isChanged)
+                            {
+                                <button class="ta-prop-action" title="Revert to what the original has" @onclick="() => EditAsync(PropertyEditKind.Revert, node)"><MudIcon Icon="@Icons.Material.Filled.Undo" Size="Size.Small" /></button>
+                            }
+                        </span>
+                    }
+                </div>
+            }
+        </Virtualize>
+    </ScrollList>
+    @if (Selected is { } selected)
+    {
+        <div class="ta-props-details">
+            <MudText Typo="Typo.subtitle2" Style="word-break: break-all">@(selected.Description?.Display ?? selected.Label)</MudText>
+            <div class="ta-mono ta-secondary" style="word-break: break-all">@selected.Path</div>
+            @if (Facts(selected) is { Length: > 0 } facts)
+            {
+                <MudText Typo="Typo.caption">@facts</MudText>
+            }
+            @if (!selected.IsSet)
+            {
+                <MudText Typo="Typo.caption">Not set in this tuning, so it takes its default.</MudText>
+            }
+            @if (!string.IsNullOrWhiteSpace(selected.Description?.Description))
+            {
+                <MudText Typo="Typo.body2" Class="mt-1" Style="white-space: pre-wrap">@selected.Description.Description</MudText>
+            }
+            @if (Statuses?.GetValueOrDefault(selected.Path) is { Count: > 0 } selectedStatuses)
+            {
+                @foreach (var status in selectedStatuses)
+                {
+                    <MudText Typo="Typo.caption" Class="d-block mt-1"><span class="ta-prop-status @StatusClass(status.Severity)">@status.Target</span> @status.Name: @status.Message</MudText>
+                }
+            }
+            @if (selected.Target is { } target)
+            {
+                <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.OpenInNew" OnClick="() => Navigate.InvokeAsync(target)">Open @selected.Detail</MudButton>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    const string collapsedGroupsSetting = "CollapsedPropertyGroups";
+    const string groupingSetting = "GroupProperties";
+    const string otherGroup = "(other)";
+
+    const int groupHeight = 26;
+    const int rowHeight = 24;
+
+    readonly HashSet<string> collapsedGroups = new(StringComparer.Ordinal);
+    readonly PropertyPanelState ownState = new();
+    bool grouping = true;
+    HashSet<PropertyNode>? currentShown;
+    IReadOnlyList<PropertyNode>? appliedRoots;
+    PropertyNode? pendingScroll;
+    PropertyNode? editing;
+    ElementReference editInput;
+    ElementReference panelElement;
+    bool focusEditor;
+    List<PropertyRow>? rows;
+
+    [CascadingParameter(Name = "IsDarkMode")]
+    public bool IsDarkMode { get; set; }
+
+    [Parameter]
+    public IReadOnlySet<string>? ChangedPaths { get; set; }
+
+    [Parameter]
+    public bool Editable { get; set; }
+
+    [Parameter]
+    public EventCallback<PropertyEdit> Edit { get; set; }
+
+    [Parameter]
+    public EventCallback<(ResourceType type, ulong instance)> Navigate { get; set; }
+
+    [Parameter]
+    public IReadOnlyList<PropertyNode> Roots { get; set; } = [];
+
+    [Parameter]
+    public string? ScrollKey { get; set; }
+
+    [Parameter]
+    public PropertyPanelState? State { get; set; }
+
+    PropertyPanelState PanelState =>
+        State ?? ownState;
+
+    [Parameter]
+    public PropertyNode? Selected { get; set; }
+
+    [Parameter]
+    public EventCallback<PropertyNode> SelectedChanged { get; set; }
+
+    [Parameter]
+    public bool ShowUnset { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    [Parameter]
+    public IReadOnlyDictionary<string, IReadOnlyList<PropertyStatus>>? Statuses { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ShowUnsetChanged { get; set; }
+
+    static string Facts(PropertyNode node)
+    {
+        var facts = new List<string>();
+        if (node.Description?.Class is { } tunableClass)
+            facts.Add(tunableClass);
+        if (node.Description is ScalarTunableDescription { Type: { } type })
+            facts.Add($"type {type}");
+        if (node.Description?.Default is { Length: > 0 } defaultValue && node.IsSet)
+            facts.Add($"default {defaultValue}");
+        if (node.Description?.Group is { Length: > 0 } group)
+            facts.Add($"group {group}");
+        if (node.Description?.IsDeprecated ?? false)
+            facts.Add("deprecated");
+        return string.Join(" · ", facts);
+    }
+
+    sealed record PropertyGroup(string Key, string Name, int Set, int Total);
+
+    readonly record struct PropertyRow(PropertyNode? Node, PropertyGroup? Group, int Indent);
+
+    static string GetGroupKey(PropertyNode node) =>
+        node.Description?.Group is { Length: > 0 } group ? group : otherGroup;
+
+    static bool Matches(PropertyNode node, string term, bool includePath) =>
+        node.Label.Contains(term, StringComparison.OrdinalIgnoreCase)
+        || (node.Value?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false)
+        || (node.Summary?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false)
+        || (node.Detail?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false)
+        || (includePath && node.Path.Contains(term, StringComparison.OrdinalIgnoreCase));
+
+    List<PropertyRow> Rows =>
+        rows ??= [.. GetRows()];
+
+    bool IsExpanded(PropertyNode node) =>
+        currentShown is { } shown ? node.Children.Any(shown.Contains) : PanelState.ExpandedPaths.Contains(node.Path);
+
+    IEnumerable<PropertyRow> GetRows()
+    {
+        var term = PanelState.Search.Trim();
+        HashSet<PropertyNode>? shown = null;
+        if (term.Length > 0)
+        {
+            shown = [];
+            var includePath = term.IndexOfAny(['.', '[']) >= 0;
+            foreach (var node in GetAll(Roots))
+                if (Matches(node, term, includePath))
+                    for (var current = node; current is not null && shown.Add(current); current = current.Parent)
+                    {
+                    }
+        }
+        currentShown = shown;
+        if (!grouping || !Roots.Any(root => root.Description?.Group is { Length: > 0 }))
+        {
+            foreach (var node in GetVisible(Roots))
+                yield return new(node, null, 0);
+            yield break;
+        }
+        foreach (var group in Roots.GroupBy(GetGroupKey).OrderBy(group => group.Key == otherGroup).ThenBy(group => group.Key, StringComparer.OrdinalIgnoreCase))
+        {
+            var members = group.ToList();
+            if (shown is not null && !members.Any(shown.Contains))
+                continue;
+            yield return new(null, new(group.Key, group.Key == otherGroup ? "Other" : group.Key, members.Count(member => member.IsSet), members.Count), 0);
+            if (shown is null && collapsedGroups.Contains(group.Key))
+                continue;
+            foreach (var node in GetVisible(members))
+                yield return new(node, null, 1);
+        }
+    }
+
+    IEnumerable<PropertyNode> GetVisible(IEnumerable<PropertyNode> nodes)
+    {
+        foreach (var node in nodes)
+        {
+            if (currentShown is { } shown && !shown.Contains(node))
+                continue;
+            yield return node;
+            if (IsExpanded(node))
+                foreach (var child in GetVisible(node.Children))
+                    yield return child;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        grouping = Session.Platform.GetSetting(groupingSetting) != bool.FalseString;
+        if (Session.Platform.GetSetting(collapsedGroupsSetting) is { Length: > 0 } saved)
+            collapsedGroups.UnionWith(saved.Split('\n', StringSplitOptions.RemoveEmptyEntries));
+    }
+
+    void SaveCollapsedGroups() =>
+        Session.Platform.SetSetting(collapsedGroupsSetting, collapsedGroups.Count == 0 ? null : string.Join('\n', collapsedGroups.Order(StringComparer.Ordinal)));
+
+    void OnGroupingChanged(bool value)
+    {
+        grouping = value;
+        rows = null;
+        Session.Platform.SetSetting(groupingSetting, value.ToString());
+    }
+
+    void OnSearchChanged(string? value)
+    {
+        PanelState.Search = value ?? string.Empty;
+        rows = null;
+    }
+
+    void ToggleGroup(string key)
+    {
+        if (currentShown is not null)
+            return;
+        if (!collapsedGroups.Remove(key))
+            collapsedGroups.Add(key);
+        rows = null;
+        SaveCollapsedGroups();
+    }
+
+    static IEnumerable<PropertyNode> GetAll(IEnumerable<PropertyNode> nodes) =>
+        nodes.SelectMany(node => GetAll(node.Children).Prepend(node));
+
+    protected override void OnParametersSet()
+    {
+        if (ReferenceEquals(appliedRoots, Roots))
+            return;
+        appliedRoots = Roots;
+        editing = null;
+        rows = null;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (focusEditor)
+        {
+            focusEditor = false;
+            try
+            {
+                await editInput.FocusAsync();
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+        if (pendingScroll is { } node)
+        {
+            pendingScroll = null;
+            var top = 0;
+            foreach (var row in Rows)
+            {
+                if (ReferenceEquals(row.Node, node))
+                {
+                    await JS.InvokeVoidAsync("epicTuningTime.revealVirtualized", panelElement, ".ta-props-tree", RowId(node), top, rowHeight);
+                    break;
+                }
+                top += row.Group is null ? rowHeight : groupHeight;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Expands the nodes containing the specified <paramref name="node"/> (and, if <paramref name="expand"/> is <see langword="true"/>, the node itself) and scrolls it into view
+    /// </summary>
+    public void Reveal(PropertyNode node, bool expand = false)
+    {
+        var root = node;
+        for (var parent = node.Parent; parent is not null; parent = parent.Parent)
+        {
+            PanelState.ExpandedPaths.Add(parent.Path);
+            root = parent;
+        }
+        if (currentShown is { } shown && !shown.Contains(node))
+            PanelState.Search = string.Empty;
+        if (collapsedGroups.Remove(GetGroupKey(root)))
+            SaveCollapsedGroups();
+        if (expand && node.Children.Count > 0)
+            PanelState.ExpandedPaths.Add(node.Path);
+        rows = null;
+        pendingScroll = node;
+        StateHasChanged();
+    }
+
+    static string RowId(PropertyNode node) =>
+        $"ta-prop-{node.Index}";
+
+    Task EditAsync(PropertyEditKind kind, PropertyNode node, string? value = null) =>
+        Edit.InvokeAsync(new(kind, node, value));
+
+    bool CanEditValue(PropertyNode node) =>
+        Editable && node.IsSet && node.Children.Count == 0 && node.Source is { ElementName: "T" or "E" };
+
+    bool CanChooseOption(PropertyNode node) =>
+        Editable && node.IsSet && node.Description is VariantTunableDescription && node.Source is { ElementName: "V" };
+
+    static IReadOnlyList<string> GetOptions(VariantTunableDescription variant)
+    {
+        var options = variant.Options.Select(option => option.Name).OfType<string>().ToList();
+        if (variant.Default is { Length: > 0 } defaultOption && defaultOption != "None" && !options.Contains(defaultOption, StringComparer.Ordinal))
+            options.Insert(0, defaultOption);
+        return options;
+    }
+
+    bool CanChooseReference(PropertyNode node) =>
+        CanEditValue(node) && Snapshot is not null && node.Description is ScalarTunableDescription { Class: "TunableReference", Type: not null };
+
+    static string GetReferenceTypeName(PropertyNode node) =>
+        (node.Description as ScalarTunableDescription)?.Type ?? "tuning";
+
+    async Task ChooseReferenceAsync(PropertyNode node)
+    {
+        if (Snapshot is not { } snapshot || node.Description is not ScalarTunableDescription { Type: { } typeName } scalar)
+            return;
+        editing = null;
+        await SelectAsync(node);
+        var restrict = scalar.Attributes.GetValueOrDefault("restrict") is { Length: > 0 } classes ? classes.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : [];
+        var parameters = new DialogParameters<ReferenceDialog>
+        {
+            { dialog => dialog.Current, node.Value },
+            { dialog => dialog.Restrict, restrict },
+            { dialog => dialog.Snapshot, snapshot },
+            { dialog => dialog.Type, TuningAnalysis.GetReferenceResourceType(typeName) },
+            { dialog => dialog.TypeName, typeName }
+        };
+        var reference = await Dialogs.ShowAsync<ReferenceDialog>($"Choose a {typeName} for {node.Label}", parameters, new DialogOptions { MaxWidth = MaxWidth.Small, FullWidth = true });
+        if (await reference.Result is { Canceled: false, Data: string value } && value != node.Value)
+            await EditAsync(PropertyEditKind.SetValue, node, value);
+    }
+
+    void BeginEdit(PropertyNode node)
+    {
+        if (CanChooseReference(node))
+        {
+            _ = ChooseReferenceAsync(node);
+            return;
+        }
+        BeginInlineEdit(node);
+    }
+
+    void BeginInlineEdit(PropertyNode node)
+    {
+        if (!CanEditValue(node) && !CanChooseOption(node))
+            return;
+        editing = node;
+        focusEditor = node.Source?.Enum is null && node.Description is not VariantTunableDescription;
+        _ = SelectAsync(node);
+    }
+
+    async Task CommitOptionAsync(PropertyNode node, string? option)
+    {
+        editing = null;
+        if (option is not null && option != node.Summary)
+            await EditAsync(PropertyEditKind.SetOption, node, option);
+    }
+
+    async Task CommitAsync(PropertyNode node, string? value)
+    {
+        editing = null;
+        if (value is not null && value != node.Value)
+            await EditAsync(PropertyEditKind.SetValue, node, value);
+    }
+
+    void OnEditKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "Escape")
+            editing = null;
+    }
+
+    static string StatusClass(TuningDraftSeverity severity) =>
+        severity switch
+        {
+            TuningDraftSeverity.Error => "error",
+            TuningDraftSeverity.Warning => "warning",
+            _ => "ok"
+        };
+
+    Task SelectAsync(PropertyNode node) =>
+        SelectedChanged.InvokeAsync(node);
+
+    void Toggle(PropertyNode node)
+    {
+        if (!PanelState.ExpandedPaths.Remove(node.Path))
+            PanelState.ExpandedPaths.Add(node.Path);
+        rows = null;
+    }
+
+    void ExpandAll()
+    {
+        foreach (var node in GetAll(Roots))
+            if (node.Children.Count > 0)
+                PanelState.ExpandedPaths.Add(node.Path);
+        collapsedGroups.Clear();
+        rows = null;
+        SaveCollapsedGroups();
+    }
+
+    void CollapseAll()
+    {
+        PanelState.ExpandedPaths.Clear();
+        rows = null;
+        if (grouping)
+        {
+            collapsedGroups.UnionWith(Roots.Select(GetGroupKey));
+            SaveCollapsedGroups();
+        }
+    }
+}

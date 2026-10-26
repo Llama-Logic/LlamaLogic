@@ -1,0 +1,456 @@
+@page "/compare"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject CompareState State
+@inject BrowseState Browse
+@inject NavigationManager Navigation
+
+<div class="ta-page">
+    @if (Session.Archive is null)
+    {
+        <div class="ta-empty">Open an archive on the Archive page first.</div>
+    }
+    else if (Session.Snapshots.Count < 2)
+    {
+        <div class="ta-empty">Comparing needs at least two snapshots. Capture or import another on the Archive page.</div>
+    }
+    else
+    {
+        <div class="ta-split">
+            <div class="ta-sidebar" style="width: 380px">
+                <div class="ta-sidebar-filters">
+                    <MudStack Row="true" Spacing="1">
+                        <SnapshotSelect Label="Older" Value="State.OlderId" ValueChanged="OnOlderChangedAsync" />
+                        <SnapshotSelect Label="Newer" Value="State.NewerId" ValueChanged="OnNewerChangedAsync" />
+                    </MudStack>
+                    <MudSelect T="string" Value="State.Mode" ValueChanged="OnModeChangedAsync" Label="Compare" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" ToStringFunc="GetModeName" MaxHeight="420">
+                        @foreach (var (mode, icon) in modes)
+                        {
+                            <MudSelectItem T="string" Value="mode">
+                                <span class="ta-kind-item"><MudIcon Icon="@icon" Size="Size.Small" />@GetModeName(mode)</span>
+                            </MudSelectItem>
+                        }
+                    </MudSelect>
+                    @if (State.Mode != "strings" && changes is not null)
+                    {
+                        <MudSelect T="ResourceType?" Value="State.TypeFilter" ValueChanged="OnTypeChanged" Label="Type" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" Clearable="true">
+                            @foreach (var group in changes.GroupBy(change => change.Entry.Type).OrderBy(group => Session.GetTypeName(group.Key), StringComparer.OrdinalIgnoreCase))
+                            {
+                                <MudSelectItem T="ResourceType?" Value="group.Key">@Session.GetTypeName(group.Key) (@group.Count())</MudSelectItem>
+                            }
+                        </MudSelect>
+                    }
+                    <MudTextField T="string" Value="State.Search" ValueChanged="OnSearchChanged" Label="Search" Immediate="true" DebounceInterval="200" Variant="Variant.Outlined" Margin="Margin.Dense" Clearable="true" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+                    <MudChipSet T="TuningArchiveChangeKind" SelectedValues="State.Kinds" SelectedValuesChanged="OnKindsChangedAsync" SelectionMode="SelectionMode.MultiSelection" Size="Size.Small" CheckMark="true">
+                        <MudChip T="TuningArchiveChangeKind" Value="TuningArchiveChangeKind.Modified" Color="Color.Warning" Text="@($"Changed {Count(TuningArchiveChangeKind.Modified)}")" />
+                        <MudChip T="TuningArchiveChangeKind" Value="TuningArchiveChangeKind.Added" Color="Color.Success" Text="@($"Added {Count(TuningArchiveChangeKind.Added)}")" />
+                        <MudChip T="TuningArchiveChangeKind" Value="TuningArchiveChangeKind.Removed" Color="Color.Error" Text="@($"Removed {Count(TuningArchiveChangeKind.Removed)}")" />
+                        <MudChip T="TuningArchiveChangeKind" Value="TuningArchiveChangeKind.Moved" Color="Color.Info" Text="@($"Moved {Count(TuningArchiveChangeKind.Moved)}")" />
+                        <MudChip T="TuningArchiveChangeKind" Value="TuningArchiveChangeKind.Unchanged" Color="Color.Default" Text="@(loadedUnchanged ? $"Unchanged {Count(TuningArchiveChangeKind.Unchanged)}" : "Unchanged")" />
+                    </MudChipSet>
+                </div>
+                <ScrollList State="State.List" Key="@ListKey" Ready="@(!loading && (State.Mode == "strings" ? filteredStrings.Count > 0 : filtered.Count > 0))">
+                    @if (loading)
+                    {
+                        <MudProgressLinear Indeterminate="true" />
+                    }
+                    else if (message is not null)
+                    {
+                        <div class="ta-empty">@message</div>
+                    }
+                    else if (State.Mode == "strings")
+                    {
+                        <Virtualize Items="filteredStrings" ItemSize="44" Context="change">
+                            <div class="ta-list-item @(ReferenceEquals(change, selectedString) ? "selected" : string.Empty)" @onclick="() => SelectString(change)">
+                                <div class="ta-primary">@KindLabel(change.Kind) · @Truncate(change.NewText ?? change.OldText ?? string.Empty, 90)</div>
+                                <div class="ta-secondary">0x@(change.Key.ToString("X8", CultureInfo.InvariantCulture))</div>
+                            </div>
+                        </Virtualize>
+                    }
+                    else
+                    {
+                        <Virtualize Items="filtered" ItemSize="44" Context="change">
+                            <div class="ta-list-item @(ReferenceEquals(change, selected) ? "selected" : string.Empty)" @onclick="() => SelectAsync(change)">
+                                <div class="ta-primary">@KindLabel(change.Kind) · @(IsMediaMode ? MediaContent.GetName(change.Entry) : change.Entry.Name ?? "(unnamed)")</div>
+                                <div class="ta-secondary">@Session.GetTypeName(change.Entry.Type) · @Describe(change)</div>
+                            </div>
+                        </Virtualize>
+                    }
+                </ScrollList>
+            </div>
+            <div class="ta-detail">
+                @if (State.Mode == "strings")
+                {
+                    @if (selectedString is null)
+                    {
+                        <div class="ta-empty">Choose a string to see how it changed.</div>
+                    }
+                    else
+                    {
+                        <div class="ta-detail-header">
+                            <MudText Typo="Typo.h6">0x@(selectedString.Key.ToString("X8", CultureInfo.InvariantCulture))</MudText>
+                        </div>
+                        <DiffView Original="@(selectedString.OldText ?? string.Empty)" Modified="@(selectedString.NewText ?? string.Empty)" Language="plaintext" ViewState="State.Diff" ViewStateKey="@($"{State.OlderId}:{State.NewerId}:strings:{selectedString.Key}")" />
+                    }
+                }
+                else if (selected is null)
+                {
+                    <div class="ta-empty">Choose a change to see it.</div>
+                }
+                else
+                {
+                    <div class="ta-detail-header">
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Wrap="Wrap.Wrap">
+                            <MudText Typo="Typo.h6" Style="word-break: break-all">@(IsMediaMode ? MediaContent.GetName(selected.Entry) : selected.Entry.Name ?? "(unnamed)")</MudText>
+                            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Color="Color.Primary">@Session.GetTypeName(selected.Entry.Type)</MudChip>
+                            <span class="ta-mono">@selected.Entry.Key</span>
+                            @if (State.Mode is "tuning" or "asm" or "images" or "sounds" or "videos" && selected.New is not null)
+                            {
+                                <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.OpenInNew" OnClick="OpenInBrowse">Open in Browse</MudButton>
+                            }
+                        </MudStack>
+                    </div>
+                    @if (IsMediaMode)
+                    {
+                        <div class="ta-media-compare">
+                            <div class="ta-media-side">
+                                <MudText Typo="Typo.caption" Class="px-4 py-1">Older</MudText>
+                                <MediaPreview Entry="selected.Old" Snapshot="Session.GetSnapshot(State.OlderId)" EmptyText="Not in the older snapshot." />
+                            </div>
+                            <div class="ta-media-side">
+                                <MudText Typo="Typo.caption" Class="px-4 py-1">Newer</MudText>
+                                <MediaPreview Entry="selected.New" Snapshot="Session.GetSnapshot(State.NewerId)" EmptyText="Not in the newer snapshot." />
+                            </div>
+                        </div>
+                    }
+                    else if (semantic is { Count: > 0 })
+                    {
+                        <div class="ta-changes">
+                            @foreach (var change in semantic)
+                            {
+                                <div class="ta-change" @onclick="() => RevealAsync(change)">
+                                    <span>@change.Kind</span>
+                                    <span class="ta-mono" style="overflow: hidden; text-overflow: ellipsis">@change.Path</span>
+                                    <span class="ta-values">
+                                        @if (change.OldValue is not null)
+                                        {
+                                            <span class="ta-old">@Truncate(change.OldValue, 120)</span>
+                                        }
+                                        @if (change.OldValue is not null && change.NewValue is not null)
+                                        {
+                                            <span> → </span>
+                                        }
+                                        @if (change.NewValue is not null)
+                                        {
+                                            <span class="ta-new">@Truncate(change.NewValue, 120)</span>
+                                        }
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else if (selected.Kind is TuningArchiveChangeKind.Unchanged)
+                    {
+                        <MudText Typo="Typo.body2" Class="px-4 py-2">The content is the same in both snapshots.</MudText>
+                    }
+                    else if (semantic is { Count: 0 } && selected.Kind is TuningArchiveChangeKind.Moved)
+                    {
+                        <MudText Typo="Typo.body2" Class="px-4 py-2">The content is the same; it moved from @selected.Old?.Pack to @selected.New?.Pack@(selected.Old?.Name != selected.New?.Name ? $" and was renamed from {selected.Old?.Name}" : string.Empty).</MudText>
+                    }
+                    @if (!IsMediaMode)
+                    {
+                        <DiffView @ref="diffView" Original="@originalText" Modified="@modifiedText" OriginalAnnotations="originalAnnotations?.annotations" ModifiedAnnotations="modifiedAnnotations?.annotations" AnnotationActivated="OnDiffAnnotationActivated" Language="@(State.Mode == "python" ? "python" : "xml")" ViewState="State.Diff" ViewStateKey="@($"{State.OlderId}:{State.NewerId}:{State.Mode}:{selected.Kind}:{selected.Entry.Key}")" />
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    int loadedGeneration = -1;
+    (long older, long newer, string mode, bool unchanged)? loadedFor;
+    bool loading;
+    bool loadedUnchanged;
+    string? message;
+    IReadOnlyList<TuningArchiveChange>? changes;
+    IReadOnlyList<TuningArchiveStringChange>? stringChanges;
+    List<TuningArchiveChange> filtered = [];
+    List<TuningArchiveStringChange> filteredStrings = [];
+    TuningArchiveChange? selected;
+    TuningArchiveStringChange? selectedString;
+    IReadOnlyList<TuningSemanticChange>? semantic;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? originalAnnotations;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? modifiedAnnotations;
+    string originalText = string.Empty;
+    string modifiedText = string.Empty;
+    DiffView? diffView;
+
+    [SupplyParameterFromQuery(Name = "older")]
+    public long? OlderParameter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "newer")]
+    public long? NewerParameter { get; set; }
+
+    static readonly (string mode, string icon)[] modes =
+    [
+        ("tuning", Icons.Material.Filled.Tune),
+        ("simdata", Icons.Material.Filled.TableChart),
+        ("asm", Icons.Material.Filled.AccountTree),
+        ("strings", Icons.Material.Filled.TextFields),
+        ("python", Icons.Material.Filled.Code),
+        ("images", Icons.Material.Filled.Image),
+        ("sounds", Icons.Material.Filled.MusicNote),
+        ("videos", Icons.Material.Filled.Movie)
+    ];
+
+    bool IsMediaMode =>
+        State.Mode is "images" or "sounds" or "videos";
+
+    static string GetModeName(string mode) =>
+        mode switch
+        {
+            "simdata" => "SimData",
+            "asm" => "Animation state machines",
+            "strings" => "Strings",
+            "python" => "Python",
+            "images" => "Images",
+            "sounds" => "Sounds",
+            "videos" => "Videos",
+            _ => "Tuning"
+        };
+
+    string ListKey =>
+        $"{State.Mode}:{State.OlderId}:{State.NewerId}:{(uint?)State.TypeFilter}:{State.Search}:{string.Join(',', State.Kinds.Order())}";
+
+    protected override void OnInitialized() =>
+        Session.Changed += OnSessionChanged;
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(async () =>
+        {
+            if (loadedGeneration != Session.Generation)
+            {
+                loadedFor = null;
+                await OnParametersSetAsync();
+            }
+            StateHasChanged();
+        });
+
+    protected override async Task OnParametersSetAsync()
+    {
+        loadedGeneration = Session.Generation;
+        if (Session.Snapshots.Count < 2)
+        {
+            changes = null;
+            stringChanges = null;
+            loadedFor = null;
+            return;
+        }
+        if (Session.GetSnapshot(OlderParameter) is { } requestedOlder && Session.GetSnapshot(NewerParameter) is { } requestedNewer)
+        {
+            State.Request(requestedOlder.Id, requestedNewer.Id);
+            OlderParameter = null;
+            NewerParameter = null;
+            Navigation.NavigateTo("compare", new NavigationOptions { ReplaceHistoryEntry = true });
+        }
+        var newer = Session.GetSnapshot(State.NewerId) ?? Session.Snapshots[^1];
+        var older = Session.GetSnapshot(State.OlderId) ?? Session.Snapshots[Math.Max(0, Session.Snapshots.ToList().IndexOf(newer) - 1)];
+        if (older.Id == newer.Id)
+            older = Session.Snapshots.First(snapshot => snapshot.Id != newer.Id);
+        State.OlderId = older.Id;
+        State.NewerId = newer.Id;
+        if (loadedFor != (older.Id, newer.Id, State.Mode, State.Kinds.Contains(TuningArchiveChangeKind.Unchanged)) && !loading)
+            await LoadAsync(true);
+    }
+
+    int Count(TuningArchiveChangeKind kind) =>
+        State.Mode == "strings" ? stringChanges?.Count(change => change.Kind == kind) ?? 0 : changes?.Count(change => change.Kind == kind) ?? 0;
+
+    static string KindLabel(TuningArchiveChangeKind kind) =>
+        kind switch
+        {
+            TuningArchiveChangeKind.Added => "Added",
+            TuningArchiveChangeKind.Removed => "Removed",
+            TuningArchiveChangeKind.Moved => "Moved",
+            TuningArchiveChangeKind.Unchanged => "Unchanged",
+            _ => "Changed"
+        };
+
+    static string Describe(TuningArchiveChange change) =>
+        change.Kind is TuningArchiveChangeKind.Moved && change.Old?.Pack != change.New?.Pack
+            ? $"{change.Old?.Pack} → {change.New?.Pack}"
+            : $"{change.Entry.Pack} · {change.Entry.Instance}";
+
+    static string Truncate(string text, int length)
+    {
+        var singleLine = text.Replace("\n", " ⏎ ", StringComparison.Ordinal);
+        return singleLine.Length <= length ? singleLine : $"{singleLine[..length]}…";
+    }
+
+    async Task LoadAsync(bool keepSelection)
+    {
+        if (Session.Archive is not { } archive || Session.GetSnapshot(State.OlderId) is not { } older || Session.GetSnapshot(State.NewerId) is not { } newer)
+            return;
+        if (!keepSelection)
+        {
+            State.Selected = null;
+            State.SelectedStringKey = null;
+        }
+        loading = true;
+        message = null;
+        selected = null;
+        selectedString = null;
+        changes = null;
+        stringChanges = null;
+        StateHasChanged();
+        var mode = State.Mode;
+        var includeUnchanged = State.Kinds.Contains(TuningArchiveChangeKind.Unchanged);
+        if (mode == "strings")
+        {
+            stringChanges = await Task.Run(() => archive.CompareStrings(older, newer, includeUnchanged));
+            if (older.Locale is null || newer.Locale is null)
+                message = "One of these snapshots has no strings.";
+            else if (older.Locale != newer.Locale)
+                message = $"These snapshots' strings are in different locales ({older.Locale} and {newer.Locale}).";
+        }
+        else
+        {
+            var kind = mode switch
+            {
+                "simdata" => TuningArchiveResourceKind.SimData,
+                "asm" => TuningArchiveResourceKind.AnimationStateMachine,
+                "python" => TuningArchiveResourceKind.PythonModule,
+                "images" => TuningArchiveResourceKind.Image,
+                "sounds" => TuningArchiveResourceKind.Sound,
+                "videos" => TuningArchiveResourceKind.Video,
+                _ => TuningArchiveResourceKind.Tuning
+            };
+            var (both, result) = await Task.Run(() => (archive.HasKind(older, kind) && archive.HasKind(newer, kind), archive.Compare(older, newer, kind, includeUnchanged)));
+            changes = result;
+            if (!both)
+                message = $"One of these snapshots has no {kind switch { TuningArchiveResourceKind.PythonModule => "Python scripts", TuningArchiveResourceKind.SimData => "SimData", TuningArchiveResourceKind.AnimationStateMachine => "animation state machines", TuningArchiveResourceKind.Image or TuningArchiveResourceKind.Sound or TuningArchiveResourceKind.Video => MediaContent.GetPluralName(kind), _ => "tuning" }}.";
+        }
+        loading = false;
+        loadedUnchanged = includeUnchanged;
+        loadedFor = (older.Id, newer.Id, mode, includeUnchanged);
+        if (message is null && (changes?.Count ?? stringChanges?.Count ?? 0) == 0)
+            message = includeUnchanged ? "Nothing to compare." : "No differences.";
+        ApplyFilter();
+        if (State.Selected is { } wanted && changes?.FirstOrDefault(change => change.Kind == wanted.kind && change.Entry.Key == wanted.key) is { } same)
+            await SelectAsync(same);
+        if (State.SelectedStringKey is { } wantedKey)
+            selectedString = stringChanges?.FirstOrDefault(change => change.Key == wantedKey);
+    }
+
+    void ApplyFilter()
+    {
+        var term = State.Search.Trim();
+        var kinds = State.Kinds;
+        if (stringChanges is not null)
+            filteredStrings = stringChanges.Where(change => kinds.Contains(change.Kind) && (term.Length == 0 || (change.OldText?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) || (change.NewText?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false))).OrderBy(change => change.Kind).ThenBy(change => change.Key).ToList();
+        if (changes is not null)
+            filtered = changes.Where(change => kinds.Contains(change.Kind) && (State.TypeFilter is null || change.Entry.Type == State.TypeFilter) && (term.Length == 0 || (change.Entry.Name?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) || change.Entry.Instance.ToString(CultureInfo.InvariantCulture) == term)).OrderBy(change => change.Kind).ThenBy(change => change.Entry.Name, StringComparer.OrdinalIgnoreCase).ToList();
+    }
+
+    async Task OnModeChangedAsync(string value)
+    {
+        State.Mode = value;
+        State.TypeFilter = null;
+        await LoadAsync(false);
+    }
+
+    async Task OnOlderChangedAsync(long? id)
+    {
+        State.OlderId = id;
+        await LoadAsync(true);
+    }
+
+    async Task OnNewerChangedAsync(long? id)
+    {
+        State.NewerId = id;
+        await LoadAsync(true);
+    }
+
+    async Task OnKindsChangedAsync(IReadOnlyCollection<TuningArchiveChangeKind>? values)
+    {
+        State.Kinds = values ?? [];
+        if (State.Kinds.Contains(TuningArchiveChangeKind.Unchanged) && !loadedUnchanged)
+            await LoadAsync(true);
+        else
+            ApplyFilter();
+    }
+
+    void OnSearchChanged(string? value)
+    {
+        State.Search = value ?? string.Empty;
+        ApplyFilter();
+    }
+
+    void OnTypeChanged(ResourceType? value)
+    {
+        State.TypeFilter = value;
+        ApplyFilter();
+    }
+
+    void SelectString(TuningArchiveStringChange change)
+    {
+        selectedString = change;
+        State.SelectedStringKey = change.Key;
+    }
+
+    async Task SelectAsync(TuningArchiveChange change)
+    {
+        if (Session.Archive is not { } archive)
+            return;
+        selected = change;
+        State.Selected = (change.Kind, change.Entry.Key);
+        semantic = null;
+        if (IsMediaMode)
+            return;
+        var (original, modified) = await Task.Run(() => (change.Old is { } old ? archive.GetText(old) : string.Empty, change.New is { } updated ? archive.GetText(updated) : string.Empty));
+        originalAnnotations = null;
+        modifiedAnnotations = null;
+        originalText = original;
+        modifiedText = modified;
+        if (State.Mode != "python" && change.Kind is not TuningArchiveChangeKind.Unchanged && change.Old is not null && change.New is not null)
+            semantic = await Task.Run(() => TuningSemanticDiff.Compare(original, modified));
+        if (State.Mode == "tuning" && Session.GetSnapshot(State.OlderId) is { } older && Session.GetSnapshot(State.NewerId) is { } newer)
+        {
+            var builtOriginal = await TuningAnnotations.BuildAsync(Session, older, original);
+            var builtModified = await TuningAnnotations.BuildAsync(Session, newer, modified);
+            if (!ReferenceEquals(selected, change))
+                return;
+            originalAnnotations = builtOriginal;
+            modifiedAnnotations = builtModified;
+        }
+    }
+
+    void OnDiffAnnotationActivated((bool modified, int index) activation)
+    {
+        var targets = (activation.modified ? modifiedAnnotations : originalAnnotations)?.targets;
+        if ((activation.modified ? State.NewerId : State.OlderId) is { } snapshotId && targets is not null && activation.index >= 0 && activation.index < targets.Count && targets[activation.index] is { } target)
+        {
+            Browse.Request(snapshotId, target);
+            Navigation.NavigateTo("browse");
+        }
+    }
+
+    async Task RevealAsync(TuningSemanticChange change)
+    {
+        if (diffView is not null)
+            await diffView.RevealAsync(change.OldLine, change.NewLine);
+    }
+
+    void OpenInBrowse()
+    {
+        if (selected?.New is { } entry && State.NewerId is { } newerId)
+        {
+            Browse.Request(newerId, (entry.Type, entry.Instance));
+            Navigation.NavigateTo("browse");
+        }
+    }
+}

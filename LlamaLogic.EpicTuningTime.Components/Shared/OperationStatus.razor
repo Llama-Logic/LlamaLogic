@@ -1,0 +1,95 @@
+@implements IDisposable
+@inject TuningArchiveSession Session
+
+@if (Session.Operation is { } operation)
+{
+    var progress = operation.Progress;
+    var isDeterminate = progress is { Total: > 0 };
+    var percent = progress is { Total: > 0 } determinate ? 100.0 * determinate.Completed / determinate.Total : 0;
+    if (Detailed)
+    {
+        <MudPaper Outlined="true" Class="pa-4 mb-4">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                <div>
+                    <MudText Typo="Typo.subtitle1">@operation.Name</MudText>
+                    <MudText Typo="Typo.body2">@(progress?.Stage ?? "Starting")…</MudText>
+                </div>
+                <MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Cancel" OnClick="operation.Cancel">Cancel</MudButton>
+            </MudStack>
+            <MudProgressLinear Color="Color.Primary" Indeterminate="@(!isDeterminate)" Value="percent" Class="my-2" />
+            <MudText Typo="Typo.caption">@Describe(operation)</MudText>
+        </MudPaper>
+    }
+    else
+    {
+        <div style="width: 360px" class="mr-2">
+            <MudText Typo="Typo.caption" Class="ta-ellipsis">@Summarize(operation)</MudText>
+            <MudProgressLinear Color="Color.Inherit" Indeterminate="@(!isDeterminate)" Value="percent" />
+        </div>
+        <MudIconButton Icon="@Icons.Material.Filled.Cancel" Color="Color.Inherit" OnClick="operation.Cancel" title="Cancel" />
+    }
+}
+
+@code {
+    System.Threading.Timer? timer;
+
+    [Parameter]
+    public bool Detailed { get; set; }
+
+    static string Describe(TuningArchiveOperation operation)
+    {
+        var parts = new List<string>();
+        if (operation.Progress is { Total: > 0 } progress)
+            parts.Add(string.Format(CultureInfo.CurrentCulture, "{0:N0} of {1:N0} ({2})", progress.Completed, progress.Total, FormatPercent(progress)));
+        else if (operation.Progress is { Completed: > 0 } counting)
+            parts.Add(string.Format(CultureInfo.CurrentCulture, "{0:N0} so far", counting.Completed));
+        parts.Add($"{FormatElapsed(operation.Elapsed)} elapsed");
+        if (operation.EstimatedRemaining is { } remaining)
+            parts.Add($"{FormatRemaining(remaining)} left");
+        return string.Join(" · ", parts);
+    }
+
+    public void Dispose()
+    {
+        Session.Changed -= OnSessionChanged;
+        timer?.Dispose();
+    }
+
+    static string FormatElapsed(TimeSpan elapsed) =>
+        elapsed.ToString(elapsed.TotalHours >= 1 ? @"h\:mm\:ss" : @"m\:ss", CultureInfo.CurrentCulture);
+
+    static string FormatPercent(TuningArchiveProgress progress) =>
+        string.Format(CultureInfo.CurrentCulture, "{0:N0}%", Math.Floor(100.0 * progress.Completed / progress.Total));
+
+    static string FormatRemaining(TimeSpan remaining) =>
+        remaining.TotalMinutes < 1
+            ? "less than a minute"
+            : remaining.TotalHours < 1
+            ? string.Format(CultureInfo.CurrentCulture, "about {0:N0} min", Math.Ceiling(remaining.TotalMinutes))
+            : string.Format(CultureInfo.CurrentCulture, "about {0:N0} h {1:N0} min", Math.Floor(remaining.TotalHours), remaining.Minutes);
+
+    protected override void OnInitialized()
+    {
+        Session.Changed += OnSessionChanged;
+        timer = new System.Threading.Timer(_ =>
+        {
+            if (Session.Operation is not null)
+                _ = InvokeAsync(StateHasChanged);
+        }, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
+    }
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(StateHasChanged);
+
+    static string Summarize(TuningArchiveOperation operation)
+    {
+        if (operation.Progress is not { } progress)
+            return $"{operation.Name}…";
+        if (progress.Total <= 0)
+            return progress.Completed > 0
+                ? string.Format(CultureInfo.CurrentCulture, "{0} · {1}… {2:N0}", operation.Name, progress.Stage, progress.Completed)
+                : $"{operation.Name} · {progress.Stage}…";
+        var summary = $"{operation.Name} · {FormatPercent(progress)}";
+        return operation.EstimatedRemaining is { } remaining ? $"{summary} · {FormatRemaining(remaining)} left" : summary;
+    }
+}

@@ -1,0 +1,477 @@
+@page "/"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject IDialogService Dialogs
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+@inject BrowseState Browse
+@inject CompareState Compare
+
+<div class="ta-page ta-scroll ta-panel">
+    <div style="padding: 24px; max-width: 1200px">
+        @if (Session.Archive is null)
+        {
+            <MudText Typo="Typo.h4" GutterBottom="true">Epic Tuning Time</MudText>
+            <MudText Typo="Typo.body1" Class="mb-4">
+                Captures the game's tuning, SimData and strings into an archive on your computer, one snapshot per version, so you can browse any version,
+                follow references between tunings, and see exactly what a patch changed. Nothing happens until you ask for it.
+            </MudText>
+            <MudStack Row="true" Spacing="2" Class="mb-6">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.FolderOpen" OnClick="OpenAsync">Open an archive…</MudButton>
+                <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.CreateNewFolder" OnClick="CreateAsync">Create an archive…</MudButton>
+            </MudStack>
+            @if (Session.RecentArchives.Count > 0)
+            {
+                <MudText Typo="Typo.subtitle1">Recent</MudText>
+                <MudList T="string" Dense="true">
+                    @foreach (var recent in Session.RecentArchives)
+                    {
+                        <MudListItem T="string" Icon="@Icons.Material.Filled.Inventory2" OnClick="() => OpenPathAsync(recent)">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                                <span class="ta-mono">@recent</span>
+                                <MudIconButton Icon="@Icons.Material.Filled.Close" Size="Size.Small" OnClick="() => Session.ForgetRecentArchive(recent)" ClickPropagation="false" title="Forget" />
+                            </MudStack>
+                        </MudListItem>
+                    }
+                </MudList>
+            }
+        }
+        else
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                <div>
+                    <MudText Typo="Typo.h5">@Path.GetFileNameWithoutExtension(Session.Archive.Path)</MudText>
+                    <MudText Typo="Typo.caption" Class="ta-mono">@Session.Archive.Path · @FormatBytes(archiveSize)</MudText>
+                </div>
+                <MudStack Row="true" Spacing="1">
+                    <MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.FolderOpen" OnClick="RevealArchiveAsync">Show in folder</MudButton>
+                    <MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.Close" OnClick="Session.Close">Close</MudButton>
+                </MudStack>
+            </MudStack>
+            <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mb-4">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.CameraAlt" Disabled="busy" OnClick="CaptureAsync">Capture from the game…</MudButton>
+                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.DriveFolderUpload" Disabled="busy" OnClick="ImportFolderAsync">Import extracted tuning…</MudButton>
+                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.MenuBook" Disabled="busy" OnClick="ImportDescriptionsAsync">Import tuning descriptions…</MudButton>
+                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Hub" Disabled="busy || Session.Descriptions.Count == 0 || Session.ReferenceStatus.indexed >= Session.ReferenceStatus.total" OnClick="IndexAsync">Index references</MudButton>
+            </MudStack>
+            <OperationStatus Detailed="true" />
+            @if (Session.ReferenceStatus.total > 0 && Session.Operation is null)
+            {
+                <MudAlert Severity="@(Session.Descriptions.Count == 0 || Session.ReferenceStatus.indexed < Session.ReferenceStatus.total ? Severity.Info : Severity.Success)" Dense="true" Class="mb-4">
+                    @if (Session.Descriptions.Count == 0)
+                    {
+                        <span>Import tuning descriptions (the TDESC zip Maxis publishes for each patch, which Sims 4 Studio users already download) to explain each element and follow references.</span>
+                    }
+                    else if (Session.ReferenceStatus.indexed < Session.ReferenceStatus.total)
+                    {
+                        <span>@Session.ReferenceStatus.indexed.ToString("N0", CultureInfo.CurrentCulture) of @Session.ReferenceStatus.total.ToString("N0", CultureInfo.CurrentCulture) tunings have their references indexed. Index references to find what refers to what.</span>
+                    }
+                    else
+                    {
+                        <span>References are indexed for all @Session.ReferenceStatus.total.ToString("N0", CultureInfo.CurrentCulture) tunings.</span>
+                    }
+                </MudAlert>
+            }
+            @if (lastResult is not null)
+            {
+                <MudAlert Severity="@(lastResult.Problems.Count > 0 ? Severity.Warning : Severity.Success)" Dense="true" ShowCloseIcon="true" CloseIconClicked="() => lastResult = null" Class="mb-4">
+                    <div>
+                        @lastResult.Snapshot.DisplayName: @lastResult.Tunings.ToString("N0", CultureInfo.CurrentCulture) tunings, @lastResult.SimData.ToString("N0", CultureInfo.CurrentCulture) SimData, @lastResult.AnimationStateMachines.ToString("N0", CultureInfo.CurrentCulture) ASMs, @lastResult.Strings.ToString("N0", CultureInfo.CurrentCulture) strings@(lastResult.Images + lastResult.Sounds + lastResult.Videos > 0 ? $", {lastResult.Images.ToString("N0", CultureInfo.CurrentCulture)} images, {lastResult.Sounds.ToString("N0", CultureInfo.CurrentCulture)} sounds, {lastResult.Videos.ToString("N0", CultureInfo.CurrentCulture)} videos" : string.Empty);
+                        @lastResult.NewContent.ToString("N0", CultureInfo.CurrentCulture) new documents (@FormatBytes(lastResult.NewContentBytes)) in @lastResult.Duration.ToString(@"m\:ss", CultureInfo.CurrentCulture).
+                    </div>
+                    @foreach (var problem in lastResult.Problems.Take(20))
+                    {
+                        <div class="ta-mono">@problem</div>
+                    }
+                    @if (lastResult.Problems.Count > 20)
+                    {
+                        <div>…and @(lastResult.Problems.Count - 20) more.</div>
+                    }
+                </MudAlert>
+            }
+            @if (lastExport is not null)
+            {
+                <MudAlert Severity="@(lastExport.Problems.Count > 0 ? Severity.Warning : Severity.Success)" Dense="true" ShowCloseIcon="true" CloseIconClicked="() => lastExport = null" Class="mb-4">
+                    <div>
+                        Exported @lastExport.Files.ToString("N0", CultureInfo.CurrentCulture) files in @lastExport.Duration.ToString(@"m\:ss", CultureInfo.CurrentCulture)@(lastExport.Renamed > 0 ? $", renaming {lastExport.Renamed:N0} existing files" : string.Empty)@(lastExport.Skipped > 0 ? $", skipping {lastExport.Skipped:N0} that were already there" : string.Empty);
+                        @(lastExport.UsedTuningDescriptions ? "string keys and references found with the tuning descriptions." : "every number matching a string key or a tuning's instance taken to be one.")
+                        <MudButton Size="Size.Small" Variant="Variant.Text" OnClick="RevealExportAsync">Show in folder</MudButton>
+                    </div>
+                    @foreach (var problem in lastExport.Problems.Take(20))
+                    {
+                        <div class="ta-mono">@problem</div>
+                    }
+                    @if (lastExport.Problems.Count > 20)
+                    {
+                        <div>…and @(lastExport.Problems.Count - 20) more.</div>
+                    }
+                </MudAlert>
+            }
+            <MudText Typo="Typo.h6" Class="mt-2 mb-1">Snapshots</MudText>
+            @if (Session.Snapshots.Count == 0)
+            {
+                <MudText Typo="Typo.body2" Class="mb-4">No snapshots yet. Capture one from the game, or import tuning you extracted earlier.</MudText>
+            }
+            else
+            {
+                <MudSimpleTable Dense="true" Hover="true" Outlined="true" Class="mb-6">
+                    <thead>
+                        <tr>
+                            <th>Version</th>
+                            <th>Source</th>
+                            <th>Packs</th>
+                            <th>Contents</th>
+                            <th>Tuning descriptions</th>
+                            <th>Captured</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var snapshot in Session.Snapshots.Reverse())
+                        {
+                            var descriptions = FindDescriptions(snapshot);
+                            <tr>
+                                <td>
+                                    <MudText Typo="Typo.body2"><b>@snapshot.GameVersion</b></MudText>
+                                    @if (snapshot.Label is not null)
+                                    {
+                                        <MudText Typo="Typo.caption">@snapshot.Label</MudText>
+                                    }
+                                </td>
+                                <td><MudText Typo="Typo.caption">@(snapshot.Source is TuningArchiveSnapshotSource.GameInstallation ? "Game" : "Extracted files")</MudText></td>
+                                <td><MudTooltip Text="@string.Join(" ", snapshot.Packs.Select(pack => pack.Code))"><MudText Typo="Typo.caption">@snapshot.Packs.Count</MudText></MudTooltip></td>
+                                <td>
+                                    @foreach (var kind in snapshot.Kinds.Order())
+                                    {
+                                        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">@(kind switch { TuningArchiveResourceKind.SimData => "SimData", TuningArchiveResourceKind.AnimationStateMachine => "ASM", TuningArchiveResourceKind.PythonModule => "Python", TuningArchiveResourceKind.Image => "Images", TuningArchiveResourceKind.Sound => "Sounds", TuningArchiveResourceKind.Video => "Videos", _ => "Tuning" })</MudChip>
+                                    }
+                                    @if (snapshot.Locale is not null)
+                                    {
+                                        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">@snapshot.Locale</MudChip>
+                                    }
+                                </td>
+                                <td>
+                                    <MudText Typo="Typo.caption" Color="@(descriptions is null ? Color.Default : descriptions.GameVersion == snapshot.GameVersion ? Color.Success : Color.Warning)">
+                                        @(descriptions is null ? "None" : descriptions.GameVersion == snapshot.GameVersion ? "Matching" : $"Nearest: {descriptions.GameVersion}")
+                                    </MudText>
+                                </td>
+                                <td><MudText Typo="Typo.caption">@snapshot.CapturedAt.ToLocalTime().ToString("g", CultureInfo.CurrentCulture)</MudText></td>
+                                <td>
+                                    <div class="ta-row-actions">
+                                        <MudIconButton Icon="@Icons.Material.Filled.Search" Size="Size.Small" title="Browse" OnClick="@(() => OpenInBrowse(snapshot))" />
+                                        <MudIconButton Icon="@Icons.Material.Filled.CompareArrows" Size="Size.Small" title="Compare with the previous snapshot" Disabled="Previous(snapshot) is null" OnClick="@(() => CompareWithPrevious(snapshot))" />
+                                        <MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small" Dense="true">
+                                            <MudMenuItem Icon="@Icons.Material.Filled.SaveAlt" OnClick="() => Start(() => ExportAsync(snapshot))" Disabled="busy">Export as files (like XML Extractor)…</MudMenuItem>
+                                            <MudMenuItem Icon="@Icons.Material.Filled.Code" OnClick="() => Start(() => ImportPythonAsync(snapshot))" Disabled="busy">Import decompiled scripts (Motherlode)…</MudMenuItem>
+                                            <MudMenuItem Icon="@Icons.Material.Filled.Edit" OnClick="() => Start(() => EditAsync(snapshot))" Disabled="busy">Edit label and notes…</MudMenuItem>
+                                            <MudMenuItem Icon="@Icons.Material.Filled.Delete" OnClick="() => Start(() => DeleteAsync(snapshot))" Disabled="busy">Delete…</MudMenuItem>
+                                        </MudMenu>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </MudSimpleTable>
+            }
+            @if (Session.Descriptions.Count > 0)
+            {
+                <MudText Typo="Typo.h6" Class="mb-1">Tuning descriptions</MudText>
+                <MudSimpleTable Dense="true" Outlined="true">
+                    <tbody>
+                        @foreach (var descriptions in Session.Descriptions.Reverse())
+                        {
+                            <tr>
+                                <td><b>@descriptions.GameVersion</b></td>
+                                <td><MudText Typo="Typo.caption" Class="ta-mono">@descriptions.FileName</MudText></td>
+                                <td><MudText Typo="Typo.caption">Imported @descriptions.ImportedAt.ToLocalTime().ToString("g", CultureInfo.CurrentCulture)</MudText></td>
+                                <td style="text-align: right"><MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Disabled="busy" OnClick="() => DeleteDescriptionsAsync(descriptions)" title="Delete" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </MudSimpleTable>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    TuningArchiveCaptureResult? lastResult;
+    TuningArchiveExportResult? lastExport;
+    string? lastExportFolder;
+    long archiveSize;
+
+    bool busy =>
+        Session.Operation is not null;
+
+    protected override void OnInitialized()
+    {
+        Session.Changed += OnSessionChanged;
+        UpdateSize();
+    }
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged()
+    {
+        UpdateSize();
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    void UpdateSize()
+    {
+        try
+        {
+            archiveSize = Session.Archive is { } archive && File.Exists(archive.Path) ? new FileInfo(archive.Path).Length + (File.Exists($"{archive.Path}-wal") ? new FileInfo($"{archive.Path}-wal").Length : 0) : 0;
+        }
+        catch (IOException)
+        {
+            archiveSize = 0;
+        }
+    }
+
+    static string FormatBytes(long bytes) =>
+        bytes >= 1L << 30 ? $"{bytes / (double)(1L << 30):0.0} GB" : bytes >= 1L << 20 ? $"{bytes / (double)(1L << 20):0.0} MB" : $"{bytes / 1024.0:0} KB";
+
+    TuningArchiveDescriptions? FindDescriptions(TuningArchiveSnapshot snapshot) =>
+        Session.Descriptions.FirstOrDefault(descriptions => descriptions.GameVersion == snapshot.GameVersion)
+        ?? Session.Descriptions.LastOrDefault(descriptions => Version.TryParse(descriptions.GameVersion, out var a) && Version.TryParse(snapshot.GameVersion, out var b) && a < b)
+        ?? Session.Descriptions.FirstOrDefault();
+
+    void CompareWithPrevious(TuningArchiveSnapshot snapshot)
+    {
+        if (Previous(snapshot) is not { } previous)
+            return;
+        Compare.Request(previous.Id, snapshot.Id);
+        Navigation.NavigateTo("compare");
+    }
+
+    void OpenInBrowse(TuningArchiveSnapshot snapshot)
+    {
+        Browse.Request(snapshot.Id);
+        Navigation.NavigateTo("browse");
+    }
+
+    TuningArchiveSnapshot? Previous(TuningArchiveSnapshot snapshot)
+    {
+        var index = Session.Snapshots.ToList().FindIndex(candidate => candidate.Id == snapshot.Id);
+        return index > 0 ? Session.Snapshots[index - 1] : null;
+    }
+
+    async Task<string?> AskPathAsync(string title, string label, bool isFolder, IReadOnlyList<string> extensions, string confirmText, string? message = null, string? fileName = null, string? initialPath = null)
+    {
+        var parameters = new DialogParameters<PathDialog>
+        {
+            { dialog => dialog.Label, label },
+            { dialog => dialog.IsFolder, isFolder },
+            { dialog => dialog.Extensions, extensions },
+            { dialog => dialog.ConfirmText, confirmText },
+            { dialog => dialog.Message, message },
+            { dialog => dialog.FileName, fileName },
+            { dialog => dialog.InitialPath, initialPath }
+        };
+        var reference = await Dialogs.ShowAsync<PathDialog>(title, parameters, new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        var result = await reference.Result;
+        return result is { Canceled: false, Data: string path } ? path : null;
+    }
+
+    async Task OpenAsync()
+    {
+        string? path;
+        if (Session.Platform.CanPick)
+            path = await Session.Platform.PickFileAsync("Open a tuning archive", [".tuningarchive"]);
+        else
+            path = await AskPathAsync("Open a tuning archive", "Archive file", false, [".tuningarchive"], "Open");
+        if (path is not null)
+            await OpenPathAsync(path);
+    }
+
+    async Task CreateAsync()
+    {
+        string? path;
+        try
+        {
+            path = Session.Platform.CanPick
+                ? await Session.Platform.PickNewFileAsync("Create a tuning archive", "Tuning.tuningarchive")
+                : await AskPathAsync("Create a tuning archive", "Folder", true, [], "Create", "The archive is a single file. Snapshots of every version share content, so each patch adds only a few megabytes after the first.", "Tuning.tuningarchive", Session.Platform.DefaultArchiveFolder);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Snackbar.Add($"The archive couldn't be created: {ex.Message}", Severity.Error);
+            return;
+        }
+        if (path is null)
+            return;
+        if (!path.EndsWith(".tuningarchive", StringComparison.OrdinalIgnoreCase))
+            path += ".tuningarchive";
+        if (File.Exists(path) && new FileInfo(path).Length > 0)
+        {
+            Snackbar.Add("There's already a file with that name; open it instead, or choose another name.", Severity.Warning);
+            return;
+        }
+        try
+        {
+            File.Delete($"{path}-wal");
+            File.Delete($"{path}-shm");
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Snackbar.Add($"The archive couldn't be created: {ex.Message}", Severity.Error);
+            return;
+        }
+        await OpenPathAsync(path);
+    }
+
+    async Task OpenPathAsync(string path)
+    {
+        try
+        {
+            await Session.OpenAsync(path);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException or SqliteException or ArgumentException)
+        {
+            Snackbar.Add($"The archive couldn't be opened: {ex.Message}", Severity.Error);
+        }
+    }
+
+    async Task RevealArchiveAsync()
+    {
+        if (Session.Archive is { } archive)
+            await Session.Platform.RevealAsync(archive.Path);
+    }
+
+    async Task CaptureAsync()
+    {
+        var reference = await Dialogs.ShowAsync<CaptureDialog>("Capture from the game", new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        if (await reference.Result is not { Canceled: false, Data: CaptureRequest request } || Session.Archive is not { } archive)
+            return;
+        lastResult = await RunReportingAsync("Capturing", (progress, cancellationToken) => archive.CaptureAsync(request.Installation, request.Options, progress, cancellationToken));
+        await OfferIndexingAsync();
+    }
+
+    async Task ImportFolderAsync()
+    {
+        var reference = await Dialogs.ShowAsync<ImportFolderDialog>("Import extracted tuning", new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        if (await reference.Result is not { Canceled: false, Data: ImportFolderRequest request } || Session.Archive is not { } archive)
+            return;
+        lastResult = await RunReportingAsync("Importing", (progress, cancellationToken) => archive.ImportFolderAsync(request.Folder, request.GameVersion, request.Options, progress, cancellationToken));
+        await OfferIndexingAsync();
+    }
+
+    async Task ImportDescriptionsAsync()
+    {
+        string? path;
+        var tuningDescriptions = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "Sims 4 Studio", "Tuning Descriptions");
+        if (Session.Platform.CanPick)
+            path = await Session.Platform.PickFileAsync("Import tuning descriptions", [".zip"]);
+        else
+            path = await AskPathAsync("Import tuning descriptions", "TDESC zip", false, [".zip"], "Import", "Maxis publishes the tuning descriptions for each patch as a zip, such as 1.128.90.1030-TDESC.zip. Sims 4 Studio keeps them in Documents\\Sims 4 Studio\\Tuning Descriptions.", initialPath: Directory.Exists(tuningDescriptions) ? tuningDescriptions : null);
+        if (path is null || Session.Archive is not { } archive)
+            return;
+        var imported = await RunAsync("Importing tuning descriptions", async (_, cancellationToken) => await archive.ImportTuningDescriptionsAsync(path, null, cancellationToken));
+        if (imported is not null)
+        {
+            Snackbar.Add($"Imported the tuning descriptions for {imported.GameVersion}.", Severity.Success);
+            await OfferIndexingAsync();
+        }
+    }
+
+    async Task OfferIndexingAsync()
+    {
+        if (Session.Descriptions.Count > 0 && Session.ReferenceStatus.indexed < Session.ReferenceStatus.total)
+        {
+            var answer = await Dialogs.ShowMessageBoxAsync("Index references?", $"{Session.ReferenceStatus.total - Session.ReferenceStatus.indexed:N0} tunings need their references indexed before you can see what refers to them. This takes a minute or two for a full game.", "Index now", "Later");
+            if (answer == true)
+                await IndexAsync();
+        }
+    }
+
+    async Task IndexAsync()
+    {
+        if (Session.Archive is not { } archive)
+            return;
+        var count = await RunAsync("Indexing references", async (progress, cancellationToken) => await archive.IndexReferencesAsync(progress, cancellationToken));
+        Snackbar.Add($"Indexed the references of {count:N0} tunings.", Severity.Success);
+    }
+
+    void Start(Func<Task> action) =>
+        _ = InvokeAsync(action);
+
+    async Task ExportAsync(TuningArchiveSnapshot snapshot)
+    {
+        var reference = await Dialogs.ShowAsync<ExportDialog>($"Export {snapshot.DisplayName}", new DialogParameters<ExportDialog> { { dialog => dialog.Snapshot, snapshot } }, new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        if (await reference.Result is not { Canceled: false, Data: ExportRequest request } || Session.Archive is not { } archive)
+            return;
+        var result = await RunAsync("Exporting", (progress, cancellationToken) => archive.ExportAsync(snapshot, request.Folder, request.Options, progress, cancellationToken));
+        if (result is not null)
+        {
+            lastExport = result;
+            lastExportFolder = request.Folder;
+        }
+    }
+
+    async Task RevealExportAsync()
+    {
+        if (lastExportFolder is { } folder)
+            await Session.Platform.RevealAsync(folder);
+    }
+
+    async Task ImportPythonAsync(TuningArchiveSnapshot snapshot)
+    {
+        var path = await AskPathAsync($"Import scripts into {snapshot.DisplayName}", "Motherlode output folder", true, [], "Import", "Choose the folder Motherlode decompiled this version of the game into (the one containing scripts and motherlode-report.json). Decompile the same version as the snapshot.");
+        if (path is null || Session.Archive is not { } archive)
+            return;
+        var result = await RunReportingAsync("Importing scripts", (progress, cancellationToken) => archive.ImportPythonAsync(snapshot, path, progress, cancellationToken));
+        if (result is not null)
+            Snackbar.Add($"Imported the scripts into {snapshot.DisplayName} ({result.NewContent:N0} new files).", Severity.Success);
+    }
+
+    async Task EditAsync(TuningArchiveSnapshot snapshot)
+    {
+        var reference = await Dialogs.ShowAsync<EditSnapshotDialog>($"Edit {snapshot.GameVersion}", new DialogParameters<EditSnapshotDialog> { { dialog => dialog.Snapshot, snapshot } }, new DialogOptions { MaxWidth = MaxWidth.Small, FullWidth = true });
+        if (await reference.Result is not { Canceled: false, Data: ValueTuple<string?, string?> edited } || Session.Archive is not { } archive)
+            return;
+        await archive.UpdateSnapshotAsync(snapshot, edited.Item1, edited.Item2);
+        await Session.RefreshAsync();
+    }
+
+    async Task DeleteAsync(TuningArchiveSnapshot snapshot)
+    {
+        var answer = await Dialogs.ShowMessageBoxAsync("Delete snapshot?", $"Delete {snapshot.DisplayName}? Content no other snapshot shares is removed from the archive. This can't be undone.", "Delete", cancelText: "Cancel");
+        if (answer != true || Session.Archive is not { } archive)
+            return;
+        await RunAsync("Deleting", async (_, cancellationToken) =>
+        {
+            await archive.DeleteSnapshotAsync(snapshot, cancellationToken);
+            return true;
+        });
+    }
+
+    async Task DeleteDescriptionsAsync(TuningArchiveDescriptions descriptions)
+    {
+        var answer = await Dialogs.ShowMessageBoxAsync("Delete tuning descriptions?", $"Delete the {descriptions.GameVersion} tuning descriptions? References indexed with them will need indexing again.", "Delete", cancelText: "Cancel");
+        if (answer != true || Session.Archive is not { } archive)
+            return;
+        await RunAsync("Deleting", async (_, cancellationToken) =>
+        {
+            await archive.DeleteTuningDescriptionsAsync(descriptions, cancellationToken);
+            return true;
+        });
+    }
+
+    async Task<TuningArchiveCaptureResult?> RunReportingAsync(string name, Func<IProgress<TuningArchiveProgress>, CancellationToken, Task<TuningArchiveCaptureResult>> operation) =>
+        await RunAsync(name, operation);
+
+    async Task<T?> RunAsync<T>(string name, Func<IProgress<TuningArchiveProgress>, CancellationToken, Task<T>> operation)
+    {
+        try
+        {
+            return await Session.RunAsync(name, operation);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException or InvalidOperationException or SqliteException or DirectoryNotFoundException or FileNotFoundException or XmlException)
+        {
+            Snackbar.Add($"{name} failed: {ex.Message}", Severity.Error);
+            return default;
+        }
+    }
+}

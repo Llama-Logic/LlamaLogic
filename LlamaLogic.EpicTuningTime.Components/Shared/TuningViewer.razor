@@ -1,0 +1,433 @@
+@inject TuningArchiveSession Session
+@inject DraftsState Drafts
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+
+@if (Entry is null || Snapshot is null)
+{
+    <div class="ta-empty">
+        <MudText Typo="Typo.body1">Choose a tuning from the list.</MudText>
+    </div>
+}
+else
+{
+    <div class="ta-detail-header">
+        <div class="ta-title-row">
+            <MudText Typo="Typo.h6" Class="ta-title" title="@(Entry.Name ?? "(unnamed)")">@(Entry.Name ?? "(unnamed)")</MudText>
+            <MudChip T="string" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">@Session.GetTypeName(Entry.Type)</MudChip>
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined">@Entry.Pack</MudChip>
+            @if (propertyRoots is not null)
+            {
+                <span class="ta-title-actions">
+                    <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.EditNote" OnClick="DraftAsync">Draft changes</MudButton>
+                    <MudToggleIconButton Toggled="showProperties" ToggledChanged="OnShowPropertiesChanged" Icon="@Icons.Material.Filled.AccountTree" ToggledIcon="@Icons.Material.Filled.AccountTree" ToggledColor="Color.Primary" Size="Size.Small" ToggledSize="Size.Small" title="Properties" />
+                </span>
+            }
+        </div>
+        <div class="ta-subtitle-row ta-mono">
+            <MudTooltip Text="Copy the resource key">
+                <span style="cursor: copy" @onclick="CopyKeyAsync">@Entry.Key</span>
+            </MudTooltip>
+            <span>@Entry.Instance</span>
+            @if (Entry.Class is not null)
+            {
+                <span>@Entry.Class</span>
+            }
+            @if (Entry.Module is not null)
+            {
+                <span>@Entry.Module</span>
+            }
+        </div>
+        @if (history.Count > 1)
+        {
+            <MudText Typo="Typo.caption">
+                @history.Count versions in this archive · this one is in @DescribeSnapshots(current?.Snapshots)
+            </MudText>
+        }
+        @if (descriptionsMessage is not null)
+        {
+            <MudText Typo="Typo.caption" Color="Color.Warning">@descriptionsMessage</MudText>
+        }
+    </div>
+    <MudTabs @bind-ActivePanelIndex="ViewerState.ActiveTab" Class="ta-tabs" TabPanelsClass="ta-tabs" Elevation="0" Rounded="false" ApplyEffectsToContainer="true" KeepPanelsAlive="false">
+        <MudTabPanel Text="@(Entry.Kind is TuningArchiveResourceKind.AnimationStateMachine ? "State machine" : "Tuning")">
+            @if (text is null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else
+            {
+                <div class="ta-tuning-split">
+                    <MonacoView @ref="tuningView" Text="@text" Language="xml" ModelUri="@ModelUri" Annotations="annotations" AnnotationActivated="OnAnnotationActivatedAsync" CursorLineChanged="OnCursorLineChanged" RevealLine="revealLine" ViewState="ViewerState.Editor" />
+                    @if (showProperties && propertyRoots is not null)
+                    {
+                        <PropertyPanel @ref="propertyPanel" Roots="propertyRoots" Selected="selectedProperty" SelectedChanged="OnPropertySelectedAsync" ShowUnset="showUnset" ShowUnsetChanged="OnShowUnsetChangedAsync" Navigate="target => NavigateAsync(target.type, target.instance)" State="ViewerState.Panel" ScrollKey="@ModelUri" />
+                    }
+                </div>
+            }
+        </MudTabPanel>
+        <MudTabPanel Text="@ReferrersTitle">
+            <ScrollList State="ViewerState.Referrers" Key="@ModelUri" Ready="referrers is { Count: > 0 }">
+                @if (referrers is null)
+                {
+                    <MudProgressLinear Indeterminate="true" />
+                }
+                else if (Session.ReferenceStatus.indexed == 0)
+                {
+                    <div class="ta-empty">References haven't been indexed yet. Import tuning descriptions and index references on the Archive page.</div>
+                }
+                else if (referrers.Count == 0)
+                {
+                    <div class="ta-empty">No tuning in this snapshot refers to this @(Entry.Kind is TuningArchiveResourceKind.AnimationStateMachine ? "state machine" : "one").</div>
+                }
+                else
+                {
+                    <Virtualize Items="referrers" ItemSize="44" Context="referrer">
+                        <div class="ta-list-item" @onclick="() => Navigate.InvokeAsync(new TuningNavigation(referrer.Source.Type, referrer.Source.Instance, (Entry!.Type, Entry.Instance)))">
+                            <div class="ta-primary">@referrer.Source.Name</div>
+                            <div class="ta-secondary">@Session.GetTypeName(referrer.Source.Type) · @referrer.Source.Pack · @referrer.Source.Instance</div>
+                        </div>
+                    </Virtualize>
+                }
+            </ScrollList>
+        </MudTabPanel>
+        <MudTabPanel Text="@HistoryTitle">
+            <div class="ta-changes" style="max-height: 40%">
+                @foreach (var (item, index) in history.Select((item, index) => (item, index)))
+                {
+                    <div class="ta-change" style="grid-template-columns: 120px 1fr 140px" @onclick="() => ShowHistoryDiffAsync(index)">
+                        <span>@(index == 0 ? "First seen" : "Changed")</span>
+                        <span>@DescribeSnapshots(item.Snapshots)</span>
+                        <span>@DescribeVersion(item)</span>
+                    </div>
+                }
+            </div>
+            @if (historyDiff is { } diff)
+            {
+                <MudText Typo="Typo.caption" Class="px-4 py-1">@diff.caption</MudText>
+                <DiffView Original="@diff.original" Modified="@diff.modified" OriginalAnnotations="historyOriginalAnnotations?.annotations" ModifiedAnnotations="historyModifiedAnnotations?.annotations" AnnotationActivated="OnHistoryAnnotationActivated" ViewState="ViewerState.HistoryDiff" ViewStateKey="@($"{ModelUri}#{ViewerState.HistoryIndex}")" />
+            }
+            else
+            {
+                <div class="ta-empty">Choose a version to compare it with the one before it.</div>
+            }
+        </MudTabPanel>
+        @if (simData is not null)
+        {
+            <MudTabPanel Text="SimData">
+                <MonacoView Text="@simDataText" Language="xml" />
+            </MudTabPanel>
+        }
+        @if (pythonModule is not null)
+        {
+            <MudTabPanel Text="Python">
+                <MonacoView @ref="pythonView" Text="@pythonText" Language="python" Ready="OnPythonReadyAsync" />
+            </MudTabPanel>
+        }
+    </MudTabs>
+}
+
+@code {
+    readonly TuningViewerState ownState = new();
+    TuningArchiveEntry? loadedEntry;
+    TuningArchiveSnapshot? loadedSnapshot;
+    string? text;
+    IReadOnlyList<EditorAnnotation>? annotations;
+    IReadOnlyList<(ResourceType type, ulong instance)?> targets = [];
+    List<TuningArchiveReference>? referrers;
+    IReadOnlyList<TuningArchiveHistoryItem> history = [];
+    TuningArchiveHistoryItem? current;
+    (string original, string modified, string caption)? historyDiff;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? historyOriginalAnnotations;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? historyModifiedAnnotations;
+    TuningArchiveSnapshot? historyOriginalSnapshot;
+    TuningArchiveSnapshot? historyModifiedSnapshot;
+    TuningArchiveEntry? simData;
+    string simDataText = string.Empty;
+    TuningArchiveEntry? pythonModule;
+    string pythonText = string.Empty;
+    string? descriptionsMessage;
+    MonacoView? tuningView;
+    int revealLine;
+    MonacoView? pythonView;
+    TuningAnalysis? analysis;
+    SnapshotEntries? analysisEntries;
+    IReadOnlyDictionary<uint, string>? analysisStrings;
+    IReadOnlyList<PropertyNode>? propertyRoots;
+    PropertyNode? selectedProperty;
+    PropertyPanel? propertyPanel;
+    bool showProperties = true;
+    bool showUnset;
+
+    [Inject]
+    IJSRuntime JS { get; set; } = default!;
+
+    [Parameter]
+    public TuningArchiveEntry? Entry { get; set; }
+
+    [Parameter]
+    public EventCallback<TuningNavigation> Navigate { get; set; }
+
+    [Parameter]
+    public (ResourceType type, ulong instance)? RevealReferenceTo { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    [Parameter]
+    public TuningViewerState? State { get; set; }
+
+    TuningViewerState ViewerState =>
+        State ?? ownState;
+
+    string HistoryTitle =>
+        $"History ({history.Count})";
+
+    string ReferrersTitle =>
+        referrers is null ? "Referenced by" : $"Referenced by ({referrers.Count})";
+
+    string DescribeVersion(TuningArchiveHistoryItem item) =>
+        item.Entry.Name != Entry?.Name ? $"{item.Entry.Pack} · {item.Entry.Name}" : item.Entry.Pack;
+
+    string ModelUri =>
+        $"tuning://{Snapshot?.Id}/{(uint)(Entry?.Type ?? 0):x8}/{Entry?.Instance:x16}.xml";
+
+    async Task CopyKeyAsync()
+    {
+        if (Entry is not null)
+            await JS.InvokeVoidAsync("navigator.clipboard.writeText", Entry.Key.ToString());
+    }
+
+    string DescribeSnapshots(IReadOnlyList<TuningArchiveSnapshot>? snapshots) =>
+        snapshots is null || snapshots.Count == 0
+            ? "no snapshots"
+            : snapshots.Count == 1
+            ? snapshots[0].DisplayName
+            : $"{snapshots[0].DisplayName} – {snapshots[^1].DisplayName} ({snapshots.Count} snapshots)";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Session.Archive is not { } archive || Entry is null || Snapshot is null)
+            return;
+        if (ReferenceEquals(loadedEntry, Entry) && ReferenceEquals(loadedSnapshot, Snapshot))
+            return;
+        loadedEntry = Entry;
+        loadedSnapshot = Snapshot;
+        var entry = Entry;
+        var snapshot = Snapshot;
+        text = null;
+        annotations = null;
+        targets = [];
+        referrers = null;
+        historyDiff = null;
+        historyOriginalAnnotations = null;
+        historyModifiedAnnotations = null;
+        simData = null;
+        pythonModule = null;
+        descriptionsMessage = null;
+        analysis = null;
+        propertyRoots = null;
+        selectedProperty = null;
+        var viewerState = ViewerState;
+        if (viewerState.EntryKey != ModelUri)
+        {
+            viewerState.EntryKey = ModelUri;
+            viewerState.HistoryIndex = null;
+            viewerState.RevealedKey = null;
+            viewerState.SelectedPropertyPath = null;
+            if (viewerState.ActiveTab > 2)
+                viewerState.ActiveTab = 0;
+        }
+        var loadedText = await Task.Run(() => archive.GetText(entry));
+        if (!ReferenceEquals(loadedEntry, entry))
+            return;
+        text = loadedText;
+        history = await Task.Run(() => archive.GetHistory(entry));
+        current = history.FirstOrDefault(item => item.Snapshots.Any(candidate => candidate.Id == snapshot.Id)) ?? history.LastOrDefault();
+        StateHasChanged();
+        if (viewerState.HistoryIndex is { } historyIndex && historyIndex < history.Count)
+            await ShowHistoryDiffAsync(historyIndex);
+        if (entry.Kind is TuningArchiveResourceKind.Tuning)
+        {
+            var entries = await Session.GetEntriesAsync(snapshot);
+            var strings = await Session.GetStringsAsync(snapshot);
+            var animationStateMachines = await Session.GetEntriesAsync(snapshot, TuningArchiveResourceKind.AnimationStateMachine);
+            var media = await Session.GetMediaAsync(snapshot);
+            var loadedAnalysis = await Task.Run(() => archive.Analyze(snapshot, entry));
+            if (!ReferenceEquals(loadedEntry, entry))
+                return;
+            analysis = loadedAnalysis;
+            analysisEntries = entries;
+            analysisStrings = strings;
+            if (loadedAnalysis is not { } analyzed)
+                descriptionsMessage = "Import tuning descriptions (TDESC) on the Archive page to see what each element means and follow references.";
+            else
+            {
+                var descriptions = archive.FindTuningDescriptions(snapshot);
+                if (descriptions is not null && descriptions.GameVersion != snapshot.GameVersion)
+                {
+                    var unrecognizedNote = analyzed.UnrecognizedPaths.Count > 0 ? string.Format(CultureInfo.CurrentCulture, "; {0} elements are not in them", analyzed.UnrecognizedPaths.Count) : string.Empty;
+                    descriptionsMessage = string.Format(CultureInfo.CurrentCulture, "Explained with the {0} tuning descriptions (none imported for {1}){2}.", descriptions.GameVersion, snapshot.GameVersion, unrecognizedNote);
+                }
+                else if (analyzed.UnrecognizedPaths.Count > 0)
+                    descriptionsMessage = string.Format(CultureInfo.CurrentCulture, "{0} elements are not in the tuning descriptions.", analyzed.UnrecognizedPaths.Count);
+                var (built, builtTargets) = await Task.Run(() => AnnotationBuilder.Build(loadedText, analyzed, entries, strings, Session.GetTypeName, animationStateMachines, media));
+                annotations = built;
+                targets = builtTargets;
+                propertyRoots = await Task.Run(() => PropertyTree.Build(analyzed, entries, strings, showUnset));
+                selectedProperty = viewerState.SelectedPropertyPath is { } selectedPath ? Flatten(propertyRoots).FirstOrDefault(node => node.Path == selectedPath) : null;
+                revealLine = 0;
+                if (RevealReferenceTo is { } revealTarget && viewerState.RevealedKey != $"{ModelUri}|{(uint)revealTarget.type:X8}:{revealTarget.instance}")
+                {
+                    viewerState.RevealedKey = $"{ModelUri}|{(uint)revealTarget.type:X8}:{revealTarget.instance}";
+                    var revealIndex = builtTargets.ToList().FindIndex(target => target == revealTarget);
+                    var line = analyzed.References.FirstOrDefault(node => node.ReferenceType == revealTarget.type && node.ReferenceInstance == revealTarget.instance)?.Line
+                        ?? (revealTarget.type == ResourceType.StringTable ? analyzed.Nodes.FirstOrDefault(node => node.ValueKind is TuningValueKind.LocalizedString && node.StringKey == revealTarget.instance)?.Line : null)
+                        ?? analyzed.Nodes.FirstOrDefault(node => node.ValueKind is TuningValueKind.ResourceKey && node.ResourceKey is { } key && key.Type == revealTarget.type && key.FullInstance == revealTarget.instance)?.Line
+                        ?? (revealIndex >= 0 ? built[revealIndex].Line : 0);
+                    if (line > 0)
+                    {
+                        revealLine = line;
+                        viewerState.ActiveTab = 0;
+                    }
+                }
+            }
+            StateHasChanged();
+            referrers = await Task.Run(() => archive.GetReferrers(snapshot, entry.Type, entry.Instance).ToList());
+            simData = await Task.Run(() => archive.GetEntriesByInstance(snapshot, TuningArchiveResourceKind.SimData, entry.Instance).FirstOrDefault());
+            if (simData is not null)
+                simDataText = await Task.Run(() => archive.GetText(simData));
+            if (entry.Module is { } module)
+            {
+                pythonModule = await Task.Run(() => archive.GetPythonModule(snapshot, module));
+                if (pythonModule is not null)
+                    pythonText = await Task.Run(() => archive.GetText(pythonModule));
+            }
+        }
+        else if (entry.Kind is TuningArchiveResourceKind.AnimationStateMachine)
+            referrers = await Task.Run(() => archive.GetReferrers(snapshot, entry.Type, entry.Instance).ToList());
+        else
+            referrers = [];
+    }
+
+    protected override void OnInitialized()
+    {
+        showProperties = Session.Platform.GetSetting("ShowProperties") != bool.FalseString;
+        showUnset = Session.Platform.GetSetting("ShowUnsetTunables") == bool.TrueString;
+    }
+
+    async Task DraftAsync()
+    {
+        if (Entry is not { } entry || Snapshot is not { } snapshot)
+            return;
+        if (await Session.GetDraftAsync(snapshot, entry) is not { } draft)
+        {
+            Snackbar.Add("Drafting needs tuning descriptions for this snapshot. Import them on the Archive page.", Severity.Warning);
+            return;
+        }
+        Drafts.Selected = draft;
+        Navigation.NavigateTo("drafts");
+    }
+
+    void OnShowPropertiesChanged(bool value)
+    {
+        showProperties = value;
+        Session.Platform.SetSetting("ShowProperties", value.ToString());
+    }
+
+    async Task OnShowUnsetChangedAsync(bool value)
+    {
+        showUnset = value;
+        Session.Platform.SetSetting("ShowUnsetTunables", value.ToString());
+        if (analysis is not { } analyzed || analysisEntries is not { } entries || analysisStrings is not { } strings)
+            return;
+        var selectedPath = selectedProperty?.Path;
+        propertyRoots = await Task.Run(() => PropertyTree.Build(analyzed, entries, strings, value));
+        selectedProperty = selectedPath is null ? null : Flatten(propertyRoots).FirstOrDefault(node => node.Path == selectedPath);
+    }
+
+    static IEnumerable<PropertyNode> Flatten(IEnumerable<PropertyNode> nodes) =>
+        nodes.SelectMany(node => Flatten(node.Children).Prepend(node));
+
+    async Task OnPropertySelectedAsync(PropertyNode node)
+    {
+        selectedProperty = node;
+        ViewerState.SelectedPropertyPath = node.Path;
+        if (tuningView is not null && node.Line > 0)
+            await tuningView.RevealAsync(node.Line);
+    }
+
+    void OnCursorLineChanged(int line)
+    {
+        if (propertyRoots is null || propertyPanel is null)
+            return;
+        PropertyNode? best = null;
+        foreach (var node in Flatten(propertyRoots))
+            if (node.IsSet && node.Line <= line && (best is null || node.Line >= best.Line))
+                best = node;
+        if (best is null)
+            return;
+        selectedProperty = best;
+        ViewerState.SelectedPropertyPath = best.Path;
+        propertyPanel.Reveal(best);
+    }
+
+    async Task OnAnnotationActivatedAsync(int index)
+    {
+        if (index >= 0 && index < targets.Count && targets[index] is { } target)
+            await NavigateAsync(target.type, target.instance);
+    }
+
+    Task NavigateAsync(ResourceType type, ulong instance) =>
+        Navigate.InvokeAsync(new TuningNavigation(type, instance));
+
+    async Task OnPythonReadyAsync()
+    {
+        if (pythonView is not null && Entry?.Class is { } className)
+        {
+            var line = await pythonView.FindLineAsync($"^class {className}\\b");
+            await pythonView.RevealAsync(line);
+        }
+    }
+
+    async Task ShowHistoryDiffAsync(int index)
+    {
+        if (Session.Archive is not { } archive || index >= history.Count)
+            return;
+        ViewerState.HistoryIndex = index;
+        var newer = history[index];
+        var older = index == 0 ? null : history[index - 1];
+        historyOriginalAnnotations = null;
+        historyModifiedAnnotations = null;
+        historyOriginalSnapshot = older?.Snapshots.LastOrDefault();
+        historyModifiedSnapshot = newer.Snapshots.LastOrDefault();
+        string original;
+        string modified;
+        if (older is null)
+        {
+            original = string.Empty;
+            modified = await Task.Run(() => archive.GetText(newer.Entry));
+            historyDiff = (original, modified, $"First version, in {DescribeSnapshots(newer.Snapshots)}");
+        }
+        else
+        {
+            (original, modified) = await Task.Run(() => (archive.GetText(older.Entry), archive.GetText(newer.Entry)));
+            historyDiff = (original, modified, $"{DescribeSnapshots(older.Snapshots)} → {DescribeSnapshots(newer.Snapshots)}");
+        }
+        var diff = historyDiff;
+        var isTuning = newer.Entry.Kind is TuningArchiveResourceKind.Tuning;
+        var builtOriginal = isTuning && historyOriginalSnapshot is { } originalSnapshot ? await TuningAnnotations.BuildAsync(Session, originalSnapshot, original) : null;
+        var builtModified = isTuning && historyModifiedSnapshot is { } modifiedSnapshot ? await TuningAnnotations.BuildAsync(Session, modifiedSnapshot, modified) : null;
+        if (historyDiff != diff)
+            return;
+        historyOriginalAnnotations = builtOriginal;
+        historyModifiedAnnotations = builtModified;
+    }
+
+    void OnHistoryAnnotationActivated((bool modified, int index) activation)
+    {
+        var targets = (activation.modified ? historyModifiedAnnotations : historyOriginalAnnotations)?.targets;
+        if ((activation.modified ? historyModifiedSnapshot : historyOriginalSnapshot) is { } snapshot && targets is not null && activation.index >= 0 && activation.index < targets.Count && targets[activation.index] is { } target)
+            _ = Navigate.InvokeAsync(new TuningNavigation(target.type, target.instance, SnapshotId: snapshot.Id));
+    }
+}

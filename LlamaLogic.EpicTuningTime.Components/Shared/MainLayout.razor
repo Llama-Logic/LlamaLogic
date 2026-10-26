@@ -1,0 +1,130 @@
+@inherits LayoutComponentBase
+@implements IDisposable
+@inject TuningArchiveSession Session
+
+<MudThemeProvider @ref="themeProvider" @bind-IsDarkMode="isDarkMode" Theme="theme" ObserveSystemDarkModeChange="true" />
+
+<div class="ett @(isDarkMode ? "dark" : "light")">
+    <MudPopoverProvider />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+    <CascadingValue Value="isDarkMode" Name="IsDarkMode">
+        <div class="ett-shell">
+            <header class="ett-glass ett-appbar">
+                <div class="ett-brand">
+                    <svg class="ett-logo" width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M13 2.5 22.1 7.75v10.5L13 23.5 3.9 18.25V7.75Z" />
+                        <path d="M13 8.5 17.3 11v5L13 18.5 8.7 16v-5Z" opacity="0.6" />
+                    </svg>
+                    <span class="ett-brand-name">Epic Tuning Time</span>
+                </div>
+                @if (Session.Archive is { } archive)
+                {
+                    <span class="ett-chip"><span class="ett-dot"></span>@Path.GetFileNameWithoutExtension(archive.Path)</span>
+                }
+                <MudSpacer />
+                <OperationStatus />
+                <MudIconButton Icon="@(isDarkMode ? Icons.Material.Outlined.LightMode : Icons.Material.Outlined.DarkMode)" Color="Color.Inherit" OnClick="() => isDarkMode = !isDarkMode" title="Toggle dark mode" />
+            </header>
+            <div class="ett-body">
+                <nav class="ett-glass ett-rail" aria-label="Main">
+                    @foreach (var (href, icon, label) in navigation)
+                    {
+                        <MudTooltip Text="@label" Placement="Placement.Right">
+                            <NavLink class="ett-rail-link" href="@href" Match="@(href.Length == 0 ? NavLinkMatch.All : NavLinkMatch.Prefix)" aria-label="@label">
+                                <MudIcon Icon="@icon" />
+                            </NavLink>
+                        </MudTooltip>
+                    }
+                </nav>
+                <main class="ett-main">
+                    @Body
+                </main>
+            </div>
+        </div>
+    </CascadingValue>
+    <img class="ett-marmot" src="_content/LlamaLogic.EpicTuningTime.Components/marmot.svg" alt="" aria-hidden="true" />
+</div>
+
+@code {
+    static readonly (string href, string icon, string label)[] navigation =
+    [
+        (string.Empty, Icons.Material.Outlined.Inventory2, "Archive"),
+        ("browse", Icons.Material.Outlined.Search, "Browse"),
+        ("compare", Icons.Material.Outlined.CompareArrows, "Compare"),
+        ("problems", Icons.Material.Outlined.LinkOff, "Broken references"),
+        ("drafts", Icons.Material.Outlined.EditNote, "Drafts"),
+        ("update", Icons.Material.Outlined.Upgrade, "Update a mod")
+    ];
+
+    MudThemeProvider? themeProvider;
+    bool isDarkMode;
+    readonly MudTheme theme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+            Primary = "#0377ad",
+            PrimaryContrastText = "#ffffff",
+            Secondary = "#6d4fd8",
+            Background = "#e8eef7",
+            Surface = "rgba(255,255,255,0.55)",
+            AppbarBackground = "rgba(0,0,0,0)",
+            AppbarText = "#0e1a2c",
+            DrawerBackground = "rgba(0,0,0,0)",
+            DrawerText = "#475670",
+            DrawerIcon = "#475670",
+            TextPrimary = "#0e1a2c",
+            TextSecondary = "#475670",
+            ActionDefault = "#475670",
+            LinesDefault = "rgba(15,30,60,0.12)",
+            LinesInputs = "rgba(15,30,60,0.22)",
+            TableLines = "rgba(15,30,60,0.08)",
+            Divider = "rgba(15,30,60,0.10)",
+            Success = "#15803d",
+            Warning = "#b45309",
+            Error = "#c0392b"
+        },
+        PaletteDark = new PaletteDark
+        {
+            Primary = "#5ad8ff",
+            PrimaryContrastText = "#04131c",
+            Secondary = "#a78bfa",
+            Background = "#060a13",
+            Surface = "rgba(255,255,255,0.04)",
+            AppbarBackground = "rgba(0,0,0,0)",
+            AppbarText = "#e6edf7",
+            DrawerBackground = "rgba(0,0,0,0)",
+            DrawerText = "#93a3bb",
+            DrawerIcon = "#93a3bb",
+            TextPrimary = "#e6edf7",
+            TextSecondary = "#93a3bb",
+            ActionDefault = "#93a3bb",
+            LinesDefault = "rgba(255,255,255,0.09)",
+            LinesInputs = "rgba(255,255,255,0.18)",
+            TableLines = "rgba(255,255,255,0.06)",
+            Divider = "rgba(255,255,255,0.08)",
+            Success = "#4ade80",
+            Warning = "#fbbf24",
+            Error = "#f87171"
+        },
+        LayoutProperties = new LayoutProperties { DefaultBorderRadius = "10px" }
+    };
+
+    protected override void OnInitialized() =>
+        Session.Changed += OnSessionChanged;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && themeProvider is not null)
+        {
+            isDarkMode = await themeProvider.GetSystemDarkModeAsync();
+            StateHasChanged();
+        }
+    }
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(StateHasChanged);
+}

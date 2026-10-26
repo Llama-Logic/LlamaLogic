@@ -1,0 +1,2887 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  commentId: T:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  id: AudioConfigurationModel
+  parent: LlamaLogic.Packages.Models.AudioConfiguration
+  children:
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode(System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName(System.IO.Stream)
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  - LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  langs:
+  - csharp
+  - vb
+  name: AudioConfigurationModel
+  nameWithType: AudioConfigurationModel
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AudioConfigurationModel
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: "Represents a <xref href=\"LlamaLogic.Packages.ResourceType.AudioConfiguration\" data-throw-if-not-resolved=\"false\"></xref> resource (a PROPX): the audio a sound plays and how the game plays it (\U0001F513)"
+  remarks: >-
+    Tuning refers to a configuration with a key of type <xref href="LlamaLogic.Packages.ResourceType.AudioConfigurationReference" data-throw-if-not-resolved="false"></xref> and the configuration's instance.
+
+    A configuration's <xref href="LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples" data-throw-if-not-resolved="false"></xref> are the instances of <xref href="LlamaLogic.Packages.ResourceType.AudioVocals" data-throw-if-not-resolved="false"></xref> resources (with their <xref href="LlamaLogic.Packages.ResourceType.AudioEffects" data-throw-if-not-resolved="false"></xref> bodies, if streamed), and nearly all of the game's configurations have a <xref href="LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent" data-throw-if-not-resolved="false"></xref>.
+
+    Versions 1 through 7 are supported; version 3 is that of nearly all of the game's configurations.
+
+    Adapted from S4S by Andrew, extended to read the list version 3 added, which S4S does not.
+  example: []
+  syntax:
+    content: 'public sealed class AudioConfigurationModel : Model, IModel<AudioConfigurationModel>, IModel'
+    content.vb: Public NotInheritable Class AudioConfigurationModel Inherits Model Implements IModel(Of AudioConfigurationModel), IModel
+  inheritance:
+  - System.Object
+  - LlamaLogic.Packages.Models.Model
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}
+  - LlamaLogic.Packages.Models.IModel
+  inheritedMembers:
+  - LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  - LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  - LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  - LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes
+  id: SupportedTypes
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: SupportedTypes
+  nameWithType: AudioConfigurationModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SupportedTypes
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets a list of resource types that this model supports
+  example: []
+  syntax:
+    content: public static ISet<ResourceType> SupportedTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+    content.vb: Public Shared ReadOnly Property SupportedTypes As ISet(Of ResourceType)
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode(System.ReadOnlyMemory{System.Byte})
+  id: Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: AudioConfigurationModel.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Decode
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 28
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: "Decodes the resource in raw format to produce an operable model (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public static AudioConfigurationModel Decode(ReadOnlyMemory<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlyMemory{System.Byte}
+    return:
+      type: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+    content.vb: Public Shared Function Decode(data As ReadOnlyMemory(Of Byte)) As AudioConfigurationModel
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The data is not a well-formed audio configuration of version 1 through 7
+  implements:
+  - LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  nameWithType.vb: AudioConfigurationModel.Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName(System.IO.Stream)
+  id: GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: GetName(Stream)
+  nameWithType: AudioConfigurationModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName(System.IO.Stream)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetName
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 85
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: "Gets the name of a resource from its raw data, if it has one (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static string? GetName(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetName(stream As Stream) As String
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  id: GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: AudioConfigurationModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetNameAsync
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 89
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: "Gets the name of a resource from its raw data, if it has one, asynchronously (\U0001F504️\U0001F4A4)"
+  example: []
+  syntax:
+    content: public static Task<string?> GetNameAsync(Stream stream, CancellationToken cancellationToken = default)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+    content.vb: Public Shared Function GetNameAsync(stream As Stream, cancellationToken As CancellationToken = Nothing) As Task(Of String)
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain
+  id: AggregateGain
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: AggregateGain
+  nameWithType: AudioConfigurationModel.AggregateGain
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AggregateGain
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 286
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the aggregate gain
+  example: []
+  syntax:
+    content: public byte AggregateGain { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property AggregateGain As Byte
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation
+  id: Attenuation
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Attenuation
+  nameWithType: AudioConfigurationModel.Attenuation
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Attenuation
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 291
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the attenuation
+  example: []
+  syntax:
+    content: public float Attenuation { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Attenuation As Single
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain
+  id: Gain
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Gain
+  nameWithType: AudioConfigurationModel.Gain
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Gain
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 296
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the gain
+  example: []
+  syntax:
+    content: public float Gain { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Gain As Single
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions
+  id: GlobalConditions
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: GlobalConditions
+  nameWithType: AudioConfigurationModel.GlobalConditions
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GlobalConditions
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 301
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the global conditions, each a set of properties
+  example: []
+  syntax:
+    content: public Collection<Collection<AudioConfigurationProperty>> GlobalConditions { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty}}
+    content.vb: Public ReadOnly Property GlobalConditions As Collection(Of Collection(Of AudioConfigurationProperty))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic
+  id: InteractiveMusic
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: InteractiveMusic
+  nameWithType: AudioConfigurationModel.InteractiveMusic
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: InteractiveMusic
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 306
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the entries of the interactive music
+  example: []
+  syntax:
+    content: public Collection<AudioConfigurationInteractiveMusicEntry> InteractiveMusic { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry}
+    content.vb: Public ReadOnly Property InteractiveMusic As Collection(Of AudioConfigurationInteractiveMusicEntry)
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations
+  id: MoodAttenuations
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: MoodAttenuations
+  nameWithType: AudioConfigurationModel.MoodAttenuations
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MoodAttenuations
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 311
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the attenuations by mood
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, float>> MoodAttenuations { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Single}}
+    content.vb: Public ReadOnly Property MoodAttenuations As Collection(Of KeyValuePair(Of ULong, Single))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets
+  id: MoodFrequencyOffsets
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: MoodFrequencyOffsets
+  nameWithType: AudioConfigurationModel.MoodFrequencyOffsets
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MoodFrequencyOffsets
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 316
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the frequency offsets by mood
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, float>> MoodFrequencyOffsets { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Single}}
+    content.vb: Public ReadOnly Property MoodFrequencyOffsets As Collection(Of KeyValuePair(Of ULong, Single))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods
+  id: MoodFrequencyPeriods
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: MoodFrequencyPeriods
+  nameWithType: AudioConfigurationModel.MoodFrequencyPeriods
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MoodFrequencyPeriods
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 321
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the frequency periods by mood
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, float>> MoodFrequencyPeriods { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Single}}
+    content.vb: Public ReadOnly Property MoodFrequencyPeriods As Collection(Of KeyValuePair(Of ULong, Single))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges
+  id: MoodPitchChanges
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: MoodPitchChanges
+  nameWithType: AudioConfigurationModel.MoodPitchChanges
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MoodPitchChanges
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 326
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the pitch changes by mood
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, float>> MoodPitchChanges { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Single}}
+    content.vb: Public ReadOnly Property MoodPitchChanges As Collection(Of KeyValuePair(Of ULong, Single))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays
+  id: MoodPlays
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: MoodPlays
+  nameWithType: AudioConfigurationModel.MoodPlays
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MoodPlays
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 331
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets whether the sound plays, by mood
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, bool>> MoodPlays { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Boolean}}
+    content.vb: Public ReadOnly Property MoodPlays As Collection(Of KeyValuePair(Of ULong, Boolean))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  id: Parent
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Parent
+  nameWithType: AudioConfigurationModel.Parent
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Parent
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 336
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the instance of the configuration this one inherits from, or zero if it has none
+  example: []
+  syntax:
+    content: public ulong Parent { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Parent As ULong
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1
+  id: PolyphonyDiffersFromBase1
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: PolyphonyDiffersFromBase1
+  nameWithType: AudioConfigurationModel.PolyphonyDiffersFromBase1
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PolyphonyDiffersFromBase1
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 341
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the first of three bytes S4S calls "polyphony differs from base"
+  example: []
+  syntax:
+    content: public byte PolyphonyDiffersFromBase1 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property PolyphonyDiffersFromBase1 As Byte
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2
+  id: PolyphonyDiffersFromBase2
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: PolyphonyDiffersFromBase2
+  nameWithType: AudioConfigurationModel.PolyphonyDiffersFromBase2
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PolyphonyDiffersFromBase2
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 346
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the second of three bytes S4S calls "polyphony differs from base"
+  example: []
+  syntax:
+    content: public byte PolyphonyDiffersFromBase2 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property PolyphonyDiffersFromBase2 As Byte
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3
+  id: PolyphonyDiffersFromBase3
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: PolyphonyDiffersFromBase3
+  nameWithType: AudioConfigurationModel.PolyphonyDiffersFromBase3
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: PolyphonyDiffersFromBase3
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 351
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the third of three bytes S4S calls "polyphony differs from base"
+  example: []
+  syntax:
+    content: public byte PolyphonyDiffersFromBase3 { get; set; }
+    parameters: []
+    return:
+      type: System.Byte
+    content.vb: Public Property PolyphonyDiffersFromBase3 As Byte
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties
+  id: Properties
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Properties
+  nameWithType: AudioConfigurationModel.Properties
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Properties
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 356
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the properties
+  example: []
+  syntax:
+    content: public Collection<AudioConfigurationProperty> Properties { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty}
+    content.vb: Public ReadOnly Property Properties As Collection(Of AudioConfigurationProperty)
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName
+  id: ResourceName
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: ResourceName
+  nameWithType: AudioConfigurationModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ResourceName
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 359
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the name of this resource if it has one
+  example: []
+  syntax:
+    content: public override string? ResourceName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overrides ReadOnly Property ResourceName As String
+  overridden: LlamaLogic.Packages.Models.Model.ResourceName
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName*
+  implements:
+  - LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  id: Samples
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Samples
+  nameWithType: AudioConfigurationModel.Samples
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Samples
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 365
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the instances of the <xref href="LlamaLogic.Packages.ResourceType.AudioVocals" data-throw-if-not-resolved="false"></xref> resources the configuration plays
+  example: []
+  syntax:
+    content: public Collection<ulong> Samples { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.UInt64}
+    content.vb: Public ReadOnly Property Samples As Collection(Of ULong)
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights
+  id: SampleWeights
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: SampleWeights
+  nameWithType: AudioConfigurationModel.SampleWeights
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SampleWeights
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 370
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the weights of samples, by sample instance (written in version 2 and later)
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, uint>> SampleWeights { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.UInt32}}
+    content.vb: Public ReadOnly Property SampleWeights As Collection(Of KeyValuePair(Of ULong, UInteger))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  id: UnidentifiedFlagMaps
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: UnidentifiedFlagMaps
+  nameWithType: AudioConfigurationModel.UnidentifiedFlagMaps
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UnidentifiedFlagMaps
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 375
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the maps from 64-bit keys to flags that version 4 and later add (four in version 4 and one more in each later version), whose meaning is not known
+  example: []
+  syntax:
+    content: public Collection<Collection<KeyValuePair<ulong, bool>>> UnidentifiedFlagMaps { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Boolean}}}
+    content.vb: Public ReadOnly Property UnidentifiedFlagMaps As Collection(Of Collection(Of KeyValuePair(Of ULong, Boolean)))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap
+  id: UnidentifiedMap
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: UnidentifiedMap
+  nameWithType: AudioConfigurationModel.UnidentifiedMap
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UnidentifiedMap
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 380
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the map from 64-bit keys to 32-bit values that version 3 added, whose meaning is not known (written in version 3 and later)
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<ulong, uint>> UnidentifiedMap { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.UInt32}}
+    content.vb: Public ReadOnly Property UnidentifiedMap As Collection(Of KeyValuePair(Of ULong, UInteger))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  id: Version
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: AudioConfigurationModel.Version
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Version
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 386
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets/sets the version of the resource, which determines which values <xref href="LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode" data-throw-if-not-resolved="false"></xref> writes
+  example: []
+  syntax:
+    content: public ushort Version { get; set; }
+    parameters: []
+    return:
+      type: System.UInt16
+    content.vb: Public Property Version As UShort
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: The value is not 1 through 7
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  id: VuMeterFacialOverlayModifierOffsets
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: VuMeterFacialOverlayModifierOffsets
+  nameWithType: AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VuMeterFacialOverlayModifierOffsets
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 400
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the offsets of facial overlay modifiers driven by the VU meter
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<uint, float>> VuMeterFacialOverlayModifierOffsets { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt32,System.Single}}
+    content.vb: Public ReadOnly Property VuMeterFacialOverlayModifierOffsets As Collection(Of KeyValuePair(Of UInteger, Single))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  id: VuMeterFacialOverlayModifierScales
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: VuMeterFacialOverlayModifierScales
+  nameWithType: AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: VuMeterFacialOverlayModifierScales
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 405
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: Gets the scales of facial overlay modifiers driven by the VU meter
+  example: []
+  syntax:
+    content: public Collection<KeyValuePair<uint, float>> VuMeterFacialOverlayModifierScales { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt32,System.Single}}
+    content.vb: Public ReadOnly Property VuMeterFacialOverlayModifierScales As Collection(Of KeyValuePair(Of UInteger, Single))
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales*
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+  id: Encode
+  parent: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  langs:
+  - csharp
+  - vb
+  name: Encode()
+  nameWithType: AudioConfigurationModel.Encode()
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Encode
+    path: ../LlamaLogic.Packages/Models/AudioConfiguration/AudioConfigurationModel.cs
+    startLine: 409
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Models.AudioConfiguration
+  summary: "Encodes the resource model into raw format (\U0001F504️\U0001F3C3)"
+  example: []
+  syntax:
+    content: public override ReadOnlyMemory<byte> Encode()
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Overrides Function Encode() As ReadOnlyMemory(Of Byte)
+  overridden: LlamaLogic.Packages.Models.Model.Encode
+  overload: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: <xref href="LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps" data-throw-if-not-resolved="false"></xref> does not have as many maps as <xref href="LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version" data-throw-if-not-resolved="false"></xref> has (none before version 4, then as many as the version)
+  implements:
+  - LlamaLogic.Packages.Models.IModel.Encode
+references:
+- uid: LlamaLogic.Packages.ResourceType.AudioConfiguration
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioConfiguration
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioConfiguration
+  name: AudioConfiguration
+  nameWithType: ResourceType.AudioConfiguration
+  fullName: LlamaLogic.Packages.ResourceType.AudioConfiguration
+- uid: LlamaLogic.Packages.ResourceType.AudioConfigurationReference
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioConfigurationReference
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioConfigurationReference
+  name: AudioConfigurationReference
+  nameWithType: ResourceType.AudioConfigurationReference
+  fullName: LlamaLogic.Packages.ResourceType.AudioConfigurationReference
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Samples
+  name: Samples
+  nameWithType: AudioConfigurationModel.Samples
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+- uid: LlamaLogic.Packages.ResourceType.AudioVocals
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioVocals
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioVocals
+  name: AudioVocals
+  nameWithType: ResourceType.AudioVocals
+  fullName: LlamaLogic.Packages.ResourceType.AudioVocals
+- uid: LlamaLogic.Packages.ResourceType.AudioEffects
+  commentId: F:LlamaLogic.Packages.ResourceType.AudioEffects
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioEffects
+  name: AudioEffects
+  nameWithType: ResourceType.AudioEffects
+  fullName: LlamaLogic.Packages.ResourceType.AudioEffects
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Parent
+  name: Parent
+  nameWithType: AudioConfigurationModel.Parent
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+- uid: LlamaLogic.Packages.Models.AudioConfiguration
+  commentId: N:LlamaLogic.Packages.Models.AudioConfiguration
+  name: LlamaLogic.Packages.Models.AudioConfiguration
+  nameWithType: LlamaLogic.Packages.Models.AudioConfiguration
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration
+    name: AudioConfiguration
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration
+    name: AudioConfiguration
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: LlamaLogic.Packages.Models.Model
+  commentId: T:LlamaLogic.Packages.Models.Model
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.Model.html
+  name: Model
+  nameWithType: Model
+  fullName: LlamaLogic.Packages.Models.Model
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}
+  commentId: T:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}
+  parent: LlamaLogic.Packages.Models
+  definition: LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<AudioConfigurationModel>
+  nameWithType: IModel<AudioConfigurationModel>
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel>
+  nameWithType.vb: IModel(Of AudioConfigurationModel)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel)
+  name.vb: IModel(Of AudioConfigurationModel)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+    name: AudioConfigurationModel
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+    name: AudioConfigurationModel
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.IModel
+  commentId: T:LlamaLogic.Packages.Models.IModel
+  parent: LlamaLogic.Packages.Models
+  href: LlamaLogic.Packages.Models.IModel.html
+  name: IModel
+  nameWithType: IModel
+  fullName: LlamaLogic.Packages.Models.IModel
+- uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ResourceType, ReadOnlyMemory<byte>)
+  nameWithType: Model.Decode(ResourceType, ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory<byte>)
+  nameWithType.vb: Model.Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType, System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ResourceType, ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Decode(LlamaLogic.Packages.ResourceType,System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Decode_LlamaLogic_Packages_ResourceType_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  name: GetModelType(ResourceType)
+  nameWithType: Model.GetModelType(ResourceType)
+  fullName: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetModelType(LlamaLogic.Packages.ResourceType)
+    name: GetModelType
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetModelType_LlamaLogic_Packages_ResourceType_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  name: GetName(ResourceType, Stream)
+  nameWithType: Model.GetName(ResourceType, Stream)
+  fullName: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType, System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetName(LlamaLogic.Packages.ResourceType,System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetName_LlamaLogic_Packages_ResourceType_System_IO_Stream_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.Model
+  isExternal: true
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(ResourceType, Stream, CancellationToken)
+  nameWithType: Model.GetNameAsync(ResourceType, Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType, System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.GetNameAsync(LlamaLogic.Packages.ResourceType,System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_GetNameAsync_LlamaLogic_Packages_ResourceType_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.Packages.Models
+  commentId: N:LlamaLogic.Packages.Models
+  name: LlamaLogic.Packages.Models
+  nameWithType: LlamaLogic.Packages.Models
+  fullName: LlamaLogic.Packages.Models
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+- uid: LlamaLogic.Packages.Models.IModel`1
+  commentId: T:LlamaLogic.Packages.Models.IModel`1
+  href: LlamaLogic.Packages.Models.IModel-1.html
+  name: IModel<TSelf>
+  nameWithType: IModel<TSelf>
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>
+  nameWithType.vb: IModel(Of TSelf)
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf)
+  name.vb: IModel(Of TSelf)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: <
+  - name: TSelf
+  - name: '>'
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1
+    name: IModel
+    href: LlamaLogic.Packages.Models.IModel-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TSelf
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: AudioConfigurationModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SupportedTypes
+- uid: LlamaLogic.Packages.Models.IModel.SupportedTypes
+  commentId: P:LlamaLogic.Packages.Models.IModel.SupportedTypes
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_SupportedTypes
+  name: SupportedTypes
+  nameWithType: IModel.SupportedTypes
+  fullName: LlamaLogic.Packages.Models.IModel.SupportedTypes
+- uid: System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  commentId: T:System.Collections.Generic.ISet{LlamaLogic.Packages.ResourceType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<ResourceType>
+  nameWithType: ISet<ResourceType>
+  fullName: System.Collections.Generic.ISet<LlamaLogic.Packages.ResourceType>
+  nameWithType.vb: ISet(Of ResourceType)
+  fullName.vb: System.Collections.Generic.ISet(Of LlamaLogic.Packages.ResourceType)
+  name.vb: ISet(Of ResourceType)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceType
+    name: ResourceType
+    href: LlamaLogic.Packages.ResourceType.html
+  - name: )
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode
+  nameWithType: AudioConfigurationModel.Decode
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Decode
+- uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}.Decode(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}
+  definition: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<AudioConfigurationModel>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of AudioConfigurationModel).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel}.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory{System.Byte}
+  commentId: T:System.ReadOnlyMemory{System.Byte}
+  parent: System
+  definition: System.ReadOnlyMemory`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<byte>
+  nameWithType: ReadOnlyMemory<byte>
+  fullName: System.ReadOnlyMemory<byte>
+  nameWithType.vb: ReadOnlyMemory(Of Byte)
+  fullName.vb: System.ReadOnlyMemory(Of Byte)
+  name.vb: ReadOnlyMemory(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  commentId: T:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+  parent: LlamaLogic.Packages.Models.AudioConfiguration
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html
+  name: AudioConfigurationModel
+  nameWithType: AudioConfigurationModel
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel
+- uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  name: Decode(ReadOnlyMemory<byte>)
+  nameWithType: IModel<TSelf>.Decode(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Models.IModel<TSelf>.Decode(System.ReadOnlyMemory<byte>)
+  nameWithType.vb: IModel(Of TSelf).Decode(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Models.IModel(Of TSelf).Decode(System.ReadOnlyMemory(Of Byte))
+  name.vb: Decode(ReadOnlyMemory(Of Byte))
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel`1.Decode(System.ReadOnlyMemory{System.Byte})
+    name: Decode
+    href: LlamaLogic.Packages.Models.IModel-1.html#LlamaLogic_Packages_Models_IModel_1_Decode_System_ReadOnlyMemory_System_Byte__
+  - name: (
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlyMemory`1
+  commentId: T:System.ReadOnlyMemory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  name: ReadOnlyMemory<T>
+  nameWithType: ReadOnlyMemory<T>
+  fullName: System.ReadOnlyMemory<T>
+  nameWithType.vb: ReadOnlyMemory(Of T)
+  fullName.vb: System.ReadOnlyMemory(Of T)
+  name.vb: ReadOnlyMemory(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlyMemory`1
+    name: ReadOnlyMemory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlymemory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_GetName_System_IO_Stream_
+  name: GetName
+  nameWithType: AudioConfigurationModel.GetName
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetName
+- uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  name: GetName(Stream)
+  nameWithType: IModel.GetName(Stream)
+  fullName: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetName(System.IO.Stream)
+    name: GetName
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetName_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync
+  nameWithType: AudioConfigurationModel.GetNameAsync
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GetNameAsync
+- uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+  parent: LlamaLogic.Packages.Models.IModel
+  isExternal: true
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  name: GetNameAsync(Stream, CancellationToken)
+  nameWithType: IModel.GetNameAsync(Stream, CancellationToken)
+  fullName: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream, System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.GetNameAsync(System.IO.Stream,System.Threading.CancellationToken)
+    name: GetNameAsync
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_GetNameAsync_System_IO_Stream_System_Threading_CancellationToken_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_AggregateGain
+  name: AggregateGain
+  nameWithType: AudioConfigurationModel.AggregateGain
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.AggregateGain
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Attenuation
+  name: Attenuation
+  nameWithType: AudioConfigurationModel.Attenuation
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Attenuation
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Gain
+  name: Gain
+  nameWithType: AudioConfigurationModel.Gain
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Gain
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_GlobalConditions
+  name: GlobalConditions
+  nameWithType: AudioConfigurationModel.GlobalConditions
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.GlobalConditions
+- uid: System.Collections.ObjectModel.Collection{System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty}}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty}}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<Collection<AudioConfigurationProperty>>
+  nameWithType: Collection<Collection<AudioConfigurationProperty>>
+  fullName: System.Collections.ObjectModel.Collection<System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty>>
+  nameWithType.vb: Collection(Of Collection(Of AudioConfigurationProperty))
+  fullName.vb: System.Collections.ObjectModel.Collection(Of System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty))
+  name.vb: Collection(Of Collection(Of AudioConfigurationProperty))
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty
+    name: AudioConfigurationProperty
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty
+    name: AudioConfigurationProperty
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty.html
+  - name: )
+  - name: )
+- uid: System.Collections.ObjectModel.Collection`1
+  commentId: T:System.Collections.ObjectModel.Collection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<T>
+  nameWithType: Collection<T>
+  fullName: System.Collections.ObjectModel.Collection<T>
+  nameWithType.vb: Collection(Of T)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of T)
+  name.vb: Collection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_InteractiveMusic
+  name: InteractiveMusic
+  nameWithType: AudioConfigurationModel.InteractiveMusic
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.InteractiveMusic
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<AudioConfigurationInteractiveMusicEntry>
+  nameWithType: Collection<AudioConfigurationInteractiveMusicEntry>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry>
+  nameWithType.vb: Collection(Of AudioConfigurationInteractiveMusicEntry)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry)
+  name.vb: Collection(Of AudioConfigurationInteractiveMusicEntry)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry
+    name: AudioConfigurationInteractiveMusicEntry
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry
+    name: AudioConfigurationInteractiveMusicEntry
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationInteractiveMusicEntry.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_MoodAttenuations
+  name: MoodAttenuations
+  nameWithType: AudioConfigurationModel.MoodAttenuations
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodAttenuations
+- uid: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Single}}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Single}}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<KeyValuePair<ulong, float>>
+  nameWithType: Collection<KeyValuePair<ulong, float>>
+  fullName: System.Collections.ObjectModel.Collection<System.Collections.Generic.KeyValuePair<ulong, float>>
+  nameWithType.vb: Collection(Of KeyValuePair(Of ULong, Single))
+  fullName.vb: System.Collections.ObjectModel.Collection(Of System.Collections.Generic.KeyValuePair(Of ULong, Single))
+  name.vb: Collection(Of KeyValuePair(Of ULong, Single))
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_MoodFrequencyOffsets
+  name: MoodFrequencyOffsets
+  nameWithType: AudioConfigurationModel.MoodFrequencyOffsets
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyOffsets
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_MoodFrequencyPeriods
+  name: MoodFrequencyPeriods
+  nameWithType: AudioConfigurationModel.MoodFrequencyPeriods
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodFrequencyPeriods
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_MoodPitchChanges
+  name: MoodPitchChanges
+  nameWithType: AudioConfigurationModel.MoodPitchChanges
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPitchChanges
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_MoodPlays
+  name: MoodPlays
+  nameWithType: AudioConfigurationModel.MoodPlays
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.MoodPlays
+- uid: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Boolean}}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Boolean}}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<KeyValuePair<ulong, bool>>
+  nameWithType: Collection<KeyValuePair<ulong, bool>>
+  fullName: System.Collections.ObjectModel.Collection<System.Collections.Generic.KeyValuePair<ulong, bool>>
+  nameWithType.vb: Collection(Of KeyValuePair(Of ULong, Boolean))
+  fullName.vb: System.Collections.ObjectModel.Collection(Of System.Collections.Generic.KeyValuePair(Of ULong, Boolean))
+  name.vb: Collection(Of KeyValuePair(Of ULong, Boolean))
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Parent
+  name: Parent
+  nameWithType: AudioConfigurationModel.Parent
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Parent
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_PolyphonyDiffersFromBase1
+  name: PolyphonyDiffersFromBase1
+  nameWithType: AudioConfigurationModel.PolyphonyDiffersFromBase1
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase1
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_PolyphonyDiffersFromBase2
+  name: PolyphonyDiffersFromBase2
+  nameWithType: AudioConfigurationModel.PolyphonyDiffersFromBase2
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase2
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_PolyphonyDiffersFromBase3
+  name: PolyphonyDiffersFromBase3
+  nameWithType: AudioConfigurationModel.PolyphonyDiffersFromBase3
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.PolyphonyDiffersFromBase3
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Properties
+  name: Properties
+  nameWithType: AudioConfigurationModel.Properties
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Properties
+- uid: System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty}
+  commentId: T:System.Collections.ObjectModel.Collection{LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<AudioConfigurationProperty>
+  nameWithType: Collection<AudioConfigurationProperty>
+  fullName: System.Collections.ObjectModel.Collection<LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty>
+  nameWithType.vb: Collection(Of AudioConfigurationProperty)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty)
+  name.vb: Collection(Of AudioConfigurationProperty)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty
+    name: AudioConfigurationProperty
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty
+    name: AudioConfigurationProperty
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationProperty.html
+  - name: )
+- uid: LlamaLogic.Packages.Models.Model.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.Model.ResourceName
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_ResourceName
+  name: ResourceName
+  nameWithType: Model.ResourceName
+  fullName: LlamaLogic.Packages.Models.Model.ResourceName
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_ResourceName
+  name: ResourceName
+  nameWithType: AudioConfigurationModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.ResourceName
+- uid: LlamaLogic.Packages.Models.IModel.ResourceName
+  commentId: P:LlamaLogic.Packages.Models.IModel.ResourceName
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_ResourceName
+  name: ResourceName
+  nameWithType: IModel.ResourceName
+  fullName: LlamaLogic.Packages.Models.IModel.ResourceName
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Samples
+  name: Samples
+  nameWithType: AudioConfigurationModel.Samples
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Samples
+- uid: System.Collections.ObjectModel.Collection{System.UInt64}
+  commentId: T:System.Collections.ObjectModel.Collection{System.UInt64}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<ulong>
+  nameWithType: Collection<ulong>
+  fullName: System.Collections.ObjectModel.Collection<ulong>
+  nameWithType.vb: Collection(Of ULong)
+  fullName.vb: System.Collections.ObjectModel.Collection(Of ULong)
+  name.vb: Collection(Of ULong)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_SampleWeights
+  name: SampleWeights
+  nameWithType: AudioConfigurationModel.SampleWeights
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.SampleWeights
+- uid: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.UInt32}}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.UInt32}}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<KeyValuePair<ulong, uint>>
+  nameWithType: Collection<KeyValuePair<ulong, uint>>
+  fullName: System.Collections.ObjectModel.Collection<System.Collections.Generic.KeyValuePair<ulong, uint>>
+  nameWithType.vb: Collection(Of KeyValuePair(Of ULong, UInteger))
+  fullName.vb: System.Collections.ObjectModel.Collection(Of System.Collections.Generic.KeyValuePair(Of ULong, UInteger))
+  name.vb: Collection(Of KeyValuePair(Of ULong, UInteger))
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_UnidentifiedFlagMaps
+  name: UnidentifiedFlagMaps
+  nameWithType: AudioConfigurationModel.UnidentifiedFlagMaps
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+- uid: System.Collections.ObjectModel.Collection{System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Boolean}}}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt64,System.Boolean}}}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<Collection<KeyValuePair<ulong, bool>>>
+  nameWithType: Collection<Collection<KeyValuePair<ulong, bool>>>
+  fullName: System.Collections.ObjectModel.Collection<System.Collections.ObjectModel.Collection<System.Collections.Generic.KeyValuePair<ulong, bool>>>
+  nameWithType.vb: Collection(Of Collection(Of KeyValuePair(Of ULong, Boolean)))
+  fullName.vb: System.Collections.ObjectModel.Collection(Of System.Collections.ObjectModel.Collection(Of System.Collections.Generic.KeyValuePair(Of ULong, Boolean)))
+  name.vb: Collection(Of Collection(Of KeyValuePair(Of ULong, Boolean)))
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_UnidentifiedMap
+  name: UnidentifiedMap
+  nameWithType: AudioConfigurationModel.UnidentifiedMap
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedMap
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Encode
+  name: Encode()
+  nameWithType: AudioConfigurationModel.Encode()
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Encode
+  - name: (
+  - name: )
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Version
+  name: Version
+  nameWithType: AudioConfigurationModel.Version
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint16
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_VuMeterFacialOverlayModifierOffsets
+  name: VuMeterFacialOverlayModifierOffsets
+  nameWithType: AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierOffsets
+- uid: System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt32,System.Single}}
+  commentId: T:System.Collections.ObjectModel.Collection{System.Collections.Generic.KeyValuePair{System.UInt32,System.Single}}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.Collection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  name: Collection<KeyValuePair<uint, float>>
+  nameWithType: Collection<KeyValuePair<uint, float>>
+  fullName: System.Collections.ObjectModel.Collection<System.Collections.Generic.KeyValuePair<uint, float>>
+  nameWithType.vb: Collection(Of KeyValuePair(Of UInteger, Single))
+  fullName.vb: System.Collections.ObjectModel.Collection(Of System.Collections.Generic.KeyValuePair(Of UInteger, Single))
+  name.vb: Collection(Of KeyValuePair(Of UInteger, Single))
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.UInt32
+    name: uint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.Collection`1
+    name: Collection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.collection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt32
+    name: UInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint32
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_VuMeterFacialOverlayModifierScales
+  name: VuMeterFacialOverlayModifierScales
+  nameWithType: AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.VuMeterFacialOverlayModifierScales
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_UnidentifiedFlagMaps
+  name: UnidentifiedFlagMaps
+  nameWithType: AudioConfigurationModel.UnidentifiedFlagMaps
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.UnidentifiedFlagMaps
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  commentId: P:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Version
+  name: Version
+  nameWithType: AudioConfigurationModel.Version
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Version
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.Packages.Models.Model.Encode
+  commentId: M:LlamaLogic.Packages.Models.Model.Encode
+  parent: LlamaLogic.Packages.Models.Model
+  href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  name: Encode()
+  nameWithType: Model.Encode()
+  fullName: LlamaLogic.Packages.Models.Model.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.Model.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.Model.html#LlamaLogic_Packages_Models_Model_Encode
+  - name: (
+  - name: )
+- uid: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode*
+  commentId: Overload:LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+  href: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.html#LlamaLogic_Packages_Models_AudioConfiguration_AudioConfigurationModel_Encode
+  name: Encode
+  nameWithType: AudioConfigurationModel.Encode
+  fullName: LlamaLogic.Packages.Models.AudioConfiguration.AudioConfigurationModel.Encode
+- uid: LlamaLogic.Packages.Models.IModel.Encode
+  commentId: M:LlamaLogic.Packages.Models.IModel.Encode
+  parent: LlamaLogic.Packages.Models.IModel
+  href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  name: Encode()
+  nameWithType: IModel.Encode()
+  fullName: LlamaLogic.Packages.Models.IModel.Encode()
+  spec.csharp:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.Packages.Models.IModel.Encode
+    name: Encode
+    href: LlamaLogic.Packages.Models.IModel.html#LlamaLogic_Packages_Models_IModel_Encode
+  - name: (
+  - name: )

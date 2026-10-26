@@ -1,0 +1,64 @@
+@implements IDisposable
+@inject IJSRuntime JS
+
+<div class="@Class" @ref="element">
+    @ChildContent
+</div>
+
+@code {
+    ElementReference element;
+    DotNetObjectReference<ScrollList>? self;
+    string? restoredKey;
+    bool tracking;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = "ta-list";
+
+    [Parameter]
+    public string? Key { get; set; }
+
+    [Parameter]
+    public bool Ready { get; set; }
+
+    [Parameter]
+    public ScrollState? State { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (State is not { } state)
+            return;
+        if (!tracking)
+        {
+            tracking = true;
+            self ??= DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("epicTuningTime.trackScroll", element, self);
+        }
+        if (!Ready || restoredKey == Key)
+            return;
+        restoredKey = Key;
+        if (state.Key == Key && state.Top > 0)
+            await JS.InvokeVoidAsync("epicTuningTime.setScrollTop", element, state.Top);
+        else
+        {
+            state.Key = Key;
+            state.Top = 0;
+            await JS.InvokeVoidAsync("epicTuningTime.setScrollTop", element, 0);
+        }
+    }
+
+    [JSInvokable]
+    public void OnScrolled(double top)
+    {
+        if (State is { } state && Ready && restoredKey == Key)
+        {
+            state.Key = Key;
+            state.Top = top;
+        }
+    }
+
+    public void Dispose() =>
+        self?.Dispose();
+}

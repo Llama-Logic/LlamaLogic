@@ -1,0 +1,160 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="ta-editor-host">
+    <StandaloneDiffEditor Id="@editorId" CssClass="ta-editor" ConstructionOptions="GetOptions" OnDidInit="OnDidInitAsync" />
+</div>
+
+@code {
+    readonly string editorId = $"ta-diff-{Guid.NewGuid():N}";
+    bool initialized;
+    string? appliedOriginal;
+    string? appliedModified;
+    IReadOnlyList<EditorAnnotation>? appliedOriginalAnnotations;
+    IReadOnlyList<EditorAnnotation>? appliedModifiedAnnotations;
+    bool? appliedDark;
+    string? appliedLanguage;
+    string? appliedModifiedAnnotationsText;
+    DotNetObjectReference<DiffSide>? originalSide;
+    DotNetObjectReference<DiffSide>? modifiedSide;
+    DotNetObjectReference<DiffView>? self;
+
+    [Parameter]
+    public EventCallback<(bool modified, int index)> AnnotationActivated { get; set; }
+
+    [CascadingParameter(Name = "IsDarkMode")]
+    public bool IsDarkMode { get; set; }
+
+    [Parameter]
+    public string Language { get; set; } = "xml";
+
+    [Parameter]
+    public string Modified { get; set; } = string.Empty;
+
+    [Parameter]
+    public IReadOnlyList<EditorAnnotation>? ModifiedAnnotations { get; set; }
+
+    [Parameter]
+    public string Original { get; set; } = string.Empty;
+
+    [Parameter]
+    public IReadOnlyList<EditorAnnotation>? OriginalAnnotations { get; set; }
+
+    [Parameter]
+    public EditorViewState? ViewState { get; set; }
+
+    [Parameter]
+    public string? ViewStateKey { get; set; }
+
+    StandaloneDiffEditorConstructionOptions GetOptions(StandaloneDiffEditor _) =>
+        new()
+        {
+            AutomaticLayout = true,
+            FontSize = 13,
+            OriginalEditable = false,
+            ReadOnly = true,
+            RenderSideBySide = true,
+            ScrollBeyondLastLine = false,
+            Theme = IsDarkMode ? "ett-dark" : "ett-light"
+        };
+
+    static string? GetHover(IReadOnlyList<EditorAnnotation>? annotations, int index) =>
+        annotations is not null && index >= 0 && index < annotations.Count ? annotations[index].Hover?.Invoke() : null;
+
+    async Task OnDidInitAsync()
+    {
+        initialized = true;
+        originalSide ??= DotNetObjectReference.Create(new DiffSide(index => AnnotationActivated.InvokeAsync((false, index)), index => GetHover(appliedOriginalAnnotations, index)));
+        modifiedSide ??= DotNetObjectReference.Create(new DiffSide(index => AnnotationActivated.InvokeAsync((true, index)), index => GetHover(appliedModifiedAnnotations, index)));
+        await ApplyAsync();
+        if (ViewState is not null)
+        {
+            self ??= DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("epicTuningTime.trackViewState", editorId, self);
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (initialized)
+            await ApplyAsync();
+    }
+
+    async Task ApplyAsync()
+    {
+        if (appliedDark != IsDarkMode)
+        {
+            appliedDark = IsDarkMode;
+            await JS.InvokeVoidAsync("epicTuningTime.setTheme", IsDarkMode);
+        }
+        if (!ReferenceEquals(appliedOriginal, Original) || !ReferenceEquals(appliedModified, Modified))
+        {
+            var keepOriginal = ReferenceEquals(appliedOriginal, Original) && appliedLanguage == Language;
+            var previousModified = appliedModified;
+            appliedOriginal = Original;
+            appliedModified = Modified;
+            appliedLanguage = Language;
+            if (!keepOriginal)
+                appliedOriginalAnnotations = null;
+            if (!keepOriginal || previousModified is null || EditorDelta.GetTextEdit(previousModified, Modified) is not var (start, end, text) || !await JS.InvokeAsync<bool>("epicTuningTime.editDiffModified", editorId, start, end, text, Modified.Length))
+            {
+                appliedModifiedAnnotations = null;
+                if (!keepOriginal || !await JS.InvokeAsync<bool>("epicTuningTime.setDiffModified", editorId, Modified, Language))
+                {
+                    appliedOriginalAnnotations = null;
+                    await JS.InvokeAsync<bool>("epicTuningTime.setDiff", editorId, Original, Modified, Language);
+                }
+            }
+            if (ViewState is not null)
+            {
+                if (ViewState.Key == ViewStateKey && ViewState.ViewState is { } viewState)
+                    await JS.InvokeVoidAsync("epicTuningTime.restoreViewState", editorId, viewState);
+                else
+                {
+                    ViewState.Key = ViewStateKey;
+                    ViewState.ViewState = null;
+                }
+            }
+        }
+        if ((OriginalAnnotations is not null || ModifiedAnnotations is not null) && (!ReferenceEquals(appliedOriginalAnnotations, OriginalAnnotations) || !ReferenceEquals(appliedModifiedAnnotations, ModifiedAnnotations)))
+        {
+            var sendOriginal = !ReferenceEquals(appliedOriginalAnnotations, OriginalAnnotations);
+            var sendModified = !ReferenceEquals(appliedModifiedAnnotations, ModifiedAnnotations);
+            var previousModifiedAnnotations = appliedModifiedAnnotations;
+            var previousModifiedAnnotationsText = appliedModifiedAnnotationsText;
+            appliedOriginalAnnotations = OriginalAnnotations;
+            appliedModifiedAnnotations = ModifiedAnnotations;
+            appliedModifiedAnnotationsText = ModifiedAnnotations is null ? null : Modified;
+            if (sendModified && previousModifiedAnnotations is not null && previousModifiedAnnotationsText is not null && ModifiedAnnotations is not null)
+            {
+                var lineShift = EditorDelta.CountLines(Modified) - EditorDelta.CountLines(previousModifiedAnnotationsText);
+                var (start, removed, inserted) = EditorDelta.GetAnnotationDelta(previousModifiedAnnotations, ModifiedAnnotations, lineShift);
+                if (await JS.InvokeAsync<bool>("epicTuningTime.editDiffAnnotations", editorId, start, removed, inserted, lineShift))
+                    sendModified = false;
+            }
+            if (sendOriginal || sendModified)
+                await JS.InvokeAsync<bool>("epicTuningTime.setDiffAnnotations", editorId, Language, sendOriginal ? OriginalAnnotations ?? [] : null, sendModified ? ModifiedAnnotations ?? [] : null, originalSide, modifiedSide);
+        }
+    }
+
+    public async Task RevealAsync(int originalLine, int modifiedLine)
+    {
+        if (initialized)
+            await JS.InvokeVoidAsync("epicTuningTime.revealDiff", editorId, originalLine, modifiedLine);
+    }
+
+    [JSInvokable]
+    public void OnViewStateChanged(string viewState)
+    {
+        if (ViewState is not null && ViewState.Key == ViewStateKey)
+            ViewState.ViewState = viewState;
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        self?.Dispose();
+        originalSide?.Dispose();
+        modifiedSide?.Dispose();
+        return ValueTask.CompletedTask;
+    }
+}

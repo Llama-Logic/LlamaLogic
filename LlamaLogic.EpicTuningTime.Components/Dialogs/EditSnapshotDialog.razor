@@ -1,0 +1,29 @@
+<MudDialog>
+    <DialogContent>
+        <MudStack Spacing="3">
+            <MudTextField T="string" @bind-Value="label" Label="Label" Variant="Variant.Outlined" AutoFocus="true" />
+            <MudTextField T="string" @bind-Value="notes" Label="Notes" Variant="Variant.Outlined" Lines="4" />
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="() => Dialog.Cancel()">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="() => Dialog.Close(DialogResult.Ok((label, notes)))">Save</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    string? label;
+    string? notes;
+
+    [CascadingParameter]
+    IMudDialogInstance Dialog { get; set; } = default!;
+
+    [Parameter]
+    public TuningArchiveSnapshot Snapshot { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        label = Snapshot.Label;
+        notes = Snapshot.Notes;
+    }
+}

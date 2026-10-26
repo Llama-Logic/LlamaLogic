@@ -1,0 +1,19 @@
+@inject TuningArchiveSession Session
+
+<MudSelect T="long?" Value="Value" ValueChanged="ValueChanged" Label="@Label" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" FullWidth="true">
+    @foreach (var snapshot in Session.Snapshots.Reverse())
+    {
+        <MudSelectItem T="long?" Value="snapshot.Id">@snapshot.DisplayName</MudSelectItem>
+    }
+</MudSelect>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = "Snapshot";
+
+    [Parameter]
+    public long? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<long?> ValueChanged { get; set; }
+}

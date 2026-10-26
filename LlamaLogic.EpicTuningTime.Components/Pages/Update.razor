@@ -1,0 +1,571 @@
+@page "/update"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject UpdateState State
+@inject BrowseState Browse
+@inject NavigationManager Navigation
+@inject IDialogService Dialogs
+@inject ISnackbar Snackbar
+
+<div class="ta-page">
+    @if (Session.Archive is null)
+    {
+        <div class="ta-empty">Open an archive on the Archive page first.</div>
+    }
+    else if (Session.Snapshots.Count == 0)
+    {
+        <div class="ta-empty">Updating a mod needs a snapshot of the game. Capture or import one on the Archive page.</div>
+    }
+    else
+    {
+        <div class="ta-split">
+            <div class="ta-sidebar" style="width: 380px">
+                <div class="ta-sidebar-filters">
+                    <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.FolderCopy" Href="update/folder" Style="align-self: flex-start">A folder of mods</MudButton>
+                    <SnapshotSelect Label="Update for" Value="State.TargetId" ValueChanged="OnTargetChangedAsync" />
+                    <MudSelect T="long?" Value="State.DeclaredBaseId" ValueChanged="OnDeclaredBaseChangedAsync" Label="Last updated for" Dense="true" Variant="Variant.Outlined" Margin="Margin.Dense" FullWidth="true">
+                        <MudSelectItem T="long?" Value="@((long?)null)">I don't know (work it out)</MudSelectItem>
+                        @foreach (var snapshot in Session.Snapshots.Reverse())
+                        {
+                            <MudSelectItem T="long?" Value="snapshot.Id">@snapshot.DisplayName</MudSelectItem>
+                        }
+                    </MudSelect>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.FolderOpen" Disabled="@(Session.Operation is not null)" OnClick="OpenPackageAsync">Open a package…</MudButton>
+                    @if (State.Update is { } opened)
+                    {
+                        <span class="ta-mono ta-ellipsis" title="@opened.PackagePath">@Path.GetFileName(opened.PackagePath)</span>
+                    }
+                    @if (State.Update is { Overrides.Count: > 0 })
+                    {
+                        <MudChipSet T="TuningPackageOverrideOutcome" SelectedValues="State.Outcomes" SelectedValuesChanged="OnOutcomesChanged" SelectionMode="SelectionMode.MultiSelection" Size="Size.Small" CheckMark="true">
+                            @foreach (var outcome in outcomes.Where(outcome => Count(outcome) > 0))
+                            {
+                                <MudChip T="TuningPackageOverrideOutcome" Value="outcome" Color="GetColor(outcome)" Text="@($"{GetLabel(outcome)} {Count(outcome)}")" />
+                            }
+                        </MudChipSet>
+                    }
+                </div>
+                <ScrollList State="State.List" Key="@ListKey" Ready="@(filtered.Count > 0)">
+                    @if (State.Update is not { } update)
+                    {
+                        <div class="ta-empty">Open a mod's package to see what @(Target?.DisplayName ?? "this version") means for its overrides of the game's tuning.</div>
+                    }
+                    else if (update.Overrides.Count == 0)
+                    {
+                        <div class="ta-empty">This package doesn't override any of the game's tuning in @update.Target.DisplayName.</div>
+                    }
+                    else if (filtered.Count == 0)
+                    {
+                        <div class="ta-empty">Nothing to show with these filters.</div>
+                    }
+                    else
+                    {
+                        <Virtualize Items="filtered" ItemSize="44" Context="item">
+                            <div class="ta-list-item @(selected?.Key == item.Key ? "selected" : string.Empty)" @onclick="() => SelectAsync(item)">
+                                <div class="ta-primary">@GetLabel(item.Outcome) · @(item.Name ?? "(unnamed)")</div>
+                                <div class="ta-secondary">@GetLabel(State.GetDecision(item)) · @Session.GetTypeName(item.Key.Type)@(item.Base is { } itemBase ? $" · from {itemBase.GameVersion}" : string.Empty)@(item.BaseDisagrees || item.BaseIsAmbiguous || (item.BaseMayBeOlder && item.Merge is not null) ? " · base uncertain" : string.Empty)@GetSimDataSuffix(item)</div>
+                            </div>
+                        </Virtualize>
+                    }
+                </ScrollList>
+                @if (State.Update is { Overrides.Count: > 0 } reviewed)
+                {
+                    <div class="ta-sidebar-filters ta-update-save">
+                        <MudText Typo="Typo.caption">@GetSummary()</MudText>
+                        @if (reviewed.ChecksSimData)
+                        {
+                            <MudCheckBox T="bool" Value="State.UpdateSimData" ValueChanged="value => State.UpdateSimData = value" Label="Make SimData what the overrides need" Size="Size.Small" Dense="true" />
+                        }
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Outlined.Save" Disabled="@(Session.Operation is not null)" OnClick="SaveAsync">Save the updated package…</MudButton>
+                    </div>
+                }
+            </div>
+            <div class="ta-detail">
+                @if (selected is null)
+                {
+                    <div class="ta-empty">Choose an override to see what the game's new version means for it.</div>
+                }
+                else
+                {
+                    <div class="ta-detail-header">
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Wrap="Wrap.Wrap">
+                            <MudText Typo="Typo.h6" Style="word-break: break-all">@(selected.Name ?? "(unnamed)")</MudText>
+                            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Color="GetColor(selected.Outcome)">@GetLabel(selected.Outcome)</MudChip>
+                            <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Color="Color.Primary">@Session.GetTypeName(selected.Key.Type)</MudChip>
+                            <span class="ta-mono">@selected.Key</span>
+                            @if (selected.GameEntry is not null)
+                            {
+                                <MudButton Size="Size.Small" Variant="Variant.Text" StartIcon="@Icons.Material.Filled.OpenInNew" OnClick="OpenInBrowse">Open in Browse</MudButton>
+                            }
+                        </MudStack>
+                        <MudText Typo="Typo.body2" Class="mt-1">@selected.Message</MudText>
+                        @if (selected.Base is { } selectedBase && selected.BaseDistance > 0)
+                        {
+                            <MudText Typo="Typo.body2" Color="Color.Secondary">The mod was most likely made from @selectedBase.DisplayName: its override has @selected.BaseDistance.ToString("N0", CultureInfo.InvariantCulture) @(selected.BaseDistance == 1 ? "difference" : "differences") from that version, fewer than from any other.</MudText>
+                        }
+                        @if (selected.BaseDisagrees)
+                        {
+                            <MudAlert Severity="Severity.Warning" Dense="true" Class="mt-1">@selected.Base?.DisplayName is the version this package was last updated for, but another version of this tuning is closer to the override, so it may have been made from that one. If it was, it may be undoing the game's changes since then.</MudAlert>
+                        }
+                        @if (selected.BaseIsAmbiguous)
+                        {
+                            <MudAlert Severity="Severity.Warning" Dense="true" Class="mt-1">Another version of this tuning is as close to the override as @selected.Base?.DisplayName. That happens when the mod changed something the game changed too, so the older version was assumed, which shows those changes as conflicts instead of taking the mod's version as up to date.</MudAlert>
+                        }
+                        @if (selected.BaseMayBeOlder && selected.Merge is not null)
+                        {
+                            <MudAlert Severity="Severity.Warning" Dense="true" Class="mt-1">The archive's oldest snapshot, @Session.Snapshots[0].DisplayName, already has this version of the tuning, so the mod may have been made from an even older one. If it was, some of what look like the mod's changes are the game's changes since then, undone, and the merge carries them forward. Check the mod's changes before using the merge.</MudAlert>
+                        }
+                        @if (selected.SimData is not (TuningPackageSimDataState.NotChecked or TuningPackageSimDataState.Current) && selected.SimDataMessage is { } simDataMessage)
+                        {
+                            <MudText Typo="Typo.body2" Color="Color.Secondary">SimData: @simDataMessage</MudText>
+                        }
+                        @if (selected.Outcome is not TuningPackageOverrideOutcome.Unreadable)
+                        {
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="3" Wrap="Wrap.Wrap" Class="mt-2">
+                                <MudToggleGroup T="UpdateDecision" Value="State.GetDecision(selected)" ValueChanged="OnDecisionChangedAsync" Size="Size.Small" Color="Color.Primary">
+                                    @if (selected.Merge is not null)
+                                    {
+                                        <MudToggleItem Value="UpdateDecision.Merge" Text="Use the merge" />
+                                    }
+                                    <MudToggleItem Value="UpdateDecision.Keep" Text="Keep the mod's" />
+                                    <MudToggleItem Value="UpdateDecision.Remove" Text="Remove the override" />
+                                </MudToggleGroup>
+                                <MudToggleGroup T="string" Value="State.DiffMode" ValueChanged="OnDiffModeChangedAsync" Size="Size.Small" Color="Color.Secondary">
+                                    <MudToggleItem Value="@("result")" Text="What changes in the mod" />
+                                    <MudToggleItem Value="@("mod")" Text="The mod's changes" />
+                                    <MudToggleItem Value="@("game")" Text="The game's changes" />
+                                    <MudToggleItem Value="@("final")" Text="Against the game's" />
+                                </MudToggleGroup>
+                            </MudStack>
+                        }
+                    </div>
+                    @if (State.GetMerge(selected) is { Conflicts.Count: > 0 } merge)
+                    {
+                        <div class="ta-changes ta-conflicts">
+                            @foreach (var conflict in merge.Conflicts)
+                            {
+                                <div class="ta-conflict">
+                                    <MudToggleGroup T="TuningMergeChoice" Value="GetChoice(selected, conflict)" ValueChanged="choice => OnResolveAsync(conflict, choice)" Size="Size.Small" Color="Color.Warning">
+                                        <MudToggleItem Value="TuningMergeChoice.Game" Text="Game's" />
+                                        <MudToggleItem Value="TuningMergeChoice.Mod" Text="Mod's" />
+                                    </MudToggleGroup>
+                                    <span class="ta-mono ta-ellipsis" title="@conflict.Path">@conflict.Path</span>
+                                    <span class="ta-conflict-values">
+                                        <span>@GetLabel(conflict.Kind)</span>
+                                        <span class="ta-mono" title="@conflict.Mod">mod: @Truncate(conflict.Mod ?? "(removed)", 100)</span>
+                                        <span class="ta-mono" title="@conflict.Game">game: @Truncate(conflict.Game ?? "(removed)", 100)</span>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @if (semantic is { Count: > 0 })
+                    {
+                        <div class="ta-changes">
+                            @foreach (var change in semantic)
+                            {
+                                <div class="ta-change" @onclick="() => RevealAsync(change)">
+                                    <span>@change.Kind</span>
+                                    <span class="ta-mono" style="overflow: hidden; text-overflow: ellipsis">@change.Path</span>
+                                    <span class="ta-values">
+                                        @if (change.OldValue is not null)
+                                        {
+                                            <span class="ta-old">@Truncate(change.OldValue, 120)</span>
+                                        }
+                                        @if (change.OldValue is not null && change.NewValue is not null)
+                                        {
+                                            <span> → </span>
+                                        }
+                                        @if (change.NewValue is not null)
+                                        {
+                                            <span class="ta-new">@Truncate(change.NewValue, 120)</span>
+                                        }
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else if (semantic is { Count: 0 })
+                    {
+                        <MudText Typo="Typo.body2" Class="px-4 py-2">@GetNoDifferencesText()</MudText>
+                    }
+                    @if (selected.Outcome is not TuningPackageOverrideOutcome.Unreadable)
+                    {
+                        <DiffView @ref="diffView" Original="@originalText" Modified="@modifiedText" OriginalAnnotations="originalAnnotations?.annotations" ModifiedAnnotations="modifiedAnnotations?.annotations" AnnotationActivated="OnDiffAnnotationActivated" Language="xml" ViewState="State.Diff" ViewStateKey="@($"{State.TargetId}:{selected.Key}:{State.DiffMode}")" />
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    static readonly TuningPackageOverrideOutcome[] outcomes =
+    [
+        TuningPackageOverrideOutcome.Conflicted,
+        TuningPackageOverrideOutcome.Merged,
+        TuningPackageOverrideOutcome.MatchesOlderGame,
+        TuningPackageOverrideOutcome.MatchesGame,
+        TuningPackageOverrideOutcome.RemovedFromGame,
+        TuningPackageOverrideOutcome.Unreadable,
+        TuningPackageOverrideOutcome.UpToDate
+    ];
+
+    List<TuningPackageOverride> filtered = [];
+    TuningPackageOverride? selected;
+    IReadOnlyList<TuningSemanticChange>? semantic;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? originalAnnotations;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? modifiedAnnotations;
+    TuningArchiveSnapshot? originalSnapshot;
+    TuningArchiveSnapshot? modifiedSnapshot;
+    string originalText = string.Empty;
+    string modifiedText = string.Empty;
+    DiffView? diffView;
+    int detailVersion;
+
+    TuningArchiveSnapshot? Target =>
+        Session.GetSnapshot(State.TargetId);
+
+    string ListKey =>
+        $"{State.Update?.PackagePath}:{State.Update?.Target.Id}:{string.Join(',', State.Outcomes.Order())}";
+
+    protected override void OnInitialized() =>
+        Session.Changed += OnSessionChanged;
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(StateHasChanged);
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Session.Snapshots.Count == 0)
+            return;
+        if (Target is null)
+            State.TargetId = Session.Snapshots[^1].Id;
+        ApplyFilter();
+        if (State.Selected is { } wanted && State.Update?.Overrides.FirstOrDefault(item => item.Key == wanted) is { } same && !ReferenceEquals(same, selected))
+            await SelectAsync(same);
+    }
+
+    int Count(TuningPackageOverrideOutcome outcome) =>
+        State.Update?.Overrides.Count(item => item.Outcome == outcome) ?? 0;
+
+    static Color GetColor(TuningPackageOverrideOutcome outcome) =>
+        outcome switch
+        {
+            TuningPackageOverrideOutcome.Conflicted or TuningPackageOverrideOutcome.Unreadable => Color.Error,
+            TuningPackageOverrideOutcome.Merged => Color.Success,
+            TuningPackageOverrideOutcome.MatchesOlderGame or TuningPackageOverrideOutcome.RemovedFromGame => Color.Warning,
+            TuningPackageOverrideOutcome.MatchesGame => Color.Info,
+            _ => Color.Default
+        };
+
+    static string GetLabel(TuningPackageOverrideOutcome outcome) =>
+        outcome switch
+        {
+            TuningPackageOverrideOutcome.Conflicted => "Conflicts",
+            TuningPackageOverrideOutcome.Merged => "Merges",
+            TuningPackageOverrideOutcome.MatchesOlderGame => "Old copy",
+            TuningPackageOverrideOutcome.MatchesGame => "Does nothing",
+            TuningPackageOverrideOutcome.RemovedFromGame => "Gone from game",
+            TuningPackageOverrideOutcome.Unreadable => "Unreadable",
+            _ => "Up to date"
+        };
+
+    static string GetLabel(UpdateDecision decision) =>
+        decision switch
+        {
+            UpdateDecision.Merge => "merge",
+            UpdateDecision.Remove => "remove",
+            _ => "keep"
+        };
+
+    static string GetLabel(TuningMergeConflictKind kind) =>
+        kind switch
+        {
+            TuningMergeConflictKind.ModRemovedGameChanged => "mod removed, game changed",
+            TuningMergeConflictKind.GameRemovedModChanged => "game removed, mod changed",
+            TuningMergeConflictKind.TooLarge => "list too large to align",
+            _ => "both changed"
+        };
+
+    static string GetSimDataSuffix(TuningPackageOverride item) =>
+        item.SimData switch
+        {
+            TuningPackageSimDataState.Stale => " · SimData stale",
+            TuningPackageSimDataState.Missing => " · SimData missing",
+            TuningPackageSimDataState.Unneeded => " · SimData unneeded",
+            TuningPackageSimDataState.Unverifiable => " · SimData unverifiable",
+            _ => string.Empty
+        };
+
+    static string Truncate(string text, int length)
+    {
+        var singleLine = text.Replace("\n", " ⏎ ", StringComparison.Ordinal);
+        return singleLine.Length <= length ? singleLine : $"{singleLine[..length]}…";
+    }
+
+    string GetSummary()
+    {
+        if (State.Update is not { } update)
+            return string.Empty;
+        var tuning = State.GetTuning();
+        var merged = tuning.Count(pair => pair.Value is not null);
+        var removed = tuning.Count - merged;
+        return merged == 0 && removed == 0
+            ? $"{update.Overrides.Count:N0} overrides; the updated package changes none of them."
+            : $"{update.Overrides.Count:N0} overrides; the updated package merges {merged:N0} and removes {removed:N0}.";
+    }
+
+    string GetNoDifferencesText() =>
+        State.DiffMode switch
+        {
+            "mod" => "The override is the same as the version it was most likely made from.",
+            "game" => "The game hasn't changed this tuning since the version the mod was most likely made from.",
+            "final" => "The updated package's version is the same as the game's, so it does nothing.",
+            _ => "The updated package leaves this override as it is."
+        };
+
+    TuningMergeChoice GetChoice(TuningPackageOverride item, TuningMergeConflict conflict) =>
+        State.Resolutions.TryGetValue(item.Key, out var choices) && choices.TryGetValue(conflict.Index, out var choice) ? choice : TuningMergeChoice.Game;
+
+    void ApplyFilter()
+    {
+        var outcomesShown = State.Outcomes;
+        filtered = State.Update?.Overrides.Where(item => outcomesShown.Contains(item.Outcome)).OrderBy(item => Array.IndexOf(outcomes, item.Outcome)).ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase).ToList() ?? [];
+    }
+
+    void OnOutcomesChanged(IReadOnlyCollection<TuningPackageOverrideOutcome>? values)
+    {
+        State.Outcomes = values ?? [];
+        ApplyFilter();
+    }
+
+    async Task<string?> AskPathAsync(string title, string label, bool isFolder, IReadOnlyList<string> extensions, string confirmText, string? message = null, string? fileName = null, string? initialPath = null)
+    {
+        var parameters = new DialogParameters<PathDialog>
+        {
+            { dialog => dialog.Label, label },
+            { dialog => dialog.IsFolder, isFolder },
+            { dialog => dialog.Extensions, extensions },
+            { dialog => dialog.ConfirmText, confirmText },
+            { dialog => dialog.Message, message },
+            { dialog => dialog.FileName, fileName },
+            { dialog => dialog.InitialPath, initialPath }
+        };
+        var reference = await Dialogs.ShowAsync<PathDialog>(title, parameters, new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        return await reference.Result is { Canceled: false, Data: string path } ? path : null;
+    }
+
+    async Task OpenPackageAsync()
+    {
+        var path = Session.Platform.CanPick
+            ? await Session.Platform.PickFileAsync("Open a mod's package", [".package"])
+            : await AskPathAsync("Open a mod's package", "Package file", false, [".package"], "Open");
+        if (path is not null)
+            await AnalyzeAsync(path);
+    }
+
+    async Task AnalyzeAsync(string path)
+    {
+        if (Session.Archive is not { } archive || Target is not { } target)
+            return;
+        var declaredBase = Session.GetSnapshot(State.DeclaredBaseId);
+        if (declaredBase is not null && Session.Snapshots.ToList().IndexOf(declaredBase) > Session.Snapshots.ToList().IndexOf(target))
+        {
+            Snackbar.Add("The version the package was last updated for can't be newer than the one it's being updated for.", Severity.Warning);
+            return;
+        }
+        TuningPackageUpdate? update;
+        try
+        {
+            update = await Session.RunAsync("Reviewing the package", async (progress, cancellationToken) =>
+            {
+                var drafter = await Session.GetSimDataDrafterAsync(target);
+                return await TuningPackageUpdate.AnalyzeAsync(archive, target, path, drafter, declaredBase, progress, cancellationToken);
+            }, false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidDataException or NotSupportedException or ArgumentException)
+        {
+            Snackbar.Add($"The package couldn't be reviewed: {exception.Message}", Severity.Error);
+            return;
+        }
+        if (update is null)
+            return;
+        State.Open(update);
+        selected = null;
+        semantic = null;
+        ApplyFilter();
+        if (filtered.FirstOrDefault() is { } first)
+            await SelectAsync(first);
+        StateHasChanged();
+    }
+
+    async Task OnTargetChangedAsync(long? id)
+    {
+        State.TargetId = id;
+        if (State.Update is { } update && update.Target.Id != id)
+            await AnalyzeAsync(update.PackagePath);
+    }
+
+    async Task OnDeclaredBaseChangedAsync(long? id)
+    {
+        State.DeclaredBaseId = id;
+        if (State.Update is { } update)
+            await AnalyzeAsync(update.PackagePath);
+    }
+
+    async Task SelectAsync(TuningPackageOverride item)
+    {
+        selected = item;
+        State.Selected = item.Key;
+        await RefreshDetailAsync();
+    }
+
+    string GetResultText(TuningPackageOverride item) =>
+        State.GetDecision(item) switch
+        {
+            UpdateDecision.Merge when State.GetMerge(item) is { } merge => merge.Text,
+            UpdateDecision.Remove => item.GameText ?? string.Empty,
+            _ => item.ModText ?? string.Empty
+        };
+
+    async Task RefreshDetailAsync()
+    {
+        if (selected is not { } item || State.Update is not { } update)
+            return;
+        var version = ++detailVersion;
+        var baseSnapshot = item.Base ?? update.Target;
+        (originalText, originalSnapshot, modifiedText, modifiedSnapshot) = State.DiffMode switch
+        {
+            "mod" => (item.BaseText ?? string.Empty, baseSnapshot, item.ModText ?? string.Empty, baseSnapshot),
+            "game" => (item.BaseText ?? string.Empty, baseSnapshot, item.GameText ?? string.Empty, update.Target),
+            "final" => (item.GameText ?? string.Empty, update.Target, GetResultText(item), update.Target),
+            _ => (item.ModText ?? string.Empty, baseSnapshot, GetResultText(item), update.Target)
+        };
+        semantic = null;
+        originalAnnotations = null;
+        modifiedAnnotations = null;
+        StateHasChanged();
+        var (original, modified) = (originalText, modifiedText);
+        var changes = original.Length > 0 && modified.Length > 0 ? await Task.Run(() => TuningSemanticDiff.Compare(original, modified)) : null;
+        if (version != detailVersion)
+            return;
+        semantic = changes;
+        StateHasChanged();
+        var builtOriginal = originalSnapshot is { } os ? await TuningAnnotations.BuildAsync(Session, os, original) : null;
+        var builtModified = modifiedSnapshot is { } ms ? await TuningAnnotations.BuildAsync(Session, ms, modified) : null;
+        if (version != detailVersion)
+            return;
+        originalAnnotations = builtOriginal;
+        modifiedAnnotations = builtModified;
+        StateHasChanged();
+    }
+
+    async Task OnDecisionChangedAsync(UpdateDecision decision)
+    {
+        if (selected is not { } item)
+            return;
+        if (decision == UpdateState.GetDefaultDecision(item))
+            State.Decisions.Remove(item.Key);
+        else
+            State.Decisions[item.Key] = decision;
+        await RefreshDetailAsync();
+    }
+
+    async Task OnDiffModeChangedAsync(string mode)
+    {
+        State.DiffMode = mode;
+        await RefreshDetailAsync();
+    }
+
+    async Task OnResolveAsync(TuningMergeConflict conflict, TuningMergeChoice choice)
+    {
+        if (selected is not { } item)
+            return;
+        if (!State.Resolutions.TryGetValue(item.Key, out var choices))
+            State.Resolutions[item.Key] = choices = [];
+        choices[conflict.Index] = choice;
+        var resolved = new Dictionary<int, TuningMergeChoice>(choices);
+        State.Merges[item.Key] = await Task.Run(() => item.Remerge(candidate => resolved.TryGetValue(candidate.Index, out var chosen) ? chosen : TuningMergeChoice.Game));
+        if (State.GetDecision(item) is UpdateDecision.Keep && item.Outcome is TuningPackageOverrideOutcome.Conflicted && !State.Decisions.ContainsKey(item.Key))
+            State.Decisions[item.Key] = UpdateDecision.Merge;
+        await RefreshDetailAsync();
+    }
+
+    async Task SaveAsync()
+    {
+        if (State.Update is not { } update)
+            return;
+        var suggested = $"{Path.GetFileNameWithoutExtension(update.PackagePath)} ({update.Target.GameVersion}).package";
+        var folder = Session.Platform.GetSetting("UpdateSaveFolder") ?? Session.Platform.DefaultArchiveFolder;
+        var path = await AskPathAsync("Save the updated package", "Folder", true, [], "Save", "The original package is never changed. Don't save the updated one in the Mods folder beside the original, or the game will load both.", suggested, folder);
+        if (path is null)
+            return;
+        if (!path.EndsWith(".package", StringComparison.OrdinalIgnoreCase))
+            path += ".package";
+        if (string.Equals(Path.GetFullPath(path), Path.GetFullPath(update.PackagePath), StringComparison.OrdinalIgnoreCase))
+        {
+            Snackbar.Add("That's the original package. Choose another name; the original is never changed.", Severity.Warning);
+            return;
+        }
+        if (File.Exists(path))
+        {
+            Snackbar.Add("There's already a file with that name. Choose another name.", Severity.Warning);
+            return;
+        }
+        IReadOnlyList<TuningPackageUpdateChange>? changes;
+        try
+        {
+            var tuning = State.GetTuning();
+            var updateSimData = State.UpdateSimData;
+            changes = await Session.RunAsync("Saving the updated package", async (_, cancellationToken) => await update.WriteAsync(path, tuning, updateSimData ? TuningPackageSimDataChanges.All : TuningPackageSimDataChanges.None, cancellationToken), false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidDataException or NotSupportedException or ArgumentException)
+        {
+            Snackbar.Add($"The updated package couldn't be saved: {exception.Message}", Severity.Error);
+            return;
+        }
+        if (changes is null)
+            return;
+        if (Path.GetDirectoryName(path) is { } savedFolder)
+            Session.Platform.SetSetting("UpdateSaveFolder", savedFolder);
+        var tuningChanges = changes.Count(change => change.Kind is TuningPackageUpdateChangeKind.TuningReplaced or TuningPackageUpdateChangeKind.TuningRemoved);
+        var simDataChanges = changes.Count(change => change.Kind is TuningPackageUpdateChangeKind.SimDataReplaced or TuningPackageUpdateChangeKind.SimDataAdded or TuningPackageUpdateChangeKind.SimDataRemoved);
+        var unverifiable = changes.Count(change => change.Kind is TuningPackageUpdateChangeKind.SimDataUnverifiable);
+        var overrideWord = tuningChanges == 1 ? "override" : "overrides";
+        var unverifiableText = unverifiable > 0 ? string.Format(CultureInfo.CurrentCulture, "; {0:N0} SimData couldn't be checked and were left as they were", unverifiable) : string.Empty;
+        Snackbar.Add($"Saved {Path.GetFileName(path)}: {tuningChanges:N0} {overrideWord} and {simDataChanges:N0} SimData changed{unverifiableText}.", Severity.Success, config =>
+        {
+            config.Action = "Show";
+            config.OnClick = _ => Session.Platform.RevealAsync(path);
+        });
+    }
+
+    void OnDiffAnnotationActivated((bool modified, int index) activation)
+    {
+        var targets = (activation.modified ? modifiedAnnotations : originalAnnotations)?.targets;
+        if ((activation.modified ? modifiedSnapshot : originalSnapshot) is { } snapshot && targets is not null && activation.index >= 0 && activation.index < targets.Count && targets[activation.index] is { } target)
+        {
+            Browse.Request(snapshot.Id, target);
+            Navigation.NavigateTo("browse");
+        }
+    }
+
+    async Task RevealAsync(TuningSemanticChange change)
+    {
+        if (diffView is not null)
+            await diffView.RevealAsync(change.OldLine, change.NewLine);
+    }
+
+    void OpenInBrowse()
+    {
+        if (selected?.GameEntry is { } entry && State.Update is { } update)
+        {
+            Browse.Request(update.Target.Id, (entry.Type, entry.Instance));
+            Navigation.NavigateTo("browse");
+        }
+    }
+}

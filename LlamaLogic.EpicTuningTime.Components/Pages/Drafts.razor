@@ -1,0 +1,555 @@
+@page "/drafts"
+@implements IDisposable
+@inject TuningArchiveSession Session
+@inject DraftsState State
+@inject BrowseState Browse
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@inject ISnackbar Snackbar
+@inject IDialogService Dialogs
+
+<div class="ta-page">
+    @if (Session.Archive is null)
+    {
+        <div class="ta-empty">Open an archive on the Archive page first.</div>
+    }
+    else if (Session.Drafts.Count == 0)
+    {
+        <div class="ta-empty">Nothing is being drafted. Open a tuning in Browse and choose Draft changes.</div>
+    }
+    else
+    {
+        <div class="ta-draft-bar">
+            <MudText Typo="Typo.caption" Class="mr-2">Drafting in @(current?.Snapshot.DisplayName)</MudText>
+            @foreach (var listed in SnapshotDrafts)
+            {
+                <MudChip T="string" Size="Size.Small" Color="@(ReferenceEquals(listed, current) ? Color.Primary : Color.Default)" Variant="@(ReferenceEquals(listed, current) ? Variant.Filled : Variant.Outlined)" OnClick="() => SelectAsync(listed)" OnClose="() => DiscardAsync(listed)" title="@($"{Session.GetTypeName(listed.Entry.Type)} · {(listed.HasChanges ? "changed" : "unchanged")}")">@(listed.Entry.Name ?? "(unnamed)")@(listed.HasChanges ? " •" : string.Empty)</MudChip>
+            }
+            <MudSpacer />
+            <MudTextField T="string" Value="draftName" ValueChanged="OnDraftNameChangedAsync" Label="Draft name" Variant="Variant.Outlined" Margin="Margin.Dense" Style="max-width: 280px" title="Names the log file and the snippets" />
+        </div>
+        <div class="ta-split">
+            @if (current is { } draft)
+            {
+                <div class="ta-draft-column">
+                    <div class="ta-detail-header">
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                            <MudText Typo="Typo.subtitle1" Style="word-break: break-all">@(draft.Entry.Name ?? "(unnamed)")</MudText>
+                            <MudSpacer />
+                            <MudIconButton Icon="@Icons.Material.Filled.Undo" Size="Size.Small" title="Discard every change to this tuning" Disabled="!draft.HasChanges" OnClick="RevertAllAsync" />
+                        </MudStack>
+                    </div>
+                    @if (roots is not null)
+                    {
+                        <PropertyPanel @ref="panel" Roots="roots" Selected="selectedNode" SelectedChanged="OnSelectedNodeChanged" ShowUnset="showUnset" ShowUnsetChanged="OnShowUnsetChangedAsync" Editable="true" Snapshot="draft.Snapshot" ChangedPaths="draft.ChangedPaths" Statuses="statuses" Edit="OnEditAsync" Navigate="target => OpenInBrowse(target.type, target.instance)" State="State.Panel" ScrollKey="@($"{draft.Snapshot.Id}:{draft.Entry.Key}")" />
+                    }
+                </div>
+                <div class="ta-detail">
+                    <MudTabs @bind-ActivePanelIndex="State.ActiveTab" Class="ta-tabs" TabPanelsClass="ta-tabs" Elevation="0" Rounded="false" ApplyEffectsToContainer="true" KeepPanelsAlive="false">
+                        <MudTabPanel Text="Changes">
+                            <div class="ta-detail-header">
+                                <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                    <MudText Typo="Typo.body2">@OverridesSummary</MudText>
+                                    <MudSpacer />
+                                    <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Save" Disabled="preparing || !SnapshotDrafts.Any(candidate => candidate.HasChanges)" OnClick="SaveOverridesAsync" title="Saves every changed tuning in this snapshot, and the SimData the changes reach, named for Sims 4 Studio's batch import">@(preparing ? "Preparing…" : "Save for Sims 4 Studio")</MudButton>
+                                </MudStack>
+                            </div>
+                            <DiffView @ref="diffView" ViewState="State.Diff" ViewStateKey="@($"{draft.Snapshot.Id}:{draft.Entry.Key}")" Original="@draft.OriginalText" Modified="@draft.Text" OriginalAnnotations="@(ReferenceEquals(diffAnnotatedText, draft.Text) ? diffOriginalAnnotations?.annotations : null)" ModifiedAnnotations="@(ReferenceEquals(diffAnnotatedText, draft.Text) ? diffModifiedAnnotations?.annotations : null)" AnnotationActivated="OnDiffAnnotationActivated" />
+                        </MudTabPanel>
+                        @foreach (var output in outputs)
+                        {
+                            <MudTabPanel Text="@OutputTitle(output)">
+                                <div class="ta-detail-header">
+                                    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                                        <MudText Typo="Typo.body2">@OutputSummary(output)</MudText>
+                                        <MudSpacer />
+                                        <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.ContentCopy" Disabled="output.Result.Changes == 0" OnClick="() => CopyAsync(output)">Copy</MudButton>
+                                        <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Save" Disabled="output.Result.Changes == 0" OnClick="() => SaveOutputAsync(output)" title="@(output.Language == "python" ? "Saves the script as a .py file" : "Saves the snippet, named for Sims 4 Studio's batch import")">@(output.Language == "python" ? "Save .py" : "Save for Sims 4 Studio")</MudButton>
+                                    </MudStack>
+                                </div>
+                                @if (output.Result.Diagnostics.Count > 0)
+                                {
+                                    <div class="ta-changes">
+                                        @foreach (var diagnostic in output.Result.Diagnostics)
+                                        {
+                                            <div class="ta-change" style="grid-template-columns: 24px minmax(160px, 30%) 1fr" @onclick="() => RevealPathAsync(diagnostic)">
+                                                <MudIcon Icon="@SeverityIcon(diagnostic.Severity)" Color="@SeverityColor(diagnostic.Severity)" Size="Size.Small" />
+                                                <span class="ta-mono" style="overflow: hidden; text-overflow: ellipsis">@diagnostic.Entry.Name · @diagnostic.Path</span>
+                                                <span>@diagnostic.Message</span>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                @if (output.Result.Changes > 0)
+                                {
+                                    <MonacoView Text="@output.Result.Source" Language="@output.Language" />
+                                }
+                                else
+                                {
+                                    <div class="ta-empty">@(output.Result.Diagnostics.Count == 0 ? "Change something in the tree to start this draft." : $"{output.Name} can't make any of these changes.")</div>
+                                }
+                            </MudTabPanel>
+                        }
+                    </MudTabs>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    TuningDraft? current;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? diffOriginalAnnotations;
+    TuningDraft? diffOriginalAnnotationsDraft;
+    (IReadOnlyList<EditorAnnotation> annotations, IReadOnlyList<(ResourceType type, ulong instance)?> targets)? diffModifiedAnnotations;
+    string? diffAnnotatedText;
+    string? pendingSelection;
+    DiffView? diffView;
+    int pendingDiffReveal;
+    IReadOnlyList<PropertyNode>? roots;
+    PropertyNode? selectedNode;
+    PropertyPanel? panel;
+    IReadOnlyList<DraftOutput> outputs = [];
+    IReadOnlyDictionary<string, IReadOnlyList<PropertyStatus>> statuses = new Dictionary<string, IReadOnlyList<PropertyStatus>>();
+    string draftName = defaultDraftName;
+    const string defaultDraftName = "epic_tuning_time_draft";
+
+    sealed record DraftOutput(string Target, string Name, string Language, TuningDraftResult Result);
+    bool showUnset;
+    bool preparing;
+    SnapshotEntries? entries;
+    SnapshotEntries? animationStateMachines;
+    MediaEntries? media;
+    IReadOnlyDictionary<uint, string>? strings;
+
+    [SupplyParameterFromQuery(Name = "snapshot")]
+    public long? SnapshotParameter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "type")]
+    public string? TypeParameter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "instance")]
+    public string? InstanceParameter { get; set; }
+
+    IEnumerable<TuningDraft> SnapshotDrafts =>
+        current is null ? Session.Drafts : Session.Drafts.Where(draft => draft.Snapshot.Id == current.Snapshot.Id);
+
+    static string OutputTitle(DraftOutput output) =>
+        output.Result.Diagnostics.Count == 0 ? output.Name : $"{output.Name} · {output.Result.Diagnostics.Count(diagnostic => diagnostic.Severity is not TuningDraftSeverity.Error)} of {output.Result.Diagnostics.Count}";
+
+    string OverridesSummary
+    {
+        get
+        {
+            var changed = SnapshotDrafts.Count(candidate => candidate.HasChanges);
+            return changed switch
+            {
+                0 => "Nothing has changed yet.",
+                1 => "1 tuning changed; saving it overrides it.",
+                _ => $"{changed} tunings changed; saving them overrides them."
+            };
+        }
+    }
+
+    static string OutputSummary(DraftOutput output)
+    {
+        var made = output.Result.Diagnostics.Count(diagnostic => diagnostic.Severity is not TuningDraftSeverity.Error);
+        var left = output.Result.Diagnostics.Count - made;
+        return left == 0
+            ? made == 1 ? "Makes the change." : $"Makes all {made} changes."
+            : $"Makes {made} of {output.Result.Diagnostics.Count} changes; {left} can't be made this way.";
+    }
+
+    static string SeverityIcon(TuningDraftSeverity severity) =>
+        severity switch
+        {
+            TuningDraftSeverity.Error => Icons.Material.Filled.Block,
+            TuningDraftSeverity.Warning => Icons.Material.Filled.WarningAmber,
+            _ => Icons.Material.Filled.CheckCircleOutline
+        };
+
+    static Color SeverityColor(TuningDraftSeverity severity) =>
+        severity switch
+        {
+            TuningDraftSeverity.Error => Color.Error,
+            TuningDraftSeverity.Warning => Color.Warning,
+            _ => Color.Success
+        };
+
+    protected override void OnInitialized()
+    {
+        Session.Changed += OnSessionChanged;
+        showUnset = Session.Platform.GetSetting("ShowUnsetTunables") == bool.TrueString;
+        draftName = Session.Platform.GetSetting("DraftName") ?? draftName;
+    }
+
+    public void Dispose() =>
+        Session.Changed -= OnSessionChanged;
+
+    void OnSessionChanged() =>
+        _ = InvokeAsync(async () =>
+        {
+            if (current is not null && !Session.Drafts.Contains(current))
+                await SelectAsync(Session.Drafts.FirstOrDefault());
+            StateHasChanged();
+        });
+
+    protected override async Task OnParametersSetAsync()
+    {
+        TuningDraft? requested = null;
+        if (Session.Archive is { } archive && Session.GetSnapshot(SnapshotParameter) is { } snapshot && ulong.TryParse(InstanceParameter, NumberStyles.None, CultureInfo.InvariantCulture, out var instance) && uint.TryParse(TypeParameter, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var type))
+        {
+            var entry = (await Session.GetEntriesAsync(snapshot)).Find((ResourceType)type, instance);
+            if (entry is not null)
+            {
+                requested = await Session.GetDraftAsync(snapshot, entry);
+                if (requested is null)
+                    Snackbar.Add("Drafting needs tuning descriptions for this snapshot. Import them on the Archive page.", Severity.Warning);
+            }
+        }
+        if (SnapshotParameter is not null || TypeParameter is not null || InstanceParameter is not null)
+        {
+            SnapshotParameter = null;
+            TypeParameter = null;
+            InstanceParameter = null;
+            Navigation.NavigateTo("drafts", new NavigationOptions { ReplaceHistoryEntry = true });
+        }
+        var remembered = State.Selected is { } selected && Session.Drafts.Contains(selected) ? selected : null;
+        await SelectAsync(requested ?? remembered ?? current ?? Session.Drafts.LastOrDefault());
+    }
+
+    async Task SelectAsync(TuningDraft? draft)
+    {
+        if (ReferenceEquals(draft, current) && roots is not null)
+            return;
+        if (!ReferenceEquals(draft, State.Selected))
+        {
+            State.Selected = draft;
+            State.SelectedPropertyPath = null;
+        }
+        current = draft;
+        selectedNode = null;
+        roots = null;
+        if (draft is not null)
+        {
+            entries = await Session.GetEntriesAsync(draft.Snapshot);
+            strings = await Session.GetStringsAsync(draft.Snapshot);
+            animationStateMachines = await Session.GetEntriesAsync(draft.Snapshot, TuningArchiveResourceKind.AnimationStateMachine);
+            media = await Session.GetMediaAsync(draft.Snapshot);
+        }
+        await RebuildAsync();
+    }
+
+    async Task RebuildAsync()
+    {
+        if (current is not { } draft || entries is null || strings is null)
+        {
+            outputs = [];
+            return;
+        }
+        var selectedPath = pendingSelection ?? selectedNode?.Path ?? State.SelectedPropertyPath;
+        var expandSelected = pendingSelection is not null;
+        pendingSelection = null;
+        var snapshotDrafts = SnapshotDrafts.ToList();
+        var gameVersion = draft.Snapshot.GameVersion ?? draft.Snapshot.DisplayName;
+        var name = draftName;
+        var draftText = draft.Text;
+        var draftAnalysis = draft.Draft;
+        var cachedOriginalAnnotations = ReferenceEquals(diffOriginalAnnotationsDraft, draft) ? diffOriginalAnnotations : null;
+        var draftAnimationStateMachines = animationStateMachines;
+        var draftMedia = media;
+        var (builtRoots, builtOutputs, builtOriginalAnnotations, builtModifiedAnnotations) = await Task.Run(() =>
+        {
+            IReadOnlyList<TuningDraftTarget> targets = [.. snapshotDrafts.Where(candidate => candidate.HasChanges).Select(candidate => new TuningDraftTarget(candidate.Entry, candidate.Original, candidate.Draft))];
+            IReadOnlyList<DraftOutput> results =
+            [
+                new("Py", "Python", "python", TuningPythonDraft.Generate(targets, gameVersion, $"{name}.log")),
+                new("XI", "XML Injector", "xml", TuningXmlInjectorDraft.Generate(targets, $"{name}_xml_injector")),
+                new("CL", "Core Library", "xml", TuningCoreLibraryDraft.Generate(targets, $"{name}_core_library"))
+            ];
+            return (PropertyTree.Build(draft.Draft, entries, strings, showUnset, draft.ChangedPaths), results, cachedOriginalAnnotations ?? AnnotationBuilder.Build(draft.OriginalText, draft.Original, entries, strings, Session.GetTypeName, draftAnimationStateMachines, draftMedia), AnnotationBuilder.Build(draftText, draftAnalysis, entries, strings, Session.GetTypeName, draftAnimationStateMachines, draftMedia));
+        });
+        diffOriginalAnnotations = builtOriginalAnnotations;
+        diffOriginalAnnotationsDraft = draft;
+        diffModifiedAnnotations = builtModifiedAnnotations;
+        diffAnnotatedText = draftText;
+        roots = builtRoots;
+        outputs = builtOutputs;
+        statuses = GetStatuses(draft, builtOutputs);
+        selectedNode = selectedPath is null ? null : Flatten(builtRoots).FirstOrDefault(node => node.Path == selectedPath);
+        State.SelectedPropertyPath = selectedNode?.Path;
+        if (selectedNode is not null)
+            panel?.Reveal(selectedNode, expandSelected);
+    }
+
+    static IReadOnlyDictionary<string, IReadOnlyList<PropertyStatus>> GetStatuses(TuningDraft draft, IReadOnlyList<DraftOutput> results)
+    {
+        var byPath = new Dictionary<string, List<PropertyStatus>>(StringComparer.Ordinal);
+        foreach (var output in results)
+            foreach (var diagnostic in output.Result.Diagnostics.Where(diagnostic => diagnostic.Entry.Key == draft.Entry.Key))
+            {
+                var path = diagnostic.Path.EndsWith("[]", StringComparison.Ordinal) ? diagnostic.Path[..^2] : diagnostic.Path;
+                if (!byPath.TryGetValue(path, out var list))
+                {
+                    list = [];
+                    byPath.Add(path, list);
+                }
+                if (list.FirstOrDefault(status => status.Target == output.Target) is { } existing)
+                {
+                    if (diagnostic.Severity > existing.Severity)
+                        list[list.IndexOf(existing)] = new(output.Target, output.Name, diagnostic.Severity, diagnostic.Message);
+                }
+                else
+                    list.Add(new(output.Target, output.Name, diagnostic.Severity, diagnostic.Message));
+            }
+        return byPath.ToDictionary(pair => pair.Key, pair => (IReadOnlyList<PropertyStatus>)pair.Value, StringComparer.Ordinal);
+    }
+
+    async Task RevealPathAsync(TuningDraftDiagnostic diagnostic)
+    {
+        if (current is null || diagnostic.Entry.Key != current.Entry.Key)
+        {
+            if (Session.Drafts.FirstOrDefault(candidate => candidate.Entry.Key == diagnostic.Entry.Key && candidate.Snapshot.Id == current?.Snapshot.Id) is { } other)
+                await SelectAsync(other);
+            else
+                return;
+        }
+        var path = diagnostic.Path.EndsWith("[]", StringComparison.Ordinal) ? diagnostic.Path[..^2] : diagnostic.Path;
+        if (roots is not null && Flatten(roots).FirstOrDefault(node => node.Path == path) is { } node)
+        {
+            selectedNode = node;
+            State.SelectedPropertyPath = node.Path;
+            panel?.Reveal(node);
+        }
+    }
+
+    static IEnumerable<PropertyNode> Flatten(IEnumerable<PropertyNode> nodes) =>
+        nodes.SelectMany(node => Flatten(node.Children).Prepend(node));
+
+    async Task OnEditAsync(PropertyEdit edit)
+    {
+        if (current is not { } draft)
+            return;
+        var node = edit.Node;
+        await Task.Run(() =>
+        {
+            switch (edit.Kind)
+            {
+                case PropertyEditKind.SetValue when edit.Value is not null:
+                    draft.SetValue(node.Path, edit.Value);
+                    break;
+                case PropertyEditKind.Set when node.Description is { } description:
+                    var siblings = node.Parent?.Children ?? roots ?? [];
+                    var next = siblings.SkipWhile(sibling => !ReferenceEquals(sibling, node)).Skip(1).FirstOrDefault(sibling => sibling.IsSet);
+                    pendingSelection = node.Path;
+                    draft.SetUnset(node.Parent?.Path, node.Label, description, next?.Path);
+                    break;
+                case PropertyEditKind.Reset or PropertyEditKind.Remove:
+                    draft.Remove(node.Path);
+                    break;
+                case PropertyEditKind.Duplicate:
+                    draft.Duplicate(node.Path);
+                    break;
+                case PropertyEditKind.Revert:
+                    draft.Revert(node.Path);
+                    break;
+                case PropertyEditKind.AddItem when node.Description is ListTunableDescription list:
+                    pendingSelection = $"{node.Path}[{node.Children.Count}]";
+                    draft.AddItem(node.Path, list);
+                    break;
+                case PropertyEditKind.SetOption when edit.Value is not null && node.Description is VariantTunableDescription variant:
+                    pendingSelection = node.Path;
+                    draft.SetOption(node.Path, variant, edit.Value);
+                    break;
+            }
+        });
+        var revealPath = pendingSelection ?? node.Path;
+        await RebuildAsync();
+        if (roots is null)
+            return;
+        var all = Flatten(roots).ToList();
+        for (var path = revealPath; path.Length > 0; path = path[..Math.Max(0, path.LastIndexOfAny(['.', '[']))])
+            if (all.FirstOrDefault(candidate => candidate.Path == path) is { Line: > 0 } revealed)
+            {
+                pendingDiffReveal = revealed.Line;
+                break;
+            }
+    }
+
+    void OnSelectedNodeChanged(PropertyNode node)
+    {
+        selectedNode = node;
+        State.SelectedPropertyPath = node.Path;
+        if (node.Line > 0)
+            pendingDiffReveal = node.Line;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (pendingDiffReveal > 0 && diffView is not null)
+        {
+            var line = pendingDiffReveal;
+            pendingDiffReveal = 0;
+            await diffView.RevealAsync(0, line);
+        }
+    }
+
+    async Task OnShowUnsetChangedAsync(bool value)
+    {
+        showUnset = value;
+        Session.Platform.SetSetting("ShowUnsetTunables", value.ToString());
+        await RebuildAsync();
+    }
+
+    async Task OnDraftNameChangedAsync(string? value)
+    {
+        draftName = string.IsNullOrWhiteSpace(value) ? defaultDraftName : value.Trim();
+        Session.Platform.SetSetting("DraftName", draftName);
+        await RebuildAsync();
+    }
+
+    async Task RevertAllAsync()
+    {
+        if (current is { } draft)
+        {
+            await Task.Run(draft.RevertAll);
+            await RebuildAsync();
+        }
+    }
+
+    async Task DiscardAsync(TuningDraft draft)
+    {
+        var wasCurrent = ReferenceEquals(draft, current);
+        Session.DiscardDraft(draft);
+        if (wasCurrent)
+        {
+            current = null;
+            await SelectAsync(Session.Drafts.LastOrDefault());
+        }
+        else
+            await RebuildAsync();
+    }
+
+    async Task CopyAsync(DraftOutput output)
+    {
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", output.Result.Source);
+        Snackbar.Add($"The {output.Name} draft is on the clipboard.", Severity.Success);
+    }
+
+    static string GetPythonFileName(string name)
+    {
+        var builder = new StringBuilder(name.Length);
+        foreach (var character in name)
+            builder.Append(char.IsAsciiLetterOrDigit(character) || character == '_' ? character : '_');
+        if (builder.Length == 0 || char.IsAsciiDigit(builder[0]))
+            builder.Insert(0, '_');
+        return $"{builder}.py";
+    }
+
+    async Task<string?> AskFolderAsync(string title, string message)
+    {
+        var parameters = new DialogParameters<PathDialog>
+        {
+            { dialog => dialog.Label, "Folder" },
+            { dialog => dialog.IsFolder, true },
+            { dialog => dialog.ConfirmText, "Save" },
+            { dialog => dialog.Message, message },
+            { dialog => dialog.InitialPath, Session.Platform.GetSetting("DraftSaveFolder") ?? Session.Platform.DefaultArchiveFolder }
+        };
+        var reference = await Dialogs.ShowAsync<PathDialog>(title, parameters, new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        return await reference.Result is { Canceled: false, Data: string path } ? path : null;
+    }
+
+    async Task SaveFilesAsync(string title, string message, IReadOnlyList<(string fileName, string text)> files)
+    {
+        if (await AskFolderAsync(title, message) is not { } folder)
+            return;
+        try
+        {
+            var replaced = await Task.Run(() =>
+            {
+                Directory.CreateDirectory(folder);
+                var replaced = 0;
+                foreach (var (fileName, text) in files)
+                {
+                    var path = Path.Combine(folder, fileName);
+                    if (File.Exists(path))
+                        ++replaced;
+                    File.WriteAllText(path, text, new UTF8Encoding(false));
+                }
+                return replaced;
+            });
+            Session.Platform.SetSetting("DraftSaveFolder", folder);
+            var saved = files.Count == 1 ? files[0].fileName : $"{files.Count} files";
+            Snackbar.Add($"Saved {saved}{(replaced > 0 ? $" ({replaced} replaced)" : string.Empty)} to {folder}.", Severity.Success, config =>
+            {
+                config.Action = "Show";
+                config.OnClick = _ => Session.Platform.RevealAsync(files.Count == 1 ? Path.Combine(folder, files[0].fileName) : folder);
+            });
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+        {
+            Snackbar.Add($"Couldn't save to {folder}: {exception.Message}", Severity.Error);
+        }
+    }
+
+    async Task SaveOverridesAsync()
+    {
+        if (current is not { } draft)
+            return;
+        var changed = SnapshotDrafts.Where(candidate => candidate.HasChanges).ToList();
+        TuningSimDataDrafter? drafter;
+        List<TuningSimDataDraftResult?> simData;
+        preparing = true;
+        try
+        {
+            drafter = await Session.GetSimDataDrafterAsync(draft.Snapshot);
+            simData = await Task.Run(() => changed.Select(candidate => drafter?.Draft(candidate.Entry, candidate.Text)).ToList());
+        }
+        finally
+        {
+            preparing = false;
+            StateHasChanged();
+        }
+        var files = new List<(string fileName, string text)>();
+        var notes = new List<string>();
+        for (var index = 0; index < changed.Count; ++index)
+        {
+            var candidate = changed[index];
+            files.Add((Sims4StudioBatchImport.GetFileName(candidate.Entry.Key, candidate.Entry.Name), candidate.Text));
+            if (simData[index] is not { } result)
+                continue;
+            if (result is { Kind: TuningSimDataDraftKind.Generated, Key: { } key, SimData: { } generated })
+            {
+                files.Add((Sims4StudioBatchImport.GetFileName(key, candidate.Entry.Name), $"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n{generated.ToXml()}"));
+                notes.Add($"{candidate.Entry.Name}'s SimData is saved too, since the changes reach it.");
+            }
+            else if (result.Kind is TuningSimDataDraftKind.Failed)
+                notes.Add($"{candidate.Entry.Name}: {result.Message}");
+        }
+        if (drafter is null)
+            notes.Add("This snapshot has no SimData (or no tuning descriptions), so whether the changes reach SimData can't be checked, and no SimData is saved.");
+        var what = changed.Count == 1 ? "the changed tuning" : $"all {changed.Count} changed tunings";
+        await SaveFilesAsync("Save changed tuning", $"Saves {what} as XML named for Sims 4 Studio's batch import, which reads each key from its file name. These override the game's tuning. {string.Join(" ", notes)}".TrimEnd(), files);
+    }
+
+    Task SaveOutputAsync(DraftOutput output) =>
+        output.Language == "python"
+            ? SaveFilesAsync("Save the Python", "Saves the script as a .py file.", [(GetPythonFileName(draftName), output.Result.Source)])
+            : SaveFilesAsync($"Save the {output.Name} snippet", "Saves the snippet as XML named for Sims 4 Studio's batch import, which reads its key from the file name.", [(Sims4StudioBatchImport.GetFileName(output.Result.Source), output.Result.Source)]);
+
+    void OnDiffAnnotationActivated((bool modified, int index) activation)
+    {
+        var targets = (activation.modified ? diffModifiedAnnotations : diffOriginalAnnotations)?.targets;
+        if (targets is not null && activation.index >= 0 && activation.index < targets.Count && targets[activation.index] is { } target)
+            OpenInBrowse(target.type, target.instance);
+    }
+
+    void OpenInBrowse(ResourceType type, ulong instance)
+    {
+        if (current is null)
+            return;
+        Browse.Request(current.Snapshot.Id, (type, instance));
+        Navigation.NavigateTo("browse");
+    }
+}

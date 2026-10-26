@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ElectronicArtsAudioCore | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ElectronicArtsAudioCore | Llama Logic ">
+      
+      <meta name="description" content="Provides methods for dealing with sounds in Electronic Arts&#39; AudioCore format: the  resources of The Sims 4 (a header, followed by its audio if the sound is held in memory) and their  bodies (the audio of a streamed sound)">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_Packages_Formats_ElectronicArtsAudioCore.md&amp;value=---%0Auid%3A%20LlamaLogic.Packages.Formats.ElectronicArtsAudioCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore">
+
+
+
+  <h1 id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore" class="text-break">
+Class ElectronicArtsAudioCore  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.Packages.html">Packages</a>.<a class="xref" href="LlamaLogic.Packages.Formats.html">Formats</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.Packages.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides methods for dealing with sounds in Electronic Arts' AudioCore format: the <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioVocals">AudioVocals</a> resources of The Sims 4 (a header, followed by its audio if the sound is held in memory) and their <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioEffects">AudioEffects</a> bodies (the audio of a streamed sound)</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ElectronicArtsAudioCore</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ElectronicArtsAudioCore</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The rebuilding of EALayer3 into MP3 is adapted from vgmstream (see <code>Formats/Vgmstream/license.txt</code>); unlike vgmstream, it lays the audio out at a constant bitrate with a bit reservoir and adds a gapless playback tag, so that ordinary MP3 decoders play it sample for sample as the game does</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*"></a>
+
+  <h3 id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreMp3_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3)">
+  CreateFromMp3(ElectronicArtsAudioCoreMp3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Makes a sound for The Sims 4 from the MP3s <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_System_ReadOnlyMemory_System_Byte__System_ReadOnlyMemory_System_Byte__">GetMp3(ReadOnlyMemory&lt;byte&gt;, ReadOnlyMemory&lt;byte&gt;)</a> rebuilt from one, without re-encoding them, stored as the original was</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ElectronicArtsAudioCoreSound CreateFromMp3(ElectronicArtsAudioCoreMp3 mp3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mp3</code> <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3.html">ElectronicArtsAudioCoreMp3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound.html">ElectronicArtsAudioCoreSound</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>An MP3 is malformed</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The sound is not one this can make</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*"></a>
+
+  <h3 id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_System_Collections_Generic_IReadOnlyList_System_Collections_Generic_IReadOnlyList_System_ReadOnlyMemory_System_Byte____LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_System_Boolean_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.Collections.Generic.IReadOnlyList{System.Collections.Generic.IReadOnlyList{System.ReadOnlyMemory{System.Byte}}},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)">
+  CreateFromMp3(IReadOnlyList&lt;IReadOnlyList&lt;ReadOnlyMemory&lt;byte&gt;&gt;&gt;, ElectronicArtsAudioCoreStorage, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Makes a sound for The Sims 4 from MP3s, without re-encoding them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ElectronicArtsAudioCoreSound CreateFromMp3(IReadOnlyList&lt;IReadOnlyList&lt;ReadOnlyMemory&lt;byte&gt;&gt;&gt; segments, ElectronicArtsAudioCoreStorage storage, bool isLooping)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;&gt;&gt;</dt>
+    <dd><p>The MP3s of the sound: one segment, or, for a sound that loops from somewhere other than its start, the part before the loop and the loop; each segment's MP3s are layers played together (all stereo, except that the last may be mono), with the same number of frames</p>
+</dd>
+    <dt><code>storage</code> <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html">ElectronicArtsAudioCoreStorage</a></dt>
+    <dd><p>Where the game should find the audio</p>
+</dd>
+    <dt><code>isLooping</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the sound loops (from its start, with one segment; from the start of the second segment, with two)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound.html">ElectronicArtsAudioCoreSound</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p><code class="paramref">segments</code> is empty, has more than two segments, has two without <code class="paramref">isLooping</code>, or has a segment without MP3s</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>An MP3 is malformed, the MP3s disagree about their sample rate, layout or length, or the sound is too long for <code class="paramref">storage</code></p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>An MP3 is not MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), or <code class="paramref">storage</code> is <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Gigasample">Gigasample</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3*"></a>
+
+  <h3 id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_System_Boolean_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.CreateFromMp3(System.ReadOnlyMemory{System.Byte},LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage,System.Boolean)">
+  CreateFromMp3(ReadOnlyMemory&lt;byte&gt;, ElectronicArtsAudioCoreStorage, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs/#L257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Makes a sound for The Sims 4 from an MP3, without re-encoding it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ElectronicArtsAudioCoreSound CreateFromMp3(ReadOnlyMemory&lt;byte&gt; mp3Data, ElectronicArtsAudioCoreStorage storage, bool isLooping = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mp3Data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The MP3: MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), mono or stereo, constant or variable bitrate (not free format)</p>
+</dd>
+    <dt><code>storage</code> <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html">ElectronicArtsAudioCoreStorage</a></dt>
+    <dd><p>Where the game should find the audio: <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Memory">Memory</a> (in the <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioVocals">AudioVocals</a> resource) or <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Stream">Stream</a> (in an <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioEffects">AudioEffects</a> resource with the same instance)</p>
+</dd>
+    <dt><code>isLooping</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the sound loops from its start</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreSound.html">ElectronicArtsAudioCoreSound</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_CreateFromMp3_System_ReadOnlyMemory_System_Byte__LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The sound's length comes from the MP3's gapless playback tag (as LAME and the tools built on it write); an MP3 without one is taken to end where its last frame does.
+The game's sounds begin with 47 samples stored uncompressed, which this writes as silence, so the first millisecond of the MP3 is not heard.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The MP3 is malformed, or its tag declares an encoder delay of less than 576 samples</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The MP3 is not MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), or is free format</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3*"></a>
+
+  <h3 id="LlamaLogic_Packages_Formats_ElectronicArtsAudioCore_GetMp3_System_ReadOnlyMemory_System_Byte__System_ReadOnlyMemory_System_Byte__" data-uid="LlamaLogic.Packages.Formats.ElectronicArtsAudioCore.GetMp3(System.ReadOnlyMemory{System.Byte},System.ReadOnlyMemory{System.Byte})">
+  GetMp3(ReadOnlyMemory&lt;byte&gt;, ReadOnlyMemory&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rebuilds a sound encoded with <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreCodec.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreCodec_ElectronicArtsLayer3Version1">ElectronicArtsLayer3Version1</a> as MP3, without re-encoding it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ElectronicArtsAudioCoreMp3 GetMp3(ReadOnlyMemory&lt;byte&gt; headerData, ReadOnlyMemory&lt;byte&gt; streamData = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>headerData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data of the sound's <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioVocals">AudioVocals</a> resource</p>
+</dd>
+    <dt><code>streamData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data of the sound's <a class="xref" href="LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioEffects">AudioEffects</a> resource, if the sound is streamed</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreMp3.html">ElectronicArtsAudioCoreMp3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>The sound is streamed and <code class="paramref">streamData</code> is empty</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The header or the audio is malformed</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The sound uses another codec or another version of the header (The Sims 4's sounds are version 0), or is stored as a <a class="xref" href="LlamaLogic.Packages.Formats.ElectronicArtsAudioCoreStorage.html#LlamaLogic_Packages_Formats_ElectronicArtsAudioCoreStorage_Gigasample">Gigasample</a></p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.Packages/Formats/ElectronicArtsAudioCore.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

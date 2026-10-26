@@ -1,0 +1,103 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\Common\AppProject.props" />
+
+    <PropertyGroup>
+        <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+        <ApplicationId>com.llamalogic.epictuningtime</ApplicationId>
+        <ApplicationTitle>Epic Tuning Time</ApplicationTitle>
+        <ApplicationVersion>1.0.1</ApplicationVersion>
+        <AssemblyName>LlamaLogic.EpicTuningTime</AssemblyName>
+        <EnableDefaultCssItems>false</EnableDefaultCssItems>
+        <IsPackable>false</IsPackable>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>LlamaLogic.EpicTuningTime</RootNamespace>
+        <SingleProject>true</SingleProject>
+        <UseMaui>true</UseMaui>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+        <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug' and $([MSBuild]::IsOSPlatform('Windows'))">
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+        <WindowsPackageType>None</WindowsPackageType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release' and $([MSBuild]::IsOSPlatform('Windows'))">
+        <AppxPackageResourcePackLanguages>en-us</AppxPackageResourcePackLanguages>
+        <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
+        <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+        <AppxPackageSigningTimestampServerUrl>http://timestamp.sectigo.com</AppxPackageSigningTimestampServerUrl>
+        <AppxSymbolPackageEnabled>true</AppxSymbolPackageEnabled>
+        <GenerateAppInstallerFile>true</GenerateAppInstallerFile>
+        <GenerateTestArtifacts>false</GenerateTestArtifacts>
+        <PackageCertificateThumbprint>094122F38A3B4268F6A3C11E07E18B00046C9E04</PackageCertificateThumbprint>
+        <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+        <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+        <TargetFramework>net10.0-maccatalyst</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug' and $([MSBuild]::IsOSPlatform('OSX'))">
+        <EnableCodeSigning>false</EnableCodeSigning>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release' and $([MSBuild]::IsOSPlatform('OSX'))">
+        <CodesignKey>Developer ID Application: Daniel Henry (UA3C4N249P)</CodesignKey>
+        <EnableCodeSigning>true</EnableCodeSigning>
+        <MtouchLink>none</MtouchLink>
+        <ProvisionType>Manual</ProvisionType>
+        <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
+        <UseHardenedRuntime>true</UseHardenedRuntime>
+        <UseInterpreter>true</UseInterpreter>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>embedded</DebugType>
+        <SelfContained>true</SelfContained>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#2E295B" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2E295B" BaseSize="128,128" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="**/*.sh" />
+        <Compile Remove="AppxPackages\**" />
+        <Content Remove="AppxPackages\**" />
+        <EmbeddedResource Remove="AppxPackages\**" />
+        <MauiXaml Remove="AppxPackages\**" />
+        <None Remove="AppxPackages\**" />
+        <PRIResource Remove="AppxPackages\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="15.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.13" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.110" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.13" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.110" />
+    </ItemGroup>
+
+    <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.298">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LlamaLogic.EpicTuningTime.Components\LlamaLogic.EpicTuningTime.Components.csproj" />
+    </ItemGroup>
+
+</Project>

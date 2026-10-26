@@ -1,0 +1,144 @@
+@inject TuningArchiveSession Session
+
+@if (Entry is null)
+{
+    <div class="ta-empty">@EmptyText</div>
+}
+else if (loading)
+{
+    <MudProgressLinear Indeterminate="true" />
+}
+else if (error is not null)
+{
+    <div class="ta-empty">@error</div>
+}
+else if (imageSource is not null)
+{
+    <div class="ta-media-toolbar">
+        <MudText Typo="Typo.caption" Class="ta-media-caption">@description</MudText>
+        <MudToggleGroup T="string" Value="zoom" ValueChanged="value => zoom = value" Size="Size.Small" Color="Color.Primary">
+            <MudToggleItem Value="@("fit")" Text="Fit" />
+            <MudToggleItem Value="@("1")" Text="100%" />
+            <MudToggleItem Value="@("2")" Text="200%" />
+        </MudToggleGroup>
+    </div>
+    <div class="ta-media-stage @(zoom == "fit" ? "fit" : string.Empty)">
+        <img src="@imageSource" alt="@MediaContent.GetName(Entry)" style="@ImageStyle" />
+    </div>
+}
+else
+{
+    <div class="ta-media-facts">
+        <MudText Typo="Typo.body2">@description</MudText>
+        @if (Entry.Type is ResourceType.AudioVocals or ResourceType.AudioEffects)
+        {
+            <SoundPlayer Entry="Entry" Snapshot="Snapshot" />
+        }
+        @if (samples is { Count: > 0 })
+        {
+            <MudText Typo="Typo.subtitle2" Class="mt-3">Audio it uses</MudText>
+            @foreach (var (sample, sampleDescription) in samples)
+            {
+                <div class="ta-media-sample">
+                    <span class="ta-mono">@Session.GetTypeName(sample.Type) @sample.Instance.ToString("X16", CultureInfo.InvariantCulture)</span>
+                    <span>@sampleDescription</span>
+                    @if (sample.Type is ResourceType.AudioVocals)
+                    {
+                        <SoundPlayer Entry="sample" Snapshot="Snapshot" Compact="true" />
+                    }
+                </div>
+            }
+        }
+        else if (samples is { Count: 0 })
+        {
+            <MudText Typo="Typo.body2" Class="mt-3">This snapshot has none of the audio this configuration uses.</MudText>
+        }
+        <MudText Typo="Typo.caption" Class="mt-3">@Note</MudText>
+    </div>
+}
+
+@code {
+    TuningArchiveEntry? loadedEntry;
+    bool loading;
+    string? error;
+    string? imageSource;
+    string description = string.Empty;
+    (int width, int height)? size;
+    List<(TuningArchiveEntry entry, string description)>? samples;
+    string zoom = "fit";
+
+    [Parameter]
+    public string EmptyText { get; set; } = "Nothing to show.";
+
+    [Parameter]
+    public TuningArchiveEntry? Entry { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    string ImageStyle =>
+        size is not { } dimensions
+            ? string.Empty
+            : zoom == "fit"
+            ? $"max-width: min(100%, {dimensions.width * 4}px); max-height: min(100%, {dimensions.height * 4}px)"
+            : $"width: {dimensions.width * int.Parse(zoom, CultureInfo.InvariantCulture)}px; height: {dimensions.height * int.Parse(zoom, CultureInfo.InvariantCulture)}px";
+
+    string Note =>
+        Entry?.Kind is TuningArchiveResourceKind.Video
+            ? "Videos can't be played here yet; export the original and open it with a player that reads EA VP6 (such as VLC)."
+            : Entry?.Type is ResourceType.AudioConfiguration
+            ? "Play the audio this configuration uses above; export a piece of audio as MP3 from its own page."
+            : "Export the sound as MP3 to use it elsewhere, or as the game stores it.";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ReferenceEquals(loadedEntry, Entry))
+            return;
+        loadedEntry = Entry;
+        error = null;
+        imageSource = null;
+        description = string.Empty;
+        size = null;
+        samples = null;
+        if (Entry is not { } entry || Session.Archive is not { } archive)
+            return;
+        loading = true;
+        StateHasChanged();
+        try
+        {
+            var snapshot = Snapshot;
+            var (source, text, dimensions, found) = await Task.Run(() =>
+            {
+                var content = archive.GetContent(entry);
+                switch (entry.Kind)
+                {
+                    case TuningArchiveResourceKind.Image:
+                        var (png, imageDescription) = MediaContent.DecodeImage(content);
+                        return ($"data:image/png;base64,{Convert.ToBase64String(png)}", imageDescription, ((int, int)?)(BinaryPrimitives.ReadInt32BigEndian(png.AsSpan(16)), BinaryPrimitives.ReadInt32BigEndian(png.AsSpan(20))), (List<(TuningArchiveEntry, string)>?)null);
+                    case TuningArchiveResourceKind.Video:
+                        return (null, MediaContent.DescribeVideo(content), null, null);
+                    default:
+                        if (entry.Type is not ResourceType.AudioConfiguration || snapshot is null)
+                            return (null, MediaContent.DescribeAudio(entry, content), null, null);
+                        var used = archive.GetSoundSamples(snapshot, entry).Select(sample => (sample, MediaContent.DescribeAudio(sample, archive.GetContent(sample)))).ToList();
+                        return ((string?)null, $"Audio configuration · {MediaContent.FormatBytes(content.Length)}", ((int, int)?)null, (List<(TuningArchiveEntry, string)>?)used);
+                }
+            });
+            if (!ReferenceEquals(loadedEntry, entry))
+                return;
+            imageSource = source;
+            description = text;
+            size = dimensions;
+            samples = found;
+        }
+        catch (InvalidDataException ex)
+        {
+            error = $"This image couldn't be decoded ({ex.Message}).";
+        }
+        finally
+        {
+            if (ReferenceEquals(loadedEntry, Entry))
+                loading = false;
+        }
+    }
+}

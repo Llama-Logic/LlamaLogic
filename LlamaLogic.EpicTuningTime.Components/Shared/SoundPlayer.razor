@@ -1,0 +1,195 @@
+@inject TuningArchiveSession Session
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+@if (problem is not null)
+{
+    <MudText Typo="Typo.caption" Class="ta-sound-problem">@problem</MudText>
+}
+else if (header is not null)
+{
+    <div class="ta-sound @(Compact ? "compact" : string.Empty)" @ref="element">
+        <MudIconButton Icon="@(loading ? Icons.Material.Filled.HourglassEmpty : playing ? Icons.Material.Filled.Pause : Icons.Material.Filled.PlayArrow)" Size="Size.Small" Color="Color.Primary" Disabled="loading" OnClick="ToggleAsync" aria-label="@(playing ? "Pause" : "Play")" />
+        <div class="ta-sound-track" title="Click to move the playhead"><div class="ta-sound-fill"></div></div>
+        <span class="ta-sound-time ta-mono"></span>
+        @if (!Compact && header.LoopStartSample is not null)
+        {
+            <MudSwitch T="bool" Value="loop" ValueChanged="SetLoopAsync" Label="Loop" Size="Size.Small" Color="Color.Primary" />
+        }
+    </div>
+    @if (!Compact && layerCount > 1)
+    {
+        <div class="ta-sound-layers">
+            <MudText Typo="Typo.caption">This sound is @header.ChannelCount channels the game plays together in @layerCount layers:</MudText>
+            @for (var layer = 0; layer < layerCount; ++layer)
+            {
+                var index = layer;
+                <MudChip T="string" Size="Size.Small" Variant="@(audibleLayers[index] ? Variant.Filled : Variant.Outlined)" Color="Color.Primary" OnClick="() => ToggleLayerAsync(index)">Layer @(index + 1)</MudChip>
+            }
+        </div>
+    }
+}
+
+@code {
+    ElementReference element;
+    TuningArchiveEntry? loadedEntry;
+    ElectronicArtsAudioCoreHeader? header;
+    string? problem;
+    int layerCount;
+    bool[] audibleLayers = [];
+    bool loop;
+    bool loading;
+    bool loaded;
+    bool playing;
+    bool created;
+    bool needsCreate;
+    DotNetObjectReference<SoundPlayer>? reference;
+
+    [Parameter]
+    public bool Compact { get; set; }
+
+    [Parameter]
+    public TuningArchiveEntry? Entry { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    async Task DisposePlayerAsync()
+    {
+        if (!created)
+            return;
+        created = false;
+        try
+        {
+            await JS.InvokeVoidAsync("epicTuningTime.soundDispose", element);
+        }
+        catch (Exception ex) when (ex is JSDisconnectedException or TaskCanceledException or ObjectDisposedException)
+        {
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DisposePlayerAsync();
+        reference?.Dispose();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!needsCreate || header is null)
+            return;
+        needsCreate = false;
+        reference ??= DotNetObjectReference.Create(this);
+        var durations = header.LoopStartSample is int loopStart and > 0
+            ? new[] { (double)loopStart / header.SampleRate, (double)(header.SampleCount - loopStart) / header.SampleRate }
+            : new[] { (double)header.SampleCount / header.SampleRate };
+        await JS.InvokeVoidAsync("epicTuningTime.soundCreate", element, reference, durations, layerCount, loop);
+        created = true;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ReferenceEquals(loadedEntry, Entry))
+            return;
+        await DisposePlayerAsync();
+        loadedEntry = Entry;
+        header = null;
+        problem = null;
+        loaded = false;
+        loading = false;
+        playing = false;
+        if (Entry is not { } entry || Snapshot is not { } snapshot || Session.Archive is not { } archive)
+            return;
+        var (found, text) = await Task.Run(() =>
+        {
+            var (headerEntry, _, reason) = MediaContent.FindSound(archive, snapshot, entry);
+            if (reason is not null)
+                return ((ElectronicArtsAudioCoreHeader?)null, reason);
+            try
+            {
+                var read = ElectronicArtsAudioCoreHeader.Read(archive.GetContent(headerEntry!));
+                return read.Codec is ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1
+                    ? (read, (string?)null)
+                    : (null, $"Sounds encoded with {read.Codec} can't be played here.");
+            }
+            catch (InvalidDataException ex)
+            {
+                return (null, $"This sound's header couldn't be read ({ex.Message}).");
+            }
+        });
+        if (!ReferenceEquals(loadedEntry, entry))
+            return;
+        header = found;
+        problem = text;
+        if (header is null)
+            return;
+        layerCount = (header.ChannelCount + 1) / 2;
+        audibleLayers = Enumerable.Repeat(true, layerCount).ToArray();
+        loop = header.LoopStartSample is not null;
+        needsCreate = true;
+    }
+
+    [JSInvokable]
+    public void OnSoundEnded()
+    {
+        playing = false;
+        StateHasChanged();
+    }
+
+    async Task SetLoopAsync(bool value)
+    {
+        loop = value;
+        if (created)
+            await JS.InvokeVoidAsync("epicTuningTime.soundSetLoop", element, loop);
+    }
+
+    async Task ToggleAsync()
+    {
+        if (!created || Entry is not { } entry || Snapshot is not { } snapshot || Session.Archive is not { } archive)
+            return;
+        if (playing)
+        {
+            await JS.InvokeVoidAsync("epicTuningTime.soundStop", element);
+            playing = false;
+            return;
+        }
+        if (!loaded)
+        {
+            loading = true;
+            StateHasChanged();
+            try
+            {
+                var mp3 = await Task.Run(() => MediaContent.GetMp3(archive, snapshot, entry));
+                if (!ReferenceEquals(loadedEntry, entry))
+                    return;
+                for (var segment = 0; segment < mp3.Segments.Count; ++segment)
+                    for (var layer = 0; layer < mp3.Segments[segment].Layers.Count; ++layer)
+                    {
+                        using var stream = new MemoryStream(mp3.Segments[segment].Layers[layer].ToArray(), false);
+                        using var streamReference = new DotNetStreamReference(stream);
+                        await JS.InvokeVoidAsync("epicTuningTime.soundAddPart", element, segment, layer, streamReference);
+                    }
+                loaded = true;
+            }
+            catch (Exception ex) when (ex is InvalidDataException or NotSupportedException or JSException)
+            {
+                await DisposePlayerAsync();
+                problem = $"This sound couldn't be played ({ex.Message}).";
+                return;
+            }
+            finally
+            {
+                loading = false;
+            }
+        }
+        await JS.InvokeVoidAsync("epicTuningTime.soundPlay", element);
+        playing = true;
+    }
+
+    async Task ToggleLayerAsync(int layer)
+    {
+        audibleLayers[layer] = !audibleLayers[layer];
+        if (created)
+            await JS.InvokeVoidAsync("epicTuningTime.soundSetLayer", element, layer, audibleLayers[layer]);
+    }
+}
