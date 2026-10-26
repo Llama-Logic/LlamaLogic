@@ -300,6 +300,27 @@ public class DataBasePackedFileTests :
     }
 
     [TestMethod]
+    public async Task GetDdsAsPngAsyncReturnsPngStoredUnderPngImageType()
+    {
+        var key = new ResourceKey(ResourceType.PNGImage, 0, 1);
+        var pngData = EncodeQuadrantsPng(8);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, pngData, CompressionMode.ForceOff);
+        CollectionAssert.AreEqual(pngData, (await dbpf.GetDdsAsPngAsync(key)).ToArray());
+    }
+
+    [TestMethod]
+    public void GetDdsAsPngPrefersDstToPngImageType()
+    {
+        var key = new ResourceKey(ResourceType.PNGImage, 0, 1);
+        var pngData = EncodeQuadrantsPng(8);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.SetPngAsDds(new ResourceKey(ResourceType.DSTImage, 0, 1), pngData);
+        dbpf.Set(key, EncodeNoiseAlphaPng(8), CompressionMode.ForceOff);
+        CollectionAssert.AreEqual(DecodeRgba(pngData), DecodeRgba(dbpf.GetDdsAsPng(key)));
+    }
+
+    [TestMethod]
     public void GetDdsAsPngRejectsExcessiveMipMapCounts()
     {
         var key = new ResourceKey(ResourceType.DSTImage, 0, 1);
@@ -315,6 +336,23 @@ public class DataBasePackedFileTests :
         using var dbpf = new DataBasePackedFile();
         dbpf.Set(key, CreateOversizedDds(), CompressionMode.ForceOff);
         Assert.ThrowsExactly<InvalidDataException>(() => dbpf.GetDdsAsPng(key));
+    }
+
+    [TestMethod]
+    public void GetDdsAsPngReturnsPngStoredUnderPngImageType()
+    {
+        var key = new ResourceKey(ResourceType.PNGImage, 0, 1);
+        var pngData = EncodeQuadrantsPng(8);
+        using var dbpf = new DataBasePackedFile();
+        dbpf.Set(key, pngData, CompressionMode.ForceOff);
+        CollectionAssert.AreEqual(pngData, dbpf.GetDdsAsPng(key).ToArray());
+    }
+
+    [TestMethod]
+    public void GetDdsAsPngThrowsWhenNeitherKeyExists()
+    {
+        using var dbpf = new DataBasePackedFile();
+        Assert.ThrowsExactly<KeyNotFoundException>(() => dbpf.GetDdsAsPng(new ResourceKey(ResourceType.PNGImage, 0, 1)));
     }
 
     [TestMethod]

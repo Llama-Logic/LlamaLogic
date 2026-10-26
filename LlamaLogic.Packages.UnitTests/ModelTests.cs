@@ -20,6 +20,14 @@ public class ModelTests :
     }
 
     [TestMethod]
+    public void DecodeUsesTheModelForAnimationStateMachines() =>
+        Assert.IsInstanceOfType<AnimationStateMachineModel>(Model.Decode(ResourceType.AnimationStateMachine, "<ASM name=\"a\" />"u8.ToArray()));
+
+    [TestMethod]
+    public void DecodeUsesTheModelForAudioConfigurations() =>
+        Assert.IsInstanceOfType<AudioConfigurationModel>(Model.Decode(ResourceType.AudioConfiguration, new AudioConfigurationModel().Encode()));
+
+    [TestMethod]
     public async Task GetModelAsyncDecodesWithTheModelForTheType()
     {
         await using var dbpf = await DataBasePackedFile.FromPathAsync(tempPackagePath);
@@ -50,6 +58,8 @@ public class ModelTests :
     }
 
     [TestMethod]
+    [DataRow(ResourceType.AnimationStateMachine, typeof(AnimationStateMachineModel))]
+    [DataRow(ResourceType.AudioConfiguration, typeof(AudioConfigurationModel))]
     [DataRow(ResourceType.CombinedTuning, typeof(CombinedTuningModel))]
     [DataRow(ResourceType.SimData, typeof(SimDataModel))]
     [DataRow(ResourceType.StringTable, typeof(StringTableModel))]

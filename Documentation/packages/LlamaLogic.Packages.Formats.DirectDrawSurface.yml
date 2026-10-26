@@ -9,6 +9,7 @@ items:
   - LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngDataAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
   - LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsData(System.ReadOnlyMemory{System.Byte})
   - LlamaLogic.Packages.Formats.DirectDrawSurface.GetPngDataFromDdsDataAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  - LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData(System.ReadOnlyMemory{System.Byte})
   langs:
   - csharp
   - vb
@@ -213,6 +214,47 @@ items:
   nameWithType.vb: DirectDrawSurface.GetDstDataFromPngDataAsync(ReadOnlyMemory(Of Byte), CancellationToken)
   fullName.vb: LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngDataAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
   name.vb: GetDstDataFromPngDataAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+- uid: LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData(System.ReadOnlyMemory{System.Byte})
+  commentId: M:LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData(System.ReadOnlyMemory{System.Byte})
+  id: GetUnshuffledDdsData(System.ReadOnlyMemory{System.Byte})
+  parent: LlamaLogic.Packages.Formats.DirectDrawSurface
+  langs:
+  - csharp
+  - vb
+  name: GetUnshuffledDdsData(ReadOnlyMemory<byte>)
+  nameWithType: DirectDrawSurface.GetUnshuffledDdsData(ReadOnlyMemory<byte>)
+  fullName: LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData(System.ReadOnlyMemory<byte>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.Packages/Formats/DirectDrawSurface.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetUnshuffledDdsData
+    path: ../LlamaLogic.Packages/Formats/DirectDrawSurface.cs
+    startLine: 79
+  assemblies:
+  - LlamaLogic.Packages
+  namespace: LlamaLogic.Packages.Formats
+  summary: Gets a DirectDraw Surface the way other tools expect it, unshuffling it if it is shuffled the way The Sims 4 stores images (<xref href="LlamaLogic.Packages.ResourceType.DSTImage" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public static ReadOnlyMemory<byte> GetUnshuffledDdsData(ReadOnlyMemory<byte> ddsData)
+    parameters:
+    - id: ddsData
+      type: System.ReadOnlyMemory{System.Byte}
+      description: The data of a DirectDraw Surface, shuffled or not
+    return:
+      type: System.ReadOnlyMemory{System.Byte}
+    content.vb: Public Shared Function GetUnshuffledDdsData(ddsData As ReadOnlyMemory(Of Byte)) As ReadOnlyMemory(Of Byte)
+  overload: LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: <code class="paramref">ddsData</code> is not a DirectDraw Surface
+  nameWithType.vb: DirectDrawSurface.GetUnshuffledDdsData(ReadOnlyMemory(Of Byte))
+  fullName.vb: LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData(System.ReadOnlyMemory(Of Byte))
+  name.vb: GetUnshuffledDdsData(ReadOnlyMemory(Of Byte))
 references:
 - uid: LlamaLogic.Packages.Formats
   commentId: N:LlamaLogic.Packages.Formats
@@ -717,3 +759,15 @@ references:
   name: GetDstDataFromPngDataAsync
   nameWithType: DirectDrawSurface.GetDstDataFromPngDataAsync
   fullName: LlamaLogic.Packages.Formats.DirectDrawSurface.GetDstDataFromPngDataAsync
+- uid: LlamaLogic.Packages.ResourceType.DSTImage
+  commentId: F:LlamaLogic.Packages.ResourceType.DSTImage
+  href: LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_DSTImage
+  name: DSTImage
+  nameWithType: ResourceType.DSTImage
+  fullName: LlamaLogic.Packages.ResourceType.DSTImage
+- uid: LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData*
+  commentId: Overload:LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData
+  href: LlamaLogic.Packages.Formats.DirectDrawSurface.html#LlamaLogic_Packages_Formats_DirectDrawSurface_GetUnshuffledDdsData_System_ReadOnlyMemory_System_Byte__
+  name: GetUnshuffledDdsData
+  nameWithType: DirectDrawSurface.GetUnshuffledDdsData
+  fullName: LlamaLogic.Packages.Formats.DirectDrawSurface.GetUnshuffledDdsData

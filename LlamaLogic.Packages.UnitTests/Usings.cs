@@ -1,6 +1,8 @@
 global using LlamaLogic.Packages.Cryptography;
 global using LlamaLogic.Packages.Formats;
 global using LlamaLogic.Packages.Models;
+global using LlamaLogic.Packages.Models.AnimationStateMachine;
+global using LlamaLogic.Packages.Models.AudioConfiguration;
 global using LlamaLogic.Packages.Models.CombinedTuning;
 global using LlamaLogic.Packages.Models.ModFileManifest;
 global using LlamaLogic.Packages.Models.SimData;
@@ -12,6 +14,7 @@ global using System;
 global using System.Buffers.Binary;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
+global using System.Collections.ObjectModel;
 global using System.Globalization;
 global using System.IO;
 global using System.Linq;
