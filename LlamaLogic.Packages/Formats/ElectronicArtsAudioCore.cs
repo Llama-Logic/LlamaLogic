@@ -9,9 +9,14 @@ namespace LlamaLogic.Packages.Formats;
 public static class ElectronicArtsAudioCore
 {
     const int blockHeaderSize = 8;
+    const int decoderDelay = 529;
     const int encoderDelay = 576;
     const byte lastBlockFlag = 0x80;
+    const int maximumBlockSize = 0xffffff;
     const int maximumPadding = 0xfff;
+    const int maximumSampleCount = 0x1fffffff;
+    const int streamAlignment = 64;
+    const int uncompressedSampleCount = 47;
 
     static readonly ushort[] crcTable = CreateCrcTable();
 
@@ -189,11 +194,19 @@ public static class ElectronicArtsAudioCore
         if (header.Storage is ElectronicArtsAudioCoreStorage.Stream && streamData.IsEmpty)
             throw new ArgumentException("A streamed sound cannot be rebuilt without its body", nameof(streamData));
         var data = header.Storage is ElectronicArtsAudioCoreStorage.Memory ? headerData[header.Size..] : streamData;
-        var blocks = ReadBlocks(data.Span);
+        var blocks = ReadBlocks(data.Span, 0);
         var splitBlock = blocks.Count;
         if (header.LoopStartSample is > 0)
         {
-            splitBlock = header.Storage is ElectronicArtsAudioCoreStorage.Memory ? 1 : blocks.FindIndex(block => block.offset == header.LoopOffset);
+            if (header.Storage is ElectronicArtsAudioCoreStorage.Memory)
+                splitBlock = 1;
+            else
+            {
+                var introEnd = blocks[^1].start + blocks[^1].length;
+                if (header.LoopOffset is not { } loopOffset || loopOffset < introEnd || loopOffset >= data.Length)
+                    throw new InvalidDataException($"The sound's loop offset of {header.LoopOffset} does not follow the blocks before its loop, which end at {introEnd}");
+                blocks.AddRange(ReadBlocks(data.Span, loopOffset));
+            }
             if (splitBlock < 1 || splitBlock >= blocks.Count)
                 throw new InvalidDataException("The block where the sound's loop starts could not be found");
         }
@@ -229,6 +242,184 @@ public static class ElectronicArtsAudioCore
         return new(header, segments.AsReadOnly());
     }
 
+    /// <summary>
+    /// Makes a sound for The Sims 4 from an MP3, without re-encoding it
+    /// </summary>
+    /// <param name="mp3Data">The MP3: MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), mono or stereo, constant or variable bitrate (not free format)</param>
+    /// <param name="storage">Where the game should find the audio: <see cref="ElectronicArtsAudioCoreStorage.Memory"/> (in the <see cref="ResourceType.AudioVocals"/> resource) or <see cref="ElectronicArtsAudioCoreStorage.Stream"/> (in an <see cref="ResourceType.AudioEffects"/> resource with the same instance)</param>
+    /// <param name="isLooping">Whether the sound loops from its start</param>
+    /// <remarks>
+    /// The sound's length comes from the MP3's gapless playback tag (as LAME and the tools built on it write); an MP3 without one is taken to end where its last frame does.
+    /// The game's sounds begin with 47 samples stored uncompressed, which this writes as silence, so the first millisecond of the MP3 is not heard.
+    /// </remarks>
+    /// <exception cref="InvalidDataException">The MP3 is malformed, or its tag declares an encoder delay of less than 576 samples</exception>
+    /// <exception cref="NotSupportedException">The MP3 is not MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), or is free format</exception>
+    public static ElectronicArtsAudioCoreSound CreateFromMp3(ReadOnlyMemory<byte> mp3Data, ElectronicArtsAudioCoreStorage storage, bool isLooping = false) =>
+        CreateFromMp3([[mp3Data]], storage, isLooping);
+
+    /// <summary>
+    /// Makes a sound for The Sims 4 from the MP3s <see cref="GetMp3"/> rebuilt from one, without re-encoding them, stored as the original was
+    /// </summary>
+    /// <exception cref="InvalidDataException">An MP3 is malformed</exception>
+    /// <exception cref="NotSupportedException">The sound is not one this can make</exception>
+    public static ElectronicArtsAudioCoreSound CreateFromMp3(ElectronicArtsAudioCoreMp3 mp3)
+    {
+        ArgumentNullException.ThrowIfNull(mp3);
+        return CreateFromMp3(mp3.Segments.Select(segment => segment.Layers).ToList(), mp3.Header.Storage, mp3.Header.LoopStartSample is not null);
+    }
+
+    /// <summary>
+    /// Makes a sound for The Sims 4 from MP3s, without re-encoding them
+    /// </summary>
+    /// <param name="segments">The MP3s of the sound: one segment, or, for a sound that loops from somewhere other than its start, the part before the loop and the loop; each segment's MP3s are layers played together (all stereo, except that the last may be mono), with the same number of frames</param>
+    /// <param name="storage">Where the game should find the audio</param>
+    /// <param name="isLooping">Whether the sound loops (from its start, with one segment; from the start of the second segment, with two)</param>
+    /// <exception cref="ArgumentException"><paramref name="segments"/> is empty, has more than two segments, has two without <paramref name="isLooping"/>, or has a segment without MP3s</exception>
+    /// <exception cref="InvalidDataException">An MP3 is malformed, the MP3s disagree about their sample rate, layout or length, or the sound is too long for <paramref name="storage"/></exception>
+    /// <exception cref="NotSupportedException">An MP3 is not MPEG-1 Layer III (32,000, 44,100 or 48,000 Hz), or <paramref name="storage"/> is <see cref="ElectronicArtsAudioCoreStorage.Gigasample"/></exception>
+    public static ElectronicArtsAudioCoreSound CreateFromMp3(IReadOnlyList<IReadOnlyList<ReadOnlyMemory<byte>>> segments, ElectronicArtsAudioCoreStorage storage, bool isLooping)
+    {
+        ArgumentNullException.ThrowIfNull(segments);
+        if (segments.Count is 0 or > 2 || segments.Any(segment => segment is null || segment.Count is 0))
+            throw new ArgumentException("A sound has one or two segments, each with at least one MP3", nameof(segments));
+        if (segments.Count is 2 && !isLooping)
+            throw new ArgumentException("A sound has two segments only if it loops from the start of the second", nameof(segments));
+        if (storage is not (ElectronicArtsAudioCoreStorage.Memory or ElectronicArtsAudioCoreStorage.Stream))
+            throw new NotSupportedException($"Sounds stored as {storage} cannot be made");
+        var streams = segments.Select(segment => segment.Select(mp3 => MpegAudioLayer3Reader.Read(mp3.Span)).ToList()).ToList();
+        var sampleRate = streams[0][0].SampleRate;
+        var layerChannelCounts = streams[0].Select(layer => layer.ChannelCount).ToList();
+        var channelCount = layerChannelCounts.Sum();
+        if (layerChannelCounts.Take(layerChannelCounts.Count - 1).Any(count => count is not 2))
+            throw new InvalidDataException("Every layer but the last must be stereo");
+        var segmentSampleCounts = new List<int>();
+        foreach (var layers in streams)
+        {
+            if (layers.Any(layer => layer.SampleRate != sampleRate))
+                throw new InvalidDataException("The MP3s have different sample rates");
+            if (!layers.Select(layer => layer.ChannelCount).SequenceEqual(layerChannelCounts))
+                throw new InvalidDataException("The segments' layers have different numbers of channels");
+            if (layers.Any(layer => layer.Granules.Count != layers[0].Granules.Count))
+                throw new InvalidDataException("The layers of a segment have different numbers of frames");
+            var sampleCounts = layers.Select(GetSampleCount).Distinct().ToList();
+            if (sampleCounts.Count is not 1)
+                throw new InvalidDataException("The layers of a segment have different lengths");
+            segmentSampleCounts.Add(sampleCounts[0]);
+        }
+        var sampleCount = segmentSampleCounts.Sum(count => (long)count);
+        if (sampleCount > maximumSampleCount)
+            throw new InvalidDataException($"{sampleCount} samples are too many for a sound");
+        var header = new List<byte>();
+        void AddUInt32(List<byte> destination, uint value)
+        {
+            destination.Add((byte)(value >> 24));
+            destination.Add((byte)(value >> 16));
+            destination.Add((byte)(value >> 8));
+            destination.Add((byte)value);
+        }
+        AddUInt32(header, ((uint)ElectronicArtsAudioCoreCodec.ElectronicArtsLayer3Version1 << 24) | ((uint)(channelCount - 1) << 18) | (uint)sampleRate);
+        AddUInt32(header, ((uint)storage << 30) | (isLooping ? 0x20000000u : 0) | (uint)sampleCount);
+        if (isLooping)
+            AddUInt32(header, segments.Count is 2 ? (uint)segmentSampleCounts[0] : 0);
+        var loopOffsetPosition = header.Count;
+        if (isLooping && storage is ElectronicArtsAudioCoreStorage.Stream)
+            AddUInt32(header, 0);
+        var writer = new ElectronicArtsLayer3BitWriter();
+        var audio = new List<byte>();
+        for (var segment = 0; segment < streams.Count; ++segment)
+        {
+            if (segment is 1 && storage is ElectronicArtsAudioCoreStorage.Stream)
+            {
+                var loopOffset = audio.Count;
+                header[loopOffsetPosition] = (byte)(loopOffset >> 24);
+                header[loopOffsetPosition + 1] = (byte)(loopOffset >> 16);
+                header[loopOffsetPosition + 2] = (byte)(loopOffset >> 8);
+                header[loopOffsetPosition + 3] = (byte)loopOffset;
+            }
+            var layers = streams[segment];
+            var granuleCount = layers[0].Granules.Count;
+            if (storage is ElectronicArtsAudioCoreStorage.Memory)
+            {
+                var payload = new List<byte>();
+                for (var granule = 0; granule < granuleCount; ++granule)
+                    foreach (var layer in layers)
+                        WriteFrame(payload, writer, layer.MainData, layer.Granules[granule], granule is 1);
+                if (blockHeaderSize + payload.Count > maximumBlockSize)
+                    throw new InvalidDataException("The sound is too long to be held in memory; stream it");
+                AddUInt32(audio, (uint)(blockHeaderSize + payload.Count));
+                AddUInt32(audio, (uint)segmentSampleCounts[segment]);
+                audio.AddRange(payload);
+                continue;
+            }
+            var pairCount = Math.Min(granuleCount / 2, (segmentSampleCounts[segment] + encoderDelay + decoderDelay + 1151) / 1152);
+            var written = 0;
+            for (var pair = 0; pair < pairCount; ++pair)
+            {
+                var payload = new List<byte>();
+                for (var granule = pair * 2; granule < (pair == pairCount - 1 ? granuleCount : pair * 2 + 2); ++granule)
+                    foreach (var layer in layers)
+                        WriteFrame(payload, writer, layer.MainData, layer.Granules[granule], granule is 1);
+                var isLast = pair == pairCount - 1;
+                var blockSampleCount = isLast ? segmentSampleCounts[segment] - written : Math.Min(1152 * (pair + 1) - encoderDelay - decoderDelay, segmentSampleCounts[segment]) - written;
+                written += blockSampleCount;
+                if (isLast)
+                {
+                    var length = audio.Count + blockHeaderSize + payload.Count;
+                    payload.AddRange(new byte[(streamAlignment - length % streamAlignment) % streamAlignment]);
+                }
+                AddUInt32(audio, (isLast ? (uint)lastBlockFlag << 24 : 0) | (uint)(blockHeaderSize + payload.Count));
+                AddUInt32(audio, (uint)blockSampleCount);
+                audio.AddRange(payload);
+            }
+        }
+        var audioVocalsData = storage is ElectronicArtsAudioCoreStorage.Memory ? [.. header, .. audio] : header.ToArray();
+        var audioEffectsData = storage is ElectronicArtsAudioCoreStorage.Stream ? audio.ToArray() : [];
+        return new(ElectronicArtsAudioCoreHeader.Read(audioVocalsData), audioVocalsData, audioEffectsData);
+    }
+
+    static int GetSampleCount(MpegAudioLayer3Stream stream)
+    {
+        var decodedSampleCount = stream.Granules.Count / 2 * 1152;
+        if (stream.EncoderDelay is not { } delay || stream.Padding is not { } padding)
+            return Math.Max(0, decodedSampleCount - encoderDelay - decoderDelay);
+        if (delay < encoderDelay)
+            throw new InvalidDataException($"The MP3's encoder delay of {delay} samples is less than the {encoderDelay} The Sims 4 skips, so its start would be lost");
+        var sampleCount = decodedSampleCount - encoderDelay - padding;
+        if (sampleCount <= 0)
+            throw new InvalidDataException("The MP3's gapless playback tag leaves it no samples");
+        return sampleCount;
+    }
+
+    static void WriteFrame(List<byte> destination, ElectronicArtsLayer3BitWriter writer, byte[] mainData, ElectronicArtsLayer3Frame granule, bool hasUncompressedBlock)
+    {
+        writer.Reset();
+        writer.Write(2, (uint)granule.VersionIndex);
+        writer.Write(2, (uint)granule.SampleRateIndex);
+        writer.Write(2, (uint)granule.ChannelMode);
+        writer.Write(2, (uint)granule.ModeExtension);
+        writer.Write(1, (uint)granule.GranuleIndex);
+        if (granule.GranuleIndex is 1)
+            for (var channel = 0; channel < granule.ChannelCount; ++channel)
+                writer.Write(4, granule.ScaleFactorSelection[channel]);
+        for (var channel = 0; channel < granule.ChannelCount; ++channel)
+        {
+            writer.Write(12, (uint)granule.MainDataBitCount[channel]);
+            writer.Write(32, granule.OthersHigh[channel]);
+            writer.Write(15, granule.OthersLow[channel]);
+        }
+        var reader = new ElectronicArtsLayer3BitReader(mainData, granule.DataBitOffset);
+        for (var channel = 0; channel < granule.ChannelCount; ++channel)
+            writer.Copy(ref reader, granule.MainDataBitCount[channel]);
+        writer.Align();
+        destination.Add(hasUncompressedBlock ? (byte)0xee : (byte)0);
+        foreach (var value in writer.GetWrittenBytes())
+            destination.Add(value);
+        if (!hasUncompressedBlock)
+            return;
+        destination.AddRange([0, 0, 0, uncompressedSampleCount, 0, 0, 0, 0]);
+        destination.AddRange(new byte[2 * uncompressedSampleCount * granule.ChannelCount]);
+    }
+
     static bool IsZero(ReadOnlySpan<byte> data)
     {
         foreach (var value in data)
@@ -237,10 +428,9 @@ public static class ElectronicArtsAudioCore
         return true;
     }
 
-    static List<(int offset, int start, int length)> ReadBlocks(ReadOnlySpan<byte> data)
+    static List<(int offset, int start, int length)> ReadBlocks(ReadOnlySpan<byte> data, int offset)
     {
         var blocks = new List<(int offset, int start, int length)>();
-        var offset = 0;
         while (offset + blockHeaderSize <= data.Length)
         {
             var flag = data[offset];

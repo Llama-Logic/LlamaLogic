@@ -18,6 +18,7 @@ public abstract class Model :
         type switch
         {
             ResourceType animationStateMachineResourceType when AnimationStateMachineModel.SupportedTypes.Contains(animationStateMachineResourceType) => AnimationStateMachineModel.Decode(data),
+            ResourceType audioConfigurationResourceType when AudioConfigurationModel.SupportedTypes.Contains(audioConfigurationResourceType) => AudioConfigurationModel.Decode(data),
             ResourceType combinedTuningResourceType when CombinedTuningModel.SupportedTypes.Contains(combinedTuningResourceType) => CombinedTuningModel.Decode(data),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => SimDataModel.Decode(data),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => StringTableModel.Decode(data),
@@ -37,6 +38,7 @@ public abstract class Model :
         type switch
         {
             ResourceType animationStateMachineResourceType when AnimationStateMachineModel.SupportedTypes.Contains(animationStateMachineResourceType) => typeof(AnimationStateMachineModel),
+            ResourceType audioConfigurationResourceType when AudioConfigurationModel.SupportedTypes.Contains(audioConfigurationResourceType) => typeof(AudioConfigurationModel),
             ResourceType combinedTuningResourceType when CombinedTuningModel.SupportedTypes.Contains(combinedTuningResourceType) => typeof(CombinedTuningModel),
             ResourceType simDataResourceType when SimDataModel.SupportedTypes.Contains(simDataResourceType) => typeof(SimDataModel),
             ResourceType stringTableResourceType when StringTableModel.SupportedTypes.Contains(stringTableResourceType) => typeof(StringTableModel),
