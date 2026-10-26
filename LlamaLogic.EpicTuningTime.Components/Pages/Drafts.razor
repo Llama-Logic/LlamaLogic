@@ -54,7 +54,7 @@
                                     <MudButton Size="Size.Small" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Save" Disabled="preparing || !SnapshotDrafts.Any(candidate => candidate.HasChanges)" OnClick="SaveOverridesAsync" title="Saves every changed tuning in this snapshot, and the SimData the changes reach, named for Sims 4 Studio's batch import">@(preparing ? "Preparing…" : "Save for Sims 4 Studio")</MudButton>
                                 </MudStack>
                             </div>
-                            <DiffView @ref="diffView" ViewState="State.Diff" ViewStateKey="@($"{draft.Snapshot.Id}:{draft.Entry.Key}")" Original="@draft.OriginalText" Modified="@draft.Text" OriginalAnnotations="@(ReferenceEquals(diffAnnotatedText, draft.Text) ? diffOriginalAnnotations?.annotations : null)" ModifiedAnnotations="@(ReferenceEquals(diffAnnotatedText, draft.Text) ? diffModifiedAnnotations?.annotations : null)" AnnotationActivated="OnDiffAnnotationActivated" />
+                            <DiffView @ref="diffView" ViewState="State.Diff" ViewStateKey="@($"{draft.Snapshot.Id}:{draft.Entry.Key}")" Original="@draft.OriginalText" Modified="@draft.Text" OriginalAnnotations="@(ReferenceEquals(diffAnnotatedText, draft.Text) ? diffOriginalAnnotations?.annotations : null)" ModifiedAnnotations="@(ReferenceEquals(diffAnnotatedText, draft.Text) ? diffModifiedAnnotations?.annotations : null)" AnnotationActivated="OnDiffAnnotationActivated" ModifiedCursorLineChanged="OnDiffCursorLineChanged" />
                         </MudTabPanel>
                         @foreach (var output in outputs)
                         {
@@ -109,6 +109,7 @@
     IReadOnlyList<PropertyNode>? roots;
     PropertyNode? selectedNode;
     PropertyPanel? panel;
+    readonly Dictionary<(long snapshotId, ResourceKey key), bool> simDataPresence = [];
     IReadOnlyList<DraftOutput> outputs = [];
     IReadOnlyDictionary<string, IReadOnlyList<PropertyStatus>> statuses = new Dictionary<string, IReadOnlyList<PropertyStatus>>();
     string draftName = defaultDraftName;
@@ -258,12 +259,14 @@
         var cachedOriginalAnnotations = ReferenceEquals(diffOriginalAnnotationsDraft, draft) ? diffOriginalAnnotations : null;
         var draftAnimationStateMachines = animationStateMachines;
         var draftMedia = media;
+        var archive = Session.Archive;
+        var commenter = await Session.GetCommenterAsync(draft.Snapshot);
         var (builtRoots, builtOutputs, builtOriginalAnnotations, builtModifiedAnnotations) = await Task.Run(() =>
         {
-            IReadOnlyList<TuningDraftTarget> targets = [.. snapshotDrafts.Where(candidate => candidate.HasChanges).Select(candidate => new TuningDraftTarget(candidate.Entry, candidate.Original, candidate.Draft))];
+            IReadOnlyList<TuningDraftTarget> targets = [.. snapshotDrafts.Where(candidate => candidate.HasChanges).Select(candidate => new TuningDraftTarget(candidate.Entry, candidate.Original, candidate.Draft, HasSimData(archive, candidate)))];
             IReadOnlyList<DraftOutput> results =
             [
-                new("Py", "Python", "python", TuningPythonDraft.Generate(targets, gameVersion, $"{name}.log")),
+                new("Py", "Python", "python", TuningPythonDraft.Generate(targets, gameVersion, $"{name}.log", commenter)),
                 new("XI", "XML Injector", "xml", TuningXmlInjectorDraft.Generate(targets, $"{name}_xml_injector")),
                 new("CL", "Core Library", "xml", TuningCoreLibraryDraft.Generate(targets, $"{name}_core_library"))
             ];
@@ -384,6 +387,35 @@
             pendingDiffReveal = node.Line;
     }
 
+    bool HasSimData(TuningArchiveFile? archive, TuningDraft candidate)
+    {
+        if (archive is null)
+            return true;
+        var key = (candidate.Snapshot.Id, candidate.Entry.Key);
+        lock (simDataPresence)
+            if (simDataPresence.TryGetValue(key, out var known))
+                return known;
+        var present = !archive.HasKind(candidate.Snapshot, TuningArchiveResourceKind.SimData) || archive.GetEntriesByInstance(candidate.Snapshot, TuningArchiveResourceKind.SimData, candidate.Entry.Instance).Count > 0;
+        lock (simDataPresence)
+            simDataPresence[key] = present;
+        return present;
+    }
+
+    void OnDiffCursorLineChanged(int line)
+    {
+        if (roots is null || panel is null)
+            return;
+        PropertyNode? best = null;
+        foreach (var node in Flatten(roots))
+            if (node.IsSet && node.Line <= line && (best is null || node.Line >= best.Line))
+                best = node;
+        if (best is null)
+            return;
+        selectedNode = best;
+        State.SelectedPropertyPath = best.Path;
+        panel.Reveal(best);
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (pendingDiffReveal > 0 && diffView is not null)
@@ -432,7 +464,7 @@
 
     async Task CopyAsync(DraftOutput output)
     {
-        await JS.InvokeVoidAsync("navigator.clipboard.writeText", output.Result.Source);
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", await GetExportedSourceAsync(output));
         Snackbar.Add($"The {output.Name} draft is on the clipboard.", Severity.Success);
     }
 
@@ -500,11 +532,14 @@
         var changed = SnapshotDrafts.Where(candidate => candidate.HasChanges).ToList();
         TuningSimDataDrafter? drafter;
         List<TuningSimDataDraftResult?> simData;
+        List<string> commented;
         preparing = true;
         try
         {
             drafter = await Session.GetSimDataDrafterAsync(draft.Snapshot);
             simData = await Task.Run(() => changed.Select(candidate => drafter?.Draft(candidate.Entry, candidate.Text)).ToList());
+            var commenter = await Session.GetCommenterAsync(draft.Snapshot);
+            commented = await Task.Run(() => changed.Select(candidate => commenter.Comment(candidate.Text)).ToList());
         }
         finally
         {
@@ -516,7 +551,7 @@
         for (var index = 0; index < changed.Count; ++index)
         {
             var candidate = changed[index];
-            files.Add((Sims4StudioBatchImport.GetFileName(candidate.Entry.Key, candidate.Entry.Name), candidate.Text));
+            files.Add((Sims4StudioBatchImport.GetFileName(candidate.Entry.Key, candidate.Entry.Name), commented[index]));
             if (simData[index] is not { } result)
                 continue;
             if (result is { Kind: TuningSimDataDraftKind.Generated, Key: { } key, SimData: { } generated })
@@ -533,10 +568,21 @@
         await SaveFilesAsync("Save changed tuning", $"Saves {what} as XML named for Sims 4 Studio's batch import, which reads each key from its file name. These override the game's tuning. {string.Join(" ", notes)}".TrimEnd(), files);
     }
 
-    Task SaveOutputAsync(DraftOutput output) =>
-        output.Language == "python"
-            ? SaveFilesAsync("Save the Python", "Saves the script as a .py file.", [(GetPythonFileName(draftName), output.Result.Source)])
-            : SaveFilesAsync($"Save the {output.Name} snippet", "Saves the snippet as XML named for Sims 4 Studio's batch import, which reads its key from the file name.", [(Sims4StudioBatchImport.GetFileName(output.Result.Source), output.Result.Source)]);
+    async Task<string> GetExportedSourceAsync(DraftOutput output)
+    {
+        if (output.Language != "xml" || current is not { } draft)
+            return output.Result.Source;
+        var commenter = await Session.GetCommenterAsync(draft.Snapshot);
+        return await Task.Run(() => commenter.Comment(output.Result.Source));
+    }
+
+    async Task SaveOutputAsync(DraftOutput output)
+    {
+        if (output.Language == "python")
+            await SaveFilesAsync("Save the Python", "Saves the script as a .py file.", [(GetPythonFileName(draftName), output.Result.Source)]);
+        else
+            await SaveFilesAsync($"Save the {output.Name} snippet", "Saves the snippet as XML named for Sims 4 Studio's batch import, which reads its key from the file name.", [(Sims4StudioBatchImport.GetFileName(output.Result.Source), await GetExportedSourceAsync(output))]);
+    }
 
     void OnDiffAnnotationActivated((bool modified, int index) activation)
     {

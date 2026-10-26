@@ -465,7 +465,7 @@
         var output = await AskFolderAsync("Write updated copies and a report", string.Format(CultureInfo.CurrentCulture, "Updated copies of the packages that change are written to the same places in this folder, with a report of everything as {0}. The packages you reviewed are never changed, and the copies can't be written inside their folder, where the game would load both.", State.ExcelReport ? "an Excel workbook" : "a CSV file"), suggested, "Write");
         if (output is null)
             return;
-        var options = State.Options;
+        var options = State.Options with { Commenter = await Session.GetCommenterAsync(update.Target) };
         TuningFolderUpdateResult? result;
         try
         {

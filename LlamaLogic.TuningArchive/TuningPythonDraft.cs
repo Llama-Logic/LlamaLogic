@@ -291,9 +291,9 @@ public static class TuningPythonDraft
     }
 
     /// <summary>
-    /// Drafts a script that makes the changes in the specified <paramref name="targets"/>, for the specified <paramref name="gameVersion"/>, logging to a file with the specified <paramref name="logName"/> beside the mod
+    /// Drafts a script that makes the changes in the specified <paramref name="targets"/>, for the specified <paramref name="gameVersion"/>, logging to a file with the specified <paramref name="logName"/> beside the mod, with the tuning in it commented by the specified <paramref name="commenter"/>, if any
     /// </summary>
-    public static TuningDraftResult Generate(IReadOnlyList<TuningDraftTarget> targets, string gameVersion, string logName)
+    public static TuningDraftResult Generate(IReadOnlyList<TuningDraftTarget> targets, string gameVersion, string logName, TuningCommenter? commenter = null)
     {
         ArgumentNullException.ThrowIfNull(targets);
         ArgumentNullException.ThrowIfNull(gameVersion);
@@ -301,6 +301,7 @@ public static class TuningPythonDraft
         var diagnostics = new List<TuningDraftDiagnostic>();
         var changes = new List<string>();
         var moduleChanges = new List<string>();
+        var generators = new Dictionary<TuningDescriptionSet, SimDataGenerator>();
         foreach (var target in targets)
         {
             var entry = target.Entry;
@@ -319,6 +320,12 @@ public static class TuningPythonDraft
                 diagnostics.Add(new(TuningDraftSeverity.Error, entry, string.Empty, isModule ? "The tuning descriptions don't describe this module, so Python can't change its tuning." : "The tuning descriptions don't describe this tuning's class, so Python can't change it."));
                 continue;
             }
+            if (!isModule && target.Draft.Instance is { ExportModes: { } instanceModes } clientInstance && (instanceModes & (TuningDescriptionExportModes.ServerBinary | TuningDescriptionExportModes.ServerXml)) == TuningDescriptionExportModes.None)
+            {
+                diagnostics.Add(new(TuningDraftSeverity.Error, entry, string.Empty, $"{clientInstance.Class} tuning only exists for the game's client, which reads it from SimData; the game's scripts never load it, so Python can't change it; only an override with its SimData can."));
+                continue;
+            }
+            var generator = isModule ? null : generators.TryGetValue(target.Draft.Instance!.Set, out var known) ? known : generators[target.Draft.Instance!.Set] = new SimDataGenerator(target.Draft.Instance!.Set);
             var typeId = (uint)entry.Type;
             var tuningName = entry.Name ?? entry.Instance.ToString(CultureInfo.InvariantCulture);
             var moduleName = target.Draft.PythonModule ?? string.Empty;
@@ -327,6 +334,11 @@ public static class TuningPythonDraft
                 var (owner, name) = originalTunables.TryGetValue(path, out var located) ? (located.owner, located.name) : (draftTunables[path].owner, draftTunables[path].name);
                 void change(string kind, string? old, string? @new, int? count = null)
                 {
+                    if (commenter is not null)
+                    {
+                        old = old is null ? null : commenter.CommentFragment(old);
+                        @new = @new is null ? null : commenter.CommentFragment(@new);
+                    }
                     var wanted = count is { } value ? value.ToString(CultureInfo.InvariantCulture) : "None";
                     if (isModule)
                         moduleChanges.Add($"    ({Quote(moduleName)}, {Quote(owner)}, {Quote(kind)}, {Quote(name)}, {Quote(old)}, {Quote(@new)}, {wanted}),");
@@ -336,7 +348,7 @@ public static class TuningPythonDraft
                 var original = originalTunables.TryGetValue(path, out var originalTunable) ? originalTunable.element : null;
                 var draft = draftTunables.TryGetValue(path, out var draftTunable) ? draftTunable.element : null;
                 var description = FindDescription(target, path);
-                var blockers = GetSimDataBlockers(target, path).ToList();
+                var blockers = target.HasSimData ? GetSimDataBlockers(target, path, generator).ToList() : [];
                 if (blockers.Count > 0)
                 {
                     diagnostics.AddRange(blockers.Select(blocker => new TuningDraftDiagnostic(TuningDraftSeverity.Error, entry, blocker.path, blocker.message)));
@@ -436,7 +448,24 @@ public static class TuningPythonDraft
         return tunables;
     }
 
-    static IEnumerable<(string path, string message)> GetSimDataBlockers(TuningDraftTarget target, string name)
+    static string GetSimDataMessage(string what, TuningDescriptionExportModes? modes) =>
+        modes is { } exportModes && (exportModes & (TuningDescriptionExportModes.ServerBinary | TuningDescriptionExportModes.ServerXml)) == TuningDescriptionExportModes.None
+            ? $"{what} only exist in SimData, which the game's engine and UI read and Python cannot change; only an override with its SimData can change them."
+            : $"{what} are also in SimData, which the game's engine and UI read and Python cannot change, so Python would change only the gameplay side and the two would disagree; only an override with its SimData can change both.";
+
+    static bool IsWrittenToSimData(SimDataGenerator generator, TuningDescriptionInstance instance, IReadOnlyList<TunableDescription> path)
+    {
+        try
+        {
+            return generator.IsWrittenToSimData(instance, path);
+        }
+        catch (SimDataGenerationException)
+        {
+            return true;
+        }
+    }
+
+    static IEnumerable<(string path, string message)> GetSimDataBlockers(TuningDraftTarget target, string name, SimDataGenerator? generator)
     {
         static Dictionary<string, (string element, string? value)> values(TuningAnalysis analysis, string name)
         {
@@ -453,18 +482,21 @@ public static class TuningPythonDraft
             .DefaultIfEmpty(name);
         var reported = new HashSet<string>(StringComparer.Ordinal);
         foreach (var path in changed)
+        {
+            if (generator is not null && target.Draft.Instance is { } instance && GetPrefixes(path).Select(prefix => FindDescription(target, prefix)).ToList() is var chain && chain.All(description => description is not null))
+            {
+                if (IsWrittenToSimData(generator, instance, chain!) && reported.Add(GetGeneralPath(path)))
+                    yield return (GetGeneralPath(path), GetSimDataMessage(Describe(target, chain[^1]!, path), chain.LastOrDefault(description => description!.ExportModes is not null)?.ExportModes ?? instance.ExportModes));
+                continue;
+            }
             foreach (var prefix in GetPrefixes(path))
                 if (FindDescription(target, prefix) is { ExportModes: { } modes } description && modes.HasFlag(TuningDescriptionExportModes.ClientBinary))
                 {
                     var general = GetGeneralPath(prefix);
                     if (reported.Add(general))
-                    {
-                        var what = Describe(target, description, prefix);
-                        yield return (general, (modes & (TuningDescriptionExportModes.ServerBinary | TuningDescriptionExportModes.ServerXml)) == TuningDescriptionExportModes.None
-                            ? $"{what} only exist in SimData, which the game's engine and UI read and Python cannot change; only an override with its SimData can change them."
-                            : $"{what} are also in SimData, which the game's engine and UI read and Python cannot change, so Python would change only the gameplay side and the two would disagree; only an override with its SimData can change both.");
-                    }
+                        yield return (general, GetSimDataMessage(Describe(target, description, prefix), modes));
                     break;
                 }
+        }
     }
 }

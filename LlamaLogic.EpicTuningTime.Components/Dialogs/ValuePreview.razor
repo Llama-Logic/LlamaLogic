@@ -1,0 +1,51 @@
+@inject TuningArchiveSession Session
+
+@if (imageSource is not null)
+{
+    <img class="ta-picker-thumb" src="@imageSource" alt="" />
+}
+else if (sample is not null)
+{
+    <SoundPlayer Entry="sample" Snapshot="Snapshot" Compact="true" />
+}
+
+@code {
+    TuningArchiveEntry? loadedEntry;
+    string? imageSource;
+    TuningArchiveEntry? sample;
+
+    [Parameter]
+    public TuningArchiveEntry? Entry { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot? Snapshot { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (ReferenceEquals(loadedEntry, Entry))
+            return;
+        loadedEntry = Entry;
+        imageSource = null;
+        sample = null;
+        if (Entry is not { } entry || Snapshot is not { } snapshot || Session.Archive is not { } archive)
+            return;
+        try
+        {
+            if (entry.Kind is TuningArchiveResourceKind.Image)
+            {
+                var source = await Task.Run(() => $"data:image/png;base64,{Convert.ToBase64String(MediaContent.DecodeImage(archive.GetContent(entry)).png)}");
+                if (ReferenceEquals(loadedEntry, entry))
+                    imageSource = source;
+            }
+            else if (entry.Type is ResourceType.AudioConfiguration)
+            {
+                var found = await Task.Run(() => archive.GetSoundSamples(snapshot, entry).FirstOrDefault(candidate => candidate.Type is ResourceType.AudioVocals));
+                if (ReferenceEquals(loadedEntry, entry))
+                    sample = found;
+            }
+        }
+        catch (InvalidDataException)
+        {
+        }
+    }
+}

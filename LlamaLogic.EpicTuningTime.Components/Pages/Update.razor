@@ -521,7 +521,8 @@
         {
             var tuning = State.GetTuning();
             var updateSimData = State.UpdateSimData;
-            changes = await Session.RunAsync("Saving the updated package", async (_, cancellationToken) => await update.WriteAsync(path, tuning, updateSimData ? TuningPackageSimDataChanges.All : TuningPackageSimDataChanges.None, cancellationToken), false);
+            var commenter = await Session.GetCommenterAsync(update.Target);
+            changes = await Session.RunAsync("Saving the updated package", async (_, cancellationToken) => await update.WriteAsync(path, tuning, updateSimData ? TuningPackageSimDataChanges.All : TuningPackageSimDataChanges.None, commenter, cancellationToken), false);
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidDataException or NotSupportedException or ArgumentException)
         {

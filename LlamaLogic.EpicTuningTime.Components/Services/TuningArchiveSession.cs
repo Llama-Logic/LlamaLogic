@@ -15,6 +15,7 @@ sealed class TuningArchiveSession :
     readonly Dictionary<(long snapshotId, TuningArchiveResourceKind kind), Task<SnapshotEntries>> entries = [];
     readonly Dictionary<long, Task<IReadOnlyDictionary<uint, string>>> strings = [];
     readonly Dictionary<long, Task<TuningSimDataDrafter?>> simDataDrafters = [];
+    readonly Dictionary<(long snapshotId, bool stringComments, bool referenceComments), Task<TuningCommenter>> commenters = [];
     readonly List<TuningDraft> drafts = [];
 
     /// <summary>
@@ -95,6 +96,7 @@ sealed class TuningArchiveSession :
             entries.Clear();
             strings.Clear();
             simDataDrafters.Clear();
+            commenters.Clear();
         }
     }
 
@@ -183,6 +185,24 @@ sealed class TuningArchiveSession :
                     ? TuningSimDataDrafter.Create(archive, snapshot, archive.GetTuningDescriptionCache(descriptions).Set)
                     : null);
                 simDataDrafters[snapshot.Id] = task;
+            }
+            return task;
+        }
+    }
+
+    /// <summary>
+    /// Gets a commenter of tuning with what the specified <paramref name="snapshot"/> knows, adding the comments the export settings ask for, for everything that leaves the app as tuning
+    /// </summary>
+    public Task<TuningCommenter> GetCommenterAsync(TuningArchiveSnapshot snapshot)
+    {
+        var archive = Archive ?? throw new InvalidOperationException("No archive is open");
+        var key = (snapshot.Id, Platform.GetSetting("ExportStringComments") is not { } stringSetting || stringSetting == bool.TrueString, Platform.GetSetting("ExportReferenceComments") is not { } referenceSetting || referenceSetting == bool.TrueString);
+        lock (cacheLock)
+        {
+            if (!commenters.TryGetValue(key, out var task))
+            {
+                task = Task.Run(() => TuningCommenter.Create(archive, snapshot, key.Item2, key.Item3));
+                commenters[key] = task;
             }
             return task;
         }

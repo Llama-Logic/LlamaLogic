@@ -3,6 +3,8 @@ namespace LlamaLogic.TuningArchive;
 partial class TuningArchiveFile
 {
     const string animationStateMachineClass = "JAZZ";
+
+    internal const string AnimationStateMachineCommentClass = animationStateMachineClass;
     const string animationStateMachineFolder = "AsmJazz";
     const string animationStateMachineInstanceType = "AsmJazz";
     const string fileIndexFileName = "XML File Index.txt";
@@ -35,7 +37,7 @@ partial class TuningArchiveFile
 
     sealed record ExportFile(TuningArchiveEntry Entry, string RelativePath, string Name, string InstanceType);
 
-    sealed class ExportCrossReferences
+    internal sealed class ExportCrossReferences
     {
         readonly Dictionary<ulong, (HashSet<ulong> by, HashSet<ulong> to)> references = [];
 
@@ -138,7 +140,7 @@ partial class TuningArchiveFile
         return true;
     }
 
-    static void AddHeuristicReferenceComments(XElement element, ulong source, IReadOnlyDictionary<ulong, (string name, string? @class)> names, ExportCrossReferences? crossReferences)
+    internal static void AddHeuristicReferenceComments(XElement element, ulong source, IReadOnlyDictionary<ulong, (string name, string? @class)> names, ExportCrossReferences? crossReferences)
     {
         foreach (var node in element.Nodes().ToList())
         {
@@ -160,11 +162,79 @@ partial class TuningArchiveFile
         }
     }
 
-    static void AddHeuristicStringComments(XElement root, IReadOnlyDictionary<uint, string> strings)
+    internal static void AddHeuristicStringComments(XElement root, IReadOnlyDictionary<uint, string> strings)
     {
         foreach (var text in root.DescendantNodes().OfType<XText>().ToList())
             if (TryGetExportStringKey(text.Value, out var key) && strings.TryGetValue(key, out var stringText))
                 text.AddAfterSelf(new XComment(GetExportComment($"String: \"{GetExportStringText(stringText)}\"")));
+    }
+
+    internal sealed record CommentTables(IReadOnlyDictionary<uint, string> Strings, IReadOnlyDictionary<ulong, (string name, string? @class)> Names, IReadOnlyDictionary<(ResourceType type, ulong instance), TuningArchiveEntry> TuningsByKey, IReadOnlyDictionary<(ResourceType type, string name), TuningArchiveEntry> TuningsByName, IReadOnlyDictionary<ulong, TuningArchiveEntry> AnimationStateMachinesByInstance, TuningDescriptionCache? DescriptionCache);
+
+    internal static void AddComments(XDocument document, string text, ulong instance, CommentTables tables, bool stringComments, bool referenceComments, ExportCrossReferences? crossReferences)
+    {
+        var documentRoot = document.Root!;
+        var analyzed = false;
+        if (tables.DescriptionCache is not null)
+        {
+            try
+            {
+                var analysis = TuningAnalysis.Analyze(text, tables.DescriptionCache);
+                if (analysis.Nodes.Any(node => node.Description is not null))
+                {
+                    var elementsByLine = new Dictionary<int, XElement>();
+                    foreach (var element in document.Descendants().Prepend(documentRoot))
+                        if (element is IXmlLineInfo lineInfo && lineInfo.HasLineInfo())
+                            elementsByLine.TryAdd(lineInfo.LineNumber, element);
+                    if (stringComments)
+                        foreach (var node in analysis.Nodes)
+                            if (node.ValueKind is TuningValueKind.LocalizedString && node.StringKey is { } key and not 0 && tables.Strings.TryGetValue(key, out var stringText) && elementsByLine.TryGetValue(node.Line, out var element) && element.Nodes().OfType<XText>().FirstOrDefault() is { } textNode)
+                                textNode.AddAfterSelf(new XComment(GetExportComment($"String: \"{GetExportStringText(stringText)}\"")));
+                    foreach (var node in analysis.Nodes)
+                    {
+                        if (!elementsByLine.TryGetValue(node.Line, out var element))
+                            continue;
+                        string? comment = null;
+                        ulong? target = null;
+                        if (node.ValueKind is TuningValueKind.Reference && node.ReferenceType is { } referenceType)
+                        {
+                            var resolved = node.ReferenceInstance is { } referenceInstance ? tables.TuningsByKey.GetValueOrDefault((referenceType, referenceInstance)) : node.ReferenceName is { } referenceName ? tables.TuningsByName.GetValueOrDefault((referenceType, referenceName)) : null;
+                            if (resolved is not null)
+                            {
+                                target = resolved.Instance;
+                                if (node.ReferenceInstance is not null && resolved.Name is { } resolvedName)
+                                    comment = resolved.Class is { } resolvedClass ? $"{resolvedClass}: {resolvedName}" : resolvedName;
+                            }
+                        }
+                        else if (node.ValueKind is TuningValueKind.ResourceKey && node.ResourceKey is { Type: ResourceType.AnimationStateMachine } resourceKey && tables.AnimationStateMachinesByInstance.TryGetValue(resourceKey.FullInstance, out var animationStateMachine))
+                        {
+                            target = animationStateMachine.Instance;
+                            if (animationStateMachine.Name is { } animationStateMachineName)
+                                comment = $"{animationStateMachineClass}: {animationStateMachineName}";
+                        }
+                        if (target is { } targetInstance)
+                            crossReferences?.Add(instance, targetInstance);
+                        if (comment is not null && referenceComments)
+                            element.Add(new XComment(GetExportComment(comment)));
+                    }
+                    analyzed = true;
+                }
+            }
+            catch (Exception ex) when (ex is XmlException or InvalidDataException)
+            {
+            }
+        }
+        if (!analyzed)
+        {
+            if (stringComments)
+                AddHeuristicStringComments(documentRoot, tables.Strings);
+            if (referenceComments || crossReferences is not null)
+            {
+                var commented = referenceComments ? documentRoot : new XElement(documentRoot);
+                if (!(documentRoot.Attribute("n")?.Value is { } rootName && exportGroupNoReferenceNames.Contains(rootName)))
+                    AddHeuristicReferenceComments(commented, instance, tables.Names, crossReferences);
+            }
+        }
     }
 
     static void ApplyExportAttributeOrder(XElement root, TuningArchiveExportAttributeOrder order)
@@ -298,6 +368,7 @@ partial class TuningArchiveFile
             var describe = options.IncludeStringComments || options.IncludeReferenceComments || options.WriteFileIndex;
             var descriptionCache = describe && options.UseTuningDescriptions && FindTuningDescriptions(snapshot) is { } descriptions ? GetTuningDescriptionCache(descriptions) : null;
             var crossReferences = options.WriteFileIndex ? new ExportCrossReferences() : null;
+            var commentTables = new CommentTables(strings, names, tuningsByKey, tuningsByName, animationStateMachinesByInstance, descriptionCache);
             progress?.Report(new("Naming the files", 0, 0));
             var planned = new List<ExportFile>();
             var claimedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -355,67 +426,7 @@ partial class TuningArchiveFile
                     if (entry.Kind is TuningArchiveResourceKind.Tuning)
                     {
                         crossReferences?.Add(entry.Instance);
-                        var analyzed = false;
-                        if (descriptionCache is not null)
-                        {
-                            try
-                            {
-                                var analysis = TuningAnalysis.Analyze(text, descriptionCache);
-                                if (analysis.Nodes.Any(node => node.Description is not null))
-                                {
-                                    var elementsByLine = new Dictionary<int, XElement>();
-                                    foreach (var element in document.Descendants().Prepend(documentRoot))
-                                        if (element is IXmlLineInfo lineInfo && lineInfo.HasLineInfo())
-                                            elementsByLine.TryAdd(lineInfo.LineNumber, element);
-                                    if (options.IncludeStringComments)
-                                        foreach (var node in analysis.Nodes)
-                                            if (node.ValueKind is TuningValueKind.LocalizedString && node.StringKey is { } key and not 0 && strings.TryGetValue(key, out var stringText) && elementsByLine.TryGetValue(node.Line, out var element) && element.Nodes().OfType<XText>().FirstOrDefault() is { } textNode)
-                                                textNode.AddAfterSelf(new XComment(GetExportComment($"String: \"{GetExportStringText(stringText)}\"")));
-                                    foreach (var node in analysis.Nodes)
-                                    {
-                                        if (!elementsByLine.TryGetValue(node.Line, out var element))
-                                            continue;
-                                        string? comment = null;
-                                        ulong? target = null;
-                                        if (node.ValueKind is TuningValueKind.Reference && node.ReferenceType is { } referenceType)
-                                        {
-                                            var resolved = node.ReferenceInstance is { } referenceInstance ? tuningsByKey.GetValueOrDefault((referenceType, referenceInstance)) : node.ReferenceName is { } referenceName ? tuningsByName.GetValueOrDefault((referenceType, referenceName)) : null;
-                                            if (resolved is not null)
-                                            {
-                                                target = resolved.Instance;
-                                                if (node.ReferenceInstance is not null && resolved.Name is { } resolvedName)
-                                                    comment = resolved.Class is { } resolvedClass ? $"{resolvedClass}: {resolvedName}" : resolvedName;
-                                            }
-                                        }
-                                        else if (node.ValueKind is TuningValueKind.ResourceKey && node.ResourceKey is { Type: ResourceType.AnimationStateMachine } resourceKey && animationStateMachinesByInstance.TryGetValue(resourceKey.FullInstance, out var animationStateMachine))
-                                        {
-                                            target = animationStateMachine.Instance;
-                                            if (animationStateMachine.Name is { } animationStateMachineName)
-                                                comment = $"{animationStateMachineClass}: {animationStateMachineName}";
-                                        }
-                                        if (target is { } targetInstance)
-                                            crossReferences?.Add(entry.Instance, targetInstance);
-                                        if (comment is not null && options.IncludeReferenceComments)
-                                            element.Add(new XComment(GetExportComment(comment)));
-                                    }
-                                    analyzed = true;
-                                }
-                            }
-                            catch (Exception ex) when (ex is XmlException or InvalidDataException)
-                            {
-                            }
-                        }
-                        if (!analyzed)
-                        {
-                            if (options.IncludeStringComments)
-                                AddHeuristicStringComments(documentRoot, strings);
-                            if (options.IncludeReferenceComments || crossReferences is not null)
-                            {
-                                var commented = options.IncludeReferenceComments ? documentRoot : new XElement(documentRoot);
-                                if (!(documentRoot.Attribute("n")?.Value is { } rootName && exportGroupNoReferenceNames.Contains(rootName)))
-                                    AddHeuristicReferenceComments(commented, entry.Instance, names, crossReferences);
-                            }
-                        }
+                        AddComments(document, text, entry.Instance, commentTables, options.IncludeStringComments, options.IncludeReferenceComments, crossReferences);
                     }
                     if (skip)
                         Interlocked.Increment(ref skipped);

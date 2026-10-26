@@ -324,12 +324,13 @@ public sealed class TuningPackageUpdate
     /// <param name="path">Where to write the updated package, which must not be the package's own path</param>
     /// <param name="tuning">The tuning to write in place of overrides, by key, such as from <see cref="GetRecommendedTuning"/></param>
     /// <param name="simDataChanges">Which changes to make to the SimData, to make it what each override's tuning needs</param>
+    /// <param name="commenter">Comments the tuning written in place of overrides, if specified</param>
     /// <param name="cancellationToken">The token to monitor for cancellation requests</param>
     /// <returns>What was changed</returns>
-    public Task<IReadOnlyList<TuningPackageUpdateChange>> WriteAsync(string path, IReadOnlyDictionary<ResourceKey, string?> tuning, TuningPackageSimDataChanges simDataChanges = TuningPackageSimDataChanges.All, CancellationToken cancellationToken = default) =>
-        WriteCoreAsync(path, tuning, simDataChanges, [], cancellationToken);
+    public Task<IReadOnlyList<TuningPackageUpdateChange>> WriteAsync(string path, IReadOnlyDictionary<ResourceKey, string?> tuning, TuningPackageSimDataChanges simDataChanges = TuningPackageSimDataChanges.All, TuningCommenter? commenter = null, CancellationToken cancellationToken = default) =>
+        WriteCoreAsync(path, tuning, simDataChanges, [], commenter, cancellationToken);
 
-    internal Task<IReadOnlyList<TuningPackageUpdateChange>> WriteCoreAsync(string path, IReadOnlyDictionary<ResourceKey, string?> tuning, TuningPackageSimDataChanges simDataChanges, IReadOnlyList<(TuningPackageAddedSimData item, TuningPackageAddedSimDataPlan plan)> addedSimData, CancellationToken cancellationToken)
+    internal Task<IReadOnlyList<TuningPackageUpdateChange>> WriteCoreAsync(string path, IReadOnlyDictionary<ResourceKey, string?> tuning, TuningPackageSimDataChanges simDataChanges, IReadOnlyList<(TuningPackageAddedSimData item, TuningPackageAddedSimDataPlan plan)> addedSimData, TuningCommenter? commenter, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(path);
         ArgumentNullException.ThrowIfNull(tuning);
@@ -361,7 +362,7 @@ public sealed class TuningPackageUpdate
                     else
                     {
                         text = TuningXml.GetCanonicalText(TuningXml.Parse(replacement));
-                        package.Set(item.Key, text, GetCompressionMode(package, item.Key));
+                        package.Set(item.Key, commenter?.Comment(text) ?? text, GetCompressionMode(package, item.Key));
                         changes.Add(new(TuningPackageUpdateChangeKind.TuningReplaced, item.Key, item.Name, "The override was replaced."));
                     }
                 }

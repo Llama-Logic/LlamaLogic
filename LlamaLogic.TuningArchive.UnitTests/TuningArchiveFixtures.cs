@@ -26,6 +26,8 @@ static class TuningArchiveFixtures
     public const ulong SoundStreamInstance = 0xD2;
     public const ulong UnreferencedIconInstance = 0xA9;
     public const ulong VideoInstance = 0xC1;
+    public const string VoiceSilenceName = "vo_test_silence_12sec";
+    public const string VoiceSongName = "vo_test_song_skillhigh_30sec";
 
     public static readonly IReadOnlyDictionary<string, string> MediaDescriptions = new Dictionary<string, string>
     {
@@ -263,6 +265,40 @@ static class TuningArchiveFixtures
         {
             package.Set(new ResourceKey(ResourceType.DSTImage, 0, IconInstance), Medium($"icon, version {iconVersion}"));
             package.Set(new ResourceKey(ResourceType.DSTImage, 0, DeletedIconInstance), ReadOnlyMemory<byte>.Empty, CompressionMode.SetDeletedFlag);
+        });
+        return directory.GetPath($"{root}/The Sims 4");
+    }
+
+    public static ulong HashName(string name)
+    {
+        var hash = 0xcbf29ce484222325;
+        foreach (var character in name.ToLowerInvariant())
+        {
+            hash *= 0x100000001b3UL;
+            hash ^= (byte)character;
+        }
+        return hash;
+    }
+
+    public static string WriteInstallationWithVoices(TemporaryDirectory directory, string root)
+    {
+        directory.WriteFile($"{root}/The Sims 4/Game/Bin/Default.ini", "[Version]\ngameversion = 1.0.1.1000\n");
+        WritePackage(directory, $"{root}/The Sims 4/Data/Simulation/SimulationFullBuild0.package", package =>
+            package.Set(new ResourceKey(ResourceType.CombinedTuning, 0, 1), Encoding.UTF8.GetBytes
+            (
+                $"""
+                <combined><g s="merged" /><R n="buff"><I c="Buff" i="buff" m="buffs.buff" n="Buff_Voices" s="301"><T n="audio" p="InEP03\Audio\VOX\fa\{VoiceSongName}.propx">39b2aa4a:00000000:{HashName(VoiceSongName):x16}</T></I><I c="Buff" i="buff" m="buffs.buff" n="Buff_Silent" s="302"><T n="audio" p="InEP03\Audio\VOX\fa\{VoiceSilenceName}.propx">39b2aa4a:00000000:{HashName(VoiceSilenceName):x16}</T></I></R></combined>
+                """
+            )));
+        directory.WriteFile($"{root}/The Sims 4/Data/Client/Resource.cfg", "Priority -30\nPackedFile ClientFullBuild*.package\n");
+        WritePackage(directory, $"{root}/The Sims 4/Data/Client/ClientFullBuild0.package", package =>
+        {
+            foreach (var (voiceCode, index) in new[] { "fa", "fc", "fd", "ma", "mb", "mc", "ca", "cb" }.Select((voiceCode, index) => (voiceCode, index)))
+            {
+                var sample = 0xE0UL + (ulong)index;
+                package.Set(new ResourceKey(ResourceType.AudioConfiguration, 0, HashName($"{VoiceSongName}_{voiceCode}")), AudioConfiguration(0, sample));
+                package.Set(new ResourceKey(ResourceType.AudioVocals, 0x001407ec, sample), Medium($"voice {voiceCode}"));
+            }
         });
         return directory.GetPath($"{root}/The Sims 4");
     }

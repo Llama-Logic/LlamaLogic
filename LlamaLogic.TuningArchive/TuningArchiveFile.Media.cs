@@ -2,12 +2,15 @@ namespace LlamaLogic.TuningArchive;
 
 partial class TuningArchiveFile
 {
+    const ulong fnv1Prime = 0x100000001b3;
+    const ulong fnv1PrimeInverse = 0xce965057aff6957b;
     const int mediaBatchBytes = 256 * 1024 * 1024;
     const string mediaReferenceTypes = "796721156, 796721158, 11720834, 968010314, 4244956094, 27600859, 32437818, 929579223";
 
     static readonly ResourceType[] imageTypes = [ResourceType.DSTImage, ResourceType.PNGImage, ResourceType.PNGImage2];
     static readonly ResourceType[] soundTypes = [ResourceType.AudioConfiguration, ResourceType.AudioVocals, ResourceType.AudioEffects];
     static readonly ResourceType[] videoTypes = [ResourceType.AVI];
+    static readonly string[] voiceCodes = ["fa", "fc", "fd", "ma", "mb", "mc", "ca", "cb"];
 
 #if IS_NET_7_0_OR_GREATER
     [GeneratedRegex(@"(?<![0-9A-Fa-f])(?<type>[0-9A-Fa-f]{8})(?<separator>[:-])(?<group>[0-9A-Fa-f]{8})\k<separator>(?<instance>[0-9A-Fa-f]{16})(?![0-9A-Fa-f])", RegexOptions.CultureInvariant)]
@@ -33,7 +36,7 @@ partial class TuningArchiveFile
     /// Gets the kind of media to which tuning or SimData refers with a resource key of the specified <paramref name="type"/>, or <see langword="null"/> if the type is not one of media
     /// </summary>
     /// <remarks>
-    /// Tuning refers to images with <see cref="ResourceType.PNGImage"/> and <see cref="ResourceType.PNGImage2"/> keys, which the game resolves to the <see cref="ResourceType.DSTImage"/> with the same instance, and to sounds with <see cref="ResourceType.AudioConfigurationReference"/> keys, which it resolves to the <see cref="ResourceType.AudioConfiguration"/> with the same instance.
+    /// Tuning refers to images with <see cref="ResourceType.PNGImage"/> and <see cref="ResourceType.PNGImage2"/> keys, which the game resolves to the <see cref="ResourceType.DSTImage"/> with the same instance, and to sounds with <see cref="ResourceType.AudioConfigurationReference"/> keys, which it resolves to the <see cref="ResourceType.AudioConfiguration"/> with the same instance, or, when there is none, to the versions of it for each voice (see <see cref="GetVoiceVersionInstance(ulong, string)"/>).
     /// </remarks>
     public static TuningArchiveResourceKind? GetMediaKind(ResourceType type) =>
         type switch
@@ -54,6 +57,61 @@ partial class TuningArchiveFile
             ResourceType.AudioConfigurationReference => [ResourceType.AudioConfiguration, ResourceType.AudioVocals, ResourceType.AudioEffects],
             _ => [type]
         };
+
+    /// <summary>
+    /// Gets the codes of the voices for which the game keeps versions of an audio configuration that tuning names without a voice, in the order the archive lists the versions (see <see cref="GetVoiceVersionInstance(ulong, string)"/>)
+    /// </summary>
+    /// <remarks>
+    /// <c>f</c> codes are female voices, <c>m</c> codes male voices and <c>c</c> codes child voices; the game has no versions for <c>fb</c> or <c>md</c>.
+    /// </remarks>
+    public static IReadOnlyList<string> VoiceCodes =>
+        voiceCodes;
+
+    /// <summary>
+    /// Gets the instance of the version for the voice with the specified <paramref name="voiceCode"/> (see <see cref="VoiceCodes"/>) of the audio configuration that tuning names with the specified <paramref name="instance"/>
+    /// </summary>
+    /// <remarks>
+    /// Tuning names some sounds sims sing or speak (<c>vocal_clip</c> in recipes, for example) by the FNV-1 64 hash of a file name that has no audio configuration of its own, such as <c>vo_karaoke_solojazz2_tune_67sec</c>.
+    /// The game has a configuration for each voice instead, hashed from the file name followed by an underscore and the voice's code (<c>vo_karaoke_solojazz2_tune_67sec_fa</c>).
+    /// FNV-1 has no finalization, so the version's instance is found by continuing the hash from the instance tuning names, without the file name.
+    /// </remarks>
+    public static ulong GetVoiceVersionInstance(ulong instance, string voiceCode)
+    {
+        ArgumentNullException.ThrowIfNull(voiceCode);
+        var hash = instance;
+        foreach (var character in $"_{voiceCode}")
+        {
+            hash *= fnv1Prime;
+            hash ^= (byte)character;
+        }
+        return hash;
+    }
+
+    /// <summary>
+    /// Gets the instance of the audio configuration whose version for the voice with the specified <paramref name="voiceCode"/> (see <see cref="VoiceCodes"/>) would have the specified <paramref name="voiceVersionInstance"/>: the inverse of <see cref="GetVoiceVersionInstance(ulong, string)"/>
+    /// </summary>
+    /// <remarks>
+    /// Any instance has a voiceless instance for every code; to tell which configuration an entry is really a version of, use <see cref="GetVoiceVersionSource(TuningArchiveSnapshot, TuningArchiveEntry)"/>.
+    /// </remarks>
+    public static ulong GetVoicelessInstance(ulong voiceVersionInstance, string voiceCode)
+    {
+        ArgumentNullException.ThrowIfNull(voiceCode);
+        var hash = voiceVersionInstance;
+        var suffix = $"_{voiceCode}";
+        for (var i = suffix.Length - 1; i >= 0; --i)
+        {
+            hash ^= (byte)suffix[i];
+            hash *= fnv1PrimeInverse;
+        }
+        return hash;
+    }
+
+    static string GetVoiceVersionName(string name, string voiceCode)
+    {
+        var fileName = name[(name.LastIndexOfAny(['\\', '/']) + 1)..];
+        var extension = fileName.LastIndexOf('.') is var dot and >= 0 ? fileName[dot..] : string.Empty;
+        return $"{fileName[..(fileName.Length - extension.Length)]}_{voiceCode}{extension}";
+    }
 
     static IEnumerable<ResourceType> GetMediaReferenceTypes(ResourceType type) =>
         type switch
@@ -157,9 +215,13 @@ partial class TuningArchiveFile
             if (type is ResourceType.AudioConfigurationReference or ResourceType.AudioConfiguration)
             {
                 if (Claim(ResourceType.AudioConfiguration, instance, group) is null)
+                {
                     foreach (var audioType in new[] { ResourceType.AudioVocals, ResourceType.AudioEffects })
                         if (Claim(audioType, instance, group) is { } audio)
                             Target(kind, audio, name);
+                    foreach (var voiceCode in voiceCodes)
+                        audioConfigurations.Enqueue((GetVoiceVersionInstance(instance, voiceCode), 0, name is null ? null : GetVoiceVersionName(name, voiceCode)));
+                }
                 audioConfigurations.Enqueue((instance, group, name));
                 continue;
             }
@@ -288,6 +350,48 @@ partial class TuningArchiveFile
     }
 
     /// <summary>
+    /// Gets the media in the specified <paramref name="snapshot"/> to which tuning or SimData refers with the specified <paramref name="reference"/>: the medium <see cref="GetMediaEntry(TuningArchiveSnapshot, ResourceKey)"/> finds, or, for a reference to an audio configuration that has none of its own, the versions of it for each voice the snapshot contains, in the order of <see cref="VoiceCodes"/>
+    /// </summary>
+    public IReadOnlyList<TuningArchiveEntry> GetMediaEntries(TuningArchiveSnapshot snapshot, ResourceKey reference)
+    {
+        ArgumentNullException.ThrowIfNull(snapshot);
+        if (GetMediaEntry(snapshot, reference) is { } entry)
+            return [entry];
+        if (reference.Type is not (ResourceType.AudioConfigurationReference or ResourceType.AudioConfiguration))
+            return [];
+        return [.. voiceCodes.Select(voiceCode => GetEntry(snapshot, TuningArchiveResourceKind.Sound, ResourceType.AudioConfiguration, GetVoiceVersionInstance(reference.FullInstance, voiceCode))).OfType<TuningArchiveEntry>()];
+    }
+
+    /// <summary>
+    /// Gets the instance by which tuning names the audio configuration of which the specified <paramref name="entry"/> is a voice's version, with that voice's code, or <see langword="null"/> if it is not a voice's version (see <see cref="GetVoiceVersionInstance(ulong, string)"/>)
+    /// </summary>
+    /// <remarks>
+    /// A configuration is taken to be a voice's version when tuning in the specified <paramref name="snapshot"/> refers to the configuration it would be a version of (only tunings whose references have been indexed are found; see <see cref="IndexReferencesAsync"/>), or another voice's version of that configuration is in the snapshot.
+    /// Codes that share their first letter differ only in the last character hashed, so working back with the wrong one of them leads to a configuration with versions of its own in the snapshot (this one, and the version for another voice of the same group); of the configurations it could be a version of, the one tuning refers to is preferred, then the one with the most versions in the snapshot.
+    /// </remarks>
+    public (ulong instance, string voiceCode)? GetVoiceVersionSource(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)
+    {
+        ArgumentNullException.ThrowIfNull(snapshot);
+        ArgumentNullException.ThrowIfNull(entry);
+        if (entry.Type is not ResourceType.AudioConfiguration)
+            return null;
+        (ulong instance, string voiceCode, bool isReferenced, int versions)? best = null;
+        foreach (var voiceCode in voiceCodes)
+        {
+            var instance = GetVoicelessInstance(entry.Instance, voiceCode);
+            if (GetEntry(snapshot, TuningArchiveResourceKind.Sound, ResourceType.AudioConfiguration, instance) is not null)
+                continue;
+            var isReferenced = GetReferrers(snapshot, ResourceType.AudioConfigurationReference, instance).Count > 0;
+            var versions = voiceCodes.Count(other => other == voiceCode || GetEntry(snapshot, TuningArchiveResourceKind.Sound, ResourceType.AudioConfiguration, GetVoiceVersionInstance(instance, other)) is not null);
+            if (!isReferenced && versions < 2)
+                continue;
+            if (best is not { } current || (isReferenced, versions).CompareTo((current.isReferenced, current.versions)) > 0)
+                best = (instance, voiceCode, isReferenced, versions);
+        }
+        return best is { } found ? (found.instance, found.voiceCode) : null;
+    }
+
+    /// <summary>
     /// Gets the audio that the audio configuration in the specified <paramref name="entry"/> uses (its samples, and those of the configurations it inherits from), as the specified <paramref name="snapshot"/> contains them
     /// </summary>
     public IReadOnlyList<TuningArchiveEntry> GetSoundSamples(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)
@@ -315,14 +419,17 @@ partial class TuningArchiveFile
     /// Gets the tunings in the specified <paramref name="snapshot"/> that refer to the medium in the specified <paramref name="entry"/>
     /// </summary>
     /// <remarks>
-    /// References with any of the resource types tuning uses for the medium are found (for an image, <see cref="ResourceType.PNGImage"/>, <see cref="ResourceType.PNGImage2"/> and <see cref="ResourceType.DSTImage"/>).
+    /// References with any of the resource types tuning uses for the medium are found (for an image, <see cref="ResourceType.PNGImage"/>, <see cref="ResourceType.PNGImage2"/> and <see cref="ResourceType.DSTImage"/>), and, for a voice's version of an audio configuration, references to the configuration it is a version of (see <see cref="GetVoiceVersionSource(TuningArchiveSnapshot, TuningArchiveEntry)"/>).
     /// Only tunings whose references have been indexed (see <see cref="IndexReferencesAsync"/>) are found.
     /// </remarks>
     public IReadOnlyList<TuningArchiveReference> GetMediaReferrers(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
         ArgumentNullException.ThrowIfNull(entry);
-        return [.. GetMediaReferenceTypes(entry.Type).SelectMany(type => GetReferrers(snapshot, type, entry.Instance)).DistinctBy(reference => (reference.Source.VersionId, reference.TargetType)).OrderBy(reference => reference.Source.Name, StringComparer.Ordinal)];
+        var referrers = GetMediaReferenceTypes(entry.Type).SelectMany(type => GetReferrers(snapshot, type, entry.Instance));
+        if (GetVoiceVersionSource(snapshot, entry) is { } source)
+            referrers = referrers.Concat(GetReferrers(snapshot, ResourceType.AudioConfigurationReference, source.instance));
+        return [.. referrers.DistinctBy(reference => (reference.Source.VersionId, reference.TargetType)).OrderBy(reference => reference.Source.Name, StringComparer.Ordinal)];
     }
 
     /// <summary>
@@ -330,6 +437,7 @@ partial class TuningArchiveFile
     /// </summary>
     /// <remarks>
     /// Only references to kinds of media the snapshot captured are considered (see <see cref="HasKind(TuningArchiveSnapshot, TuningArchiveResourceKind)"/>), and only tunings whose references have been indexed (see <see cref="IndexReferencesAsync"/>).
+    /// A reference to an audio configuration that the snapshot has only voices' versions of is not broken (see <see cref="GetVoiceVersionInstance(ulong, string)"/>).
     /// </remarks>
     public IReadOnlyList<TuningArchiveReference> GetBrokenMediaReferences(TuningArchiveSnapshot snapshot)
     {
@@ -360,7 +468,8 @@ partial class TuningArchiveFile
         {
             var type = (ResourceType)(uint)reader.GetInt64(13);
             var instance = unchecked((ulong)reader.GetInt64(14));
-            if (GetMediaKind(type) is { } kind && present.TryGetValue(kind, out var instances) && !instances.Contains(instance))
+            if (GetMediaKind(type) is { } kind && present.TryGetValue(kind, out var instances) && !instances.Contains(instance)
+                && !(kind is TuningArchiveResourceKind.Sound && voiceCodes.Any(voiceCode => instances.Contains(GetVoiceVersionInstance(instance, voiceCode)))))
                 broken.Add(new(ReadEntry(reader), type, instance));
         }
         return broken;

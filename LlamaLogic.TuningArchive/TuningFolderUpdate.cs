@@ -421,7 +421,7 @@ public sealed class TuningFolderUpdate
                     continue;
                 }
                 Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
-                var changes = await package.Update!.WriteCoreAsync(path, tuning, options.SimDataChanges, added, cancellationToken).ConfigureAwait(false);
+                var changes = await package.Update!.WriteCoreAsync(path, tuning, options.SimDataChanges, added, options.Commenter, cancellationToken).ConfigureAwait(false);
                 if (!changes.Any(change => change.Kind is not TuningPackageUpdateChangeKind.SimDataUnverifiable))
                 {
                     File.Delete(path);

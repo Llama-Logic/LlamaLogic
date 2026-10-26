@@ -3,7 +3,7 @@ namespace LlamaLogic.EpicTuningTime.Components.Shared;
 /// <summary>
 /// Receives what the creator does with the annotations of one side of a diff
 /// </summary>
-sealed class DiffSide(Func<int, Task> annotationActivated, Func<int, string?> getHover)
+sealed class DiffSide(Func<int, Task> annotationActivated, Func<int, string?> getHover, Func<int, Task>? cursorLineChanged = null)
 {
     /// <summary>
     /// Gets the Markdown to show when the creator hovers the annotation at the specified <paramref name="index"/>
@@ -24,5 +24,5 @@ sealed class DiffSide(Func<int, Task> annotationActivated, Func<int, string?> ge
     /// </summary>
     [JSInvokable]
     public Task OnCursorLineChanged(int line) =>
-        Task.CompletedTask;
+        cursorLineChanged?.Invoke(line) ?? Task.CompletedTask;
 }

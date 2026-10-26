@@ -139,6 +139,75 @@ public class TuningArchiveMediaTests
     }
 
     [TestMethod]
+    public async Task VoiceVersionsAreCapturedAndResolvedForAudioConfigurationsTuningNamesWithoutAVoice()
+    {
+        using var directory = new TemporaryDirectory();
+        using var archive = TuningArchiveFile.Open(directory.GetPath("Tuning.tuningarchive"));
+        var result = await archive.CaptureAsync(GameInstallation.Open(TuningArchiveFixtures.WriteInstallationWithVoices(directory, "install")), everything);
+        Assert.AreEqual(0, result.Problems.Count, string.Join(Environment.NewLine, result.Problems));
+        var song = new ResourceKey(ResourceType.AudioConfigurationReference, 0, TuningArchiveFixtures.HashName(TuningArchiveFixtures.VoiceSongName));
+        Assert.IsNull(archive.GetMediaEntry(result.Snapshot, song));
+        var versions = archive.GetMediaEntries(result.Snapshot, song);
+        CollectionAssert.AreEqual
+        (
+            TuningArchiveFile.VoiceCodes.Select(voiceCode => $"{ResourceType.AudioConfiguration} {TuningArchiveFixtures.HashName($"{TuningArchiveFixtures.VoiceSongName}_{voiceCode}"):X} {TuningArchiveFixtures.VoiceSongName}_{voiceCode}.propx").ToArray(),
+            versions.Select(entry => $"{entry.Type} {entry.Instance:X} {entry.Name}").ToArray()
+        );
+        Assert.AreEqual("voice mb", Encoding.UTF8.GetString(archive.GetContent(archive.GetSoundSamples(result.Snapshot, versions[4]).Single())));
+        Assert.AreEqual(16, result.Sounds);
+        Assert.AreEqual(0, archive.GetMediaEntries(result.Snapshot, new ResourceKey(ResourceType.AudioConfigurationReference, 0, TuningArchiveFixtures.HashName(TuningArchiveFixtures.VoiceSilenceName))).Count);
+    }
+
+    [TestMethod]
+    public async Task VoiceVersionsKnowTheirSourceWithoutIndexedReferences()
+    {
+        using var directory = new TemporaryDirectory();
+        using var archive = TuningArchiveFile.Open(directory.GetPath("Tuning.tuningarchive"));
+        var snapshot = (await archive.CaptureAsync(GameInstallation.Open(TuningArchiveFixtures.WriteInstallationWithVoices(directory, "install")), everything)).Snapshot;
+        var songInstance = TuningArchiveFixtures.HashName(TuningArchiveFixtures.VoiceSongName);
+        var versions = archive.GetMediaEntries(snapshot, new ResourceKey(ResourceType.AudioConfigurationReference, 0, songInstance));
+        CollectionAssert.AreEqual
+        (
+            TuningArchiveFile.VoiceCodes.Select(voiceCode => $"{songInstance:X} {voiceCode}").ToArray(),
+            versions.Select(version => archive.GetVoiceVersionSource(snapshot, version) is { } source ? $"{source.instance:X} {source.voiceCode}" : "none").ToArray()
+        );
+    }
+
+    [TestMethod]
+    public void VoiceVersionInstancesContinueTheHashOfTheInstanceTuningNames()
+    {
+        Assert.AreEqual(0xCF48DF88803C136FUL, TuningArchiveFile.GetVoiceVersionInstance(0x2F94213718E8F3E9, "fa"));
+        foreach (var voiceCode in TuningArchiveFile.VoiceCodes)
+            Assert.AreEqual(TuningArchiveFixtures.HashName($"{TuningArchiveFixtures.VoiceSongName}_{voiceCode}"), TuningArchiveFile.GetVoiceVersionInstance(TuningArchiveFixtures.HashName(TuningArchiveFixtures.VoiceSongName), voiceCode));
+    }
+
+    [TestMethod]
+    public async Task VoiceVersionsAreNotBrokenReferencesAndKnowWhatUsesThem()
+    {
+        using var directory = new TemporaryDirectory();
+        using var archive = TuningArchiveFile.Open(directory.GetPath("Tuning.tuningarchive"));
+        var snapshot = (await archive.CaptureAsync(GameInstallation.Open(TuningArchiveFixtures.WriteInstallationWithVoices(directory, "install")), everything)).Snapshot;
+        File.WriteAllBytes(directory.GetPath("1.0.1.1000-TDESC.zip"), TuningArchiveFixtures.WriteDescriptionsZip(TuningArchiveFixtures.MediaDescriptions));
+        await archive.ImportTuningDescriptionsAsync(directory.GetPath("1.0.1.1000-TDESC.zip"));
+        await archive.IndexReferencesAsync();
+        var broken = archive.GetBrokenMediaReferences(snapshot).Single();
+        Assert.AreEqual("Buff_Silent", broken.Source.Name);
+        Assert.AreEqual(TuningArchiveFixtures.HashName(TuningArchiveFixtures.VoiceSilenceName), broken.TargetInstance);
+        var songInstance = TuningArchiveFixtures.HashName(TuningArchiveFixtures.VoiceSongName);
+        var versions = archive.GetMediaEntries(snapshot, new ResourceKey(ResourceType.AudioConfigurationReference, 0, songInstance));
+        foreach (var (version, voiceCode) in versions.Zip(TuningArchiveFile.VoiceCodes))
+        {
+            Assert.AreEqual((songInstance, voiceCode), archive.GetVoiceVersionSource(snapshot, version));
+            var referrer = archive.GetMediaReferrers(snapshot, version).Single();
+            Assert.AreEqual("Buff_Voices", referrer.Source.Name);
+            Assert.AreEqual(ResourceType.AudioConfigurationReference, referrer.TargetType);
+            Assert.AreEqual(songInstance, referrer.TargetInstance);
+        }
+        var sample = archive.GetSoundSamples(snapshot, versions[5]).Single();
+        Assert.IsNull(archive.GetVoiceVersionSource(snapshot, sample));
+    }
+
+    [TestMethod]
     public async Task SnapshotsWithoutMediaDoNotEndMediaHistory()
     {
         using var directory = new TemporaryDirectory();

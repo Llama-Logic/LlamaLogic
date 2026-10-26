@@ -29,7 +29,7 @@ public class TuningPythonDraftTests
         return TuningArchiveFixtures.OpenDescriptions(descriptions);
     }
 
-    static async Task<TuningDraftResult> DraftAsync(TuningDescriptionSet set, string original, string draft)
+    static async Task<TuningDraftResult> DraftAsync(TuningDescriptionSet set, string original, string draft, bool hasSimData = true)
     {
         using var directory = new TemporaryDirectory();
         using var archive = TuningArchiveFile.Open(directory.GetPath("Tuning.tuningarchive"));
@@ -37,7 +37,7 @@ public class TuningPythonDraftTests
         var entry = archive.GetEntries(result.Snapshot, TuningArchiveResourceKind.Tuning).Single();
         var originalText = archive.GetText(entry);
         var draftText = TuningXml.GetCanonicalText(TuningXml.Parse(draft));
-        return TuningPythonDraft.Generate([new(entry, TuningAnalysis.Analyze(originalText, set), TuningAnalysis.Analyze(draftText, set))], "1.0.1.1000", "draft.log");
+        return TuningPythonDraft.Generate([new(entry, TuningAnalysis.Analyze(originalText, set), TuningAnalysis.Analyze(draftText, set), hasSimData)], "1.0.1.1000", "draft.log");
     }
 
     [TestMethod]
@@ -85,6 +85,50 @@ public class TuningPythonDraftTests
         var error = result.Diagnostics.Single(diagnostic => diagnostic.Severity is TuningDraftSeverity.Error);
         Assert.AreEqual("buff_name", error.Path);
         StringAssert.Contains(error.Message, "SimData");
+    }
+
+    [TestMethod]
+    public async Task ChangesToTunablesOfAClassInSimDataAreLeftOut()
+    {
+        var descriptions = TuningArchiveFixtures.Descriptions.ToDictionary(pair => pair.Key, pair => pair.Value);
+        descriptions["Buffs/Descriptions/Buff.tdesc"] = descriptions["Buffs/Descriptions/Buff.tdesc"]
+            .Replace("class=\"Buff\" module=\"buffs.buff\"", "class=\"Buff\" module=\"buffs.buff\" export_modes=\"client_binary,server_binary\"", StringComparison.Ordinal)
+            .Replace("name=\"buff_name\"", "name=\"buff_name\" export_modes=\"server_xml\"", StringComparison.Ordinal);
+        using var set = TuningArchiveFixtures.OpenDescriptions(descriptions);
+        var result = await DraftAsync(set, BuffSad, BuffSad.Replace("0x0000ABCE", "0x0000ABCF", StringComparison.Ordinal).Replace(">2<", ">3<", StringComparison.Ordinal));
+        Assert.AreEqual(1, result.Changes);
+        StringAssert.Contains(result.Source, "'buff_name'");
+        Assert.IsFalse(result.Source.Contains("'mood_weight'", StringComparison.Ordinal));
+        var error = result.Diagnostics.Single(diagnostic => diagnostic.Severity is TuningDraftSeverity.Error);
+        Assert.AreEqual("mood_weight", error.Path);
+        StringAssert.Contains(error.Message, "also in SimData");
+    }
+
+    [TestMethod]
+    public async Task ChangesToTunablesInSimDataAreMadeWhenTheGameHasNoSimDataForTheTuning()
+    {
+        var descriptions = TuningArchiveFixtures.Descriptions.ToDictionary(pair => pair.Key, pair => pair.Value);
+        descriptions["Buffs/Descriptions/Buff.tdesc"] = descriptions["Buffs/Descriptions/Buff.tdesc"].Replace("name=\"buff_name\"", "name=\"buff_name\" export_modes=\"client_binary,server_xml\"", StringComparison.Ordinal);
+        using var set = TuningArchiveFixtures.OpenDescriptions(descriptions);
+        var result = await DraftAsync(set, BuffSad, BuffSad.Replace("0x0000ABCE", "0x0000ABCF", StringComparison.Ordinal), false);
+        Assert.AreEqual(1, result.Changes);
+        StringAssert.Contains(result.Source, "'buff_name'");
+        Assert.IsFalse(result.Diagnostics.Any(diagnostic => diagnostic.Severity is TuningDraftSeverity.Error));
+    }
+
+    [TestMethod]
+    public async Task TuningOnlyForTheClientIsNotDrafted()
+    {
+        var descriptions = TuningArchiveFixtures.Descriptions.ToDictionary(pair => pair.Key, pair => pair.Value);
+        descriptions["Buffs/Descriptions/Buff.tdesc"] = descriptions["Buffs/Descriptions/Buff.tdesc"]
+            .Replace("class=\"Buff\" module=\"buffs.buff\"", "class=\"Buff\" module=\"buffs.buff\" export_modes=\"client_binary\"", StringComparison.Ordinal);
+        using var set = TuningArchiveFixtures.OpenDescriptions(descriptions);
+        var result = await DraftAsync(set, BuffSad, BuffSad.Replace(">2<", ">3<", StringComparison.Ordinal));
+        Assert.AreEqual(0, result.Changes);
+        var error = result.Diagnostics.Single();
+        Assert.AreEqual(TuningDraftSeverity.Error, error.Severity);
+        Assert.AreEqual(string.Empty, error.Path);
+        StringAssert.Contains(error.Message, "client");
     }
 
     [TestMethod]

@@ -36,6 +36,16 @@ else
                 <span>@name</span>
             }
         </div>
+        @if (voiceVersions.Count > 0)
+        {
+            <div class="ta-subtitle-row">
+                <MudText Typo="Typo.caption">Voices</MudText>
+                @foreach (var (voiceCode, version) in voiceVersions)
+                {
+                    <MudChip T="string" Size="Size.Small" Color="Color.Primary" Variant="@(version.Instance == Entry.Instance ? Variant.Filled : Variant.Outlined)" OnClick="() => Navigate.InvokeAsync(new TuningNavigation(version.Type, version.Instance))" title="@MediaContent.GetName(version)">@GetVoiceLabel(voiceCode)</MudChip>
+                }
+            </div>
+        }
         @if (history.Count > 1)
         {
             <MudText Typo="Typo.caption">@history.Count versions in this archive · this one is in @DescribeSnapshots(current?.Snapshots)</MudText>
@@ -62,7 +72,7 @@ else
                 else
                 {
                     <Virtualize Items="referrers" ItemSize="44" Context="referrer">
-                        <div class="ta-list-item" @onclick="() => Navigate.InvokeAsync(new TuningNavigation(referrer.Source.Type, referrer.Source.Instance, (Entry!.Type, Entry.Instance)))">
+                        <div class="ta-list-item" @onclick="() => Navigate.InvokeAsync(new TuningNavigation(referrer.Source.Type, referrer.Source.Instance, (referrer.TargetType, referrer.TargetInstance)))">
                             <div class="ta-primary">@referrer.Source.Name</div>
                             <div class="ta-secondary">@Session.GetTypeName(referrer.Source.Type) · @referrer.Source.Pack · @referrer.Source.Instance</div>
                         </div>
@@ -113,6 +123,7 @@ else
     TuningArchiveEntry? loadedEntry;
     TuningArchiveSnapshot? loadedSnapshot;
     List<TuningArchiveReference>? referrers;
+    IReadOnlyList<(string voiceCode, TuningArchiveEntry entry)> voiceVersions = [];
     IReadOnlyList<TuningArchiveHistoryItem> history = [];
     TuningArchiveHistoryItem? current;
     int? historyIndex;
@@ -141,6 +152,9 @@ else
             ? snapshots[0].DisplayName
             : $"{snapshots[0].DisplayName} – {snapshots[^1].DisplayName} ({snapshots.Count} snapshots)";
 
+    static string GetVoiceLabel(string voiceCode) =>
+        $"{voiceCode[0] switch { 'f' => "Female", 'm' => "Male", 'c' => "Child", _ => voiceCode[..1] }} {voiceCode[1..]}";
+
     async Task CopyKeyAsync()
     {
         if (Entry is not null)
@@ -156,11 +170,19 @@ else
         loadedEntry = entry;
         loadedSnapshot = snapshot;
         referrers = null;
+        voiceVersions = [];
         historyIndex = null;
         history = await Task.Run(() => archive.GetHistory(entry));
         if (!ReferenceEquals(loadedEntry, entry))
             return;
         current = history.FirstOrDefault(item => item.Snapshots.Any(candidate => candidate.Id == snapshot.Id)) ?? history.LastOrDefault();
+        StateHasChanged();
+        var versions = await Task.Run(() => archive.GetVoiceVersionSource(snapshot, entry) is { } source
+            ? archive.GetMediaEntries(snapshot, new ResourceKey(ResourceType.AudioConfigurationReference, 0, source.instance)).Select(version => (voiceCode: TuningArchiveFile.VoiceCodes.First(voiceCode => TuningArchiveFile.GetVoiceVersionInstance(source.instance, voiceCode) == version.Instance), entry: version)).ToList()
+            : []);
+        if (!ReferenceEquals(loadedEntry, entry))
+            return;
+        voiceVersions = versions;
         StateHasChanged();
         var found = await Task.Run(() => archive.GetMediaReferrers(snapshot, entry).ToList());
         if (ReferenceEquals(loadedEntry, entry))

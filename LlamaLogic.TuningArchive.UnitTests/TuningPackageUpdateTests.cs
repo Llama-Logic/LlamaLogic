@@ -138,6 +138,26 @@ public class TuningPackageUpdateTests
     }
 
     [TestMethod]
+    public async Task TheUpdatedPackageHasCommentsWhenThereIsACommenter()
+    {
+        using var directory = new TemporaryDirectory();
+        var (archive, _, second) = await ImportAsync(directory);
+        using (archive)
+        {
+            var packagePath = directory.GetPath("Mod.package");
+            var happyKey = new ResourceKey(buffType, 0, TuningArchiveFixtures.BuffHappyInstance);
+            WritePackage(packagePath, (happyKey, BuffHappy("0x0000BEEF", 1)));
+            var update = await TuningPackageUpdate.AnalyzeAsync(archive, second, packagePath);
+            var updatedPath = directory.GetPath("Mod (updated).package");
+            var commenter = TuningCommenter.Create(archive, second);
+            await update.WriteAsync(updatedPath, update.GetRecommendedTuning(), commenter: commenter);
+            using var updated = new DataBasePackedFile(updatedPath, true);
+            Assert.AreEqual(commenter.Comment(TuningXml.GetCanonicalText(TuningXml.Parse(BuffHappy("0x0000BEEF", 3)))), updated.GetText(happyKey));
+            StringAssert.Contains(updated.GetText(happyKey), "<!--Mood: Mood_Happy-->");
+        }
+    }
+
+    [TestMethod]
     public async Task TheUpdatedPackageCannotReplaceThePackage()
     {
         using var directory = new TemporaryDirectory();

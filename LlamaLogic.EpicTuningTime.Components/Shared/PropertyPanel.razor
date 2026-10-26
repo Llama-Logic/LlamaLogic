@@ -92,6 +92,11 @@
                                 <button class="ta-prop-action" title="@($"Search for a {GetReferenceTypeName(node)} (or double-click the row)")" @onclick="() => ChooseReferenceAsync(node)"><MudIcon Icon="@Icons.Material.Filled.ManageSearch" Size="Size.Small" /></button>
                                 <button class="ta-prop-action" title="Type the instance" @onclick="() => BeginInlineEdit(node)"><MudIcon Icon="@Icons.Material.Filled.Edit" Size="Size.Small" /></button>
                             }
+                            else if (GetValuePickerKind(node) is { } pickerKind)
+                            {
+                                <button class="ta-prop-action" title="@($"Search for {GetPickerNoun(pickerKind)} (or double-click the row)")" @onclick="() => ChooseValueAsync(node, pickerKind)"><MudIcon Icon="@Icons.Material.Filled.ManageSearch" Size="Size.Small" /></button>
+                                <button class="ta-prop-action" title="Type the value" @onclick="() => BeginInlineEdit(node)"><MudIcon Icon="@Icons.Material.Filled.Edit" Size="Size.Small" /></button>
+                            }
                             else if (CanEditValue(node))
                             {
                                 <button class="ta-prop-action" title="Edit the value (or double-click the row)" @onclick="() => BeginEdit(node)"><MudIcon Icon="@Icons.Material.Filled.Edit" Size="Size.Small" /></button>
@@ -449,11 +454,77 @@
             await EditAsync(PropertyEditKind.SetValue, node, value);
     }
 
+    IEnumerable<ResourceType> GetResourceTypes(PropertyNode node)
+    {
+        if (node.Source?.ResourceKey is { } current)
+            yield return current.Type;
+        if (node.Description?.Attributes.GetValueOrDefault("resource_types") is { Length: > 0 } types)
+            foreach (var type in types.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            {
+                var hex = type.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? type[2..] : type;
+                if (uint.TryParse(hex, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var parsed))
+                    yield return (ResourceType)parsed;
+            }
+    }
+
+    ValuePickerKind? GetValuePickerKind(PropertyNode node)
+    {
+        if (!CanEditValue(node) || Snapshot is null)
+            return null;
+        if (node.Source?.ValueKind is TuningValueKind.LocalizedString || node.Description is ScalarTunableDescription { Class: "TunableLocalizedString" })
+            return ValuePickerKind.String;
+        if (node.Source?.ValueKind is not TuningValueKind.ResourceKey && node.Description is not ScalarTunableDescription { Type: "ResourceKey" })
+            return null;
+        foreach (var type in GetResourceTypes(node))
+            switch (TuningArchiveFile.GetMediaKind(type))
+            {
+                case TuningArchiveResourceKind.Image:
+                    return ValuePickerKind.Image;
+                case TuningArchiveResourceKind.Sound:
+                    return ValuePickerKind.Sound;
+            }
+        return null;
+    }
+
+    static string GetPickerNoun(ValuePickerKind kind) =>
+        kind switch
+        {
+            ValuePickerKind.String => "a string",
+            ValuePickerKind.Image => "an image",
+            _ => "a sound"
+        };
+
+    async Task ChooseValueAsync(PropertyNode node, ValuePickerKind kind)
+    {
+        if (Snapshot is not { } snapshot)
+            return;
+        editing = null;
+        await SelectAsync(node);
+        var mediaKind = kind is ValuePickerKind.Image ? TuningArchiveResourceKind.Image : TuningArchiveResourceKind.Sound;
+        var referenceType = kind is ValuePickerKind.String ? default : GetResourceTypes(node).FirstOrDefault(type => TuningArchiveFile.GetMediaKind(type) == mediaKind);
+        var parameters = new DialogParameters<ValueDialog>
+        {
+            { dialog => dialog.Current, node.Value },
+            { dialog => dialog.Group, node.Source?.ResourceKey?.Group ?? 0 },
+            { dialog => dialog.Kind, kind },
+            { dialog => dialog.ReferenceType, referenceType },
+            { dialog => dialog.Snapshot, snapshot }
+        };
+        var chosen = await Dialogs.ShowAsync<ValueDialog>($"Choose {GetPickerNoun(kind)} for {node.Label}", parameters, new DialogOptions { MaxWidth = MaxWidth.Small, FullWidth = true });
+        if (await chosen.Result is { Canceled: false, Data: string value } && value != node.Value)
+            await EditAsync(PropertyEditKind.SetValue, node, value);
+    }
+
     void BeginEdit(PropertyNode node)
     {
         if (CanChooseReference(node))
         {
             _ = ChooseReferenceAsync(node);
+            return;
+        }
+        if (GetValuePickerKind(node) is { } pickerKind)
+        {
+            _ = ChooseValueAsync(node, pickerKind);
             return;
         }
         BeginInlineEdit(node);

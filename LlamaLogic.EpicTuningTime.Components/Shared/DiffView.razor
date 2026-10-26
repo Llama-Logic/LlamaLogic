@@ -35,6 +35,9 @@
     public IReadOnlyList<EditorAnnotation>? ModifiedAnnotations { get; set; }
 
     [Parameter]
+    public EventCallback<int> ModifiedCursorLineChanged { get; set; }
+
+    [Parameter]
     public string Original { get; set; } = string.Empty;
 
     [Parameter]
@@ -65,7 +68,7 @@
     {
         initialized = true;
         originalSide ??= DotNetObjectReference.Create(new DiffSide(index => AnnotationActivated.InvokeAsync((false, index)), index => GetHover(appliedOriginalAnnotations, index)));
-        modifiedSide ??= DotNetObjectReference.Create(new DiffSide(index => AnnotationActivated.InvokeAsync((true, index)), index => GetHover(appliedModifiedAnnotations, index)));
+        modifiedSide ??= DotNetObjectReference.Create(new DiffSide(index => AnnotationActivated.InvokeAsync((true, index)), index => GetHover(appliedModifiedAnnotations, index), line => ModifiedCursorLineChanged.InvokeAsync(line)));
         await ApplyAsync();
         if (ViewState is not null)
         {

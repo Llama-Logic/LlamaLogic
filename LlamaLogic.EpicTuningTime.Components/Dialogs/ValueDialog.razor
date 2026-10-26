@@ -1,0 +1,220 @@
+@inject TuningArchiveSession Session
+
+<MudDialog>
+    <DialogContent>
+        <MudTextField T="string" Value="search" ValueChanged="OnSearchChanged" Label="@(Kind is ValuePickerKind.String ? "Search text or key" : "Search name or instance")" Immediate="true" DebounceInterval="150" Variant="Variant.Outlined" Margin="Margin.Dense" AutoFocus="true" Clearable="true" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" OnKeyDown="OnKeyDownAsync" />
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mt-1" Style="min-height: 32px">
+            <MudText Typo="Typo.caption">@Summary</MudText>
+        </MudStack>
+        <div class="ta-reference-list">
+            @if (choices is null)
+            {
+                <MudProgressLinear Indeterminate="true" />
+            }
+            else if (filtered.Count == 0)
+            {
+                <div class="ta-empty">@EmptyText</div>
+            }
+            else
+            {
+                <Virtualize Items="filtered" ItemSize="44" OverscanCount="10" Context="choice">
+                    <div class="ta-list-item ta-picker-row @(ReferenceEquals(choice, selected) ? "selected" : string.Empty)" @onclick="() => selected = choice" @ondblclick="() => Close(choice.Value)">
+                        @if (Kind is not ValuePickerKind.String)
+                        {
+                            <span class="ta-picker-preview" @onclick:stopPropagation="Kind is ValuePickerKind.Sound" @ondblclick:stopPropagation="Kind is ValuePickerKind.Sound">
+                                <ValuePreview Entry="choice.Entry" Snapshot="Snapshot" />
+                            </span>
+                        }
+                        <span class="ta-picker-text">
+                            <span class="ta-primary">@choice.Name@(choice.Instance == currentInstance ? " · current" : string.Empty)</span>
+                            <span class="ta-secondary">@choice.Detail</span>
+                        </span>
+                    </div>
+                </Virtualize>
+            }
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="() => Dialog.Cancel()">Cancel</MudButton>
+        @if (Custom is { } custom)
+        {
+            <MudButton Variant="Variant.Outlined" OnClick="() => Close(Format(custom))" title="Use this key even though this snapshot doesn't have it, as for a mod's own">Use @Format(custom)</MudButton>
+        }
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled="selected is null" OnClick="() => Close(selected!.Value)">Choose</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    sealed record Choice(string Name, string Detail, string Value, ulong Instance, TuningArchiveEntry? Entry);
+
+    string search = string.Empty;
+    ulong? currentInstance;
+    bool captured = true;
+    List<Choice>? choices;
+    List<Choice> filtered = [];
+    Choice? selected;
+
+    [CascadingParameter]
+    IMudDialogInstance Dialog { get; set; } = default!;
+
+    [Parameter]
+    public string? Current { get; set; }
+
+    [Parameter]
+    public uint Group { get; set; }
+
+    [Parameter]
+    public ValuePickerKind Kind { get; set; }
+
+    [Parameter]
+    public ResourceType ReferenceType { get; set; }
+
+    [Parameter]
+    public TuningArchiveSnapshot Snapshot { get; set; } = default!;
+
+    string Noun =>
+        Kind switch
+        {
+            ValuePickerKind.String => "strings",
+            ValuePickerKind.Image => "images",
+            _ => "sounds"
+        };
+
+    ulong? Custom =>
+        IsKey(search) && Parse(search) is { } instance && choices is not null && !choices.Any(choice => choice.Instance == instance) && (Kind is not ValuePickerKind.String || instance <= uint.MaxValue) ? instance : null;
+
+    string EmptyText =>
+        !captured
+            ? $"This snapshot didn't capture {Noun}; type a key to use one."
+            : choices is { Count: 0 }
+            ? $"This snapshot has no {Noun} to search; type a key to use one."
+            : "Nothing matches. Type a key to use one that isn't in this snapshot.";
+
+    string Summary =>
+        choices is null
+            ? "Loading…"
+            : filtered.Count == choices.Count
+                ? $"{choices.Count.ToString("N0", CultureInfo.CurrentCulture)} {Noun}"
+                : $"{filtered.Count.ToString("N0", CultureInfo.CurrentCulture)} of {choices.Count.ToString("N0", CultureInfo.CurrentCulture)} {Noun}";
+
+    static ulong? Parse(string text)
+    {
+        var term = text.Trim();
+        if (term.LastIndexOf(':') is var colon and >= 0)
+            term = term[(colon + 1)..];
+        if (term.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+            term = term[2..];
+        return term.Length is > 0 and <= 16 && ulong.TryParse(term, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var instance) ? instance : null;
+    }
+
+    bool IsKey(string text)
+    {
+        var term = text.Trim();
+        return term.Contains(':', StringComparison.Ordinal) || term.StartsWith("0x", StringComparison.OrdinalIgnoreCase) || term.Length == (Kind is ValuePickerKind.String ? 8 : 16);
+    }
+
+    string Format(ulong instance) =>
+        Kind is ValuePickerKind.String
+            ? $"0x{instance:X8}"
+            : $"{(uint)ReferenceType:x8}:{Group:x8}:{instance:x16}";
+
+    static string SingleLine(string text) =>
+        text.Replace("\r", string.Empty, StringComparison.Ordinal).Replace("\n", " ⏎ ", StringComparison.Ordinal);
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentInstance = Current is { } current ? Parse(current) : null;
+        switch (Kind)
+        {
+            case ValuePickerKind.String:
+                var strings = await Session.GetStringsAsync(Snapshot);
+                choices = [.. strings.OrderBy(pair => pair.Value, StringComparer.OrdinalIgnoreCase).Select(pair => new Choice(SingleLine(pair.Value), $"0x{pair.Key:X8}", Format(pair.Key), pair.Key, null))];
+                break;
+            case ValuePickerKind.Image:
+                captured = (await Session.GetMediaAsync(Snapshot)).Has(TuningArchiveResourceKind.Image);
+                var images = await Session.GetEntriesAsync(Snapshot, TuningArchiveResourceKind.Image);
+                choices = [.. images.All.OrderBy(entry => entry.Name is null).ThenBy(entry => MediaContent.GetName(entry), StringComparer.OrdinalIgnoreCase).Select(entry => new Choice(MediaContent.GetName(entry), $"{Session.GetTypeName(entry.Type)} · {entry.Pack} · {entry.Instance:X16}", Format(entry.Instance), entry.Instance, entry))];
+                break;
+            default:
+                captured = (await Session.GetMediaAsync(Snapshot)).Has(TuningArchiveResourceKind.Sound);
+                var sounds = await Session.GetEntriesAsync(Snapshot, TuningArchiveResourceKind.Sound);
+                choices = GetSoundChoices(sounds.All.Where(entry => entry.Type is ResourceType.AudioConfiguration));
+                break;
+        }
+        ApplyFilter();
+        selected = currentInstance is { } instance ? filtered.FirstOrDefault(choice => choice.Instance == instance) : null;
+    }
+
+    List<Choice> GetSoundChoices(IEnumerable<TuningArchiveEntry> configurations)
+    {
+        var voiced = new Dictionary<ulong, (string name, List<(int order, TuningArchiveEntry entry)> versions)>();
+        var plain = new List<TuningArchiveEntry>();
+        foreach (var entry in configurations)
+        {
+            var name = MediaContent.GetName(entry);
+            var extension = Path.GetExtension(name);
+            var stem = name[..(name.Length - extension.Length)];
+            if (entry.Name is not null && TuningArchiveFile.VoiceCodes.FirstOrDefault(voiceCode => stem.EndsWith($"_{voiceCode}", StringComparison.OrdinalIgnoreCase)) is { } code)
+            {
+                var source = TuningArchiveFile.GetVoicelessInstance(entry.Instance, code);
+                if (!voiced.TryGetValue(source, out var group))
+                    voiced.Add(source, group = ($"{stem[..^(code.Length + 1)]}{extension}", []));
+                group.versions.Add((TuningArchiveFile.VoiceCodes.ToList().IndexOf(code), entry));
+            }
+            else
+                plain.Add(entry);
+        }
+        return
+        [
+            .. voiced
+                .Select(pair => new Choice(pair.Value.name, $"{pair.Value.versions.Count} voice versions · {pair.Value.versions[0].entry.Pack} · {pair.Key:X16}", Format(pair.Key), pair.Key, pair.Value.versions.MinBy(version => version.order).entry))
+                .Concat(plain.Select(entry => new Choice(MediaContent.GetName(entry), $"{entry.Pack} · {entry.Instance:X16}", Format(entry.Instance), entry.Instance, entry)))
+                .OrderBy(choice => choice.Entry?.Name is null)
+                .ThenBy(choice => choice.Name, StringComparer.OrdinalIgnoreCase)
+        ];
+    }
+
+    void ApplyFilter()
+    {
+        if (choices is null)
+            return;
+        IEnumerable<Choice> query = choices;
+        var term = search.Trim();
+        if (term.Length > 0)
+        {
+            var instance = Parse(term);
+            var words = term.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            query = query
+                .Select(choice => (choice, rank: choice.Instance == instance ? 0 : !words.All(word => choice.Name.Contains(word, StringComparison.OrdinalIgnoreCase)) ? -1 : choice.Name.Equals(term, StringComparison.OrdinalIgnoreCase) ? 1 : choice.Name.StartsWith(term, StringComparison.OrdinalIgnoreCase) ? 2 : 3))
+                .Where(ranked => ranked.rank >= 0)
+                .OrderBy(ranked => ranked.rank)
+                .Select(ranked => ranked.choice);
+        }
+        filtered = query.ToList();
+        if (selected is not null && !filtered.Contains(selected))
+            selected = null;
+        if (term.Length > 0)
+            selected ??= filtered.FirstOrDefault();
+    }
+
+    void OnSearchChanged(string? value)
+    {
+        search = value ?? string.Empty;
+        selected = null;
+        ApplyFilter();
+    }
+
+    async Task OnKeyDownAsync(KeyboardEventArgs args)
+    {
+        if (args.Key != "Enter")
+            return;
+        await Task.Yield();
+        if (selected is not null)
+            Close(selected.Value);
+        else if (Custom is { } custom)
+            Close(Format(custom));
+    }
+
+    void Close(string value) =>
+        Dialog.Close(DialogResult.Ok(value));
+}

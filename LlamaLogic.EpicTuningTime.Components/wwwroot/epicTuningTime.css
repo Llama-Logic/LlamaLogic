@@ -371,6 +371,16 @@ html, body {
     width: 340px;
     min-width: 260px;
     min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.ta-sidebar > .ta-sidebar-filters {
+    flex-shrink: 0;
+}
+
+.ta-sidebar > .ta-list {
+    min-height: 200px;
 }
 
 .ta-sidebar-filters {
@@ -409,6 +419,35 @@ html, body {
 
 .ta-list-item:hover {
     background: var(--ett-glass-strong);
+}
+
+.ta-picker-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    box-sizing: border-box;
+}
+
+.ta-picker-preview {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+}
+
+.ta-picker-thumb {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.ta-picker-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .ta-list-item.selected {

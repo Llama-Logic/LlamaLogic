@@ -14,7 +14,7 @@ static class AnnotationBuilder
         return singleLine.Length <= length ? singleLine : $"{singleLine[..length]}…";
     }
 
-    static string BuildHover(TuningNode node, bool isUnrecognized, TuningArchiveEntry? resolved, string? typeName, bool isTuning, string? stringText)
+    static string BuildHover(TuningNode node, bool isUnrecognized, TuningArchiveEntry? resolved, string? typeName, bool isTuning, string? stringText, int voiceVersions)
     {
         var hover = new StringBuilder();
         if (node.Description is { } description)
@@ -54,7 +54,9 @@ static class AnnotationBuilder
                 break;
             case TuningValueKind.ResourceKey when node.ResourceKey is { } resourceKey:
                 hover.Append(CultureInfo.InvariantCulture, $"\n\n---\n\n{(Enum.IsDefined(resourceKey.Type) ? resourceKey.Type.ToString() : $"type 0x{(uint)resourceKey.Type:X8}")}");
-                if (resolved is not null)
+                if (resolved is not null && voiceVersions > 0)
+                    hover.Append(CultureInfo.InvariantCulture, $"\n\n→ {voiceVersions} voice versions, starting with **{Escape(resolved.Name ?? resolved.Key.ToString())}** ({resolved.Pack})\n\n*Ctrl+click or F12 to open it*");
+                else if (resolved is not null)
                     hover.Append(CultureInfo.InvariantCulture, $"\n\n→ **{Escape(resolved.Name ?? resolved.Key.ToString())}** ({resolved.Pack})\n\n*Ctrl+click or F12 to open*");
                 else if (isTuning)
                     hover.Append(CultureInfo.InvariantCulture, $"\n\n→ not in this snapshot");
@@ -90,6 +92,7 @@ static class AnnotationBuilder
             string? typeName = null;
             var isTuning = false;
             string? stringText = null;
+            var voiceVersions = 0;
             switch (node.ValueKind)
             {
                 case TuningValueKind.Reference when node.ReferenceType is { } referenceType:
@@ -138,6 +141,14 @@ static class AnnotationBuilder
                         resolved = media.Resolve(resourceKey);
                         if (resolved is not null)
                             target = (resolved.Type, resolved.Instance);
+                        else if (media.ResolveVoiceVersions(resourceKey) is { Count: > 0 } versions)
+                        {
+                            resolved = versions[0].entry;
+                            target = (resolved.Type, resolved.Instance);
+                            voiceVersions = versions.Count;
+                            var childVersions = versions.Count(version => version.voiceCode.StartsWith('c'));
+                            hint = childVersions > 0 ? $"<!--{versions.Count - childVersions} voice versions + {childVersions} child-->" : $"<!--{versions.Count} voice versions-->";
+                        }
                         else
                         {
                             hint = $"<!--{MediaContent.GetSingularName(mediaKind)} not in this snapshot-->";
@@ -163,7 +174,7 @@ static class AnnotationBuilder
             }
             if (!hasHover && hint is null && target is null)
                 continue;
-            annotations.Add(new(node.Line, start, end, hasHover ? () => BuildHover(node, isUnrecognized, resolved, typeName, isTuning, stringText) : null, hint, hintClass, target is not null));
+            annotations.Add(new(node.Line, start, end, hasHover ? () => BuildHover(node, isUnrecognized, resolved, typeName, isTuning, stringText, voiceVersions) : null, hint, hintClass, target is not null));
             targets.Add(target);
         }
         return (annotations, targets);
