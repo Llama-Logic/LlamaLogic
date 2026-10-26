@@ -297,7 +297,7 @@ public sealed class SimDataGenerator
         var instance = instances.GetOrAdd(className, _ => Descriptions.GetInstance(className) ?? throw new SimDataGenerationException($"The tuning descriptions do not describe {className}"));
         var full = IsClientBinary(instance.Source);
         var columns = instance.GetEffectiveMembersAndDeclarers()
-            .Where(memberAndDeclarer => full ? !IsExcluded(memberAndDeclarer.Member.Source) : IsClientBinary(memberAndDeclarer.Declarer.Source) || IsExported(memberAndDeclarer.Member.Source))
+            .Where(memberAndDeclarer => IsInstanceColumn(full, memberAndDeclarer.Member.Source, memberAndDeclarer.Declarer.Source))
             .Select(memberAndDeclarer => (Name: memberAndDeclarer.Member.Name!, Description: Resolve(memberAndDeclarer.Member.Source)))
             .OrderBy(column => column.Name, StringComparer.Ordinal)
             .ToList();
@@ -446,7 +446,7 @@ public sealed class SimDataGenerator
                 var optionDescription = description.Elements().FirstOrDefault(child => GetAttribute(child, "name") == option)
                     ?? throw new SimDataGenerationException($"Variant {GetAttribute(description, "name")} has no option {option}");
                 var typeHash = GetHash32(option);
-                if (GetAttribute(optionDescription, "class") == "TunableExistance" || IsExcluded(optionDescription) || (!full && !IsExported(optionDescription)))
+                if (!IsVariantOptionWritten(optionDescription, full))
                     return (type, new SimDataVariant(typeHash));
                 var optionValue = GenerateValue(optionDescription, value?.Elements().FirstOrDefault(child => GetAttribute(child, "n") == option), full);
                 return (type, new SimDataVariant(typeHash, optionValue.Type, optionValue.Value));
@@ -454,6 +454,65 @@ public sealed class SimDataGenerator
                 return GeneratePrimitive(description, value, type);
         }
     }
+
+    /// <summary>
+    /// Gets whether the tunable at the end of the specified <paramref name="path"/> in instance tuning of the specified <paramref name="instance"/> class is written to the SimData <see cref="Generate"/> generates, so that changing it changes the SimData
+    /// </summary>
+    /// <param name="instance">The class of the instance tuning</param>
+    /// <param name="path">The descriptions from one of the class's effective members (see <see cref="TuningDescriptionInstance.GetEffectiveMembers"/>) down to the tunable: after a list, its item; after a variant, the option; after a tuple, the member</param>
+    /// <remarks>
+    /// The same rules decide this as decide what <see cref="Generate"/> writes, including those that export a whole class (its <c>export_modes</c> has <c>client_binary</c>), a member through the class that declares it, and every member of a tuple none of whose members is exported.
+    /// A path that ends at a variant's option stands for choosing that option, which changes the variant's hash, so it is written whenever the variant is, even when the option's own tunables are not.
+    /// </remarks>
+    public bool IsWrittenToSimData(TuningDescriptionInstance instance, IReadOnlyList<TunableDescription> path)
+    {
+        ArgumentNullException.ThrowIfNull(instance);
+        ArgumentNullException.ThrowIfNull(path);
+        if (path.Count is 0 || path[0].Name is not { } topName)
+            return false;
+        var full = IsClientBinary(instance.Source);
+        var top = instance.GetEffectiveMembersAndDeclarers().FirstOrDefault(memberAndDeclarer => memberAndDeclarer.Member.Name == topName);
+        if (top.Member is null || !IsInstanceColumn(full, top.Member.Source, top.Declarer.Source))
+            return false;
+        var description = Resolve(top.Member.Source);
+        for (var i = 1; i < path.Count; ++i)
+        {
+            full = IsClientBinary(description) || (full && description.Attribute("export_modes") is null);
+            var name = GetAttribute(path[i].Source, "name");
+            switch (GetSimDataType(description))
+            {
+                case SimDataType.VECTOR:
+                    if (description.Elements().FirstOrDefault(child => child.Name.LocalName != "Deleted") is not { } firstChild)
+                        return false;
+                    var item = Resolve(firstChild);
+                    if (description.Attribute("mapping_key") is not null && item.Name.LocalName == "TunableTuple")
+                        item = mappingItems.GetValue(description, list => GetMappingItem(list, item));
+                    description = item;
+                    break;
+                case SimDataType.VARIANT:
+                    if (i == path.Count - 1)
+                        return true;
+                    if (description.Elements().FirstOrDefault(child => GetAttribute(child, "name") == name) is not { } option || !IsVariantOptionWritten(option, full))
+                        return false;
+                    description = Resolve(option);
+                    break;
+                case SimDataType.OBJECT:
+                    if (GetTupleColumns(description, full).FirstOrDefault(column => column.Name == name).Description is not { } column)
+                        return false;
+                    description = column;
+                    break;
+                default:
+                    return true;
+            }
+        }
+        return true;
+    }
+
+    bool IsInstanceColumn(bool full, XElement member, XElement declarer) =>
+        full ? !IsExcluded(member) : IsClientBinary(declarer) || IsExported(member);
+
+    bool IsVariantOptionWritten(XElement option, bool full) =>
+        GetAttribute(option, "class") != "TunableExistance" && !IsExcluded(option) && (full || IsExported(option));
 
     XElement GetMappingItem(XElement list, XElement item)
     {

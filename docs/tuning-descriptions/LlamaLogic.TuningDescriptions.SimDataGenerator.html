@@ -418,11 +418,56 @@ Class SimDataGenerator  <a class="header-action link-secondary" title="View sour
 
 
 
+  <a id="LlamaLogic_TuningDescriptions_SimDataGenerator_IsWrittenToSimData_" data-uid="LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData*"></a>
+
+  <h3 id="LlamaLogic_TuningDescriptions_SimDataGenerator_IsWrittenToSimData_LlamaLogic_TuningDescriptions_TuningDescriptionInstance_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningDescriptions_TunableDescription__" data-uid="LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription})">
+  IsWrittenToSimData(TuningDescriptionInstance, IReadOnlyList&lt;TunableDescription&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/SimDataGenerator.cs/#L467"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the tunable at the end of the specified <code class="paramref">path</code> in instance tuning of the specified <code class="paramref">instance</code> class is written to the SimData <a class="xref" href="LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Generate_System_Xml_Linq_XDocument_">Generate(XDocument)</a> generates, so that changing it changes the SimData</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWrittenToSimData(TuningDescriptionInstance instance, IReadOnlyList&lt;TunableDescription&gt; path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instance</code> <a class="xref" href="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html">TuningDescriptionInstance</a></dt>
+    <dd><p>The class of the instance tuning</p>
+</dd>
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningDescriptions.TunableDescription.html">TunableDescription</a>&gt;</dt>
+    <dd><p>The descriptions from one of the class's effective members (see <a class="xref" href="LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html#LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetEffectiveMembers">GetEffectiveMembers()</a>) down to the tunable: after a list, its item; after a variant, the option; after a tuple, the member</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningDescriptions_SimDataGenerator_IsWrittenToSimData_LlamaLogic_TuningDescriptions_TuningDescriptionInstance_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningDescriptions_TunableDescription___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The same rules decide this as decide what <a class="xref" href="LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Generate_System_Xml_Linq_XDocument_">Generate(XDocument)</a> writes, including those that export a whole class (its <code>export_modes</code> has <code>client_binary</code>), a member through the class that declares it, and every member of a tuple none of whose members is exported.
+A path that ends at a variant's option stands for choosing that option, which changes the variant's hash, so it is written whenever the variant is, even when the option's own tunables are not.</p>
+</div>
+
+
+
+
   <a id="LlamaLogic_TuningDescriptions_SimDataGenerator_RemoveResourceKeyConversion_" data-uid="LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion*"></a>
 
   <h3 id="LlamaLogic_TuningDescriptions_SimDataGenerator_RemoveResourceKeyConversion_LlamaLogic_Packages_ResourceType_System_UInt32_" data-uid="LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32)">
   RemoveResourceKeyConversion(ResourceType, uint)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/SimDataGenerator.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningDescriptions/SimDataGenerator.cs/#L591"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Stops converting resource keys of the specified <code class="paramref">fromType</code> and <code class="paramref">fromGroup</code> in tuning, so that they are written to SimData as they are</p>

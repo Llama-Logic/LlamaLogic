@@ -46,6 +46,33 @@ public class SimDataGeneratorTests
     }
 
     [TestMethod]
+    public void IsWrittenToSimDataFollowsTheRulesGenerateFollows()
+    {
+        using var set = SimDataGeneratorFixtures.CreateSet();
+        var generator = new SimDataGenerator(set);
+        bool written(string className, params string[] names)
+        {
+            var instance = set.GetInstance(className)!;
+            var path = new List<TunableDescription> { instance.GetEffectiveMembers().Single(member => member.Name == names[0]) };
+            foreach (var name in names.Skip(1))
+                path.Add(name is "[]" ? path[^1].Members.Single() : path[^1].GetMember(name)!);
+            return generator.IsWrittenToSimData(instance, path);
+        }
+        Assert.IsTrue(written("Widget", "zeta_int"));
+        Assert.IsFalse(written("Widget", "hidden"));
+        Assert.IsTrue(written("Widget", "deep_tuple", "exported_child"));
+        Assert.IsFalse(written("Widget", "deep_tuple", "not_exported_child"));
+        Assert.IsTrue(written("Widget", "option", "enabled"));
+        Assert.IsTrue(written("Widget", "option", "disabled"));
+        Assert.IsTrue(written("Widget", "mapping", "[]", "key"));
+        Assert.IsTrue(written("Widget", "mapping", "[]", "value", "shown"));
+        Assert.IsFalse(written("Widget", "mapping", "[]", "value", "unshown"));
+        Assert.IsTrue(written("FullWidget", "included"));
+        Assert.IsFalse(written("FullWidget", "excluded"));
+        Assert.IsTrue(written("FullWidget", "full_tuple", "inner"));
+    }
+
+    [TestMethod]
     public void DeletedInheritedMembersAreNotColumns()
     {
         using var set = SimDataGeneratorFixtures.CreateSet();

@@ -12,6 +12,7 @@ items:
   - LlamaLogic.TuningDescriptions.SimDataGenerator.AddTuning(System.Xml.Linq.XDocument)
   - LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions
   - LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  - LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription})
   - LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32)
   langs:
   - csharp
@@ -296,6 +297,50 @@ items:
   - type: LlamaLogic.TuningDescriptions.SimDataGenerationException
     commentId: T:LlamaLogic.TuningDescriptions.SimDataGenerationException
     description: <code class="paramref">tuning</code> cannot be generated with <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.Descriptions" data-throw-if-not-resolved="false"></xref> and what the generator has learned
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription})
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription})
+  id: IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription})
+  parent: LlamaLogic.TuningDescriptions.SimDataGenerator
+  langs:
+  - csharp
+  - vb
+  name: IsWrittenToSimData(TuningDescriptionInstance, IReadOnlyList<TunableDescription>)
+  nameWithType: SimDataGenerator.IsWrittenToSimData(TuningDescriptionInstance, IReadOnlyList<TunableDescription>)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningDescriptions.TunableDescription>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IsWrittenToSimData
+    path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
+    startLine: 466
+  assemblies:
+  - LlamaLogic.TuningDescriptions
+  namespace: LlamaLogic.TuningDescriptions
+  summary: Gets whether the tunable at the end of the specified <code class="paramref">path</code> in instance tuning of the specified <code class="paramref">instance</code> class is written to the SimData <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)" data-throw-if-not-resolved="false"></xref> generates, so that changing it changes the SimData
+  remarks: >-
+    The same rules decide this as decide what <xref href="LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)" data-throw-if-not-resolved="false"></xref> writes, including those that export a whole class (its <code>export_modes</code> has <code>client_binary</code>), a member through the class that declares it, and every member of a tuple none of whose members is exported.
+
+    A path that ends at a variant's option stands for choosing that option, which changes the variant's hash, so it is written whenever the variant is, even when the option's own tunables are not.
+  example: []
+  syntax:
+    content: public bool IsWrittenToSimData(TuningDescriptionInstance instance, IReadOnlyList<TunableDescription> path)
+    parameters:
+    - id: instance
+      type: LlamaLogic.TuningDescriptions.TuningDescriptionInstance
+      description: The class of the instance tuning
+    - id: path
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription}
+      description: "The descriptions from one of the class's effective members (see <xref href=\"LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetEffectiveMembers\" data-throw-if-not-resolved=\"false\"></xref>) down to the tunable: after a list, its item; after a variant, the option; after a tuple, the member"
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsWrittenToSimData(instance As TuningDescriptionInstance, path As IReadOnlyList(Of TunableDescription)) As Boolean
+  overload: LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData*
+  nameWithType.vb: SimDataGenerator.IsWrittenToSimData(TuningDescriptionInstance, IReadOnlyList(Of TunableDescription))
+  fullName.vb: LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData(LlamaLogic.TuningDescriptions.TuningDescriptionInstance, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningDescriptions.TunableDescription))
+  name.vb: IsWrittenToSimData(TuningDescriptionInstance, IReadOnlyList(Of TunableDescription))
 - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32)
   commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32)
   id: RemoveResourceKeyConversion(LlamaLogic.Packages.ResourceType,System.UInt32)
@@ -314,7 +359,7 @@ items:
       repo: https://github.com/Llama-Logic/LlamaLogic.git
     id: RemoveResourceKeyConversion
     path: ../LlamaLogic.TuningDescriptions/SimDataGenerator.cs
-    startLine: 531
+    startLine: 590
   assemblies:
   - LlamaLogic.TuningDescriptions
   namespace: LlamaLogic.TuningDescriptions
@@ -973,6 +1018,173 @@ references:
   name: Generate
   nameWithType: SimDataGenerator.Generate
   fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  isExternal: true
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Generate_System_Xml_Linq_XDocument_
+  name: Generate(XDocument)
+  nameWithType: SimDataGenerator.Generate(XDocument)
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+    name: Generate
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Generate_System_Xml_Linq_XDocument_
+  - name: (
+  - uid: System.Xml.Linq.XDocument
+    name: XDocument
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.Generate(System.Xml.Linq.XDocument)
+    name: Generate
+    href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_Generate_System_Xml_Linq_XDocument_
+  - name: (
+  - uid: System.Xml.Linq.XDocument
+    name: XDocument
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  - name: )
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetEffectiveMembers
+  commentId: M:LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetEffectiveMembers
+  href: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html#LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetEffectiveMembers
+  name: GetEffectiveMembers()
+  nameWithType: TuningDescriptionInstance.GetEffectiveMembers()
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetEffectiveMembers()
+  spec.csharp:
+  - uid: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetEffectiveMembers
+    name: GetEffectiveMembers
+    href: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html#LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetEffectiveMembers
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.GetEffectiveMembers
+    name: GetEffectiveMembers
+    href: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html#LlamaLogic_TuningDescriptions_TuningDescriptionInstance_GetEffectiveMembers
+  - name: (
+  - name: )
+- uid: LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData*
+  commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData
+  href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_IsWrittenToSimData_LlamaLogic_TuningDescriptions_TuningDescriptionInstance_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningDescriptions_TunableDescription__
+  name: IsWrittenToSimData
+  nameWithType: SimDataGenerator.IsWrittenToSimData
+  fullName: LlamaLogic.TuningDescriptions.SimDataGenerator.IsWrittenToSimData
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionInstance
+  commentId: T:LlamaLogic.TuningDescriptions.TuningDescriptionInstance
+  parent: LlamaLogic.TuningDescriptions
+  href: LlamaLogic.TuningDescriptions.TuningDescriptionInstance.html
+  name: TuningDescriptionInstance
+  nameWithType: TuningDescriptionInstance
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionInstance
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningDescriptions.TunableDescription}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TunableDescription>
+  nameWithType: IReadOnlyList<TunableDescription>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningDescriptions.TunableDescription>
+  nameWithType.vb: IReadOnlyList(Of TunableDescription)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningDescriptions.TunableDescription)
+  name.vb: IReadOnlyList(Of TunableDescription)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription
+    name: TunableDescription
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningDescriptions.TunableDescription
+    name: TunableDescription
+    href: LlamaLogic.TuningDescriptions.TunableDescription.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion*
   commentId: Overload:LlamaLogic.TuningDescriptions.SimDataGenerator.RemoveResourceKeyConversion
   href: LlamaLogic.TuningDescriptions.SimDataGenerator.html#LlamaLogic_TuningDescriptions_SimDataGenerator_RemoveResourceKeyConversion_LlamaLogic_Packages_ResourceType_System_UInt32_
