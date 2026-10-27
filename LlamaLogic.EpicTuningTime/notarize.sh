@@ -7,7 +7,7 @@ else
   exit 1
 fi
 
-APP_BUNDLE=$(ls -d bin/Release/net10.0-maccatalyst/*.app 2>/dev/null | head -n 1)
+APP_BUNDLE=$(ls -d bin/Release/net10.0-maccatalyst/osx-arm64/*.app 2>/dev/null | head -n 1)
 ZIP_FILE="EpicTuningTime.zip"
 
 if [ -z "$APP_BUNDLE" ]; then

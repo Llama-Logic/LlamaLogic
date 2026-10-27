@@ -53,6 +53,7 @@
     <PropertyGroup Condition="'$(Configuration)' == 'Release' and $([MSBuild]::IsOSPlatform('OSX'))">
         <CodesignKey>Developer ID Application: Daniel Henry (UA3C4N249P)</CodesignKey>
         <EnableCodeSigning>true</EnableCodeSigning>
+        <MtouchInterpreter>-all</MtouchInterpreter>
         <MtouchLink>none</MtouchLink>
         <ProvisionType>Manual</ProvisionType>
         <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
