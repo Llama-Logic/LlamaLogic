@@ -6169,6 +6169,28 @@ namespace EA.Sims4.Persistence
         public void ResetAutosaveRealTimeFrequency() => __pbn__AutosaveRealTimeFrequency = null;
         private uint? __pbn__AutosaveRealTimeFrequency;
 
+        [global::ProtoBuf.ProtoMember(68, Name = @"weight_changes_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool WeightChangesEnabled
+        {
+            get => __pbn__WeightChangesEnabled ?? true;
+            set => __pbn__WeightChangesEnabled = value;
+        }
+        public bool ShouldSerializeWeightChangesEnabled() => __pbn__WeightChangesEnabled != null;
+        public void ResetWeightChangesEnabled() => __pbn__WeightChangesEnabled = null;
+        private bool? __pbn__WeightChangesEnabled;
+
+        [global::ProtoBuf.ProtoMember(69, Name = @"muscles_changes_enabled")]
+        [global::System.ComponentModel.DefaultValue(true)]
+        public bool MusclesChangesEnabled
+        {
+            get => __pbn__MusclesChangesEnabled ?? true;
+            set => __pbn__MusclesChangesEnabled = value;
+        }
+        public bool ShouldSerializeMusclesChangesEnabled() => __pbn__MusclesChangesEnabled != null;
+        public void ResetMusclesChangesEnabled() => __pbn__MusclesChangesEnabled = null;
+        private bool? __pbn__MusclesChangesEnabled;
+
         [global::ProtoBuf.ProtoContract()]
         public enum AutonomyLevel
         {
