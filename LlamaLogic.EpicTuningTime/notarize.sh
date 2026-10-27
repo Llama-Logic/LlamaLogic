@@ -11,7 +11,7 @@ APP_BUNDLE=$(ls -d bin/Release/net10.0-maccatalyst/osx-arm64/*.app 2>/dev/null |
 ZIP_FILE="EpicTuningTime.zip"
 
 if [ -z "$APP_BUNDLE" ]; then
-  echo "No app bundle found in bin/Release/net10.0-maccatalyst; run build_and_sign.sh first."
+  echo "No app bundle found in bin/Release/net10.0-maccatalyst/osx-arm64; run build_and_sign.sh first."
   exit 1
 fi
 
