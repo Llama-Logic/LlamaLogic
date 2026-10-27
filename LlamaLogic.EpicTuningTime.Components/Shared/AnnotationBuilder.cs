@@ -14,7 +14,7 @@ static class AnnotationBuilder
         return singleLine.Length <= length ? singleLine : $"{singleLine[..length]}…";
     }
 
-    static string BuildHover(TuningNode node, bool isUnrecognized, TuningArchiveEntry? resolved, string? typeName, bool isTuning, string? stringText, int voiceVersions)
+    static string BuildHover(TuningNode node, bool isUnrecognized, TuningArchiveEntry? resolved, TuningArchiveUninstalledTuning? uninstalled, string? typeName, bool isTuning, string? stringText, int voiceVersions)
     {
         var hover = new StringBuilder();
         if (node.Description is { } description)
@@ -41,6 +41,8 @@ static class AnnotationBuilder
             case TuningValueKind.Reference when node.ReferenceType is not null:
                 if (resolved is not null)
                     hover.Append(CultureInfo.InvariantCulture, $"\n\n---\n\n→ **{Escape(resolved.Name ?? string.Empty)}** ({typeName}, {resolved.Pack})\n\n*Ctrl+click or F12 to open*");
+                else if (uninstalled is not null)
+                    hover.Append(CultureInfo.InvariantCulture, $"\n\n---\n\n→ **{Escape(uninstalled.Name)}** ({typeName}, {uninstalled.Pack} not installed)\n\n*Not in this snapshot: only its name is known, from {uninstalled.Pack}'s patches in the game's Delta folder*");
                 else if (isTuning)
                     hover.Append(CultureInfo.InvariantCulture, $"\n\n---\n\n→ {typeName} `{node.Value}` is not in this snapshot");
                 else
@@ -89,6 +91,7 @@ static class AnnotationBuilder
             string? hintClass = null;
             (ResourceType type, ulong instance)? target = null;
             TuningArchiveEntry? resolved = null;
+            TuningArchiveUninstalledTuning? uninstalled = null;
             string? typeName = null;
             var isTuning = false;
             string? stringText = null;
@@ -106,6 +109,8 @@ static class AnnotationBuilder
                             hint = $"<!--{resolved.Name}-->";
                             target = (resolved.Type, resolved.Instance);
                         }
+                        else if ((uninstalled = entries.FindUninstalled(referenceType, node.ReferenceInstance, node.ReferenceName)) is not null)
+                            hint = $"<!--{uninstalled.Name} ({uninstalled.Pack} not installed)-->";
                         else if (isTuning)
                         {
                             hint = $"<!--{typeName} not in this snapshot-->";
@@ -174,7 +179,7 @@ static class AnnotationBuilder
             }
             if (!hasHover && hint is null && target is null)
                 continue;
-            annotations.Add(new(node.Line, start, end, hasHover ? () => BuildHover(node, isUnrecognized, resolved, typeName, isTuning, stringText, voiceVersions) : null, hint, hintClass, target is not null));
+            annotations.Add(new(node.Line, start, end, hasHover ? () => BuildHover(node, isUnrecognized, resolved, uninstalled, typeName, isTuning, stringText, voiceVersions) : null, hint, hintClass, target is not null));
             targets.Add(target);
         }
         return (annotations, targets);

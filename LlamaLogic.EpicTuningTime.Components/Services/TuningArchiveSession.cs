@@ -144,7 +144,7 @@ sealed class TuningArchiveSession :
         {
             if (!entries.TryGetValue((snapshot.Id, kind), out var task))
             {
-                task = Task.Run(() => new SnapshotEntries(archive.GetEntries(snapshot, kind)));
+                task = Task.Run(() => new SnapshotEntries(archive.GetEntries(snapshot, kind), kind is TuningArchiveResourceKind.Tuning ? archive.GetUninstalledTunings(snapshot) : null));
                 entries[(snapshot.Id, kind)] = task;
             }
             return task;

@@ -17,7 +17,7 @@ public sealed partial class TuningArchiveFile :
 {
     const long ordinalSpacing = 1024;
     const int referenceIndexVersion = 4;
-    const int schemaVersion = 1;
+    const int schemaVersion = 2;
 
     internal const string AnimationStateMachineScope = "asm";
     internal const string ImagesScope = "images";
@@ -126,8 +126,10 @@ public sealed partial class TuningArchiveFile :
         var existingVersion = command.ExecuteScalar() is string text ? int.Parse(text, CultureInfo.InvariantCulture) : 0;
         if (existingVersion > schemaVersion)
             throw new InvalidDataException($"The archive at {Path} was created by a newer version of this library (schema {existingVersion})");
-        if (existingVersion < schemaVersion)
+        if (existingVersion < 1)
             CreateSchema(connection);
+        if (existingVersion < 2)
+            MigrateSchemaToVersion2(connection);
         command.CommandText = "SELECT value FROM meta WHERE key = 'reference_index_version'";
         if (command.ExecuteScalar() is string indexVersionText && int.Parse(indexVersionText, CultureInfo.InvariantCulture) == referenceIndexVersion)
             return;
@@ -251,6 +253,28 @@ public sealed partial class TuningArchiveFile :
             ) WITHOUT ROWID;
             CREATE INDEX reference_blob ON reference (blob_id);
             INSERT INTO meta (key, value) VALUES ('schema_version', '1');
+            """;
+        command.ExecuteNonQuery();
+        transaction.Commit();
+    }
+
+    static void MigrateSchemaToVersion2(SqliteConnection connection)
+    {
+        using var transaction = connection.BeginTransaction();
+        using var command = connection.CreateCommand();
+        command.Transaction = transaction;
+        command.CommandText =
+            """
+            CREATE TABLE snapshot_uninstalled_tuning (
+                snapshot_id INTEGER NOT NULL,
+                type INTEGER NOT NULL,
+                instance INTEGER NOT NULL,
+                name TEXT NOT NULL,
+                class TEXT,
+                pack TEXT NOT NULL,
+                PRIMARY KEY (snapshot_id, type, instance)
+            ) WITHOUT ROWID;
+            UPDATE meta SET value = '2' WHERE key = 'schema_version';
             """;
         command.ExecuteNonQuery();
         transaction.Commit();
@@ -599,6 +623,7 @@ public sealed partial class TuningArchiveFile :
                         """
                         DELETE FROM snapshot_scope WHERE snapshot_id = $snapshot;
                         DELETE FROM snapshot_pack WHERE snapshot_id = $snapshot;
+                        DELETE FROM snapshot_uninstalled_tuning WHERE snapshot_id = $snapshot;
                         DELETE FROM snapshot WHERE id = $snapshot;
                         """;
                     command.Parameters.AddWithValue("$snapshot", snapshot.Id);

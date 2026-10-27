@@ -53,6 +53,7 @@ partial class TuningArchiveFile
     /// Media are the images, sounds and videos to which the captured tuning and SimData refer (with the audio the sounds use), taken from the client packages of the packs with the same rules as tuning; which kinds are captured is up to the <paramref name="options"/>.
     /// Strings are merged from every string table of every pack the way the game merges them: a string in a package of higher priority replaces the same string in a package of lower priority (packages of the same priority in pack order, the base game first), so a pack's <c>Delta</c> strings add to and correct its installed strings rather than replacing them.
     /// Within a pack, tuning, SimData and animation state machines are taken from the pack's <c>Delta</c> packages before its installed packages, because the <c>Delta</c> folder patches the installed one: its resources replace theirs and its delete records retire theirs, whatever priorities the two folders' configurations assign.
+    /// The game does not load the patches of packs that are not installed, so their tuning is not captured; only the names of the tunings they patch are recorded (see <see cref="GetUninstalledTunings"/>), so that what refers to them can still be explained.
     /// </remarks>
     /// <exception cref="InvalidOperationException">No game version was specified and the installation's version could not be found</exception>
     public async Task<TuningArchiveCaptureResult> CaptureAsync(GameInstallation installation, TuningArchiveCaptureOptions? options = null, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
@@ -61,6 +62,7 @@ partial class TuningArchiveFile
         options ??= new();
         var gameVersion = options.GameVersion ?? installation.GameVersion ?? throw new InvalidOperationException("The installation's game version could not be found; specify it in the options");
         var packs = installation.Packs.Where(pack => options.Packs is null || options.Packs.Contains(pack.Code, StringComparer.OrdinalIgnoreCase)).ToList();
+        var uninstalledPacks = installation.UninstalledPacks.Where(pack => options.Packs is null || options.Packs.Contains(pack.Code, StringComparer.OrdinalIgnoreCase)).ToList();
         await writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
@@ -81,6 +83,7 @@ partial class TuningArchiveFile
                     [TuningArchiveResourceKind.Video] = []
                 };
                 var mediaReferences = new Dictionary<(ResourceType type, ulong instance), (uint group, string? name)>();
+                var capturedTunings = new HashSet<(ResourceType type, ulong instance)>();
                 var includeMedia = options.IncludeImages || options.IncludeSounds || options.IncludeVideos;
                 var locale = options.Locale?.ToUpperInvariant();
                 for (var packIndex = 0; packIndex < packs.Count; ++packIndex)
@@ -103,6 +106,8 @@ partial class TuningArchiveFile
                         }
                     }
                     ingestor.Ingest(TuningArchiveResourceKind.Tuning, documents, tuningManifest, problems);
+                    foreach (var document in documents)
+                        capturedTunings.Add((document.Type, document.Instance));
                     if (includeMedia)
                         CollectMediaReferences(documents, mediaReferences);
                     if (options.IncludeSimData)
@@ -154,6 +159,29 @@ partial class TuningArchiveFile
                             }).OfType<IngestDocument>());
                         }
                         ingestor.Ingest(TuningArchiveResourceKind.AnimationStateMachine, animationStateMachineDocuments, animationStateMachineManifest, problems);
+                    }
+                }
+                var uninstalledTunings = new Dictionary<(ResourceType type, ulong instance), TuningArchiveUninstalledTuning>();
+                for (var packIndex = 0; packIndex < uninstalledPacks.Count; ++packIndex)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    var pack = uninstalledPacks[packIndex];
+                    progress?.Report(new($"Reading the names of tuning patched for {pack.Code}, which is not installed", packIndex, uninstalledPacks.Count));
+                    foreach (var (key, package) in ClaimResources(pack.SimulationPackages, key => key.Type is ResourceType.CombinedTuning, problems, pack.Code))
+                    {
+                        try
+                        {
+                            using var dbpf = new DataBasePackedFile(package.Path, true);
+                            foreach (var tuning in dbpf.GetCombinedTuning(key).GetTunings())
+                                if (tuning.Document.Root is { } root
+                                    && root.Attribute("n")?.Value is { Length: > 0 } name
+                                    && !capturedTunings.Contains((tuning.ResourceType, tuning.Instance)))
+                                    uninstalledTunings.TryAdd((tuning.ResourceType, tuning.Instance), new(tuning.ResourceType, tuning.Instance, name, root.Name.LocalName == "I" ? root.Attribute("c")?.Value : null, pack.Code));
+                        }
+                        catch (Exception ex) when (ex is InvalidDataException or XmlException or FormatException or NotSupportedException or IOException)
+                        {
+                            problems.Add($"{pack.Code}: the combined tuning in {System.IO.Path.GetFileName(package.Path)} could not be read ({ex.Message})");
+                        }
                     }
                 }
                 if (locale is not null)
@@ -209,6 +237,7 @@ partial class TuningArchiveFile
                         ApplyResourceScope(connection, transaction, id, ordinal, TuningArchiveResourceKind.AnimationStateMachine, animationStateMachineManifest);
                     if (locale is not null)
                         ApplyStringScope(connection, transaction, id, ordinal, locale, stringManifest);
+                    InsertUninstalledTunings(connection, transaction, id, uninstalledTunings.Values);
                     if (options.IncludeImages)
                         ApplyResourceScope(connection, transaction, id, ordinal, TuningArchiveResourceKind.Image, mediaManifests[TuningArchiveResourceKind.Image]);
                     if (options.IncludeSounds)

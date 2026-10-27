@@ -169,7 +169,18 @@ partial class TuningArchiveFile
                 text.AddAfterSelf(new XComment(GetExportComment($"String: \"{GetExportStringText(stringText)}\"")));
     }
 
-    internal sealed record CommentTables(IReadOnlyDictionary<uint, string> Strings, IReadOnlyDictionary<ulong, (string name, string? @class)> Names, IReadOnlyDictionary<(ResourceType type, ulong instance), TuningArchiveEntry> TuningsByKey, IReadOnlyDictionary<(ResourceType type, string name), TuningArchiveEntry> TuningsByName, IReadOnlyDictionary<ulong, TuningArchiveEntry> AnimationStateMachinesByInstance, TuningDescriptionCache? DescriptionCache);
+    internal sealed record CommentTables(IReadOnlyDictionary<uint, string> Strings, IReadOnlyDictionary<ulong, (string name, string? @class)> Names, IReadOnlyDictionary<(ResourceType type, ulong instance), TuningArchiveEntry> TuningsByKey, IReadOnlyDictionary<(ResourceType type, string name), TuningArchiveEntry> TuningsByName, IReadOnlyDictionary<ulong, TuningArchiveEntry> AnimationStateMachinesByInstance, TuningDescriptionCache? DescriptionCache, IReadOnlyDictionary<(ResourceType type, ulong instance), TuningArchiveUninstalledTuning> UninstalledTunings);
+
+    internal static Dictionary<(ResourceType type, ulong instance), TuningArchiveUninstalledTuning> AddUninstalledTuningNames(IReadOnlyList<TuningArchiveUninstalledTuning> uninstalledTunings, Dictionary<ulong, (string name, string? @class)> names)
+    {
+        var byKey = new Dictionary<(ResourceType type, ulong instance), TuningArchiveUninstalledTuning>();
+        foreach (var tuning in uninstalledTunings)
+        {
+            byKey.TryAdd((tuning.Type, tuning.Instance), tuning);
+            names.TryAdd(tuning.Instance, (tuning.Name, tuning.Class ?? (tuning.Type is ResourceType.Tuning ? null : string.Empty)));
+        }
+        return byKey;
+    }
 
     internal static void AddComments(XDocument document, string text, ulong instance, CommentTables tables, bool stringComments, bool referenceComments, ExportCrossReferences? crossReferences)
     {
@@ -204,6 +215,11 @@ partial class TuningArchiveFile
                                 target = resolved.Instance;
                                 if (node.ReferenceInstance is not null && resolved.Name is { } resolvedName)
                                     comment = resolved.Class is { } resolvedClass ? $"{resolvedClass}: {resolvedName}" : resolvedName;
+                            }
+                            else if (node.ReferenceInstance is { } uninstalledInstance && tables.UninstalledTunings.TryGetValue((referenceType, uninstalledInstance), out var uninstalled))
+                            {
+                                target = uninstalled.Instance;
+                                comment = uninstalled.Class is { } uninstalledClass ? $"{uninstalledClass}: {uninstalled.Name}" : uninstalled.Name;
                             }
                         }
                         else if (node.ValueKind is TuningValueKind.ResourceKey && node.ResourceKey is { Type: ResourceType.AnimationStateMachine } resourceKey && tables.AnimationStateMachinesByInstance.TryGetValue(resourceKey.FullInstance, out var animationStateMachine))
@@ -327,6 +343,7 @@ partial class TuningArchiveFile
     /// <para>
     /// A tuning that more than one pack contains is written once, to the folder of the pack the snapshot attributes it to; XML Extractor writes it to the folder of each pack.
     /// The archive does not keep the order of the attributes the game ships, so elements' attributes are in canonical order (see <see cref="TuningXml"/>), with the <c>n</c> and <c>t</c> attributes ordered as <see cref="TuningArchiveExportOptions.AttributeOrder"/> specifies.
+    /// References to tuning of packs that were not installed are commented with the names the packs' patches give it, as XML Extractor comments them (see <see cref="GetUninstalledTunings"/>), and those names are in the reference files, but the tuning itself is not exported.
     /// </para>
     /// </remarks>
     public async Task<TuningArchiveExportResult> ExportAsync(TuningArchiveSnapshot snapshot, string folder, TuningArchiveExportOptions? options = null, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
@@ -355,6 +372,7 @@ partial class TuningArchiveFile
             foreach (var entry in animationStateMachines)
                 if (entry.Name is { } name)
                     names.TryAdd(entry.Instance, (name, animationStateMachineClass));
+            var uninstalledTunings = AddUninstalledTuningNames(GetUninstalledTunings(snapshot), names);
             var tuningsByKey = new Dictionary<(ResourceType type, ulong instance), TuningArchiveEntry>();
             foreach (var entry in tunings)
                 tuningsByKey.TryAdd((entry.Type, entry.Instance), entry);
@@ -368,7 +386,7 @@ partial class TuningArchiveFile
             var describe = options.IncludeStringComments || options.IncludeReferenceComments || options.WriteFileIndex;
             var descriptionCache = describe && options.UseTuningDescriptions && FindTuningDescriptions(snapshot) is { } descriptions ? GetTuningDescriptionCache(descriptions) : null;
             var crossReferences = options.WriteFileIndex ? new ExportCrossReferences() : null;
-            var commentTables = new CommentTables(strings, names, tuningsByKey, tuningsByName, animationStateMachinesByInstance, descriptionCache);
+            var commentTables = new CommentTables(strings, names, tuningsByKey, tuningsByName, animationStateMachinesByInstance, descriptionCache, uninstalledTunings);
             progress?.Report(new("Naming the files", 0, 0));
             var planned = new List<ExportFile>();
             var claimedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

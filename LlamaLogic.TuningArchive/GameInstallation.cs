@@ -298,9 +298,10 @@ public sealed partial class GameInstallation
         var deltaRoot = System.IO.Path.Combine(contentRoot, "Delta");
         var packsRoot = GetPacksRoot(contentRoot);
         var packCodes = new SortedSet<string>(StringComparer.OrdinalIgnoreCase);
+        var uninstalledPackCodes = new SortedSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var directory in new[] { packsRoot, deltaRoot }.Where(Directory.Exists).SelectMany(EnumerateDirectories))
-            if (System.IO.Path.GetFileName(directory) is { } name && GetPackFolderPattern().IsMatch(name) && Directory.Exists(System.IO.Path.Combine(packsRoot, name)))
-                packCodes.Add(name.ToUpperInvariant());
+            if (System.IO.Path.GetFileName(directory) is { } name && GetPackFolderPattern().IsMatch(name))
+                (Directory.Exists(System.IO.Path.Combine(packsRoot, name)) ? packCodes : uninstalledPackCodes).Add(name.ToUpperInvariant());
         foreach (var code in packCodes)
         {
             var packDirectory = EnumerateDirectories(packsRoot).First(directory => string.Equals(System.IO.Path.GetFileName(directory), code, StringComparison.OrdinalIgnoreCase));
@@ -311,7 +312,15 @@ public sealed partial class GameInstallation
             if (pack.SimulationPackages.Count > 0)
                 packs.Add(pack);
         }
-        return new(path, contentRoot, gameVersion, packs);
+        var uninstalledPacks = new List<GameInstallationPack>();
+        foreach (var code in uninstalledPackCodes)
+        {
+            var deltaDirectory = EnumerateDirectories(deltaRoot).First(directory => string.Equals(System.IO.Path.GetFileName(directory), code, StringComparison.OrdinalIgnoreCase));
+            var pack = OpenPack(code, deltaDirectory, System.IO.Path.Combine(packsRoot, code), null);
+            if (pack.SimulationPackages.Count > 0)
+                uninstalledPacks.Add(pack);
+        }
+        return new(path, contentRoot, gameVersion, packs, uninstalledPacks);
     }
 
     static GameInstallationPack OpenPack(string code, string? deltaDirectory, string directory, string? clientDirectory)
@@ -375,12 +384,13 @@ public sealed partial class GameInstallation
         return new(code, version, order(simulationPackages), order(clientPackages), stringTablePackages.ToDictionary(entry => entry.Key, entry => order(entry.Value), StringComparer.OrdinalIgnoreCase));
     }
 
-    GameInstallation(string path, string contentRoot, string? gameVersion, IReadOnlyList<GameInstallationPack> packs)
+    GameInstallation(string path, string contentRoot, string? gameVersion, IReadOnlyList<GameInstallationPack> packs, IReadOnlyList<GameInstallationPack> uninstalledPacks)
     {
         Path = path;
         ContentRoot = contentRoot;
         GameVersion = gameVersion;
         Packs = packs;
+        UninstalledPacks = uninstalledPacks;
     }
 
     /// <summary>
@@ -408,4 +418,9 @@ public sealed partial class GameInstallation
     /// Gets the path with which the installation was opened
     /// </summary>
     public string Path { get; }
+
+    /// <summary>
+    /// Gets the packs that are not installed but have patches in the installation's <c>Delta</c> folder, which the game does not load
+    /// </summary>
+    public IReadOnlyList<GameInstallationPack> UninstalledPacks { get; }
 }

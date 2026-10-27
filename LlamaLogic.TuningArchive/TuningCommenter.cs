@@ -5,6 +5,7 @@ namespace LlamaLogic.TuningArchive;
 /// </summary>
 /// <remarks>
 /// The comments are the ones <see cref="TuningArchiveFile.ExportAsync"/> writes: found with the snapshot's tuning descriptions when it has them and they describe the tuning, and otherwise as XML Extractor finds them, as any number that is a string's key or a tuning's instance.
+/// References to tuning of packs that were not installed when the snapshot was captured are commented with the names the packs' patches give it (see <see cref="TuningArchiveFile.GetUninstalledTunings"/>).
 /// The game ignores comments, so tuning with them loads as it would without them.
 /// </remarks>
 public sealed class TuningCommenter
@@ -50,6 +51,7 @@ public sealed class TuningCommenter
         foreach (var entry in animationStateMachines)
             if (entry.Name is { } name)
                 names.TryAdd(entry.Instance, (name, TuningArchiveFile.AnimationStateMachineCommentClass));
+        var uninstalledTunings = TuningArchiveFile.AddUninstalledTuningNames(archive.GetUninstalledTunings(snapshot), names);
         var tuningsByKey = new Dictionary<(ResourceType type, ulong instance), TuningArchiveEntry>();
         var tuningsByName = new Dictionary<(ResourceType type, string name), TuningArchiveEntry>();
         foreach (var entry in tunings)
@@ -63,7 +65,7 @@ public sealed class TuningCommenter
             animationStateMachinesByInstance.TryAdd(entry.Instance, entry);
         IReadOnlyDictionary<uint, string> strings = stringComments ? archive.GetStrings(snapshot) : new Dictionary<uint, string>();
         var descriptionCache = archive.FindTuningDescriptions(snapshot) is { } descriptions ? archive.GetTuningDescriptionCache(descriptions) : null;
-        return new(new(strings, names, tuningsByKey, tuningsByName, animationStateMachinesByInstance, descriptionCache), stringComments, referenceComments);
+        return new(new(strings, names, tuningsByKey, tuningsByName, animationStateMachinesByInstance, descriptionCache, uninstalledTunings), stringComments, referenceComments);
     }
 
     /// <summary>

@@ -24,6 +24,7 @@ static class TuningArchiveFixtures
     public const ulong SoundParentInstance = 0xB2;
     public const ulong SoundSampleInstance = 0xD1;
     public const ulong SoundStreamInstance = 0xD2;
+    public const ulong UninstalledBuffInstance = 210;
     public const ulong UnreferencedIconInstance = 0xA9;
     public const ulong VideoInstance = 0xC1;
     public const string VoiceSilenceName = "vo_test_silence_12sec";
@@ -301,6 +302,27 @@ static class TuningArchiveFixtures
             }
         });
         return directory.GetPath($"{root}/The Sims 4");
+    }
+
+    public static string WriteInstallationWithUninstalledPack(TemporaryDirectory directory)
+    {
+        directory.WriteFile("The Sims 4/Game/Bin/Default.ini", "[Version]\ngameversion = 1.0.1.1000\n");
+        WritePackage(directory, "The Sims 4/Data/Simulation/SimulationFullBuild0.package", package =>
+            package.Set(new ResourceKey(ResourceType.CombinedTuning, 0, 1), Encoding.UTF8.GetBytes
+            (
+                $"""
+                <combined><g s="merged" /><R n="mood"><I c="Mood" i="mood" m="buffs.mood" n="Mood_Happy" s="{MoodHappyInstance}"><L n="buffs"><U><T n="buff_type">{BuffHappyInstance}</T></U><U><T n="buff_type">{UninstalledBuffInstance}</T></U></L></I></R><R n="buff"><I c="Buff" i="buff" m="buffs.buff" n="Buff_Happy" s="{BuffHappyInstance}"><T n="mood_type">{MoodHappyInstance}</T></I></R></combined>
+                """
+            )));
+        directory.WriteFile("The Sims 4/Delta/EP19/ResourceSimulation.cfg", "Priority -20\nPackedFile SimulationDeltaBuild*.package\n");
+        WritePackage(directory, "The Sims 4/Delta/EP19/SimulationDeltaBuild0.package", package =>
+            package.Set(new ResourceKey(ResourceType.CombinedTuning, 0, 1), Encoding.UTF8.GetBytes
+            (
+                $"""
+                <combined><g s="merged" /><R n="buff"><I c="Buff" i="buff" m="buffs.buff" n="Buff_Patched" s="{UninstalledBuffInstance}"><T n="mood_type">{MoodHappyInstance}</T></I><I c="Buff" i="buff" m="buffs.buff" n="Buff_Happy_EP19" s="{BuffHappyInstance}"><T n="mood_type">{MoodHappyInstance}</T></I></R></combined>
+                """
+            )));
+        return directory.GetPath("The Sims 4");
     }
 
     static void WritePackage(TemporaryDirectory directory, string relativePath, Action<DataBasePackedFile>? populate = null)

@@ -91,6 +91,8 @@ static class PropertyTree
                         detail = resolved.Name;
                         target = (resolved.Type, resolved.Instance);
                     }
+                    else if (entries.FindUninstalled(referenceType, node.ReferenceInstance, node.ReferenceName) is { } uninstalled)
+                        detail = $"{uninstalled.Name} ({uninstalled.Pack} not installed)";
                     else if (TuningAnalysis.IsTuningReferenceType(node.ReferenceTypeName ?? string.Empty))
                     {
                         detail = "not in this snapshot";
