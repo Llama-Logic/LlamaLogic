@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TuningDraftTarget | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TuningDraftTarget | Llama Logic ">
+      
+      <meta name="description" content="Represents a tuning a creator has changed in a draft: the tuning as the archive has it and as the creator wants it">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_TuningArchive_TuningDraftTarget.md&amp;value=---%0Auid%3A%20LlamaLogic.TuningArchive.TuningDraftTarget%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.TuningArchive.TuningDraftTarget">
+
+
+
+  <h1 id="LlamaLogic_TuningArchive_TuningDraftTarget" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget" class="text-break">
+Class TuningDraftTarget  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.TuningArchive.html">TuningArchive</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.TuningArchive.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a tuning a creator has changed in a draft: the tuning as the archive has it and as the creator wants it</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record TuningDraftTarget : IEquatable&lt;TuningDraftTarget&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TuningDraftTarget</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningDraftTarget.html">TuningDraftTarget</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="LlamaLogic_TuningArchive_TuningDraftTarget__ctor_" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.#ctor*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningDraftTarget__ctor_LlamaLogic_TuningArchive_TuningArchiveEntry_LlamaLogic_TuningArchive_TuningAnalysis_LlamaLogic_TuningArchive_TuningAnalysis_System_Boolean_" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.#ctor(LlamaLogic.TuningArchive.TuningArchiveEntry,LlamaLogic.TuningArchive.TuningAnalysis,LlamaLogic.TuningArchive.TuningAnalysis,System.Boolean)">
+  TuningDraftTarget(TuningArchiveEntry, TuningAnalysis, TuningAnalysis, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Represents a tuning a creator has changed in a draft: the tuning as the archive has it and as the creator wants it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningDraftTarget(TuningArchiveEntry Entry, TuningAnalysis Original, TuningAnalysis Draft, bool HasSimData = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>Entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd><p>The tuning</p>
+</dd>
+    <dt><code>Original</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningAnalysis.html">TuningAnalysis</a></dt>
+    <dd><p>The analysis of the tuning as the archive has it</p>
+</dd>
+    <dt><code>Draft</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningAnalysis.html">TuningAnalysis</a></dt>
+    <dd><p>The analysis of the tuning as the creator wants it</p>
+</dd>
+    <dt><code>HasSimData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the game has SimData for the tuning; when it doesn't, nothing reads the tunables the tuning descriptions export to SimData from SimData, so drafts that can't change SimData can still change them</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_TuningArchive_TuningDraftTarget_Draft_" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.Draft*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningDraftTarget_Draft" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.Draft">
+  Draft
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The analysis of the tuning as the creator wants it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningAnalysis Draft { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningAnalysis.html">TuningAnalysis</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningDraftTarget_Entry_" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.Entry*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningDraftTarget_Entry" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.Entry">
+  Entry
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The tuning</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningArchiveEntry Entry { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningDraftTarget_HasSimData_" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.HasSimData*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningDraftTarget_HasSimData" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.HasSimData">
+  HasSimData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the game has SimData for the tuning; when it doesn't, nothing reads the tunables the tuning descriptions export to SimData from SimData, so drafts that can't change SimData can still change them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSimData { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningDraftTarget_Original_" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.Original*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningDraftTarget_Original" data-uid="LlamaLogic.TuningArchive.TuningDraftTarget.Original">
+  Original
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The analysis of the tuning as the archive has it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningAnalysis Original { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningAnalysis.html">TuningAnalysis</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningDraftTarget.cs/#L10" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

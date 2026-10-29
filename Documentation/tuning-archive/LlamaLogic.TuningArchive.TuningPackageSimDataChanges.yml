@@ -1,0 +1,229 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  id: TuningPackageSimDataChanges
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Add
+  - LlamaLogic.TuningArchive.TuningPackageSimDataChanges.All
+  - LlamaLogic.TuningArchive.TuningPackageSimDataChanges.None
+  - LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Remove
+  - LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Replace
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageSimDataChanges
+  nameWithType: TuningPackageSimDataChanges
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningPackageSimDataChanges
+    path: ../LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Specifies which changes writing an updated package makes to its SimData
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum TuningPackageSimDataChanges
+    content.vb: >-
+      <Flags>
+
+      Public Enum TuningPackageSimDataChanges
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.None
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataChanges.None
+  id: None
+  parent: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: TuningPackageSimDataChanges.None
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.None
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: None
+    path: ../LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The SimData is left as it is
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Replace
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Replace
+  id: Replace
+  parent: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  langs:
+  - csharp
+  - vb
+  name: Replace
+  nameWithType: TuningPackageSimDataChanges.Replace
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Replace
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Replace
+    path: ../LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+    startLine: 16
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: SimData that isn't what its tuning needs is replaced with generated SimData that is (<xref href="LlamaLogic.TuningArchive.TuningPackageSimDataState.Stale" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: Replace = 1
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Remove
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Remove
+  id: Remove
+  parent: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  langs:
+  - csharp
+  - vb
+  name: Remove
+  nameWithType: TuningPackageSimDataChanges.Remove
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Remove
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Remove
+    path: ../LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+    startLine: 21
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: SimData the game's own covers is removed (<xref href="LlamaLogic.TuningArchive.TuningPackageSimDataState.Unneeded" data-throw-if-not-resolved="false"></xref>), as is the SimData of a removed override
+  example: []
+  syntax:
+    content: Remove = 2
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Add
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Add
+  id: Add
+  parent: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  langs:
+  - csharp
+  - vb
+  name: Add
+  nameWithType: TuningPackageSimDataChanges.Add
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.Add
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Add
+    path: ../LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+    startLine: 26
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Generated SimData is added for tuning whose changes reach SimData but has none (<xref href="LlamaLogic.TuningArchive.TuningPackageSimDataState.Missing" data-throw-if-not-resolved="false"></xref>), which makes those changes take effect in the game for the first time
+  example: []
+  syntax:
+    content: Add = 4
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.All
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataChanges.All
+  id: All
+  parent: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  langs:
+  - csharp
+  - vb
+  name: All
+  nameWithType: TuningPackageSimDataChanges.All
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.All
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: All
+    path: ../LlamaLogic.TuningArchive/TuningPackageSimDataChanges.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: All of the changes
+  example: []
+  syntax:
+    content: All = Replace | Remove | Add
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+    content.vb: All = Replace Or Remove Or Add
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageSimDataChanges.html
+  name: TuningPackageSimDataChanges
+  nameWithType: TuningPackageSimDataChanges
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataChanges
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataState.Stale
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataState.Stale
+  href: LlamaLogic.TuningArchive.TuningPackageSimDataState.html#LlamaLogic_TuningArchive_TuningPackageSimDataState_Stale
+  name: Stale
+  nameWithType: TuningPackageSimDataState.Stale
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataState.Stale
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataState.Unneeded
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataState.Unneeded
+  href: LlamaLogic.TuningArchive.TuningPackageSimDataState.html#LlamaLogic_TuningArchive_TuningPackageSimDataState_Unneeded
+  name: Unneeded
+  nameWithType: TuningPackageSimDataState.Unneeded
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataState.Unneeded
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataState.Missing
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageSimDataState.Missing
+  href: LlamaLogic.TuningArchive.TuningPackageSimDataState.html#LlamaLogic_TuningArchive_TuningPackageSimDataState_Missing
+  name: Missing
+  nameWithType: TuningPackageSimDataState.Missing
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataState.Missing

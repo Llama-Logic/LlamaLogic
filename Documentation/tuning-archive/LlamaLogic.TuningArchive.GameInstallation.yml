@@ -1,0 +1,811 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.GameInstallation
+  commentId: T:LlamaLogic.TuningArchive.GameInstallation
+  id: GameInstallation
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.GameInstallation.ContentRoot
+  - LlamaLogic.TuningArchive.GameInstallation.FindInstallations
+  - LlamaLogic.TuningArchive.GameInstallation.GameVersion
+  - LlamaLogic.TuningArchive.GameInstallation.Locales
+  - LlamaLogic.TuningArchive.GameInstallation.Open(System.String)
+  - LlamaLogic.TuningArchive.GameInstallation.Packs
+  - LlamaLogic.TuningArchive.GameInstallation.Path
+  - LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks
+  langs:
+  - csharp
+  - vb
+  name: GameInstallation
+  nameWithType: GameInstallation
+  fullName: LlamaLogic.TuningArchive.GameInstallation
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GameInstallation
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Represents an installation of The Sims 4 from which a <xref href=\"LlamaLogic.TuningArchive.TuningArchiveFile\" data-throw-if-not-resolved=\"false\"></xref> can capture a snapshot (\U0001F512)"
+  example: []
+  syntax:
+    content: public sealed class GameInstallation
+    content.vb: Public NotInheritable Class GameInstallation
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.GameInstallation.FindInstallations
+  commentId: M:LlamaLogic.TuningArchive.GameInstallation.FindInstallations
+  id: FindInstallations
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: FindInstallations()
+  nameWithType: GameInstallation.FindInstallations()
+  fullName: LlamaLogic.TuningArchive.GameInstallation.FindInstallations()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FindInstallations
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 87
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Finds the installations of The Sims 4 in the places the game's installers usually put it and, on macOS, wherever Spotlight finds its app bundle
+  example: []
+  syntax:
+    content: public static IReadOnlyList<string> FindInstallations()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public Shared Function FindInstallations() As IReadOnlyList(Of String)
+  overload: LlamaLogic.TuningArchive.GameInstallation.FindInstallations*
+- uid: LlamaLogic.TuningArchive.GameInstallation.Open(System.String)
+  commentId: M:LlamaLogic.TuningArchive.GameInstallation.Open(System.String)
+  id: Open(System.String)
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: Open(string)
+  nameWithType: GameInstallation.Open(string)
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Open(string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Open
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 285
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Opens the installation of The Sims 4 at the specified <code class="paramref">path</code>, which may be the installation folder, the app bundle on macOS, or the folder containing it
+  remarks: On macOS, packs are read from the <code>The Sims 4 Packs</code> folder beside the app bundle, where the game installs them
+  example: []
+  syntax:
+    content: public static GameInstallation Open(string path)
+    parameters:
+    - id: path
+      type: System.String
+    return:
+      type: LlamaLogic.TuningArchive.GameInstallation
+    content.vb: Public Shared Function Open(path As String) As GameInstallation
+  overload: LlamaLogic.TuningArchive.GameInstallation.Open*
+  exceptions:
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: No installation of The Sims 4 was found at <code class="paramref">path</code>
+  nameWithType.vb: GameInstallation.Open(String)
+  fullName.vb: LlamaLogic.TuningArchive.GameInstallation.Open(String)
+  name.vb: Open(String)
+- uid: LlamaLogic.TuningArchive.GameInstallation.ContentRoot
+  commentId: P:LlamaLogic.TuningArchive.GameInstallation.ContentRoot
+  id: ContentRoot
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: ContentRoot
+  nameWithType: GameInstallation.ContentRoot
+  fullName: LlamaLogic.TuningArchive.GameInstallation.ContentRoot
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ContentRoot
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 398
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the folder containing the installation's <code>Data</code> folder
+  example: []
+  syntax:
+    content: public string ContentRoot { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ContentRoot As String
+  overload: LlamaLogic.TuningArchive.GameInstallation.ContentRoot*
+- uid: LlamaLogic.TuningArchive.GameInstallation.GameVersion
+  commentId: P:LlamaLogic.TuningArchive.GameInstallation.GameVersion
+  id: GameVersion
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: GameVersion
+  nameWithType: GameInstallation.GameVersion
+  fullName: LlamaLogic.TuningArchive.GameInstallation.GameVersion
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GameVersion
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 403
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the version of the game, as the installation's configuration states it, if it could be found
+  example: []
+  syntax:
+    content: public string? GameVersion { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property GameVersion As String
+  overload: LlamaLogic.TuningArchive.GameInstallation.GameVersion*
+- uid: LlamaLogic.TuningArchive.GameInstallation.Locales
+  commentId: P:LlamaLogic.TuningArchive.GameInstallation.Locales
+  id: Locales
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: Locales
+  nameWithType: GameInstallation.Locales
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Locales
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Locales
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 408
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the locales for which the base game has string tables (such as <code>ENG_US</code>)
+  example: []
+  syntax:
+    content: public IReadOnlyCollection<string> Locales { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyCollection{System.String}
+    content.vb: Public ReadOnly Property Locales As IReadOnlyCollection(Of String)
+  overload: LlamaLogic.TuningArchive.GameInstallation.Locales*
+- uid: LlamaLogic.TuningArchive.GameInstallation.Packs
+  commentId: P:LlamaLogic.TuningArchive.GameInstallation.Packs
+  id: Packs
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: Packs
+  nameWithType: GameInstallation.Packs
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Packs
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Packs
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 414
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the base game (always first) and the packs that are installed
+  example: []
+  syntax:
+    content: public IReadOnlyList<GameInstallationPack> Packs { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.GameInstallationPack}
+    content.vb: Public ReadOnly Property Packs As IReadOnlyList(Of GameInstallationPack)
+  overload: LlamaLogic.TuningArchive.GameInstallation.Packs*
+- uid: LlamaLogic.TuningArchive.GameInstallation.Path
+  commentId: P:LlamaLogic.TuningArchive.GameInstallation.Path
+  id: Path
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: GameInstallation.Path
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Path
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Path
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 419
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the path with which the installation was opened
+  example: []
+  syntax:
+    content: public string Path { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Path As String
+  overload: LlamaLogic.TuningArchive.GameInstallation.Path*
+- uid: LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks
+  commentId: P:LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks
+  id: UninstalledPacks
+  parent: LlamaLogic.TuningArchive.GameInstallation
+  langs:
+  - csharp
+  - vb
+  name: UninstalledPacks
+  nameWithType: GameInstallation.UninstalledPacks
+  fullName: LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/GameInstallation.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UninstalledPacks
+    path: ../LlamaLogic.TuningArchive/GameInstallation.cs
+    startLine: 424
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the packs that are not installed but have patches in the installation's <code>Delta</code> folder, which the game does not load
+  example: []
+  syntax:
+    content: public IReadOnlyList<GameInstallationPack> UninstalledPacks { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.GameInstallationPack}
+    content.vb: Public ReadOnly Property UninstalledPacks As IReadOnlyList(Of GameInstallationPack)
+  overload: LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks*
+references:
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveFile
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html
+  name: TuningArchiveFile
+  nameWithType: TuningArchiveFile
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.GameInstallation.FindInstallations*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.FindInstallations
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_FindInstallations
+  name: FindInstallations
+  nameWithType: GameInstallation.FindInstallations
+  fullName: LlamaLogic.TuningArchive.GameInstallation.FindInstallations
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.IO.DirectoryNotFoundException
+  commentId: T:System.IO.DirectoryNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.directorynotfoundexception
+  name: DirectoryNotFoundException
+  nameWithType: DirectoryNotFoundException
+  fullName: System.IO.DirectoryNotFoundException
+- uid: LlamaLogic.TuningArchive.GameInstallation.Open*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.Open
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_Open_System_String_
+  name: Open
+  nameWithType: GameInstallation.Open
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Open
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.GameInstallation
+  commentId: T:LlamaLogic.TuningArchive.GameInstallation
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.GameInstallation.html
+  name: GameInstallation
+  nameWithType: GameInstallation
+  fullName: LlamaLogic.TuningArchive.GameInstallation
+- uid: LlamaLogic.TuningArchive.GameInstallation.ContentRoot*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.ContentRoot
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_ContentRoot
+  name: ContentRoot
+  nameWithType: GameInstallation.ContentRoot
+  fullName: LlamaLogic.TuningArchive.GameInstallation.ContentRoot
+- uid: LlamaLogic.TuningArchive.GameInstallation.GameVersion*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.GameVersion
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_GameVersion
+  name: GameVersion
+  nameWithType: GameInstallation.GameVersion
+  fullName: LlamaLogic.TuningArchive.GameInstallation.GameVersion
+- uid: LlamaLogic.TuningArchive.GameInstallation.Locales*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.Locales
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_Locales
+  name: Locales
+  nameWithType: GameInstallation.Locales
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Locales
+- uid: System.Collections.Generic.IReadOnlyCollection{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyCollection{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<string>
+  nameWithType: IReadOnlyCollection<string>
+  fullName: System.Collections.Generic.IReadOnlyCollection<string>
+  nameWithType.vb: IReadOnlyCollection(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of String)
+  name.vb: IReadOnlyCollection(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection`1
+  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<T>
+  nameWithType: IReadOnlyCollection<T>
+  fullName: System.Collections.Generic.IReadOnlyCollection<T>
+  nameWithType.vb: IReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
+  name.vb: IReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.GameInstallation.Packs*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.Packs
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_Packs
+  name: Packs
+  nameWithType: GameInstallation.Packs
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Packs
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.GameInstallationPack}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.GameInstallationPack}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<GameInstallationPack>
+  nameWithType: IReadOnlyList<GameInstallationPack>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.GameInstallationPack>
+  nameWithType.vb: IReadOnlyList(Of GameInstallationPack)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.GameInstallationPack)
+  name.vb: IReadOnlyList(Of GameInstallationPack)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.GameInstallationPack
+    name: GameInstallationPack
+    href: LlamaLogic.TuningArchive.GameInstallationPack.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.GameInstallationPack
+    name: GameInstallationPack
+    href: LlamaLogic.TuningArchive.GameInstallationPack.html
+  - name: )
+- uid: LlamaLogic.TuningArchive.GameInstallation.Path*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.Path
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_Path
+  name: Path
+  nameWithType: GameInstallation.Path
+  fullName: LlamaLogic.TuningArchive.GameInstallation.Path
+- uid: LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks*
+  commentId: Overload:LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks
+  href: LlamaLogic.TuningArchive.GameInstallation.html#LlamaLogic_TuningArchive_GameInstallation_UninstalledPacks
+  name: UninstalledPacks
+  nameWithType: GameInstallation.UninstalledPacks
+  fullName: LlamaLogic.TuningArchive.GameInstallation.UninstalledPacks

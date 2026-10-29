@@ -1,0 +1,572 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningMergeResult
+  commentId: T:LlamaLogic.TuningArchive.TuningMergeResult
+  id: TuningMergeResult
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningMergeResult.#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict})
+  - LlamaLogic.TuningArchive.TuningMergeResult.Conflicts
+  - LlamaLogic.TuningArchive.TuningMergeResult.Text
+  langs:
+  - csharp
+  - vb
+  name: TuningMergeResult
+  nameWithType: TuningMergeResult
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningMergeResult
+    path: ../LlamaLogic.TuningArchive/TuningMergeResult.cs
+    startLine: 7
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents the result of a merge of a mod's changes onto the game's new version of a tuning
+  example: []
+  syntax:
+    content: 'public sealed record TuningMergeResult : IEquatable<TuningMergeResult>'
+    content.vb: Public NotInheritable Class TuningMergeResult Implements IEquatable(Of TuningMergeResult)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningMergeResult}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningMergeResult.#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict})
+  commentId: M:LlamaLogic.TuningArchive.TuningMergeResult.#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict})
+  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict})'
+  parent: LlamaLogic.TuningArchive.TuningMergeResult
+  langs:
+  - csharp
+  - vb
+  name: TuningMergeResult(string, IReadOnlyList<TuningMergeConflict>)
+  nameWithType: TuningMergeResult.TuningMergeResult(string, IReadOnlyList<TuningMergeConflict>)
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult.TuningMergeResult(string, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningMergeConflict>)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningMergeResult.cs
+    startLine: 7
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents the result of a merge of a mod's changes onto the game's new version of a tuning
+  example: []
+  syntax:
+    content: public TuningMergeResult(string Text, IReadOnlyList<TuningMergeConflict> Conflicts)
+    parameters:
+    - id: Text
+      type: System.String
+      description: The merged tuning (canonical text, see <xref href="LlamaLogic.TuningArchive.TuningXml" data-throw-if-not-resolved="false"></xref>), with each conflict resolved as the merge was told to resolve it
+    - id: Conflicts
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict}
+      description: The places where the mod's changes could not be combined with the game's
+    content.vb: Public Sub New(Text As String, Conflicts As IReadOnlyList(Of TuningMergeConflict))
+  overload: LlamaLogic.TuningArchive.TuningMergeResult.#ctor*
+  nameWithType.vb: TuningMergeResult.New(String, IReadOnlyList(Of TuningMergeConflict))
+  fullName.vb: LlamaLogic.TuningArchive.TuningMergeResult.New(String, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningMergeConflict))
+  name.vb: New(String, IReadOnlyList(Of TuningMergeConflict))
+- uid: LlamaLogic.TuningArchive.TuningMergeResult.Text
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeResult.Text
+  id: Text
+  parent: LlamaLogic.TuningArchive.TuningMergeResult
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: TuningMergeResult.Text
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult.Text
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Text
+    path: ../LlamaLogic.TuningArchive/TuningMergeResult.cs
+    startLine: 7
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The merged tuning (canonical text, see <xref href="LlamaLogic.TuningArchive.TuningXml" data-throw-if-not-resolved="false"></xref>), with each conflict resolved as the merge was told to resolve it
+  example: []
+  syntax:
+    content: public string Text { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Text As String
+  overload: LlamaLogic.TuningArchive.TuningMergeResult.Text*
+- uid: LlamaLogic.TuningArchive.TuningMergeResult.Conflicts
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeResult.Conflicts
+  id: Conflicts
+  parent: LlamaLogic.TuningArchive.TuningMergeResult
+  langs:
+  - csharp
+  - vb
+  name: Conflicts
+  nameWithType: TuningMergeResult.Conflicts
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult.Conflicts
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Conflicts
+    path: ../LlamaLogic.TuningArchive/TuningMergeResult.cs
+    startLine: 7
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The places where the mod's changes could not be combined with the game's
+  example: []
+  syntax:
+    content: public IReadOnlyList<TuningMergeConflict> Conflicts { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict}
+    content.vb: Public Property Conflicts As IReadOnlyList(Of TuningMergeConflict)
+  overload: LlamaLogic.TuningArchive.TuningMergeResult.Conflicts*
+references:
+- uid: LlamaLogic.TuningArchive.TuningXml
+  commentId: T:LlamaLogic.TuningArchive.TuningXml
+  href: LlamaLogic.TuningArchive.TuningXml.html
+  name: TuningXml
+  nameWithType: TuningXml
+  fullName: LlamaLogic.TuningArchive.TuningXml
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningMergeResult}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningMergeResult}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningMergeResult>
+  nameWithType: IEquatable<TuningMergeResult>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningMergeResult>
+  nameWithType.vb: IEquatable(Of TuningMergeResult)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningMergeResult)
+  name.vb: IEquatable(Of TuningMergeResult)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningMergeResult
+    name: TuningMergeResult
+    href: LlamaLogic.TuningArchive.TuningMergeResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningMergeResult
+    name: TuningMergeResult
+    href: LlamaLogic.TuningArchive.TuningMergeResult.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningMergeResult.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeResult.#ctor
+  href: LlamaLogic.TuningArchive.TuningMergeResult.html#LlamaLogic_TuningArchive_TuningMergeResult__ctor_System_String_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningMergeConflict__
+  name: TuningMergeResult
+  nameWithType: TuningMergeResult.TuningMergeResult
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult.TuningMergeResult
+  nameWithType.vb: TuningMergeResult.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningMergeResult.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningMergeConflict}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TuningMergeConflict>
+  nameWithType: IReadOnlyList<TuningMergeConflict>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningMergeConflict>
+  nameWithType.vb: IReadOnlyList(Of TuningMergeConflict)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningMergeConflict)
+  name.vb: IReadOnlyList(Of TuningMergeConflict)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningMergeConflict
+    name: TuningMergeConflict
+    href: LlamaLogic.TuningArchive.TuningMergeConflict.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningMergeConflict
+    name: TuningMergeConflict
+    href: LlamaLogic.TuningArchive.TuningMergeConflict.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.TuningArchive.TuningMergeResult.Text*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeResult.Text
+  href: LlamaLogic.TuningArchive.TuningMergeResult.html#LlamaLogic_TuningArchive_TuningMergeResult_Text
+  name: Text
+  nameWithType: TuningMergeResult.Text
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult.Text
+- uid: LlamaLogic.TuningArchive.TuningMergeResult.Conflicts*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeResult.Conflicts
+  href: LlamaLogic.TuningArchive.TuningMergeResult.html#LlamaLogic_TuningArchive_TuningMergeResult_Conflicts
+  name: Conflicts
+  nameWithType: TuningMergeResult.Conflicts
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult.Conflicts

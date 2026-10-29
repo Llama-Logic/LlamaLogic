@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  id: TuningPackageOverrideOutcome
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Conflicted
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesGame
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesOlderGame
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Merged
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.RemovedFromGame
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Unreadable
+  - LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.UpToDate
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageOverrideOutcome
+  nameWithType: TuningPackageOverrideOutcome
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningPackageOverrideOutcome
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Specifies what a game version means for a mod's override of a tuning
+  example: []
+  syntax:
+    content: public enum TuningPackageOverrideOutcome
+    content.vb: Public Enum TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.UpToDate
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.UpToDate
+  id: UpToDate
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: UpToDate
+  nameWithType: TuningPackageOverrideOutcome.UpToDate
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.UpToDate
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: UpToDate
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The game has not changed the tuning since the version the mod was made from, so the override needs nothing
+  example: []
+  syntax:
+    content: UpToDate = 0
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Merged
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Merged
+  id: Merged
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: Merged
+  nameWithType: TuningPackageOverrideOutcome.Merged
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Merged
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Merged
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 15
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The game changed the tuning, and the mod's changes merge onto the game's new version without conflicts
+  example: []
+  syntax:
+    content: Merged = 1
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Conflicted
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Conflicted
+  id: Conflicted
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: Conflicted
+  nameWithType: TuningPackageOverrideOutcome.Conflicted
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Conflicted
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Conflicted
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 20
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The game changed the tuning, and some of the mod's changes conflict with the game's
+  example: []
+  syntax:
+    content: Conflicted = 2
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesGame
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesGame
+  id: MatchesGame
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: MatchesGame
+  nameWithType: TuningPackageOverrideOutcome.MatchesGame
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesGame
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MatchesGame
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The override is the same as the game's new version, so it does nothing
+  example: []
+  syntax:
+    content: MatchesGame = 3
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesOlderGame
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesOlderGame
+  id: MatchesOlderGame
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: MatchesOlderGame
+  nameWithType: TuningPackageOverrideOutcome.MatchesOlderGame
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.MatchesOlderGame
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MatchesOlderGame
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The override is the same as an older version of the game's, so all it does is undo the game's changes since then
+  example: []
+  syntax:
+    content: MatchesOlderGame = 4
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.RemovedFromGame
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.RemovedFromGame
+  id: RemovedFromGame
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: RemovedFromGame
+  nameWithType: TuningPackageOverrideOutcome.RemovedFromGame
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.RemovedFromGame
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RemovedFromGame
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 35
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The game's new version no longer has the tuning
+  example: []
+  syntax:
+    content: RemovedFromGame = 5
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Unreadable
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Unreadable
+  id: Unreadable
+  parent: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  langs:
+  - csharp
+  - vb
+  name: Unreadable
+  nameWithType: TuningPackageOverrideOutcome.Unreadable
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.Unreadable
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Unreadable
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverrideOutcome.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The override could not be read as tuning
+  example: []
+  syntax:
+    content: Unreadable = 6
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.html
+  name: TuningPackageOverrideOutcome
+  nameWithType: TuningPackageOverrideOutcome
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome

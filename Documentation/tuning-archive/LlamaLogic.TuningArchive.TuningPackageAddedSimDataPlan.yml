@@ -1,0 +1,603 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  id: TuningPackageAddedSimDataPlan
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.#ctor(LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,System.String)
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageAddedSimDataPlan
+  nameWithType: TuningPackageAddedSimDataPlan
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningPackageAddedSimDataPlan
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents what a set of fixes does to the SimData of tuning a package adds, and to the tuning
+  example: []
+  syntax:
+    content: 'public sealed record TuningPackageAddedSimDataPlan : IEquatable<TuningPackageAddedSimDataPlan>'
+    content.vb: Public NotInheritable Class TuningPackageAddedSimDataPlan Implements IEquatable(Of TuningPackageAddedSimDataPlan)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.#ctor(LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.#ctor(LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,System.String)
+  id: '#ctor(LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems,System.String)'
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageAddedSimDataPlan(TuningPackageAddedSimDataProblems, TuningPackageAddedSimDataProblems, string)
+  nameWithType: TuningPackageAddedSimDataPlan.TuningPackageAddedSimDataPlan(TuningPackageAddedSimDataProblems, TuningPackageAddedSimDataProblems, string)
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.TuningPackageAddedSimDataPlan(LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems, LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems, string)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents what a set of fixes does to the SimData of tuning a package adds, and to the tuning
+  example: []
+  syntax:
+    content: public TuningPackageAddedSimDataPlan(TuningPackageAddedSimDataProblems Fixed, TuningPackageAddedSimDataProblems Remaining, string Message)
+    parameters:
+    - id: Fixed
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+      description: The problems the fixes correct
+    - id: Remaining
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+      description: The problems left after the fixes
+    - id: Message
+      type: System.String
+      description: What the fixes do, or why they do nothing, for the creator
+    content.vb: Public Sub New(Fixed As TuningPackageAddedSimDataProblems, Remaining As TuningPackageAddedSimDataProblems, Message As String)
+  overload: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.#ctor*
+  nameWithType.vb: TuningPackageAddedSimDataPlan.New(TuningPackageAddedSimDataProblems, TuningPackageAddedSimDataProblems, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.New(LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems, LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems, String)
+  name.vb: New(TuningPackageAddedSimDataProblems, TuningPackageAddedSimDataProblems, String)
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed
+  id: Fixed
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  langs:
+  - csharp
+  - vb
+  name: Fixed
+  nameWithType: TuningPackageAddedSimDataPlan.Fixed
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Fixed
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The problems the fixes correct
+  example: []
+  syntax:
+    content: public TuningPackageAddedSimDataProblems Fixed { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+    content.vb: Public Property Fixed As TuningPackageAddedSimDataProblems
+  overload: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed*
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining
+  id: Remaining
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  langs:
+  - csharp
+  - vb
+  name: Remaining
+  nameWithType: TuningPackageAddedSimDataPlan.Remaining
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Remaining
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The problems left after the fixes
+  example: []
+  syntax:
+    content: public TuningPackageAddedSimDataProblems Remaining { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+    content.vb: Public Property Remaining As TuningPackageAddedSimDataProblems
+  overload: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining*
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message
+  id: Message
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  langs:
+  - csharp
+  - vb
+  name: Message
+  nameWithType: TuningPackageAddedSimDataPlan.Message
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Message
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: What the fixes do, or why they do nothing, for the creator
+  example: []
+  syntax:
+    content: public string Message { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Message As String
+  overload: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message*
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData
+  id: ChangesSimData
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  langs:
+  - csharp
+  - vb
+  name: ChangesSimData
+  nameWithType: TuningPackageAddedSimDataPlan.ChangesSimData
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ChangesSimData
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 17
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the fixes change the SimData
+  example: []
+  syntax:
+    content: public bool ChangesSimData { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ChangesSimData As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData*
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning
+  id: ChangesTuning
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+  langs:
+  - csharp
+  - vb
+  name: ChangesTuning
+  nameWithType: TuningPackageAddedSimDataPlan.ChangesTuning
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ChangesTuning
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataPlan.cs
+    startLine: 23
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the fixes change the tuning
+  example: []
+  syntax:
+    content: public bool ChangesTuning { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ChangesTuning As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningPackageAddedSimDataPlan>
+  nameWithType: IEquatable<TuningPackageAddedSimDataPlan>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan>
+  nameWithType.vb: IEquatable(Of TuningPackageAddedSimDataPlan)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan)
+  name.vb: IEquatable(Of TuningPackageAddedSimDataPlan)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+    name: TuningPackageAddedSimDataPlan
+    href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan
+    name: TuningPackageAddedSimDataPlan
+    href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.#ctor
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html#LlamaLogic_TuningArchive_TuningPackageAddedSimDataPlan__ctor_LlamaLogic_TuningArchive_TuningPackageAddedSimDataProblems_LlamaLogic_TuningArchive_TuningPackageAddedSimDataProblems_System_String_
+  name: TuningPackageAddedSimDataPlan
+  nameWithType: TuningPackageAddedSimDataPlan.TuningPackageAddedSimDataPlan
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.TuningPackageAddedSimDataPlan
+  nameWithType.vb: TuningPackageAddedSimDataPlan.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.New
+  name.vb: New
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems.html
+  name: TuningPackageAddedSimDataProblems
+  nameWithType: TuningPackageAddedSimDataProblems
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataProblems
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html#LlamaLogic_TuningArchive_TuningPackageAddedSimDataPlan_Fixed
+  name: Fixed
+  nameWithType: TuningPackageAddedSimDataPlan.Fixed
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Fixed
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html#LlamaLogic_TuningArchive_TuningPackageAddedSimDataPlan_Remaining
+  name: Remaining
+  nameWithType: TuningPackageAddedSimDataPlan.Remaining
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Remaining
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html#LlamaLogic_TuningArchive_TuningPackageAddedSimDataPlan_Message
+  name: Message
+  nameWithType: TuningPackageAddedSimDataPlan.Message
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.Message
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html#LlamaLogic_TuningArchive_TuningPackageAddedSimDataPlan_ChangesSimData
+  name: ChangesSimData
+  nameWithType: TuningPackageAddedSimDataPlan.ChangesSimData
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesSimData
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.html#LlamaLogic_TuningArchive_TuningPackageAddedSimDataPlan_ChangesTuning
+  name: ChangesTuning
+  nameWithType: TuningPackageAddedSimDataPlan.ChangesTuning
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataPlan.ChangesTuning

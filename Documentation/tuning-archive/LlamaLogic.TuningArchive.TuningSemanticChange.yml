@@ -1,0 +1,650 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange
+  commentId: T:LlamaLogic.TuningArchive.TuningSemanticChange
+  id: TuningSemanticChange
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningSemanticChange.#ctor(LlamaLogic.TuningArchive.TuningSemanticChangeKind,System.String,System.String,System.String,System.Int32,System.Int32)
+  - LlamaLogic.TuningArchive.TuningSemanticChange.Kind
+  - LlamaLogic.TuningArchive.TuningSemanticChange.NewLine
+  - LlamaLogic.TuningArchive.TuningSemanticChange.NewValue
+  - LlamaLogic.TuningArchive.TuningSemanticChange.OldLine
+  - LlamaLogic.TuningArchive.TuningSemanticChange.OldValue
+  - LlamaLogic.TuningArchive.TuningSemanticChange.Path
+  langs:
+  - csharp
+  - vb
+  name: TuningSemanticChange
+  nameWithType: TuningSemanticChange
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningSemanticChange
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents an element that differs between two versions of a tuning document
+  example: []
+  syntax:
+    content: 'public sealed record TuningSemanticChange : IEquatable<TuningSemanticChange>'
+    content.vb: Public NotInheritable Class TuningSemanticChange Implements IEquatable(Of TuningSemanticChange)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningSemanticChange}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.#ctor(LlamaLogic.TuningArchive.TuningSemanticChangeKind,System.String,System.String,System.String,System.Int32,System.Int32)
+  commentId: M:LlamaLogic.TuningArchive.TuningSemanticChange.#ctor(LlamaLogic.TuningArchive.TuningSemanticChangeKind,System.String,System.String,System.String,System.Int32,System.Int32)
+  id: '#ctor(LlamaLogic.TuningArchive.TuningSemanticChangeKind,System.String,System.String,System.String,System.Int32,System.Int32)'
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: TuningSemanticChange(TuningSemanticChangeKind, string, string?, string?, int, int)
+  nameWithType: TuningSemanticChange.TuningSemanticChange(TuningSemanticChangeKind, string, string?, string?, int, int)
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.TuningSemanticChange(LlamaLogic.TuningArchive.TuningSemanticChangeKind, string, string?, string?, int, int)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents an element that differs between two versions of a tuning document
+  example: []
+  syntax:
+    content: public TuningSemanticChange(TuningSemanticChangeKind Kind, string Path, string? OldValue, string? NewValue, int OldLine, int NewLine)
+    parameters:
+    - id: Kind
+      type: LlamaLogic.TuningArchive.TuningSemanticChangeKind
+      description: How the element differs
+    - id: Path
+      type: System.String
+      description: The path of the element from the root, such as <code>loot_list[2].stat</code> (list indices are those of the newer version, except for removed elements)
+    - id: OldValue
+      type: System.String
+      description: The element's value in the older version (the XML of the element, on one line, if it has children), if it was there
+    - id: NewValue
+      type: System.String
+      description: The element's value in the newer version (the XML of the element, on one line, if it has children), if it is there
+    - id: OldLine
+      type: System.Int32
+      description: The 1-based line of the element in the older version's canonical text, or 0 if it was not there
+    - id: NewLine
+      type: System.Int32
+      description: The 1-based line of the element in the newer version's canonical text, or 0 if it is not there
+    content.vb: Public Sub New(Kind As TuningSemanticChangeKind, Path As String, OldValue As String, NewValue As String, OldLine As Integer, NewLine As Integer)
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.#ctor*
+  nameWithType.vb: TuningSemanticChange.New(TuningSemanticChangeKind, String, String, String, Integer, Integer)
+  fullName.vb: LlamaLogic.TuningArchive.TuningSemanticChange.New(LlamaLogic.TuningArchive.TuningSemanticChangeKind, String, String, String, Integer, Integer)
+  name.vb: New(TuningSemanticChangeKind, String, String, String, Integer, Integer)
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.Kind
+  commentId: P:LlamaLogic.TuningArchive.TuningSemanticChange.Kind
+  id: Kind
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: TuningSemanticChange.Kind
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.Kind
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Kind
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: How the element differs
+  example: []
+  syntax:
+    content: public TuningSemanticChangeKind Kind { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningSemanticChangeKind
+    content.vb: Public Property Kind As TuningSemanticChangeKind
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.Kind*
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.Path
+  commentId: P:LlamaLogic.TuningArchive.TuningSemanticChange.Path
+  id: Path
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: TuningSemanticChange.Path
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.Path
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Path
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The path of the element from the root, such as <code>loot_list[2].stat</code> (list indices are those of the newer version, except for removed elements)
+  example: []
+  syntax:
+    content: public string Path { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Path As String
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.Path*
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.OldValue
+  commentId: P:LlamaLogic.TuningArchive.TuningSemanticChange.OldValue
+  id: OldValue
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: OldValue
+  nameWithType: TuningSemanticChange.OldValue
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.OldValue
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: OldValue
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The element's value in the older version (the XML of the element, on one line, if it has children), if it was there
+  example: []
+  syntax:
+    content: public string? OldValue { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property OldValue As String
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.OldValue*
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.NewValue
+  commentId: P:LlamaLogic.TuningArchive.TuningSemanticChange.NewValue
+  id: NewValue
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: NewValue
+  nameWithType: TuningSemanticChange.NewValue
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.NewValue
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: NewValue
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The element's value in the newer version (the XML of the element, on one line, if it has children), if it is there
+  example: []
+  syntax:
+    content: public string? NewValue { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property NewValue As String
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.NewValue*
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.OldLine
+  commentId: P:LlamaLogic.TuningArchive.TuningSemanticChange.OldLine
+  id: OldLine
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: OldLine
+  nameWithType: TuningSemanticChange.OldLine
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.OldLine
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: OldLine
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The 1-based line of the element in the older version's canonical text, or 0 if it was not there
+  example: []
+  syntax:
+    content: public int OldLine { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property OldLine As Integer
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.OldLine*
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.NewLine
+  commentId: P:LlamaLogic.TuningArchive.TuningSemanticChange.NewLine
+  id: NewLine
+  parent: LlamaLogic.TuningArchive.TuningSemanticChange
+  langs:
+  - csharp
+  - vb
+  name: NewLine
+  nameWithType: TuningSemanticChange.NewLine
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.NewLine
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSemanticChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: NewLine
+    path: ../LlamaLogic.TuningArchive/TuningSemanticChange.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The 1-based line of the element in the newer version's canonical text, or 0 if it is not there
+  example: []
+  syntax:
+    content: public int NewLine { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property NewLine As Integer
+  overload: LlamaLogic.TuningArchive.TuningSemanticChange.NewLine*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningSemanticChange}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningSemanticChange}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningSemanticChange>
+  nameWithType: IEquatable<TuningSemanticChange>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningSemanticChange>
+  nameWithType.vb: IEquatable(Of TuningSemanticChange)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningSemanticChange)
+  name.vb: IEquatable(Of TuningSemanticChange)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningSemanticChange
+    name: TuningSemanticChange
+    href: LlamaLogic.TuningArchive.TuningSemanticChange.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningSemanticChange
+    name: TuningSemanticChange
+    href: LlamaLogic.TuningArchive.TuningSemanticChange.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.#ctor
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange__ctor_LlamaLogic_TuningArchive_TuningSemanticChangeKind_System_String_System_String_System_String_System_Int32_System_Int32_
+  name: TuningSemanticChange
+  nameWithType: TuningSemanticChange.TuningSemanticChange
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.TuningSemanticChange
+  nameWithType.vb: TuningSemanticChange.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningSemanticChange.New
+  name.vb: New
+- uid: LlamaLogic.TuningArchive.TuningSemanticChangeKind
+  commentId: T:LlamaLogic.TuningArchive.TuningSemanticChangeKind
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningSemanticChangeKind.html
+  name: TuningSemanticChangeKind
+  nameWithType: TuningSemanticChangeKind
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChangeKind
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.Kind*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.Kind
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange_Kind
+  name: Kind
+  nameWithType: TuningSemanticChange.Kind
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.Kind
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.Path*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.Path
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange_Path
+  name: Path
+  nameWithType: TuningSemanticChange.Path
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.Path
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.OldValue*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.OldValue
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange_OldValue
+  name: OldValue
+  nameWithType: TuningSemanticChange.OldValue
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.OldValue
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.NewValue*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.NewValue
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange_NewValue
+  name: NewValue
+  nameWithType: TuningSemanticChange.NewValue
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.NewValue
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.OldLine*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.OldLine
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange_OldLine
+  name: OldLine
+  nameWithType: TuningSemanticChange.OldLine
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.OldLine
+- uid: LlamaLogic.TuningArchive.TuningSemanticChange.NewLine*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSemanticChange.NewLine
+  href: LlamaLogic.TuningArchive.TuningSemanticChange.html#LlamaLogic_TuningArchive_TuningSemanticChange_NewLine
+  name: NewLine
+  nameWithType: TuningSemanticChange.NewLine
+  fullName: LlamaLogic.TuningArchive.TuningSemanticChange.NewLine

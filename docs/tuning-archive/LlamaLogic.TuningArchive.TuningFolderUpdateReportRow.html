@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TuningFolderUpdateReportRow | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TuningFolderUpdateReportRow | Llama Logic ">
+      
+      <meta name="description" content="Represents a row of a folder update&#39;s report: an override, the SimData of a tuning a package adds, or a package that couldn&#39;t be read">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_TuningArchive_TuningFolderUpdateReportRow.md&amp;value=---%0Auid%3A%20LlamaLogic.TuningArchive.TuningFolderUpdateReportRow%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow">
+
+
+
+  <h1 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow" class="text-break">
+Class TuningFolderUpdateReportRow  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.TuningArchive.html">TuningArchive</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.TuningArchive.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a row of a folder update's report: an override, the SimData of a tuning a package adds, or a package that couldn't be read</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record TuningFolderUpdateReportRow : IEquatable&lt;TuningFolderUpdateReportRow&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TuningFolderUpdateReportRow</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.html">TuningFolderUpdateReportRow</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow__ctor_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.#ctor*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow__ctor_System_String_LlamaLogic_TuningArchive_TuningPackageOverride_LlamaLogic_TuningArchive_TuningPackageAddedSimData_System_String_System_String_System_String_System_String_System_Boolean_System_String_System_String_System_String_System_String_System_Int32_System_String_System_String_System_String_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.#ctor(System.String,LlamaLogic.TuningArchive.TuningPackageOverride,LlamaLogic.TuningArchive.TuningPackageAddedSimData,System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.String)">
+  TuningFolderUpdateReportRow(string, TuningPackageOverride?, TuningPackageAddedSimData?, string, string, string, string, bool, string, string, string, string, int, string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Represents a row of a folder update's report: an override, the SimData of a tuning a package adds, or a package that couldn't be read</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningFolderUpdateReportRow(string Package, TuningPackageOverride? Override, TuningPackageAddedSimData? AddedSimData, string Tuning, string Type, string Instance, string Outcome, bool NeedsCreator, string Done, string Base, string BaseSource, string BaseNote, int Conflicts, string SimData, string Message, string SimDataMessage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>Package</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The path of the package within the folder</p>
+</dd>
+    <dt><code>Override</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningPackageOverride.html">TuningPackageOverride</a></dt>
+    <dd><p>The override, if the row is for one</p>
+</dd>
+    <dt><code>AddedSimData</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningPackageAddedSimData.html">TuningPackageAddedSimData</a></dt>
+    <dd><p>The SimData of a tuning the package adds, if the row is for one</p>
+</dd>
+    <dt><code>Tuning</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the tuning</p>
+</dd>
+    <dt><code>Type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the tuning's type</p>
+</dd>
+    <dt><code>Instance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The tuning's instance, in decimal</p>
+</dd>
+    <dt><code>Outcome</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>What the game version means for the override, for the creator</p>
+</dd>
+    <dt><code>NeedsCreator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the override or SimData needs the creator's judgment</p>
+</dd>
+    <dt><code>Done</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>What writing the updated copies did to the override or SimData, if they were written</p>
+</dd>
+    <dt><code>Base</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The game version the override was made from</p>
+</dd>
+    <dt><code>BaseSource</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p><code>declared</code> or <code>inferred</code></p>
+</dd>
+    <dt><code>BaseNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Why the base may not be what the override was made from, if it may not be</p>
+</dd>
+    <dt><code>Conflicts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>How many of the mod's changes conflict with the game's</p>
+</dd>
+    <dt><code>SimData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Whether the override's SimData is what its tuning needs, if it was checked, or what is wrong with the SimData of a tuning the package adds</p>
+</dd>
+    <dt><code>Message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>What the outcome means, or what is wrong with the SimData of a tuning the package adds, for the creator</p>
+</dd>
+    <dt><code>SimDataMessage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>What the SimData state means, if it isn't current, or what the update does to the SimData of a tuning the package adds</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_AddedSimData_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.AddedSimData*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_AddedSimData" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.AddedSimData">
+  AddedSimData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The SimData of a tuning the package adds, if the row is for one</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningPackageAddedSimData? AddedSimData { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningPackageAddedSimData.html">TuningPackageAddedSimData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Base_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Base*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Base" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Base">
+  Base
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The game version the override was made from</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Base { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_BaseNote_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.BaseNote*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_BaseNote" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.BaseNote">
+  BaseNote
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Why the base may not be what the override was made from, if it may not be</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string BaseNote { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_BaseSource_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.BaseSource*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_BaseSource" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.BaseSource">
+  BaseSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><code>declared</code> or <code>inferred</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string BaseSource { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Conflicts_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Conflicts*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Conflicts" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Conflicts">
+  Conflicts
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many of the mod's changes conflict with the game's</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Conflicts { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Done_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Done*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Done" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Done">
+  Done
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>What writing the updated copies did to the override or SimData, if they were written</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Done { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Instance_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Instance*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Instance" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Instance">
+  Instance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The tuning's instance, in decimal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Instance { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Message_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Message*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Message" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Message">
+  Message
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the outcome means, or what is wrong with the SimData of a tuning the package adds, for the creator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Message { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_NeedsCreator_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.NeedsCreator*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_NeedsCreator" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.NeedsCreator">
+  NeedsCreator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the override or SimData needs the creator's judgment</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NeedsCreator { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Outcome_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Outcome*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Outcome" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Outcome">
+  Outcome
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the game version means for the override, for the creator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Outcome { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Override_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Override*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Override" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Override">
+  Override
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The override, if the row is for one</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningPackageOverride? Override { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningPackageOverride.html">TuningPackageOverride</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Package_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Package*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Package" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Package">
+  Package
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The path of the package within the folder</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Package { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_SimData_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.SimData*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_SimData" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.SimData">
+  SimData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the override's SimData is what its tuning needs, if it was checked, or what is wrong with the SimData of a tuning the package adds</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SimData { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_SimDataMessage_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.SimDataMessage*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_SimDataMessage" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.SimDataMessage">
+  SimDataMessage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the SimData state means, if it isn't current, or what the update does to the SimData of a tuning the package adds</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SimDataMessage { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Tuning_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Tuning*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Tuning" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Tuning">
+  Tuning
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of the tuning</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Tuning { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Type_" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Type*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningFolderUpdateReportRow_Type" data-uid="LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.Type">
+  Type
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of the tuning's type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Type { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningFolderUpdateReportRow.cs/#L22" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

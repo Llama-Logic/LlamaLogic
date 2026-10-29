@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TuningArchiveFile | Llama Logic </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TuningArchiveFile | Llama Logic ">
+      
+      <meta name="description" content="Represents an archive of The Sims 4&#39;s tuning across versions of the game, stored in a SQLite database file (&#128274;)">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Llama-Logic/LlamaLogic/new/main/apiSpec/new?filename=LlamaLogic_TuningArchive_TuningArchiveFile.md&amp;value=---%0Auid%3A%20LlamaLogic.TuningArchive.TuningArchiveFile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Llama Logic">
+            Llama Logic
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="LlamaLogic.TuningArchive.TuningArchiveFile">
+
+
+
+  <h1 id="LlamaLogic_TuningArchive_TuningArchiveFile" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile" class="text-break">
+Class TuningArchiveFile  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Uninstalled.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">LlamaLogic</span>.<a class="xref" href="LlamaLogic.TuningArchive.html">TuningArchive</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LlamaLogic.TuningArchive.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents an archive of The Sims 4's tuning across versions of the game, stored in a SQLite database file (🔒)</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class TuningArchiveFile : IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TuningArchiveFile</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LlamaLogic_TuningArchive_TuningArchiveFile_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+Each <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a> records the tuning, SimData and strings of a version of the game, as captured from an installation or imported from extracted files.
+Content is stored once however many snapshots contain it, and each resource's history is kept as ranges of snapshots, so a snapshot adds only what changed.
+</p>
+<p>
+An archive's members are safe to use from multiple threads. Operations that change the archive are serialized.
+</p>
+<p>
+An application that only reads an archive another application maintains should open it with <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_OpenReadOnly_System_String_">OpenReadOnly(string)</a>, which never changes the file, rather than <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_Open_System_String_">Open(string)</a>, which upgrades the file to this library's version.
+</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_IsReadOnly_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.IsReadOnly*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_IsReadOnly" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.IsReadOnly">
+  IsReadOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the archive was opened for reading only (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_OpenReadOnly_System_String_">OpenReadOnly(string)</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_Path_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Path*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_Path" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Path">
+  Path
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the path of the archive's database file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Path { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_VoiceCodes_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.VoiceCodes*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_VoiceCodes" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.VoiceCodes">
+  VoiceCodes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the codes of the voices for which the game keeps versions of an audio configuration that tuning names without a voice, in the order the archive lists the versions (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String_">GetVoiceVersionInstance(ulong, string)</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;string&gt; VoiceCodes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_VoiceCodes_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p><code>f</code> codes are female voices, <code>m</code> codes male voices and <code>c</code> codes child voices; the game has no versions for <code>fb</code> or <code>md</code>.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_Analyze_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Analyze*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_Analyze_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Analyze(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  Analyze(TuningArchiveSnapshot, TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Analyzes the specified tuning <code class="paramref">entry</code> with the tuning descriptions best suited to the specified <code class="paramref">snapshot</code>, or returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the archive has no tuning descriptions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningAnalysis? Analyze(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningAnalysis.html">TuningAnalysis</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_CaptureAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.CaptureAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_CaptureAsync_LlamaLogic_TuningArchive_GameInstallation_LlamaLogic_TuningArchive_TuningArchiveCaptureOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.CaptureAsync(LlamaLogic.TuningArchive.GameInstallation,LlamaLogic.TuningArchive.TuningArchiveCaptureOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)">
+  CaptureAsync(GameInstallation, TuningArchiveCaptureOptions?, IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Capture.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Captures a snapshot of the tuning, SimData, animation state machines, strings and media of the specified <code class="paramref">installation</code> (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TuningArchiveCaptureResult&gt; CaptureAsync(GameInstallation installation, TuningArchiveCaptureOptions? options = null, IProgress&lt;TuningArchiveProgress&gt;? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>installation</code> <a class="xref" href="LlamaLogic.TuningArchive.GameInstallation.html">GameInstallation</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveCaptureOptions.html">TuningArchiveCaptureOptions</a></dt>
+    <dd></dd>
+    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveProgress.html">TuningArchiveProgress</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveCaptureResult.html">TuningArchiveCaptureResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_CaptureAsync_LlamaLogic_TuningArchive_GameInstallation_LlamaLogic_TuningArchive_TuningArchiveCaptureOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Media are the images, sounds and videos to which the captured tuning and SimData refer (with the audio the sounds use), taken from the client packages of the packs with the same rules as tuning; which kinds are captured is up to the <code class="paramref">options</code>.
+Strings are merged from every string table of every pack the way the game merges them: a string in a package of higher priority replaces the same string in a package of lower priority (packages of the same priority in pack order, the base game first), so a pack's <code>Delta</code> strings add to and correct its installed strings rather than replacing them.
+Within a pack, tuning, SimData and animation state machines are taken from the pack's <code>Delta</code> packages before its installed packages, because the <code>Delta</code> folder patches the installed one: its resources replace theirs and its delete records retire theirs, whatever priorities the two folders' configurations assign.
+The game does not load the patches of packs that are not installed, so their tuning is not captured; only the names of the tunings they patch are recorded (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_">GetUninstalledTunings(TuningArchiveSnapshot)</a>), so that what refers to them can still be explained.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>No game version was specified and the installation's version could not be found</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_Compare_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Compare*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_Compare_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_System_Boolean_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Compare(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveResourceKind,System.Boolean)">
+  Compare(TuningArchiveSnapshot, TuningArchiveSnapshot, TuningArchiveResourceKind, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the resources of the specified <code class="paramref">kind</code> that differ between the <code class="paramref">older</code> and <code class="paramref">newer</code> snapshots, and, if <code class="paramref">includeUnchanged</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, those that do not (as <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveChangeKind.html#LlamaLogic_TuningArchive_TuningArchiveChangeKind_Unchanged">Unchanged</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveChange&gt; Compare(TuningArchiveSnapshot older, TuningArchiveSnapshot newer, TuningArchiveResourceKind kind = TuningArchiveResourceKind.Tuning, bool includeUnchanged = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>older</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>newer</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html">TuningArchiveResourceKind</a></dt>
+    <dd></dd>
+    <dt><code>includeUnchanged</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveChange.html">TuningArchiveChange</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_CompareStrings_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.CompareStrings*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_CompareStrings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Boolean_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.CompareStrings(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Boolean)">
+  CompareStrings(TuningArchiveSnapshot, TuningArchiveSnapshot, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L232"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the strings that differ between the <code class="paramref">older</code> and <code class="paramref">newer</code> snapshots, and, if <code class="paramref">includeUnchanged</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, those that do not (as <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveChangeKind.html#LlamaLogic_TuningArchive_TuningArchiveChangeKind_Unchanged">Unchanged</a>), in the <code class="paramref">newer</code> snapshot's locale</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveStringChange&gt; CompareStrings(TuningArchiveSnapshot older, TuningArchiveSnapshot newer, bool includeUnchanged = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>older</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>newer</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>includeUnchanged</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveStringChange.html">TuningArchiveStringChange</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_CompareStrings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>A string whose text is the same in both snapshots is reported as <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveChangeKind.html#LlamaLogic_TuningArchive_TuningArchiveChangeKind_Moved">Moved</a> only when both snapshots were captured from the game, because an extracted strings file does not say which pack each string comes from.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_DeleteSnapshotAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.DeleteSnapshotAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_DeleteSnapshotAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.DeleteSnapshotAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Threading.CancellationToken)">
+  DeleteSnapshotAsync(TuningArchiveSnapshot, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L677"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Deletes the specified <code class="paramref">snapshot</code> and any content no other snapshot shares (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DeleteSnapshotAsync(TuningArchiveSnapshot snapshot, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_DeleteTuningDescriptionsAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.DeleteTuningDescriptionsAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_DeleteTuningDescriptionsAsync_LlamaLogic_TuningArchive_TuningArchiveDescriptions_System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.DeleteTuningDescriptionsAsync(LlamaLogic.TuningArchive.TuningArchiveDescriptions,System.Threading.CancellationToken)">
+  DeleteTuningDescriptionsAsync(TuningArchiveDescriptions, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Deletes the specified set of tuning <code class="paramref">descriptions</code> and the references indexed with it (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DeleteTuningDescriptionsAsync(TuningArchiveDescriptions descriptions, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>descriptions</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_Dispose_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Dispose*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_Dispose" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Releases the archive's resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)">
+  ExportAsync(TuningArchiveSnapshot, string, TuningArchiveExportOptions?, IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Export.cs/#L349"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Exports the tuning of the specified <code class="paramref">snapshot</code> (and, optionally, its animation state machines and SimData) as files in the specified <code class="paramref">folder</code>, laid out and named the way Scumbumbo's XML Extractor extracts the game's tuning (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TuningArchiveExportResult&gt; ExportAsync(TuningArchiveSnapshot snapshot, string folder, TuningArchiveExportOptions? options = null, IProgress&lt;TuningArchiveProgress&gt;? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>folder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveExportOptions.html">TuningArchiveExportOptions</a></dt>
+    <dd></dd>
+    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveProgress.html">TuningArchiveProgress</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveExportResult.html">TuningArchiveExportResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+Each resource is written to a folder for its pack (such as <code>EP01</code>) and, in it, a folder for its tuning type (such as <code>buff</code>) or <code>AsmJazz</code>, as indented UTF-8 XML with a byte order mark and CRLF line endings.
+SimData is written beside the tuning with its instance, so that both can be chosen together for Sims 4 Studio's batch import, or to a <code>SimData</code> folder in its pack's folder if there is no such tuning.
+The group in file names is the pack's identifier, as XML Extractor writes it: taken from the snapshot's game scripts when it has them, otherwise from the pack stamp of the pack's SimData, otherwise from XML Extractor's own table of packs.
+</p>
+<p>
+A tuning that more than one pack contains is written once, to the folder of the pack the snapshot attributes it to; XML Extractor writes it to the folder of each pack.
+The archive does not keep the order of the attributes the game ships, so elements' attributes are in canonical order (see <a class="xref" href="LlamaLogic.TuningArchive.TuningXml.html">TuningXml</a>), with the <code>n</code> and <code>t</code> attributes ordered as <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveExportOptions.html#LlamaLogic_TuningArchive_TuningArchiveExportOptions_AttributeOrder">AttributeOrder</a> specifies.
+References to tuning of packs that were not installed are commented with the names the packs' patches give it, as XML Extractor comments them (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_">GetUninstalledTunings(TuningArchiveSnapshot)</a>), and those names are in the reference files, but the tuning itself is not exported.
+</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_FindTuningDescriptions_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.FindTuningDescriptions*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_FindTuningDescriptions_LlamaLogic_TuningArchive_TuningArchiveSnapshot_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.FindTuningDescriptions(LlamaLogic.TuningArchive.TuningArchiveSnapshot)">
+  FindTuningDescriptions(TuningArchiveSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the set of tuning descriptions best suited to the specified <code class="paramref">snapshot</code>: the one for its game version, otherwise the nearest earlier one, otherwise the nearest later one</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningArchiveDescriptions? FindTuningDescriptions(TuningArchiveSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_FindTuningDescriptions_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.FindTuningDescriptions*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_FindTuningDescriptions_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Boolean_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.FindTuningDescriptions(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Boolean)">
+  FindTuningDescriptions(TuningArchiveSnapshot, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the set of tuning descriptions for the game version of the specified <code class="paramref">snapshot</code>: when <code class="paramref">exactGameVersion</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, only the one for that game version (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the archive has none), otherwise the one best suited to it (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_FindTuningDescriptions_LlamaLogic_TuningArchive_TuningArchiveSnapshot_">FindTuningDescriptions(TuningArchiveSnapshot)</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningArchiveDescriptions? FindTuningDescriptions(TuningArchiveSnapshot snapshot, bool exactGameVersion)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>exactGameVersion</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetBrokenMediaReferences_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetBrokenMediaReferences*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetBrokenMediaReferences_LlamaLogic_TuningArchive_TuningArchiveSnapshot_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetBrokenMediaReferences(LlamaLogic.TuningArchive.TuningArchiveSnapshot)">
+  GetBrokenMediaReferences(TuningArchiveSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L442"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the references in the specified <code class="paramref">snapshot</code> to media it captured that are not in it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveReference&gt; GetBrokenMediaReferences(TuningArchiveSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html">TuningArchiveReference</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetBrokenMediaReferences_LlamaLogic_TuningArchive_TuningArchiveSnapshot__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Only references to kinds of media the snapshot captured are considered (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_HasKind_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_">HasKind(TuningArchiveSnapshot, TuningArchiveResourceKind)</a>), and only tunings whose references have been indexed (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>).
+A reference to an audio configuration that the snapshot has only voices' versions of is not broken (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String_">GetVoiceVersionInstance(ulong, string)</a>).</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetBrokenReferences_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetBrokenReferences*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetBrokenReferences_LlamaLogic_TuningArchive_TuningArchiveSnapshot_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetBrokenReferences(LlamaLogic.TuningArchive.TuningArchiveSnapshot)">
+  GetBrokenReferences(TuningArchiveSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.References.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the references in the specified <code class="paramref">snapshot</code> to tunings that are not in it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveReference&gt; GetBrokenReferences(TuningArchiveSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html">TuningArchiveReference</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetBrokenReferences_LlamaLogic_TuningArchive_TuningArchiveSnapshot__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Only references to tuning types the archive has seen are considered, and only tunings whose references have been indexed (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>).</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetContent_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetContent*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetContent_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetContent(LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  GetContent(TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L328"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the content of the specified <code class="paramref">entry</code> as the archive stores it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] GetContent(TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetContent_LlamaLogic_TuningArchive_TuningArchiveEntry__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Media (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html#LlamaLogic_TuningArchive_TuningArchiveResourceKind_Image">Image</a>, <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html#LlamaLogic_TuningArchive_TuningArchiveResourceKind_Sound">Sound</a> and <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html#LlamaLogic_TuningArchive_TuningArchiveResourceKind_Video">Video</a>) are stored as the game stores them; other kinds are stored as UTF-8 text (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetText_LlamaLogic_TuningArchive_TuningArchiveEntry_">GetText(TuningArchiveEntry)</a>).</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntries_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetEntries*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntries_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetEntries(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveResourceKind)">
+  GetEntries(TuningArchiveSnapshot, TuningArchiveResourceKind)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the resources of the specified <code class="paramref">kind</code> in the specified <code class="paramref">snapshot</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveEntry&gt; GetEntries(TuningArchiveSnapshot snapshot, TuningArchiveResourceKind kind = TuningArchiveResourceKind.Tuning)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html">TuningArchiveResourceKind</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntriesByInstance_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetEntriesByInstance*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntriesByInstance_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_System_UInt64_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetEntriesByInstance(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveResourceKind,System.UInt64)">
+  GetEntriesByInstance(TuningArchiveSnapshot, TuningArchiveResourceKind, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the resources of the specified <code class="paramref">kind</code> with the specified <code class="paramref">instance</code> in the specified <code class="paramref">snapshot</code>, whatever their type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveEntry&gt; GetEntriesByInstance(TuningArchiveSnapshot snapshot, TuningArchiveResourceKind kind, ulong instance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html">TuningArchiveResourceKind</a></dt>
+    <dd></dd>
+    <dt><code>instance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetEntry*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntry_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_LlamaLogic_Packages_ResourceType_System_UInt64_System_Nullable_System_UInt32__" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetEntry(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveResourceKind,LlamaLogic.Packages.ResourceType,System.UInt64,System.Nullable{System.UInt32})">
+  GetEntry(TuningArchiveSnapshot, TuningArchiveResourceKind, ResourceType, ulong, uint?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the resource of the specified <code class="paramref">kind</code>, <code class="paramref">type</code> and <code class="paramref">instance</code> in the specified <code class="paramref">snapshot</code>, if it is there</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningArchiveEntry? GetEntry(TuningArchiveSnapshot snapshot, TuningArchiveResourceKind kind, ResourceType type, ulong instance, uint? group = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html">TuningArchiveResourceKind</a></dt>
+    <dd></dd>
+    <dt><code>type</code> <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html">ResourceType</a></dt>
+    <dd></dd>
+    <dt><code>instance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+    <dt><code>group</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetEntry_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_LlamaLogic_Packages_ResourceType_System_UInt64_System_Nullable_System_UInt32___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>When <code class="paramref">group</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the resource with the lowest group is returned.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetHistory_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetHistory*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetHistory_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetHistory(LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  GetHistory(TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the history of the resource of the specified <code class="paramref">entry</code>: each version it has had and the snapshots containing it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveHistoryItem&gt; GetHistory(TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveHistoryItem.html">TuningArchiveHistoryItem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaEntries_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaEntries*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaEntries_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaEntries(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.Packages.ResourceKey)">
+  GetMediaEntries(TuningArchiveSnapshot, ResourceKey)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L355"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the media in the specified <code class="paramref">snapshot</code> to which tuning or SimData refers with the specified <code class="paramref">reference</code>: the medium <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaEntry_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_Packages_ResourceKey_">GetMediaEntry(TuningArchiveSnapshot, ResourceKey)</a> finds, or, for a reference to an audio configuration that has none of its own, the versions of it for each voice the snapshot contains, in the order of <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_VoiceCodes">VoiceCodes</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveEntry&gt; GetMediaEntries(TuningArchiveSnapshot snapshot, ResourceKey reference)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>reference</code> <a class="xref" href="../packages/LlamaLogic.Packages.ResourceKey.html">ResourceKey</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaEntry*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaEntry_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_Packages_ResourceKey_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaEntry(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.Packages.ResourceKey)">
+  GetMediaEntry(TuningArchiveSnapshot, ResourceKey)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L341"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the medium in the specified <code class="paramref">snapshot</code> to which tuning or SimData refers with the specified <code class="paramref">reference</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the snapshot does not contain it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningArchiveEntry? GetMediaEntry(TuningArchiveSnapshot snapshot, ResourceKey reference)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>reference</code> <a class="xref" href="../packages/LlamaLogic.Packages.ResourceKey.html">ResourceKey</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaEntry_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_Packages_ResourceKey__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>References are resolved as the game resolves them (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaKind_LlamaLogic_Packages_ResourceType_">GetMediaKind(ResourceType)</a>); a reference to an audio configuration resolves to the configuration rather than to the audio it uses.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaKind_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaKind*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaKind_LlamaLogic_Packages_ResourceType_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaKind(LlamaLogic.Packages.ResourceType)">
+  GetMediaKind(ResourceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the kind of media to which tuning or SimData refers with a resource key of the specified <code class="paramref">type</code>, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the type is not one of media</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TuningArchiveResourceKind? GetMediaKind(ResourceType type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html">ResourceType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html">TuningArchiveResourceKind</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaKind_LlamaLogic_Packages_ResourceType__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Tuning refers to images with <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_PNGImage">PNGImage</a> and <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_PNGImage2">PNGImage2</a> keys, which the game resolves to the <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_DSTImage">DSTImage</a> with the same instance, and to sounds with <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioConfigurationReference">AudioConfigurationReference</a> keys, which it resolves to the <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AudioConfiguration">AudioConfiguration</a> with the same instance, or, when there is none, to the versions of it for each voice (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String_">GetVoiceVersionInstance(ulong, string)</a>).</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaReferrers_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaReferrers*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaReferrers(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  GetMediaReferrers(TuningArchiveSnapshot, TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L425"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the tunings in the specified <code class="paramref">snapshot</code> that refer to the medium in the specified <code class="paramref">entry</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveReference&gt; GetMediaReferrers(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html">TuningArchiveReference</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>References with any of the resource types tuning uses for the medium are found (for an image, <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_PNGImage">PNGImage</a>, <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_PNGImage2">PNGImage2</a> and <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_DSTImage">DSTImage</a>), and, for a voice's version of an audio configuration, references to the configuration it is a version of (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionSource_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_">GetVoiceVersionSource(TuningArchiveSnapshot, TuningArchiveEntry)</a>).
+Only tunings whose references have been indexed (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>) are found.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaResourceTypes_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaResourceTypes*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaResourceTypes_LlamaLogic_Packages_ResourceType_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetMediaResourceTypes(LlamaLogic.Packages.ResourceType)">
+  GetMediaResourceTypes(ResourceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the resource types to which the game resolves a reference to media with the specified <code class="paramref">type</code>, in the order it tries them (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaKind_LlamaLogic_Packages_ResourceType_">GetMediaKind(ResourceType)</a>), or only the type itself if it is not a type tuning uses for media</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ResourceType&gt; GetMediaResourceTypes(ResourceType type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html">ResourceType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html">ResourceType</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetPythonModule_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetPythonModule*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetPythonModule_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetPythonModule(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String)">
+  GetPythonModule(TuningArchiveSnapshot, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Python.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the decompiled source of the specified Python <code class="paramref">module</code> (such as <code>buffs.buff</code>) in the specified <code class="paramref">snapshot</code>, if the snapshot has the game's scripts</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningArchiveEntry? GetPythonModule(TuningArchiveSnapshot snapshot, string module)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>module</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetPythonModuleInstance_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetPythonModuleInstance*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetPythonModuleInstance_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetPythonModuleInstance(System.String)">
+  GetPythonModuleInstance(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Python.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the resource instance under which the archive keeps the Python module at the specified <code class="paramref">path</code> (relative to the decompiled scripts, with forward slashes, such as <code>buffs/buff.py</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong GetPythonModuleInstance(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetPythonModulePaths_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetPythonModulePaths*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetPythonModulePaths_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetPythonModulePaths(System.String)">
+  GetPythonModulePaths(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Python.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the path of the decompiled source file of the specified Python <code class="paramref">module</code> (such as <code>buffs.buff</code>), relative to the decompiled scripts</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;string&gt; GetPythonModulePaths(string module)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>module</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetReferenceIndexStatus_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetReferenceIndexStatus*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetReferenceIndexStatus" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetReferenceIndexStatus">
+  GetReferenceIndexStatus()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.References.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets how many tunings have had their references indexed, and how many tunings there are</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int indexed, int total) GetReferenceIndexStatus()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.indexed">indexed</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.total">total</a>)</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetReferrers_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetReferrers*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_Packages_ResourceType_System_UInt64_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetReferrers(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.Packages.ResourceType,System.UInt64)">
+  GetReferrers(TuningArchiveSnapshot, ResourceType, ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.References.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the tunings in the specified <code class="paramref">snapshot</code> that refer to the resource with the specified <code class="paramref">type</code> and <code class="paramref">instance</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveReference&gt; GetReferrers(TuningArchiveSnapshot snapshot, ResourceType type, ulong instance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>type</code> <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html">ResourceType</a></dt>
+    <dd></dd>
+    <dt><code>instance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html">TuningArchiveReference</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_Packages_ResourceType_System_UInt64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Tunings refer to other tunings and to non-tuning resources (such as object definitions) by tuning reference, and to animation state machines and media by resource key (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetMediaReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_">GetMediaReferrers(TuningArchiveSnapshot, TuningArchiveEntry)</a> to find a medium's referrers by any of the types tuning uses for it).
+Only tunings whose references have been indexed (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>) are found.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetSnapshots_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetSnapshots*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetSnapshots" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetSnapshots">
+  GetSnapshots()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L385"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the snapshots in the archive, in order of game version (and then of when they were captured)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveSnapshot&gt; GetSnapshots()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetSoundSamples_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetSoundSamples*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetSoundSamples_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetSoundSamples(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  GetSoundSamples(TuningArchiveSnapshot, TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L397"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the audio that the audio configuration in the specified <code class="paramref">entry</code> uses (its samples, and those of the configurations it inherits from), as the specified <code class="paramref">snapshot</code> contains them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveEntry&gt; GetSoundSamples(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetStringReferrers_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetStringReferrers*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetStringReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Collections_Generic_IEnumerable_System_UInt32__" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetStringReferrers(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Collections.Generic.IEnumerable{System.UInt32})">
+  GetStringReferrers(TuningArchiveSnapshot, IEnumerable&lt;uint&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.References.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the tunings in the specified <code class="paramref">snapshot</code> that use any of the strings with the specified <code class="paramref">keys</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveReference&gt; GetStringReferrers(TuningArchiveSnapshot snapshot, IEnumerable&lt;uint&gt; keys)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>keys</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html">TuningArchiveReference</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetStringReferrers_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Collections_Generic_IEnumerable_System_UInt32___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Each reference's <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html#LlamaLogic_TuningArchive_TuningArchiveReference_TargetType">TargetType</a> is <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_StringTable">StringTable</a> and its <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveReference.html#LlamaLogic_TuningArchive_TuningArchiveReference_TargetInstance">TargetInstance</a> is the key of the string used; a tuning using several of the strings appears once for each.
+Only tunings whose references have been indexed (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>) are found.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetStrings_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetStrings*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetStrings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetStrings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)">
+  GetStrings(TuningArchiveSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the strings of the specified <code class="paramref">snapshot</code>, by key, in its <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html#LlamaLogic_TuningArchive_TuningArchiveSnapshot_Locale">Locale</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;uint, string&gt; GetStrings(TuningArchiveSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetText_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetText*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetText_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetText(LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  GetText(TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the content of the specified <code class="paramref">entry</code>, as canonical text (see <a class="xref" href="LlamaLogic.TuningArchive.TuningXml.html">TuningXml</a>) or Python source</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetText(TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetTuningDescriptionCache_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetTuningDescriptionCache*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetTuningDescriptionCache_LlamaLogic_TuningArchive_TuningArchiveDescriptions_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetTuningDescriptionCache(LlamaLogic.TuningArchive.TuningArchiveDescriptions)">
+  GetTuningDescriptionCache(TuningArchiveDescriptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the cache the archive keeps for the specified set of tuning <code class="paramref">descriptions</code>, so that repeated analyses are fast</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningDescriptionCache GetTuningDescriptionCache(TuningArchiveDescriptions descriptions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>descriptions</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningDescriptionCache.html">TuningDescriptionCache</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetTuningDescriptions_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetTuningDescriptions*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetTuningDescriptions" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetTuningDescriptions">
+  GetTuningDescriptions()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the sets of tuning descriptions imported into the archive, in order of game version</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveDescriptions&gt; GetTuningDescriptions()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetTuningTypeNames_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetTuningTypeNames*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetTuningTypeNames" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetTuningTypeNames">
+  GetTuningTypeNames()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Query.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the names of the tuning types the archive has seen, by resource type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;ResourceType, string&gt; GetTuningTypeNames()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html">ResourceType</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)">
+  GetUninstalledTunings(TuningArchiveSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Uninstalled.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the tunings of packs that were not installed when the specified <code class="paramref">snapshot</code> was captured, known only by name from the packs' patches in the game's <code>Delta</code> folder</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TuningArchiveUninstalledTuning&gt; GetUninstalledTunings(TuningArchiveSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html">TuningArchiveUninstalledTuning</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>None of them is in the snapshot. Only snapshots captured from an installation have them.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetVoiceVersionInstance*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetVoiceVersionInstance(System.UInt64,System.String)">
+  GetVoiceVersionInstance(ulong, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the instance of the version for the voice with the specified <code class="paramref">voiceCode</code> (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_VoiceCodes">VoiceCodes</a>) of the audio configuration that tuning names with the specified <code class="paramref">instance</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong GetVoiceVersionInstance(ulong instance, string voiceCode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>instance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+    <dt><code>voiceCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Tuning names some sounds sims sing or speak (<code>vocal_clip</code> in recipes, for example) by the FNV-1 64 hash of a file name that has no audio configuration of its own, such as <code>vo_karaoke_solojazz2_tune_67sec</code>.
+The game has a configuration for each voice instead, hashed from the file name followed by an underscore and the voice's code (<code>vo_karaoke_solojazz2_tune_67sec_fa</code>).
+FNV-1 has no finalization, so the version's instance is found by continuing the hash from the instance tuning names, without the file name.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionSource_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetVoiceVersionSource*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionSource_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetVoiceVersionSource(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveEntry)">
+  GetVoiceVersionSource(TuningArchiveSnapshot, TuningArchiveEntry)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L372"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the instance by which tuning names the audio configuration of which the specified <code class="paramref">entry</code> is a voice's version, with that voice's code, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if it is not a voice's version (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String_">GetVoiceVersionInstance(ulong, string)</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (ulong instance, string voiceCode)? GetVoiceVersionSource(TuningArchiveSnapshot snapshot, TuningArchiveEntry entry)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>entry</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveEntry.html">TuningArchiveEntry</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.uint64,system.string-.instance">instance</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.uint64,system.string-.voicecode">voiceCode</a>)?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionSource_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>A configuration is taken to be a voice's version when tuning in the specified <code class="paramref">snapshot</code> refers to the configuration it would be a version of (only tunings whose references have been indexed are found; see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>), or another voice's version of that configuration is in the snapshot.
+Codes that share their first letter differ only in the last character hashed, so working back with the wrong one of them leads to a configuration with versions of its own in the snapshot (this one, and the version for another voice of the same group); of the configurations it could be a version of, the one tuning refers to is preferred, then the one with the most versions in the snapshot.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoicelessInstance_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetVoicelessInstance*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoicelessInstance_System_UInt64_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.GetVoicelessInstance(System.UInt64,System.String)">
+  GetVoicelessInstance(ulong, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Media.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the instance of the audio configuration whose version for the voice with the specified <code class="paramref">voiceCode</code> (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_VoiceCodes">VoiceCodes</a>) would have the specified <code class="paramref">voiceVersionInstance</code>: the inverse of <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionInstance_System_UInt64_System_String_">GetVoiceVersionInstance(ulong, string)</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong GetVoicelessInstance(ulong voiceVersionInstance, string voiceCode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>voiceVersionInstance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+    <dt><code>voiceCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_GetVoicelessInstance_System_UInt64_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Any instance has a voiceless instance for every code; to tell which configuration an entry is really a version of, use <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetVoiceVersionSource_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveEntry_">GetVoiceVersionSource(TuningArchiveSnapshot, TuningArchiveEntry)</a>.</p>
+</div>
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_HasKind_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.HasKind*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_HasKind_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningArchive_TuningArchiveResourceKind_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.HasKind(LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningArchive.TuningArchiveResourceKind)">
+  HasKind(TuningArchiveSnapshot, TuningArchiveResourceKind)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L454"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the specified <code class="paramref">snapshot</code> contains resources of the specified <code class="paramref">kind</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasKind(TuningArchiveSnapshot snapshot, TuningArchiveResourceKind kind)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveResourceKind.html">TuningArchiveResourceKind</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportFolderAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ImportFolderAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportFolderAsync_System_String_System_String_LlamaLogic_TuningArchive_TuningArchiveImportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ImportFolderAsync(System.String,System.String,LlamaLogic.TuningArchive.TuningArchiveImportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)">
+  ImportFolderAsync(string, string, TuningArchiveImportOptions?, IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Import.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Imports a folder of tuning files extracted by another tool (such as Scumbumbo's XML Extractor or Sims 4 Studio) as a snapshot of the specified <code class="paramref">gameVersion</code> (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TuningArchiveCaptureResult&gt; ImportFolderAsync(string folder, string gameVersion, TuningArchiveImportOptions? options = null, IProgress&lt;TuningArchiveProgress&gt;? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>folder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>gameVersion</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveImportOptions.html">TuningArchiveImportOptions</a></dt>
+    <dd></dd>
+    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveProgress.html">TuningArchiveProgress</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveCaptureResult.html">TuningArchiveCaptureResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportFolderAsync_System_String_System_String_LlamaLogic_TuningArchive_TuningArchiveImportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+Every <code>.xml</code> file under the folder whose root is an instance (<code>I</code>) or module (<code>M</code>) tuning element is imported as tuning, every one whose root is <code>SimData</code> as SimData, and every other one whose file name has a resource key of type <a class="xref" href="../packages/LlamaLogic.Packages.ResourceType.html#LlamaLogic_Packages_ResourceType_AnimationStateMachine">AnimationStateMachine</a> (as Scumbumbo's XML Extractor names the files in its <code>AsmJazz</code> folders) as an animation state machine.
+A tuning's type is derived from its <code>i</code> attribute the way the game derives it, falling back to a resource key in its file name, and its group is always 0 (the game identifies tuning by type and instance); comments are discarded.
+A file is attributed to the pack named by a folder in its path (such as <code>EP01</code>), or to <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveImportOptions.html#LlamaLogic_TuningArchive_TuningArchiveImportOptions_DefaultPack">DefaultPack</a>.
+</p>
+<p>
+A file named <code>Reference - All Strings.txt</code> in the folder, as Scumbumbo's XML Extractor writes it, is imported as the snapshot's strings.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportPythonAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ImportPythonAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportPythonAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ImportPythonAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)">
+  ImportPythonAsync(TuningArchiveSnapshot, string, IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Python.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Imports the game's decompiled Python scripts, as Motherlode writes them, into the specified <code class="paramref">snapshot</code>, replacing any it already has (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TuningArchiveCaptureResult&gt; ImportPythonAsync(TuningArchiveSnapshot snapshot, string folder, IProgress&lt;TuningArchiveProgress&gt;? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>folder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveProgress.html">TuningArchiveProgress</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveCaptureResult.html">TuningArchiveCaptureResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportPythonAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p><code class="paramref">folder</code> is Motherlode's output folder (containing <code>scripts</code> and <code>motherlode-report.json</code>) or its <code>scripts</code> folder.
+Every <code>.py</code> file under <code>scripts</code> is imported, keyed by its path relative to it; Motherlode's report, if present, is imported with them, so that the functions it could not verify can be shown.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportTuningDescriptionsAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ImportTuningDescriptionsAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportTuningDescriptionsAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.ImportTuningDescriptionsAsync(System.String,System.String,System.Threading.CancellationToken)">
+  ImportTuningDescriptionsAsync(string, string?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Imports the ZIP archive of tuning descriptions at the specified <code class="paramref">path</code>, as Maxis distributes them, replacing any set already imported for the same game version (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TuningArchiveDescriptions&gt; ImportTuningDescriptionsAsync(string path, string? gameVersion = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>gameVersion</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_ImportTuningDescriptionsAsync_System_String_System_String_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>When <code class="paramref">gameVersion</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, it is taken from the name of the file (such as <code>1.128.90.1030-TDESC.zip</code>).</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>No game version was specified and the file's name does not contain one</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.IndexReferencesAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.IndexReferencesAsync(System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)">
+  IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.References.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indexes the references in every tuning that has not yet been indexed with the tuning descriptions best suited to it, returning how many tunings were indexed (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveProgress.html">TuningArchiveProgress</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The tuning descriptions best suited to a tuning are those best suited to the earliest snapshot containing it (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_FindTuningDescriptions_LlamaLogic_TuningArchive_TuningArchiveSnapshot_">FindTuningDescriptions(TuningArchiveSnapshot)</a>).
+Indexing is needed after capturing or importing a snapshot, after importing tuning descriptions, and after opening the archive with a version of this library that indexes differently (which discards the old index); tunings already indexed with the right descriptions are skipped.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_Open_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Open*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_Open_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.Open(System.String)">
+  Open(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the archive at the specified <code class="paramref">path</code>, creating it if it does not exist (🗑️)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TuningArchiveFile Open(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html">TuningArchiveFile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_Open_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>An archive created by an earlier version of this library is upgraded, and its reference index is discarded if an earlier version built it (see <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_IndexReferencesAsync_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_">IndexReferencesAsync(IProgress&lt;TuningArchiveProgress&gt;?, CancellationToken)</a>).</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The file is an archive created by a newer version of this library</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_OpenReadOnly_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.OpenReadOnly*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_OpenReadOnly_System_String_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.OpenReadOnly(System.String)">
+  OpenReadOnly(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the existing archive at the specified <code class="paramref">path</code> for reading only, without changing the file (🗑️)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TuningArchiveFile OpenReadOnly(string path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html">TuningArchiveFile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LlamaLogic_TuningArchive_TuningArchiveFile_OpenReadOnly_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+The archive can be read while another application has it open with <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_Open_System_String_">Open(string)</a>, and sees what that application writes as it is written.
+Members that would change the archive throw <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a>.
+</p>
+<p>
+If the archive's reference index was built by a different version of this library, it is left as it is and treated as empty: members that use it find no references, and <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetReferenceIndexStatus">GetReferenceIndexStatus()</a> reports no tunings indexed.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></dt>
+    <dd><p>There is no file at <code class="paramref">path</code></p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></dt>
+    <dd><p>The file is not an archive, or is an archive created by a newer version of this library, or by an earlier version and not yet upgraded by opening it with <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_Open_System_String_">Open(string)</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_OpenTuningDescriptions_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.OpenTuningDescriptions*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_OpenTuningDescriptions_LlamaLogic_TuningArchive_TuningArchiveDescriptions_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.OpenTuningDescriptions(LlamaLogic.TuningArchive.TuningArchiveDescriptions)">
+  OpenTuningDescriptions(TuningArchiveDescriptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Descriptions.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the specified set of tuning <code class="paramref">descriptions</code>; the archive owns the set, so it must not be disposed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TuningDescriptionSet OpenTuningDescriptions(TuningArchiveDescriptions descriptions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>descriptions</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveDescriptions.html">TuningArchiveDescriptions</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../tuning-descriptions/LlamaLogic.TuningDescriptions.TuningDescriptionSet.html">TuningDescriptionSet</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LlamaLogic_TuningArchive_TuningArchiveFile_UpdateSnapshotAsync_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.UpdateSnapshotAsync*"></a>
+
+  <h3 id="LlamaLogic_TuningArchive_TuningArchiveFile_UpdateSnapshotAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_System_String_System_Threading_CancellationToken_" data-uid="LlamaLogic.TuningArchive.TuningArchiveFile.UpdateSnapshotAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,System.String,System.Threading.CancellationToken)">
+  UpdateSnapshotAsync(TuningArchiveSnapshot, string?, string?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.cs/#L651"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Changes the label and notes of the specified <code class="paramref">snapshot</code>, returning the updated snapshot (💤)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TuningArchiveSnapshot&gt; UpdateSnapshotAsync(TuningArchiveSnapshot snapshot, string? label, string? notes, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>label</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>notes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="LlamaLogic.TuningArchive.TuningArchiveSnapshot.html">TuningArchiveSnapshot</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The archive was opened for reading only</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Llama-Logic/LlamaLogic/blob/main/LlamaLogic.TuningArchive/TuningArchiveFile.Uninstalled.cs/#L3" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

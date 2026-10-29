@@ -1,0 +1,719 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningXml
+  commentId: T:LlamaLogic.TuningArchive.TuningXml
+  id: TuningXml
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningXml.FindElement(System.Xml.Linq.XElement,System.String)
+  - LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XDocument)
+  - LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XElement)
+  - LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  - LlamaLogic.TuningArchive.TuningXml.GetResourceType(System.String)
+  - LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText(System.Xml.Linq.XElement,System.Xml.Linq.XElement)
+  - LlamaLogic.TuningArchive.TuningXml.Parse(System.String)
+  langs:
+  - csharp
+  - vb
+  name: TuningXml
+  nameWithType: TuningXml
+  fullName: LlamaLogic.TuningArchive.TuningXml
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningXml
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Provides the canonical text form in which a tuning archive stores tuning and SimData documents
+  remarks: >-
+    The canonical form is UTF-8 without a byte order mark, an XML declaration, two-space indentation and line feeds, with comments removed.
+
+    The root element's attributes are in ordinal order (<code>c</code>, <code>i</code>, <code>m</code>, <code>n</code>, <code>s</code>), and every other element's are <code>n</code>, then <code>t</code>, then the rest in ordinal order.
+
+    Documents with the same content therefore have the same canonical text however they were obtained (from the game's combined tuning or from files extracted by another tool).
+  example: []
+  syntax:
+    content: public static class TuningXml
+    content.vb: Public Module TuningXml
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XDocument)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XDocument)
+  id: GetCanonicalText(System.Xml.Linq.XDocument)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: GetCanonicalText(XDocument)
+  nameWithType: TuningXml.GetCanonicalText(XDocument)
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XDocument)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetCanonicalText
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 47
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the canonical text of the specified <code class="paramref">document</code>
+  example: []
+  syntax:
+    content: public static string GetCanonicalText(XDocument document)
+    parameters:
+    - id: document
+      type: System.Xml.Linq.XDocument
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetCanonicalText(document As XDocument) As String
+  overload: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText*
+- uid: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XElement)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XElement)
+  id: GetCanonicalText(System.Xml.Linq.XElement)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: GetCanonicalText(XElement)
+  nameWithType: TuningXml.GetCanonicalText(XElement)
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText(System.Xml.Linq.XElement)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetCanonicalText
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 58
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the canonical text of a document whose root is the specified <code class="paramref">root</code>
+  example: []
+  syntax:
+    content: public static string GetCanonicalText(XElement root)
+    parameters:
+    - id: root
+      type: System.Xml.Linq.XElement
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetCanonicalText(root As XElement) As String
+  overload: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText*
+- uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  id: GetFragmentText(System.Xml.Linq.XElement)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: GetFragmentText(XElement)
+  nameWithType: TuningXml.GetFragmentText(XElement)
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetFragmentText
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 77
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the canonical text of the specified <code class="paramref">element</code> on one line, without an XML declaration
+  example: []
+  syntax:
+    content: public static string GetFragmentText(XElement element)
+    parameters:
+    - id: element
+      type: System.Xml.Linq.XElement
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetFragmentText(element As XElement) As String
+  overload: LlamaLogic.TuningArchive.TuningXml.GetFragmentText*
+- uid: LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText(System.Xml.Linq.XElement,System.Xml.Linq.XElement)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText(System.Xml.Linq.XElement,System.Xml.Linq.XElement)
+  id: HaveSameFragmentText(System.Xml.Linq.XElement,System.Xml.Linq.XElement)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: HaveSameFragmentText(XElement, XElement)
+  nameWithType: TuningXml.HaveSameFragmentText(XElement, XElement)
+  fullName: LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText(System.Xml.Linq.XElement, System.Xml.Linq.XElement)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: HaveSameFragmentText
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 90
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the specified elements have the same canonical text on one line (what <xref href="LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)" data-throw-if-not-resolved="false"></xref> gets for each), without writing either
+  example: []
+  syntax:
+    content: public static bool HaveSameFragmentText(XElement a, XElement b)
+    parameters:
+    - id: a
+      type: System.Xml.Linq.XElement
+    - id: b
+      type: System.Xml.Linq.XElement
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function HaveSameFragmentText(a As XElement, b As XElement) As Boolean
+  overload: LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText*
+- uid: LlamaLogic.TuningArchive.TuningXml.FindElement(System.Xml.Linq.XElement,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.FindElement(System.Xml.Linq.XElement,System.String)
+  id: FindElement(System.Xml.Linq.XElement,System.String)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: FindElement(XElement, string)
+  nameWithType: TuningXml.FindElement(XElement, string)
+  fullName: LlamaLogic.TuningArchive.TuningXml.FindElement(System.Xml.Linq.XElement, string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: FindElement
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 136
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Finds the element at the specified <code class="paramref">path</code> (as <xref href="LlamaLogic.TuningArchive.TuningNode.Path" data-throw-if-not-resolved="false"></xref> spells it, such as <code>loot_list[2].stat</code>) below the specified <code class="paramref">root</code>, or returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if there is none
+  example: []
+  syntax:
+    content: public static XElement? FindElement(XElement root, string path)
+    parameters:
+    - id: root
+      type: System.Xml.Linq.XElement
+    - id: path
+      type: System.String
+    return:
+      type: System.Xml.Linq.XElement
+    content.vb: Public Shared Function FindElement(root As XElement, path As String) As XElement
+  overload: LlamaLogic.TuningArchive.TuningXml.FindElement*
+  nameWithType.vb: TuningXml.FindElement(XElement, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningXml.FindElement(System.Xml.Linq.XElement, String)
+  name.vb: FindElement(XElement, String)
+- uid: LlamaLogic.TuningArchive.TuningXml.GetResourceType(System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.GetResourceType(System.String)
+  id: GetResourceType(System.String)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: GetResourceType(string)
+  nameWithType: TuningXml.GetResourceType(string)
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetResourceType(string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetResourceType
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 173
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the type of the tuning resource for the specified tuning type name (the <code>i</code> attribute of an instance, or the name of a group in combined tuning), the way the game derives it
+  example: []
+  syntax:
+    content: public static ResourceType GetResourceType(string typeName)
+    parameters:
+    - id: typeName
+      type: System.String
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: Public Shared Function GetResourceType(typeName As String) As ResourceType
+  overload: LlamaLogic.TuningArchive.TuningXml.GetResourceType*
+  nameWithType.vb: TuningXml.GetResourceType(String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningXml.GetResourceType(String)
+  name.vb: GetResourceType(String)
+- uid: LlamaLogic.TuningArchive.TuningXml.Parse(System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.Parse(System.String)
+  id: Parse(System.String)
+  parent: LlamaLogic.TuningArchive.TuningXml
+  langs:
+  - csharp
+  - vb
+  name: Parse(string)
+  nameWithType: TuningXml.Parse(string)
+  fullName: LlamaLogic.TuningArchive.TuningXml.Parse(string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningXml.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Parse
+    path: ../LlamaLogic.TuningArchive/TuningXml.cs
+    startLine: 188
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Parses canonical text (or any tuning XML) into a document with line information
+  example: []
+  syntax:
+    content: public static XDocument Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: System.Xml.Linq.XDocument
+    content.vb: Public Shared Function Parse(text As String) As XDocument
+  overload: LlamaLogic.TuningArchive.TuningXml.Parse*
+  nameWithType.vb: TuningXml.Parse(String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningXml.Parse(String)
+  name.vb: Parse(String)
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningXml.GetCanonicalText
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetCanonicalText_System_Xml_Linq_XDocument_
+  name: GetCanonicalText
+  nameWithType: TuningXml.GetCanonicalText
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetCanonicalText
+- uid: System.Xml.Linq.XDocument
+  commentId: T:System.Xml.Linq.XDocument
+  parent: System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xdocument
+  name: XDocument
+  nameWithType: XDocument
+  fullName: System.Xml.Linq.XDocument
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Xml.Linq
+  commentId: N:System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Xml.Linq
+  nameWithType: System.Xml.Linq
+  fullName: System.Xml.Linq
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml
+  - name: .
+  - uid: System.Xml.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq
+- uid: System.Xml.Linq.XElement
+  commentId: T:System.Xml.Linq.XElement
+  parent: System.Xml.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xelement
+  name: XElement
+  nameWithType: XElement
+  fullName: System.Xml.Linq.XElement
+- uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningXml.GetFragmentText
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  name: GetFragmentText
+  nameWithType: TuningXml.GetFragmentText
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetFragmentText
+- uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  isExternal: true
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  name: GetFragmentText(XElement)
+  nameWithType: TuningXml.GetFragmentText(XElement)
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+    name: GetFragmentText
+    href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  - name: (
+  - uid: System.Xml.Linq.XElement
+    name: XElement
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xelement
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+    name: GetFragmentText
+    href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  - name: (
+  - uid: System.Xml.Linq.XElement
+    name: XElement
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xelement
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_HaveSameFragmentText_System_Xml_Linq_XElement_System_Xml_Linq_XElement_
+  name: HaveSameFragmentText
+  nameWithType: TuningXml.HaveSameFragmentText
+  fullName: LlamaLogic.TuningArchive.TuningXml.HaveSameFragmentText
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.TuningArchive.TuningNode.Path
+  commentId: P:LlamaLogic.TuningArchive.TuningNode.Path
+  href: LlamaLogic.TuningArchive.TuningNode.html#LlamaLogic_TuningArchive_TuningNode_Path
+  name: Path
+  nameWithType: TuningNode.Path
+  fullName: LlamaLogic.TuningArchive.TuningNode.Path
+- uid: LlamaLogic.TuningArchive.TuningXml.FindElement*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningXml.FindElement
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_FindElement_System_Xml_Linq_XElement_System_String_
+  name: FindElement
+  nameWithType: TuningXml.FindElement
+  fullName: LlamaLogic.TuningArchive.TuningXml.FindElement
+- uid: LlamaLogic.TuningArchive.TuningXml.GetResourceType*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningXml.GetResourceType
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetResourceType_System_String_
+  name: GetResourceType
+  nameWithType: TuningXml.GetResourceType
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetResourceType
+- uid: LlamaLogic.Packages.ResourceType
+  commentId: T:LlamaLogic.Packages.ResourceType
+  parent: LlamaLogic.Packages
+  name: ResourceType
+  nameWithType: ResourceType
+  fullName: LlamaLogic.Packages.ResourceType
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.TuningArchive.TuningXml.Parse*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningXml.Parse
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_Parse_System_String_
+  name: Parse
+  nameWithType: TuningXml.Parse
+  fullName: LlamaLogic.TuningArchive.TuningXml.Parse

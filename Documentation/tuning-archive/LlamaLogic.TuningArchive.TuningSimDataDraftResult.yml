@@ -1,0 +1,641 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  commentId: T:LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  id: TuningSimDataDraftResult
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningSimDataDraftResult.#ctor(LlamaLogic.TuningArchive.TuningSimDataDraftKind,System.Nullable{LlamaLogic.Packages.ResourceKey},LlamaLogic.Packages.Models.SimData.SimDataModel,System.String)
+  - LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key
+  - LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind
+  - LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message
+  - LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData
+  langs:
+  - csharp
+  - vb
+  name: TuningSimDataDraftResult
+  nameWithType: TuningSimDataDraftResult
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningSimDataDraftResult
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents the SimData an override of a tuning needs
+  example: []
+  syntax:
+    content: 'public sealed record TuningSimDataDraftResult : IEquatable<TuningSimDataDraftResult>'
+    content.vb: Public NotInheritable Class TuningSimDataDraftResult Implements IEquatable(Of TuningSimDataDraftResult)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningSimDataDraftResult}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.#ctor(LlamaLogic.TuningArchive.TuningSimDataDraftKind,System.Nullable{LlamaLogic.Packages.ResourceKey},LlamaLogic.Packages.Models.SimData.SimDataModel,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningSimDataDraftResult.#ctor(LlamaLogic.TuningArchive.TuningSimDataDraftKind,System.Nullable{LlamaLogic.Packages.ResourceKey},LlamaLogic.Packages.Models.SimData.SimDataModel,System.String)
+  id: '#ctor(LlamaLogic.TuningArchive.TuningSimDataDraftKind,System.Nullable{LlamaLogic.Packages.ResourceKey},LlamaLogic.Packages.Models.SimData.SimDataModel,System.String)'
+  parent: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  langs:
+  - csharp
+  - vb
+  name: TuningSimDataDraftResult(TuningSimDataDraftKind, ResourceKey?, SimDataModel?, string)
+  nameWithType: TuningSimDataDraftResult.TuningSimDataDraftResult(TuningSimDataDraftKind, ResourceKey?, SimDataModel?, string)
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.TuningSimDataDraftResult(LlamaLogic.TuningArchive.TuningSimDataDraftKind, LlamaLogic.Packages.ResourceKey?, LlamaLogic.Packages.Models.SimData.SimDataModel?, string)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents the SimData an override of a tuning needs
+  example: []
+  syntax:
+    content: public TuningSimDataDraftResult(TuningSimDataDraftKind Kind, ResourceKey? Key, SimDataModel? SimData, string Message)
+    parameters:
+    - id: Kind
+      type: LlamaLogic.TuningArchive.TuningSimDataDraftKind
+      description: Whether the override needs new SimData, and whether it could be generated
+    - id: Key
+      type: System.Nullable{LlamaLogic.Packages.ResourceKey}
+      description: The key of the tuning's SimData, if it has SimData
+    - id: SimData
+      type: LlamaLogic.Packages.Models.SimData.SimDataModel
+      description: The generated SimData, if <code class="paramref">Kind</code> is <xref href="LlamaLogic.TuningArchive.TuningSimDataDraftKind.Generated" data-throw-if-not-resolved="false"></xref>
+    - id: Message
+      type: System.String
+      description: What happened, for the creator
+    content.vb: Public Sub New(Kind As TuningSimDataDraftKind, Key As ResourceKey?, SimData As SimDataModel, Message As String)
+  overload: LlamaLogic.TuningArchive.TuningSimDataDraftResult.#ctor*
+  nameWithType.vb: TuningSimDataDraftResult.New(TuningSimDataDraftKind, ResourceKey?, SimDataModel, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningSimDataDraftResult.New(LlamaLogic.TuningArchive.TuningSimDataDraftKind, LlamaLogic.Packages.ResourceKey?, LlamaLogic.Packages.Models.SimData.SimDataModel, String)
+  name.vb: New(TuningSimDataDraftKind, ResourceKey?, SimDataModel, String)
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind
+  commentId: P:LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind
+  id: Kind
+  parent: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: TuningSimDataDraftResult.Kind
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Kind
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Whether the override needs new SimData, and whether it could be generated
+  example: []
+  syntax:
+    content: public TuningSimDataDraftKind Kind { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningSimDataDraftKind
+    content.vb: Public Property Kind As TuningSimDataDraftKind
+  overload: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind*
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key
+  commentId: P:LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key
+  id: Key
+  parent: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  langs:
+  - csharp
+  - vb
+  name: Key
+  nameWithType: TuningSimDataDraftResult.Key
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Key
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The key of the tuning's SimData, if it has SimData
+  example: []
+  syntax:
+    content: public ResourceKey? Key { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{LlamaLogic.Packages.ResourceKey}
+    content.vb: Public Property Key As ResourceKey?
+  overload: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key*
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData
+  commentId: P:LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData
+  id: SimData
+  parent: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  langs:
+  - csharp
+  - vb
+  name: SimData
+  nameWithType: TuningSimDataDraftResult.SimData
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimData
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The generated SimData, if <code class="paramref">Kind</code> is <xref href="LlamaLogic.TuningArchive.TuningSimDataDraftKind.Generated" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public SimDataModel? SimData { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.Models.SimData.SimDataModel
+    content.vb: Public Property SimData As SimDataModel
+  overload: LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData*
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message
+  commentId: P:LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message
+  id: Message
+  parent: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  langs:
+  - csharp
+  - vb
+  name: Message
+  nameWithType: TuningSimDataDraftResult.Message
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Message
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDraftResult.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: What happened, for the creator
+  example: []
+  syntax:
+    content: public string Message { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Message As String
+  overload: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message*
+references:
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftKind.Generated
+  commentId: F:LlamaLogic.TuningArchive.TuningSimDataDraftKind.Generated
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftKind.html#LlamaLogic_TuningArchive_TuningSimDataDraftKind_Generated
+  name: Generated
+  nameWithType: TuningSimDataDraftKind.Generated
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftKind.Generated
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningSimDataDraftResult}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningSimDataDraftResult}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningSimDataDraftResult>
+  nameWithType: IEquatable<TuningSimDataDraftResult>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningSimDataDraftResult>
+  nameWithType.vb: IEquatable(Of TuningSimDataDraftResult)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningSimDataDraftResult)
+  name.vb: IEquatable(Of TuningSimDataDraftResult)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+    name: TuningSimDataDraftResult
+    href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+    name: TuningSimDataDraftResult
+    href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDraftResult.#ctor
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html#LlamaLogic_TuningArchive_TuningSimDataDraftResult__ctor_LlamaLogic_TuningArchive_TuningSimDataDraftKind_System_Nullable_LlamaLogic_Packages_ResourceKey__LlamaLogic_Packages_Models_SimData_SimDataModel_System_String_
+  name: TuningSimDataDraftResult
+  nameWithType: TuningSimDataDraftResult.TuningSimDataDraftResult
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.TuningSimDataDraftResult
+  nameWithType.vb: TuningSimDataDraftResult.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningSimDataDraftResult.New
+  name.vb: New
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftKind
+  commentId: T:LlamaLogic.TuningArchive.TuningSimDataDraftKind
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftKind.html
+  name: TuningSimDataDraftKind
+  nameWithType: TuningSimDataDraftKind
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftKind
+- uid: System.Nullable{LlamaLogic.Packages.ResourceKey}
+  commentId: T:System.Nullable{LlamaLogic.Packages.ResourceKey}
+  parent: System
+  definition: System.Nullable`1
+  name: ResourceKey?
+  nameWithType: ResourceKey?
+  fullName: LlamaLogic.Packages.ResourceKey?
+  spec.csharp:
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: '?'
+  spec.vb:
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: '?'
+- uid: LlamaLogic.Packages.Models.SimData.SimDataModel
+  commentId: T:LlamaLogic.Packages.Models.SimData.SimDataModel
+  parent: LlamaLogic.Packages.Models.SimData
+  name: SimDataModel
+  nameWithType: SimDataModel
+  fullName: LlamaLogic.Packages.Models.SimData.SimDataModel
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.Packages.Models.SimData
+  commentId: N:LlamaLogic.Packages.Models.SimData
+  name: LlamaLogic.Packages.Models.SimData
+  nameWithType: LlamaLogic.Packages.Models.SimData
+  fullName: LlamaLogic.Packages.Models.SimData
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  - name: .
+  - uid: LlamaLogic.Packages.Models
+    name: Models
+  - name: .
+  - uid: LlamaLogic.Packages.Models.SimData
+    name: SimData
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html#LlamaLogic_TuningArchive_TuningSimDataDraftResult_Kind
+  name: Kind
+  nameWithType: TuningSimDataDraftResult.Kind
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Kind
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html#LlamaLogic_TuningArchive_TuningSimDataDraftResult_Key
+  name: Key
+  nameWithType: TuningSimDataDraftResult.Key
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Key
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html#LlamaLogic_TuningArchive_TuningSimDataDraftResult_SimData
+  name: SimData
+  nameWithType: TuningSimDataDraftResult.SimData
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.SimData
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html#LlamaLogic_TuningArchive_TuningSimDataDraftResult_Message
+  name: Message
+  nameWithType: TuningSimDataDraftResult.Message
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult.Message

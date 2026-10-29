@@ -1,0 +1,302 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  id: TuningPackageAddedSimDataFixes
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AddMissingColumns
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.All
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AmendTuning
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectColumnTypes
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectSchemaHashes
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.MatchTuning
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.None
+  - LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.RemoveExtraColumns
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageAddedSimDataFixes
+  nameWithType: TuningPackageAddedSimDataFixes
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningPackageAddedSimDataFixes
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Specifies which fixes writing an updated package makes to the SimData of tuning it adds, and to that tuning
+  remarks: >-
+    A value is only ever taken from SimData generated from the mod's tuning when the generator reproduces that column in every SimData of the game's that has it.
+
+    The SimData is changed only when, after the fixes, it has every column the tuning descriptions give, with their types.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum TuningPackageAddedSimDataFixes
+    content.vb: >-
+      <Flags>
+
+      Public Enum TuningPackageAddedSimDataFixes
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.None
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.None
+  id: None
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: TuningPackageAddedSimDataFixes.None
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.None
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: None
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 15
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The SimData is left as it is
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AddMissingColumns
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AddMissingColumns
+  id: AddMissingColumns
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: AddMissingColumns
+  nameWithType: TuningPackageAddedSimDataFixes.AddMissingColumns
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AddMissingColumns
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AddMissingColumns
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 20
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The columns the tuning descriptions give but the SimData doesn't have are added, with values generated from the tuning, keeping every value the SimData has
+  example: []
+  syntax:
+    content: AddMissingColumns = 1
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectColumnTypes
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectColumnTypes
+  id: CorrectColumnTypes
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: CorrectColumnTypes
+  nameWithType: TuningPackageAddedSimDataFixes.CorrectColumnTypes
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectColumnTypes
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CorrectColumnTypes
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Columns whose types aren't what the tuning descriptions give get those types, with values generated from the tuning
+  example: []
+  syntax:
+    content: CorrectColumnTypes = 2
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.RemoveExtraColumns
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.RemoveExtraColumns
+  id: RemoveExtraColumns
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: RemoveExtraColumns
+  nameWithType: TuningPackageAddedSimDataFixes.RemoveExtraColumns
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.RemoveExtraColumns
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RemoveExtraColumns
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Columns the tuning descriptions don't give are removed, unless the package has a script mod beside it, which could add those tunables to the game
+  example: []
+  syntax:
+    content: RemoveExtraColumns = 4
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectSchemaHashes
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectSchemaHashes
+  id: CorrectSchemaHashes
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: CorrectSchemaHashes
+  nameWithType: TuningPackageAddedSimDataFixes.CorrectSchemaHashes
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.CorrectSchemaHashes
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CorrectSchemaHashes
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 35
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Schema hashes that don't match their columns are recomputed
+  example: []
+  syntax:
+    content: CorrectSchemaHashes = 8
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.MatchTuning
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.MatchTuning
+  id: MatchTuning
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: MatchTuning
+  nameWithType: TuningPackageAddedSimDataFixes.MatchTuning
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.MatchTuning
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: MatchTuning
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The SimData is replaced with SimData generated from the tuning, when every column of it can be generated reliably
+  example: []
+  syntax:
+    content: MatchTuning = 16
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AmendTuning
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AmendTuning
+  id: AmendTuning
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: AmendTuning
+  nameWithType: TuningPackageAddedSimDataFixes.AmendTuning
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.AmendTuning
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AmendTuning
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Tunables the tuning leaves out, but the SimData has other values for than their defaults, are added to the tuning with those values, when SimData generated from the amended tuning has them and nothing else changes
+  example: []
+  syntax:
+    content: AmendTuning = 32
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.All
+  commentId: F:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.All
+  id: All
+  parent: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  langs:
+  - csharp
+  - vb
+  name: All
+  nameWithType: TuningPackageAddedSimDataFixes.All
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.All
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: All
+    path: ../LlamaLogic.TuningArchive/TuningPackageAddedSimDataFixes.cs
+    startLine: 50
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: All of the fixes
+  example: []
+  syntax:
+    content: All = AddMissingColumns | CorrectColumnTypes | RemoveExtraColumns | CorrectSchemaHashes | MatchTuning | AmendTuning
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+    content.vb: All = AddMissingColumns Or CorrectColumnTypes Or RemoveExtraColumns Or CorrectSchemaHashes Or MatchTuning Or AmendTuning
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes.html
+  name: TuningPackageAddedSimDataFixes
+  nameWithType: TuningPackageAddedSimDataFixes
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimDataFixes

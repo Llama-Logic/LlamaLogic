@@ -1,0 +1,1522 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate
+  commentId: T:LlamaLogic.TuningArchive.TuningFolderUpdate
+  id: TuningFolderUpdate
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningSimDataDrafter,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.Folder
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning(LlamaLogic.TuningArchive.TuningPackageUpdate,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic(LlamaLogic.TuningArchive.TuningPackageOverride)
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageAddedSimData,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageOverride,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.Packages
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.Target
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Boolean,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  - LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite},System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: TuningFolderUpdate
+  nameWithType: TuningFolderUpdate
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningFolderUpdate
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 14
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Finds the overrides of game tuning in every package in a folder and its subfolders, works out what a game version means for each, checks the SimData of the tuning the packages add against the game version's tuning descriptions, and writes updated copies of the packages with the changes that need no judgment from the creator, with a report of everything
+  remarks: >-
+    <p>
+
+    The changes that need no judgment are merges without conflicts whose base is not uncertain (see <xref href="LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain" data-throw-if-not-resolved="false"></xref>), the SimData changes and fixes the options allow, and, if the options say so, removing overrides that do nothing.
+
+    Everything else is left as the package has it and marked in the report as needing the creator.
+
+    </p>
+
+    <p>
+
+    The packages in the folder are never changed, and updated copies are never written inside it, where the game would load them beside the originals.
+
+    </p>
+  example: []
+  syntax:
+    content: public sealed class TuningFolderUpdate
+    content.vb: Public NotInheritable Class TuningFolderUpdate
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase
+  id: DeclaredBase
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: DeclaredBase
+  nameWithType: TuningFolderUpdate.DeclaredBase
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: DeclaredBase
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the game version the creator said the packages were last updated for, if they said
+  example: []
+  syntax:
+    content: public TuningArchiveSnapshot? DeclaredBase { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    content.vb: Public ReadOnly Property DeclaredBase As TuningArchiveSnapshot
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.Folder
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdate.Folder
+  id: Folder
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: Folder
+  nameWithType: TuningFolderUpdate.Folder
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.Folder
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Folder
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 35
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the folder
+  example: []
+  syntax:
+    content: public string Folder { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Folder As String
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.Folder*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.Packages
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdate.Packages
+  id: Packages
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: Packages
+  nameWithType: TuningFolderUpdate.Packages
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.Packages
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Packages
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the packages in the folder that override game tuning, add tuning whose SimData isn't what the tuning descriptions give, or couldn't be read, in order of their paths
+  example: []
+  syntax:
+    content: public IReadOnlyList<TuningFolderUpdatePackage> Packages { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdatePackage}
+    content.vb: Public ReadOnly Property Packages As IReadOnlyList(Of TuningFolderUpdatePackage)
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.Packages*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.Target
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdate.Target
+  id: Target
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: Target
+  nameWithType: TuningFolderUpdate.Target
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.Target
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Target
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 45
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the snapshot of the game version the packages are being updated for
+  example: []
+  syntax:
+    content: public TuningArchiveSnapshot Target { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    content.vb: Public ReadOnly Property Target As TuningArchiveSnapshot
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.Target*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningSimDataDrafter,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningSimDataDrafter,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  id: AnalyzeAsync(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningSimDataDrafter,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: AnalyzeAsync(TuningArchiveFile, TuningArchiveSnapshot, string, TuningSimDataDrafter?, TuningArchiveSnapshot?, IProgress<TuningArchiveProgress>?, CancellationToken)
+  nameWithType: TuningFolderUpdate.AnalyzeAsync(TuningArchiveFile, TuningArchiveSnapshot, string, TuningSimDataDrafter?, TuningArchiveSnapshot?, IProgress<TuningArchiveProgress>?, CancellationToken)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync(LlamaLogic.TuningArchive.TuningArchiveFile, LlamaLogic.TuningArchive.TuningArchiveSnapshot, string, LlamaLogic.TuningArchive.TuningSimDataDrafter?, LlamaLogic.TuningArchive.TuningArchiveSnapshot?, System.IProgress<LlamaLogic.TuningArchive.TuningArchiveProgress>?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AnalyzeAsync
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 57
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Finds the overrides of game tuning in every package in the specified <code class=\"paramref\">folder</code> and its subfolders and works out what the <code class=\"paramref\">target</code> game version in the specified <code class=\"paramref\">archive</code> means for each (\U0001F3C3)"
+  example: []
+  syntax:
+    content: public static Task<TuningFolderUpdate> AnalyzeAsync(TuningArchiveFile archive, TuningArchiveSnapshot target, string folder, TuningSimDataDrafter? simData = null, TuningArchiveSnapshot? declaredBase = null, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
+    parameters:
+    - id: archive
+      type: LlamaLogic.TuningArchive.TuningArchiveFile
+      description: The archive with the game versions
+    - id: target
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+      description: The game version to update the packages for
+    - id: folder
+      type: System.String
+      description: The folder
+    - id: simData
+      type: LlamaLogic.TuningArchive.TuningSimDataDrafter
+      description: A drafter for the <code class="paramref">target</code> snapshot, to check the packages' SimData against what their overrides need and the SimData of the tuning they add against the tuning descriptions, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> not to
+    - id: declaredBase
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+      description: The game version the creator says the packages were last updated for, to use as the base instead of inferring it, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to infer it
+    - id: progress
+      type: System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress}
+      description: Receives progress
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: The token to monitor for cancellation requests
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.TuningArchive.TuningFolderUpdate}
+    content.vb: Public Shared Function AnalyzeAsync(archive As TuningArchiveFile, target As TuningArchiveSnapshot, folder As String, simData As TuningSimDataDrafter = Nothing, declaredBase As TuningArchiveSnapshot = Nothing, progress As IProgress(Of TuningArchiveProgress) = Nothing, cancellationToken As CancellationToken = Nothing) As Task(Of TuningFolderUpdate)
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync*
+  nameWithType.vb: TuningFolderUpdate.AnalyzeAsync(TuningArchiveFile, TuningArchiveSnapshot, String, TuningSimDataDrafter, TuningArchiveSnapshot, IProgress(Of TuningArchiveProgress), CancellationToken)
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync(LlamaLogic.TuningArchive.TuningArchiveFile, LlamaLogic.TuningArchive.TuningArchiveSnapshot, String, LlamaLogic.TuningArchive.TuningSimDataDrafter, LlamaLogic.TuningArchive.TuningArchiveSnapshot, System.IProgress(Of LlamaLogic.TuningArchive.TuningArchiveProgress), System.Threading.CancellationToken)
+  name.vb: AnalyzeAsync(TuningArchiveFile, TuningArchiveSnapshot, String, TuningSimDataDrafter, TuningArchiveSnapshot, IProgress(Of TuningArchiveProgress), CancellationToken)
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic(LlamaLogic.TuningArchive.TuningPackageOverride)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic(LlamaLogic.TuningArchive.TuningPackageOverride)
+  id: IsAutomatic(LlamaLogic.TuningArchive.TuningPackageOverride)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: IsAutomatic(TuningPackageOverride)
+  nameWithType: TuningFolderUpdate.IsAutomatic(TuningPackageOverride)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic(LlamaLogic.TuningArchive.TuningPackageOverride)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: IsAutomatic
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 193
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Gets whether the update makes the change to the specified <code class=\"paramref\">item</code> on its own: the merge of a mod's changes without conflicts, whose base is not uncertain"
+  example: []
+  syntax:
+    content: public static bool IsAutomatic(TuningPackageOverride item)
+    parameters:
+    - id: item
+      type: LlamaLogic.TuningArchive.TuningPackageOverride
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsAutomatic(item As TuningPackageOverride) As Boolean
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning(LlamaLogic.TuningArchive.TuningPackageUpdate,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning(LlamaLogic.TuningArchive.TuningPackageUpdate,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  id: GetTuning(LlamaLogic.TuningArchive.TuningPackageUpdate,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: GetTuning(TuningPackageUpdate, TuningFolderUpdateOptions)
+  nameWithType: TuningFolderUpdate.GetTuning(TuningPackageUpdate, TuningFolderUpdateOptions)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning(LlamaLogic.TuningArchive.TuningPackageUpdate, LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetTuning
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 202
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the tuning the update writes in place of the specified <code class="paramref">update</code>'s overrides with the specified <code class="paramref">options</code>
+  example: []
+  syntax:
+    content: public static IReadOnlyDictionary<ResourceKey, string?> GetTuning(TuningPackageUpdate update, TuningFolderUpdateOptions options)
+    parameters:
+    - id: update
+      type: LlamaLogic.TuningArchive.TuningPackageUpdate
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    return:
+      type: System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,System.String}
+    content.vb: Public Shared Function GetTuning(update As TuningPackageUpdate, options As TuningFolderUpdateOptions) As IReadOnlyDictionary(Of ResourceKey, String)
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageOverride,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageOverride,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  id: NeedsCreator(LlamaLogic.TuningArchive.TuningPackageOverride,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: NeedsCreator(TuningPackageOverride, TuningFolderUpdateOptions)
+  nameWithType: TuningFolderUpdate.NeedsCreator(TuningPackageOverride, TuningFolderUpdateOptions)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageOverride, LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: NeedsCreator
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 230
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the specified <code class="paramref">item</code> needs the creator's judgment after the update makes the changes the specified <code class="paramref">options</code> allow
+  remarks: "An override whose declared base disagrees always does, even if it looks up to date: when the creator's declared version is wrong for it, it may be undoing the game's changes since the version it was really made from."
+  example: []
+  syntax:
+    content: public static bool NeedsCreator(TuningPackageOverride item, TuningFolderUpdateOptions options)
+    parameters:
+    - id: item
+      type: LlamaLogic.TuningArchive.TuningPackageOverride
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function NeedsCreator(item As TuningPackageOverride, options As TuningFolderUpdateOptions) As Boolean
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageAddedSimData,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageAddedSimData,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  id: NeedsCreator(LlamaLogic.TuningArchive.TuningPackageAddedSimData,LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: NeedsCreator(TuningPackageAddedSimData, TuningFolderUpdateOptions)
+  nameWithType: TuningFolderUpdate.NeedsCreator(TuningPackageAddedSimData, TuningFolderUpdateOptions)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator(LlamaLogic.TuningArchive.TuningPackageAddedSimData, LlamaLogic.TuningArchive.TuningFolderUpdateOptions)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: NeedsCreator
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 246
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the specified <code class="paramref">item</code> needs the creator's judgment after the update makes the fixes the specified <code class="paramref">options</code> allow
+  example: []
+  syntax:
+    content: public static bool NeedsCreator(TuningPackageAddedSimData item, TuningFolderUpdateOptions options)
+    parameters:
+    - id: item
+      type: LlamaLogic.TuningArchive.TuningPackageAddedSimData
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function NeedsCreator(item As TuningPackageAddedSimData, options As TuningFolderUpdateOptions) As Boolean
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  id: GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: GetReportRows(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>?)
+  nameWithType: TuningFolderUpdate.GetReportRows(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>?)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateWrite>?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetReportRows
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 308
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets a row for every override in the folder, for the SimData of every tuning the packages add that isn't what the tuning descriptions give, and for every package that couldn't be read, for the specified <code class="paramref">options</code> and, if the updated copies were written, what writing them did
+  example: []
+  syntax:
+    content: public IReadOnlyList<TuningFolderUpdateReportRow> GetReportRows(TuningFolderUpdateOptions options, IReadOnlyList<TuningFolderUpdateWrite>? written = null)
+    parameters:
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    - id: written
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite}
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateReportRow}
+    content.vb: Public Function GetReportRows(options As TuningFolderUpdateOptions, written As IReadOnlyList(Of TuningFolderUpdateWrite) = Nothing) As IReadOnlyList(Of TuningFolderUpdateReportRow)
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows*
+  nameWithType.vb: TuningFolderUpdate.GetReportRows(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateWrite))
+  name.vb: GetReportRows(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  id: GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: GetReport(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>?)
+  nameWithType: TuningFolderUpdate.GetReport(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>?)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateWrite>?)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GetReport
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 368
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets a report of every override in the folder and the SimData of the tuning the packages add, as comma-separated values with a header row (see <xref href="LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions%2cSystem.Collections.Generic.IReadOnlyList%7bLlamaLogic.TuningArchive.TuningFolderUpdateWrite%7d)" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public string GetReport(TuningFolderUpdateOptions options, IReadOnlyList<TuningFolderUpdateWrite>? written = null)
+    parameters:
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    - id: written
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite}
+    return:
+      type: System.String
+    content.vb: Public Function GetReport(options As TuningFolderUpdateOptions, written As IReadOnlyList(Of TuningFolderUpdateWrite) = Nothing) As String
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport*
+  nameWithType.vb: TuningFolderUpdate.GetReport(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateWrite))
+  name.vb: GetReport(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite},System.Threading.CancellationToken)
+  id: WriteReportAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite},System.Threading.CancellationToken)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: WriteReportAsync(string, TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>?, CancellationToken)
+  nameWithType: TuningFolderUpdate.WriteReportAsync(string, TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>?, CancellationToken)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync(string, LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateWrite>?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WriteReportAsync
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 382
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Writes the report (see <xref href=\"LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions%2cSystem.Collections.Generic.IReadOnlyList%7bLlamaLogic.TuningArchive.TuningFolderUpdateWrite%7d)\" data-throw-if-not-resolved=\"false\"></xref>) to the specified <code class=\"paramref\">path</code>, as UTF-8 with a byte order mark so that Excel reads it as UTF-8 (\U0001F3C3)"
+  example: []
+  syntax:
+    content: public Task WriteReportAsync(string path, TuningFolderUpdateOptions options, IReadOnlyList<TuningFolderUpdateWrite>? written = null, CancellationToken cancellationToken = default)
+    parameters:
+    - id: path
+      type: System.String
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    - id: written
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite}
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function WriteReportAsync(path As String, options As TuningFolderUpdateOptions, written As IReadOnlyList(Of TuningFolderUpdateWrite) = Nothing, cancellationToken As CancellationToken = Nothing) As Task
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync*
+  nameWithType.vb: TuningFolderUpdate.WriteReportAsync(String, TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite), CancellationToken)
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync(String, LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateWrite), System.Threading.CancellationToken)
+  name.vb: WriteReportAsync(String, TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite), CancellationToken)
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Boolean,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Boolean,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  id: WriteAsync(System.String,LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Boolean,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdate
+  langs:
+  - csharp
+  - vb
+  name: WriteAsync(string, TuningFolderUpdateOptions, bool, IProgress<TuningArchiveProgress>?, CancellationToken)
+  nameWithType: TuningFolderUpdate.WriteAsync(string, TuningFolderUpdateOptions, bool, IProgress<TuningArchiveProgress>?, CancellationToken)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync(string, LlamaLogic.TuningArchive.TuningFolderUpdateOptions, bool, System.IProgress<LlamaLogic.TuningArchive.TuningArchiveProgress>?, System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: WriteAsync
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdate.cs
+    startLine: 398
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Writes an updated copy of each package the specified <code class=\"paramref\">options</code> change to the same relative path in the specified <code class=\"paramref\">outputFolder</code>, skipping any whose path there already has a file, and, unless told not to, the report beside them (\U0001F3C3)"
+  example: []
+  syntax:
+    content: public Task<TuningFolderUpdateResult> WriteAsync(string outputFolder, TuningFolderUpdateOptions options, bool writeReport = true, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
+    parameters:
+    - id: outputFolder
+      type: System.String
+      description: Where to write the updated copies, which must not be in the folder
+    - id: options
+      type: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+      description: Which changes to make
+    - id: writeReport
+      type: System.Boolean
+      description: Whether to write the report (see <xref href="LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions%2cSystem.Collections.Generic.IReadOnlyList%7bLlamaLogic.TuningArchive.TuningFolderUpdateWrite%7d)" data-throw-if-not-resolved="false"></xref>) beside the copies, as <code>Update report for</code> the game version, with <code>.csv</code>
+    - id: progress
+      type: System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress}
+      description: Receives progress
+    - id: cancellationToken
+      type: System.Threading.CancellationToken
+      description: The token to monitor for cancellation requests
+    return:
+      type: System.Threading.Tasks.Task{LlamaLogic.TuningArchive.TuningFolderUpdateResult}
+    content.vb: Public Function WriteAsync(outputFolder As String, options As TuningFolderUpdateOptions, writeReport As Boolean = True, progress As IProgress(Of TuningArchiveProgress) = Nothing, cancellationToken As CancellationToken = Nothing) As Task(Of TuningFolderUpdateResult)
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">outputFolder</code> is the folder or in it
+  nameWithType.vb: TuningFolderUpdate.WriteAsync(String, TuningFolderUpdateOptions, Boolean, IProgress(Of TuningArchiveProgress), CancellationToken)
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync(String, LlamaLogic.TuningArchive.TuningFolderUpdateOptions, Boolean, System.IProgress(Of LlamaLogic.TuningArchive.TuningArchiveProgress), System.Threading.CancellationToken)
+  name.vb: WriteAsync(String, TuningFolderUpdateOptions, Boolean, IProgress(Of TuningArchiveProgress), CancellationToken)
+references:
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseIsUncertain
+  name: BaseIsUncertain
+  nameWithType: TuningPackageOverride.BaseIsUncertain
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_DeclaredBase
+  name: DeclaredBase
+  nameWithType: TuningFolderUpdate.DeclaredBase
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.DeclaredBase
+- uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  name: TuningArchiveSnapshot
+  nameWithType: TuningArchiveSnapshot
+  fullName: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.Folder*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.Folder
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_Folder
+  name: Folder
+  nameWithType: TuningFolderUpdate.Folder
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.Folder
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.Packages*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.Packages
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_Packages
+  name: Packages
+  nameWithType: TuningFolderUpdate.Packages
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.Packages
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdatePackage}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdatePackage}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TuningFolderUpdatePackage>
+  nameWithType: IReadOnlyList<TuningFolderUpdatePackage>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdatePackage>
+  nameWithType.vb: IReadOnlyList(Of TuningFolderUpdatePackage)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdatePackage)
+  name.vb: IReadOnlyList(Of TuningFolderUpdatePackage)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+    name: TuningFolderUpdatePackage
+    href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+    name: TuningFolderUpdatePackage
+    href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.Target*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.Target
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_Target
+  name: Target
+  nameWithType: TuningFolderUpdate.Target
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.Target
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_AnalyzeAsync_LlamaLogic_TuningArchive_TuningArchiveFile_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningSimDataDrafter_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  name: AnalyzeAsync
+  nameWithType: TuningFolderUpdate.AnalyzeAsync
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.AnalyzeAsync
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveFile
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html
+  name: TuningArchiveFile
+  nameWithType: TuningArchiveFile
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter
+  commentId: T:LlamaLogic.TuningArchive.TuningSimDataDrafter
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningSimDataDrafter.html
+  name: TuningSimDataDrafter
+  nameWithType: TuningSimDataDrafter
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter
+- uid: System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress}
+  commentId: T:System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress}
+  parent: System
+  definition: System.IProgress`1
+  href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  name: IProgress<TuningArchiveProgress>
+  nameWithType: IProgress<TuningArchiveProgress>
+  fullName: System.IProgress<LlamaLogic.TuningArchive.TuningArchiveProgress>
+  nameWithType.vb: IProgress(Of TuningArchiveProgress)
+  fullName.vb: System.IProgress(Of LlamaLogic.TuningArchive.TuningArchiveProgress)
+  name.vb: IProgress(Of TuningArchiveProgress)
+  spec.csharp:
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningArchiveProgress
+    name: TuningArchiveProgress
+    href: LlamaLogic.TuningArchive.TuningArchiveProgress.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveProgress
+    name: TuningArchiveProgress
+    href: LlamaLogic.TuningArchive.TuningArchiveProgress.html
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{LlamaLogic.TuningArchive.TuningFolderUpdate}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.TuningArchive.TuningFolderUpdate}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TuningFolderUpdate>
+  nameWithType: Task<TuningFolderUpdate>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.TuningArchive.TuningFolderUpdate>
+  nameWithType.vb: Task(Of TuningFolderUpdate)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.TuningArchive.TuningFolderUpdate)
+  name.vb: Task(Of TuningFolderUpdate)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdate
+    name: TuningFolderUpdate
+    href: LlamaLogic.TuningArchive.TuningFolderUpdate.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdate
+    name: TuningFolderUpdate
+    href: LlamaLogic.TuningArchive.TuningFolderUpdate.html
+  - name: )
+- uid: System.IProgress`1
+  commentId: T:System.IProgress`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  name: IProgress<T>
+  nameWithType: IProgress<T>
+  fullName: System.IProgress<T>
+  nameWithType.vb: IProgress(Of T)
+  fullName.vb: System.IProgress(Of T)
+  name.vb: IProgress(Of T)
+  spec.csharp:
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_IsAutomatic_LlamaLogic_TuningArchive_TuningPackageOverride_
+  name: IsAutomatic
+  nameWithType: TuningFolderUpdate.IsAutomatic
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.IsAutomatic
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageOverride
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html
+  name: TuningPackageOverride
+  nameWithType: TuningPackageOverride
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetTuning_LlamaLogic_TuningArchive_TuningPackageUpdate_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_
+  name: GetTuning
+  nameWithType: TuningFolderUpdate.GetTuning
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetTuning
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdate
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageUpdate
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageUpdate.html
+  name: TuningPackageUpdate
+  nameWithType: TuningPackageUpdate
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdate
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+  commentId: T:LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningFolderUpdateOptions.html
+  name: TuningFolderUpdateOptions
+  nameWithType: TuningFolderUpdateOptions
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+- uid: System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{LlamaLogic.Packages.ResourceKey,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<ResourceKey, string>
+  nameWithType: IReadOnlyDictionary<ResourceKey, string>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<LlamaLogic.Packages.ResourceKey, string>
+  nameWithType.vb: IReadOnlyDictionary(Of ResourceKey, String)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of LlamaLogic.Packages.ResourceKey, String)
+  name.vb: IReadOnlyDictionary(Of ResourceKey, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.Packages.ResourceKey
+    name: ResourceKey
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_NeedsCreator_LlamaLogic_TuningArchive_TuningPackageOverride_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_
+  name: NeedsCreator
+  nameWithType: TuningFolderUpdate.NeedsCreator
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.NeedsCreator
+- uid: LlamaLogic.TuningArchive.TuningPackageAddedSimData
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageAddedSimData
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageAddedSimData.html
+  name: TuningPackageAddedSimData
+  nameWithType: TuningPackageAddedSimData
+  fullName: LlamaLogic.TuningArchive.TuningPackageAddedSimData
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReportRows_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  name: GetReportRows
+  nameWithType: TuningFolderUpdate.GetReportRows
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TuningFolderUpdateWrite>
+  nameWithType: IReadOnlyList<TuningFolderUpdateWrite>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateWrite>
+  nameWithType.vb: IReadOnlyList(Of TuningFolderUpdateWrite)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateWrite)
+  name.vb: IReadOnlyList(Of TuningFolderUpdateWrite)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateWrite
+    name: TuningFolderUpdateWrite
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateWrite.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateWrite
+    name: TuningFolderUpdateWrite
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateWrite.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateReportRow}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateReportRow}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TuningFolderUpdateReportRow>
+  nameWithType: IReadOnlyList<TuningFolderUpdateReportRow>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateReportRow>
+  nameWithType.vb: IReadOnlyList(Of TuningFolderUpdateReportRow)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateReportRow)
+  name.vb: IReadOnlyList(Of TuningFolderUpdateReportRow)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateReportRow
+    name: TuningFolderUpdateReportRow
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateReportRow
+    name: TuningFolderUpdateReportRow
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateReportRow.html
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  isExternal: true
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReportRows_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  name: GetReportRows(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>)
+  nameWithType: TuningFolderUpdate.GetReportRows(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateWrite>)
+  nameWithType.vb: TuningFolderUpdate.GetReportRows(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateWrite))
+  name.vb: GetReportRows(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+    name: GetReportRows
+    href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReportRows_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    name: TuningFolderUpdateOptions
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateWrite
+    name: TuningFolderUpdateWrite
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateWrite.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReportRows(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+    name: GetReportRows
+    href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReportRows_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    name: TuningFolderUpdateOptions
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateWrite
+    name: TuningFolderUpdateWrite
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateWrite.html
+  - name: )
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReport_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  name: GetReport
+  nameWithType: TuningFolderUpdate.GetReport
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+  isExternal: true
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReport_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  name: GetReport(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>)
+  nameWithType: TuningFolderUpdate.GetReport(TuningFolderUpdateOptions, IReadOnlyList<TuningFolderUpdateWrite>)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningFolderUpdateWrite>)
+  nameWithType.vb: TuningFolderUpdate.GetReport(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningFolderUpdateWrite))
+  name.vb: GetReport(TuningFolderUpdateOptions, IReadOnlyList(Of TuningFolderUpdateWrite))
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+    name: GetReport
+    href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReport_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    name: TuningFolderUpdateOptions
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateWrite
+    name: TuningFolderUpdateWrite
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateWrite.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdate.GetReport(LlamaLogic.TuningArchive.TuningFolderUpdateOptions,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningFolderUpdateWrite})
+    name: GetReport
+    href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_GetReport_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateOptions
+    name: TuningFolderUpdateOptions
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateWrite
+    name: TuningFolderUpdateWrite
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateWrite.html
+  - name: )
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_WriteReportAsync_System_String_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningFolderUpdateWrite__System_Threading_CancellationToken_
+  name: WriteReportAsync
+  nameWithType: TuningFolderUpdate.WriteReportAsync
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteReportAsync
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync
+  href: LlamaLogic.TuningArchive.TuningFolderUpdate.html#LlamaLogic_TuningArchive_TuningFolderUpdate_WriteAsync_System_String_LlamaLogic_TuningArchive_TuningFolderUpdateOptions_System_Boolean_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  name: WriteAsync
+  nameWithType: TuningFolderUpdate.WriteAsync
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdate.WriteAsync
+- uid: System.Threading.Tasks.Task{LlamaLogic.TuningArchive.TuningFolderUpdateResult}
+  commentId: T:System.Threading.Tasks.Task{LlamaLogic.TuningArchive.TuningFolderUpdateResult}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TuningFolderUpdateResult>
+  nameWithType: Task<TuningFolderUpdateResult>
+  fullName: System.Threading.Tasks.Task<LlamaLogic.TuningArchive.TuningFolderUpdateResult>
+  nameWithType.vb: Task(Of TuningFolderUpdateResult)
+  fullName.vb: System.Threading.Tasks.Task(Of LlamaLogic.TuningArchive.TuningFolderUpdateResult)
+  name.vb: Task(Of TuningFolderUpdateResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateResult
+    name: TuningFolderUpdateResult
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdateResult
+    name: TuningFolderUpdateResult
+    href: LlamaLogic.TuningArchive.TuningFolderUpdateResult.html
+  - name: )

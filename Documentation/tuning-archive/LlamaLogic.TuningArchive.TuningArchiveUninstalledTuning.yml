@@ -1,0 +1,634 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  id: TuningArchiveUninstalledTuning
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.#ctor(LlamaLogic.Packages.ResourceType,System.UInt64,System.String,System.String,System.String)
+  - LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class
+  - LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance
+  - LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name
+  - LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack
+  - LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type
+  langs:
+  - csharp
+  - vb
+  name: TuningArchiveUninstalledTuning
+  nameWithType: TuningArchiveUninstalledTuning
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningArchiveUninstalledTuning
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a tuning of a pack that was not installed when a <xref href="LlamaLogic.TuningArchive.TuningArchiveSnapshot" data-throw-if-not-resolved="false"></xref> was captured, known only from the pack's patches in the game's <code>Delta</code> folder
+  remarks: The game does not load a pack's patches unless the pack is installed, so such tuning is not in the snapshot; only its name is kept, so that what refers to it can still be explained.
+  example: []
+  syntax:
+    content: 'public sealed record TuningArchiveUninstalledTuning : IEquatable<TuningArchiveUninstalledTuning>'
+    content.vb: Public NotInheritable Class TuningArchiveUninstalledTuning Implements IEquatable(Of TuningArchiveUninstalledTuning)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.#ctor(LlamaLogic.Packages.ResourceType,System.UInt64,System.String,System.String,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.#ctor(LlamaLogic.Packages.ResourceType,System.UInt64,System.String,System.String,System.String)
+  id: '#ctor(LlamaLogic.Packages.ResourceType,System.UInt64,System.String,System.String,System.String)'
+  parent: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  langs:
+  - csharp
+  - vb
+  name: TuningArchiveUninstalledTuning(ResourceType, ulong, string, string?, string)
+  nameWithType: TuningArchiveUninstalledTuning.TuningArchiveUninstalledTuning(ResourceType, ulong, string, string?, string)
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.TuningArchiveUninstalledTuning(LlamaLogic.Packages.ResourceType, ulong, string, string?, string)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a tuning of a pack that was not installed when a <xref href="LlamaLogic.TuningArchive.TuningArchiveSnapshot" data-throw-if-not-resolved="false"></xref> was captured, known only from the pack's patches in the game's <code>Delta</code> folder
+  remarks: The game does not load a pack's patches unless the pack is installed, so such tuning is not in the snapshot; only its name is kept, so that what refers to it can still be explained.
+  example: []
+  syntax:
+    content: public TuningArchiveUninstalledTuning(ResourceType Type, ulong Instance, string Name, string? Class, string Pack)
+    parameters:
+    - id: Type
+      type: LlamaLogic.Packages.ResourceType
+      description: The type of the tuning
+    - id: Instance
+      type: System.UInt64
+      description: The instance of the tuning
+    - id: Name
+      type: System.String
+      description: The name of the tuning
+    - id: Class
+      type: System.String
+      description: The class of the tuning, if it is an instance tuning
+    - id: Pack
+      type: System.String
+      description: The code of the pack the tuning belongs to
+    content.vb: Public Sub New(Type As ResourceType, Instance As ULong, Name As String, [Class] As String, Pack As String)
+  overload: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.#ctor*
+  nameWithType.vb: TuningArchiveUninstalledTuning.New(ResourceType, ULong, String, String, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.New(LlamaLogic.Packages.ResourceType, ULong, String, String, String)
+  name.vb: New(ResourceType, ULong, String, String, String)
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type
+  commentId: P:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type
+  id: Type
+  parent: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: TuningArchiveUninstalledTuning.Type
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Type
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The type of the tuning
+  example: []
+  syntax:
+    content: public ResourceType Type { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceType
+    content.vb: Public Property Type As ResourceType
+  overload: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type*
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance
+  commentId: P:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance
+  id: Instance
+  parent: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: TuningArchiveUninstalledTuning.Instance
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Instance
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The instance of the tuning
+  example: []
+  syntax:
+    content: public ulong Instance { get; init; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property Instance As ULong
+  overload: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance*
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name
+  commentId: P:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name
+  id: Name
+  parent: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: TuningArchiveUninstalledTuning.Name
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Name
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The name of the tuning
+  example: []
+  syntax:
+    content: public string Name { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name*
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class
+  commentId: P:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class
+  id: Class
+  parent: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  langs:
+  - csharp
+  - vb
+  name: Class
+  nameWithType: TuningArchiveUninstalledTuning.Class
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Class
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The class of the tuning, if it is an instance tuning
+  example: []
+  syntax:
+    content: public string? Class { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property [Class] As String
+  overload: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class*
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack
+  commentId: P:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack
+  id: Pack
+  parent: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+  langs:
+  - csharp
+  - vb
+  name: Pack
+  nameWithType: TuningArchiveUninstalledTuning.Pack
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Pack
+    path: ../LlamaLogic.TuningArchive/TuningArchiveUninstalledTuning.cs
+    startLine: 13
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The code of the pack the tuning belongs to
+  example: []
+  syntax:
+    content: public string Pack { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Pack As String
+  overload: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack*
+references:
+- uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  name: TuningArchiveSnapshot
+  nameWithType: TuningArchiveSnapshot
+  fullName: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningArchiveUninstalledTuning>
+  nameWithType: IEquatable<TuningArchiveUninstalledTuning>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning>
+  nameWithType.vb: IEquatable(Of TuningArchiveUninstalledTuning)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning)
+  name.vb: IEquatable(Of TuningArchiveUninstalledTuning)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+    name: TuningArchiveUninstalledTuning
+    href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning
+    name: TuningArchiveUninstalledTuning
+    href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.#ctor
+  href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html#LlamaLogic_TuningArchive_TuningArchiveUninstalledTuning__ctor_LlamaLogic_Packages_ResourceType_System_UInt64_System_String_System_String_System_String_
+  name: TuningArchiveUninstalledTuning
+  nameWithType: TuningArchiveUninstalledTuning.TuningArchiveUninstalledTuning
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.TuningArchiveUninstalledTuning
+  nameWithType.vb: TuningArchiveUninstalledTuning.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.New
+  name.vb: New
+- uid: LlamaLogic.Packages.ResourceType
+  commentId: T:LlamaLogic.Packages.ResourceType
+  parent: LlamaLogic.Packages
+  name: ResourceType
+  nameWithType: ResourceType
+  fullName: LlamaLogic.Packages.ResourceType
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type
+  href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html#LlamaLogic_TuningArchive_TuningArchiveUninstalledTuning_Type
+  name: Type
+  nameWithType: TuningArchiveUninstalledTuning.Type
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Type
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance
+  href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html#LlamaLogic_TuningArchive_TuningArchiveUninstalledTuning_Instance
+  name: Instance
+  nameWithType: TuningArchiveUninstalledTuning.Instance
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Instance
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name
+  href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html#LlamaLogic_TuningArchive_TuningArchiveUninstalledTuning_Name
+  name: Name
+  nameWithType: TuningArchiveUninstalledTuning.Name
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Name
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class
+  href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html#LlamaLogic_TuningArchive_TuningArchiveUninstalledTuning_Class
+  name: Class
+  nameWithType: TuningArchiveUninstalledTuning.Class
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Class
+- uid: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack
+  href: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.html#LlamaLogic_TuningArchive_TuningArchiveUninstalledTuning_Pack
+  name: Pack
+  nameWithType: TuningArchiveUninstalledTuning.Pack
+  fullName: LlamaLogic.TuningArchive.TuningArchiveUninstalledTuning.Pack

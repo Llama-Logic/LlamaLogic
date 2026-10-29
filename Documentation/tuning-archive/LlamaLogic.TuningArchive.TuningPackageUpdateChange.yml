@@ -1,0 +1,580 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  id: TuningPackageUpdateChange
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningPackageUpdateChange.#ctor(LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind,LlamaLogic.Packages.ResourceKey,System.String,System.String)
+  - LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key
+  - LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind
+  - LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message
+  - LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageUpdateChange
+  nameWithType: TuningPackageUpdateChange
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningPackageUpdateChange
+    path: ../LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents what writing an updated package did to a resource
+  example: []
+  syntax:
+    content: 'public sealed record TuningPackageUpdateChange : IEquatable<TuningPackageUpdateChange>'
+    content.vb: Public NotInheritable Class TuningPackageUpdateChange Implements IEquatable(Of TuningPackageUpdateChange)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningPackageUpdateChange}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.#ctor(LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind,LlamaLogic.Packages.ResourceKey,System.String,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningPackageUpdateChange.#ctor(LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind,LlamaLogic.Packages.ResourceKey,System.String,System.String)
+  id: '#ctor(LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind,LlamaLogic.Packages.ResourceKey,System.String,System.String)'
+  parent: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageUpdateChange(TuningPackageUpdateChangeKind, ResourceKey, string?, string)
+  nameWithType: TuningPackageUpdateChange.TuningPackageUpdateChange(TuningPackageUpdateChangeKind, ResourceKey, string?, string)
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.TuningPackageUpdateChange(LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind, LlamaLogic.Packages.ResourceKey, string?, string)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents what writing an updated package did to a resource
+  example: []
+  syntax:
+    content: public TuningPackageUpdateChange(TuningPackageUpdateChangeKind Kind, ResourceKey Key, string? Name, string Message)
+    parameters:
+    - id: Kind
+      type: LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind
+      description: What was done
+    - id: Key
+      type: LlamaLogic.Packages.ResourceKey
+      description: The key of the resource
+    - id: Name
+      type: System.String
+      description: The name of the override's tuning
+    - id: Message
+      type: System.String
+      description: What was done, for the creator
+    content.vb: Public Sub New(Kind As TuningPackageUpdateChangeKind, Key As ResourceKey, Name As String, Message As String)
+  overload: LlamaLogic.TuningArchive.TuningPackageUpdateChange.#ctor*
+  nameWithType.vb: TuningPackageUpdateChange.New(TuningPackageUpdateChangeKind, ResourceKey, String, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningPackageUpdateChange.New(LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind, LlamaLogic.Packages.ResourceKey, String, String)
+  name.vb: New(TuningPackageUpdateChangeKind, ResourceKey, String, String)
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind
+  id: Kind
+  parent: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: TuningPackageUpdateChange.Kind
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Kind
+    path: ../LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: What was done
+  example: []
+  syntax:
+    content: public TuningPackageUpdateChangeKind Kind { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind
+    content.vb: Public Property Kind As TuningPackageUpdateChangeKind
+  overload: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind*
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key
+  id: Key
+  parent: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  langs:
+  - csharp
+  - vb
+  name: Key
+  nameWithType: TuningPackageUpdateChange.Key
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Key
+    path: ../LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The key of the resource
+  example: []
+  syntax:
+    content: public ResourceKey Key { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public Property Key As ResourceKey
+  overload: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key*
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name
+  id: Name
+  parent: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: TuningPackageUpdateChange.Name
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Name
+    path: ../LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The name of the override's tuning
+  example: []
+  syntax:
+    content: public string? Name { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name*
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message
+  id: Message
+  parent: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+  langs:
+  - csharp
+  - vb
+  name: Message
+  nameWithType: TuningPackageUpdateChange.Message
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Message
+    path: ../LlamaLogic.TuningArchive/TuningPackageUpdateChange.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: What was done, for the creator
+  example: []
+  syntax:
+    content: public string Message { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Message As String
+  overload: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningPackageUpdateChange}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningPackageUpdateChange}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningPackageUpdateChange>
+  nameWithType: IEquatable<TuningPackageUpdateChange>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningPackageUpdateChange>
+  nameWithType.vb: IEquatable(Of TuningPackageUpdateChange)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningPackageUpdateChange)
+  name.vb: IEquatable(Of TuningPackageUpdateChange)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+    name: TuningPackageUpdateChange
+    href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange
+    name: TuningPackageUpdateChange
+    href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageUpdateChange.#ctor
+  href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html#LlamaLogic_TuningArchive_TuningPackageUpdateChange__ctor_LlamaLogic_TuningArchive_TuningPackageUpdateChangeKind_LlamaLogic_Packages_ResourceKey_System_String_System_String_
+  name: TuningPackageUpdateChange
+  nameWithType: TuningPackageUpdateChange.TuningPackageUpdateChange
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.TuningPackageUpdateChange
+  nameWithType.vb: TuningPackageUpdateChange.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningPackageUpdateChange.New
+  name.vb: New
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind.html
+  name: TuningPackageUpdateChangeKind
+  nameWithType: TuningPackageUpdateChangeKind
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChangeKind
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind
+  href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html#LlamaLogic_TuningArchive_TuningPackageUpdateChange_Kind
+  name: Kind
+  nameWithType: TuningPackageUpdateChange.Kind
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Kind
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key
+  href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html#LlamaLogic_TuningArchive_TuningPackageUpdateChange_Key
+  name: Key
+  nameWithType: TuningPackageUpdateChange.Key
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Key
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name
+  href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html#LlamaLogic_TuningArchive_TuningPackageUpdateChange_Name
+  name: Name
+  nameWithType: TuningPackageUpdateChange.Name
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Name
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message
+  href: LlamaLogic.TuningArchive.TuningPackageUpdateChange.html#LlamaLogic_TuningArchive_TuningPackageUpdateChange_Message
+  name: Message
+  nameWithType: TuningPackageUpdateChange.Message
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdateChange.Message

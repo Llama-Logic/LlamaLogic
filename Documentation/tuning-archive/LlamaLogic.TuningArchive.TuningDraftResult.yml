@@ -1,0 +1,618 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningDraftResult
+  commentId: T:LlamaLogic.TuningArchive.TuningDraftResult
+  id: TuningDraftResult
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningDraftResult.#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic},System.Int32)
+  - LlamaLogic.TuningArchive.TuningDraftResult.Changes
+  - LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics
+  - LlamaLogic.TuningArchive.TuningDraftResult.Source
+  langs:
+  - csharp
+  - vb
+  name: TuningDraftResult
+  nameWithType: TuningDraftResult
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningDraftResult
+    path: ../LlamaLogic.TuningArchive/TuningDraftResult.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: 'Represents a draft that makes changes to tuning without overriding it: a script or a snippet'
+  example: []
+  syntax:
+    content: 'public sealed record TuningDraftResult : IEquatable<TuningDraftResult>'
+    content.vb: Public NotInheritable Class TuningDraftResult Implements IEquatable(Of TuningDraftResult)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningDraftResult}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic},System.Int32)
+  commentId: M:LlamaLogic.TuningArchive.TuningDraftResult.#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic},System.Int32)
+  id: '#ctor(System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic},System.Int32)'
+  parent: LlamaLogic.TuningArchive.TuningDraftResult
+  langs:
+  - csharp
+  - vb
+  name: TuningDraftResult(string, IReadOnlyList<TuningDraftDiagnostic>, int)
+  nameWithType: TuningDraftResult.TuningDraftResult(string, IReadOnlyList<TuningDraftDiagnostic>, int)
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.TuningDraftResult(string, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningDraftDiagnostic>, int)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningDraftResult.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: 'Represents a draft that makes changes to tuning without overriding it: a script or a snippet'
+  example: []
+  syntax:
+    content: public TuningDraftResult(string Source, IReadOnlyList<TuningDraftDiagnostic> Diagnostics, int Changes)
+    parameters:
+    - id: Source
+      type: System.String
+      description: The source of the draft (Python, or snippet tuning XML)
+    - id: Diagnostics
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic}
+      description: What the draft does about each change, and which changes it cannot make
+    - id: Changes
+      type: System.Int32
+      description: The number of changes the draft makes
+    content.vb: Public Sub New(Source As String, Diagnostics As IReadOnlyList(Of TuningDraftDiagnostic), Changes As Integer)
+  overload: LlamaLogic.TuningArchive.TuningDraftResult.#ctor*
+  nameWithType.vb: TuningDraftResult.New(String, IReadOnlyList(Of TuningDraftDiagnostic), Integer)
+  fullName.vb: LlamaLogic.TuningArchive.TuningDraftResult.New(String, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningDraftDiagnostic), Integer)
+  name.vb: New(String, IReadOnlyList(Of TuningDraftDiagnostic), Integer)
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.Source
+  commentId: P:LlamaLogic.TuningArchive.TuningDraftResult.Source
+  id: Source
+  parent: LlamaLogic.TuningArchive.TuningDraftResult
+  langs:
+  - csharp
+  - vb
+  name: Source
+  nameWithType: TuningDraftResult.Source
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.Source
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Source
+    path: ../LlamaLogic.TuningArchive/TuningDraftResult.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The source of the draft (Python, or snippet tuning XML)
+  example: []
+  syntax:
+    content: public string Source { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Source As String
+  overload: LlamaLogic.TuningArchive.TuningDraftResult.Source*
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics
+  commentId: P:LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics
+  id: Diagnostics
+  parent: LlamaLogic.TuningArchive.TuningDraftResult
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics
+  nameWithType: TuningDraftResult.Diagnostics
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Diagnostics
+    path: ../LlamaLogic.TuningArchive/TuningDraftResult.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: What the draft does about each change, and which changes it cannot make
+  example: []
+  syntax:
+    content: public IReadOnlyList<TuningDraftDiagnostic> Diagnostics { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic}
+    content.vb: Public Property Diagnostics As IReadOnlyList(Of TuningDraftDiagnostic)
+  overload: LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics*
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.Changes
+  commentId: P:LlamaLogic.TuningArchive.TuningDraftResult.Changes
+  id: Changes
+  parent: LlamaLogic.TuningArchive.TuningDraftResult
+  langs:
+  - csharp
+  - vb
+  name: Changes
+  nameWithType: TuningDraftResult.Changes
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.Changes
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDraftResult.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Changes
+    path: ../LlamaLogic.TuningArchive/TuningDraftResult.cs
+    startLine: 8
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The number of changes the draft makes
+  example: []
+  syntax:
+    content: public int Changes { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Changes As Integer
+  overload: LlamaLogic.TuningArchive.TuningDraftResult.Changes*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningDraftResult}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningDraftResult}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningDraftResult>
+  nameWithType: IEquatable<TuningDraftResult>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningDraftResult>
+  nameWithType.vb: IEquatable(Of TuningDraftResult)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningDraftResult)
+  name.vb: IEquatable(Of TuningDraftResult)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningDraftResult
+    name: TuningDraftResult
+    href: LlamaLogic.TuningArchive.TuningDraftResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningDraftResult
+    name: TuningDraftResult
+    href: LlamaLogic.TuningArchive.TuningDraftResult.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDraftResult.#ctor
+  href: LlamaLogic.TuningArchive.TuningDraftResult.html#LlamaLogic_TuningArchive_TuningDraftResult__ctor_System_String_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningDraftDiagnostic__System_Int32_
+  name: TuningDraftResult
+  nameWithType: TuningDraftResult.TuningDraftResult
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.TuningDraftResult
+  nameWithType.vb: TuningDraftResult.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningDraftResult.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningDraftDiagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TuningDraftDiagnostic>
+  nameWithType: IReadOnlyList<TuningDraftDiagnostic>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningDraftDiagnostic>
+  nameWithType.vb: IReadOnlyList(Of TuningDraftDiagnostic)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningDraftDiagnostic)
+  name.vb: IReadOnlyList(Of TuningDraftDiagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningDraftDiagnostic
+    name: TuningDraftDiagnostic
+    href: LlamaLogic.TuningArchive.TuningDraftDiagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningDraftDiagnostic
+    name: TuningDraftDiagnostic
+    href: LlamaLogic.TuningArchive.TuningDraftDiagnostic.html
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.Source*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDraftResult.Source
+  href: LlamaLogic.TuningArchive.TuningDraftResult.html#LlamaLogic_TuningArchive_TuningDraftResult_Source
+  name: Source
+  nameWithType: TuningDraftResult.Source
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.Source
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics
+  href: LlamaLogic.TuningArchive.TuningDraftResult.html#LlamaLogic_TuningArchive_TuningDraftResult_Diagnostics
+  name: Diagnostics
+  nameWithType: TuningDraftResult.Diagnostics
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.Diagnostics
+- uid: LlamaLogic.TuningArchive.TuningDraftResult.Changes*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDraftResult.Changes
+  href: LlamaLogic.TuningArchive.TuningDraftResult.html#LlamaLogic_TuningArchive_TuningDraftResult_Changes
+  name: Changes
+  nameWithType: TuningDraftResult.Changes
+  fullName: LlamaLogic.TuningArchive.TuningDraftResult.Changes

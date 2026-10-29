@@ -1,0 +1,432 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter
+  commentId: T:LlamaLogic.TuningArchive.TuningSimDataDrafter
+  id: TuningSimDataDrafter
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningSimDataDrafter.Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  - LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft(LlamaLogic.TuningArchive.TuningArchiveEntry,System.String)
+  langs:
+  - csharp
+  - vb
+  name: TuningSimDataDrafter
+  nameWithType: TuningSimDataDrafter
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDrafter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningSimDataDrafter
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDrafter.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Generates the SimData that overrides of a snapshot's tuning need, trusting the result only when the generator reproduces the game's own SimData for the original tuning
+  remarks: >-
+    The generator learns the entries of dynamic enumerations from the snapshot's module tuning, the names of its tuning, and, for each tuning, the column orders of its own SimData.
+
+    Strings the game writes as null and the generator writes as empty count as the same, since the game and Sims 4 Studio read both as empty.
+  example: []
+  syntax:
+    content: public sealed class TuningSimDataDrafter
+    content.vb: Public NotInheritable Class TuningSimDataDrafter
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter.Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  commentId: M:LlamaLogic.TuningArchive.TuningSimDataDrafter.Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  id: Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  parent: LlamaLogic.TuningArchive.TuningSimDataDrafter
+  langs:
+  - csharp
+  - vb
+  name: Create(TuningArchiveFile, TuningArchiveSnapshot, TuningDescriptionSet)
+  nameWithType: TuningSimDataDrafter.Create(TuningArchiveFile, TuningArchiveSnapshot, TuningDescriptionSet)
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter.Create(LlamaLogic.TuningArchive.TuningArchiveFile, LlamaLogic.TuningArchive.TuningArchiveSnapshot, LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDrafter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Create
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDrafter.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Creates a drafter for the tuning of the specified <code class="paramref">snapshot</code> in the specified <code class="paramref">archive</code>, which generates SimData with the specified <code class="paramref">descriptions</code>
+  example: []
+  syntax:
+    content: public static TuningSimDataDrafter Create(TuningArchiveFile archive, TuningArchiveSnapshot snapshot, TuningDescriptionSet descriptions)
+    parameters:
+    - id: archive
+      type: LlamaLogic.TuningArchive.TuningArchiveFile
+    - id: snapshot
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    - id: descriptions
+      type: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+    return:
+      type: LlamaLogic.TuningArchive.TuningSimDataDrafter
+    content.vb: Public Shared Function Create(archive As TuningArchiveFile, snapshot As TuningArchiveSnapshot, descriptions As TuningDescriptionSet) As TuningSimDataDrafter
+  overload: LlamaLogic.TuningArchive.TuningSimDataDrafter.Create*
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft(LlamaLogic.TuningArchive.TuningArchiveEntry,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft(LlamaLogic.TuningArchive.TuningArchiveEntry,System.String)
+  id: Draft(LlamaLogic.TuningArchive.TuningArchiveEntry,System.String)
+  parent: LlamaLogic.TuningArchive.TuningSimDataDrafter
+  langs:
+  - csharp
+  - vb
+  name: Draft(TuningArchiveEntry, string)
+  nameWithType: TuningSimDataDrafter.Draft(TuningArchiveEntry, string)
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft(LlamaLogic.TuningArchive.TuningArchiveEntry, string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningSimDataDrafter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Draft
+    path: ../LlamaLogic.TuningArchive/TuningSimDataDrafter.cs
+    startLine: 171
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Generates the SimData an override of the specified <code class="paramref">tuning</code> with the specified <code class="paramref">draftText</code> needs
+  example: []
+  syntax:
+    content: public TuningSimDataDraftResult Draft(TuningArchiveEntry tuning, string draftText)
+    parameters:
+    - id: tuning
+      type: LlamaLogic.TuningArchive.TuningArchiveEntry
+    - id: draftText
+      type: System.String
+    return:
+      type: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+    content.vb: Public Function Draft(tuning As TuningArchiveEntry, draftText As String) As TuningSimDataDraftResult
+  overload: LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft*
+  nameWithType.vb: TuningSimDataDrafter.Draft(TuningArchiveEntry, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft(LlamaLogic.TuningArchive.TuningArchiveEntry, String)
+  name.vb: Draft(TuningArchiveEntry, String)
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter.Create*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDrafter.Create
+  href: LlamaLogic.TuningArchive.TuningSimDataDrafter.html#LlamaLogic_TuningArchive_TuningSimDataDrafter_Create_LlamaLogic_TuningArchive_TuningArchiveFile_LlamaLogic_TuningArchive_TuningArchiveSnapshot_LlamaLogic_TuningDescriptions_TuningDescriptionSet_
+  name: Create
+  nameWithType: TuningSimDataDrafter.Create
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter.Create
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveFile
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html
+  name: TuningArchiveFile
+  nameWithType: TuningArchiveFile
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile
+- uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  name: TuningArchiveSnapshot
+  nameWithType: TuningArchiveSnapshot
+  fullName: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  commentId: T:LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  parent: LlamaLogic.TuningDescriptions
+  name: TuningDescriptionSet
+  nameWithType: TuningDescriptionSet
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter
+  commentId: T:LlamaLogic.TuningArchive.TuningSimDataDrafter
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningSimDataDrafter.html
+  name: TuningSimDataDrafter
+  nameWithType: TuningSimDataDrafter
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter
+- uid: LlamaLogic.TuningDescriptions
+  commentId: N:LlamaLogic.TuningDescriptions
+  name: LlamaLogic.TuningDescriptions
+  nameWithType: LlamaLogic.TuningDescriptions
+  fullName: LlamaLogic.TuningDescriptions
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+- uid: LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft
+  href: LlamaLogic.TuningArchive.TuningSimDataDrafter.html#LlamaLogic_TuningArchive_TuningSimDataDrafter_Draft_LlamaLogic_TuningArchive_TuningArchiveEntry_System_String_
+  name: Draft
+  nameWithType: TuningSimDataDrafter.Draft
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDrafter.Draft
+- uid: LlamaLogic.TuningArchive.TuningArchiveEntry
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveEntry
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveEntry.html
+  name: TuningArchiveEntry
+  nameWithType: TuningArchiveEntry
+  fullName: LlamaLogic.TuningArchive.TuningArchiveEntry
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  commentId: T:LlamaLogic.TuningArchive.TuningSimDataDraftResult
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningSimDataDraftResult.html
+  name: TuningSimDataDraftResult
+  nameWithType: TuningSimDataDraftResult
+  fullName: LlamaLogic.TuningArchive.TuningSimDataDraftResult

@@ -1,0 +1,472 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache
+  commentId: T:LlamaLogic.TuningArchive.TuningDescriptionCache
+  id: TuningDescriptionCache
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningDescriptionCache.#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  - LlamaLogic.TuningArchive.TuningDescriptionCache.Clear
+  - LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve(LlamaLogic.TuningDescriptions.TunableDescription)
+  - LlamaLogic.TuningArchive.TuningDescriptionCache.Set
+  langs:
+  - csharp
+  - vb
+  name: TuningDescriptionCache
+  nameWithType: TuningDescriptionCache
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningDescriptionCache
+    path: ../LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Keeps the documents of a <xref href=\"LlamaLogic.TuningDescriptions.TuningDescriptionSet\" data-throw-if-not-resolved=\"false\"></xref> that analysis has used, so that analyzing many tunings does not read and parse the same descriptions repeatedly (\U0001F512)"
+  example: []
+  syntax:
+    content: public sealed class TuningDescriptionCache
+    content.vb: Public NotInheritable Class TuningDescriptionCache
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  commentId: M:LlamaLogic.TuningArchive.TuningDescriptionCache.#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  id: '#ctor(LlamaLogic.TuningDescriptions.TuningDescriptionSet)'
+  parent: LlamaLogic.TuningArchive.TuningDescriptionCache
+  langs:
+  - csharp
+  - vb
+  name: TuningDescriptionCache(TuningDescriptionSet)
+  nameWithType: TuningDescriptionCache.TuningDescriptionCache(TuningDescriptionSet)
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.TuningDescriptionCache(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Initializes a new cache for the specified <code class="paramref">set</code>
+  example: []
+  syntax:
+    content: public TuningDescriptionCache(TuningDescriptionSet set)
+    parameters:
+    - id: set
+      type: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+    content.vb: Public Sub New([set] As TuningDescriptionSet)
+  overload: LlamaLogic.TuningArchive.TuningDescriptionCache.#ctor*
+  nameWithType.vb: TuningDescriptionCache.New(TuningDescriptionSet)
+  fullName.vb: LlamaLogic.TuningArchive.TuningDescriptionCache.New(LlamaLogic.TuningDescriptions.TuningDescriptionSet)
+  name.vb: New(TuningDescriptionSet)
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.Set
+  commentId: P:LlamaLogic.TuningArchive.TuningDescriptionCache.Set
+  id: Set
+  parent: LlamaLogic.TuningArchive.TuningDescriptionCache
+  langs:
+  - csharp
+  - vb
+  name: Set
+  nameWithType: TuningDescriptionCache.Set
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.Set
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Set
+    path: ../LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+    startLine: 25
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the set of tuning descriptions
+  example: []
+  syntax:
+    content: public TuningDescriptionSet Set { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+    content.vb: Public ReadOnly Property [Set] As TuningDescriptionSet
+  overload: LlamaLogic.TuningArchive.TuningDescriptionCache.Set*
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.Clear
+  commentId: M:LlamaLogic.TuningArchive.TuningDescriptionCache.Clear
+  id: Clear
+  parent: LlamaLogic.TuningArchive.TuningDescriptionCache
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: TuningDescriptionCache.Clear()
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.Clear()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Clear
+    path: ../LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+    startLine: 30
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Releases the documents the cache keeps
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: LlamaLogic.TuningArchive.TuningDescriptionCache.Clear*
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve(LlamaLogic.TuningDescriptions.TunableDescription)
+  commentId: M:LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve(LlamaLogic.TuningDescriptions.TunableDescription)
+  id: Resolve(LlamaLogic.TuningDescriptions.TunableDescription)
+  parent: LlamaLogic.TuningArchive.TuningDescriptionCache
+  langs:
+  - csharp
+  - vb
+  name: Resolve(TunableDescription)
+  nameWithType: TuningDescriptionCache.Resolve(TunableDescription)
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve(LlamaLogic.TuningDescriptions.TunableDescription)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Resolve
+    path: ../LlamaLogic.TuningArchive/TuningDescriptionCache.cs
+    startLine: 63
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: 'Gets the description the specified <code class="paramref">description</code> stands for: the description of the fragment it refers to if it is a <xref href="LlamaLogic.TuningDescriptions.FragmentReferenceTunableDescription" data-throw-if-not-resolved="false"></xref>, and otherwise itself'
+  example: []
+  syntax:
+    content: public TunableDescription Resolve(TunableDescription description)
+    parameters:
+    - id: description
+      type: LlamaLogic.TuningDescriptions.TunableDescription
+    return:
+      type: LlamaLogic.TuningDescriptions.TunableDescription
+    content.vb: Public Function Resolve(description As TunableDescription) As TunableDescription
+  overload: LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve*
+  exceptions:
+  - type: System.IO.InvalidDataException
+    commentId: T:System.IO.InvalidDataException
+    description: The set does not have the fragment to which <code class="paramref">description</code> refers
+references:
+- uid: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  commentId: T:LlamaLogic.TuningDescriptions.TuningDescriptionSet
+  parent: LlamaLogic.TuningDescriptions
+  name: TuningDescriptionSet
+  nameWithType: TuningDescriptionSet
+  fullName: LlamaLogic.TuningDescriptions.TuningDescriptionSet
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: LlamaLogic.TuningDescriptions
+  commentId: N:LlamaLogic.TuningDescriptions
+  name: LlamaLogic.TuningDescriptions
+  nameWithType: LlamaLogic.TuningDescriptions
+  fullName: LlamaLogic.TuningDescriptions
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningDescriptions
+    name: TuningDescriptions
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDescriptionCache.#ctor
+  href: LlamaLogic.TuningArchive.TuningDescriptionCache.html#LlamaLogic_TuningArchive_TuningDescriptionCache__ctor_LlamaLogic_TuningDescriptions_TuningDescriptionSet_
+  name: TuningDescriptionCache
+  nameWithType: TuningDescriptionCache.TuningDescriptionCache
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.TuningDescriptionCache
+  nameWithType.vb: TuningDescriptionCache.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningDescriptionCache.New
+  name.vb: New
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.Set*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDescriptionCache.Set
+  href: LlamaLogic.TuningArchive.TuningDescriptionCache.html#LlamaLogic_TuningArchive_TuningDescriptionCache_Set
+  name: Set
+  nameWithType: TuningDescriptionCache.Set
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.Set
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.Clear*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDescriptionCache.Clear
+  href: LlamaLogic.TuningArchive.TuningDescriptionCache.html#LlamaLogic_TuningArchive_TuningDescriptionCache_Clear
+  name: Clear
+  nameWithType: TuningDescriptionCache.Clear
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.Clear
+- uid: LlamaLogic.TuningDescriptions.FragmentReferenceTunableDescription
+  commentId: T:LlamaLogic.TuningDescriptions.FragmentReferenceTunableDescription
+  name: FragmentReferenceTunableDescription
+  nameWithType: FragmentReferenceTunableDescription
+  fullName: LlamaLogic.TuningDescriptions.FragmentReferenceTunableDescription
+- uid: System.IO.InvalidDataException
+  commentId: T:System.IO.InvalidDataException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception
+  name: InvalidDataException
+  nameWithType: InvalidDataException
+  fullName: System.IO.InvalidDataException
+- uid: LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve
+  href: LlamaLogic.TuningArchive.TuningDescriptionCache.html#LlamaLogic_TuningArchive_TuningDescriptionCache_Resolve_LlamaLogic_TuningDescriptions_TunableDescription_
+  name: Resolve
+  nameWithType: TuningDescriptionCache.Resolve
+  fullName: LlamaLogic.TuningArchive.TuningDescriptionCache.Resolve
+- uid: LlamaLogic.TuningDescriptions.TunableDescription
+  commentId: T:LlamaLogic.TuningDescriptions.TunableDescription
+  parent: LlamaLogic.TuningDescriptions
+  name: TunableDescription
+  nameWithType: TunableDescription
+  fullName: LlamaLogic.TuningDescriptions.TunableDescription

@@ -1,0 +1,655 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  commentId: T:LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  id: TuningFolderUpdatePackage
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningFolderUpdatePackage.#ctor(System.String,LlamaLogic.TuningArchive.TuningPackageUpdate,System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData})
+  - LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData
+  - LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem
+  - LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath
+  - LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update
+  langs:
+  - csharp
+  - vb
+  name: TuningFolderUpdatePackage
+  nameWithType: TuningFolderUpdatePackage
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningFolderUpdatePackage
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a package in a folder being updated
+  example: []
+  syntax:
+    content: 'public sealed record TuningFolderUpdatePackage : IEquatable<TuningFolderUpdatePackage>'
+    content.vb: Public NotInheritable Class TuningFolderUpdatePackage Implements IEquatable(Of TuningFolderUpdatePackage)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningFolderUpdatePackage}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.#ctor(System.String,LlamaLogic.TuningArchive.TuningPackageUpdate,System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData})
+  commentId: M:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.#ctor(System.String,LlamaLogic.TuningArchive.TuningPackageUpdate,System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData})
+  id: '#ctor(System.String,LlamaLogic.TuningArchive.TuningPackageUpdate,System.String,System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData})'
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  langs:
+  - csharp
+  - vb
+  name: TuningFolderUpdatePackage(string, TuningPackageUpdate?, string?, IReadOnlyList<TuningPackageAddedSimData>)
+  nameWithType: TuningFolderUpdatePackage.TuningFolderUpdatePackage(string, TuningPackageUpdate?, string?, IReadOnlyList<TuningPackageAddedSimData>)
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.TuningFolderUpdatePackage(string, LlamaLogic.TuningArchive.TuningPackageUpdate?, string?, System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningPackageAddedSimData>)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a package in a folder being updated
+  example: []
+  syntax:
+    content: public TuningFolderUpdatePackage(string RelativePath, TuningPackageUpdate? Update, string? Problem, IReadOnlyList<TuningPackageAddedSimData> AddedSimData)
+    parameters:
+    - id: RelativePath
+      type: System.String
+      description: The path of the package within the folder
+    - id: Update
+      type: LlamaLogic.TuningArchive.TuningPackageUpdate
+      description: What the game version means for the package's overrides, if it could be read
+    - id: Problem
+      type: System.String
+      description: Why the package couldn't be read, if it couldn't
+    - id: AddedSimData
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData}
+      description: The SimData of the tuning the package adds that isn't what the tuning descriptions give, if it was checked
+    content.vb: Public Sub New(RelativePath As String, Update As TuningPackageUpdate, Problem As String, AddedSimData As IReadOnlyList(Of TuningPackageAddedSimData))
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.#ctor*
+  nameWithType.vb: TuningFolderUpdatePackage.New(String, TuningPackageUpdate, String, IReadOnlyList(Of TuningPackageAddedSimData))
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.New(String, LlamaLogic.TuningArchive.TuningPackageUpdate, String, System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningPackageAddedSimData))
+  name.vb: New(String, TuningPackageUpdate, String, IReadOnlyList(Of TuningPackageAddedSimData))
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath
+  id: RelativePath
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  langs:
+  - csharp
+  - vb
+  name: RelativePath
+  nameWithType: TuningFolderUpdatePackage.RelativePath
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: RelativePath
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The path of the package within the folder
+  example: []
+  syntax:
+    content: public string RelativePath { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property RelativePath As String
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update
+  id: Update
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  langs:
+  - csharp
+  - vb
+  name: Update
+  nameWithType: TuningFolderUpdatePackage.Update
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Update
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: What the game version means for the package's overrides, if it could be read
+  example: []
+  syntax:
+    content: public TuningPackageUpdate? Update { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageUpdate
+    content.vb: Public Property Update As TuningPackageUpdate
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem
+  id: Problem
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  langs:
+  - csharp
+  - vb
+  name: Problem
+  nameWithType: TuningFolderUpdatePackage.Problem
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Problem
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Why the package couldn't be read, if it couldn't
+  example: []
+  syntax:
+    content: public string? Problem { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Problem As String
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem*
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData
+  commentId: P:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData
+  id: AddedSimData
+  parent: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+  langs:
+  - csharp
+  - vb
+  name: AddedSimData
+  nameWithType: TuningFolderUpdatePackage.AddedSimData
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: AddedSimData
+    path: ../LlamaLogic.TuningArchive/TuningFolderUpdatePackage.cs
+    startLine: 9
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The SimData of the tuning the package adds that isn't what the tuning descriptions give, if it was checked
+  example: []
+  syntax:
+    content: public IReadOnlyList<TuningPackageAddedSimData> AddedSimData { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData}
+    content.vb: Public Property AddedSimData As IReadOnlyList(Of TuningPackageAddedSimData)
+  overload: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningFolderUpdatePackage}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningFolderUpdatePackage}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningFolderUpdatePackage>
+  nameWithType: IEquatable<TuningFolderUpdatePackage>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningFolderUpdatePackage>
+  nameWithType.vb: IEquatable(Of TuningFolderUpdatePackage)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningFolderUpdatePackage)
+  name.vb: IEquatable(Of TuningFolderUpdatePackage)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+    name: TuningFolderUpdatePackage
+    href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage
+    name: TuningFolderUpdatePackage
+    href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.#ctor
+  href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html#LlamaLogic_TuningArchive_TuningFolderUpdatePackage__ctor_System_String_LlamaLogic_TuningArchive_TuningPackageUpdate_System_String_System_Collections_Generic_IReadOnlyList_LlamaLogic_TuningArchive_TuningPackageAddedSimData__
+  name: TuningFolderUpdatePackage
+  nameWithType: TuningFolderUpdatePackage.TuningFolderUpdatePackage
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.TuningFolderUpdatePackage
+  nameWithType.vb: TuningFolderUpdatePackage.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdate
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageUpdate
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageUpdate.html
+  name: TuningPackageUpdate
+  nameWithType: TuningPackageUpdate
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdate
+- uid: System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData}
+  commentId: T:System.Collections.Generic.IReadOnlyList{LlamaLogic.TuningArchive.TuningPackageAddedSimData}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<TuningPackageAddedSimData>
+  nameWithType: IReadOnlyList<TuningPackageAddedSimData>
+  fullName: System.Collections.Generic.IReadOnlyList<LlamaLogic.TuningArchive.TuningPackageAddedSimData>
+  nameWithType.vb: IReadOnlyList(Of TuningPackageAddedSimData)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of LlamaLogic.TuningArchive.TuningPackageAddedSimData)
+  name.vb: IReadOnlyList(Of TuningPackageAddedSimData)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningPackageAddedSimData
+    name: TuningPackageAddedSimData
+    href: LlamaLogic.TuningArchive.TuningPackageAddedSimData.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningPackageAddedSimData
+    name: TuningPackageAddedSimData
+    href: LlamaLogic.TuningArchive.TuningPackageAddedSimData.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath
+  href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html#LlamaLogic_TuningArchive_TuningFolderUpdatePackage_RelativePath
+  name: RelativePath
+  nameWithType: TuningFolderUpdatePackage.RelativePath
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.RelativePath
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update
+  href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html#LlamaLogic_TuningArchive_TuningFolderUpdatePackage_Update
+  name: Update
+  nameWithType: TuningFolderUpdatePackage.Update
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Update
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem
+  href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html#LlamaLogic_TuningArchive_TuningFolderUpdatePackage_Problem
+  name: Problem
+  nameWithType: TuningFolderUpdatePackage.Problem
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.Problem
+- uid: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData
+  href: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.html#LlamaLogic_TuningArchive_TuningFolderUpdatePackage_AddedSimData
+  name: AddedSimData
+  nameWithType: TuningFolderUpdatePackage.AddedSimData
+  fullName: LlamaLogic.TuningArchive.TuningFolderUpdatePackage.AddedSimData

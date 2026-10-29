@@ -1,0 +1,228 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  id: TuningArchiveExportExistingFiles
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Overwrite
+  - LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Rename
+  - LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Skip
+  langs:
+  - csharp
+  - vb
+  name: TuningArchiveExportExistingFiles
+  nameWithType: TuningArchiveExportExistingFiles
+  fullName: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  type: Enum
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningArchiveExportExistingFiles
+    path: ../LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Specifies what <xref href="LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot%2cSystem.String%2cLlamaLogic.TuningArchive.TuningArchiveExportOptions%2cSystem.IProgress%7bLlamaLogic.TuningArchive.TuningArchiveProgress%7d%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> does when a file it would write already exists
+  example: []
+  syntax:
+    content: public enum TuningArchiveExportExistingFiles
+    content.vb: Public Enum TuningArchiveExportExistingFiles
+- uid: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Overwrite
+  commentId: F:LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Overwrite
+  id: Overwrite
+  parent: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  langs:
+  - csharp
+  - vb
+  name: Overwrite
+  nameWithType: TuningArchiveExportExistingFiles.Overwrite
+  fullName: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Overwrite
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Overwrite
+    path: ../LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Replace the file
+  example: []
+  syntax:
+    content: Overwrite = 0
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+- uid: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Rename
+  commentId: F:LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Rename
+  id: Rename
+  parent: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  langs:
+  - csharp
+  - vb
+  name: Rename
+  nameWithType: TuningArchiveExportExistingFiles.Rename
+  fullName: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Rename
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Rename
+    path: ../LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+    startLine: 15
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Rename the file by appending <code>(Copy 1)</code> (or the next free number) to its name, then write the new one
+  example: []
+  syntax:
+    content: Rename = 1
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+- uid: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Skip
+  commentId: F:LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Skip
+  id: Skip
+  parent: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  langs:
+  - csharp
+  - vb
+  name: Skip
+  nameWithType: TuningArchiveExportExistingFiles.Skip
+  fullName: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.Skip
+  type: Field
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Skip
+    path: ../LlamaLogic.TuningArchive/TuningArchiveExportExistingFiles.cs
+    startLine: 20
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Leave the file as it is and write nothing in its place
+  example: []
+  syntax:
+    content: Skip = 2
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+references:
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  isExternal: true
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  name: ExportAsync(TuningArchiveSnapshot, string, TuningArchiveExportOptions, IProgress<TuningArchiveProgress>, CancellationToken)
+  nameWithType: TuningArchiveFile.ExportAsync(TuningArchiveSnapshot, string, TuningArchiveExportOptions, IProgress<TuningArchiveProgress>, CancellationToken)
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot, string, LlamaLogic.TuningArchive.TuningArchiveExportOptions, System.IProgress<LlamaLogic.TuningArchive.TuningArchiveProgress>, System.Threading.CancellationToken)
+  nameWithType.vb: TuningArchiveFile.ExportAsync(TuningArchiveSnapshot, String, TuningArchiveExportOptions, IProgress(Of TuningArchiveProgress), CancellationToken)
+  fullName.vb: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot, String, LlamaLogic.TuningArchive.TuningArchiveExportOptions, System.IProgress(Of LlamaLogic.TuningArchive.TuningArchiveProgress), System.Threading.CancellationToken)
+  name.vb: ExportAsync(TuningArchiveSnapshot, String, TuningArchiveExportOptions, IProgress(Of TuningArchiveProgress), CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+    name: ExportAsync
+    href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    name: TuningArchiveSnapshot
+    href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveExportOptions
+    name: TuningArchiveExportOptions
+    href: LlamaLogic.TuningArchive.TuningArchiveExportOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningArchiveProgress
+    name: TuningArchiveProgress
+    href: LlamaLogic.TuningArchive.TuningArchiveProgress.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+    name: ExportAsync
+    href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    name: TuningArchiveSnapshot
+    href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveExportOptions
+    name: TuningArchiveExportOptions
+    href: LlamaLogic.TuningArchive.TuningArchiveExportOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveProgress
+    name: TuningArchiveProgress
+    href: LlamaLogic.TuningArchive.TuningArchiveProgress.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles.html
+  name: TuningArchiveExportExistingFiles
+  nameWithType: TuningArchiveExportExistingFiles
+  fullName: LlamaLogic.TuningArchive.TuningArchiveExportExistingFiles

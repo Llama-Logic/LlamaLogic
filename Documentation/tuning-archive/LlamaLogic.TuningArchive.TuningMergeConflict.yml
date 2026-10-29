@@ -1,0 +1,650 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict
+  commentId: T:LlamaLogic.TuningArchive.TuningMergeConflict
+  id: TuningMergeConflict
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningMergeConflict.#ctor(System.Int32,LlamaLogic.TuningArchive.TuningMergeConflictKind,System.String,System.String,System.String,System.String)
+  - LlamaLogic.TuningArchive.TuningMergeConflict.Base
+  - LlamaLogic.TuningArchive.TuningMergeConflict.Game
+  - LlamaLogic.TuningArchive.TuningMergeConflict.Index
+  - LlamaLogic.TuningArchive.TuningMergeConflict.Kind
+  - LlamaLogic.TuningArchive.TuningMergeConflict.Mod
+  - LlamaLogic.TuningArchive.TuningMergeConflict.Path
+  langs:
+  - csharp
+  - vb
+  name: TuningMergeConflict
+  nameWithType: TuningMergeConflict
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningMergeConflict
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a place where a merge could not combine the mod's change with the game's
+  example: []
+  syntax:
+    content: 'public sealed record TuningMergeConflict : IEquatable<TuningMergeConflict>'
+    content.vb: Public NotInheritable Class TuningMergeConflict Implements IEquatable(Of TuningMergeConflict)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{LlamaLogic.TuningArchive.TuningMergeConflict}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.#ctor(System.Int32,LlamaLogic.TuningArchive.TuningMergeConflictKind,System.String,System.String,System.String,System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningMergeConflict.#ctor(System.Int32,LlamaLogic.TuningArchive.TuningMergeConflictKind,System.String,System.String,System.String,System.String)
+  id: '#ctor(System.Int32,LlamaLogic.TuningArchive.TuningMergeConflictKind,System.String,System.String,System.String,System.String)'
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: TuningMergeConflict(int, TuningMergeConflictKind, string, string?, string?, string?)
+  nameWithType: TuningMergeConflict.TuningMergeConflict(int, TuningMergeConflictKind, string, string?, string?, string?)
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.TuningMergeConflict(int, LlamaLogic.TuningArchive.TuningMergeConflictKind, string, string?, string?, string?)
+  type: Constructor
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: .ctor
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a place where a merge could not combine the mod's change with the game's
+  example: []
+  syntax:
+    content: public TuningMergeConflict(int Index, TuningMergeConflictKind Kind, string Path, string? Base, string? Mod, string? Game)
+    parameters:
+    - id: Index
+      type: System.Int32
+      description: The position of the conflict among the merge's conflicts, which does not depend on how conflicts are resolved
+    - id: Kind
+      type: LlamaLogic.TuningArchive.TuningMergeConflictKind
+      description: Why the changes could not be combined
+    - id: Path
+      type: System.String
+      description: The path of the element in the merged result, such as <code>loot_list[2].stat</code>, or of an attribute, such as <code>@c</code>
+    - id: Base
+      type: System.String
+      description: The element in the version the mod was made from (the XML of the element on one line, or an attribute's value), if it was there
+    - id: Mod
+      type: System.String
+      description: The element in the mod, if it is there
+    - id: Game
+      type: System.String
+      description: The element in the game's new version, if it is there
+    content.vb: Public Sub New(Index As Integer, Kind As TuningMergeConflictKind, Path As String, Base As String, [Mod] As String, Game As String)
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.#ctor*
+  nameWithType.vb: TuningMergeConflict.New(Integer, TuningMergeConflictKind, String, String, String, String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningMergeConflict.New(Integer, LlamaLogic.TuningArchive.TuningMergeConflictKind, String, String, String, String)
+  name.vb: New(Integer, TuningMergeConflictKind, String, String, String, String)
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Index
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeConflict.Index
+  id: Index
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: Index
+  nameWithType: TuningMergeConflict.Index
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Index
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Index
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The position of the conflict among the merge's conflicts, which does not depend on how conflicts are resolved
+  example: []
+  syntax:
+    content: public int Index { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Index As Integer
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.Index*
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Kind
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeConflict.Kind
+  id: Kind
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: TuningMergeConflict.Kind
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Kind
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Kind
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Why the changes could not be combined
+  example: []
+  syntax:
+    content: public TuningMergeConflictKind Kind { get; init; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningMergeConflictKind
+    content.vb: Public Property Kind As TuningMergeConflictKind
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.Kind*
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Path
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeConflict.Path
+  id: Path
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: TuningMergeConflict.Path
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Path
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Path
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The path of the element in the merged result, such as <code>loot_list[2].stat</code>, or of an attribute, such as <code>@c</code>
+  example: []
+  syntax:
+    content: public string Path { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Path As String
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.Path*
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Base
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeConflict.Base
+  id: Base
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: Base
+  nameWithType: TuningMergeConflict.Base
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Base
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Base
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The element in the version the mod was made from (the XML of the element on one line, or an attribute's value), if it was there
+  example: []
+  syntax:
+    content: public string? Base { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Base As String
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.Base*
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Mod
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeConflict.Mod
+  id: Mod
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: Mod
+  nameWithType: TuningMergeConflict.Mod
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Mod
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Mod
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The element in the mod, if it is there
+  example: []
+  syntax:
+    content: public string? Mod { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property [Mod] As String
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.Mod*
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Game
+  commentId: P:LlamaLogic.TuningArchive.TuningMergeConflict.Game
+  id: Game
+  parent: LlamaLogic.TuningArchive.TuningMergeConflict
+  langs:
+  - csharp
+  - vb
+  name: Game
+  nameWithType: TuningMergeConflict.Game
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Game
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningMergeConflict.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Game
+    path: ../LlamaLogic.TuningArchive/TuningMergeConflict.cs
+    startLine: 11
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: The element in the game's new version, if it is there
+  example: []
+  syntax:
+    content: public string? Game { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Game As String
+  overload: LlamaLogic.TuningArchive.TuningMergeConflict.Game*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{LlamaLogic.TuningArchive.TuningMergeConflict}
+  commentId: T:System.IEquatable{LlamaLogic.TuningArchive.TuningMergeConflict}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<TuningMergeConflict>
+  nameWithType: IEquatable<TuningMergeConflict>
+  fullName: System.IEquatable<LlamaLogic.TuningArchive.TuningMergeConflict>
+  nameWithType.vb: IEquatable(Of TuningMergeConflict)
+  fullName.vb: System.IEquatable(Of LlamaLogic.TuningArchive.TuningMergeConflict)
+  name.vb: IEquatable(Of TuningMergeConflict)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningMergeConflict
+    name: TuningMergeConflict
+    href: LlamaLogic.TuningArchive.TuningMergeConflict.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningMergeConflict
+    name: TuningMergeConflict
+    href: LlamaLogic.TuningArchive.TuningMergeConflict.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.#ctor*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.#ctor
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict__ctor_System_Int32_LlamaLogic_TuningArchive_TuningMergeConflictKind_System_String_System_String_System_String_System_String_
+  name: TuningMergeConflict
+  nameWithType: TuningMergeConflict.TuningMergeConflict
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.TuningMergeConflict
+  nameWithType.vb: TuningMergeConflict.New
+  fullName.vb: LlamaLogic.TuningArchive.TuningMergeConflict.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.TuningArchive.TuningMergeConflictKind
+  commentId: T:LlamaLogic.TuningArchive.TuningMergeConflictKind
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningMergeConflictKind.html
+  name: TuningMergeConflictKind
+  nameWithType: TuningMergeConflictKind
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflictKind
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Index*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.Index
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict_Index
+  name: Index
+  nameWithType: TuningMergeConflict.Index
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Index
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Kind*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.Kind
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict_Kind
+  name: Kind
+  nameWithType: TuningMergeConflict.Kind
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Kind
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Path*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.Path
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict_Path
+  name: Path
+  nameWithType: TuningMergeConflict.Path
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Path
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Base*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.Base
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict_Base
+  name: Base
+  nameWithType: TuningMergeConflict.Base
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Base
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Mod*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.Mod
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict_Mod
+  name: Mod
+  nameWithType: TuningMergeConflict.Mod
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Mod
+- uid: LlamaLogic.TuningArchive.TuningMergeConflict.Game*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningMergeConflict.Game
+  href: LlamaLogic.TuningArchive.TuningMergeConflict.html#LlamaLogic_TuningArchive_TuningMergeConflict_Game
+  name: Game
+  nameWithType: TuningMergeConflict.Game
+  fullName: LlamaLogic.TuningArchive.TuningMergeConflict.Game

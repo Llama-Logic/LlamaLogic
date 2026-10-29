@@ -1,0 +1,1269 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageOverride
+  id: TuningPackageOverride
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Base
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder
+  - LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  - LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry
+  - LlamaLogic.TuningArchive.TuningPackageOverride.GameText
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Key
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Merge
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Message
+  - LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Name
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Outcome
+  - LlamaLogic.TuningArchive.TuningPackageOverride.Remerge(System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice})
+  - LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  - LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage
+  - LlamaLogic.TuningArchive.TuningPackageOverride.ToString
+  langs:
+  - csharp
+  - vb
+  name: TuningPackageOverride
+  nameWithType: TuningPackageOverride
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningPackageOverride
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 5
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Represents a mod's override of a game tuning, and what a game version means for it
+  example: []
+  syntax:
+    content: public sealed class TuningPackageOverride
+    content.vb: Public NotInheritable Class TuningPackageOverride
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Base
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.Base
+  id: Base
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Base
+  nameWithType: TuningPackageOverride.Base
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Base
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Base
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 29
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: 'Gets the snapshot whose version of the tuning the mod was made from: the one the creator declared (see <xref href="LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared" data-throw-if-not-resolved="false"></xref>), or else the one with the fewest differences from the override (see <xref href="LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous" data-throw-if-not-resolved="false"></xref>), the newest with that version'
+  example: []
+  syntax:
+    content: public TuningArchiveSnapshot? Base { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    content.vb: Public ReadOnly Property Base As TuningArchiveSnapshot
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Base*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance
+  id: BaseDistance
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseDistance
+  nameWithType: TuningPackageOverride.BaseDistance
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseDistance
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 34
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the number of differences between <xref href="LlamaLogic.TuningArchive.TuningPackageOverride.BaseText" data-throw-if-not-resolved="false"></xref> and <xref href="LlamaLogic.TuningArchive.TuningPackageOverride.ModText" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public int BaseDistance { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property BaseDistance As Integer
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees
+  id: BaseDisagrees
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseDisagrees
+  nameWithType: TuningPackageOverride.BaseDisagrees
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseDisagrees
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 39
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the base is the version the creator said the package was last updated for, but another version of the tuning is closer to the override
+  example: []
+  syntax:
+    content: public bool BaseDisagrees { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property BaseDisagrees As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  id: BaseIsDeclared
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseIsDeclared
+  nameWithType: TuningPackageOverride.BaseIsDeclared
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseIsDeclared
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 44
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the base is the version the creator said the package was last updated for, rather than inferred
+  example: []
+  syntax:
+    content: public bool BaseIsDeclared { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property BaseIsDeclared As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  id: BaseIsUncertain
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseIsUncertain
+  nameWithType: TuningPackageOverride.BaseIsUncertain
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseIsUncertain
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 49
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: 'Gets whether the base may not be what the mod was made from: it was inferred and is ambiguous or may be older than the archive, or it was declared and another version is closer'
+  example: []
+  syntax:
+    content: public bool BaseIsUncertain { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property BaseIsUncertain As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  id: BaseIsAmbiguous
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseIsAmbiguous
+  nameWithType: TuningPackageOverride.BaseIsAmbiguous
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseIsAmbiguous
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 55
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether a version of the tuning with different content is as close to the override as the base (the base is the oldest such version, so that a change the game also made shows as a conflict)
+  example: []
+  syntax:
+    content: public bool BaseIsAmbiguous { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property BaseIsAmbiguous As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder
+  id: BaseMayBeOlder
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseMayBeOlder
+  nameWithType: TuningPackageOverride.BaseMayBeOlder
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseMayBeOlder
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 63
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: "Gets whether the mod may have been made from a version older than any in the archive: the archive's oldest snapshot already has the base's version of the tuning, and the override differs from it"
+  remarks: When it was, some of what look like the mod's changes are the game's changes since that older version, undone, and a merge carries them forward as if the mod had made them.
+  example: []
+  syntax:
+    content: public bool BaseMayBeOlder { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property BaseMayBeOlder As Boolean
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  id: BaseText
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: BaseText
+  nameWithType: TuningPackageOverride.BaseText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: BaseText
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 68
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the base's version of the tuning (canonical text, see <xref href="LlamaLogic.TuningArchive.TuningXml" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public string? BaseText { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property BaseText As String
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry
+  id: GameEntry
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: GameEntry
+  nameWithType: TuningPackageOverride.GameEntry
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GameEntry
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 73
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the tuning in the game's new version
+  example: []
+  syntax:
+    content: public TuningArchiveEntry? GameEntry { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningArchiveEntry
+    content.vb: Public ReadOnly Property GameEntry As TuningArchiveEntry
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.GameText
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.GameText
+  id: GameText
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: GameText
+  nameWithType: TuningPackageOverride.GameText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.GameText
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: GameText
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 78
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the game's new version of the tuning (canonical text)
+  example: []
+  syntax:
+    content: public string? GameText { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property GameText As String
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.GameText*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Key
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.Key
+  id: Key
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Key
+  nameWithType: TuningPackageOverride.Key
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Key
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Key
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 83
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the key of the override in the package
+  example: []
+  syntax:
+    content: public ResourceKey Key { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.Packages.ResourceKey
+    content.vb: Public ReadOnly Property Key As ResourceKey
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Key*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Merge
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.Merge
+  id: Merge
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Merge
+  nameWithType: TuningPackageOverride.Merge
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Merge
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Merge
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 88
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the merge of the mod's changes onto the game's new version, with every conflict resolved as the game's version, if the game changed the tuning since the base
+  example: []
+  syntax:
+    content: public TuningMergeResult? Merge { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningMergeResult
+    content.vb: Public ReadOnly Property Merge As TuningMergeResult
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Merge*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Message
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.Message
+  id: Message
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Message
+  nameWithType: TuningPackageOverride.Message
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Message
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Message
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 93
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets what the outcome means, for the creator
+  example: []
+  syntax:
+    content: public string Message { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Message As String
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Message*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  id: ModText
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: ModText
+  nameWithType: TuningPackageOverride.ModText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ModText
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 98
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the override (canonical text), if it could be read
+  example: []
+  syntax:
+    content: public string? ModText { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ModText As String
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.ModText*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Name
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.Name
+  id: Name
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: TuningPackageOverride.Name
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Name
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Name
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 103
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the name of the tuning
+  example: []
+  syntax:
+    content: public string? Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Name As String
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Name*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Outcome
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.Outcome
+  id: Outcome
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Outcome
+  nameWithType: TuningPackageOverride.Outcome
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Outcome
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Outcome
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 108
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets what the game's new version means for the override
+  example: []
+  syntax:
+    content: public TuningPackageOverrideOutcome Outcome { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+    content.vb: Public ReadOnly Property Outcome As TuningPackageOverrideOutcome
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Outcome*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  id: SimData
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: SimData
+  nameWithType: TuningPackageOverride.SimData
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimData
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 113
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether the mod's SimData for the override is what the tuning in <xref href="LlamaLogic.TuningArchive.TuningPackageUpdate.GetRecommendedTuning" data-throw-if-not-resolved="false"></xref> needs, if SimData was checked
+  example: []
+  syntax:
+    content: public TuningPackageSimDataState SimData { get; }
+    parameters: []
+    return:
+      type: LlamaLogic.TuningArchive.TuningPackageSimDataState
+    content.vb: Public Property SimData As TuningPackageSimDataState
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.SimData*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage
+  id: SimDataMessage
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: SimDataMessage
+  nameWithType: TuningPackageOverride.SimDataMessage
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: SimDataMessage
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 118
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets what <xref href="LlamaLogic.TuningArchive.TuningPackageOverride.SimData" data-throw-if-not-resolved="false"></xref> means, for the creator
+  example: []
+  syntax:
+    content: public string? SimDataMessage { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SimDataMessage As String
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage*
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Remerge(System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice})
+  commentId: M:LlamaLogic.TuningArchive.TuningPackageOverride.Remerge(System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice})
+  id: Remerge(System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice})
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: Remerge(Func<TuningMergeConflict, TuningMergeChoice>)
+  nameWithType: TuningPackageOverride.Remerge(Func<TuningMergeConflict, TuningMergeChoice>)
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Remerge(System.Func<LlamaLogic.TuningArchive.TuningMergeConflict, LlamaLogic.TuningArchive.TuningMergeChoice>)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Remerge
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 124
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Merges the mod's changes onto the game's new version again, resolving each conflict as <code class="paramref">resolve</code> says
+  example: []
+  syntax:
+    content: public TuningMergeResult Remerge(Func<TuningMergeConflict, TuningMergeChoice> resolve)
+    parameters:
+    - id: resolve
+      type: System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice}
+    return:
+      type: LlamaLogic.TuningArchive.TuningMergeResult
+    content.vb: Public Function Remerge(resolve As Func(Of TuningMergeConflict, TuningMergeChoice)) As TuningMergeResult
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.Remerge*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The game did not change the tuning since the base, so there is nothing to merge
+  nameWithType.vb: TuningPackageOverride.Remerge(Func(Of TuningMergeConflict, TuningMergeChoice))
+  fullName.vb: LlamaLogic.TuningArchive.TuningPackageOverride.Remerge(System.Func(Of LlamaLogic.TuningArchive.TuningMergeConflict, LlamaLogic.TuningArchive.TuningMergeChoice))
+  name.vb: Remerge(Func(Of TuningMergeConflict, TuningMergeChoice))
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.ToString
+  commentId: M:LlamaLogic.TuningArchive.TuningPackageOverride.ToString
+  id: ToString
+  parent: LlamaLogic.TuningArchive.TuningPackageOverride
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: TuningPackageOverride.ToString()
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.ToString()
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningPackageOverride.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ToString
+    path: ../LlamaLogic.TuningArchive/TuningPackageOverride.cs
+    startLine: 133
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: LlamaLogic.TuningArchive.TuningPackageOverride.ToString*
+references:
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseIsDeclared
+  name: BaseIsDeclared
+  nameWithType: TuningPackageOverride.BaseIsDeclared
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseIsAmbiguous
+  name: BaseIsAmbiguous
+  nameWithType: TuningPackageOverride.BaseIsAmbiguous
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Base*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Base
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Base
+  name: Base
+  nameWithType: TuningPackageOverride.Base
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Base
+- uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  name: TuningArchiveSnapshot
+  nameWithType: TuningArchiveSnapshot
+  fullName: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseText
+  name: BaseText
+  nameWithType: TuningPackageOverride.BaseText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_ModText
+  name: ModText
+  nameWithType: TuningPackageOverride.ModText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseDistance
+  name: BaseDistance
+  nameWithType: TuningPackageOverride.BaseDistance
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDistance
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseDisagrees
+  name: BaseDisagrees
+  nameWithType: TuningPackageOverride.BaseDisagrees
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseDisagrees
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseIsDeclared
+  name: BaseIsDeclared
+  nameWithType: TuningPackageOverride.BaseIsDeclared
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsDeclared
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseIsUncertain
+  name: BaseIsUncertain
+  nameWithType: TuningPackageOverride.BaseIsUncertain
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsUncertain
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseIsAmbiguous
+  name: BaseIsAmbiguous
+  nameWithType: TuningPackageOverride.BaseIsAmbiguous
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseIsAmbiguous
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseMayBeOlder
+  name: BaseMayBeOlder
+  nameWithType: TuningPackageOverride.BaseMayBeOlder
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseMayBeOlder
+- uid: LlamaLogic.TuningArchive.TuningXml
+  commentId: T:LlamaLogic.TuningArchive.TuningXml
+  href: LlamaLogic.TuningArchive.TuningXml.html
+  name: TuningXml
+  nameWithType: TuningXml
+  fullName: LlamaLogic.TuningArchive.TuningXml
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_BaseText
+  name: BaseText
+  nameWithType: TuningPackageOverride.BaseText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.BaseText
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_GameEntry
+  name: GameEntry
+  nameWithType: TuningPackageOverride.GameEntry
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.GameEntry
+- uid: LlamaLogic.TuningArchive.TuningArchiveEntry
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveEntry
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveEntry.html
+  name: TuningArchiveEntry
+  nameWithType: TuningArchiveEntry
+  fullName: LlamaLogic.TuningArchive.TuningArchiveEntry
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.GameText*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.GameText
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_GameText
+  name: GameText
+  nameWithType: TuningPackageOverride.GameText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.GameText
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Key*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Key
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Key
+  name: Key
+  nameWithType: TuningPackageOverride.Key
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Key
+- uid: LlamaLogic.Packages.ResourceKey
+  commentId: T:LlamaLogic.Packages.ResourceKey
+  parent: LlamaLogic.Packages
+  name: ResourceKey
+  nameWithType: ResourceKey
+  fullName: LlamaLogic.Packages.ResourceKey
+- uid: LlamaLogic.Packages
+  commentId: N:LlamaLogic.Packages
+  name: LlamaLogic.Packages
+  nameWithType: LlamaLogic.Packages
+  fullName: LlamaLogic.Packages
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.Packages
+    name: Packages
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Merge*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Merge
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Merge
+  name: Merge
+  nameWithType: TuningPackageOverride.Merge
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Merge
+- uid: LlamaLogic.TuningArchive.TuningMergeResult
+  commentId: T:LlamaLogic.TuningArchive.TuningMergeResult
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningMergeResult.html
+  name: TuningMergeResult
+  nameWithType: TuningMergeResult
+  fullName: LlamaLogic.TuningArchive.TuningMergeResult
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Message*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Message
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Message
+  name: Message
+  nameWithType: TuningPackageOverride.Message
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Message
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.ModText*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_ModText
+  name: ModText
+  nameWithType: TuningPackageOverride.ModText
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.ModText
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Name*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Name
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Name
+  name: Name
+  nameWithType: TuningPackageOverride.Name
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Name
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Outcome*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Outcome
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Outcome
+  name: Outcome
+  nameWithType: TuningPackageOverride.Outcome
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Outcome
+- uid: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome.html
+  name: TuningPackageOverrideOutcome
+  nameWithType: TuningPackageOverrideOutcome
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverrideOutcome
+- uid: LlamaLogic.TuningArchive.TuningPackageUpdate.GetRecommendedTuning
+  commentId: M:LlamaLogic.TuningArchive.TuningPackageUpdate.GetRecommendedTuning
+  href: LlamaLogic.TuningArchive.TuningPackageUpdate.html#LlamaLogic_TuningArchive_TuningPackageUpdate_GetRecommendedTuning
+  name: GetRecommendedTuning()
+  nameWithType: TuningPackageUpdate.GetRecommendedTuning()
+  fullName: LlamaLogic.TuningArchive.TuningPackageUpdate.GetRecommendedTuning()
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningPackageUpdate.GetRecommendedTuning
+    name: GetRecommendedTuning
+    href: LlamaLogic.TuningArchive.TuningPackageUpdate.html#LlamaLogic_TuningArchive_TuningPackageUpdate_GetRecommendedTuning
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningPackageUpdate.GetRecommendedTuning
+    name: GetRecommendedTuning
+    href: LlamaLogic.TuningArchive.TuningPackageUpdate.html#LlamaLogic_TuningArchive_TuningPackageUpdate_GetRecommendedTuning
+  - name: (
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.SimData*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_SimData
+  name: SimData
+  nameWithType: TuningPackageOverride.SimData
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+- uid: LlamaLogic.TuningArchive.TuningPackageSimDataState
+  commentId: T:LlamaLogic.TuningArchive.TuningPackageSimDataState
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningPackageSimDataState.html
+  name: TuningPackageSimDataState
+  nameWithType: TuningPackageSimDataState
+  fullName: LlamaLogic.TuningArchive.TuningPackageSimDataState
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  commentId: P:LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_SimData
+  name: SimData
+  nameWithType: TuningPackageOverride.SimData
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.SimData
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_SimDataMessage
+  name: SimDataMessage
+  nameWithType: TuningPackageOverride.SimDataMessage
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.SimDataMessage
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.Remerge*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.Remerge
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_Remerge_System_Func_LlamaLogic_TuningArchive_TuningMergeConflict_LlamaLogic_TuningArchive_TuningMergeChoice__
+  name: Remerge
+  nameWithType: TuningPackageOverride.Remerge
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.Remerge
+- uid: System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice}
+  commentId: T:System.Func{LlamaLogic.TuningArchive.TuningMergeConflict,LlamaLogic.TuningArchive.TuningMergeChoice}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<TuningMergeConflict, TuningMergeChoice>
+  nameWithType: Func<TuningMergeConflict, TuningMergeChoice>
+  fullName: System.Func<LlamaLogic.TuningArchive.TuningMergeConflict, LlamaLogic.TuningArchive.TuningMergeChoice>
+  nameWithType.vb: Func(Of TuningMergeConflict, TuningMergeChoice)
+  fullName.vb: System.Func(Of LlamaLogic.TuningArchive.TuningMergeConflict, LlamaLogic.TuningArchive.TuningMergeChoice)
+  name.vb: Func(Of TuningMergeConflict, TuningMergeChoice)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningMergeConflict
+    name: TuningMergeConflict
+    href: LlamaLogic.TuningArchive.TuningMergeConflict.html
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningMergeChoice
+    name: TuningMergeChoice
+    href: LlamaLogic.TuningArchive.TuningMergeChoice.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningMergeConflict
+    name: TuningMergeConflict
+    href: LlamaLogic.TuningArchive.TuningMergeConflict.html
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningMergeChoice
+    name: TuningMergeChoice
+    href: LlamaLogic.TuningArchive.TuningMergeChoice.html
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningPackageOverride.ToString*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningPackageOverride.ToString
+  href: LlamaLogic.TuningArchive.TuningPackageOverride.html#LlamaLogic_TuningArchive_TuningPackageOverride_ToString
+  name: ToString
+  nameWithType: TuningPackageOverride.ToString
+  fullName: LlamaLogic.TuningArchive.TuningPackageOverride.ToString

@@ -1,0 +1,673 @@
+### YamlMime:ManagedReference
+items:
+- uid: LlamaLogic.TuningArchive.TuningCommenter
+  commentId: T:LlamaLogic.TuningArchive.TuningCommenter
+  id: TuningCommenter
+  parent: LlamaLogic.TuningArchive
+  children:
+  - LlamaLogic.TuningArchive.TuningCommenter.Comment(System.String)
+  - LlamaLogic.TuningArchive.TuningCommenter.CommentFragment(System.String)
+  - LlamaLogic.TuningArchive.TuningCommenter.Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Boolean,System.Boolean)
+  - LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments
+  - LlamaLogic.TuningArchive.TuningCommenter.StringComments
+  langs:
+  - csharp
+  - vb
+  name: TuningCommenter
+  nameWithType: TuningCommenter
+  fullName: LlamaLogic.TuningArchive.TuningCommenter
+  type: Class
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningCommenter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: TuningCommenter
+    path: ../LlamaLogic.TuningArchive/TuningCommenter.cs
+    startLine: 10
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: 'Adds to tuning the comments XML Extractor adds, as a snapshot knows them: the text of each string after its key, and the class and name of the tuning or animation state machine each reference refers to'
+  remarks: >-
+    The comments are the ones <xref href="LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot%2cSystem.String%2cLlamaLogic.TuningArchive.TuningArchiveExportOptions%2cSystem.IProgress%7bLlamaLogic.TuningArchive.TuningArchiveProgress%7d%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> writes: found with the snapshot's tuning descriptions when it has them and they describe the tuning, and otherwise as XML Extractor finds them, as any number that is a string's key or a tuning's instance.
+
+    References to tuning of packs that were not installed when the snapshot was captured are commented with the names the packs' patches give it (see <xref href="LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)" data-throw-if-not-resolved="false"></xref>).
+
+    The game ignores comments, so tuning with them loads as it would without them.
+  example: []
+  syntax:
+    content: public sealed class TuningCommenter
+    content.vb: Public NotInheritable Class TuningCommenter
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments
+  commentId: P:LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments
+  id: ReferenceComments
+  parent: LlamaLogic.TuningArchive.TuningCommenter
+  langs:
+  - csharp
+  - vb
+  name: ReferenceComments
+  nameWithType: TuningCommenter.ReferenceComments
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningCommenter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: ReferenceComments
+    path: ../LlamaLogic.TuningArchive/TuningCommenter.cs
+    startLine: 26
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether references are commented with the class and name of what they refer to
+  example: []
+  syntax:
+    content: public bool ReferenceComments { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property ReferenceComments As Boolean
+  overload: LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments*
+- uid: LlamaLogic.TuningArchive.TuningCommenter.StringComments
+  commentId: P:LlamaLogic.TuningArchive.TuningCommenter.StringComments
+  id: StringComments
+  parent: LlamaLogic.TuningArchive.TuningCommenter
+  langs:
+  - csharp
+  - vb
+  name: StringComments
+  nameWithType: TuningCommenter.StringComments
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.StringComments
+  type: Property
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningCommenter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: StringComments
+    path: ../LlamaLogic.TuningArchive/TuningCommenter.cs
+    startLine: 31
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets whether string keys are commented with the text of their strings
+  example: []
+  syntax:
+    content: public bool StringComments { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property StringComments As Boolean
+  overload: LlamaLogic.TuningArchive.TuningCommenter.StringComments*
+- uid: LlamaLogic.TuningArchive.TuningCommenter.Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Boolean,System.Boolean)
+  commentId: M:LlamaLogic.TuningArchive.TuningCommenter.Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Boolean,System.Boolean)
+  id: Create(LlamaLogic.TuningArchive.TuningArchiveFile,LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.Boolean,System.Boolean)
+  parent: LlamaLogic.TuningArchive.TuningCommenter
+  langs:
+  - csharp
+  - vb
+  name: Create(TuningArchiveFile, TuningArchiveSnapshot, bool, bool)
+  nameWithType: TuningCommenter.Create(TuningArchiveFile, TuningArchiveSnapshot, bool, bool)
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.Create(LlamaLogic.TuningArchive.TuningArchiveFile, LlamaLogic.TuningArchive.TuningArchiveSnapshot, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningCommenter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Create
+    path: ../LlamaLogic.TuningArchive/TuningCommenter.cs
+    startLine: 40
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Creates a commenter with what the specified <code class="paramref">snapshot</code> of the specified <code class="paramref">archive</code> knows
+  example: []
+  syntax:
+    content: public static TuningCommenter Create(TuningArchiveFile archive, TuningArchiveSnapshot snapshot, bool stringComments = true, bool referenceComments = true)
+    parameters:
+    - id: archive
+      type: LlamaLogic.TuningArchive.TuningArchiveFile
+      description: The archive
+    - id: snapshot
+      type: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+      description: The snapshot whose strings, tuning names and tuning descriptions the comments come from
+    - id: stringComments
+      type: System.Boolean
+      description: Whether to comment string keys with the text of their strings
+    - id: referenceComments
+      type: System.Boolean
+      description: Whether to comment references with the class and name of what they refer to
+    return:
+      type: LlamaLogic.TuningArchive.TuningCommenter
+    content.vb: Public Shared Function Create(archive As TuningArchiveFile, snapshot As TuningArchiveSnapshot, stringComments As Boolean = True, referenceComments As Boolean = True) As TuningCommenter
+  overload: LlamaLogic.TuningArchive.TuningCommenter.Create*
+  nameWithType.vb: TuningCommenter.Create(TuningArchiveFile, TuningArchiveSnapshot, Boolean, Boolean)
+  fullName.vb: LlamaLogic.TuningArchive.TuningCommenter.Create(LlamaLogic.TuningArchive.TuningArchiveFile, LlamaLogic.TuningArchive.TuningArchiveSnapshot, Boolean, Boolean)
+  name.vb: Create(TuningArchiveFile, TuningArchiveSnapshot, Boolean, Boolean)
+- uid: LlamaLogic.TuningArchive.TuningCommenter.Comment(System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningCommenter.Comment(System.String)
+  id: Comment(System.String)
+  parent: LlamaLogic.TuningArchive.TuningCommenter
+  langs:
+  - csharp
+  - vb
+  name: Comment(string)
+  nameWithType: TuningCommenter.Comment(string)
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.Comment(string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningCommenter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: Comment
+    path: ../LlamaLogic.TuningArchive/TuningCommenter.cs
+    startLine: 76
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the specified tuning <code class="paramref">text</code> with comments, or the text as it is if it is not XML
+  remarks: Comments already in the text are kept. The result is indented with two spaces, with the line ends the text has, and starts with an XML declaration if the text does.
+  example: []
+  syntax:
+    content: public string Comment(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function Comment(text As String) As String
+  overload: LlamaLogic.TuningArchive.TuningCommenter.Comment*
+  nameWithType.vb: TuningCommenter.Comment(String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningCommenter.Comment(String)
+  name.vb: Comment(String)
+- uid: LlamaLogic.TuningArchive.TuningCommenter.CommentFragment(System.String)
+  commentId: M:LlamaLogic.TuningArchive.TuningCommenter.CommentFragment(System.String)
+  id: CommentFragment(System.String)
+  parent: LlamaLogic.TuningArchive.TuningCommenter
+  langs:
+  - csharp
+  - vb
+  name: CommentFragment(string)
+  nameWithType: TuningCommenter.CommentFragment(string)
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.CommentFragment(string)
+  type: Method
+  source:
+    remote:
+      path: LlamaLogic.TuningArchive/TuningCommenter.cs
+      branch: main
+      repo: https://github.com/Llama-Logic/LlamaLogic.git
+    id: CommentFragment
+    path: ../LlamaLogic.TuningArchive/TuningCommenter.cs
+    startLine: 109
+  assemblies:
+  - LlamaLogic.TuningArchive
+  namespace: LlamaLogic.TuningArchive
+  summary: Gets the specified fragment of tuning (one element, such as <xref href="LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)" data-throw-if-not-resolved="false"></xref> gets) with comments on one line, or the fragment as it is if it is not XML
+  remarks: A fragment has no tuning around it for its tuning descriptions to describe, so its comments are found as XML Extractor finds them.
+  example: []
+  syntax:
+    content: public string CommentFragment(string fragment)
+    parameters:
+    - id: fragment
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function CommentFragment(fragment As String) As String
+  overload: LlamaLogic.TuningArchive.TuningCommenter.CommentFragment*
+  nameWithType.vb: TuningCommenter.CommentFragment(String)
+  fullName.vb: LlamaLogic.TuningArchive.TuningCommenter.CommentFragment(String)
+  name.vb: CommentFragment(String)
+references:
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  commentId: M:LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+  isExternal: true
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  name: ExportAsync(TuningArchiveSnapshot, string, TuningArchiveExportOptions, IProgress<TuningArchiveProgress>, CancellationToken)
+  nameWithType: TuningArchiveFile.ExportAsync(TuningArchiveSnapshot, string, TuningArchiveExportOptions, IProgress<TuningArchiveProgress>, CancellationToken)
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot, string, LlamaLogic.TuningArchive.TuningArchiveExportOptions, System.IProgress<LlamaLogic.TuningArchive.TuningArchiveProgress>, System.Threading.CancellationToken)
+  nameWithType.vb: TuningArchiveFile.ExportAsync(TuningArchiveSnapshot, String, TuningArchiveExportOptions, IProgress(Of TuningArchiveProgress), CancellationToken)
+  fullName.vb: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot, String, LlamaLogic.TuningArchive.TuningArchiveExportOptions, System.IProgress(Of LlamaLogic.TuningArchive.TuningArchiveProgress), System.Threading.CancellationToken)
+  name.vb: ExportAsync(TuningArchiveSnapshot, String, TuningArchiveExportOptions, IProgress(Of TuningArchiveProgress), CancellationToken)
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+    name: ExportAsync
+    href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    name: TuningArchiveSnapshot
+    href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveExportOptions
+    name: TuningArchiveExportOptions
+    href: LlamaLogic.TuningArchive.TuningArchiveExportOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: <
+  - uid: LlamaLogic.TuningArchive.TuningArchiveProgress
+    name: TuningArchiveProgress
+    href: LlamaLogic.TuningArchive.TuningArchiveProgress.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningArchiveFile.ExportAsync(LlamaLogic.TuningArchive.TuningArchiveSnapshot,System.String,LlamaLogic.TuningArchive.TuningArchiveExportOptions,System.IProgress{LlamaLogic.TuningArchive.TuningArchiveProgress},System.Threading.CancellationToken)
+    name: ExportAsync
+    href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_ExportAsync_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_String_LlamaLogic_TuningArchive_TuningArchiveExportOptions_System_IProgress_LlamaLogic_TuningArchive_TuningArchiveProgress__System_Threading_CancellationToken_
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    name: TuningArchiveSnapshot
+    href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveExportOptions
+    name: TuningArchiveExportOptions
+    href: LlamaLogic.TuningArchive.TuningArchiveExportOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.IProgress`1
+    name: IProgress
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iprogress-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: LlamaLogic.TuningArchive.TuningArchiveProgress
+    name: TuningArchiveProgress
+    href: LlamaLogic.TuningArchive.TuningArchiveProgress.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)
+  commentId: M:LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_
+  name: GetUninstalledTunings(TuningArchiveSnapshot)
+  nameWithType: TuningArchiveFile.GetUninstalledTunings(TuningArchiveSnapshot)
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)
+    name: GetUninstalledTunings
+    href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    name: TuningArchiveSnapshot
+    href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningArchiveFile.GetUninstalledTunings(LlamaLogic.TuningArchive.TuningArchiveSnapshot)
+    name: GetUninstalledTunings
+    href: LlamaLogic.TuningArchive.TuningArchiveFile.html#LlamaLogic_TuningArchive_TuningArchiveFile_GetUninstalledTunings_LlamaLogic_TuningArchive_TuningArchiveSnapshot_
+  - name: (
+  - uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+    name: TuningArchiveSnapshot
+    href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  - name: )
+- uid: LlamaLogic.TuningArchive
+  commentId: N:LlamaLogic.TuningArchive
+  name: LlamaLogic.TuningArchive
+  nameWithType: LlamaLogic.TuningArchive
+  fullName: LlamaLogic.TuningArchive
+  spec.csharp:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+  spec.vb:
+  - uid: LlamaLogic
+    name: LlamaLogic
+  - name: .
+  - uid: LlamaLogic.TuningArchive
+    name: TuningArchive
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments
+  href: LlamaLogic.TuningArchive.TuningCommenter.html#LlamaLogic_TuningArchive_TuningCommenter_ReferenceComments
+  name: ReferenceComments
+  nameWithType: TuningCommenter.ReferenceComments
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.ReferenceComments
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: LlamaLogic.TuningArchive.TuningCommenter.StringComments*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningCommenter.StringComments
+  href: LlamaLogic.TuningArchive.TuningCommenter.html#LlamaLogic_TuningArchive_TuningCommenter_StringComments
+  name: StringComments
+  nameWithType: TuningCommenter.StringComments
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.StringComments
+- uid: LlamaLogic.TuningArchive.TuningCommenter.Create*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningCommenter.Create
+  href: LlamaLogic.TuningArchive.TuningCommenter.html#LlamaLogic_TuningArchive_TuningCommenter_Create_LlamaLogic_TuningArchive_TuningArchiveFile_LlamaLogic_TuningArchive_TuningArchiveSnapshot_System_Boolean_System_Boolean_
+  name: Create
+  nameWithType: TuningCommenter.Create
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.Create
+- uid: LlamaLogic.TuningArchive.TuningArchiveFile
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveFile
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveFile.html
+  name: TuningArchiveFile
+  nameWithType: TuningArchiveFile
+  fullName: LlamaLogic.TuningArchive.TuningArchiveFile
+- uid: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  commentId: T:LlamaLogic.TuningArchive.TuningArchiveSnapshot
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningArchiveSnapshot.html
+  name: TuningArchiveSnapshot
+  nameWithType: TuningArchiveSnapshot
+  fullName: LlamaLogic.TuningArchive.TuningArchiveSnapshot
+- uid: LlamaLogic.TuningArchive.TuningCommenter
+  commentId: T:LlamaLogic.TuningArchive.TuningCommenter
+  parent: LlamaLogic.TuningArchive
+  href: LlamaLogic.TuningArchive.TuningCommenter.html
+  name: TuningCommenter
+  nameWithType: TuningCommenter
+  fullName: LlamaLogic.TuningArchive.TuningCommenter
+- uid: LlamaLogic.TuningArchive.TuningCommenter.Comment*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningCommenter.Comment
+  href: LlamaLogic.TuningArchive.TuningCommenter.html#LlamaLogic_TuningArchive_TuningCommenter_Comment_System_String_
+  name: Comment
+  nameWithType: TuningCommenter.Comment
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.Comment
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  commentId: M:LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  isExternal: true
+  href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  name: GetFragmentText(XElement)
+  nameWithType: TuningXml.GetFragmentText(XElement)
+  fullName: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+  spec.csharp:
+  - uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+    name: GetFragmentText
+    href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  - name: (
+  - uid: System.Xml.Linq.XElement
+    name: XElement
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xelement
+  - name: )
+  spec.vb:
+  - uid: LlamaLogic.TuningArchive.TuningXml.GetFragmentText(System.Xml.Linq.XElement)
+    name: GetFragmentText
+    href: LlamaLogic.TuningArchive.TuningXml.html#LlamaLogic_TuningArchive_TuningXml_GetFragmentText_System_Xml_Linq_XElement_
+  - name: (
+  - uid: System.Xml.Linq.XElement
+    name: XElement
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.xml.linq.xelement
+  - name: )
+- uid: LlamaLogic.TuningArchive.TuningCommenter.CommentFragment*
+  commentId: Overload:LlamaLogic.TuningArchive.TuningCommenter.CommentFragment
+  href: LlamaLogic.TuningArchive.TuningCommenter.html#LlamaLogic_TuningArchive_TuningCommenter_CommentFragment_System_String_
+  name: CommentFragment
+  nameWithType: TuningCommenter.CommentFragment
+  fullName: LlamaLogic.TuningArchive.TuningCommenter.CommentFragment
