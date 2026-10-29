@@ -30,10 +30,12 @@ partial class TuningArchiveFile
     /// <paramref name="folder"/> is Motherlode's output folder (containing <c>scripts</c> and <c>motherlode-report.json</c>) or its <c>scripts</c> folder.
     /// Every <c>.py</c> file under <c>scripts</c> is imported, keyed by its path relative to it; Motherlode's report, if present, is imported with them, so that the functions it could not verify can be shown.
     /// </remarks>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task<TuningArchiveCaptureResult> ImportPythonAsync(TuningArchiveSnapshot snapshot, string folder, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
         ArgumentNullException.ThrowIfNull(folder);
+        ThrowIfReadOnly();
         var scripts = Directory.Exists(System.IO.Path.Combine(folder, "scripts")) ? System.IO.Path.Combine(folder, "scripts") : folder;
         if (!Directory.Exists(scripts))
             throw new DirectoryNotFoundException($"There is no folder at {folder}");

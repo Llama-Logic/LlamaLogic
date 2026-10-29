@@ -19,9 +19,11 @@ partial class TuningArchiveFile
     /// When <paramref name="gameVersion"/> is <see langword="null"/>, it is taken from the name of the file (such as <c>1.128.90.1030-TDESC.zip</c>).
     /// </remarks>
     /// <exception cref="InvalidOperationException">No game version was specified and the file's name does not contain one</exception>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task<TuningArchiveDescriptions> ImportTuningDescriptionsAsync(string path, string? gameVersion = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(path);
+        ThrowIfReadOnly();
         var fileName = System.IO.Path.GetFileName(path);
         gameVersion ??= GetVersionInFileNamePattern().Match(fileName) is { Success: true } match
             ? match.Groups["version"].Value
@@ -75,9 +77,11 @@ partial class TuningArchiveFile
     /// <summary>
     /// Deletes the specified set of tuning <paramref name="descriptions"/> and the references indexed with it (💤)
     /// </summary>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task DeleteTuningDescriptionsAsync(TuningArchiveDescriptions descriptions, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(descriptions);
+        ThrowIfReadOnly();
         await writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
@@ -112,6 +116,18 @@ partial class TuningArchiveFile
         ArgumentNullException.ThrowIfNull(snapshot);
         using var connection = OpenConnection();
         return FindTuningDescriptions(GetTuningDescriptions(connection), snapshot.GameVersion);
+    }
+
+    /// <summary>
+    /// Gets the set of tuning descriptions for the game version of the specified <paramref name="snapshot"/>: when <paramref name="exactGameVersion"/> is <see langword="true"/>, only the one for that game version (or <see langword="null"/> if the archive has none), otherwise the one best suited to it (see <see cref="FindTuningDescriptions(TuningArchiveSnapshot)"/>)
+    /// </summary>
+    public TuningArchiveDescriptions? FindTuningDescriptions(TuningArchiveSnapshot snapshot, bool exactGameVersion)
+    {
+        ArgumentNullException.ThrowIfNull(snapshot);
+        if (!exactGameVersion)
+            return FindTuningDescriptions(snapshot);
+        using var connection = OpenConnection();
+        return GetTuningDescriptions(connection).FirstOrDefault(descriptions => descriptions.GameVersion == snapshot.GameVersion);
     }
 
     static TuningArchiveDescriptions? FindTuningDescriptions(IReadOnlyList<TuningArchiveDescriptions> all, string gameVersion)

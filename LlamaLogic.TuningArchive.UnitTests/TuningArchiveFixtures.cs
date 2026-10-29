@@ -325,7 +325,7 @@ static class TuningArchiveFixtures
         return directory.GetPath("The Sims 4");
     }
 
-    static void WritePackage(TemporaryDirectory directory, string relativePath, Action<DataBasePackedFile>? populate = null)
+    public static void WritePackage(TemporaryDirectory directory, string relativePath, Action<DataBasePackedFile>? populate = null)
     {
         using var package = new DataBasePackedFile();
         populate?.Invoke(package);

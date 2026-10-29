@@ -11,6 +11,9 @@ namespace LlamaLogic.TuningArchive;
 /// <para>
 /// An archive's members are safe to use from multiple threads. Operations that change the archive are serialized.
 /// </para>
+/// <para>
+/// An application that only reads an archive another application maintains should open it with <see cref="OpenReadOnly(string)"/>, which never changes the file, rather than <see cref="Open(string)"/>, which upgrades the file to this library's version.
+/// </para>
 /// </remarks>
 public sealed partial class TuningArchiveFile :
     IDisposable
@@ -31,14 +34,50 @@ public sealed partial class TuningArchiveFile :
     /// <summary>
     /// Opens the archive at the specified <paramref name="path"/>, creating it if it does not exist (🗑️)
     /// </summary>
+    /// <remarks>
+    /// An archive created by an earlier version of this library is upgraded, and its reference index is discarded if an earlier version built it (see <see cref="IndexReferencesAsync"/>).
+    /// </remarks>
     /// <exception cref="InvalidDataException">The file is an archive created by a newer version of this library</exception>
     public static TuningArchiveFile Open(string path)
     {
         ArgumentNullException.ThrowIfNull(path);
-        var archive = new TuningArchiveFile(System.IO.Path.GetFullPath(path));
+        var archive = new TuningArchiveFile(System.IO.Path.GetFullPath(path), false);
         try
         {
             archive.Initialize();
+            return archive;
+        }
+        catch
+        {
+            archive.Dispose();
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// Opens the existing archive at the specified <paramref name="path"/> for reading only, without changing the file (🗑️)
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// The archive can be read while another application has it open with <see cref="Open(string)"/>, and sees what that application writes as it is written.
+    /// Members that would change the archive throw <see cref="NotSupportedException"/>.
+    /// </para>
+    /// <para>
+    /// If the archive's reference index was built by a different version of this library, it is left as it is and treated as empty: members that use it find no references, and <see cref="GetReferenceIndexStatus"/> reports no tunings indexed.
+    /// </para>
+    /// </remarks>
+    /// <exception cref="FileNotFoundException">There is no file at <paramref name="path"/></exception>
+    /// <exception cref="InvalidDataException">The file is not an archive, or is an archive created by a newer version of this library, or by an earlier version and not yet upgraded by opening it with <see cref="Open(string)"/></exception>
+    public static TuningArchiveFile OpenReadOnly(string path)
+    {
+        ArgumentNullException.ThrowIfNull(path);
+        var fullPath = System.IO.Path.GetFullPath(path);
+        if (!File.Exists(fullPath))
+            throw new FileNotFoundException($"There is no archive at {fullPath}", fullPath);
+        var archive = new TuningArchiveFile(fullPath, true);
+        try
+        {
+            archive.InitializeReadOnly();
             return archive;
         }
         catch
@@ -63,13 +102,14 @@ public sealed partial class TuningArchiveFile :
         return comparison != 0 ? comparison : x.capturedAt.CompareTo(y.capturedAt);
     }
 
-    TuningArchiveFile(string path)
+    TuningArchiveFile(string path, bool isReadOnly)
     {
         Path = path;
+        IsReadOnly = isReadOnly;
         connectionString = new SqliteConnectionStringBuilder
         {
             DataSource = path,
-            Mode = SqliteOpenMode.ReadWriteCreate,
+            Mode = isReadOnly ? SqliteOpenMode.ReadOnly : SqliteOpenMode.ReadWriteCreate,
             Pooling = true,
             DefaultTimeout = 60
         }.ToString();
@@ -80,7 +120,13 @@ public sealed partial class TuningArchiveFile :
     readonly string connectionString;
     readonly ConcurrentDictionary<long, Lazy<TuningDescriptionSet?>> descriptionSets = new();
     int isDisposed;
+    bool isReferenceIndexCurrent = true;
     readonly SemaphoreSlim writeLock = new(1, 1);
+
+    /// <summary>
+    /// Gets whether the archive was opened for reading only (see <see cref="OpenReadOnly(string)"/>)
+    /// </summary>
+    public bool IsReadOnly { get; }
 
     /// <summary>
     /// Gets the path of the archive's database file
@@ -109,11 +155,19 @@ public sealed partial class TuningArchiveFile :
         if (isDisposed != 0)
             throw new ObjectDisposedException(nameof(TuningArchiveFile));
         var connection = new SqliteConnection(connectionString);
-        connection.Open();
-        using var command = connection.CreateCommand();
-        command.CommandText = "PRAGMA synchronous = NORMAL; PRAGMA temp_store = MEMORY; PRAGMA cache_size = -65536;";
-        command.ExecuteNonQuery();
-        return connection;
+        try
+        {
+            connection.Open();
+            using var command = connection.CreateCommand();
+            command.CommandText = "PRAGMA synchronous = NORMAL; PRAGMA temp_store = MEMORY; PRAGMA cache_size = -65536;";
+            command.ExecuteNonQuery();
+            return connection;
+        }
+        catch
+        {
+            connection.Dispose();
+            throw;
+        }
     }
 
     void Initialize()
@@ -144,6 +198,38 @@ public sealed partial class TuningArchiveFile :
         command.Parameters.AddWithValue("$version", referenceIndexVersion.ToString(CultureInfo.InvariantCulture));
         command.ExecuteNonQuery();
         transaction.Commit();
+    }
+
+    void InitializeReadOnly()
+    {
+        try
+        {
+            using var connection = OpenConnection();
+            using var command = connection.CreateCommand();
+            command.CommandText = "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'meta'";
+            if (command.ExecuteScalar() is null)
+                throw new InvalidDataException($"The file at {Path} is not a tuning archive");
+            command.CommandText = "SELECT value FROM meta WHERE key = 'schema_version'";
+            var existingVersion = command.ExecuteScalar() is string text ? int.Parse(text, CultureInfo.InvariantCulture) : 0;
+            if (existingVersion < 1)
+                throw new InvalidDataException($"The file at {Path} is not a tuning archive");
+            if (existingVersion > schemaVersion)
+                throw new InvalidDataException($"The archive at {Path} was created by a newer version of this library (schema {existingVersion})");
+            if (existingVersion < schemaVersion)
+                throw new InvalidDataException($"The archive at {Path} was created by an earlier version of this library (schema {existingVersion}) and must be opened for writing once to be upgraded");
+            command.CommandText = "SELECT value FROM meta WHERE key = 'reference_index_version'";
+            isReferenceIndexCurrent = command.ExecuteScalar() is string indexVersionText && int.Parse(indexVersionText, CultureInfo.InvariantCulture) == referenceIndexVersion;
+        }
+        catch (SqliteException ex) when (ex.SqliteErrorCode is 26)
+        {
+            throw new InvalidDataException($"The file at {Path} is not a tuning archive", ex);
+        }
+    }
+
+    void ThrowIfReadOnly()
+    {
+        if (IsReadOnly)
+            throw new NotSupportedException("The archive was opened for reading only");
     }
 
     static void CreateSchema(SqliteConnection connection)
@@ -561,9 +647,11 @@ public sealed partial class TuningArchiveFile :
     /// <summary>
     /// Changes the label and notes of the specified <paramref name="snapshot"/>, returning the updated snapshot (💤)
     /// </summary>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task<TuningArchiveSnapshot> UpdateSnapshotAsync(TuningArchiveSnapshot snapshot, string? label, string? notes, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
+        ThrowIfReadOnly();
         await writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
@@ -585,9 +673,11 @@ public sealed partial class TuningArchiveFile :
     /// <summary>
     /// Deletes the specified <paramref name="snapshot"/> and any content no other snapshot shares (💤)
     /// </summary>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task DeleteSnapshotAsync(TuningArchiveSnapshot snapshot, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
+        ThrowIfReadOnly();
         await writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {

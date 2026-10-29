@@ -56,9 +56,11 @@ partial class TuningArchiveFile
     /// The game does not load the patches of packs that are not installed, so their tuning is not captured; only the names of the tunings they patch are recorded (see <see cref="GetUninstalledTunings"/>), so that what refers to them can still be explained.
     /// </remarks>
     /// <exception cref="InvalidOperationException">No game version was specified and the installation's version could not be found</exception>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task<TuningArchiveCaptureResult> CaptureAsync(GameInstallation installation, TuningArchiveCaptureOptions? options = null, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(installation);
+        ThrowIfReadOnly();
         options ??= new();
         var gameVersion = options.GameVersion ?? installation.GameVersion ?? throw new InvalidOperationException("The installation's game version could not be found; specify it in the options");
         var packs = installation.Packs.Where(pack => options.Packs is null || options.Packs.Contains(pack.Code, StringComparer.OrdinalIgnoreCase)).ToList();

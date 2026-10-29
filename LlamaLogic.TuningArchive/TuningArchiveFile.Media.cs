@@ -442,6 +442,8 @@ partial class TuningArchiveFile
     public IReadOnlyList<TuningArchiveReference> GetBrokenMediaReferences(TuningArchiveSnapshot snapshot)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
+        if (!isReferenceIndexCurrent)
+            return [];
         var kinds = new[] { TuningArchiveResourceKind.Image, TuningArchiveResourceKind.Sound, TuningArchiveResourceKind.Video }.Where(kind => HasKind(snapshot, kind)).ToHashSet();
         if (kinds.Count is 0)
             return [];

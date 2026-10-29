@@ -45,10 +45,12 @@ partial class TuningArchiveFile
     /// A file named <c>Reference - All Strings.txt</c> in the folder, as Scumbumbo's XML Extractor writes it, is imported as the snapshot's strings.
     /// </para>
     /// </remarks>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task<TuningArchiveCaptureResult> ImportFolderAsync(string folder, string gameVersion, TuningArchiveImportOptions? options = null, IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(folder);
         ArgumentNullException.ThrowIfNull(gameVersion);
+        ThrowIfReadOnly();
         if (string.IsNullOrWhiteSpace(gameVersion))
             throw new ArgumentException("A game version is required", nameof(gameVersion));
         if (!Directory.Exists(folder))

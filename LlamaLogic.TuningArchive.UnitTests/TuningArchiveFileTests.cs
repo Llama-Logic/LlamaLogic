@@ -263,6 +263,21 @@ public class TuningArchiveFileTests
     }
 
     [TestMethod]
+    public async Task ExactTuningDescriptionsAreOnlyThoseOfTheSnapshotsGameVersion()
+    {
+        using var directory = new TemporaryDirectory();
+        using var archive = TuningArchiveFile.Open(directory.GetPath("Tuning.tuningarchive"));
+        var first = await ImportAsync(archive, directory, "first", TuningArchiveFixtures.First, "1.0.1.1000");
+        var second = await ImportAsync(archive, directory, "second", TuningArchiveFixtures.Second, "1.0.2.1000");
+        File.WriteAllBytes(directory.GetPath("1.0.1.1000-TDESC.zip"), TuningArchiveFixtures.WriteDescriptionsZip());
+        await archive.ImportTuningDescriptionsAsync(directory.GetPath("1.0.1.1000-TDESC.zip"));
+        Assert.AreEqual("1.0.1.1000", archive.FindTuningDescriptions(first, exactGameVersion: true)!.GameVersion);
+        Assert.IsNull(archive.FindTuningDescriptions(second, exactGameVersion: true));
+        Assert.AreEqual("1.0.1.1000", archive.FindTuningDescriptions(second, exactGameVersion: false)!.GameVersion);
+        Assert.AreEqual("1.0.1.1000", archive.FindTuningDescriptions(second)!.GameVersion);
+    }
+
+    [TestMethod]
     public async Task ImportedAnimationStateMachinesAreKeyedByTheirFileNames()
     {
         using var directory = new TemporaryDirectory();
@@ -440,6 +455,28 @@ public class TuningArchiveFileTests
         Assert.AreEqual(first.Id, updated.Id);
         Assert.AreEqual("Before the patch", updated.Label);
         Assert.AreEqual("Captured for testing", archive.GetSnapshots().Single().Notes);
+    }
+
+    [TestMethod]
+    public async Task SnapshotsKnowWhetherTheyAreCapturesOfAnInstallation()
+    {
+        using var directory = new TemporaryDirectory();
+        using var archive = TuningArchiveFile.Open(directory.GetPath("Tuning.tuningarchive"));
+        var root = TuningArchiveFixtures.WriteInstallationWithSimData(directory);
+        directory.WriteFile("The Sims 4/EP01/Version.ini", "[Version]\npackversion = 74.0\n");
+        var captured = (await archive.CaptureAsync(GameInstallation.Open(root))).Snapshot;
+        var imported = await ImportAsync(archive, directory, "first", TuningArchiveFixtures.First, "1.0.1.1000");
+        Assert.IsTrue(captured.IsCaptureOf(GameInstallation.Open(root)));
+        Assert.IsFalse(imported.IsCaptureOf(GameInstallation.Open(root)));
+        directory.WriteFile("The Sims 4/EP01/Version.ini", "[Version]\npackversion = 75.0\n");
+        Assert.IsFalse(captured.IsCaptureOf(GameInstallation.Open(root)));
+        directory.WriteFile("The Sims 4/EP01/Version.ini", "[Version]\npackversion = 74.0\n");
+        directory.WriteFile("The Sims 4/Game/Bin/Default.ini", "[Version]\ngameversion = 1.0.2.1000\n");
+        Assert.IsFalse(captured.IsCaptureOf(GameInstallation.Open(root)));
+        directory.WriteFile("The Sims 4/Game/Bin/Default.ini", "[Version]\ngameversion = 1.0.1.1000\n");
+        Assert.IsTrue(captured.IsCaptureOf(GameInstallation.Open(root)));
+        TuningArchiveFixtures.WritePackage(directory, "The Sims 4/EP02/SimulationFullBuild0.package");
+        Assert.IsFalse(captured.IsCaptureOf(GameInstallation.Open(root)));
     }
 
     [TestMethod]

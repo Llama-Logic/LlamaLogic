@@ -78,6 +78,21 @@ public sealed class TuningArchiveSnapshot
     public string DisplayName =>
         string.IsNullOrWhiteSpace(Label) ? GameVersion : $"{GameVersion} ({Label})";
 
+    /// <summary>
+    /// Gets whether the snapshot was captured from an installation of the same game version as the specified <paramref name="installation"/>, with the same packs at the same versions
+    /// </summary>
+    /// <remarks>
+    /// The kinds of resources the snapshot contains are not considered (see <see cref="Kinds"/>).
+    /// </remarks>
+    public bool IsCaptureOf(GameInstallation installation)
+    {
+        ArgumentNullException.ThrowIfNull(installation);
+        return Source is TuningArchiveSnapshotSource.GameInstallation
+            && installation.GameVersion == GameVersion
+            && installation.Packs.Count == Packs.Count
+            && installation.Packs.All(pack => Packs.Any(captured => string.Equals(captured.Code, pack.Code, StringComparison.OrdinalIgnoreCase) && captured.Version == pack.Version));
+    }
+
     /// <inheritdoc/>
     public override bool Equals(object? obj) =>
         obj is TuningArchiveSnapshot other && other.Id == Id;

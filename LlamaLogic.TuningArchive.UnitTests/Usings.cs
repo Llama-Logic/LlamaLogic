@@ -5,6 +5,7 @@ global using LlamaLogic.Packages.Models;
 global using LlamaLogic.Packages.Models.AnimationStateMachine;
 global using LlamaLogic.Packages.Models.SimData;
 global using LlamaLogic.TuningDescriptions;
+global using Microsoft.Data.Sqlite;
 global using System;
 global using System.Collections.Generic;
 global using System.Globalization;

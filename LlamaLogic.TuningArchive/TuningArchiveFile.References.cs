@@ -9,8 +9,10 @@ partial class TuningArchiveFile
     /// The tuning descriptions best suited to a tuning are those best suited to the earliest snapshot containing it (see <see cref="FindTuningDescriptions(TuningArchiveSnapshot)"/>).
     /// Indexing is needed after capturing or importing a snapshot, after importing tuning descriptions, and after opening the archive with a version of this library that indexes differently (which discards the old index); tunings already indexed with the right descriptions are skipped.
     /// </remarks>
+    /// <exception cref="NotSupportedException">The archive was opened for reading only</exception>
     public async Task<int> IndexReferencesAsync(IProgress<TuningArchiveProgress>? progress = null, CancellationToken cancellationToken = default)
     {
+        ThrowIfReadOnly();
         await writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
@@ -167,7 +169,7 @@ partial class TuningArchiveFile
         command.CommandText = "SELECT COUNT(b.references_indexed_by), COUNT(*) FROM blob b WHERE b.id IN (SELECT v.blob_id FROM resource_version v JOIN resource r ON r.id = v.resource_id WHERE r.kind = 0)";
         using var reader = command.ExecuteReader();
         reader.Read();
-        return (reader.GetInt32(0), reader.GetInt32(1));
+        return (isReferenceIndexCurrent ? reader.GetInt32(0) : 0, reader.GetInt32(1));
     }
 
     /// <summary>
@@ -180,6 +182,8 @@ partial class TuningArchiveFile
     public IReadOnlyList<TuningArchiveReference> GetReferrers(TuningArchiveSnapshot snapshot, ResourceType type, ulong instance)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
+        if (!isReferenceIndexCurrent)
+            return [];
         using var connection = OpenConnection();
         if (!HasScope(connection, null, snapshot.Id, TuningScope))
             return [];
@@ -215,6 +219,8 @@ partial class TuningArchiveFile
     {
         ArgumentNullException.ThrowIfNull(snapshot);
         ArgumentNullException.ThrowIfNull(keys);
+        if (!isReferenceIndexCurrent)
+            return [];
         using var connection = OpenConnection();
         if (!HasScope(connection, null, snapshot.Id, TuningScope))
             return [];
@@ -273,6 +279,8 @@ partial class TuningArchiveFile
     public IReadOnlyList<TuningArchiveReference> GetBrokenReferences(TuningArchiveSnapshot snapshot)
     {
         ArgumentNullException.ThrowIfNull(snapshot);
+        if (!isReferenceIndexCurrent)
+            return [];
         using var connection = OpenConnection();
         if (!HasScope(connection, null, snapshot.Id, TuningScope))
             return [];
